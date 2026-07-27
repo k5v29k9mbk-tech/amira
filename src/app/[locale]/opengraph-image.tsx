@@ -21,7 +21,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#f7f1e9",
+          background: "#f3eae0",
           color: "#1b1613",
           padding: 76,
           fontFamily: "serif",

@@ -11,36 +11,23 @@
   Shape lock: 2px on cards, fields and buttons; full circle on icon badges;
   arch (.arch) on portrait imagery. Nothing else gets a radius.
 
-  Theme: light by default, espresso variant follows prefers-color-scheme.
+  Theme: nude / beige, locked. There is deliberately no prefers-color-scheme
+  dark variant: the studio's identity is the warm ground, and flipping to
+  espresso on a visitor's system setting made the brand unrecognisable.
+  `color-scheme: light` also stops the browser darkening form controls.
 */
 :root {
-  --ink: #f7f1e9;
-  --surface: #fffdfa;
-  --surface-2: #f0e6d9;
-  --line: #e2d5c3;
-  --bone: #1b1613;
-  --muted: #6e6157;
-  --accent: #b8974f;
-  --accent-hi: #7e5f2b;
+  --ink: #f3eae0; /* page ground, warm nude */
+  --surface: #fbf6f0; /* cards and panels, lifts off the ground */
+  --surface-2: #e9ddce; /* tinted section bands */
+  --line: #dfd1bf;
+  --bone: #1f1913; /* text, warm near-black */
+  --muted: #6b5f53; /* 5.2:1 on the ground */
+  --accent: #b8974f; /* decorative gold only: rules, fills, icon rings */
+  --accent-hi: #7e5f2b; /* text-safe gold, 4.9:1 on the ground */
   --accent-ink: #f7f1e9;
   --glow: rgba(184, 151, 79, 0.16);
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ink: #15110e;
-    --surface: #1e1815;
-    --surface-2: #262019;
-    --line: #372e26;
-    --bone: #f3ebe1;
-    --muted: #a39588;
-    --accent: #b8974f;
-    --accent-hi: #e3cb99;
-    --accent-ink: #15110e;
-    --glow: rgba(217, 188, 126, 0.1);
-    color-scheme: dark;
-  }
 }
 
 @theme inline {
