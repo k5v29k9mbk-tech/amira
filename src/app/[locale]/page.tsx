@@ -87,7 +87,7 @@ export default async function Home({
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-top"
+                  className="object-cover object-[43%_50%]"
                 />
               </div>
             </div>
