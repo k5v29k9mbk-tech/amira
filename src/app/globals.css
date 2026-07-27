@@ -2,35 +2,44 @@
 
 /*
   Amira Bechini design tokens.
-  Palette lock: off-black + bone + one jade accent. No second accent anywhere.
-  Shape lock:   radius 0 everywhere (editorial). Only the avatar stack is round.
-  Theme:        dark by default, light variant follows prefers-color-scheme.
+
+  Palette lock: warm ivory ground, espresso ink, one champagne-gold accent at two
+  weights. Gold is taken from the brand poster, not chosen as a default; --accent
+  is decorative only (rules, fills, icon rings) and --accent-hi is the darkened
+  text-safe weight, because champagne gold on ivory is ~2.4:1 and fails AA.
+
+  Shape lock: 2px on cards, fields and buttons; full circle on icon badges;
+  arch (.arch) on portrait imagery. Nothing else gets a radius.
+
+  Theme: light by default, espresso variant follows prefers-color-scheme.
 */
 :root {
-  --ink: #0b0b0c;
-  --surface: #131315;
-  --surface-2: #1b1b1e;
-  --line: #2a2a2e;
-  --bone: #efebe3;
-  --muted: #948f86;
-  --accent: #4f9e7a;
-  --accent-hi: #6fbf99;
-  --accent-ink: #06110c;
-  color-scheme: dark;
+  --ink: #f7f1e9;
+  --surface: #fffdfa;
+  --surface-2: #f0e6d9;
+  --line: #e2d5c3;
+  --bone: #1b1613;
+  --muted: #6e6157;
+  --accent: #b8974f;
+  --accent-hi: #7e5f2b;
+  --accent-ink: #f7f1e9;
+  --glow: rgba(184, 151, 79, 0.16);
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --ink: #f6f4ef;
-    --surface: #ffffff;
-    --surface-2: #efece5;
-    --line: #dcd7cc;
-    --bone: #14140f;
-    --muted: #5f5b53;
-    --accent: #2f7357;
-    --accent-hi: #1f5540;
-    --accent-ink: #f6f4ef;
-    color-scheme: light;
+    --ink: #15110e;
+    --surface: #1e1815;
+    --surface-2: #262019;
+    --line: #372e26;
+    --bone: #f3ebe1;
+    --muted: #a39588;
+    --accent: #b8974f;
+    --accent-hi: #e3cb99;
+    --accent-ink: #15110e;
+    --glow: rgba(217, 188, 126, 0.1);
+    color-scheme: dark;
   }
 }
 
@@ -44,8 +53,14 @@
   --color-accent: var(--accent);
   --color-accent-hi: var(--accent-hi);
   --color-accent-ink: var(--accent-ink);
-  --font-sans: var(--font-display), var(--font-arabic), ui-sans-serif, system-ui;
-  --font-mono: var(--font-mono-geist), ui-monospace, monospace;
+  --font-sans: var(--font-body), var(--font-arabic), ui-sans-serif, system-ui;
+  --font-serif: var(--font-display), var(--font-arabic), ui-serif, Georgia, serif;
+  --font-script: var(--font-script), var(--font-display), cursive;
+  /* Figures (prices, durations, percentages) are set in the Didone, not a
+     monospace. Overriding the built-in keeps `font-mono` as the one figure
+     class instead of renaming it across every page. */
+  --font-mono: var(--font-display), ui-serif, Georgia, serif;
+  --radius-card: 2px;
 }
 
 html {
@@ -57,6 +72,41 @@ body {
   color: var(--bone);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Display type is the Didone from the brand lockup. Wide tracking on caps. */
+.display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.lockup {
+  font-family: var(--font-serif);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Arch: the poster's alcove behind the portrait. Top corners fully rounded. */
+.arch {
+  border-radius: 50vw 50vw var(--radius-card) var(--radius-card);
+  overflow: hidden;
+}
+
+/* Warm alcove light behind the hero portrait. Decorative, never over text. */
+.alcove::before {
+  content: "";
+  position: absolute;
+  inset: -12% -8% 0;
+  z-index: -1;
+  background: radial-gradient(60% 55% at 50% 32%, var(--glow), transparent 72%);
+  pointer-events: none;
 }
 
 :where(a, button, input, textarea, select, summary):focus-visible {
@@ -76,12 +126,22 @@ body {
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.028;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 [dir="rtl"] .flip-x {
   transform: scaleX(-1);
+}
+
+/* Arabic has no Didone equivalent, so the Naskh face carries the display role. */
+[lang="ar"] .display,
+[lang="ar"] .script {
+  letter-spacing: 0;
+}
+
+[lang="ar"] .lockup {
+  letter-spacing: 0.1em;
 }
 
 @media (prefers-reduced-motion: reduce) {

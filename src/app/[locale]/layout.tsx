@@ -2,27 +2,36 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Geist, Geist_Mono, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Jost, Parisienne, Playfair_Display, Noto_Naskh_Arabic } from "next/font/google";
 import { routing, isRtl, siteUrl } from "@/i18n/routing";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import "../globals.css";
 
-const display = Geist({
+// Didone display from the brand lockup, geometric sans for body, script for the
+// signature moments only. Arabic gets a Naskh face that sits with the serif.
+const display = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
 });
 
-const mono = Geist_Mono({
+const body = Jost({
   subsets: ["latin"],
-  variable: "--font-mono-geist",
+  variable: "--font-body",
   display: "swap",
 });
 
-const arabic = IBM_Plex_Sans_Arabic({
+const script = Parisienne({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
+  display: "swap",
+});
+
+const arabic = Noto_Naskh_Arabic({
   subsets: ["arabic"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
   variable: "--font-arabic",
   display: "swap",
 });
@@ -66,7 +75,7 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={isRtl(locale) ? "rtl" : "ltr"}
-      className={`${display.variable} ${mono.variable} ${arabic.variable}`}
+      className={`${display.variable} ${body.variable} ${script.variable} ${arabic.variable}`}
       suppressHydrationWarning
     >
       <body className="grain font-sans antialiased">

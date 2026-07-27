@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ArrowRight, PlayCircle } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, Eye, PlayCircle, Sparkle, PaintBrushHousehold } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { courses, lessonCount } from "@/lib/courses";
 import { Reveal } from "@/components/Reveal";
 import { Voices } from "@/components/Voices";
 import { ContactForm } from "@/components/ContactForm";
-import { btnGhost, btnPrimary, sectionTitle, shell } from "@/lib/ui";
+import { btnGhost, btnPrimary, eyebrow, iconRing, sectionTitle, shell } from "@/lib/ui";
 import { altLanguages } from "@/i18n/routing";
 
 export const metadata = { alternates: altLanguages() };
@@ -18,7 +18,11 @@ const stats = [
   { value: "9", key: "years" },
 ] as const;
 
-const steps = ["one", "two", "three"] as const;
+const steps = [
+  { key: "one", Icon: Eye },
+  { key: "two", Icon: PaintBrushHousehold },
+  { key: "three", Icon: Sparkle },
+] as const;
 const faqKeys = ["one", "two", "three", "four", "five", "six"] as const;
 
 export default async function Home({
@@ -38,16 +42,17 @@ export default async function Home({
         <div className={`${shell} grid w-full items-center gap-12 lg:grid-cols-12 lg:gap-8`}>
           <div className="lg:col-span-6 xl:col-span-5">
             <Reveal>
-              <p className="text-xs tracking-[0.22em] text-accent-hi uppercase">
+              <p className={eyebrow}>
+                <span aria-hidden className="h-px w-8 bg-accent" />
                 {t("hero.eyebrow")}
               </p>
             </Reveal>
             <Reveal delay={0.08}>
-              <h1 className="mt-6 text-5xl leading-[1.05] font-medium tracking-tighter text-bone sm:text-6xl xl:text-7xl">
+              <h1 className="display mt-7 text-[3rem] leading-[1.04] text-bone sm:text-6xl xl:text-[4.75rem]">
                 {t("hero.titleA")}{" "}
-                <em className="inline-block pb-1 leading-[1.1] font-normal text-accent-hi italic">
+                <span className="script inline-block pb-2 text-[1.15em] leading-[1.1] text-accent-hi">
                   {t("hero.titleB")}
-                </em>
+                </span>
               </h1>
             </Reveal>
             <Reveal delay={0.16}>
@@ -73,16 +78,22 @@ export default async function Home({
           </div>
 
           <Reveal delay={0.12} className="lg:col-span-6 lg:col-start-7 xl:col-span-6 xl:col-start-7">
-            <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[16/11] lg:aspect-[4/5]">
-              <Image
-                src="https://picsum.photos/seed/amira-bechini-atelier-hero/1400/1750"
-                alt={t("hero.portrait")}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
+            <div className="alcove relative isolate mx-auto max-w-[520px] lg:max-w-none">
+              {/* Gold hairline arch, offset behind the portrait. */}
+              <span
+                aria-hidden
+                className="arch absolute inset-x-6 -top-5 bottom-10 border border-accent/45"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+              <div className="arch relative aspect-[4/5] w-full">
+                <Image
+                  src="https://picsum.photos/seed/amira-bechini-atelier-hero/1400/1750"
+                  alt={t("hero.portrait")}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </Reveal>
         </div>
@@ -97,10 +108,10 @@ export default async function Home({
               delay={i * 0.06}
               className={`border-line py-10 md:py-12 ${i % 2 === 1 ? "border-s ps-6" : "md:border-s md:ps-6"} ${i > 1 ? "border-t md:border-t-0" : ""}`}
             >
-              <p className="font-mono text-4xl tracking-tighter text-bone md:text-5xl">
-                {s.value}
+              <p className="display text-4xl text-bone md:text-5xl">{s.value}</p>
+              <p className="mt-2 text-[11px] font-medium tracking-[0.16em] text-muted uppercase">
+                {t(`proof.${s.key}`)}
               </p>
-              <p className="mt-2 text-sm text-muted">{t(`proof.${s.key}`)}</p>
             </Reveal>
           ))}
         </div>
@@ -161,18 +172,23 @@ export default async function Home({
           </div>
 
           <div className="lg:col-span-6 lg:col-start-7">
-            {steps.map((k, i) => (
+            {steps.map(({ key, Icon }, i) => (
               <Reveal
-                key={k}
+                key={key}
                 delay={i * 0.06}
-                className={`py-8 ${i > 0 ? "border-t border-line" : ""}`}
+                className={`flex gap-6 py-9 ${i > 0 ? "border-t border-line" : ""}`}
               >
-                <h3 className="text-2xl font-medium tracking-tight text-bone md:text-3xl">
-                  {t(`method.steps.${k}.title`)}
-                </h3>
-                <p className="mt-4 max-w-[54ch] leading-relaxed text-muted">
-                  {t(`method.steps.${k}.body`)}
-                </p>
+                <span className={iconRing}>
+                  <Icon size={20} weight="light" />
+                </span>
+                <div>
+                  <h3 className="display text-2xl text-bone md:text-3xl">
+                    {t(`method.steps.${key}.title`)}
+                  </h3>
+                  <p className="mt-4 max-w-[54ch] leading-relaxed text-muted">
+                    {t(`method.steps.${key}.body`)}
+                  </p>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -183,10 +199,11 @@ export default async function Home({
       <section id="courses" className="border-t border-line py-24 md:py-32">
         <div className={shell}>
           <Reveal>
-            <p className="text-xs tracking-[0.22em] text-accent-hi uppercase">
+            <p className={eyebrow}>
+              <span aria-hidden className="h-px w-8 bg-accent" />
               {t("catalog.eyebrow")}
             </p>
-            <h2 className={`${sectionTitle} mt-5`}>{t("catalog.title")}</h2>
+            <h2 className={`${sectionTitle} mt-6`}>{t("catalog.title")}</h2>
             <p className="mt-5 max-w-[52ch] leading-relaxed text-muted">{t("catalog.sub")}</p>
           </Reveal>
 
@@ -215,7 +232,7 @@ export default async function Home({
                 key={k}
                 className={`group py-6 ${i > 0 ? "border-t border-line" : ""}`}
               >
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-lg tracking-tight text-bone marker:hidden md:text-xl">
+                <summary className="display flex cursor-pointer list-none items-start justify-between gap-6 text-lg text-bone marker:hidden md:text-xl">
                   {t(`faq.items.${k}.q`)}
                   <span
                     aria-hidden
@@ -279,7 +296,7 @@ async function CourseTile({
       </div>
       <div className="flex flex-1 flex-col p-7 md:p-9">
         <h3
-          className={`font-medium tracking-tight text-bone ${big ? "text-3xl md:text-4xl" : "text-2xl"}`}
+          className={`display text-bone ${big ? "text-3xl md:text-[2.5rem]" : "text-2xl"}`}
         >
           {t(`catalog.${slug}.title`)}
         </h3>

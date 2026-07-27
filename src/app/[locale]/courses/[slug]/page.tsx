@@ -89,7 +89,7 @@ export default async function CoursePage({
               <div className="mt-5 border-t border-line">
                 {course.modules.map((m) => (
                   <div key={m.id} className="border-b border-line py-7">
-                    <h3 className="text-xl font-medium tracking-tight text-bone">
+                    <h3 className="display text-xl text-bone">
                       {t(`modules.${m.id}`)}
                     </h3>
                     <ul className="mt-4 grid gap-3">
@@ -154,7 +154,7 @@ export default async function CoursePage({
 
               <div className="border border-t-0 border-line bg-surface p-7 md:p-8">
                 <p className="text-sm text-muted">{t("catalog.from")}</p>
-                <p className="mt-2 font-mono text-4xl tracking-tighter text-bone">
+                <p className="mt-2 display text-4xl text-bone">
                   {course.priceEur} EUR
                 </p>
                 <p className="mt-2 text-sm text-muted">{t("catalog.oneTime")}</p>

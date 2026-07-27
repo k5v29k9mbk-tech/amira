@@ -5,6 +5,7 @@ import { getCompletedLessons } from "@/lib/enrollment";
 import { getCourse, progressPercent } from "@/lib/courses";
 import { certificateCode } from "@/lib/mux";
 import { PrintButton } from "@/components/PrintButton";
+import { Wordmark } from "@/components/Wordmark";
 import { btnGhost, shell } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
@@ -74,16 +75,26 @@ export default async function CertificatePage({
   return (
     <div className="pt-28 pb-20 md:pt-36">
       <div className={`${shell} max-w-[900px]`}>
-        <article className="border border-line bg-surface px-8 py-14 text-center md:px-16 md:py-20">
-          <p className="text-xs tracking-[0.28em] text-accent-hi uppercase">{t("title")}</p>
+        <article className="relative rounded-[2px] border border-accent/50 bg-surface px-8 py-14 text-center md:px-16 md:py-20">
+          {/* Inner gold rule, the double-frame of a printed certificate. */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-3 rounded-[2px] border border-accent/25 md:inset-5"
+          />
 
-          <p className="mt-14 text-sm text-muted">{t("awarded")}</p>
-          <h1 className="mt-4 text-4xl font-medium tracking-tighter text-bone md:text-6xl">
+          <Wordmark stacked className="mx-auto w-fit" />
+
+          <p className="mt-12 text-[11px] font-medium tracking-[0.28em] text-accent-hi uppercase">
+            {t("title")}
+          </p>
+
+          <p className="mt-12 text-sm text-muted">{t("awarded")}</p>
+          <h1 className="script mt-3 pb-2 text-5xl leading-[1.2] text-bone md:text-7xl">
             {name}
           </h1>
 
           <p className="mt-10 text-sm text-muted">{t("completed")}</p>
-          <p className="mt-3 text-2xl leading-snug tracking-tight text-bone md:text-3xl">
+          <p className="display mt-3 text-2xl leading-snug text-bone md:text-3xl">
             {tc(`catalog.${course.slug}.title`)}
           </p>
           <p className="mt-3 font-mono text-xs text-muted">
@@ -105,7 +116,11 @@ export default async function CertificatePage({
             </div>
           </div>
 
-          <p className="mt-14 text-sm text-muted">{t("signature")}</p>
+          <p className="script mt-16 text-4xl leading-[1.3] text-accent-hi">Amira</p>
+          <span aria-hidden className="mx-auto mt-2 block h-px w-40 bg-accent/50" />
+          <p className="mt-3 text-[11px] font-medium tracking-[0.2em] text-muted uppercase">
+            {t("signature")}
+          </p>
         </article>
 
         <div className="no-print mt-8 flex flex-wrap gap-3">

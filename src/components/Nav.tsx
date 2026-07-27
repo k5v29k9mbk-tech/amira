@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/
 import { List, X } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { Wordmark } from "./Wordmark";
 import { btnPrimary, shell } from "@/lib/ui";
 
 export function Nav() {
@@ -32,29 +33,28 @@ export function Nav() {
       }`}
     >
       <div className={`${shell} flex h-16 items-center justify-between gap-6 md:h-[72px]`}>
-        <Link
-          href="/"
-          className="text-sm font-medium tracking-[0.2em] text-bone uppercase"
-          onClick={() => setOpen(false)}
-        >
-          Amira Bechini
+        <Link href="/" onClick={() => setOpen(false)} aria-label="Amira Bechini Masterclass">
+          <Wordmark />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-muted transition-colors hover:text-bone"
+              className="text-[11px] font-medium tracking-[0.18em] text-muted uppercase transition-colors hover:text-accent-hi"
             >
               {l.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex">
           <LocaleSwitcher />
-          <Link href="/dashboard" className="text-sm text-muted hover:text-bone">
+          <Link
+            href="/dashboard"
+            className="text-[11px] font-medium tracking-[0.18em] text-muted uppercase hover:text-accent-hi"
+          >
             {t("signIn")}
           </Link>
           <Link href="/courses" className={`${btnPrimary} px-5 py-2.5`}>
@@ -88,7 +88,7 @@ export function Nav() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="border-b border-line py-3 text-lg tracking-tight text-bone"
+                  className="display border-b border-line py-3.5 text-xl text-bone"
                 >
                   {l.label}
                 </Link>
@@ -96,7 +96,7 @@ export function Nav() {
               <Link
                 href="/dashboard"
                 onClick={() => setOpen(false)}
-                className="border-b border-line py-3 text-lg tracking-tight text-bone"
+                className="display border-b border-line py-3.5 text-xl text-bone"
               >
                 {t("signIn")}
               </Link>

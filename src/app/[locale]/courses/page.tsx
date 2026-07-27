@@ -48,7 +48,7 @@ export default async function CoursesPage({
                 </div>
 
                 <div className="md:col-span-6">
-                  <h2 className="text-2xl font-medium tracking-tight text-bone md:text-3xl">
+                  <h2 className="display text-2xl text-bone md:text-3xl">
                     {t(`catalog.${c.slug}.title`)}
                   </h2>
                   <p className="mt-3 max-w-[54ch] leading-relaxed text-muted">

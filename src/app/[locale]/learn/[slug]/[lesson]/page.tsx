@@ -37,7 +37,7 @@ export default async function LessonPage({
       <div className="flex min-h-[100dvh] items-center pt-28 pb-20">
         <div className={`${shell} max-w-2xl`}>
           <LockSimple size={28} weight="light" className="text-accent" />
-          <h1 className="mt-6 text-3xl font-medium tracking-tighter text-bone md:text-4xl">
+          <h1 className="mt-6 display text-3xl text-bone md:text-4xl">
             {t("learn.locked")}
           </h1>
           <p className="mt-5 max-w-[48ch] leading-relaxed text-muted">
@@ -86,7 +86,7 @@ export default async function LessonPage({
             />
           </div>
 
-          <h1 className="mt-8 text-3xl font-medium tracking-tighter text-bone md:text-4xl">
+          <h1 className="mt-8 display text-3xl text-bone md:text-4xl">
             {t(`lessons.${lesson.id}`)}
           </h1>
           <p className="mt-3 font-mono text-xs text-muted">
@@ -124,7 +124,7 @@ export default async function LessonPage({
 
           {percent === 100 && enrollment && (
             <div className="mt-10 border border-accent bg-surface p-7">
-              <h2 className="text-xl font-medium tracking-tight text-bone">
+              <h2 className="display text-xl text-bone">
                 {t("learn.finished")}
               </h2>
               <p className="mt-2 text-muted">{t("learn.finishedBody")}</p>

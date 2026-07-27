@@ -46,7 +46,7 @@ export default async function Dashboard({
 
         {enrollments.length === 0 ? (
           <div className="mt-16 border border-line bg-surface p-10 md:p-14">
-            <h2 className="text-2xl font-medium tracking-tight text-bone">
+            <h2 className="display text-2xl text-bone">
               {t("dashboard.empty")}
             </h2>
             <p className="mt-4 max-w-[46ch] leading-relaxed text-muted">
@@ -79,7 +79,7 @@ export default async function Dashboard({
                   </div>
 
                   <div className="p-7 md:p-8">
-                    <h2 className="text-2xl font-medium tracking-tight text-bone">
+                    <h2 className="display text-2xl text-bone">
                       {t(`catalog.${course.slug}.title`)}
                     </h2>
 

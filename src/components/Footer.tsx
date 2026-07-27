@@ -1,8 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { courses } from "@/lib/courses";
-import { shell } from "@/lib/ui";
+import { label, shell } from "@/lib/ui";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { Wordmark } from "./Wordmark";
 
 export async function Footer() {
   const t = await getTranslations();
@@ -12,16 +13,17 @@ export async function Footer() {
     <footer className="no-print border-t border-line bg-surface">
       <div className={`${shell} grid gap-12 py-16 md:grid-cols-12 md:py-20`}>
         <div className="md:col-span-5">
-          <p className="text-sm font-medium tracking-[0.2em] text-bone uppercase">
-            Amira Bechini
-          </p>
-          <p className="mt-4 max-w-[34ch] text-lg leading-snug tracking-tight text-muted">
+          <Wordmark />
+          <p className="display mt-7 max-w-[30ch] text-2xl leading-snug text-bone">
             {t("footer.tagline")}
+          </p>
+          <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-medium tracking-[0.2em] text-accent-hi uppercase">
+            {t("footer.locations")}
           </p>
         </div>
 
         <nav className="md:col-span-3">
-          <h2 className="text-xs tracking-wide text-muted">{t("footer.explore")}</h2>
+          <h2 className={label}>{t("footer.explore")}</h2>
           <ul className="mt-4 grid gap-2.5">
             {courses.map((c) => (
               <li key={c.slug}>
@@ -37,7 +39,7 @@ export async function Footer() {
         </nav>
 
         <div className="md:col-span-4">
-          <h2 className="text-xs tracking-wide text-muted">{t("footer.studio")}</h2>
+          <h2 className={label}>{t("footer.studio")}</h2>
           <ul className="mt-4 grid gap-2.5 text-sm text-bone">
             <li>
               <a href="mailto:studio@amirabechini.com" className="hover:text-accent-hi">

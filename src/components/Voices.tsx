@@ -26,7 +26,7 @@ export function Voices() {
             type="button"
             onClick={() => nudge(-1)}
             aria-label={t("title")}
-            className="border border-line p-3 text-bone transition-colors hover:border-accent hover:text-accent-hi"
+            className="rounded-full border border-accent/50 p-3.5 text-bone transition-colors hover:border-accent hover:bg-surface-2 hover:text-accent-hi"
           >
             <ArrowLeft size={18} weight="light" className="flip-x" />
           </button>
@@ -34,7 +34,7 @@ export function Voices() {
             type="button"
             onClick={() => nudge(1)}
             aria-label={t("title")}
-            className="border border-line p-3 text-bone transition-colors hover:border-accent hover:text-accent-hi"
+            className="rounded-full border border-accent/50 p-3.5 text-bone transition-colors hover:border-accent hover:bg-surface-2 hover:text-accent-hi"
           >
             <ArrowRight size={18} weight="light" className="flip-x" />
           </button>
@@ -48,14 +48,16 @@ export function Voices() {
         {keys.map((k) => (
           <li
             key={k}
-            className="flex min-w-[85%] shrink-0 snap-start flex-col justify-between gap-8 border border-line bg-surface p-8 sm:min-w-[420px] md:p-10"
+            className="flex min-w-[85%] shrink-0 snap-start flex-col justify-between gap-8 rounded-[2px] border border-line bg-surface p-8 sm:min-w-[420px] md:p-10"
           >
-            <p className="text-xl leading-snug tracking-tight text-bone md:text-2xl">
+            <p className="display text-xl leading-snug text-bone md:text-2xl">
               {`“${t(`items.${k}.quote`)}”`}
             </p>
             <div>
-              <p className="text-sm text-bone">{t(`items.${k}.name`)}</p>
-              <p className="mt-1 text-sm text-muted">{t(`items.${k}.role`)}</p>
+              <p className="text-sm font-medium tracking-[0.14em] text-bone uppercase">
+                {t(`items.${k}.name`)}
+              </p>
+              <p className="mt-1.5 text-sm text-muted">{t(`items.${k}.role`)}</p>
             </div>
           </li>
         ))}

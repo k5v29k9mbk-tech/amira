@@ -37,7 +37,7 @@ export function LessonPlayer({
       tokens={token ? { playback: token } : undefined}
       metadata={{ video_title: title }}
       streamType="on-demand"
-      accentColor="#4f9e7a"
+      accentColor="#b8974f"
       className="aspect-video w-full"
     />
   );
