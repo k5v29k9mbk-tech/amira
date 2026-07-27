@@ -23,16 +23,28 @@
     "eyebrow": "Permanent makeup masterclass",
     "titleA": "Where beauty meets",
     "titleB": "excellence.",
-    "sub": "We don't just teach permanent makeup — we shape the next generation of beauty professionals. Elite training, personal mentorship and international certification, with support that continues after the course.",
+    "sub": "We do not just teach permanent makeup. We shape the next generation of beauty professionals, with elite training, personal mentorship and international certification, and support that continues long after the course ends.",
     "primary": "Explore courses",
     "secondary": "Book your seat",
     "portrait": "Amira Bechini in the masterclass studio"
   },
   "proof": {
-    "locations": { "title": "Tortoreto · Roma · Milano", "sub": "Exclusive locations" },
-    "trainer": { "title": "PhiBrows Master", "sub": "Certified trainer" },
-    "certification": { "title": "International", "sub": "Certification" },
-    "practice": { "title": "Live demo and practice", "sub": "On a real model" }
+    "certification": {
+      "title": "Professional",
+      "sub": "Certification"
+    },
+    "academy": {
+      "title": "International",
+      "sub": "PMU academy"
+    },
+    "groups": {
+      "title": "VIP small groups",
+      "sub": "Limited seats"
+    },
+    "support": {
+      "title": "Lifetime",
+      "sub": "Student support"
+    }
   },
   "instructor": {
     "title": "Amira Bechini",
@@ -50,14 +62,23 @@
     "title": "How a masterclass runs",
     "sub": "Three movements, in the same order every time, so nothing is skipped and nothing is guessed.",
     "steps": {
-      "one": { "title": "Read the face", "body": "Bone structure, asymmetry, skin behaviour. Mapping and colour decisions before a single stroke." },
-      "two": { "title": "Watch, then work", "body": "A full live demonstration on a model, then latex and supervised practice, corrected as you go." },
-      "three": { "title": "Heal and correct", "body": "What the result looks like at day 7, day 30, month 18, and how to fix each outcome." }
+      "one": {
+        "title": "Read the face",
+        "body": "Bone structure, asymmetry, skin behaviour. Mapping and colour decisions before a single stroke."
+      },
+      "two": {
+        "title": "Watch, then work",
+        "body": "A full live demonstration on a model, then latex and supervised practice, corrected as you go."
+      },
+      "three": {
+        "title": "Heal and correct",
+        "body": "What the result looks like at day 7, day 30, month 18, and how to fix each outcome."
+      }
     }
   },
   "why": {
     "eyebrow": "Why Amira",
-    "title": "Why train here",
+    "title": "Why choose AB Academy",
     "sub": "Small rooms, close range, and someone standing over your shoulder until the hand is right.",
     "items": {
       "luxury": {
@@ -206,13 +227,33 @@
   "faq": {
     "title": "Questions",
     "items": {
-      "one": { "q": "How long do I keep access?", "a": "Access does not expire. You buy the course once and it stays in your studio, including any lessons added later." },
-      "two": { "q": "Do I need previous experience?", "a": "The foundations module of every course assumes none. If you already practise, start at the technique module." },
-      "three": { "q": "Is the certificate recognised?", "a": "It certifies completion of this masterclass. Licensing rules for permanent makeup vary by country, so check your local regulator before you practise." },
-      "four": { "q": "Which languages are available?", "a": "The platform and every lesson are available in English, Italian, French and Arabic." },
-      "five": { "q": "Can I pay in instalments?", "a": "Yes. Card, Apple Pay, Google Pay and three-part instalments are all available at checkout." },
-      "six": { "q": "What if the course is not for me?", "a": "Write within fourteen days, before you pass a quarter of the lessons, and you get a full refund." }
-    }
+      "one": {
+        "q": "How long do I keep access?",
+        "a": "Access does not expire. You buy the course once and it stays in your studio, including any lessons added later."
+      },
+      "two": {
+        "q": "Do I need previous experience?",
+        "a": "The foundations module of every course assumes none. If you already practise, start at the technique module."
+      },
+      "three": {
+        "q": "Is the certificate recognised?",
+        "a": "It certifies completion of this masterclass. Licensing rules for permanent makeup vary by country, so check your local regulator before you practise."
+      },
+      "four": {
+        "q": "Which languages are available?",
+        "a": "The platform and every lesson are available in English, Italian, French and Arabic."
+      },
+      "five": {
+        "q": "Can I pay in instalments?",
+        "a": "Yes. Card, Apple Pay, Google Pay and three-part instalments are all available at checkout."
+      },
+      "six": {
+        "q": "What if the course is not for me?",
+        "a": "Write within fourteen days, before you pass a quarter of the lessons, and you get a full refund."
+      }
+    },
+    "eyebrow": "Good to know",
+    "more": "Still deciding? Talk to the studio and we will help you choose the right course."
   },
   "contact": {
     "title": "Talk to the studio",
@@ -221,9 +262,15 @@
     "whatsapp": "WhatsApp",
     "instagram": "Instagram",
     "cities": {
-      "roma": { "name": "Rome" },
-      "milano": { "name": "Milan" },
-      "tortoreto": { "name": "Tortoreto" }
+      "roma": {
+        "name": "Rome"
+      },
+      "milano": {
+        "name": "Milan"
+      },
+      "tortoreto": {
+        "name": "Tortoreto"
+      }
     },
     "name": "Your name",
     "email": "Email",
@@ -301,5 +348,81 @@
     "working": "Opening checkout",
     "success": "Payment received. Your course is unlocked.",
     "cancelled": "Checkout cancelled. Nothing was charged."
+  },
+  "mentor": {
+    "eyebrow": "Meet your mentor",
+    "quote": "I teach the way I work, and I do not let you leave until your hand is steady.",
+    "play": "Play the welcome message",
+    "videoSoon": "Welcome message coming soon",
+    "videoAlt": "Amira Bechini welcomes new students"
+  },
+  "journey": {
+    "eyebrow": "The experience",
+    "title": "Your journey with us",
+    "sub": "From the day you reserve a seat to the day you take your first paying client, every step is planned.",
+    "steps": {
+      "book": {
+        "title": "Reserve your seat",
+        "body": "Choose a date and a city. Places are limited and confirmed in the order they are booked."
+      },
+      "welcome": {
+        "title": "Welcome pack",
+        "body": "Your preparation notes, the kit list, and everything to read before day one."
+      },
+      "theory": {
+        "title": "Theory and colour",
+        "body": "Skin, pigment and undertone. The decisions that happen before any needle."
+      },
+      "demo": {
+        "title": "Live demonstration",
+        "body": "A full treatment on a model, at close range, at the speed you will actually work."
+      },
+      "practice": {
+        "title": "Practice, corrected",
+        "body": "Latex first, then your own model, with your hand corrected while you work."
+      },
+      "certify": {
+        "title": "Certification",
+        "body": "Your certificate, your first portfolio image, and a group that stays open to you."
+      }
+    }
+  },
+  "brand": {
+    "eyebrow": "Beyond technique",
+    "title": "Build your beauty brand",
+    "sub": "Technique fills a chair. A brand fills a diary. Half of what we teach is the business that turns a skill into a studio.",
+    "items": {
+      "identity": {
+        "title": "Brand identity",
+        "body": "Name, look and packaging that let you charge what the work is worth."
+      },
+      "pricing": {
+        "title": "Pricing and packages",
+        "body": "Price on chair time and outcome instead of copying the salon next door."
+      },
+      "social": {
+        "title": "Social media",
+        "body": "What to post, how often, and which posts actually turn into bookings."
+      },
+      "photography": {
+        "title": "Photography",
+        "body": "Shooting healed results that read honestly on a phone screen."
+      },
+      "clients": {
+        "title": "Client acquisition",
+        "body": "Where your first twenty clients come from, and how to keep them."
+      },
+      "systems": {
+        "title": "Studio systems",
+        "body": "Consultation, consent, aftercare and rebooking, running without you."
+      }
+    }
+  },
+  "success": {
+    "eyebrow": "Student results",
+    "title": "Success stories",
+    "sub": "Healed work from students who trained here. Drag each image to see where it started.",
+    "before": "Before",
+    "after": "After"
   }
 }

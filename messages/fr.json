@@ -23,16 +23,28 @@
     "eyebrow": "Masterclass de maquillage permanent",
     "titleA": "Là où la beauté rencontre",
     "titleB": "l'excellence.",
-    "sub": "Nous n'enseignons pas seulement le maquillage permanent : nous formons la nouvelle génération de professionnelles de la beauté. Formation d'élite, mentorat personnalisé et certification internationale, avec un accompagnement qui se poursuit après le cours.",
+    "sub": "Nous n'enseignons pas seulement le maquillage permanent. Nous formons la prochaine génération de professionnelles de la beauté, avec une formation d'élite, un mentorat personnel et une certification internationale, et un accompagnement qui continue bien après la fin du cours.",
     "primary": "Découvrir les cours",
     "secondary": "Réservez votre place",
     "portrait": "Amira Bechini dans le studio de la masterclass"
   },
   "proof": {
-    "locations": { "title": "Tortoreto · Rome · Milan", "sub": "Lieux exclusifs" },
-    "trainer": { "title": "PhiBrows Master", "sub": "Formatrice certifiée" },
-    "certification": { "title": "Internationale", "sub": "Certification" },
-    "practice": { "title": "Démo et pratique", "sub": "Sur modèle" }
+    "certification": {
+      "title": "Professionnelle",
+      "sub": "Certification"
+    },
+    "academy": {
+      "title": "Internationale",
+      "sub": "Académie PMU"
+    },
+    "groups": {
+      "title": "Petits groupes VIP",
+      "sub": "Places limitées"
+    },
+    "support": {
+      "title": "À vie",
+      "sub": "Accompagnement"
+    }
   },
   "instructor": {
     "title": "Amira Bechini",
@@ -50,14 +62,23 @@
     "title": "Comment se déroule une masterclass",
     "sub": "Trois mouvements, toujours dans le même ordre, pour que rien ne soit sauté ni deviné.",
     "steps": {
-      "one": { "title": "Lire le visage", "body": "Structure osseuse, asymétrie, comportement de la peau. Le tracé et le choix de la couleur avant le moindre trait." },
-      "two": { "title": "Regarder, puis faire", "body": "Une démonstration complète sur modèle, puis le latex et la pratique encadrée, corrigée au fur et à mesure." },
-      "three": { "title": "Cicatriser et corriger", "body": "Le résultat au jour 7, au jour 30, au mois 18, et comment corriger chaque cas." }
+      "one": {
+        "title": "Lire le visage",
+        "body": "Structure osseuse, asymétrie, comportement de la peau. Le tracé et le choix de la couleur avant le moindre trait."
+      },
+      "two": {
+        "title": "Regarder, puis faire",
+        "body": "Une démonstration complète sur modèle, puis le latex et la pratique encadrée, corrigée au fur et à mesure."
+      },
+      "three": {
+        "title": "Cicatriser et corriger",
+        "body": "Le résultat au jour 7, au jour 30, au mois 18, et comment corriger chaque cas."
+      }
     }
   },
   "why": {
     "eyebrow": "Pourquoi Amira",
-    "title": "Pourquoi se former ici",
+    "title": "Pourquoi choisir AB Academy",
     "sub": "Des groupes réduits, au plus près du geste, et quelqu'un à vos côtés jusqu'à ce que la main soit juste.",
     "items": {
       "luxury": {
@@ -206,13 +227,33 @@
   "faq": {
     "title": "Questions",
     "items": {
-      "one": { "q": "Combien de temps garde-t-on l'accès ?", "a": "L'accès n'expire pas. Vous achetez le cours une fois et il reste dans votre studio, leçons ajoutées plus tard comprises." },
-      "two": { "q": "Faut-il de l'expérience ?", "a": "Le module fondamentaux de chaque cours n'en suppose aucune. Si vous exercez déjà, commencez au module technique." },
-      "three": { "q": "Le certificat est-il reconnu ?", "a": "Il atteste l'achèvement de cette masterclass. Les règles d'exercice du maquillage permanent varient selon les pays : vérifiez auprès de votre autorité locale." },
-      "four": { "q": "Quelles langues sont disponibles ?", "a": "La plateforme et chaque leçon existent en anglais, italien, français et arabe." },
-      "five": { "q": "Peut-on payer en plusieurs fois ?", "a": "Oui. Carte, Apple Pay, Google Pay et paiement en trois fois sont proposés au moment du règlement." },
-      "six": { "q": "Et si le cours ne me convient pas ?", "a": "Écrivez sous quatorze jours, avant d'avoir dépassé un quart des leçons, et vous êtes remboursée intégralement." }
-    }
+      "one": {
+        "q": "Combien de temps garde-t-on l'accès ?",
+        "a": "L'accès n'expire pas. Vous achetez le cours une fois et il reste dans votre studio, leçons ajoutées plus tard comprises."
+      },
+      "two": {
+        "q": "Faut-il de l'expérience ?",
+        "a": "Le module fondamentaux de chaque cours n'en suppose aucune. Si vous exercez déjà, commencez au module technique."
+      },
+      "three": {
+        "q": "Le certificat est-il reconnu ?",
+        "a": "Il atteste l'achèvement de cette masterclass. Les règles d'exercice du maquillage permanent varient selon les pays : vérifiez auprès de votre autorité locale."
+      },
+      "four": {
+        "q": "Quelles langues sont disponibles ?",
+        "a": "La plateforme et chaque leçon existent en anglais, italien, français et arabe."
+      },
+      "five": {
+        "q": "Peut-on payer en plusieurs fois ?",
+        "a": "Oui. Carte, Apple Pay, Google Pay et paiement en trois fois sont proposés au moment du règlement."
+      },
+      "six": {
+        "q": "Et si le cours ne me convient pas ?",
+        "a": "Écrivez sous quatorze jours, avant d'avoir dépassé un quart des leçons, et vous êtes remboursée intégralement."
+      }
+    },
+    "eyebrow": "Bon à savoir",
+    "more": "Encore hésitante ? Parlez au studio et nous vous aiderons à choisir le bon cours."
   },
   "contact": {
     "title": "Écrire au studio",
@@ -221,9 +262,15 @@
     "whatsapp": "WhatsApp",
     "instagram": "Instagram",
     "cities": {
-      "roma": { "name": "Rome" },
-      "milano": { "name": "Milan" },
-      "tortoreto": { "name": "Tortoreto" }
+      "roma": {
+        "name": "Rome"
+      },
+      "milano": {
+        "name": "Milan"
+      },
+      "tortoreto": {
+        "name": "Tortoreto"
+      }
     },
     "name": "Votre nom",
     "email": "Email",
@@ -301,5 +348,81 @@
     "working": "Ouverture du paiement",
     "success": "Paiement reçu. Votre cours est débloqué.",
     "cancelled": "Paiement annulé. Rien n'a été débité."
+  },
+  "mentor": {
+    "eyebrow": "Votre mentore",
+    "quote": "J'enseigne comme je travaille, et je ne vous laisse pas partir avant que la main soit sûre.",
+    "play": "Voir le message de bienvenue",
+    "videoSoon": "Message de bienvenue à venir",
+    "videoAlt": "Amira Bechini accueille les nouvelles élèves"
+  },
+  "journey": {
+    "eyebrow": "L'expérience",
+    "title": "Votre parcours avec nous",
+    "sub": "Du jour où vous réservez votre place à celui de votre première cliente payante, chaque étape est prévue.",
+    "steps": {
+      "book": {
+        "title": "Réservez votre place",
+        "body": "Choisissez une date et une ville. Les places sont limitées et confirmées par ordre de réservation."
+      },
+      "welcome": {
+        "title": "Pack de bienvenue",
+        "body": "Vos notes de préparation, la liste du matériel, et tout à lire avant le premier jour."
+      },
+      "theory": {
+        "title": "Théorie et couleur",
+        "body": "Peau, pigment et sous-ton. Les décisions qui précèdent la moindre aiguille."
+      },
+      "demo": {
+        "title": "Démonstration en direct",
+        "body": "Un soin complet sur modèle, de près, à la vitesse réelle de travail."
+      },
+      "practice": {
+        "title": "Pratique corrigée",
+        "body": "Le latex d'abord, puis votre propre modèle, la main corrigée pendant que vous travaillez."
+      },
+      "certify": {
+        "title": "Certification",
+        "body": "Votre certificat, votre première image de portfolio, et un groupe qui vous reste ouvert."
+      }
+    }
+  },
+  "brand": {
+    "eyebrow": "Au-delà de la technique",
+    "title": "Construisez votre marque",
+    "sub": "La technique remplit un fauteuil. Une marque remplit un agenda. La moitié de ce que nous enseignons est le métier qui transforme un savoir-faire en studio.",
+    "items": {
+      "identity": {
+        "title": "Identité de marque",
+        "body": "Un nom, une image et un packaging qui vous permettent de facturer la juste valeur."
+      },
+      "pricing": {
+        "title": "Tarifs et forfaits",
+        "body": "Tarifer au temps en fauteuil et au résultat, sans copier le salon d'à côté."
+      },
+      "social": {
+        "title": "Réseaux sociaux",
+        "body": "Quoi publier, à quelle fréquence, et quelles publications deviennent des rendez-vous."
+      },
+      "photography": {
+        "title": "Photographie",
+        "body": "Photographier des résultats cicatrisés crédibles sur un écran de téléphone."
+      },
+      "clients": {
+        "title": "Acquisition de clientes",
+        "body": "D'où viennent vos vingt premières clientes, et comment les garder."
+      },
+      "systems": {
+        "title": "Systèmes de studio",
+        "body": "Consultation, consentement, suivi et reprise de rendez-vous, en autonomie."
+      }
+    }
+  },
+  "success": {
+    "eyebrow": "Résultats des élèves",
+    "title": "Histoires de réussite",
+    "sub": "Des travaux cicatrisés d'élèves formées ici. Faites glisser chaque image pour voir le point de départ.",
+    "before": "Avant",
+    "after": "Après"
   }
 }
