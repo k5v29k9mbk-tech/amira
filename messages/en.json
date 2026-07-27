@@ -1,0 +1,253 @@
+{
+  "meta": {
+    "title": "Amira Bechini",
+    "tagline": "Beauty artistry, taught in full",
+    "description": "Filmed masterclasses in brow architecture, lash couture and permanent makeup by Amira Bechini. Study at your pace, certify when you are ready."
+  },
+  "nav": {
+    "courses": "Courses",
+    "method": "The method",
+    "voices": "Students",
+    "faq": "Questions",
+    "contact": "Contact",
+    "dashboard": "My studio",
+    "signIn": "Sign in",
+    "cta": "Explore courses",
+    "language": "Language",
+    "menu": "Menu"
+  },
+  "hero": {
+    "eyebrow": "Filmed at the Milan atelier",
+    "titleA": "The hand behind",
+    "titleB": "the work.",
+    "sub": "Nine years of atelier practice, filmed lesson by lesson. Study at your pace, certify when you are ready.",
+    "primary": "Explore courses",
+    "secondary": "Watch a free lesson",
+    "portrait": "Amira Bechini at work in her Milan atelier"
+  },
+  "proof": {
+    "title": "Graduates now work with",
+    "students": "students trained",
+    "countries": "countries",
+    "rating": "average rating",
+    "years": "years in practice"
+  },
+  "instructor": {
+    "title": "Amira Bechini",
+    "role": "Founder, Atelier Bechini",
+    "body1": "Amira trained in Tunis, refined her pigment work in Paris, and opened her Milan atelier in 2017. Her waiting list runs eleven months.",
+    "body2": "She teaches the way she works: slow mapping, restrained pigment, and a healed result that still reads as skin two years later.",
+    "credentials": {
+      "one": "Certified in permanent makeup by the Italian Society of Aesthetic Medicine",
+      "two": "Editorial work for Vogue Italia and Marie Claire Arabia",
+      "three": "Trains 40 artists a year, in person and on this platform"
+    },
+    "portrait": "Portrait of Amira Bechini"
+  },
+  "method": {
+    "title": "How the lessons are built",
+    "sub": "Every course follows the same three movements, so nothing is skipped and nothing is guessed.",
+    "steps": {
+      "one": { "title": "Read the face", "body": "Bone structure, asymmetry, skin behaviour. Mapping decisions before a single stroke." },
+      "two": { "title": "Work the pigment", "body": "Filmed in close macro, both hands visible, at the speed you would actually work." },
+      "three": { "title": "Heal and correct", "body": "What the result looks like at day 7, day 30, month 18, and how to fix each outcome." }
+    }
+  },
+  "catalog": {
+    "eyebrow": "The catalogue",
+    "title": "Four courses, one standard",
+    "sub": "Buy a single course or work through all four. Access does not expire.",
+    "from": "Full course",
+    "hours": "hours",
+    "lessons": "lessons",
+    "view": "View course",
+    "enroll": "Enrol now",
+    "enrolled": "You own this course",
+    "continue": "Continue",
+    "includes": "What you get",
+    "outcomes": "By the end you can",
+    "curriculum": "Curriculum",
+    "preview": "Free preview",
+    "back": "All courses",
+    "oneTime": "One payment, lifetime access",
+    "brow-architecture": {
+      "title": "Brow Architecture",
+      "tagline": "Mapping, hair stroke, and the shape that survives healing",
+      "description": "The full brow system, from reading bone structure to the second retouch. Nine hours of macro footage, filmed on six different skin types.",
+      "outcomes": {
+        "one": "Map a brow that suits the face rather than the trend",
+        "two": "Lay hair strokes with consistent depth and no blowout",
+        "three": "Correct grey and orange healed work without a laser"
+      }
+    },
+    "lash-couture": {
+      "title": "Lash Couture",
+      "tagline": "Classic, volume and mega volume, with retention that holds",
+      "description": "Seven hours on isolation, fan making and adhesive control. The course spends as long on retention as it does on application.",
+      "outcomes": {
+        "one": "Build fans by hand at speed without adhesive pooling",
+        "two": "Diagnose why a set drops in week two and stop it",
+        "three": "Remove a set cleanly with no damage to the natural lash"
+      }
+    },
+    "permanent-makeup": {
+      "title": "Permanent Makeup Foundations",
+      "tagline": "Lip blush, eyeliner and colour correction, start to finish",
+      "description": "Fourteen hours across skin science, hygiene, device handling and three signature techniques. The longest course in the catalogue.",
+      "outcomes": {
+        "one": "Choose pigment by undertone rather than by swatch",
+        "two": "Run a lip blush session end to end, including numbing",
+        "three": "Recognise and manage complications before they scar"
+      }
+    },
+    "atelier-business": {
+      "title": "The Atelier Business",
+      "tagline": "Pricing, portfolio and the client journey behind a full book",
+      "description": "Six hours on the part nobody films. How Amira prices, photographs and rebooks, with the real numbers from her own studio.",
+      "outcomes": {
+        "one": "Price on outcome and chair time instead of guesswork",
+        "two": "Shoot healed results that read honestly on a phone",
+        "three": "Build a rebooking system that fills next quarter"
+      }
+    }
+  },
+  "modules": {
+    "foundations": "Foundations",
+    "technique": "Technique",
+    "aftercare": "Healing and aftercare"
+  },
+  "lessons": {
+    "morphology": "Facial morphology and brow logic",
+    "mapping": "Mapping with thread and caliper",
+    "pigment-theory": "Pigment theory and undertone",
+    "hair-stroke": "Hair stroke direction and depth",
+    "shading": "Powder shading and gradient control",
+    "correction": "Correcting old and migrated work",
+    "healing": "The first thirty days",
+    "retouch": "The six week retouch",
+    "anatomy": "Lash anatomy and growth cycles",
+    "adhesive": "Adhesive chemistry and humidity",
+    "classic-set": "The classic set, isolation first",
+    "volume-fans": "Handmade volume fans",
+    "mega-volume": "Mega volume without weight",
+    "retention": "Diagnosing poor retention",
+    "removal": "Clean removal and lash recovery",
+    "skin-science": "Skin layers and pigment behaviour",
+    "hygiene": "Hygiene, consent and the setup",
+    "device-setup": "Device, needle and speed settings",
+    "lip-blush": "Lip blush from outline to saturation",
+    "eyeliner": "Eyeliner and the lash line",
+    "colour-correction": "Neutralising a healed colour shift",
+    "healing-cycles": "Healing cycles across skin types",
+    "complications": "Complications and when to refer out",
+    "positioning": "Positioning and the offer",
+    "pricing": "Pricing on chair time",
+    "photography": "Photographing healed results",
+    "client-journey": "The client journey, first message to rebook",
+    "retention-systems": "Retention systems that run themselves",
+    "scaling": "Adding a second pair of hands"
+  },
+  "voices": {
+    "title": "What students say",
+    "items": {
+      "one": { "quote": "I stopped guessing at pigment. My healed results finally look like the ones in my portfolio.", "name": "Ghita Benslimane", "role": "Brow artist, Casablanca" },
+      "two": { "quote": "The retention module alone paid for the course in three weeks of rebookings.", "name": "Sofia Marchetti", "role": "Lash studio owner, Bologna" },
+      "three": { "quote": "Amira films at the speed you actually work. No cuts hiding the difficult part.", "name": "Camille Dorval", "role": "PMU artist, Lyon" },
+      "four": { "quote": "I raised my prices by 40 percent and lost two clients. I gained eleven.", "name": "Yasmine Trabelsi", "role": "Atelier owner, Tunis" }
+    }
+  },
+  "faq": {
+    "title": "Questions",
+    "items": {
+      "one": { "q": "How long do I keep access?", "a": "Access does not expire. You buy the course once and it stays in your studio, including any lessons added later." },
+      "two": { "q": "Do I need previous experience?", "a": "The foundations module of every course assumes none. If you already practise, start at the technique module." },
+      "three": { "q": "Is the certificate recognised?", "a": "It certifies completion of this masterclass. Licensing rules for permanent makeup vary by country, so check your local regulator before you practise." },
+      "four": { "q": "Which languages are available?", "a": "The platform and every lesson are available in English, Italian, French and Arabic." },
+      "five": { "q": "Can I pay in instalments?", "a": "Yes. Card, Apple Pay, Google Pay and three-part instalments are all available at checkout." },
+      "six": { "q": "What if the course is not for me?", "a": "Write within fourteen days, before you pass a quarter of the lessons, and you get a full refund." }
+    }
+  },
+  "contact": {
+    "title": "Talk to the studio",
+    "sub": "Questions about a course, group licences, or in-person training in Milan.",
+    "name": "Your name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send message",
+    "sending": "Sending",
+    "sent": "Message received. The studio replies within two working days.",
+    "error": "That did not send. Write to studio@amirabechini.com instead.",
+    "required": "Required"
+  },
+  "footer": {
+    "tagline": "Beauty artistry, taught in full.",
+    "explore": "Explore",
+    "studio": "Studio",
+    "legal": "Terms and privacy",
+    "rights": "All rights reserved.",
+    "address": "Via Solferino 22, Milan"
+  },
+  "auth": {
+    "title": "Your studio",
+    "sub": "Sign in to continue where you stopped.",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signUp": "Create account",
+    "toggleToSignUp": "No account yet? Create one",
+    "toggleToSignIn": "Already have an account? Sign in",
+    "working": "One moment",
+    "checkEmail": "Check your inbox to confirm your address.",
+    "error": "Those details did not work.",
+    "demoMode": "Sign in is not connected yet. Add your Supabase keys to .env.local to switch it on."
+  },
+  "dashboard": {
+    "title": "My studio",
+    "welcome": "Welcome back",
+    "inProgress": "In progress",
+    "complete": "Complete",
+    "continue": "Continue",
+    "review": "Review",
+    "certificate": "View certificate",
+    "empty": "No courses yet",
+    "emptyBody": "Your courses appear here the moment a payment clears.",
+    "emptyCta": "Explore courses",
+    "lessonsDone": "of {total} lessons",
+    "loading": "Loading your courses"
+  },
+  "learn": {
+    "back": "Back to course",
+    "markComplete": "Mark as complete",
+    "completed": "Completed",
+    "next": "Next lesson",
+    "prev": "Previous",
+    "locked": "This lesson is part of the full course",
+    "lockedBody": "Enrol once and every lesson unlocks, including the ones added later.",
+    "unlock": "Enrol now",
+    "preview": "Free preview",
+    "duration": "min",
+    "videoSoon": "Video for this lesson is being uploaded.",
+    "finished": "Course complete",
+    "finishedBody": "Your certificate is ready.",
+    "getCertificate": "View certificate"
+  },
+  "certificate": {
+    "title": "Certificate of completion",
+    "awarded": "This certifies that",
+    "completed": "has completed",
+    "issued": "Issued",
+    "code": "Verification code",
+    "signature": "Amira Bechini, Founder",
+    "print": "Print or save as PDF",
+    "back": "Back to my studio",
+    "notYet": "This certificate unlocks when every lesson is complete.",
+    "hours": "hours of instruction"
+  },
+  "checkout": {
+    "unavailable": "Payments are not connected yet. Add your Stripe keys to .env.local to switch them on.",
+    "working": "Opening checkout",
+    "success": "Payment received. Your course is unlocked.",
+    "cancelled": "Checkout cancelled. Nothing was charged."
+  }
+}

@@ -1,0 +1,253 @@
+{
+  "meta": {
+    "title": "Amira Bechini",
+    "tagline": "L'art de la beauté, enseigné en entier",
+    "description": "Masterclass filmées d'architecture du sourcil, lash couture et maquillage permanent avec Amira Bechini. Étudiez à votre rythme, certifiez-vous quand vous êtes prête."
+  },
+  "nav": {
+    "courses": "Cours",
+    "method": "La méthode",
+    "voices": "Élèves",
+    "faq": "Questions",
+    "contact": "Contact",
+    "dashboard": "Mon studio",
+    "signIn": "Connexion",
+    "cta": "Découvrir les cours",
+    "language": "Langue",
+    "menu": "Menu"
+  },
+  "hero": {
+    "eyebrow": "Filmé à l'atelier de Milan",
+    "titleA": "La main derrière",
+    "titleB": "le travail.",
+    "sub": "Neuf ans de pratique en atelier, filmés leçon après leçon. Étudiez à votre rythme, certifiez-vous quand vous êtes prête.",
+    "primary": "Découvrir les cours",
+    "secondary": "Voir une leçon gratuite",
+    "portrait": "Amira Bechini au travail dans son atelier milanais"
+  },
+  "proof": {
+    "title": "Nos diplômées travaillent avec",
+    "students": "élèves formées",
+    "countries": "pays",
+    "rating": "note moyenne",
+    "years": "ans de pratique"
+  },
+  "instructor": {
+    "title": "Amira Bechini",
+    "role": "Fondatrice, Atelier Bechini",
+    "body1": "Amira s'est formée à Tunis, a affiné son travail du pigment à Paris et a ouvert son atelier milanais en 2017. Sa liste d'attente court sur onze mois.",
+    "body2": "Elle enseigne comme elle travaille : cartographie lente, pigment retenu, et un résultat cicatrisé qui ressemble encore à de la peau deux ans plus tard.",
+    "credentials": {
+      "one": "Certifiée en maquillage permanent par la Société italienne de médecine esthétique",
+      "two": "Travaux éditoriaux pour Vogue Italia et Marie Claire Arabia",
+      "three": "Forme 40 artistes par an, en présentiel et sur cette plateforme"
+    },
+    "portrait": "Portrait d'Amira Bechini"
+  },
+  "method": {
+    "title": "Comment les leçons sont construites",
+    "sub": "Chaque cours suit les mêmes trois mouvements, pour que rien ne soit sauté ni deviné.",
+    "steps": {
+      "one": { "title": "Lire le visage", "body": "Structure osseuse, asymétrie, comportement de la peau. Les décisions de tracé avant le moindre trait." },
+      "two": { "title": "Travailler le pigment", "body": "Filmé en macro, les deux mains visibles, à la vitesse réelle de travail." },
+      "three": { "title": "Cicatriser et corriger", "body": "Le résultat au jour 7, au jour 30, au mois 18, et comment corriger chaque cas." }
+    }
+  },
+  "catalog": {
+    "eyebrow": "Le catalogue",
+    "title": "Quatre cours, une seule exigence",
+    "sub": "Prenez un seul cours ou les quatre. L'accès n'expire jamais.",
+    "from": "Cours complet",
+    "hours": "heures",
+    "lessons": "leçons",
+    "view": "Voir le cours",
+    "enroll": "S'inscrire",
+    "enrolled": "Vous possédez ce cours",
+    "continue": "Continuer",
+    "includes": "Ce que vous recevez",
+    "outcomes": "À la fin, vous saurez",
+    "curriculum": "Programme",
+    "preview": "Aperçu gratuit",
+    "back": "Tous les cours",
+    "oneTime": "Un paiement, accès à vie",
+    "brow-architecture": {
+      "title": "Architecture du Sourcil",
+      "tagline": "Cartographie, poil à poil, et la forme qui survit à la cicatrisation",
+      "description": "Le système complet, de la lecture de la structure osseuse à la seconde retouche. Neuf heures de macro, filmées sur six types de peau.",
+      "outcomes": {
+        "one": "Dessiner un sourcil qui va au visage, pas à la tendance",
+        "two": "Poser des poils d'une profondeur constante, sans bavure",
+        "three": "Corriger un travail cicatrisé gris ou orangé sans laser"
+      }
+    },
+    "lash-couture": {
+      "title": "Lash Couture",
+      "tagline": "Classique, volume et méga volume, avec une tenue qui dure",
+      "description": "Sept heures sur l'isolation, la confection des bouquets et le contrôle de la colle. Le cours consacre autant de temps à la tenue qu'à la pose.",
+      "outcomes": {
+        "one": "Confectionner des bouquets à la main, vite et sans excès de colle",
+        "two": "Comprendre pourquoi une pose tombe en deuxième semaine",
+        "three": "Déposer une pose proprement sans abîmer le cil naturel"
+      }
+    },
+    "permanent-makeup": {
+      "title": "Fondamentaux du Maquillage Permanent",
+      "tagline": "Lip blush, eyeliner et correction de couleur, du début à la fin",
+      "description": "Quatorze heures entre science de la peau, hygiène, maniement du dermographe et trois techniques signature. Le cours le plus long du catalogue.",
+      "outcomes": {
+        "one": "Choisir le pigment par le sous-ton, pas par le nuancier",
+        "two": "Mener une séance de lip blush de bout en bout, anesthésie comprise",
+        "three": "Repérer et gérer les complications avant la cicatrice"
+      }
+    },
+    "atelier-business": {
+      "title": "Le Business de l'Atelier",
+      "tagline": "Tarifs, portfolio et parcours client derrière un agenda plein",
+      "description": "Six heures sur la partie que personne ne filme. Comment Amira fixe ses prix, photographie et fidélise, avec les chiffres réels de son studio.",
+      "outcomes": {
+        "one": "Fixer un prix sur le résultat et le temps en fauteuil",
+        "two": "Photographier des résultats cicatrisés crédibles au téléphone",
+        "three": "Construire un système de rendez-vous qui remplit le trimestre"
+      }
+    }
+  },
+  "modules": {
+    "foundations": "Fondamentaux",
+    "technique": "Technique",
+    "aftercare": "Cicatrisation et suivi"
+  },
+  "lessons": {
+    "morphology": "Morphologie du visage et logique du sourcil",
+    "mapping": "Cartographie au fil et au compas",
+    "pigment-theory": "Théorie du pigment et sous-ton",
+    "hair-stroke": "Direction et profondeur du poil",
+    "shading": "Ombrage poudré et contrôle du dégradé",
+    "correction": "Corriger un travail ancien ou migré",
+    "healing": "Les trente premiers jours",
+    "retouch": "La retouche à six semaines",
+    "anatomy": "Anatomie du cil et cycles de pousse",
+    "adhesive": "Chimie de la colle et humidité",
+    "classic-set": "La pose classique, l'isolation d'abord",
+    "volume-fans": "Bouquets volume faits main",
+    "mega-volume": "Méga volume sans poids",
+    "retention": "Diagnostiquer une mauvaise tenue",
+    "removal": "Dépose propre et récupération du cil",
+    "skin-science": "Couches de la peau et comportement du pigment",
+    "hygiene": "Hygiène, consentement et poste de travail",
+    "device-setup": "Dermographe, aiguilles et réglage de vitesse",
+    "lip-blush": "Lip blush, du contour à la saturation",
+    "eyeliner": "Eyeliner et ligne de cils",
+    "colour-correction": "Neutraliser un virage de couleur cicatrisé",
+    "healing-cycles": "Cycles de cicatrisation selon la peau",
+    "complications": "Complications et quand orienter vers un médecin",
+    "positioning": "Positionnement et offre",
+    "pricing": "Tarifer au temps en fauteuil",
+    "photography": "Photographier les résultats cicatrisés",
+    "client-journey": "Le parcours client, du premier message au retour",
+    "retention-systems": "Des systèmes de fidélisation autonomes",
+    "scaling": "Ajouter une seconde paire de mains"
+  },
+  "voices": {
+    "title": "La parole aux élèves",
+    "items": {
+      "one": { "quote": "J'ai arrêté de deviner le pigment. Mes résultats cicatrisés ressemblent enfin à mon portfolio.", "name": "Ghita Benslimane", "role": "Brow artist, Casablanca" },
+      "two": { "quote": "Le module tenue à lui seul a remboursé le cours en trois semaines de rendez-vous.", "name": "Sofia Marchetti", "role": "Gérante de lash studio, Bologne" },
+      "three": { "quote": "Amira filme à la vitesse réelle de travail. Aucune coupe ne cache le passage difficile.", "name": "Camille Dorval", "role": "Artiste MPD, Lyon" },
+      "four": { "quote": "J'ai augmenté mes prix de 40 pour cent et perdu deux clientes. J'en ai gagné onze.", "name": "Yasmine Trabelsi", "role": "Gérante d'atelier, Tunis" }
+    }
+  },
+  "faq": {
+    "title": "Questions",
+    "items": {
+      "one": { "q": "Combien de temps garde-t-on l'accès ?", "a": "L'accès n'expire pas. Vous achetez le cours une fois et il reste dans votre studio, leçons ajoutées plus tard comprises." },
+      "two": { "q": "Faut-il de l'expérience ?", "a": "Le module fondamentaux de chaque cours n'en suppose aucune. Si vous exercez déjà, commencez au module technique." },
+      "three": { "q": "Le certificat est-il reconnu ?", "a": "Il atteste l'achèvement de cette masterclass. Les règles d'exercice du maquillage permanent varient selon les pays : vérifiez auprès de votre autorité locale." },
+      "four": { "q": "Quelles langues sont disponibles ?", "a": "La plateforme et chaque leçon existent en anglais, italien, français et arabe." },
+      "five": { "q": "Peut-on payer en plusieurs fois ?", "a": "Oui. Carte, Apple Pay, Google Pay et paiement en trois fois sont proposés au moment du règlement." },
+      "six": { "q": "Et si le cours ne me convient pas ?", "a": "Écrivez sous quatorze jours, avant d'avoir dépassé un quart des leçons, et vous êtes remboursée intégralement." }
+    }
+  },
+  "contact": {
+    "title": "Écrire au studio",
+    "sub": "Questions sur un cours, licences de groupe, ou formation en présentiel à Milan.",
+    "name": "Votre nom",
+    "email": "Email",
+    "subject": "Objet",
+    "message": "Message",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours",
+    "sent": "Message reçu. Le studio répond sous deux jours ouvrés.",
+    "error": "L'envoi a échoué. Écrivez à studio@amirabechini.com.",
+    "required": "Obligatoire"
+  },
+  "footer": {
+    "tagline": "L'art de la beauté, enseigné en entier.",
+    "explore": "Explorer",
+    "studio": "Studio",
+    "legal": "Conditions et confidentialité",
+    "rights": "Tous droits réservés.",
+    "address": "Via Solferino 22, Milan"
+  },
+  "auth": {
+    "title": "Votre studio",
+    "sub": "Connectez-vous pour reprendre où vous en étiez.",
+    "email": "Email",
+    "password": "Mot de passe",
+    "signIn": "Connexion",
+    "signUp": "Créer un compte",
+    "toggleToSignUp": "Pas encore de compte ? Créez-en un",
+    "toggleToSignIn": "Vous avez déjà un compte ? Connectez-vous",
+    "working": "Un instant",
+    "checkEmail": "Vérifiez votre boîte mail pour confirmer l'adresse.",
+    "error": "Ces informations ne fonctionnent pas.",
+    "demoMode": "La connexion n'est pas encore branchée. Ajoutez vos clés Supabase dans .env.local pour l'activer."
+  },
+  "dashboard": {
+    "title": "Mon studio",
+    "welcome": "Bon retour",
+    "inProgress": "En cours",
+    "complete": "Terminé",
+    "continue": "Continuer",
+    "review": "Revoir",
+    "certificate": "Voir le certificat",
+    "empty": "Aucun cours pour l'instant",
+    "emptyBody": "Vos cours apparaissent ici dès que le paiement est validé.",
+    "emptyCta": "Découvrir les cours",
+    "lessonsDone": "sur {total} leçons",
+    "loading": "Chargement de vos cours"
+  },
+  "learn": {
+    "back": "Retour au cours",
+    "markComplete": "Marquer comme terminée",
+    "completed": "Terminée",
+    "next": "Leçon suivante",
+    "prev": "Précédente",
+    "locked": "Cette leçon fait partie du cours complet",
+    "lockedBody": "Inscrivez-vous une fois et toutes les leçons se débloquent, y compris les prochaines.",
+    "unlock": "S'inscrire",
+    "preview": "Aperçu gratuit",
+    "duration": "min",
+    "videoSoon": "La vidéo de cette leçon est en cours de mise en ligne.",
+    "finished": "Cours terminé",
+    "finishedBody": "Votre certificat est prêt.",
+    "getCertificate": "Voir le certificat"
+  },
+  "certificate": {
+    "title": "Certificat de réussite",
+    "awarded": "Il est certifié que",
+    "completed": "a terminé",
+    "issued": "Délivré le",
+    "code": "Code de vérification",
+    "signature": "Amira Bechini, Fondatrice",
+    "print": "Imprimer ou enregistrer en PDF",
+    "back": "Retour à mon studio",
+    "notYet": "Le certificat se débloque quand toutes les leçons sont terminées.",
+    "hours": "heures de formation"
+  },
+  "checkout": {
+    "unavailable": "Les paiements ne sont pas encore branchés. Ajoutez vos clés Stripe dans .env.local pour les activer.",
+    "working": "Ouverture du paiement",
+    "success": "Paiement reçu. Votre cours est débloqué.",
+    "cancelled": "Paiement annulé. Rien n'a été débité."
+  }
+}

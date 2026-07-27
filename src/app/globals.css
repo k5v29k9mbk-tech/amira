@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/*
+  Amira Bechini design tokens.
+  Palette lock: off-black + bone + one jade accent. No second accent anywhere.
+  Shape lock:   radius 0 everywhere (editorial). Only the avatar stack is round.
+  Theme:        dark by default, light variant follows prefers-color-scheme.
+*/
+:root {
+  --ink: #0b0b0c;
+  --surface: #131315;
+  --surface-2: #1b1b1e;
+  --line: #2a2a2e;
+  --bone: #efebe3;
+  --muted: #948f86;
+  --accent: #4f9e7a;
+  --accent-hi: #6fbf99;
+  --accent-ink: #06110c;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --ink: #f6f4ef;
+    --surface: #ffffff;
+    --surface-2: #efece5;
+    --line: #dcd7cc;
+    --bone: #14140f;
+    --muted: #5f5b53;
+    --accent: #2f7357;
+    --accent-hi: #1f5540;
+    --accent-ink: #f6f4ef;
+    color-scheme: light;
+  }
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-bone: var(--bone);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hi: var(--accent-hi);
+  --color-accent-ink: var(--accent-ink);
+  --font-sans: var(--font-display), var(--font-arabic), ui-sans-serif, system-ui;
+  --font-mono: var(--font-mono-geist), ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--bone);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 2px solid var(--accent-hi);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Fixed grain overlay. Never on a scrolling container (GPU repaint cost). */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+[dir="rtl"] .flip-x {
+  transform: scaleX(-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+}

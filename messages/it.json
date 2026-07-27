@@ -1,0 +1,253 @@
+{
+  "meta": {
+    "title": "Amira Bechini",
+    "tagline": "L'arte della bellezza, insegnata per intero",
+    "description": "Masterclass filmate di architettura del sopracciglio, lash couture e trucco permanente con Amira Bechini. Studia al tuo ritmo, certificati quando sei pronta."
+  },
+  "nav": {
+    "courses": "Corsi",
+    "method": "Il metodo",
+    "voices": "Allieve",
+    "faq": "Domande",
+    "contact": "Contatti",
+    "dashboard": "Il mio studio",
+    "signIn": "Accedi",
+    "cta": "Scopri i corsi",
+    "language": "Lingua",
+    "menu": "Menu"
+  },
+  "hero": {
+    "eyebrow": "Girato nell'atelier di Milano",
+    "titleA": "La mano dietro",
+    "titleB": "il lavoro.",
+    "sub": "Nove anni di pratica in atelier, filmati lezione per lezione. Studia al tuo ritmo, certificati quando sei pronta.",
+    "primary": "Scopri i corsi",
+    "secondary": "Guarda una lezione gratuita",
+    "portrait": "Amira Bechini al lavoro nel suo atelier di Milano"
+  },
+  "proof": {
+    "title": "Le diplomate oggi collaborano con",
+    "students": "allieve formate",
+    "countries": "paesi",
+    "rating": "valutazione media",
+    "years": "anni di pratica"
+  },
+  "instructor": {
+    "title": "Amira Bechini",
+    "role": "Fondatrice, Atelier Bechini",
+    "body1": "Amira si è formata a Tunisi, ha affinato il lavoro sul pigmento a Parigi e ha aperto il suo atelier milanese nel 2017. La lista d'attesa è di undici mesi.",
+    "body2": "Insegna come lavora: mappatura lenta, pigmento misurato e un risultato guarito che dopo due anni sembra ancora pelle.",
+    "credentials": {
+      "one": "Certificata in trucco permanente dalla Società Italiana di Medicina Estetica",
+      "two": "Lavori editoriali per Vogue Italia e Marie Claire Arabia",
+      "three": "Forma 40 artiste all'anno, in presenza e su questa piattaforma"
+    },
+    "portrait": "Ritratto di Amira Bechini"
+  },
+  "method": {
+    "title": "Come sono costruite le lezioni",
+    "sub": "Ogni corso segue gli stessi tre movimenti, così non si salta nulla e non si va a intuito.",
+    "steps": {
+      "one": { "title": "Leggere il viso", "body": "Struttura ossea, asimmetria, comportamento della pelle. Le scelte di mappatura prima di ogni tratto." },
+      "two": { "title": "Lavorare il pigmento", "body": "Ripreso in macro, con entrambe le mani visibili, alla velocità reale di lavoro." },
+      "three": { "title": "Guarigione e correzione", "body": "Il risultato al giorno 7, al giorno 30, al mese 18, e come correggere ogni esito." }
+    }
+  },
+  "catalog": {
+    "eyebrow": "Il catalogo",
+    "title": "Quattro corsi, uno standard",
+    "sub": "Acquista un solo corso o completali tutti e quattro. L'accesso non scade.",
+    "from": "Corso completo",
+    "hours": "ore",
+    "lessons": "lezioni",
+    "view": "Vedi il corso",
+    "enroll": "Iscriviti ora",
+    "enrolled": "Hai già questo corso",
+    "continue": "Continua",
+    "includes": "Cosa ricevi",
+    "outcomes": "Alla fine saprai",
+    "curriculum": "Programma",
+    "preview": "Anteprima gratuita",
+    "back": "Tutti i corsi",
+    "oneTime": "Un pagamento, accesso a vita",
+    "brow-architecture": {
+      "title": "Architettura del Sopracciglio",
+      "tagline": "Mappatura, pelo a pelo e la forma che resiste alla guarigione",
+      "description": "Il sistema completo, dalla lettura della struttura ossea al secondo ritocco. Nove ore di riprese macro su sei tipi di pelle diversi.",
+      "outcomes": {
+        "one": "Mappare un sopracciglio adatto al viso, non alla moda del momento",
+        "two": "Posare peli con profondità costante e senza sbavature",
+        "three": "Correggere lavori guariti grigi o aranciati senza laser"
+      }
+    },
+    "lash-couture": {
+      "title": "Lash Couture",
+      "tagline": "Classico, volume e mega volume, con una tenuta che dura",
+      "description": "Sette ore su isolamento, creazione dei fan e controllo dell'adesivo. Il corso dedica alla tenuta lo stesso tempo che dedica all'applicazione.",
+      "outcomes": {
+        "one": "Costruire fan a mano rapidamente senza accumuli di colla",
+        "two": "Capire perché un set cade alla seconda settimana e impedirlo",
+        "three": "Rimuovere un set senza danneggiare la ciglia naturale"
+      }
+    },
+    "permanent-makeup": {
+      "title": "Fondamenti di Trucco Permanente",
+      "tagline": "Lip blush, eyeliner e correzione del colore, dall'inizio alla fine",
+      "description": "Quattordici ore tra scienza della pelle, igiene, uso del dispositivo e tre tecniche firma. Il corso più lungo del catalogo.",
+      "outcomes": {
+        "one": "Scegliere il pigmento dal sottotono, non dal campione",
+        "two": "Condurre una seduta di lip blush completa, anestesia inclusa",
+        "three": "Riconoscere e gestire le complicanze prima della cicatrice"
+      }
+    },
+    "atelier-business": {
+      "title": "Il Business dell'Atelier",
+      "tagline": "Prezzi, portfolio e il percorso cliente dietro un'agenda piena",
+      "description": "Sei ore sulla parte che nessuno filma. Come Amira definisce i prezzi, fotografa e fidelizza, con i numeri reali del suo studio.",
+      "outcomes": {
+        "one": "Fissare i prezzi sul risultato e sul tempo in poltrona",
+        "two": "Fotografare risultati guariti che restano credibili al telefono",
+        "three": "Costruire un sistema di richiami che riempie il trimestre"
+      }
+    }
+  },
+  "modules": {
+    "foundations": "Fondamenti",
+    "technique": "Tecnica",
+    "aftercare": "Guarigione e cura"
+  },
+  "lessons": {
+    "morphology": "Morfologia del viso e logica del sopracciglio",
+    "mapping": "Mappatura con filo e calibro",
+    "pigment-theory": "Teoria del pigmento e sottotono",
+    "hair-stroke": "Direzione e profondità del pelo",
+    "shading": "Sfumatura in polvere e controllo del gradiente",
+    "correction": "Correggere lavori vecchi e migrati",
+    "healing": "I primi trenta giorni",
+    "retouch": "Il ritocco a sei settimane",
+    "anatomy": "Anatomia della ciglia e cicli di crescita",
+    "adhesive": "Chimica dell'adesivo e umidità",
+    "classic-set": "Il set classico, prima l'isolamento",
+    "volume-fans": "Fan volume fatti a mano",
+    "mega-volume": "Mega volume senza peso",
+    "retention": "Diagnosticare una tenuta scarsa",
+    "removal": "Rimozione pulita e recupero della ciglia",
+    "skin-science": "Strati della pelle e comportamento del pigmento",
+    "hygiene": "Igiene, consenso e postazione",
+    "device-setup": "Dispositivo, aghi e regolazione della velocità",
+    "lip-blush": "Lip blush dal contorno alla saturazione",
+    "eyeliner": "Eyeliner e linea ciliare",
+    "colour-correction": "Neutralizzare un viraggio di colore guarito",
+    "healing-cycles": "Cicli di guarigione per tipo di pelle",
+    "complications": "Complicanze e quando inviare a un medico",
+    "positioning": "Posizionamento e offerta",
+    "pricing": "Prezzi sul tempo in poltrona",
+    "photography": "Fotografare i risultati guariti",
+    "client-journey": "Il percorso cliente, dal primo messaggio al richiamo",
+    "retention-systems": "Sistemi di fidelizzazione che funzionano da soli",
+    "scaling": "Aggiungere un secondo paio di mani"
+  },
+  "voices": {
+    "title": "La parola alle allieve",
+    "items": {
+      "one": { "quote": "Ho smesso di andare a intuito sul pigmento. I miei risultati guariti finalmente somigliano al portfolio.", "name": "Ghita Benslimane", "role": "Brow artist, Casablanca" },
+      "two": { "quote": "Il solo modulo sulla tenuta ha ripagato il corso in tre settimane di richiami.", "name": "Sofia Marchetti", "role": "Titolare di lash studio, Bologna" },
+      "three": { "quote": "Amira filma alla velocità reale di lavoro. Nessun taglio che nasconde la parte difficile.", "name": "Camille Dorval", "role": "Artista PMU, Lione" },
+      "four": { "quote": "Ho alzato i prezzi del 40 per cento e perso due clienti. Ne ho guadagnate undici.", "name": "Yasmine Trabelsi", "role": "Titolare di atelier, Tunisi" }
+    }
+  },
+  "faq": {
+    "title": "Domande",
+    "items": {
+      "one": { "q": "Per quanto tempo ho accesso?", "a": "L'accesso non scade. Acquisti il corso una volta e resta nel tuo studio, comprese le lezioni aggiunte in seguito." },
+      "two": { "q": "Serve esperienza precedente?", "a": "Il modulo di fondamenti di ogni corso non la presuppone. Se già lavori, parti dal modulo di tecnica." },
+      "three": { "q": "Il certificato è riconosciuto?", "a": "Certifica il completamento di questa masterclass. Le regole di abilitazione per il trucco permanente variano da paese a paese: verifica con l'ente locale prima di esercitare." },
+      "four": { "q": "Quali lingue sono disponibili?", "a": "La piattaforma e ogni lezione sono disponibili in inglese, italiano, francese e arabo." },
+      "five": { "q": "Posso pagare a rate?", "a": "Sì. Carta, Apple Pay, Google Pay e pagamento in tre rate sono disponibili alla cassa." },
+      "six": { "q": "E se il corso non facesse per me?", "a": "Scrivi entro quattordici giorni, prima di aver superato un quarto delle lezioni, e ricevi il rimborso completo." }
+    }
+  },
+  "contact": {
+    "title": "Parla con lo studio",
+    "sub": "Domande sui corsi, licenze di gruppo o formazione in presenza a Milano.",
+    "name": "Il tuo nome",
+    "email": "Email",
+    "subject": "Oggetto",
+    "message": "Messaggio",
+    "send": "Invia messaggio",
+    "sending": "Invio in corso",
+    "sent": "Messaggio ricevuto. Lo studio risponde entro due giorni lavorativi.",
+    "error": "L'invio non è riuscito. Scrivi a studio@amirabechini.com.",
+    "required": "Obbligatorio"
+  },
+  "footer": {
+    "tagline": "L'arte della bellezza, insegnata per intero.",
+    "explore": "Esplora",
+    "studio": "Studio",
+    "legal": "Termini e privacy",
+    "rights": "Tutti i diritti riservati.",
+    "address": "Via Solferino 22, Milano"
+  },
+  "auth": {
+    "title": "Il tuo studio",
+    "sub": "Accedi per riprendere da dove hai lasciato.",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Accedi",
+    "signUp": "Crea account",
+    "toggleToSignUp": "Non hai un account? Creane uno",
+    "toggleToSignIn": "Hai già un account? Accedi",
+    "working": "Un momento",
+    "checkEmail": "Controlla la casella per confermare l'indirizzo.",
+    "error": "Questi dati non funzionano.",
+    "demoMode": "L'accesso non è ancora collegato. Aggiungi le chiavi Supabase in .env.local per attivarlo."
+  },
+  "dashboard": {
+    "title": "Il mio studio",
+    "welcome": "Bentornata",
+    "inProgress": "In corso",
+    "complete": "Completato",
+    "continue": "Continua",
+    "review": "Rivedi",
+    "certificate": "Vedi il certificato",
+    "empty": "Ancora nessun corso",
+    "emptyBody": "I tuoi corsi compaiono qui appena il pagamento va a buon fine.",
+    "emptyCta": "Scopri i corsi",
+    "lessonsDone": "di {total} lezioni",
+    "loading": "Caricamento dei corsi"
+  },
+  "learn": {
+    "back": "Torna al corso",
+    "markComplete": "Segna come completata",
+    "completed": "Completata",
+    "next": "Lezione successiva",
+    "prev": "Precedente",
+    "locked": "Questa lezione fa parte del corso completo",
+    "lockedBody": "Iscriviti una volta e sblocchi ogni lezione, comprese quelle aggiunte in seguito.",
+    "unlock": "Iscriviti ora",
+    "preview": "Anteprima gratuita",
+    "duration": "min",
+    "videoSoon": "Il video di questa lezione è in caricamento.",
+    "finished": "Corso completato",
+    "finishedBody": "Il tuo certificato è pronto.",
+    "getCertificate": "Vedi il certificato"
+  },
+  "certificate": {
+    "title": "Certificato di completamento",
+    "awarded": "Si certifica che",
+    "completed": "ha completato",
+    "issued": "Rilasciato",
+    "code": "Codice di verifica",
+    "signature": "Amira Bechini, Fondatrice",
+    "print": "Stampa o salva in PDF",
+    "back": "Torna al mio studio",
+    "notYet": "Il certificato si sblocca quando tutte le lezioni sono completate.",
+    "hours": "ore di formazione"
+  },
+  "checkout": {
+    "unavailable": "I pagamenti non sono ancora collegati. Aggiungi le chiavi Stripe in .env.local per attivarli.",
+    "working": "Apertura della cassa",
+    "success": "Pagamento ricevuto. Il corso è sbloccato.",
+    "cancelled": "Pagamento annullato. Non è stato addebitato nulla."
+  }
+}
