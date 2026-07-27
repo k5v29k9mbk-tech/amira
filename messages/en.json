@@ -61,6 +61,10 @@
   "method": {
     "title": "How a masterclass runs",
     "sub": "Three movements, in the same order every time, so nothing is skipped and nothing is guessed.",
+    "clips": {
+      "mapping": "Mapping through to machine work, filmed in the studio.",
+      "pigment": "Blade and pigment, at working distance."
+    },
     "steps": {
       "one": {
         "title": "Read the face",

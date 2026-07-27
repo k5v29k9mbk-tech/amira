@@ -61,6 +61,10 @@
   "method": {
     "title": "Come si svolge una masterclass",
     "sub": "Tre movimenti, sempre nello stesso ordine, così non si salta nulla e non si va a intuito.",
+    "clips": {
+      "mapping": "Dalla mappatura al lavoro a macchina, ripreso in studio.",
+      "pigment": "Lama e pigmento, a distanza di lavoro."
+    },
     "steps": {
       "one": {
         "title": "Leggere il viso",

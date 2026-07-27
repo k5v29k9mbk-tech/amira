@@ -75,6 +75,13 @@ const steps = [
   { key: "three", Icon: Sparkle },
 ] as const;
 
+// Two clips from the studio floor. Both were shot vertically on a phone, so
+// they stay portrait rather than being letterboxed into a 16:9 well.
+const clips = [
+  { key: "mapping", src: "/brand/mapping.mp4", poster: "/brand/mapping-poster.jpg" },
+  { key: "pigment", src: "/brand/pigment.mp4", poster: "/brand/pigment-poster.jpg" },
+] as const;
+
 const reasons = [
   { key: "luxury", Icon: Crown },
   { key: "groups", Icon: UsersThree },
@@ -147,7 +154,7 @@ export default async function Home({
             not a feather: the wash bleeding across her read as a blur. */}
         <span
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--ink)_18%,color-mix(in_srgb,var(--ink)_70%,transparent)_46%,transparent_78%)] lg:bg-[linear-gradient(to_right,var(--ink)_0,var(--ink)_46%,transparent_46%)]"
+          className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--ink)_0,var(--ink)_58%,transparent_58%)] lg:bg-[linear-gradient(to_right,var(--ink)_0,var(--ink)_46%,transparent_46%)]"
         />
         <div className={`${shell} grid w-full items-center gap-12 lg:grid-cols-12 lg:gap-8`}>
           <div className="lg:col-span-6 xl:col-span-5">
