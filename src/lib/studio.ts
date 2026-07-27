@@ -12,6 +12,20 @@ export const studio = {
   instagram: "amirabechini",
 } as const;
 
+/**
+ * Mux playback id for Amira's welcome message on the homepage. Empty until the
+ * clip is uploaded; the section then shows the still with a caption instead of
+ * a broken player.
+ */
+export const welcomeVideoId = process.env.NEXT_PUBLIC_WELCOME_VIDEO_ID ?? "";
+
+/**
+ * Healed before / after pairs for the success section. Both files must be the
+ * same crop and framing or the wipe looks wrong.
+ * TODO(studio): supply matched pairs. The section hides itself while empty.
+ */
+export const beforeAfterPairs: { before: string; after: string; label: string }[] = [];
+
 export const whatsappLink = `https://wa.me/${studio.whatsapp}`;
 export const instagramLink = `https://instagram.com/${studio.instagram}`;
 

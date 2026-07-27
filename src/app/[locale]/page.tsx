@@ -2,8 +2,14 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
   ArrowRight,
+  BookOpen,
   CalendarCheck,
+  Camera,
   Certificate,
+  CurrencyEur,
+  Diamond,
+  Megaphone,
+  Storefront,
   ChartLineUp,
   Crown,
   EnvelopeSimple,
@@ -20,10 +26,20 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { courses, lessonCount, resultStills } from "@/lib/courses";
-import { cities, instagramLink, mapsLink, studio, whatsappLink } from "@/lib/studio";
+import {
+  beforeAfterPairs,
+  cities,
+  instagramLink,
+  mapsLink,
+  studio,
+  welcomeVideoId,
+  whatsappLink,
+} from "@/lib/studio";
 import { Reveal } from "@/components/Reveal";
 import { Counter } from "@/components/Counter";
 import { Voices } from "@/components/Voices";
+import { BeforeAfter } from "@/components/BeforeAfter";
+import { WelcomeVideo } from "@/components/WelcomeVideo";
 import { ContactForm } from "@/components/ContactForm";
 import { btnGhost, btnPrimary, eyebrow, iconRing, label, sectionTitle, shell } from "@/lib/ui";
 import { altLanguages } from "@/i18n/routing";
@@ -31,7 +47,27 @@ import { altLanguages } from "@/i18n/routing";
 export const metadata = { alternates: altLanguages() };
 
 // Claims the studio's own marketing already makes. No invented figures.
-const badges = ["locations", "trainer", "certification", "practice"] as const;
+const badges = ["academy", "certification", "groups", "support"] as const;
+
+// Enrollment to certification, in the order a student actually meets it.
+const journey = [
+  { key: "book", Icon: CalendarCheck },
+  { key: "welcome", Icon: EnvelopeSimple },
+  { key: "theory", Icon: BookOpen },
+  { key: "demo", Icon: Eye },
+  { key: "practice", Icon: HandHeart },
+  { key: "certify", Icon: Certificate },
+] as const;
+
+// The half of the training that is not technique.
+const brandPillars = [
+  { key: "identity", Icon: Diamond },
+  { key: "pricing", Icon: CurrencyEur },
+  { key: "social", Icon: Megaphone },
+  { key: "photography", Icon: Camera },
+  { key: "clients", Icon: UsersThree },
+  { key: "systems", Icon: Storefront },
+] as const;
 
 const steps = [
   { key: "one", Icon: Eye },
@@ -165,7 +201,10 @@ export default async function Home({
         </div>
       </section>
 
-      {/* Instructor: full-bleed portrait beside editorial copy. */}
+      {/* Everything below this point gets the floating seat button. */}
+      <div id="sticky-cta-after" aria-hidden />
+
+      {/* Meet your mentor: portrait, biography, welcome message. */}
       <section id="about" className="py-24 md:py-32">
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <Reveal className="lg:col-span-5">
@@ -182,7 +221,11 @@ export default async function Home({
 
           <div className="lg:col-span-6 lg:col-start-7 lg:self-center">
             <Reveal>
-              <h2 className={sectionTitle}>{t("instructor.title")}</h2>
+              <p className={eyebrow}>
+                <span aria-hidden className="h-px w-8 bg-accent" />
+                {t("mentor.eyebrow")}
+              </p>
+              <h2 className={`${sectionTitle} mt-6`}>{t("instructor.title")}</h2>
               <p className="mt-3 text-sm text-accent-hi">{t("instructor.role")}</p>
             </Reveal>
             <Reveal delay={0.08}>
@@ -205,10 +248,32 @@ export default async function Home({
             </Reveal>
           </div>
         </div>
+
+        {/* Welcome message. Click to load, so the homepage never carries the
+            player bundle for a video most visitors will not open. */}
+        <div className={`${shell} mt-16 grid gap-10 lg:mt-20 lg:grid-cols-12 lg:gap-16`}>
+          <Reveal className="lg:col-span-7">
+            <div className="overflow-hidden border border-line">
+              <WelcomeVideo
+                playbackId={welcomeVideoId}
+                poster="/brand/amira-hero.jpg"
+                alt={t("mentor.videoAlt")}
+              />
+            </div>
+          </Reveal>
+          <Reveal delay={0.08} className="lg:col-span-5 lg:self-center">
+            <p className="script text-4xl leading-[1.25] text-accent-hi md:text-5xl">
+              {t("mentor.quote")}
+            </p>
+            <p className="mt-6 text-[11px] font-medium tracking-[0.2em] text-muted uppercase">
+              {t("instructor.role")}
+            </p>
+          </Reveal>
+        </div>
       </section>
 
-      {/* Why choose Amira: six reasons, gold icon rings, hairline grid. */}
-      <section id="why" className="border-t border-line py-24 md:py-32">
+      {/* Why choose the academy: six reasons as raised cards. */}
+      <section id="why" className="border-t border-line bg-surface-2/40 py-24 md:py-32">
         <div className={shell}>
           <Reveal>
             <p className={eyebrow}>
@@ -219,24 +284,25 @@ export default async function Home({
             <p className="mt-5 max-w-[52ch] leading-relaxed text-muted">{t("why.sub")}</p>
           </Reveal>
 
-          {/* Hairline grid: rules on the container's top/start edge, on every
-              cell's bottom/end edge. Holds at one, two or three columns. */}
-          <div className="mt-14 grid border-t border-s border-line md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {reasons.map(({ key, Icon }, i) => (
-              <Reveal
-                key={key}
-                delay={(i % 3) * 0.06}
-                className="border-b border-e border-line p-8 md:p-10"
-              >
-                <span className={iconRing}>
-                  <Icon size={20} weight="light" />
-                </span>
-                <h3 className="display mt-6 text-2xl text-bone">
-                  {t(`why.items.${key}.title`)}
-                </h3>
-                <p className="mt-3 max-w-[38ch] leading-relaxed text-muted">
-                  {t(`why.items.${key}.body`)}
-                </p>
+              <Reveal key={key} delay={(i % 3) * 0.06}>
+                <article className="group relative h-full overflow-hidden rounded-[2px] border border-line bg-surface p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent hover:shadow-[0_18px_50px_color-mix(in_srgb,var(--accent)_18%,transparent)] md:p-10">
+                  {/* Gold wash that warms on hover. Decorative, behind content. */}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-x-0 -top-24 h-40 bg-[radial-gradient(60%_100%_at_50%_100%,var(--glow),transparent)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  />
+                  <span className={iconRing}>
+                    <Icon size={20} weight="light" />
+                  </span>
+                  <h3 className="display mt-6 text-2xl text-bone">
+                    {t(`why.items.${key}.title`)}
+                  </h3>
+                  <p className="mt-3 max-w-[38ch] leading-relaxed text-muted">
+                    {t(`why.items.${key}.body`)}
+                  </p>
+                </article>
               </Reveal>
             ))}
           </div>
@@ -299,6 +365,82 @@ export default async function Home({
               </Reveal>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* Journey: enrollment to certification. Horizontal rail on desktop with a
+          continuous gold spine behind the nodes, vertical spine on phones. */}
+      <section id="journey" className="border-t border-line py-24 md:py-32">
+        <div className={shell}>
+          <Reveal>
+            <p className={eyebrow}>
+              <span aria-hidden className="h-px w-8 bg-accent" />
+              {t("journey.eyebrow")}
+            </p>
+            <h2 className={`${sectionTitle} mt-6`}>{t("journey.title")}</h2>
+            <p className="mt-5 max-w-[54ch] leading-relaxed text-muted">{t("journey.sub")}</p>
+          </Reveal>
+
+          <ol className="relative mt-16 grid gap-10 lg:grid-cols-6 lg:gap-6">
+            {/* The spine. Vertical behind the nodes on phones, horizontal on lg. */}
+            <span
+              aria-hidden
+              className="absolute inset-y-0 start-6 w-px bg-line lg:inset-y-auto lg:top-6 lg:inset-x-0 lg:h-px lg:w-auto"
+            />
+            {journey.map(({ key, Icon }, i) => (
+              <Reveal
+                as="li"
+                key={key}
+                delay={i * 0.07}
+                className="relative flex gap-6 lg:flex-col lg:gap-0"
+              >
+                <span className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent bg-ink text-accent-hi">
+                  <Icon size={19} weight="light" />
+                </span>
+                <div className="lg:mt-7 lg:pe-4">
+                  <p className="font-mono text-xs text-accent">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="display mt-2 text-xl text-bone">
+                    {t(`journey.steps.${key}.title`)}
+                  </h3>
+                  <p className="mt-2 max-w-[34ch] text-sm leading-relaxed text-muted">
+                    {t(`journey.steps.${key}.body`)}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Build your beauty brand: the half of the training that is not technique. */}
+      <section id="brand" className="border-t border-line bg-surface-2/40 py-24 md:py-32">
+        <div className={shell}>
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <p className={`${eyebrow} justify-center`}>
+              <span aria-hidden className="h-px w-8 bg-accent" />
+              {t("brand.eyebrow")}
+            </p>
+            <h2 className={`${sectionTitle} mt-6`}>{t("brand.title")}</h2>
+            <p className="mt-6 leading-relaxed text-muted">{t("brand.sub")}</p>
+          </Reveal>
+
+          <div className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {brandPillars.map(({ key, Icon }, i) => (
+              <Reveal key={key} delay={(i % 3) * 0.06} className="text-center">
+                <span className={`${iconRing} mx-auto`}>
+                  <Icon size={20} weight="light" />
+                </span>
+                <h3 className="display mt-5 text-xl text-bone">
+                  {t(`brand.items.${key}.title`)}
+                </h3>
+                <p className="mx-auto mt-2 max-w-[32ch] text-sm leading-relaxed text-muted">
+                  {t(`brand.items.${key}.body`)}
+                </p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -404,33 +546,72 @@ export default async function Home({
         </div>
       </section>
 
+      {/* Success stories. Renders the wipes only once matched pairs exist, and
+          the quotes only once real consented ones are added. */}
+      {beforeAfterPairs.length > 0 && (
+        <section id="success" className="border-t border-line py-24 md:py-32">
+          <div className={shell}>
+            <Reveal>
+              <p className={eyebrow}>
+                <span aria-hidden className="h-px w-8 bg-accent" />
+                {t("success.eyebrow")}
+              </p>
+              <h2 className={`${sectionTitle} mt-6`}>{t("success.title")}</h2>
+              <p className="mt-5 max-w-[50ch] leading-relaxed text-muted">{t("success.sub")}</p>
+            </Reveal>
+
+            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {beforeAfterPairs.map((pair, i) => (
+                <Reveal key={pair.label} delay={(i % 3) * 0.06}>
+                  <BeforeAfter pair={pair} />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <Voices />
 
-      {/* Questions: native disclosure, no JS needed. */}
-      <section id="faq" className="border-t border-line py-24 md:py-32">
-        <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
-          <h2 className={`${sectionTitle} lg:col-span-4`}>{t("faq.title")}</h2>
-          <div className="lg:col-span-7 lg:col-start-6">
+      {/* Questions: native disclosure, no JS. Each row is its own panel so the
+          open state reads as a card lifting out of the page. */}
+      <section id="faq" className="border-t border-line bg-surface-2/40 py-24 md:py-32">
+        <div className={shell}>
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <p className={`${eyebrow} justify-center`}>
+              <span aria-hidden className="h-px w-8 bg-accent" />
+              {t("faq.eyebrow")}
+            </p>
+            <h2 className={`${sectionTitle} mt-6`}>{t("faq.title")}</h2>
+          </Reveal>
+
+          <div className="mx-auto mt-14 grid max-w-3xl gap-3">
             {faqKeys.map((k, i) => (
-              <details
-                key={k}
-                className={`group py-6 ${i > 0 ? "border-t border-line" : ""}`}
-              >
-                <summary className="display flex cursor-pointer list-none items-start justify-between gap-6 text-lg text-bone marker:hidden md:text-xl">
-                  {t(`faq.items.${k}.q`)}
-                  <span
-                    aria-hidden
-                    className="mt-1 shrink-0 text-accent transition-transform duration-300 group-open:rotate-45"
-                  >
-                    +
-                  </span>
-                </summary>
-                <p className="mt-4 max-w-[62ch] leading-relaxed text-muted">
-                  {t(`faq.items.${k}.a`)}
-                </p>
-              </details>
+              <Reveal key={k} delay={(i % 3) * 0.05}>
+                <details className="group rounded-[2px] border border-line bg-surface px-7 py-5 transition-colors duration-300 open:border-accent hover:border-accent md:px-9 md:py-6">
+                  <summary className="display flex cursor-pointer list-none items-start justify-between gap-6 text-lg text-bone marker:hidden md:text-xl">
+                    {t(`faq.items.${k}.q`)}
+                    <span
+                      aria-hidden
+                      className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-accent/50 text-accent transition-transform duration-300 group-open:rotate-45"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-4 max-w-[62ch] leading-relaxed text-muted">
+                    {t(`faq.items.${k}.a`)}
+                  </p>
+                </details>
+              </Reveal>
             ))}
           </div>
+
+          <Reveal className="mt-12 text-center">
+            <p className="text-muted">{t("faq.more")}</p>
+            <Link href="/#contact" className={`${btnGhost} mt-6`}>
+              {t("hero.secondary")}
+            </Link>
+          </Reveal>
         </div>
       </section>
 

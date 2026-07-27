@@ -6,6 +6,7 @@ import { Jost, Parisienne, Playfair_Display, Noto_Naskh_Arabic } from "next/font
 import { routing, isRtl, siteUrl } from "@/i18n/routing";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { StickyCta } from "@/components/StickyCta";
 import "../globals.css";
 
 // Didone display from the brand lockup, geometric sans for body, script for the
@@ -89,6 +90,7 @@ export default async function LocaleLayout({
           <Nav />
           <main id="main">{children}</main>
           <Footer />
+          <StickyCta />
         </NextIntlClientProvider>
       </body>
     </html>
