@@ -7,8 +7,9 @@ export const alt = "Amira Bechini Masterclass";
 
 // ponytail: generated at build time from the same tokens as the site, so the
 // share card never drifts from the brand. No design file to keep in sync.
-export default async function Image({ params }: { params: { locale: string } }) {
-  const t = await getTranslations({ locale: params.locale, namespace: "meta" });
+export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta" });
 
   return new ImageResponse(
     (

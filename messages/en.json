@@ -1,13 +1,13 @@
 {
   "meta": {
     "title": "Amira Bechini",
-    "tagline": "Beauty artistry, taught in full",
-    "description": "Filmed masterclasses in brow architecture, lash couture and permanent makeup by Amira Bechini. Study at your pace, certify when you are ready."
+    "tagline": "Elevate your skills. Transform lives.",
+    "description": "Permanent makeup masterclasses with Amira Bechini. Brow artistry, lip blush and dark lips neutralization, taught with live demonstration and supervised practice in Tortoreto, Roma and Milano."
   },
   "nav": {
     "courses": "Courses",
     "method": "The method",
-    "voices": "Students",
+    "results": "Results",
     "faq": "Questions",
     "contact": "Contact",
     "dashboard": "My studio",
@@ -17,46 +17,49 @@
     "menu": "Menu"
   },
   "hero": {
-    "eyebrow": "Filmed at the Milan atelier",
-    "titleA": "The hand behind",
-    "titleB": "the work.",
-    "sub": "Nine years of atelier practice, filmed lesson by lesson. Study at your pace, certify when you are ready.",
+    "eyebrow": "Permanent makeup masterclass",
+    "titleA": "Learn. Practice.",
+    "titleB": "Transform.",
+    "sub": "Brow artistry and lip blush, taught with live demonstration and supervised practice until your hand is steady.",
     "primary": "Explore courses",
     "secondary": "Watch a free lesson",
-    "portrait": "Amira Bechini at work in her Milan atelier"
+    "portrait": "Amira Bechini in the masterclass studio"
   },
   "proof": {
-    "title": "Graduates now work with",
-    "students": "students trained",
-    "countries": "countries",
-    "rating": "average rating",
-    "years": "years in practice"
+    "locations": { "title": "Tortoreto · Roma · Milano", "sub": "Exclusive locations" },
+    "trainer": { "title": "PhiBrows Master", "sub": "Certified trainer" },
+    "certification": { "title": "International", "sub": "Certification" },
+    "practice": { "title": "Live demo and practice", "sub": "On a real model" }
   },
   "instructor": {
     "title": "Amira Bechini",
-    "role": "Founder, Atelier Bechini",
-    "body1": "Amira trained in Tunis, refined her pigment work in Paris, and opened her Milan atelier in 2017. Her waiting list runs eleven months.",
-    "body2": "She teaches the way she works: slow mapping, restrained pigment, and a healed result that still reads as skin two years later.",
+    "role": "Master PMU artist and trainer",
+    "body1": "Amira trains permanent makeup artists in Tortoreto, Roma and Milano. Students leave with an internationally recognised certificate and healed work they can show.",
+    "body2": "Every masterclass runs the same way: theory first, then a live demonstration on a model, then supervised practice until the hand is steady.",
     "credentials": {
-      "one": "Certified in permanent makeup by the Italian Society of Aesthetic Medicine",
-      "two": "Editorial work for Vogue Italia and Marie Claire Arabia",
-      "three": "Trains 40 artists a year, in person and on this platform"
+      "one": "PhiBrows certified master, training artists to international standard",
+      "two": "Live demonstration on a model in every masterclass",
+      "three": "Exclusive locations in Tortoreto, Roma and Milano"
     },
     "portrait": "Portrait of Amira Bechini"
   },
   "method": {
-    "title": "How the lessons are built",
-    "sub": "Every course follows the same three movements, so nothing is skipped and nothing is guessed.",
+    "title": "How a masterclass runs",
+    "sub": "Three movements, in the same order every time, so nothing is skipped and nothing is guessed.",
     "steps": {
-      "one": { "title": "Read the face", "body": "Bone structure, asymmetry, skin behaviour. Mapping decisions before a single stroke." },
-      "two": { "title": "Work the pigment", "body": "Filmed in close macro, both hands visible, at the speed you would actually work." },
+      "one": { "title": "Read the face", "body": "Bone structure, asymmetry, skin behaviour. Mapping and colour decisions before a single stroke." },
+      "two": { "title": "Watch, then work", "body": "A full live demonstration on a model, then latex and supervised practice, corrected as you go." },
       "three": { "title": "Heal and correct", "body": "What the result looks like at day 7, day 30, month 18, and how to fix each outcome." }
     }
   },
+  "results": {
+    "title": "The work",
+    "sub": "Healed results, mapping and practice from the studio."
+  },
   "catalog": {
     "eyebrow": "The catalogue",
-    "title": "Four courses, one standard",
-    "sub": "Buy a single course or work through all four. Access does not expire.",
+    "title": "Three courses, one standard",
+    "sub": "Take a single course or work through all three. Access does not expire.",
     "from": "Full course",
     "hours": "hours",
     "lessons": "lessons",
@@ -64,50 +67,39 @@
     "enroll": "Enrol now",
     "enrolled": "You own this course",
     "continue": "Continue",
-    "includes": "What you get",
     "outcomes": "By the end you can",
     "curriculum": "Curriculum",
     "preview": "Free preview",
     "back": "All courses",
     "oneTime": "One payment, lifetime access",
-    "brow-architecture": {
-      "title": "Brow Architecture",
-      "tagline": "Mapping, hair stroke, and the shape that survives healing",
-      "description": "The full brow system, from reading bone structure to the second retouch. Nine hours of macro footage, filmed on six different skin types.",
+    "brow-artistry": {
+      "title": "Brow Artistry",
+      "tagline": "Mapping, hair strokes, and a shape that survives healing",
+      "description": "The full brow system, from reading bone structure to the second retouch. Nine hours of close macro footage, filmed at the speed you would actually work.",
       "outcomes": {
         "one": "Map a brow that suits the face rather than the trend",
-        "two": "Lay hair strokes with consistent depth and no blowout",
+        "two": "Lay hair strokes at consistent depth with no blowout",
         "three": "Correct grey and orange healed work without a laser"
       }
     },
-    "lash-couture": {
-      "title": "Lash Couture",
-      "tagline": "Classic, volume and mega volume, with retention that holds",
-      "description": "Seven hours on isolation, fan making and adhesive control. The course spends as long on retention as it does on application.",
-      "outcomes": {
-        "one": "Build fans by hand at speed without adhesive pooling",
-        "two": "Diagnose why a set drops in week two and stop it",
-        "three": "Remove a set cleanly with no damage to the natural lash"
-      }
-    },
-    "permanent-makeup": {
-      "title": "Permanent Makeup Foundations",
-      "tagline": "Lip blush, eyeliner and colour correction, start to finish",
-      "description": "Fourteen hours across skin science, hygiene, device handling and three signature techniques. The longest course in the catalogue.",
+    "lip-blush": {
+      "title": "Lip Blush and Dark Lips Neutralization",
+      "tagline": "Natural lip blush, and clean correction of a dark lip",
+      "description": "Twelve hours across skin science, hygiene, device handling, colour theory and the two signature lip techniques. The two-day masterclass, filmed lesson by lesson.",
       "outcomes": {
         "one": "Choose pigment by undertone rather than by swatch",
-        "two": "Run a lip blush session end to end, including numbing",
-        "three": "Recognise and manage complications before they scar"
+        "two": "Run a lip blush session end to end, numbing included",
+        "three": "Neutralise a dark lip without leaving it grey"
       }
     },
-    "atelier-business": {
-      "title": "The Atelier Business",
-      "tagline": "Pricing, portfolio and the client journey behind a full book",
-      "description": "Six hours on the part nobody films. How Amira prices, photographs and rebooks, with the real numbers from her own studio.",
+    "vip-training": {
+      "title": "VIP Training Experience",
+      "tagline": "One to one, live demonstration, your own supervised model",
+      "description": "Eight hours of the studio experience, filmed. A full demonstration, latex practice corrected stroke by stroke, then your own model session and the first piece of your portfolio.",
       "outcomes": {
-        "one": "Price on outcome and chair time instead of guesswork",
-        "two": "Shoot healed results that read honestly on a phone",
-        "three": "Build a rebooking system that fills next quarter"
+        "one": "Work a full session from consultation to aftercare card",
+        "two": "Practise on latex with your hand corrected as you go",
+        "three": "Leave with a portfolio image and a plan to open the book"
       }
     }
   },
@@ -125,36 +117,23 @@
     "correction": "Correcting old and migrated work",
     "healing": "The first thirty days",
     "retouch": "The six week retouch",
-    "anatomy": "Lash anatomy and growth cycles",
-    "adhesive": "Adhesive chemistry and humidity",
-    "classic-set": "The classic set, isolation first",
-    "volume-fans": "Handmade volume fans",
-    "mega-volume": "Mega volume without weight",
-    "retention": "Diagnosing poor retention",
-    "removal": "Clean removal and lash recovery",
     "skin-science": "Skin layers and pigment behaviour",
     "hygiene": "Hygiene, consent and the setup",
     "device-setup": "Device, needle and speed settings",
     "lip-blush": "Lip blush from outline to saturation",
-    "eyeliner": "Eyeliner and the lash line",
-    "colour-correction": "Neutralising a healed colour shift",
+    "colour-correction": "Neutralising a dark lip",
     "healing-cycles": "Healing cycles across skin types",
     "complications": "Complications and when to refer out",
-    "positioning": "Positioning and the offer",
-    "pricing": "Pricing on chair time",
-    "photography": "Photographing healed results",
-    "client-journey": "The client journey, first message to rebook",
-    "retention-systems": "Retention systems that run themselves",
-    "scaling": "Adding a second pair of hands"
+    "consultation": "Consultation and reading the case",
+    "live-demo": "Live demonstration, start to finish",
+    "latex-practice": "Latex practice, corrected stroke by stroke",
+    "model-session": "Your model session, supervised",
+    "portfolio-shot": "Shooting your first portfolio piece",
+    "launch-plan": "Pricing and opening your book"
   },
   "voices": {
     "title": "What students say",
-    "items": {
-      "one": { "quote": "I stopped guessing at pigment. My healed results finally look like the ones in my portfolio.", "name": "Ghita Benslimane", "role": "Brow artist, Casablanca" },
-      "two": { "quote": "The retention module alone paid for the course in three weeks of rebookings.", "name": "Sofia Marchetti", "role": "Lash studio owner, Bologna" },
-      "three": { "quote": "Amira films at the speed you actually work. No cuts hiding the difficult part.", "name": "Camille Dorval", "role": "PMU artist, Lyon" },
-      "four": { "quote": "I raised my prices by 40 percent and lost two clients. I gained eleven.", "name": "Yasmine Trabelsi", "role": "Atelier owner, Tunis" }
-    }
+    "items": {}
   },
   "faq": {
     "title": "Questions",
@@ -169,7 +148,7 @@
   },
   "contact": {
     "title": "Talk to the studio",
-    "sub": "Questions about a course, group licences, or in-person training in Milan.",
+    "sub": "Questions about a course, group licences, or in-person training in Tortoreto, Roma and Milano.",
     "name": "Your name",
     "email": "Email",
     "subject": "Subject",
@@ -177,7 +156,7 @@
     "send": "Send message",
     "sending": "Sending",
     "sent": "Message received. The studio replies within two working days.",
-    "error": "That did not send. Write to studio@amirabechini.com instead.",
+    "error": "That did not send. Write to studio@amira-bechini.com instead.",
     "required": "Required"
   },
   "footer": {
@@ -186,8 +165,7 @@
     "explore": "Explore",
     "studio": "Studio",
     "legal": "Terms and privacy",
-    "rights": "All rights reserved.",
-    "address": "Via Solferino 22, Milan"
+    "rights": "All rights reserved."
   },
   "auth": {
     "title": "Your studio",
@@ -206,16 +184,13 @@
   "dashboard": {
     "title": "My studio",
     "welcome": "Welcome back",
-    "inProgress": "In progress",
-    "complete": "Complete",
     "continue": "Continue",
     "review": "Review",
     "certificate": "View certificate",
     "empty": "No courses yet",
     "emptyBody": "Your courses appear here the moment a payment clears.",
     "emptyCta": "Explore courses",
-    "lessonsDone": "of {total} lessons",
-    "loading": "Loading your courses"
+    "lessonsDone": "of {total} lessons"
   },
   "learn": {
     "back": "Back to course",
@@ -239,7 +214,7 @@
     "completed": "has completed",
     "issued": "Issued",
     "code": "Verification code",
-    "signature": "Amira Bechini, Founder",
+    "signature": "Amira Bechini, Master PMU artist and trainer",
     "print": "Print or save as PDF",
     "back": "Back to my studio",
     "notYet": "This certificate unlocks when every lesson is complete.",

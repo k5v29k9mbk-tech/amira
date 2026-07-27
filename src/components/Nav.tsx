@@ -6,7 +6,6 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/
 import { List, X } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
-import { Wordmark } from "./Wordmark";
 import { btnPrimary, shell } from "@/lib/ui";
 
 export function Nav() {
@@ -34,7 +33,9 @@ export function Nav() {
     >
       <div className={`${shell} flex h-16 items-center justify-between gap-6 md:h-[72px]`}>
         <Link href="/" onClick={() => setOpen(false)} aria-label="Amira Bechini Masterclass">
-          <Wordmark />
+          <span className="display text-[15px] tracking-[0.24em] text-bone uppercase">
+            Amira Bechini
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">

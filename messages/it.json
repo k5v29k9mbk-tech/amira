@@ -1,13 +1,13 @@
 {
   "meta": {
     "title": "Amira Bechini",
-    "tagline": "L'arte della bellezza, insegnata per intero",
-    "description": "Masterclass filmate di architettura del sopracciglio, lash couture e trucco permanente con Amira Bechini. Studia al tuo ritmo, certificati quando sei pronta."
+    "tagline": "Eleva la tua tecnica. Trasforma vite.",
+    "description": "Masterclass di trucco permanente con Amira Bechini. Sopracciglia, lip blush e neutralizzazione delle labbra scure, con demo dal vivo e pratica guidata a Tortoreto, Roma e Milano."
   },
   "nav": {
     "courses": "Corsi",
     "method": "Il metodo",
-    "voices": "Allieve",
+    "results": "Risultati",
     "faq": "Domande",
     "contact": "Contatti",
     "dashboard": "Il mio studio",
@@ -17,46 +17,49 @@
     "menu": "Menu"
   },
   "hero": {
-    "eyebrow": "Girato nell'atelier di Milano",
-    "titleA": "La mano dietro",
-    "titleB": "il lavoro.",
-    "sub": "Nove anni di pratica in atelier, filmati lezione per lezione. Studia al tuo ritmo, certificati quando sei pronta.",
+    "eyebrow": "Masterclass di trucco permanente",
+    "titleA": "Impara. Pratica.",
+    "titleB": "Trasforma.",
+    "sub": "Sopracciglia e lip blush, con demo dal vivo e pratica guidata finché la mano non è sicura.",
     "primary": "Scopri i corsi",
     "secondary": "Guarda una lezione gratuita",
-    "portrait": "Amira Bechini al lavoro nel suo atelier di Milano"
+    "portrait": "Amira Bechini nello studio della masterclass"
   },
   "proof": {
-    "title": "Le diplomate oggi collaborano con",
-    "students": "allieve formate",
-    "countries": "paesi",
-    "rating": "valutazione media",
-    "years": "anni di pratica"
+    "locations": { "title": "Tortoreto · Roma · Milano", "sub": "Location esclusive" },
+    "trainer": { "title": "PhiBrows Master", "sub": "Trainer certificata" },
+    "certification": { "title": "Internazionale", "sub": "Certificazione" },
+    "practice": { "title": "Demo e pratica", "sub": "Su modello" }
   },
   "instructor": {
     "title": "Amira Bechini",
-    "role": "Fondatrice, Atelier Bechini",
-    "body1": "Amira si è formata a Tunisi, ha affinato il lavoro sul pigmento a Parigi e ha aperto il suo atelier milanese nel 2017. La lista d'attesa è di undici mesi.",
-    "body2": "Insegna come lavora: mappatura lenta, pigmento misurato e un risultato guarito che dopo due anni sembra ancora pelle.",
+    "role": "Master PMU artist e trainer",
+    "body1": "Amira forma artiste di trucco permanente a Tortoreto, Roma e Milano. Le allieve escono con un attestato riconosciuto a livello internazionale e lavori guariti da mostrare.",
+    "body2": "Ogni masterclass segue lo stesso ordine: prima la teoria, poi una demo dal vivo su modello, poi pratica guidata finché la mano non è sicura.",
     "credentials": {
-      "one": "Certificata in trucco permanente dalla Società Italiana di Medicina Estetica",
-      "two": "Lavori editoriali per Vogue Italia e Marie Claire Arabia",
-      "three": "Forma 40 artiste all'anno, in presenza e su questa piattaforma"
+      "one": "Master certificata PhiBrows, formazione secondo standard internazionali",
+      "two": "Demo dal vivo su modello in ogni masterclass",
+      "three": "Location esclusive a Tortoreto, Roma e Milano"
     },
     "portrait": "Ritratto di Amira Bechini"
   },
   "method": {
-    "title": "Come sono costruite le lezioni",
-    "sub": "Ogni corso segue gli stessi tre movimenti, così non si salta nulla e non si va a intuito.",
+    "title": "Come si svolge una masterclass",
+    "sub": "Tre movimenti, sempre nello stesso ordine, così non si salta nulla e non si va a intuito.",
     "steps": {
-      "one": { "title": "Leggere il viso", "body": "Struttura ossea, asimmetria, comportamento della pelle. Le scelte di mappatura prima di ogni tratto." },
-      "two": { "title": "Lavorare il pigmento", "body": "Ripreso in macro, con entrambe le mani visibili, alla velocità reale di lavoro." },
+      "one": { "title": "Leggere il viso", "body": "Struttura ossea, asimmetria, comportamento della pelle. Mappatura e scelta del colore prima di ogni tratto." },
+      "two": { "title": "Guarda, poi lavora", "body": "Una demo completa dal vivo su modello, poi latex e pratica guidata, corretta mentre lavori." },
       "three": { "title": "Guarigione e correzione", "body": "Il risultato al giorno 7, al giorno 30, al mese 18, e come correggere ogni esito." }
     }
   },
+  "results": {
+    "title": "Il lavoro",
+    "sub": "Risultati guariti, mappature e pratica dallo studio."
+  },
   "catalog": {
     "eyebrow": "Il catalogo",
-    "title": "Quattro corsi, uno standard",
-    "sub": "Acquista un solo corso o completali tutti e quattro. L'accesso non scade.",
+    "title": "Tre corsi, uno standard",
+    "sub": "Acquista un solo corso o completali tutti e tre. L'accesso non scade.",
     "from": "Corso completo",
     "hours": "ore",
     "lessons": "lezioni",
@@ -64,50 +67,39 @@
     "enroll": "Iscriviti ora",
     "enrolled": "Hai già questo corso",
     "continue": "Continua",
-    "includes": "Cosa ricevi",
     "outcomes": "Alla fine saprai",
     "curriculum": "Programma",
     "preview": "Anteprima gratuita",
     "back": "Tutti i corsi",
     "oneTime": "Un pagamento, accesso a vita",
-    "brow-architecture": {
-      "title": "Architettura del Sopracciglio",
+    "brow-artistry": {
+      "title": "Sopracciglia Perfette",
       "tagline": "Mappatura, pelo a pelo e la forma che resiste alla guarigione",
-      "description": "Il sistema completo, dalla lettura della struttura ossea al secondo ritocco. Nove ore di riprese macro su sei tipi di pelle diversi.",
+      "description": "Il sistema completo, dalla lettura della struttura ossea al secondo ritocco. Nove ore di riprese macro, alla velocità reale di lavoro.",
       "outcomes": {
         "one": "Mappare un sopracciglio adatto al viso, non alla moda del momento",
         "two": "Posare peli con profondità costante e senza sbavature",
         "three": "Correggere lavori guariti grigi o aranciati senza laser"
       }
     },
-    "lash-couture": {
-      "title": "Lash Couture",
-      "tagline": "Classico, volume e mega volume, con una tenuta che dura",
-      "description": "Sette ore su isolamento, creazione dei fan e controllo dell'adesivo. Il corso dedica alla tenuta lo stesso tempo che dedica all'applicazione.",
-      "outcomes": {
-        "one": "Costruire fan a mano rapidamente senza accumuli di colla",
-        "two": "Capire perché un set cade alla seconda settimana e impedirlo",
-        "three": "Rimuovere un set senza danneggiare la ciglia naturale"
-      }
-    },
-    "permanent-makeup": {
-      "title": "Fondamenti di Trucco Permanente",
-      "tagline": "Lip blush, eyeliner e correzione del colore, dall'inizio alla fine",
-      "description": "Quattordici ore tra scienza della pelle, igiene, uso del dispositivo e tre tecniche firma. Il corso più lungo del catalogo.",
+    "lip-blush": {
+      "title": "Lip Blush e Neutralizzazione Labbra Scure",
+      "tagline": "Lip blush naturale e correzione pulita di un labbro scuro",
+      "description": "Dodici ore tra scienza della pelle, igiene, uso del dispositivo, teoria del colore e le due tecniche labbra firma. La masterclass di due giorni, filmata lezione per lezione.",
       "outcomes": {
         "one": "Scegliere il pigmento dal sottotono, non dal campione",
         "two": "Condurre una seduta di lip blush completa, anestesia inclusa",
-        "three": "Riconoscere e gestire le complicanze prima della cicatrice"
+        "three": "Neutralizzare un labbro scuro senza lasciarlo grigio"
       }
     },
-    "atelier-business": {
-      "title": "Il Business dell'Atelier",
-      "tagline": "Prezzi, portfolio e il percorso cliente dietro un'agenda piena",
-      "description": "Sei ore sulla parte che nessuno filma. Come Amira definisce i prezzi, fotografa e fidelizza, con i numeri reali del suo studio.",
+    "vip-training": {
+      "title": "VIP Training Experience",
+      "tagline": "Uno a uno, demo dal vivo, la tua modella seguita passo passo",
+      "description": "Otto ore di esperienza in studio, filmate. Una demo completa, pratica su latex corretta tratto per tratto, poi la tua seduta su modella e il primo scatto del portfolio.",
       "outcomes": {
-        "one": "Fissare i prezzi sul risultato e sul tempo in poltrona",
-        "two": "Fotografare risultati guariti che restano credibili al telefono",
-        "three": "Costruire un sistema di richiami che riempie il trimestre"
+        "one": "Gestire una seduta completa dalla consulenza alla scheda post",
+        "two": "Praticare su latex con la mano corretta mentre lavori",
+        "three": "Uscire con una foto per il portfolio e un piano per aprire l'agenda"
       }
     }
   },
@@ -125,43 +117,30 @@
     "correction": "Correggere lavori vecchi e migrati",
     "healing": "I primi trenta giorni",
     "retouch": "Il ritocco a sei settimane",
-    "anatomy": "Anatomia della ciglia e cicli di crescita",
-    "adhesive": "Chimica dell'adesivo e umidità",
-    "classic-set": "Il set classico, prima l'isolamento",
-    "volume-fans": "Fan volume fatti a mano",
-    "mega-volume": "Mega volume senza peso",
-    "retention": "Diagnosticare una tenuta scarsa",
-    "removal": "Rimozione pulita e recupero della ciglia",
     "skin-science": "Strati della pelle e comportamento del pigmento",
     "hygiene": "Igiene, consenso e postazione",
     "device-setup": "Dispositivo, aghi e regolazione della velocità",
     "lip-blush": "Lip blush dal contorno alla saturazione",
-    "eyeliner": "Eyeliner e linea ciliare",
-    "colour-correction": "Neutralizzare un viraggio di colore guarito",
+    "colour-correction": "Neutralizzare un labbro scuro",
     "healing-cycles": "Cicli di guarigione per tipo di pelle",
     "complications": "Complicanze e quando inviare a un medico",
-    "positioning": "Posizionamento e offerta",
-    "pricing": "Prezzi sul tempo in poltrona",
-    "photography": "Fotografare i risultati guariti",
-    "client-journey": "Il percorso cliente, dal primo messaggio al richiamo",
-    "retention-systems": "Sistemi di fidelizzazione che funzionano da soli",
-    "scaling": "Aggiungere un secondo paio di mani"
+    "consultation": "Consulenza e lettura del caso",
+    "live-demo": "Demo dal vivo, dall'inizio alla fine",
+    "latex-practice": "Pratica su latex, corretta tratto per tratto",
+    "model-session": "La tua seduta su modella, seguita",
+    "portfolio-shot": "Il primo scatto del tuo portfolio",
+    "launch-plan": "Prezzi e apertura dell'agenda"
   },
   "voices": {
     "title": "La parola alle allieve",
-    "items": {
-      "one": { "quote": "Ho smesso di andare a intuito sul pigmento. I miei risultati guariti finalmente somigliano al portfolio.", "name": "Ghita Benslimane", "role": "Brow artist, Casablanca" },
-      "two": { "quote": "Il solo modulo sulla tenuta ha ripagato il corso in tre settimane di richiami.", "name": "Sofia Marchetti", "role": "Titolare di lash studio, Bologna" },
-      "three": { "quote": "Amira filma alla velocità reale di lavoro. Nessun taglio che nasconde la parte difficile.", "name": "Camille Dorval", "role": "Artista PMU, Lione" },
-      "four": { "quote": "Ho alzato i prezzi del 40 per cento e perso due clienti. Ne ho guadagnate undici.", "name": "Yasmine Trabelsi", "role": "Titolare di atelier, Tunisi" }
-    }
+    "items": {}
   },
   "faq": {
     "title": "Domande",
     "items": {
       "one": { "q": "Per quanto tempo ho accesso?", "a": "L'accesso non scade. Acquisti il corso una volta e resta nel tuo studio, comprese le lezioni aggiunte in seguito." },
       "two": { "q": "Serve esperienza precedente?", "a": "Il modulo di fondamenti di ogni corso non la presuppone. Se già lavori, parti dal modulo di tecnica." },
-      "three": { "q": "Il certificato è riconosciuto?", "a": "Certifica il completamento di questa masterclass. Le regole di abilitazione per il trucco permanente variano da paese a paese: verifica con l'ente locale prima di esercitare." },
+      "three": { "q": "L'attestato è riconosciuto?", "a": "Certifica il completamento di questa masterclass. Le regole di abilitazione per il trucco permanente variano da paese a paese: verifica con l'ente locale prima di esercitare." },
       "four": { "q": "Quali lingue sono disponibili?", "a": "La piattaforma e ogni lezione sono disponibili in inglese, italiano, francese e arabo." },
       "five": { "q": "Posso pagare a rate?", "a": "Sì. Carta, Apple Pay, Google Pay e pagamento in tre rate sono disponibili alla cassa." },
       "six": { "q": "E se il corso non facesse per me?", "a": "Scrivi entro quattordici giorni, prima di aver superato un quarto delle lezioni, e ricevi il rimborso completo." }
@@ -169,7 +148,7 @@
   },
   "contact": {
     "title": "Parla con lo studio",
-    "sub": "Domande sui corsi, licenze di gruppo o formazione in presenza a Milano.",
+    "sub": "Domande sui corsi, licenze di gruppo o formazione in presenza a Tortoreto, Roma e Milano.",
     "name": "Il tuo nome",
     "email": "Email",
     "subject": "Oggetto",
@@ -177,7 +156,7 @@
     "send": "Invia messaggio",
     "sending": "Invio in corso",
     "sent": "Messaggio ricevuto. Lo studio risponde entro due giorni lavorativi.",
-    "error": "L'invio non è riuscito. Scrivi a studio@amirabechini.com.",
+    "error": "L'invio non è riuscito. Scrivi a studio@amira-bechini.com.",
     "required": "Obbligatorio"
   },
   "footer": {
@@ -186,8 +165,7 @@
     "explore": "Esplora",
     "studio": "Studio",
     "legal": "Termini e privacy",
-    "rights": "Tutti i diritti riservati.",
-    "address": "Via Solferino 22, Milano"
+    "rights": "Tutti i diritti riservati."
   },
   "auth": {
     "title": "Il tuo studio",
@@ -206,16 +184,13 @@
   "dashboard": {
     "title": "Il mio studio",
     "welcome": "Bentornata",
-    "inProgress": "In corso",
-    "complete": "Completato",
     "continue": "Continua",
     "review": "Rivedi",
-    "certificate": "Vedi il certificato",
+    "certificate": "Vedi l'attestato",
     "empty": "Ancora nessun corso",
     "emptyBody": "I tuoi corsi compaiono qui appena il pagamento va a buon fine.",
     "emptyCta": "Scopri i corsi",
-    "lessonsDone": "di {total} lezioni",
-    "loading": "Caricamento dei corsi"
+    "lessonsDone": "di {total} lezioni"
   },
   "learn": {
     "back": "Torna al corso",
@@ -230,19 +205,19 @@
     "duration": "min",
     "videoSoon": "Il video di questa lezione è in caricamento.",
     "finished": "Corso completato",
-    "finishedBody": "Il tuo certificato è pronto.",
-    "getCertificate": "Vedi il certificato"
+    "finishedBody": "Il tuo attestato è pronto.",
+    "getCertificate": "Vedi l'attestato"
   },
   "certificate": {
-    "title": "Certificato di completamento",
+    "title": "Attestato di completamento",
     "awarded": "Si certifica che",
     "completed": "ha completato",
     "issued": "Rilasciato",
     "code": "Codice di verifica",
-    "signature": "Amira Bechini, Fondatrice",
+    "signature": "Amira Bechini, Master PMU artist e trainer",
     "print": "Stampa o salva in PDF",
     "back": "Torna al mio studio",
-    "notYet": "Il certificato si sblocca quando tutte le lezioni sono completate.",
+    "notYet": "L'attestato si sblocca quando tutte le lezioni sono completate.",
     "hours": "ore di formazione"
   },
   "checkout": {

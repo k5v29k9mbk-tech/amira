@@ -1,11 +1,18 @@
 // ponytail: courses live in code, not a CMS. Swap for Sanity/Payload when a
 // non-developer needs to edit them. Copy that varies by language lives in
 // messages/*.json under `catalog.<slug>`; structure and pricing live here.
+//
+// The three courses mirror what the studio actually trains and certifies:
+// brow artistry, the two-day lip masterclass, and the one-to-one VIP intensive.
+//
+// Lesson ids must be UNIQUE ACROSS ALL COURSES. The dashboard reads one flat set
+// of completed ids, so a shared id would count progress twice. courses.test.ts
+// enforces this.
 
 export type Lesson = {
   id: string;
   minutes: number;
-  /** Mux playback ID. Empty string renders the preview-locked state. */
+  /** Mux playback ID. Empty string renders the "video uploading" state. */
   playbackId: string;
   free?: boolean;
 };
@@ -22,8 +29,11 @@ export type Course = {
   priceEur: number;
   hours: number;
   image: string;
-  modules: Module[];
+  /** Extra stills for the course page and the results strip. */
+  gallery: string[];
 };
+
+type Draft = Omit<Course, "modules"> & { modules: Module[] };
 
 const lesson = (id: string, minutes: number, playbackId = "", free = false): Lesson => ({
   id,
@@ -32,13 +42,14 @@ const lesson = (id: string, minutes: number, playbackId = "", free = false): Les
   free,
 });
 
-export const courses: Course[] = [
+export const courses: (Course & { modules: Module[] })[] = [
   {
-    slug: "brow-architecture",
-    priceId: process.env.STRIPE_PRICE_BROW ?? "price_brow_architecture",
+    slug: "brow-artistry",
+    priceId: process.env.STRIPE_PRICE_BROW ?? "price_brow_artistry",
     priceEur: 890,
     hours: 9,
-    image: "https://picsum.photos/seed/amira-brow-architecture-studio/1600/1200",
+    image: "/brand/brows-healed-hero.jpg",
+    gallery: ["/brand/brow-mapping.jpg", "/brand/brow-macro.jpg", "/brand/brows-eyes.jpg"],
     modules: [
       {
         id: "foundations",
@@ -50,11 +61,7 @@ export const courses: Course[] = [
       },
       {
         id: "technique",
-        lessons: [
-          lesson("hair-stroke", 42),
-          lesson("shading", 38),
-          lesson("correction", 35),
-        ],
+        lessons: [lesson("hair-stroke", 42), lesson("shading", 38), lesson("correction", 35)],
       },
       {
         id: "aftercare",
@@ -63,36 +70,12 @@ export const courses: Course[] = [
     ],
   },
   {
-    slug: "lash-couture",
-    priceId: process.env.STRIPE_PRICE_LASH ?? "price_lash_couture",
-    priceEur: 740,
-    hours: 7,
-    image: "https://picsum.photos/seed/amira-lash-couture-portrait/1600/1200",
-    modules: [
-      {
-        id: "foundations",
-        lessons: [lesson("anatomy", 19, "", true), lesson("adhesive", 24)],
-      },
-      {
-        id: "technique",
-        lessons: [
-          lesson("classic-set", 44),
-          lesson("volume-fans", 51),
-          lesson("mega-volume", 47),
-        ],
-      },
-      {
-        id: "aftercare",
-        lessons: [lesson("retention", 28), lesson("removal", 21)],
-      },
-    ],
-  },
-  {
-    slug: "permanent-makeup",
-    priceId: process.env.STRIPE_PRICE_PMU ?? "price_permanent_makeup",
+    slug: "lip-blush",
+    priceId: process.env.STRIPE_PRICE_LIP ?? "price_lip_blush",
     priceEur: 1290,
-    hours: 14,
-    image: "https://picsum.photos/seed/amira-permanent-makeup-atelier/1600/1200",
+    hours: 12,
+    image: "/brand/lips-result-hero.jpg",
+    gallery: ["/brand/lips-neutralization.jpg", "/brand/at-work.jpg"],
     modules: [
       {
         id: "foundations",
@@ -104,11 +87,7 @@ export const courses: Course[] = [
       },
       {
         id: "technique",
-        lessons: [
-          lesson("lip-blush", 56),
-          lesson("eyeliner", 48),
-          lesson("colour-correction", 52),
-        ],
+        lessons: [lesson("lip-blush", 56), lesson("colour-correction", 52)],
       },
       {
         id: "aftercare",
@@ -117,23 +96,28 @@ export const courses: Course[] = [
     ],
   },
   {
-    slug: "atelier-business",
-    priceId: process.env.STRIPE_PRICE_BUSINESS ?? "price_atelier_business",
-    priceEur: 560,
-    hours: 6,
-    image: "https://picsum.photos/seed/amira-atelier-business-desk/1600/1200",
+    slug: "vip-training",
+    priceId: process.env.STRIPE_PRICE_VIP ?? "price_vip_training",
+    priceEur: 1890,
+    hours: 8,
+    image: "/brand/live-demo.jpg",
+    gallery: ["/brand/practice-latex.jpg", "/brand/at-work.jpg"],
     modules: [
       {
         id: "foundations",
-        lessons: [lesson("positioning", 26, "", true), lesson("pricing", 34)],
+        lessons: [lesson("consultation", 28, "", true)],
       },
       {
         id: "technique",
-        lessons: [lesson("photography", 39), lesson("client-journey", 31)],
+        lessons: [
+          lesson("live-demo", 64),
+          lesson("latex-practice", 46),
+          lesson("model-session", 71),
+        ],
       },
       {
         id: "aftercare",
-        lessons: [lesson("retention-systems", 28), lesson("scaling", 33)],
+        lessons: [lesson("portfolio-shot", 33), lesson("launch-plan", 39)],
       },
     ],
   },
@@ -141,18 +125,30 @@ export const courses: Course[] = [
 
 export const getCourse = (slug: string) => courses.find((c) => c.slug === slug);
 
-export const allLessons = (course: Course) =>
+export const allLessons = (course: { modules: Module[] }) =>
   course.modules.flatMap((m) => m.lessons.map((l) => ({ ...l, moduleId: m.id })));
 
-export const lessonCount = (course: Course) => allLessons(course).length;
+export const lessonCount = (course: { modules: Module[] }) => allLessons(course).length;
 
 /** Percentage 0-100 of a course completed, given a set of completed lesson ids. */
-export const progressPercent = (course: Course, completed: Set<string>) => {
+export const progressPercent = (course: { modules: Module[] }, completed: Set<string>) => {
   const lessons = allLessons(course);
   if (!lessons.length) return 0;
   const done = lessons.filter((l) => completed.has(l.id)).length;
   return Math.round((done / lessons.length) * 100);
 };
 
-export const nextLesson = (course: Course, completed: Set<string>) =>
+export const nextLesson = (course: { modules: Module[] }, completed: Set<string>) =>
   allLessons(course).find((l) => !completed.has(l.id)) ?? allLessons(course)[0];
+
+/** Every still the studio has supplied, for the results strip. */
+export const resultStills = [
+  "/brand/brow-macro.jpg",
+  "/brand/brow-mapping.jpg",
+  "/brand/lips-neutralization.jpg",
+  "/brand/brows-eyes.jpg",
+  "/brand/practice-latex.jpg",
+  "/brand/at-work.jpg",
+];
+
+export type { Draft };
