@@ -355,6 +355,33 @@ export default async function Home({
             ))}
           </div>
         </div>
+
+        {/* The three movements, on the studio floor. Native <video> with
+            controls: no player bundle, and preload="none" keeps all 5 MB off
+            the wire until someone actually presses play. Each clip runs to a
+            finished brow, so they play once rather than looping. */}
+        <div className={`${shell} mt-16 lg:mt-20`}>
+          <div className="mx-auto grid max-w-3xl gap-5 sm:grid-cols-2">
+            {clips.map(({ key, src, poster }, i) => (
+              <Reveal key={key} delay={i * 0.08}>
+                <figure className="border border-line">
+                  <video
+                    src={src}
+                    poster={poster}
+                    controls
+                    playsInline
+                    preload="none"
+                    aria-label={t(`method.clips.${key}`)}
+                    className="aspect-[5/7] w-full bg-ink object-cover"
+                  />
+                  <figcaption className="px-5 py-4 text-sm leading-relaxed text-muted">
+                    {t(`method.clips.${key}`)}
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* What you'll learn: the full syllabus, set as one list. */}
