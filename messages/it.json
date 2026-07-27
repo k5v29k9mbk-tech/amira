@@ -5,9 +5,12 @@
     "description": "Masterclass di trucco permanente con Amira Bechini. Sopracciglia, lip blush e neutralizzazione delle labbra scure, con demo dal vivo e pratica guidata a Tortoreto, Roma e Milano."
   },
   "nav": {
+    "home": "Home",
     "courses": "Corsi",
+    "about": "Chi è Amira",
     "method": "Il metodo",
-    "results": "Risultati",
+    "students": "Allieve",
+    "gallery": "Galleria",
     "faq": "Domande",
     "contact": "Contatti",
     "dashboard": "Il mio studio",
@@ -18,11 +21,11 @@
   },
   "hero": {
     "eyebrow": "Masterclass di trucco permanente",
-    "titleA": "Impara. Pratica.",
-    "titleB": "Trasforma.",
-    "sub": "Sopracciglia e lip blush, con demo dal vivo e pratica guidata finché la mano non è sicura.",
+    "titleA": "Dove la bellezza incontra",
+    "titleB": "l'eccellenza.",
+    "sub": "Non insegniamo soltanto il trucco permanente: formiamo la nuova generazione di professioniste della bellezza. Formazione d'élite, mentoring personale e certificazione internazionale, con un supporto che continua dopo il corso.",
     "primary": "Scopri i corsi",
-    "secondary": "Guarda una lezione gratuita",
+    "secondary": "Prenota il tuo posto",
     "portrait": "Amira Bechini nello studio della masterclass"
   },
   "proof": {
@@ -52,8 +55,72 @@
       "three": { "title": "Guarigione e correzione", "body": "Il risultato al giorno 7, al giorno 30, al mese 18, e come correggere ogni esito." }
     }
   },
+  "why": {
+    "eyebrow": "Perché Amira",
+    "title": "Perché formarsi qui",
+    "sub": "Gruppi piccoli, distanza ravvicinata e qualcuno accanto a te finché la mano non è giusta.",
+    "items": {
+      "luxury": {
+        "title": "Formazione di lusso",
+        "body": "Uno studio pensato per insegnare, con le attrezzature e la luce con cui lavorerai davvero."
+      },
+      "groups": {
+        "title": "Piccoli gruppi VIP",
+        "body": "I posti sono limitati per scelta: ogni allieva segue la dimostrazione da vicino."
+      },
+      "mentoring": {
+        "title": "Mentoring individuale",
+        "body": "La mano corretta mentre lavori, non un video da guardare sperando di aver capito."
+      },
+      "certification": {
+        "title": "Certificazione professionale",
+        "body": "Un attestato di completamento riconosciuto a livello internazionale, intestato a te."
+      },
+      "business": {
+        "title": "Coaching di business",
+        "body": "Prezzi, brand, packaging e i social che riempiono davvero l'agenda."
+      },
+      "support": {
+        "title": "Supporto continuo",
+        "body": "Il confronto continua dopo la masterclass, sulle tue prime clienti."
+      }
+    }
+  },
+  "syllabus": {
+    "title": "Cosa imparerai",
+    "sub": "Il programma completo, dalla prima linea di mappatura all'attestato.",
+    "items": {
+      "lipBlush": "Lip blush",
+      "darkLips": "Neutralizzazione delle labbra scure",
+      "powderBrows": "Powder brows",
+      "browMapping": "Mappatura del sopracciglio",
+      "colourTheory": "Teoria del colore",
+      "pigment": "Scelta del pigmento",
+      "machine": "Tecnica di macchinetta e aghi",
+      "liveDemo": "Dimostrazioni dal vivo",
+      "latex": "Pratica su pelle sintetica",
+      "model": "Pratica su modella",
+      "branding": "Branding",
+      "packaging": "Packaging",
+      "business": "Business e marketing",
+      "social": "Social media e fotografia",
+      "consultation": "Consulenza cliente",
+      "aftercare": "Aftercare",
+      "certification": "Certificazione professionale"
+    }
+  },
+  "stats": {
+    "years": "Anni di esperienza",
+    "students": "Allieve formate",
+    "locations": "Sedi di formazione",
+    "practice": "Pratica sul campo"
+  },
+  "students": {
+    "title": "Le allieve al lavoro",
+    "sub": "Momenti di formazione dalla masterclass: dimostrazione, pratica su lattice e la prima modella sotto supervisione."
+  },
   "results": {
-    "title": "Il lavoro",
+    "title": "Galleria",
     "sub": "Risultati guariti, mappature e pratica dallo studio."
   },
   "catalog": {
@@ -72,6 +139,7 @@
     "preview": "Anteprima gratuita",
     "back": "Tutti i corsi",
     "oneTime": "Un pagamento, accesso a vita",
+    "payments": "Visa · Mastercard · PayPal · Apple Pay · Google Pay",
     "brow-artistry": {
       "title": "Sopracciglia Perfette",
       "tagline": "Mappatura, pelo a pelo e la forma che resiste alla guarigione",
@@ -149,6 +217,14 @@
   "contact": {
     "title": "Parla con lo studio",
     "sub": "Domande sui corsi, licenze di gruppo o formazione in presenza a Tortoreto, Roma e Milano.",
+    "map": "Apri su Google Maps",
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram",
+    "cities": {
+      "roma": { "name": "Roma" },
+      "milano": { "name": "Milano" },
+      "tortoreto": { "name": "Tortoreto" }
+    },
     "name": "Il tuo nome",
     "email": "Email",
     "subject": "Oggetto",

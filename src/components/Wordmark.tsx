@@ -1,17 +1,21 @@
+import { markBox, markPath } from "@/lib/mark";
+
 /**
- * Brand lockup. The AB monogram is set type, not a drawn logo, so it inherits
- * the Didone and stays crisp at any size. Swap in a real SVG mark when the
- * studio supplies one.
+ * Brand lockup. The monogram is the studio's drawn AB mark (see lib/mark), set
+ * in currentColor so each surface can pick a weight that clears contrast on its
+ * own ground — champagne gold on ivory is only ~2.4:1, so --accent never carries
+ * the mark alone.
  */
 export function Monogram({ className = "" }: { className?: string }) {
   return (
-    <span
+    <svg
       aria-hidden
-      className={`display inline-flex items-baseline leading-none text-accent-hi ${className}`}
+      viewBox={`0 0 ${markBox.width} ${markBox.height}`}
+      className={`inline-block w-auto fill-current ${className}`}
+      style={{ height: "1em" }}
     >
-      <span>A</span>
-      <span className="-ms-[0.22em]">B</span>
-    </span>
+      <path d={markPath} />
+    </svg>
   );
 }
 
@@ -25,7 +29,7 @@ export function Wordmark({
   if (stacked) {
     return (
       <span className={`flex flex-col items-center gap-3 ${className}`}>
-        <Monogram className="text-4xl" />
+        <Monogram className="text-5xl text-accent-hi" />
         <span className="display text-2xl tracking-[0.22em] text-bone uppercase">
           Amira Bechini
         </span>
@@ -40,7 +44,7 @@ export function Wordmark({
 
   return (
     <span className={`flex items-center gap-3 ${className}`}>
-      <Monogram className="text-2xl" />
+      <Monogram className="text-[30px] text-accent-hi" />
       <span className="flex flex-col leading-none">
         <span className="display text-[15px] tracking-[0.24em] text-bone uppercase">
           Amira Bechini

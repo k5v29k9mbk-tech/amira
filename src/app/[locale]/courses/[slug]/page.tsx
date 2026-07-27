@@ -182,7 +182,12 @@ export default async function CoursePage({
                     {t("catalog.continue")}
                   </Link>
                 ) : (
-                  <EnrollButton slug={slug} className="mt-7" />
+                  <>
+                    <EnrollButton slug={slug} className="mt-7" />
+                    <p className="mt-4 text-center text-xs text-muted">
+                      {t("catalog.payments")}
+                    </p>
+                  </>
                 )}
               </div>
             </div>

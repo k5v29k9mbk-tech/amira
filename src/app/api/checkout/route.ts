@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     // Stripe pick from the browser instead of failing the sale.
     locale: (["en", "it", "fr"].includes(lang) ? lang : "auto") as Stripe.Checkout.SessionCreateParams.Locale,
     // The webhook is the only thing that grants access, so it needs both ids.
-    metadata: { user_id: user.id, course_slug: course.slug },
+    metadata: { user_id: user.id, course_slug: course.slug, locale: lang },
     success_url: `${origin}/${lang}/dashboard?checkout=success`,
     cancel_url: `${origin}/${lang}/courses/${course.slug}?checkout=cancelled`,
   });

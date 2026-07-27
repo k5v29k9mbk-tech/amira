@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { courses } from "@/lib/courses";
+import { instagramLink, studio, whatsappLink } from "@/lib/studio";
 import { label, shell } from "@/lib/ui";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { Wordmark } from "./Wordmark";
@@ -42,8 +43,31 @@ export async function Footer() {
           <h2 className={label}>{t("footer.studio")}</h2>
           <ul className="mt-4 grid gap-2.5 text-sm text-bone">
             <li>
-              <a href="mailto:studio@amira-bechini.com" className="hover:text-accent-hi">
-                studio@amira-bechini.com
+              <a href={`mailto:${studio.email}`} className="hover:text-accent-hi">
+                {studio.email}
+              </a>
+            </li>
+            <li>
+              <a href={`tel:${studio.phone.replace(/\s/g, "")}`} className="hover:text-accent-hi">
+                <span dir="ltr">{studio.phone}</span>
+              </a>
+            </li>
+            <li className="flex flex-wrap gap-x-4 gap-y-1">
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-accent-hi"
+              >
+                {t("contact.whatsapp")}
+              </a>
+              <a
+                href={instagramLink}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-accent-hi"
+              >
+                {t("contact.instagram")}
               </a>
             </li>
             <li className="text-muted">{t("footer.locations")}</li>

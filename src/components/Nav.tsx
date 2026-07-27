@@ -18,9 +18,12 @@ export function Nav() {
   useMotionValueEvent(scrollY, "change", (y) => setSolid(y > 24));
 
   const links = [
+    { href: "/", label: t("home") },
     { href: "/courses", label: t("courses") },
+    { href: "/#about", label: t("about") },
     { href: "/#method", label: t("method") },
-    { href: "/#results", label: t("results") },
+    { href: "/#students", label: t("students") },
+    { href: "/#gallery", label: t("gallery") },
     { href: "/#faq", label: t("faq") },
     { href: "/#contact", label: t("contact") },
   ] as const;
@@ -32,13 +35,21 @@ export function Nav() {
       }`}
     >
       <div className={`${shell} flex h-16 items-center justify-between gap-6 md:h-[72px]`}>
-        <Link href="/" onClick={() => setOpen(false)} aria-label="Amira Bechini Masterclass">
+        <Link
+          href="/"
+          onClick={() => setOpen(false)}
+          aria-label="Amira Bechini Masterclass"
+          className="flex items-center gap-3"
+        >
+          {/* text-bone, not the gold: the bar sits over the hero photograph
+              before it goes solid, and gold on ivory skin tones is ~2.4:1. */}
+          <Monogram className="text-[26px] text-bone" />
           <span className="display text-[15px] tracking-[0.24em] text-bone uppercase">
             Amira Bechini
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-6 xl:flex">
           {links.map((l) => (
             <Link
               key={l.href}
@@ -50,7 +61,7 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center gap-4 xl:flex">
           <LocaleSwitcher />
           <Link
             href="/dashboard"
@@ -68,7 +79,7 @@ export function Nav() {
           aria-expanded={open}
           aria-label={t("menu")}
           onClick={() => setOpen((v) => !v)}
-          className="p-2 text-bone lg:hidden"
+          className="p-2 text-bone xl:hidden"
         >
           {open ? <X size={22} weight="light" /> : <List size={22} weight="light" />}
         </button>
@@ -81,7 +92,7 @@ export function Nav() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-line bg-ink lg:hidden"
+            className="overflow-hidden border-t border-line bg-ink xl:hidden"
           >
             <div className={`${shell} flex flex-col gap-1 py-6`}>
               {links.map((l) => (

@@ -42,13 +42,25 @@ ever read their own enrollments and can only write progress for a course they pa
 The webhook is the only thing that grants course access, so a forged client request
 cannot unlock a course.
 
+Payment methods come from the Stripe dashboard, not from code: turn on **card, PayPal,
+Apple Pay and Google Pay** under Settings → Payment methods and Checkout offers whichever
+the buyer's device supports. Apple Pay needs the domain verified in the same place. Turn
+on Settings → Customer emails → *Successful payments* for the payment receipt; the
+course-access email is sent separately by the webhook through Resend.
+
 **Mux.** Upload each lesson and paste its playback id into `src/lib/courses.ts`. For
 private playback, create a signing key and set `MUX_SIGNING_KEY_ID` and
 `MUX_SIGNING_KEY_PRIVATE` (base64 of the PEM). Tokens are minted server side per request
 and last three hours.
 
-**Contact form.** Set `RESEND_API_KEY` and `CONTACT_TO`. Without them the form still
-accepts messages and logs them server side, so nothing is silently dropped.
+**Contact form and confirmation email.** Set `RESEND_API_KEY` and `CONTACT_TO`. Without
+them the form and the post-purchase confirmation email still work, logging server side
+instead of sending, so nothing is silently dropped.
+
+**Studio contact details.** Phone, WhatsApp number and Instagram handle live in
+`src/lib/studio.ts` and are placeholders. Replace them there and every page picks them up.
+The location links are Google Maps searches; swap them for real place links, or an embed,
+once the studio supplies street addresses.
 
 ## Content rules
 
@@ -63,6 +75,9 @@ invented statistics, credentials or reviews.
   with full-resolution exports before launch. `students-certificates.jpg` shows
   identifiable students and their certificate numbers; it is deliberately not used on any
   page until written consent exists.
+- **The counters.** "9+ years", "3 locations" and "100% hands-on" match the studio's own
+  material. "500+ students trained" came from the brief with a note to replace it with the
+  real number; it is marked `TODO(studio)` in `src/app/[locale]/page.tsx`.
 - **Credential claims.** "PhiBrows Master" and "International certification" come from the
   studio's own flyers. PhiBrows is a third-party trademark, referenced by name only; none
   of its logos or certificate designs are reproduced here.

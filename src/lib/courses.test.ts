@@ -10,7 +10,7 @@ import it from "../../messages/it.json" with { type: "json" };
 import fr from "../../messages/fr.json" with { type: "json" };
 import ar from "../../messages/ar.json" with { type: "json" };
 
-const LOCALES = { en, it, fr, ar } as Record<string, Record<string, never>>;
+const LOCALES = { en, it, fr, ar } as unknown as Record<string, Record<string, never>>;
 
 const course = getCourse("brow-artistry")!;
 const ids = allLessons(course).map((l) => l.id);
@@ -55,15 +55,54 @@ test("every free preview lesson sits in the first module", () => {
   }
 });
 
+// Homepage sections whose keys are enumerated in code, so a missing translation
+// only surfaces as a raw key on the rendered page.
+const HOMEPAGE_KEYS = [
+  ...["home", "courses", "about", "method", "students", "gallery", "faq", "contact"].map(
+    (k) => `nav.${k}`,
+  ),
+  ...["luxury", "groups", "mentoring", "certification", "business", "support"].flatMap((k) => [
+    `why.items.${k}.title`,
+    `why.items.${k}.body`,
+  ]),
+  ...[
+    "lipBlush",
+    "darkLips",
+    "powderBrows",
+    "browMapping",
+    "colourTheory",
+    "pigment",
+    "machine",
+    "liveDemo",
+    "latex",
+    "model",
+    "branding",
+    "packaging",
+    "business",
+    "social",
+    "consultation",
+    "aftercare",
+    "certification",
+  ].map((k) => `syllabus.items.${k}`),
+  ...["years", "students", "locations", "practice"].map((k) => `stats.${k}`),
+  ...["roma", "milano", "tortoreto"].map((k) => `contact.cities.${k}.name`),
+  "contact.map",
+  "contact.whatsapp",
+  "contact.instagram",
+  "catalog.payments",
+  "students.title",
+  "students.sub",
+];
+
 test("every course, module and lesson is translated in all four languages", () => {
-  const required = courses.flatMap((c) => [
+  const required = HOMEPAGE_KEYS.concat(courses.flatMap((c) => [
     `catalog.${c.slug}.title`,
     `catalog.${c.slug}.tagline`,
     `catalog.${c.slug}.description`,
     ...(["one", "two", "three"] as const).map((k) => `catalog.${c.slug}.outcomes.${k}`),
     ...c.modules.map((m) => `modules.${m.id}`),
     ...allLessons(c).map((l) => `lessons.${l.id}`),
-  ]);
+  ]));
 
   for (const [locale, messages] of Object.entries(LOCALES)) {
     for (const path of required) {
@@ -88,7 +127,7 @@ test("every referenced image is actually on disk", () => {
   const paths = [
     ...courses.flatMap((c) => [c.image, ...c.gallery]),
     ...resultStills,
-    "/brand/amira-portrait.jpg",
+    "/brand/amira-hero.jpg",
     "/brand/amira-studio.jpg",
   ];
   for (const p of new Set(paths)) {

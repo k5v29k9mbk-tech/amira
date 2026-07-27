@@ -5,10 +5,13 @@
     "description": "Masterclass de maquillage permanent avec Amira Bechini. Sourcils, lip blush et neutralisation des lèvres foncées, avec démonstration en direct et pratique encadrée à Tortoreto, Rome et Milan."
   },
   "nav": {
+    "home": "Accueil",
     "courses": "Cours",
+    "about": "À propos d'Amira",
     "method": "La méthode",
-    "results": "Résultats",
-    "faq": "Questions",
+    "students": "Élèves",
+    "gallery": "Galerie",
+    "faq": "FAQ",
     "contact": "Contact",
     "dashboard": "Mon studio",
     "signIn": "Connexion",
@@ -18,11 +21,11 @@
   },
   "hero": {
     "eyebrow": "Masterclass de maquillage permanent",
-    "titleA": "Apprendre. Pratiquer.",
-    "titleB": "Transformer.",
-    "sub": "Sourcils et lip blush, avec démonstration en direct et pratique encadrée jusqu'à ce que la main soit sûre.",
+    "titleA": "Là où la beauté rencontre",
+    "titleB": "l'excellence.",
+    "sub": "Nous n'enseignons pas seulement le maquillage permanent : nous formons la nouvelle génération de professionnelles de la beauté. Formation d'élite, mentorat personnalisé et certification internationale, avec un accompagnement qui se poursuit après le cours.",
     "primary": "Découvrir les cours",
-    "secondary": "Voir une leçon gratuite",
+    "secondary": "Réservez votre place",
     "portrait": "Amira Bechini dans le studio de la masterclass"
   },
   "proof": {
@@ -52,8 +55,72 @@
       "three": { "title": "Cicatriser et corriger", "body": "Le résultat au jour 7, au jour 30, au mois 18, et comment corriger chaque cas." }
     }
   },
+  "why": {
+    "eyebrow": "Pourquoi Amira",
+    "title": "Pourquoi se former ici",
+    "sub": "Des groupes réduits, au plus près du geste, et quelqu'un à vos côtés jusqu'à ce que la main soit juste.",
+    "items": {
+      "luxury": {
+        "title": "Formation haut de gamme",
+        "body": "Un studio conçu pour enseigner, avec le matériel et la lumière de votre futur poste de travail."
+      },
+      "groups": {
+        "title": "Petits groupes VIP",
+        "body": "Les places sont limitées volontairement : chacune suit la démonstration de près."
+      },
+      "mentoring": {
+        "title": "Mentorat individuel",
+        "body": "Votre main corrigée pendant que vous travaillez, pas une vidéo que l'on espère avoir bien copiée."
+      },
+      "certification": {
+        "title": "Certification professionnelle",
+        "body": "Une attestation de fin de formation reconnue à l'international, à votre nom."
+      },
+      "business": {
+        "title": "Coaching business",
+        "body": "Tarifs, image de marque, packaging et les réseaux qui remplissent vraiment un agenda."
+      },
+      "support": {
+        "title": "Accompagnement continu",
+        "body": "L'échange continue après la masterclass, sur vos premières clientes."
+      }
+    }
+  },
+  "syllabus": {
+    "title": "Ce que vous apprendrez",
+    "sub": "Le programme complet, du premier tracé jusqu'à l'attestation.",
+    "items": {
+      "lipBlush": "Lip blush",
+      "darkLips": "Neutralisation des lèvres foncées",
+      "powderBrows": "Powder brows",
+      "browMapping": "Tracé des sourcils",
+      "colourTheory": "Théorie des couleurs",
+      "pigment": "Choix du pigment",
+      "machine": "Technique machine et aiguilles",
+      "liveDemo": "Démonstrations en direct",
+      "latex": "Pratique sur peau synthétique",
+      "model": "Pratique sur modèle",
+      "branding": "Image de marque",
+      "packaging": "Packaging",
+      "business": "Business et marketing",
+      "social": "Réseaux sociaux et photographie",
+      "consultation": "Consultation cliente",
+      "aftercare": "Soins post-séance",
+      "certification": "Certification professionnelle"
+    }
+  },
+  "stats": {
+    "years": "Années d'expérience",
+    "students": "Élèves formées",
+    "locations": "Lieux de formation",
+    "practice": "Pratique concrète"
+  },
+  "students": {
+    "title": "Les élèves au travail",
+    "sub": "Des moments de formation : démonstration, pratique sur latex et le premier modèle encadré."
+  },
   "results": {
-    "title": "Le travail",
+    "title": "Galerie",
     "sub": "Résultats cicatrisés, tracés et pratique, depuis le studio."
   },
   "catalog": {
@@ -72,6 +139,7 @@
     "preview": "Aperçu gratuit",
     "back": "Tous les cours",
     "oneTime": "Un paiement, accès à vie",
+    "payments": "Visa · Mastercard · PayPal · Apple Pay · Google Pay",
     "brow-artistry": {
       "title": "Sourcils Parfaits",
       "tagline": "Tracé, poil à poil, et la forme qui survit à la cicatrisation",
@@ -149,6 +217,14 @@
   "contact": {
     "title": "Écrire au studio",
     "sub": "Questions sur un cours, licences de groupe, ou formation en présentiel à Tortoreto, Rome et Milan.",
+    "map": "Ouvrir dans Google Maps",
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram",
+    "cities": {
+      "roma": { "name": "Rome" },
+      "milano": { "name": "Milan" },
+      "tortoreto": { "name": "Tortoreto" }
+    },
     "name": "Votre nom",
     "email": "Email",
     "subject": "Objet",

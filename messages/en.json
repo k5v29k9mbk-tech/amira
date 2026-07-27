@@ -5,10 +5,13 @@
     "description": "Permanent makeup masterclasses with Amira Bechini. Brow artistry, lip blush and dark lips neutralization, taught with live demonstration and supervised practice in Tortoreto, Roma and Milano."
   },
   "nav": {
+    "home": "Home",
     "courses": "Courses",
+    "about": "About Amira",
     "method": "The method",
-    "results": "Results",
-    "faq": "Questions",
+    "students": "Students",
+    "gallery": "Gallery",
+    "faq": "FAQ",
     "contact": "Contact",
     "dashboard": "My studio",
     "signIn": "Sign in",
@@ -18,11 +21,11 @@
   },
   "hero": {
     "eyebrow": "Permanent makeup masterclass",
-    "titleA": "Learn. Practice.",
-    "titleB": "Transform.",
-    "sub": "Brow artistry and lip blush, taught with live demonstration and supervised practice until your hand is steady.",
+    "titleA": "Where beauty meets",
+    "titleB": "excellence.",
+    "sub": "We don't just teach permanent makeup — we shape the next generation of beauty professionals. Elite training, personal mentorship and international certification, with support that continues after the course.",
     "primary": "Explore courses",
-    "secondary": "Watch a free lesson",
+    "secondary": "Book your seat",
     "portrait": "Amira Bechini in the masterclass studio"
   },
   "proof": {
@@ -52,8 +55,72 @@
       "three": { "title": "Heal and correct", "body": "What the result looks like at day 7, day 30, month 18, and how to fix each outcome." }
     }
   },
+  "why": {
+    "eyebrow": "Why Amira",
+    "title": "Why train here",
+    "sub": "Small rooms, close range, and someone standing over your shoulder until the hand is right.",
+    "items": {
+      "luxury": {
+        "title": "Luxury training",
+        "body": "A studio built for teaching, with the equipment and the light you will actually work under."
+      },
+      "groups": {
+        "title": "Small VIP groups",
+        "body": "Places are limited on purpose, so every student sees the demonstration from close range."
+      },
+      "mentoring": {
+        "title": "Individual mentoring",
+        "body": "Your hand corrected while you work, not a video you watch and hope you copied right."
+      },
+      "certification": {
+        "title": "Professional certification",
+        "body": "An internationally recognised certificate of completion, issued in your name."
+      },
+      "business": {
+        "title": "Business coaching",
+        "body": "Pricing, branding, packaging and the social media that actually fills a book."
+      },
+      "support": {
+        "title": "Ongoing support",
+        "body": "The conversation continues after the masterclass, through your first real clients."
+      }
+    }
+  },
+  "syllabus": {
+    "title": "What you will learn",
+    "sub": "The full syllabus, from the first mapping line to the certificate.",
+    "items": {
+      "lipBlush": "Lip blush",
+      "darkLips": "Dark lip neutralization",
+      "powderBrows": "Powder brows",
+      "browMapping": "Brow mapping",
+      "colourTheory": "Colour theory",
+      "pigment": "Pigment selection",
+      "machine": "Machine and needle technique",
+      "liveDemo": "Live demonstrations",
+      "latex": "Artificial skin practice",
+      "model": "Live model practice",
+      "branding": "Branding",
+      "packaging": "Packaging",
+      "business": "Business and marketing",
+      "social": "Social media and photography",
+      "consultation": "Client consultation",
+      "aftercare": "Aftercare",
+      "certification": "Professional certification"
+    }
+  },
+  "stats": {
+    "years": "Years of experience",
+    "students": "Students trained",
+    "locations": "Training locations",
+    "practice": "Hands-on practice"
+  },
+  "students": {
+    "title": "Students at work",
+    "sub": "Training moments from the masterclass: demonstration, latex practice, and the first supervised model."
+  },
   "results": {
-    "title": "The work",
+    "title": "Gallery",
     "sub": "Healed results, mapping and practice from the studio."
   },
   "catalog": {
@@ -72,6 +139,7 @@
     "preview": "Free preview",
     "back": "All courses",
     "oneTime": "One payment, lifetime access",
+    "payments": "Visa · Mastercard · PayPal · Apple Pay · Google Pay",
     "brow-artistry": {
       "title": "Brow Artistry",
       "tagline": "Mapping, hair strokes, and a shape that survives healing",
@@ -149,6 +217,14 @@
   "contact": {
     "title": "Talk to the studio",
     "sub": "Questions about a course, group licences, or in-person training in Tortoreto, Roma and Milano.",
+    "map": "Open in Google Maps",
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram",
+    "cities": {
+      "roma": { "name": "Rome" },
+      "milano": { "name": "Milan" },
+      "tortoreto": { "name": "Tortoreto" }
+    },
     "name": "Your name",
     "email": "Email",
     "subject": "Subject",

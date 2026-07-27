@@ -1,12 +1,31 @@
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ArrowRight, Eye, PlayCircle, Sparkle, PaintBrushHousehold } from "@phosphor-icons/react/dist/ssr";
+import {
+  ArrowRight,
+  CalendarCheck,
+  Certificate,
+  ChartLineUp,
+  Crown,
+  EnvelopeSimple,
+  Eye,
+  HandHeart,
+  InstagramLogo,
+  Lifebuoy,
+  MapPin,
+  PaintBrushHousehold,
+  Phone,
+  Sparkle,
+  UsersThree,
+  WhatsappLogo,
+} from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { courses, lessonCount, resultStills } from "@/lib/courses";
+import { cities, instagramLink, mapsLink, studio, whatsappLink } from "@/lib/studio";
 import { Reveal } from "@/components/Reveal";
+import { Counter } from "@/components/Counter";
 import { Voices } from "@/components/Voices";
 import { ContactForm } from "@/components/ContactForm";
-import { btnGhost, btnPrimary, eyebrow, iconRing, sectionTitle, shell } from "@/lib/ui";
+import { btnGhost, btnPrimary, eyebrow, iconRing, label, sectionTitle, shell } from "@/lib/ui";
 import { altLanguages } from "@/i18n/routing";
 
 export const metadata = { alternates: altLanguages() };
@@ -19,6 +38,46 @@ const steps = [
   { key: "two", Icon: PaintBrushHousehold },
   { key: "three", Icon: Sparkle },
 ] as const;
+
+const reasons = [
+  { key: "luxury", Icon: Crown },
+  { key: "groups", Icon: UsersThree },
+  { key: "mentoring", Icon: HandHeart },
+  { key: "certification", Icon: Certificate },
+  { key: "business", Icon: ChartLineUp },
+  { key: "support", Icon: Lifebuoy },
+] as const;
+
+// The syllabus as the studio lists it on its own material.
+const syllabus = [
+  "lipBlush",
+  "darkLips",
+  "powderBrows",
+  "browMapping",
+  "colourTheory",
+  "pigment",
+  "machine",
+  "liveDemo",
+  "latex",
+  "model",
+  "branding",
+  "packaging",
+  "business",
+  "social",
+  "consultation",
+  "aftercare",
+  "certification",
+] as const;
+
+// TODO(studio): `students` is the figure from the brief and still needs
+// confirming. The other three are verifiable from the studio's own material.
+const stats = [
+  { key: "years", to: 9, suffix: "+" },
+  { key: "students", to: 500, suffix: "+" },
+  { key: "locations", to: 3, suffix: "" },
+  { key: "practice", to: 100, suffix: "%" },
+] as const;
+
 const faqKeys = ["one", "two", "three", "four", "five", "six"] as const;
 
 export default async function Home({
@@ -33,8 +92,22 @@ export default async function Home({
 
   return (
     <>
-      {/* Hero: asymmetric split, text left, tall portrait right. */}
-      <section className="relative flex min-h-[100dvh] items-center pt-24 pb-16">
+      {/* Hero: full-bleed studio banner, copy over its empty left third. */}
+      <section className="relative flex min-h-[100dvh] items-end overflow-hidden pt-24 pb-16 lg:items-center">
+        <Image
+          src="/brand/amira-hero.jpg"
+          alt={t("hero.portrait")}
+          fill
+          priority
+          sizes="100vw"
+          className="-z-20 object-cover object-[72%_50%]"
+        />
+        {/* Scrim in the page's own ground colour, so the copy stays legible in
+            either theme without tinting the photograph. */}
+        <span
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--ink)_18%,color-mix(in_srgb,var(--ink)_70%,transparent)_46%,transparent_78%)] lg:bg-[linear-gradient(to_right,var(--ink)_22%,color-mix(in_srgb,var(--ink)_82%,transparent)_44%,transparent_68%)]"
+        />
         <div className={`${shell} grid w-full items-center gap-12 lg:grid-cols-12 lg:gap-8`}>
           <div className="lg:col-span-6 xl:col-span-5">
             <Reveal>
@@ -62,36 +135,13 @@ export default async function Home({
                   {t("hero.primary")}
                   <ArrowRight size={16} weight="light" className="flip-x" />
                 </Link>
-                <Link
-                  href={`/learn/${lead.slug}/${lead.modules[0].lessons[0].id}`}
-                  className={btnGhost}
-                >
-                  <PlayCircle size={18} weight="light" />
+                <Link href="/#contact" className={btnGhost}>
+                  <CalendarCheck size={18} weight="light" />
                   {t("hero.secondary")}
                 </Link>
               </div>
             </Reveal>
           </div>
-
-          <Reveal delay={0.12} className="lg:col-span-6 lg:col-start-7 xl:col-span-6 xl:col-start-7">
-            <div className="alcove relative isolate mx-auto max-w-[520px] lg:max-w-none">
-              {/* Gold hairline arch, offset behind the portrait. */}
-              <span
-                aria-hidden
-                className="arch absolute inset-x-6 -top-5 bottom-10 border border-accent/45"
-              />
-              <div className="arch relative aspect-[4/5] w-full">
-                <Image
-                  src="/brand/amira-portrait.jpg"
-                  alt={t("hero.portrait")}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-[43%_50%]"
-                />
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -116,7 +166,7 @@ export default async function Home({
       </section>
 
       {/* Instructor: full-bleed portrait beside editorial copy. */}
-      <section className="py-24 md:py-32">
+      <section id="about" className="py-24 md:py-32">
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <Reveal className="lg:col-span-5">
             <div className="relative aspect-[3/4] w-full overflow-hidden">
@@ -157,6 +207,42 @@ export default async function Home({
         </div>
       </section>
 
+      {/* Why choose Amira: six reasons, gold icon rings, hairline grid. */}
+      <section id="why" className="border-t border-line py-24 md:py-32">
+        <div className={shell}>
+          <Reveal>
+            <p className={eyebrow}>
+              <span aria-hidden className="h-px w-8 bg-accent" />
+              {t("why.eyebrow")}
+            </p>
+            <h2 className={`${sectionTitle} mt-6`}>{t("why.title")}</h2>
+            <p className="mt-5 max-w-[52ch] leading-relaxed text-muted">{t("why.sub")}</p>
+          </Reveal>
+
+          {/* Hairline grid: rules on the container's top/start edge, on every
+              cell's bottom/end edge. Holds at one, two or three columns. */}
+          <div className="mt-14 grid border-t border-s border-line md:grid-cols-2 lg:grid-cols-3">
+            {reasons.map(({ key, Icon }, i) => (
+              <Reveal
+                key={key}
+                delay={(i % 3) * 0.06}
+                className="border-b border-e border-line p-8 md:p-10"
+              >
+                <span className={iconRing}>
+                  <Icon size={20} weight="light" />
+                </span>
+                <h3 className="display mt-6 text-2xl text-bone">
+                  {t(`why.items.${key}.title`)}
+                </h3>
+                <p className="mt-3 max-w-[38ch] leading-relaxed text-muted">
+                  {t(`why.items.${key}.body`)}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Method: sticky heading, hairline-separated movements. */}
       <section id="method" className="border-t border-line py-24 md:py-32">
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
@@ -193,6 +279,29 @@ export default async function Home({
         </div>
       </section>
 
+      {/* What you'll learn: the full syllabus, set as one list. */}
+      <section id="syllabus" className="border-t border-line py-24 md:py-32">
+        <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
+          <div className="lg:col-span-4">
+            <h2 className={sectionTitle}>{t("syllabus.title")}</h2>
+            <p className="mt-6 max-w-[38ch] leading-relaxed text-muted">{t("syllabus.sub")}</p>
+          </div>
+          <ul className="grid gap-x-10 border-t border-line pt-2 sm:grid-cols-2 lg:col-span-7 lg:col-start-6">
+            {syllabus.map((key, i) => (
+              <Reveal
+                key={key}
+                as="li"
+                delay={(i % 6) * 0.04}
+                className="flex items-baseline gap-4 border-b border-line py-4 text-bone"
+              >
+                <span aria-hidden className="h-px w-5 shrink-0 bg-accent" />
+                {t(`syllabus.items.${key}`)}
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* Catalogue: bento, exactly four cells for four courses. */}
       <section id="courses" className="border-t border-line py-24 md:py-32">
         <div className={shell}>
@@ -215,11 +324,27 @@ export default async function Home({
               </Reveal>
             ))}
           </div>
+
+          <p className="mt-8 text-sm text-muted">{t("catalog.payments")}</p>
         </div>
       </section>
 
-      {/* Results: the studio's own stills, edge to edge, no captions or badges. */}
-      <section id="results" className="border-t border-line py-24 md:py-32">
+      {/* Figures. Counters run once, on scroll into view. */}
+      <section className="border-t border-line py-20 md:py-24">
+        <div className={`${shell} grid grid-cols-2 gap-y-12 lg:grid-cols-4`}>
+          {stats.map(({ key, to, suffix }, i) => (
+            <Reveal key={key} delay={i * 0.06} className="text-center">
+              <p className="display text-5xl text-accent-hi md:text-6xl">
+                <Counter to={to} suffix={suffix} />
+              </p>
+              <p className={`${label} mt-4`}>{t(`stats.${key}`)}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Gallery: the studio's own stills, edge to edge, no captions or badges. */}
+      <section id="gallery" className="border-t border-line py-24 md:py-32">
         <div className={shell}>
           <Reveal>
             <h2 className={sectionTitle}>{t("results.title")}</h2>
@@ -247,6 +372,35 @@ export default async function Home({
               </div>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* Students: training moments. students-certificates.jpg stays out until
+          the studio has written consent from the people in it. */}
+      <section id="students" className="border-t border-line py-24 md:py-32">
+        <div className={shell}>
+          <Reveal>
+            <h2 className={sectionTitle}>{t("students.title")}</h2>
+            <p className="mt-5 max-w-[46ch] leading-relaxed text-muted">{t("students.sub")}</p>
+          </Reveal>
+
+          <div className="mt-14 grid gap-4 md:grid-cols-3">
+            {["/brand/group-training.jpg", "/brand/live-demo.jpg", "/brand/practice-latex.jpg"].map(
+              (src, i) => (
+                <Reveal key={src} delay={i * 0.06}>
+                  <div className="relative aspect-[4/5] w-full overflow-hidden">
+                    <Image
+                      src={src}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                    />
+                  </div>
+                </Reveal>
+              ),
+            )}
+          </div>
         </div>
       </section>
 
@@ -288,6 +442,72 @@ export default async function Home({
             <p className="mt-6 max-w-[38ch] leading-relaxed text-muted">
               {t("contact.sub")}
             </p>
+
+            <ul className="mt-10 grid gap-5 border-t border-line pt-8">
+              {cities.map((c) => (
+                <li key={c.id}>
+                  <a
+                    href={mapsLink(c.maps)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group flex items-start gap-4"
+                  >
+                    <MapPin size={18} weight="light" className="mt-1 shrink-0 text-accent" />
+                    <span>
+                      <span className="display block text-xl text-bone transition-colors group-hover:text-accent-hi">
+                        {t(`contact.cities.${c.id}.name`)}
+                      </span>
+                      <span className="mt-1 block text-sm text-muted">
+                        {t("contact.map")}
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <ul className="mt-8 grid gap-3 border-t border-line pt-8 text-sm">
+              <li>
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 text-bone hover:text-accent-hi"
+                >
+                  <WhatsappLogo size={18} weight="light" className="text-accent" />
+                  {t("contact.whatsapp")}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={instagramLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 text-bone hover:text-accent-hi"
+                >
+                  <InstagramLogo size={18} weight="light" className="text-accent" />@
+                  {studio.instagram}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`tel:${studio.phone.replace(/\s/g, "")}`}
+                  className="inline-flex items-center gap-3 text-bone hover:text-accent-hi"
+                >
+                  <Phone size={18} weight="light" className="text-accent" />
+                  <span dir="ltr">{studio.phone}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${studio.email}`}
+                  className="inline-flex items-center gap-3 text-bone hover:text-accent-hi"
+                >
+                  <EnvelopeSimple size={18} weight="light" className="text-accent" />
+                  {studio.email}
+                </a>
+              </li>
+            </ul>
           </div>
           <div className="lg:col-span-7 lg:col-start-6">
             <ContactForm />
