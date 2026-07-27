@@ -27,5 +27,8 @@ export default async function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: "/((?!api|_next|_vercel|.*\\..*).*)",
+  // `icon` and `apple-icon` are extensionless metadata routes, so the trailing
+  // dot rule misses them and next-intl would redirect them into /en/icon — a
+  // 404, and no favicon anywhere on the site.
+  matcher: "/((?!api|_next|_vercel|icon|apple-icon|.*\\..*).*)",
 };

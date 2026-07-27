@@ -1,14 +1,12 @@
 import { ImageResponse } from "next/og";
 import { markDataUri } from "@/lib/mark";
 
-export const size = { width: 64, height: 64 };
+export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-// The drawn AB mark on the ivory ground. Espresso on ivory is ~15.6:1, so the
-// glyph survives being scaled to a 16px tab on either a light or a dark chrome —
-// the tile carries its own ground rather than relying on the browser's.
-// ponytail: vector, so nothing to fetch at build and nothing to keep in sync.
-export default function Icon() {
+// iOS masks the corners and never composites transparency, so the tile needs its
+// own opaque ivory ground and ~20% breathing room inside the mask.
+export default function AppleIcon() {
   return new ImageResponse(
     (
       <div
@@ -22,7 +20,7 @@ export default function Icon() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={markDataUri("#1b1613")} width={44} height={46} alt="" />
+        <img src={markDataUri("#1b1613")} width={105} height={110} alt="" />
       </div>
     ),
     size,

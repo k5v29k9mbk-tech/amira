@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { getTranslations } from "next-intl/server";
+import { markDataUri } from "@/lib/mark";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -27,7 +28,8 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          <div style={{ display: "flex", fontSize: 46, color: "#7e5f2b" }}>AB</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={markDataUri("#7e5f2b")} width={57} height={60} alt="" />
           <div style={{ display: "flex", letterSpacing: 12, fontSize: 22 }}>
             AMIRA BECHINI
           </div>

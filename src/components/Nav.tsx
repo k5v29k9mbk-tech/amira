@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/
 import { List, X } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { Monogram } from "./Wordmark";
 import { btnPrimary, shell } from "@/lib/ui";
 
 export function Nav() {
