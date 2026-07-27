@@ -7,6 +7,9 @@ import { Reveal } from "@/components/Reveal";
 import { Voices } from "@/components/Voices";
 import { ContactForm } from "@/components/ContactForm";
 import { btnGhost, btnPrimary, sectionTitle, shell } from "@/lib/ui";
+import { altLanguages } from "@/i18n/routing";
+
+export const metadata = { alternates: altLanguages() };
 
 const stats = [
   { value: "2,438", key: "students" },

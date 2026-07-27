@@ -5,11 +5,13 @@ import { Link } from "@/i18n/navigation";
 import { courses, lessonCount } from "@/lib/courses";
 import { Reveal } from "@/components/Reveal";
 import { sectionTitle, shell } from "@/lib/ui";
-import { routing } from "@/i18n/routing";
+import { altLanguages, routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+export const metadata = { alternates: altLanguages("/courses") };
 
 export default async function CoursesPage({
   params,

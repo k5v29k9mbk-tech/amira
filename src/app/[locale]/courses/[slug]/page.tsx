@@ -9,7 +9,7 @@ import { isEnrolled } from "@/lib/enrollment";
 import { EnrollButton } from "@/components/EnrollButton";
 import { Reveal } from "@/components/Reveal";
 import { btnGhost, sectionTitle, shell } from "@/lib/ui";
-import { routing } from "@/i18n/routing";
+import { altLanguages, routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -28,6 +28,7 @@ export async function generateMetadata({
   return {
     title: t(`catalog.${slug}.title`),
     description: t(`catalog.${slug}.description`),
+    alternates: altLanguages(`/courses/${slug}`),
   };
 }
 

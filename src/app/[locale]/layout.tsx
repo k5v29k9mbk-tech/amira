@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Geist, Geist_Mono, IBM_Plex_Sans_Arabic } from "next/font/google";
-import { routing, isRtl } from "@/i18n/routing";
+import { routing, isRtl, siteUrl } from "@/i18n/routing";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import "../globals.css";
@@ -39,6 +39,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
   return {
+    metadataBase: new URL(siteUrl),
     title: { default: `${t("title")} | ${t("tagline")}`, template: `%s | ${t("title")}` },
     description: t("description"),
     openGraph: {

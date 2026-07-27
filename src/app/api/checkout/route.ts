@@ -28,7 +28,9 @@ export async function POST(req: Request) {
     mode: "payment",
     line_items: [{ price: course.priceId, quantity: 1 }],
     customer_email: user.email,
-    locale: lang as Stripe.Checkout.SessionCreateParams.Locale,
+    // Stripe Checkout has no Arabic locale. Passing one is a hard 400, so let
+    // Stripe pick from the browser instead of failing the sale.
+    locale: (["en", "it", "fr"].includes(lang) ? lang : "auto") as Stripe.Checkout.SessionCreateParams.Locale,
     // The webhook is the only thing that grants access, so it needs both ids.
     metadata: { user_id: user.id, course_slug: course.slug },
     success_url: `${origin}/${lang}/dashboard?checkout=success`,
