@@ -142,11 +142,12 @@ export default async function Home({
           sizes="100vw"
           className="-z-20 object-cover object-[62%_28%]"
         />
-        {/* Scrim in the page's own ground colour, so the copy stays legible in
-            either theme without tinting the photograph. */}
+        {/* Scrim in the page's own ground colour, so the copy stays legible
+            without tinting the photograph. On wide screens it is a hard seam,
+            not a feather: the wash bleeding across her read as a blur. */}
         <span
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--ink)_18%,color-mix(in_srgb,var(--ink)_70%,transparent)_46%,transparent_78%)] lg:bg-[linear-gradient(to_right,var(--ink)_22%,color-mix(in_srgb,var(--ink)_82%,transparent)_44%,transparent_68%)]"
+          className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--ink)_18%,color-mix(in_srgb,var(--ink)_70%,transparent)_46%,transparent_78%)] lg:bg-[linear-gradient(to_right,var(--ink)_0,var(--ink)_46%,transparent_46%)]"
         />
         <div className={`${shell} grid w-full items-center gap-12 lg:grid-cols-12 lg:gap-8`}>
           <div className="lg:col-span-6 xl:col-span-5">
