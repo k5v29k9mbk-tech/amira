@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight, Eye, PlayCircle, Sparkle, PaintBrushHousehold } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
-import { courses, lessonCount } from "@/lib/courses";
+import { courses, lessonCount, resultStills } from "@/lib/courses";
 import { Reveal } from "@/components/Reveal";
 import { Voices } from "@/components/Voices";
 import { ContactForm } from "@/components/ContactForm";
@@ -11,12 +11,8 @@ import { altLanguages } from "@/i18n/routing";
 
 export const metadata = { alternates: altLanguages() };
 
-const stats = [
-  { value: "2,438", key: "students" },
-  { value: "31", key: "countries" },
-  { value: "4.87", key: "rating" },
-  { value: "9", key: "years" },
-] as const;
+// Claims the studio's own marketing already makes. No invented figures.
+const badges = ["locations", "trainer", "certification", "practice"] as const;
 
 const steps = [
   { key: "one", Icon: Eye },
@@ -86,12 +82,12 @@ export default async function Home({
               />
               <div className="arch relative aspect-[4/5] w-full">
                 <Image
-                  src="https://picsum.photos/seed/amira-bechini-atelier-hero/1400/1750"
+                  src="/brand/amira-portrait.jpg"
                   alt={t("hero.portrait")}
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
               </div>
             </div>
@@ -99,18 +95,20 @@ export default async function Home({
         </div>
       </section>
 
-      {/* Numbers strip. Hairline separated, mono figures, no card boxes. */}
+      {/* Credential strip. Hairline separated, no card boxes. */}
       <section className="border-y border-line">
         <div className={`${shell} grid grid-cols-2 md:grid-cols-4`}>
-          {stats.map((s, i) => (
+          {badges.map((key, i) => (
             <Reveal
-              key={s.key}
+              key={key}
               delay={i * 0.06}
               className={`border-line py-10 md:py-12 ${i % 2 === 1 ? "border-s ps-6" : "md:border-s md:ps-6"} ${i > 1 ? "border-t md:border-t-0" : ""}`}
             >
-              <p className="display text-4xl text-bone md:text-5xl">{s.value}</p>
-              <p className="mt-2 text-[11px] font-medium tracking-[0.16em] text-muted uppercase">
-                {t(`proof.${s.key}`)}
+              <p className="display text-xl leading-snug text-bone md:text-2xl">
+                {t(`proof.${key}.title`)}
+              </p>
+              <p className="mt-2 text-[11px] font-medium tracking-[0.16em] text-accent-hi uppercase">
+                {t(`proof.${key}.sub`)}
               </p>
             </Reveal>
           ))}
@@ -123,7 +121,7 @@ export default async function Home({
           <Reveal className="lg:col-span-5">
             <div className="relative aspect-[3/4] w-full overflow-hidden">
               <Image
-                src="https://picsum.photos/seed/amira-bechini-portrait-studio/1200/1600"
+                src="/brand/amira-studio.jpg"
                 alt={t("instructor.portrait")}
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
@@ -217,6 +215,38 @@ export default async function Home({
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Results: the studio's own stills, edge to edge, no captions or badges. */}
+      <section id="results" className="border-t border-line py-24 md:py-32">
+        <div className={shell}>
+          <Reveal>
+            <h2 className={sectionTitle}>{t("results.title")}</h2>
+            <p className="mt-5 max-w-[46ch] leading-relaxed text-muted">{t("results.sub")}</p>
+          </Reveal>
+        </div>
+
+        <div className="mt-14 grid grid-cols-2 gap-3 px-5 md:grid-cols-3 md:gap-4 md:px-10">
+          {resultStills.map((src, i) => (
+            <Reveal
+              key={src}
+              delay={(i % 3) * 0.06}
+              className={i === 0 ? "col-span-2 md:col-span-2 md:row-span-2" : ""}
+            >
+              <div
+                className={`relative w-full overflow-hidden ${i === 0 ? "aspect-[16/10] md:aspect-[4/3]" : "aspect-square"}`}
+              >
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                />
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
 

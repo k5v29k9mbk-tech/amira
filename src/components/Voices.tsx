@@ -1,14 +1,19 @@
 "use client";
 
 import { useRef } from "react";
-import { useTranslations } from "next-intl";
+import { useMessages, useTranslations } from "next-intl";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import { shell, sectionTitle } from "@/lib/ui";
 
-const keys = ["one", "two", "three", "four"] as const;
-
+/**
+ * Renders nothing until real, consented student quotes are added to
+ * messages/*.json under `voices.items`. Inventing testimonials for a real
+ * business is not an option, so the section stays out of the page instead.
+ */
 export function Voices() {
   const t = useTranslations("voices");
+  const messages = useMessages() as { voices?: { items?: Record<string, unknown> } };
+  const keys = Object.keys(messages.voices?.items ?? {});
   const track = useRef<HTMLUListElement>(null);
 
   const nudge = (dir: 1 | -1) => {
@@ -17,28 +22,32 @@ export function Voices() {
     el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: "smooth" });
   };
 
+  if (keys.length === 0) return null;
+
   return (
     <section id="voices" className="border-t border-line py-24 md:py-32">
       <div className={`${shell} flex flex-wrap items-end justify-between gap-6`}>
         <h2 className={sectionTitle}>{t("title")}</h2>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={() => nudge(-1)}
-            aria-label={t("title")}
-            className="rounded-full border border-accent/50 p-3.5 text-bone transition-colors hover:border-accent hover:bg-surface-2 hover:text-accent-hi"
-          >
-            <ArrowLeft size={18} weight="light" className="flip-x" />
-          </button>
-          <button
-            type="button"
-            onClick={() => nudge(1)}
-            aria-label={t("title")}
-            className="rounded-full border border-accent/50 p-3.5 text-bone transition-colors hover:border-accent hover:bg-surface-2 hover:text-accent-hi"
-          >
-            <ArrowRight size={18} weight="light" className="flip-x" />
-          </button>
-        </div>
+        {keys.length > 1 && (
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => nudge(-1)}
+              aria-label={t("title")}
+              className="rounded-full border border-accent/50 p-3.5 text-bone transition-colors hover:border-accent hover:bg-surface-2 hover:text-accent-hi"
+            >
+              <ArrowLeft size={18} weight="light" className="flip-x" />
+            </button>
+            <button
+              type="button"
+              onClick={() => nudge(1)}
+              aria-label={t("title")}
+              className="rounded-full border border-accent/50 p-3.5 text-bone transition-colors hover:border-accent hover:bg-surface-2 hover:text-accent-hi"
+            >
+              <ArrowRight size={18} weight="light" className="flip-x" />
+            </button>
+          </div>
+        )}
       </div>
 
       <ul

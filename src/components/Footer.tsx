@@ -42,11 +42,11 @@ export async function Footer() {
           <h2 className={label}>{t("footer.studio")}</h2>
           <ul className="mt-4 grid gap-2.5 text-sm text-bone">
             <li>
-              <a href="mailto:studio@amirabechini.com" className="hover:text-accent-hi">
-                studio@amirabechini.com
+              <a href="mailto:studio@amira-bechini.com" className="hover:text-accent-hi">
+                studio@amira-bechini.com
               </a>
             </li>
-            <li className="text-muted">{t("footer.address")}</li>
+            <li className="text-muted">{t("footer.locations")}</li>
             <li>
               <Link href="/#faq" className="hover:text-accent-hi">
                 {t("nav.faq")}

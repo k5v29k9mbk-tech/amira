@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const STUDIO_EMAIL = process.env.CONTACT_TO ?? "studio@amirabechini.com";
+const STUDIO_EMAIL = process.env.CONTACT_TO ?? "studio@amira-bechini.com";
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: process.env.CONTACT_FROM ?? "site@amirabechini.com",
+      from: process.env.CONTACT_FROM ?? "site@amira-bechini.com",
       to: STUDIO_EMAIL,
       reply_to: email,
       subject: subject || `Website message from ${name}`,

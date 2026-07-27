@@ -20,7 +20,7 @@ export function Nav() {
   const links = [
     { href: "/courses", label: t("courses") },
     { href: "/#method", label: t("method") },
-    { href: "/#voices", label: t("voices") },
+    { href: "/#results", label: t("results") },
     { href: "/#faq", label: t("faq") },
     { href: "/#contact", label: t("contact") },
   ] as const;

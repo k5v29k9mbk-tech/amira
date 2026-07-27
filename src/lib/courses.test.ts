@@ -1,17 +1,28 @@
 // Run: npm test
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
 import { test } from "node:test";
-import { allLessons, courses, getCourse, nextLesson, progressPercent } from "./courses.ts";
+import { allLessons, courses, getCourse, nextLesson, progressPercent, resultStills } from "./courses.ts";
 import { certificateCode } from "./mux.ts";
 
-const course = getCourse("brow-architecture")!;
+import en from "../../messages/en.json" with { type: "json" };
+import it from "../../messages/it.json" with { type: "json" };
+import fr from "../../messages/fr.json" with { type: "json" };
+import ar from "../../messages/ar.json" with { type: "json" };
+
+const LOCALES = { en, it, fr, ar } as Record<string, Record<string, never>>;
+
+const course = getCourse("brow-artistry")!;
 const ids = allLessons(course).map((l) => l.id);
 
-test("lesson ids are unique inside a course", () => {
-  for (const c of courses) {
-    const list = allLessons(c).map((l) => l.id);
-    assert.equal(new Set(list).size, list.length, c.slug);
-  }
+const at = (obj: unknown, path: string) =>
+  path.split(".").reduce<unknown>((o, k) => (o as Record<string, unknown>)?.[k], obj);
+
+test("lesson ids are unique across ALL courses", () => {
+  // The dashboard reads one flat set of completed ids. A shared id would make
+  // finishing one course silently advance another.
+  const all = courses.flatMap((c) => allLessons(c).map((l) => l.id));
+  assert.equal(new Set(all).size, all.length);
 });
 
 test("progress runs 0 to 100 and rounds", () => {
@@ -19,7 +30,7 @@ test("progress runs 0 to 100 and rounds", () => {
   assert.equal(progressPercent(course, new Set(ids)), 100);
   assert.equal(progressPercent(course, new Set(ids.slice(0, 4))), 50);
   // Ids from another course must not count towards this one.
-  assert.equal(progressPercent(course, new Set(["anatomy", "adhesive"])), 0);
+  assert.equal(progressPercent(course, new Set(["lip-blush", "hygiene"])), 0);
 });
 
 test("resume points at the first unfinished lesson", () => {
@@ -41,5 +52,46 @@ test("every free preview lesson sits in the first module", () => {
     const free = allLessons(c).filter((l) => l.free);
     assert.ok(free.length >= 1, c.slug);
     assert.ok(free.every((l) => l.moduleId === c.modules[0].id), c.slug);
+  }
+});
+
+test("every course, module and lesson is translated in all four languages", () => {
+  const required = courses.flatMap((c) => [
+    `catalog.${c.slug}.title`,
+    `catalog.${c.slug}.tagline`,
+    `catalog.${c.slug}.description`,
+    ...(["one", "two", "three"] as const).map((k) => `catalog.${c.slug}.outcomes.${k}`),
+    ...c.modules.map((m) => `modules.${m.id}`),
+    ...allLessons(c).map((l) => `lessons.${l.id}`),
+  ]);
+
+  for (const [locale, messages] of Object.entries(LOCALES)) {
+    for (const path of required) {
+      const value = at(messages, path);
+      assert.equal(typeof value, "string", `${locale} is missing ${path}`);
+      assert.ok(String(value).trim().length > 0, `${locale} has an empty ${path}`);
+    }
+  }
+});
+
+test("no orphan lesson strings left behind after a catalogue change", () => {
+  const live = new Set(courses.flatMap((c) => allLessons(c).map((l) => l.id)));
+  const declared = Object.keys((en as unknown as { lessons: object }).lessons);
+  assert.deepEqual(
+    declared.filter((id) => !live.has(id)),
+    [],
+    "messages/*.json still define lessons no course uses",
+  );
+});
+
+test("every referenced image is actually on disk", () => {
+  const paths = [
+    ...courses.flatMap((c) => [c.image, ...c.gallery]),
+    ...resultStills,
+    "/brand/amira-portrait.jpg",
+    "/brand/amira-studio.jpg",
+  ];
+  for (const p of new Set(paths)) {
+    assert.ok(existsSync(`public${p}`), `missing asset: public${p}`);
   }
 });

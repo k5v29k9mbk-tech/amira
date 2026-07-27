@@ -33,8 +33,6 @@ export type Course = {
   gallery: string[];
 };
 
-type Draft = Omit<Course, "modules"> & { modules: Module[] };
-
 const lesson = (id: string, minutes: number, playbackId = "", free = false): Lesson => ({
   id,
   minutes,
@@ -150,5 +148,3 @@ export const resultStills = [
   "/brand/practice-latex.jpg",
   "/brand/at-work.jpg",
 ];
-
-export type { Draft };
