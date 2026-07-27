@@ -17,14 +17,15 @@
   `color-scheme: light` also stops the browser darkening form controls.
 */
 :root {
-  --ink: #f3eae0; /* page ground, warm nude */
+  /* Sampled off the studio's own poster mockup, not eyeballed. */
+  --ink: #ece1d3; /* page ground, warm nude */
   --surface: #fbf6f0; /* cards and panels, lifts off the ground */
-  --surface-2: #e9ddce; /* tinted section bands */
-  --line: #dfd1bf;
-  --bone: #1f1913; /* text, warm near-black */
-  --muted: #6b5f53; /* 5.2:1 on the ground */
-  --accent: #b8974f; /* decorative gold only: rules, fills, icon rings */
-  --accent-hi: #7e5f2b; /* text-safe gold, 4.9:1 on the ground */
+  --surface-2: #e9dac6; /* tinted section bands */
+  --line: #ded0ba;
+  --bone: #16130f; /* text and the dark band, warm near-black */
+  --muted: #6b5f53; /* 4.8:1 on the ground */
+  --accent: #b8934e; /* decorative gold only: rules, fills, icon rings */
+  --accent-hi: #795a26; /* text-safe gold, 4.6:1 on the tinted band */
   --accent-ink: #f7f1e9;
   --glow: rgba(184, 151, 79, 0.16);
   color-scheme: light;

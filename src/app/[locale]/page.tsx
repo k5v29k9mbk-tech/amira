@@ -130,13 +130,16 @@ export default async function Home({
     <>
       {/* Hero: full-bleed studio banner, copy over its empty left third. */}
       <section className="relative flex min-h-[100dvh] items-end overflow-hidden pt-24 pb-16 lg:items-center">
+        {/* No colour grading: this frame is already lit to the nude palette.
+            Focal point sits high and centre-right so her face survives the
+            vertical crop on wide screens. */}
         <Image
           src="/brand/amira-hero.jpg"
           alt={t("hero.portrait")}
           fill
           priority
           sizes="100vw"
-          className="-z-20 object-cover object-[72%_50%]"
+          className="-z-20 object-cover object-[58%_22%]"
         />
         {/* Scrim in the page's own ground colour, so the copy stays legible in
             either theme without tinting the photograph. */}
