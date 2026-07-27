@@ -147,4 +147,5 @@ export const resultStills = [
   "/brand/brows-eyes.jpg",
   "/brand/practice-latex.jpg",
   "/brand/at-work.jpg",
+  "/brand/group-training.jpg",
 ];
