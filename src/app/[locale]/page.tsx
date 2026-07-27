@@ -135,28 +135,34 @@ export default async function Home({
 
   return (
     <>
-      {/* Hero: full-bleed studio banner, copy over its empty left third. */}
-      <section className="relative flex min-h-[100dvh] items-end overflow-hidden pt-24 pb-16 lg:items-center">
+      {/* Hero. Phones stack: photograph, then copy on solid ground — overlaying
+          a viewport-tall crop left the eyebrow stranded on her face. From lg the
+          banner goes full-bleed and the copy sits over its empty left third. */}
+      <section className="relative flex flex-col overflow-hidden lg:min-h-[100dvh] lg:items-center lg:pt-24 lg:pb-16">
         {/* No colour grading: the frame is already lit to the nude palette, and
             the empty wall on its left is where the headline sits. Focal point
-            follows her face so she survives the crop at every ratio: vertical
-            on wide screens, horizontal on phones. */}
-        <Image
-          src="/brand/amira-hero.jpg"
-          alt={t("hero.portrait")}
-          fill
-          priority
-          sizes="100vw"
-          className="-z-20 object-cover object-[62%_28%]"
-        />
+            follows her face so she survives the crop at every ratio. The frame
+            is 4:3, so a square well on phones only trims the sides. */}
+        <div className="relative aspect-square w-full lg:absolute lg:inset-0 lg:-z-20 lg:aspect-auto">
+          <Image
+            src="/brand/amira-hero.jpg"
+            alt={t("hero.portrait")}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[62%_28%]"
+          />
+        </div>
         {/* Scrim in the page's own ground colour, so the copy stays legible
-            without tinting the photograph. On wide screens it is a hard seam,
-            not a feather: the wash bleeding across her read as a blur. */}
+            without tinting the photograph. A hard seam, not a feather: the wash
+            bleeding across her read as a blur. */}
         <span
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--ink)_0,var(--ink)_58%,transparent_58%)] lg:bg-[linear-gradient(to_right,var(--ink)_0,var(--ink)_46%,transparent_46%)]"
+          className="absolute inset-0 -z-10 hidden bg-[linear-gradient(to_right,var(--ink)_0,var(--ink)_46%,transparent_46%)] lg:block"
         />
-        <div className={`${shell} grid w-full items-center gap-12 lg:grid-cols-12 lg:gap-8`}>
+        <div
+          className={`${shell} grid w-full items-center gap-12 py-14 lg:grid-cols-12 lg:gap-8 lg:py-0`}
+        >
           <div className="lg:col-span-6 xl:col-span-5">
             <Reveal>
               <p className={eyebrow}>
