@@ -7,6 +7,8 @@ import { routing, isRtl, siteUrl } from "@/i18n/routing";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { StickyCta } from "@/components/StickyCta";
+import { FloatingWhatsapp } from "@/components/FloatingWhatsapp";
+import { JsonLd, organizationSchema } from "@/lib/seo";
 import "../globals.css";
 
 // Didone display from the brand lockup, geometric sans for body, script for the
@@ -75,6 +77,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  const org = await getTranslations({ locale, namespace: "meta" });
 
   return (
     <html
@@ -95,6 +98,8 @@ export default async function LocaleLayout({
           <main id="main">{children}</main>
           <Footer />
           <StickyCta />
+          <FloatingWhatsapp />
+          <JsonLd data={organizationSchema(locale, org("title"), org("description"))} />
         </NextIntlClientProvider>
       </body>
     </html>

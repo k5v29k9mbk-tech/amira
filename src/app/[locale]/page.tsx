@@ -43,6 +43,7 @@ import { WelcomeVideo } from "@/components/WelcomeVideo";
 import { ContactForm } from "@/components/ContactForm";
 import { btnGhost, btnPrimary, eyebrow, iconRing, label, sectionTitle, shell } from "@/lib/ui";
 import { altLanguages } from "@/i18n/routing";
+import { JsonLd, faqSchema } from "@/lib/seo";
 
 export const metadata = { alternates: altLanguages() };
 
@@ -135,6 +136,13 @@ export default async function Home({
 
   return (
     <>
+      {/* Feeds the FAQ dropdowns that appear under the search listing. */}
+      <JsonLd
+        data={faqSchema(
+          faqKeys.map((k) => ({ q: t(`faq.items.${k}.q`), a: t(`faq.items.${k}.a`) })),
+        )}
+      />
+
       {/* Hero. Phones stack: photograph, then copy on solid ground — overlaying
           a viewport-tall crop left the eyebrow stranded on her face. From lg the
           banner goes full-bleed and the copy sits over its empty left third. */}

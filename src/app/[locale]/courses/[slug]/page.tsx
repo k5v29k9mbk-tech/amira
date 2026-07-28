@@ -10,6 +10,7 @@ import { EnrollButton } from "@/components/EnrollButton";
 import { Reveal } from "@/components/Reveal";
 import { btnGhost, sectionTitle, shell } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
+import { JsonLd, courseSchema } from "@/lib/seo";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -47,6 +48,15 @@ export default async function CoursePage({
 
   return (
     <div className="pt-28 pb-24 md:pt-36 md:pb-32">
+      {/* Course rich result: title, provider, price and length in the listing. */}
+      <JsonLd
+        data={courseSchema(
+          locale,
+          slug,
+          t(`catalog.${slug}.title`),
+          t(`catalog.${slug}.description`),
+        )}
+      />
       <div className={shell}>
         <Link
           href="/courses"
