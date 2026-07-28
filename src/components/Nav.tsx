@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { List, X } from "@phosphor-icons/react";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { Monogram } from "./Wordmark";
 import { btnPrimary, shell } from "@/lib/ui";
@@ -14,6 +14,15 @@ export function Nav() {
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
   const { scrollY } = useScroll();
+  const pathname = usePathname();
+
+  /**
+   * Marks the route the visitor is on. Without it a screen reader reads eight
+   * identical-sounding links with nothing to say which one is current. Only
+   * whole routes qualify: the in-page anchors are not separate locations.
+   */
+  const current = (href: string) =>
+    href === "/" ? pathname === "/" : !href.includes("#") && pathname.startsWith(href);
 
   // Motivated: the bar earns a background only once it overlaps content.
   useMotionValueEvent(scrollY, "change", (y) => setSolid(y > 24));
@@ -55,7 +64,10 @@ export function Nav() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-[11px] font-medium tracking-[0.18em] text-muted uppercase transition-colors hover:text-accent-hi"
+              aria-current={current(l.href) ? "page" : undefined}
+              className={`text-[11px] font-medium tracking-[0.18em] uppercase transition-colors hover:text-accent-hi ${
+                current(l.href) ? "text-accent-hi" : "text-muted"
+              }`}
             >
               {l.label}
             </Link>
@@ -101,7 +113,10 @@ export function Nav() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="display border-b border-line py-3.5 text-xl text-bone"
+                  aria-current={current(l.href) ? "page" : undefined}
+                  className={`display border-b border-line py-3.5 text-xl ${
+                    current(l.href) ? "text-accent-hi" : "text-bone"
+                  }`}
                 >
                   {l.label}
                 </Link>

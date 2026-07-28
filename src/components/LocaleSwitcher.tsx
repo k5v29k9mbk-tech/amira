@@ -36,7 +36,9 @@ export function LocaleSwitcher({ className = "" }: { className?: string }) {
             );
           })
         }
-        className="cursor-pointer appearance-none border border-line bg-transparent py-2 ps-3 pe-8 text-xs tracking-wide text-bone hover:border-accent focus:outline-none"
+        // min-h-11 = 44px. WCAG 2.5.8 only asks for 24px, but a 32px select is
+        // an awkward tap target on a phone.
+        className="min-h-11 cursor-pointer appearance-none border border-line bg-transparent py-2 ps-3 pe-8 text-xs tracking-wide text-bone hover:border-accent focus:outline-none"
       >
         {locales.map((l) => (
           <option key={l} value={l} className="bg-surface text-bone">

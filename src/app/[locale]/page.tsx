@@ -162,11 +162,13 @@ export default async function Home({
           />
         </div>
         {/* Scrim in the page's own ground colour, so the copy stays legible
-            without tinting the photograph. A hard seam, not a feather: the wash
-            bleeding across her read as a blur. */}
+            without tinting the photograph. Solid to 52%, past the 50% the text
+            column occupies: at the old 46% the last centimetre of the headline
+            sat on the un-scrimmed photograph and lost its contrast guarantee.
+            The 52-64% feather is short enough not to read as a blur. */}
         <span
           aria-hidden
-          className="absolute inset-0 -z-10 hidden bg-[linear-gradient(to_right,var(--ink)_0,var(--ink)_46%,transparent_46%)] lg:block"
+          className="absolute inset-0 -z-10 hidden bg-[linear-gradient(to_right,var(--ink)_0,var(--ink)_52%,transparent_64%)] lg:block"
         />
         <div
           className={`${shell} grid w-full items-center gap-12 py-14 lg:grid-cols-12 lg:gap-8 lg:py-0`}
