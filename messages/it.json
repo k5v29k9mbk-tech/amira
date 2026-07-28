@@ -49,32 +49,32 @@
   },
   "why": {
     "eyebrow": "Perché Aura Academy",
-    "title": "Cosa comprende ogni corso",
-    "sub": "Le stesse condizioni per tutti i percorsi, base e avanzato.",
+    "title": "Le stesse condizioni per tutti",
+    "sub": "Valgono per ogni corso del catalogo, base e avanzato.",
     "items": {
       "groups": {
         "title": "Classi da tre o quattro",
         "body": "Il numero massimo di allieve per corso è tre o quattro."
       },
-      "theory": {
-        "title": "Teoria",
-        "body": "La parte teorica della tecnica precede sempre l'esercitazione."
+      "levels": {
+        "title": "Due livelli",
+        "body": "Ogni tecnica si affronta a livello base e a livello avanzato."
       },
-      "practice": {
-        "title": "Pratica",
-        "body": "Esercitazione guidata su ogni tecnica prevista dal corso."
+      "language": {
+        "title": "In italiano",
+        "body": "I corsi si tengono interamente in lingua italiana."
       },
-      "model": {
-        "title": "Modella dal vivo",
-        "body": "Nei corsi in cui è prevista, si lavora su modella."
-      },
-      "support": {
-        "title": "Assistenza post-corso",
-        "body": "Il confronto continua anche dopo la fine del corso."
+      "kit": {
+        "title": "Kit professionale",
+        "body": "Disponibile su richiesta. Quando è incluso, il prezzo ne tiene conto."
       },
       "certificate": {
         "title": "Certificato",
         "body": "A fine percorso viene rilasciato il certificato."
+      },
+      "venue": {
+        "title": "In sede",
+        "body": "Tutti i corsi si svolgono nella sede di Giulianova (TE)."
       }
     }
   },

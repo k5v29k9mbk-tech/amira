@@ -49,32 +49,32 @@
   },
   "why": {
     "eyebrow": "Pourquoi Aura Academy",
-    "title": "Ce que comprend chaque formation",
-    "sub": "Les mêmes conditions pour tous les parcours, base et avancé.",
+    "title": "Les mêmes conditions pour toutes",
+    "sub": "Elles valent pour chaque formation du catalogue, base et avancé.",
     "items": {
       "groups": {
         "title": "Groupes de trois ou quatre",
         "body": "Le nombre maximal d'élèves par formation est de trois ou quatre."
       },
-      "theory": {
-        "title": "Théorie",
-        "body": "La théorie de la technique précède toujours la pratique."
+      "levels": {
+        "title": "Deux niveaux",
+        "body": "Chaque technique s'aborde en niveau base et en niveau avancé."
       },
-      "practice": {
-        "title": "Pratique",
-        "body": "Exercices guidés sur chaque technique prévue par la formation."
+      "language": {
+        "title": "En italien",
+        "body": "Les formations se déroulent entièrement en langue italienne."
       },
-      "model": {
-        "title": "Modèle en direct",
-        "body": "Dans les formations où il est prévu, vous travaillez sur un modèle."
-      },
-      "support": {
-        "title": "Suivi après la formation",
-        "body": "Nous restons disponibles après la fin de la formation."
+      "kit": {
+        "title": "Kit professionnel",
+        "body": "Disponible sur demande. Lorsqu'il est inclus, le prix en tient compte."
       },
       "certificate": {
         "title": "Certificat",
         "body": "Un certificat est délivré en fin de parcours."
+      },
+      "venue": {
+        "title": "Sur place",
+        "body": "Toutes les formations se déroulent dans les locaux de Giulianova (TE)."
       }
     }
   },

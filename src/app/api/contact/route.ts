@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 
-const STUDIO_EMAIL = process.env.CONTACT_TO ?? "studio@amira-bechini.com";
+// No default. The only address the academy supplied is a PEC, and Italian PEC
+// mailboxes reject ordinary mail, so defaulting to it would drop every enquiry
+// silently. Until CONTACT_TO holds a real inbox, messages are logged instead.
+const STUDIO_EMAIL = process.env.CONTACT_TO;
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);
@@ -16,8 +19,9 @@ export async function POST(req: Request) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    // ponytail: no mail provider wired yet. Log it so nothing is silently dropped.
+  if (!apiKey || !STUDIO_EMAIL) {
+    // ponytail: no mail provider or no destination inbox yet. Log it so nothing
+    // is silently dropped.
     console.info("[contact]", { name, email, subject, message });
     return NextResponse.json({ ok: true, delivered: false });
   }

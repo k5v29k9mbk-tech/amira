@@ -1,15 +1,32 @@
-import { courses } from "@/lib/courses";
-import { instagramLink, studio, whatsappLink } from "@/lib/studio";
+import {
+  academy,
+  brand,
+  instagramLink,
+  legal,
+  studio,
+  tiktokLink,
+  whatsappLink,
+} from "@/lib/studio";
 import { siteUrl } from "@/i18n/routing";
 
 /**
  * schema.org payloads. Search engines read these to build rich results: the
  * course cards, the FAQ dropdowns under the listing, and the knowledge panel.
  *
- * Every field is drawn from something the studio actually publishes. No
- * aggregateRating and no review markup: inventing either is both dishonest and
- * a manual-action risk.
+ * Every field is drawn from the academy's own official information. There is
+ * deliberately no aggregateRating and no review markup — inventing either is
+ * both dishonest and a manual-action risk — and no `offers` block, because the
+ * academy quotes per course rather than publishing a price.
  */
+
+const postalAddress = {
+  "@type": "PostalAddress",
+  streetAddress: academy.street,
+  postalCode: academy.postcode,
+  addressLocality: academy.city,
+  addressRegion: academy.province,
+  addressCountry: academy.country,
+} as const;
 
 export function organizationSchema(locale: string, name: string, description: string) {
   return {
@@ -17,54 +34,56 @@ export function organizationSchema(locale: string, name: string, description: st
     "@type": "EducationalOrganization",
     "@id": `${siteUrl}/#organization`,
     name,
+    legalName: legal.company,
     description,
     url: `${siteUrl}/${locale}`,
     logo: `${siteUrl}/icon`,
     image: `${siteUrl}/brand/amira-hero.jpg`,
-    email: studio.email,
-    telephone: studio.phone,
-    sameAs: [instagramLink, whatsappLink],
-    areaServed: ["Tortoreto", "Roma", "Milano"].map((n) => ({
-      "@type": "City",
-      name: n,
-    })),
+    email: studio.pec,
+    vatID: legal.vat,
+    address: postalAddress,
+    // Only the channels the academy actually supplied a handle or number for.
+    sameAs: [instagramLink, tiktokLink, whatsappLink].filter(Boolean),
     founder: {
       "@type": "Person",
-      name: "Amira Bechini",
-      jobTitle: "Master PMU artist and trainer",
+      name: brand.founder,
+      jobTitle: "International PMU Master",
     },
   };
 }
 
-export function courseSchema(
-  locale: string,
-  slug: string,
-  name: string,
-  description: string,
-) {
-  const course = courses.find((c) => c.slug === slug)!;
-
+/**
+ * The six courses as one ItemList. The academy publishes names and a shared set
+ * of conditions rather than per-course syllabuses or prices, so each entry
+ * carries what is actually known: name, provider, language and an on-site
+ * instance at the academy's address.
+ */
+export function courseListSchema(locale: string, names: string[], description: string) {
   return {
     "@context": "https://schema.org",
-    "@type": "Course",
-    name,
-    description,
-    url: `${siteUrl}/${locale}/courses/${slug}`,
-    image: `${siteUrl}${course.image}`,
-    inLanguage: locale,
-    provider: { "@id": `${siteUrl}/#organization` },
-    offers: {
-      "@type": "Offer",
-      price: course.priceEur,
-      priceCurrency: "EUR",
-      category: "Paid",
-      url: `${siteUrl}/${locale}/courses/${slug}`,
-    },
-    hasCourseInstance: {
-      "@type": "CourseInstance",
-      courseMode: "online",
-      courseWorkload: `PT${course.hours}H`,
-    },
+    "@type": "ItemList",
+    itemListElement: names.map((name, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Course",
+        name,
+        description,
+        url: `${siteUrl}/${locale}/courses`,
+        provider: { "@id": `${siteUrl}/#organization` },
+        // The courses are taught in Italian, whatever language the page is in.
+        inLanguage: "it",
+        hasCourseInstance: {
+          "@type": "CourseInstance",
+          courseMode: "onsite",
+          location: {
+            "@type": "Place",
+            name: brand.full,
+            address: postalAddress,
+          },
+        },
+      },
+    })),
   };
 }
 

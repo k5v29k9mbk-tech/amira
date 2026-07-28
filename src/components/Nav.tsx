@@ -7,6 +7,7 @@ import { List, X } from "@phosphor-icons/react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { Monogram } from "./Wordmark";
+import { brand } from "@/lib/studio";
 import { btnPrimary, shell } from "@/lib/ui";
 
 export function Nav() {
@@ -83,14 +84,14 @@ export function Nav() {
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          aria-label="Amira Bechini Masterclass"
+          aria-label={brand.full}
           className="flex items-center gap-3"
         >
           {/* text-bone, not the gold: the bar sits over the hero photograph
               before it goes solid, and gold on ivory skin tones is ~2.4:1. */}
           <Monogram className="text-[26px] text-bone" />
           <span className="display text-[15px] tracking-[0.24em] text-bone uppercase">
-            Amira Bechini
+            {brand.short}
           </span>
         </Link>
 
@@ -115,12 +116,6 @@ export function Nav() {
 
         <div className="hidden items-center gap-4 xl:flex">
           <LocaleSwitcher />
-          <Link
-            href="/dashboard"
-            className="text-[11px] font-medium tracking-[0.18em] text-muted uppercase hover:text-accent-hi"
-          >
-            {t("signIn")}
-          </Link>
           <Link
             href="/#contact"
             className={`${btnPrimary} px-6 py-3 shadow-[0_10px_26px_-12px_color-mix(in_srgb,var(--accent)_70%,transparent)]`}
@@ -163,13 +158,6 @@ export function Nav() {
                   {l.label}
                 </Link>
               ))}
-              <Link
-                href="/dashboard"
-                onClick={() => setOpen(false)}
-                className="display border-b border-line py-3.5 text-xl text-bone"
-              >
-                {t("signIn")}
-              </Link>
               <div className="mt-5 flex items-center gap-3">
                 <Link
                   href="/#contact"

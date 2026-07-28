@@ -1,10 +1,11 @@
 import { ImageResponse } from "next/og";
 import { getTranslations } from "next-intl/server";
 import { markDataUri } from "@/lib/mark";
+import { academy, brand } from "@/lib/studio";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Amira Bechini Masterclass";
+export const alt = brand.full;
 
 // ponytail: generated at build time from the same tokens as the site, so the
 // share card never drifts from the brand. No design file to keep in sync.
@@ -31,18 +32,21 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={markDataUri("#7e5f2b")} width={57} height={60} alt="" />
           <div style={{ display: "flex", letterSpacing: 12, fontSize: 22 }}>
-            AMIRA BECHINI
+            AURA ACADEMY
           </div>
           <div style={{ display: "flex", letterSpacing: 8, fontSize: 13, color: "#6e6157" }}>
-            MASTERCLASS
+            DI AMIRA BECHINI
           </div>
         </div>
 
-        <div style={{ display: "flex", fontSize: 68, lineHeight: 1.08 }}>
-          {t("tagline")}
-        </div>
+        <div style={{ display: "flex", fontSize: 58, lineHeight: 1.1 }}>{t("tagline")}</div>
 
-        <div style={{ display: "flex", height: 3, width: 180, background: "#b8974f" }} />
+        <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
+          <div style={{ display: "flex", height: 3, width: 140, background: "#b8974f" }} />
+          <div style={{ display: "flex", letterSpacing: 6, fontSize: 15, color: "#6e6157" }}>
+            {`${academy.city.toUpperCase()} (${academy.province})`}
+          </div>
+        </div>
       </div>
     ),
     size,

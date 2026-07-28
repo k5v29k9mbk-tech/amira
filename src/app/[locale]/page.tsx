@@ -13,12 +13,15 @@ import {
   PaintBrushHousehold,
   SealCheck,
   ShieldCheck,
+  Steps,
   TiktokLogo,
+  Toolbox,
+  Translate,
   UsersThree,
   WhatsappLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
-import { courses, included, resultStills } from "@/lib/courses";
+import { courses, resultStills } from "@/lib/courses";
 import {
   academy,
   addressLine,
@@ -69,14 +72,16 @@ const values = [
   "growth",
 ] as const;
 
-// What every course includes, plus the two conditions that apply to all of them.
+// The conditions that apply to every course. Deliberately NOT the four things a
+// course includes — those are the method section's four steps, and listing them
+// twice in a row read as a stutter.
 const reasons = [
   { key: "groups", Icon: UsersThree },
-  { key: "theory", Icon: BookOpen },
-  { key: "practice", Icon: PaintBrushHousehold },
-  { key: "model", Icon: HandHeart },
-  { key: "support", Icon: Lifebuoy },
+  { key: "levels", Icon: Steps },
+  { key: "language", Icon: Translate },
+  { key: "kit", Icon: Toolbox },
   { key: "certificate", Icon: Certificate },
+  { key: "venue", Icon: MapPin },
 ] as const;
 
 // How a course runs, in the order the academy states it.
@@ -727,9 +732,6 @@ export default async function Home({
           </div>
           <div className="lg:col-span-7 lg:col-start-6">
             <ContactForm />
-            <p className="mt-6 text-sm text-muted">
-              {included.map((k) => t(`catalog.included.${k}`)).join(" · ")}
-            </p>
           </div>
         </div>
       </section>

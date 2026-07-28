@@ -53,10 +53,6 @@ const CLIENT_NAMESPACES = [
   "success", // BeforeAfter
   "results", // Gallery
   "contact", // ContactForm, FloatingWhatsapp label
-  "catalog", // EnrollButton
-  "checkout", // EnrollButton
-  "auth", // AuthForm
-  "learn", // LessonPlayer
 ] as const;
 
 export function generateStaticParams() {

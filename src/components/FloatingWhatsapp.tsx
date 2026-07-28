@@ -6,6 +6,10 @@ import { whatsappLink } from "@/lib/studio";
  * Always-on WhatsApp channel. Deliberately a server component: it has no state,
  * so it ships zero JavaScript.
  *
+ * Renders nothing until the academy supplies a number. WhatsApp is one of the
+ * two booking channels the academy publishes, but the number itself is missing,
+ * and a button that opens wa.me with a guessed number is worse than no button.
+ *
  * Placed opposite StickyCta, which owns the bottom-end corner. On phones that
  * bar is full width, so this sits above it rather than beside it.
  *
@@ -14,6 +18,7 @@ import { whatsappLink } from "@/lib/studio";
  * site outside the palette.
  */
 export async function FloatingWhatsapp() {
+  if (!whatsappLink) return null;
   const t = await getTranslations("contact");
 
   return (

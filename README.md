@@ -1,106 +1,112 @@
-# Amira Bechini Masterclass
+# Aura Academy di Amira Bechini
 
-Permanent makeup e-learning platform. Next.js 16, Tailwind v4, Supabase, Stripe, Mux. Four languages including Arabic with full RTL.
+Marketing and booking site for a permanent-makeup and lamination academy in
+Giulianova (TE), Italy. Next.js 16, Tailwind v4, four languages including Arabic
+with full RTL.
 
 ```bash
 npm install
 cp .env.example .env.local   # every block is optional, see below
 npm run dev
-npm test                     # logic + translation-completeness checks, no framework
+npm test                     # content + translation-completeness checks, no framework
 ```
 
 ## What is where
 
 | Path | Purpose |
 | --- | --- |
-| `src/app/[locale]/page.tsx` | Homepage: hero, credentials, instructor, method, catalogue, results, FAQ, contact |
-| `src/app/[locale]/courses/` | Catalogue and course detail with curriculum and purchase panel |
-| `src/app/[locale]/learn/[slug]/[lesson]/` | HD video lesson, curriculum rail, progress |
-| `src/app/[locale]/dashboard/` | Student dashboard, per-course progress, certificate link |
-| `src/app/[locale]/certificate/[id]/` | Certificate of completion, print or save as PDF |
-| `src/lib/courses.ts` | Course structure, pricing, Mux playback ids, image paths |
+| `src/app/[locale]/page.tsx` | Homepage: hero, about, conditions, method, catalogue, booking steps, gallery, before/after, FAQ, contact |
+| `src/app/[locale]/courses/page.tsx` | The six courses and the shared conditions that apply to all of them |
+| `src/lib/studio.ts` | Every official fact: brand names, address, legal data, social handles |
+| `src/lib/courses.ts` | The six course slugs and their images |
+| `src/lib/seo.tsx` | schema.org payloads: organisation, course list, FAQ |
 | `messages/` | All copy, in `en` `it` `fr` `ar` |
-| `public/brand/` | Studio photography, cut from the supplied artwork |
-| `supabase/schema.sql` | Tables and row-level security |
+| `public/brand/` | Academy photography, cut from the supplied artwork |
+
+## The business model this site describes
+
+The academy teaches **in person**, in Italian, to three or four students at a
+time, at its premises in Giulianova. Duration and price vary per course and are
+quoted on request. Booking is by WhatsApp or the contact form; the place is held
+with an agreed deposit; payment is by bank transfer, card or PagoDIL.
+
+There is deliberately **no online checkout, no student account and no video
+lesson platform**. An earlier build had all three, plus fixed prices, and none of
+it matched what the academy actually sells. It was removed rather than left to
+mislead buyers; `git log` has it if the academy ever adds online courses.
 
 ## Running without keys
 
-The site runs with an empty `.env.local`. Anything that needs a third party shows its
-"not connected yet" state instead of crashing: sign in, checkout, and signed video
-playback. Everything else, including all four languages, works.
+The site runs with an empty `.env.local`. The contact form still accepts messages
+and logs them server side rather than crashing.
 
 ## Switching the real thing on
 
-**Supabase.** Create a project, run `supabase/schema.sql` in the SQL editor, then set
-`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (the publishable key) and
-`SUPABASE_SERVICE_ROLE_KEY` (the secret key). Row-level security means a student can only
-ever read their own enrollments and can only write progress for a course they paid for.
+**Contact form.** Set `RESEND_API_KEY` and `CONTACT_TO`. Without either, the form
+still accepts messages and logs them server side, so nothing is silently dropped
+— but nobody at the academy is emailed, so set both before launch.
 
-**Stripe.** Create one Price per course, put the three ids in `STRIPE_PRICE_BROW`,
-`STRIPE_PRICE_LIP`, `STRIPE_PRICE_VIP`, set `STRIPE_SECRET_KEY`, then point a webhook at
-`/api/stripe/webhook` for `checkout.session.completed` and set `STRIPE_WEBHOOK_SECRET`.
-The webhook is the only thing that grants course access, so a forged client request
-cannot unlock a course.
+`CONTACT_TO` must be an **ordinary inbox**, not the PEC address. Italian certified
+mailboxes reject ordinary mail, so enquiries routed there would bounce.
 
-Payment methods come from the Stripe dashboard, not from code: turn on **card, PayPal,
-Apple Pay and Google Pay** under Settings → Payment methods and Checkout offers whichever
-the buyer's device supports. Apple Pay needs the domain verified in the same place. Turn
-on Settings → Customer emails → *Successful payments* for the payment receipt; the
-course-access email is sent separately by the webhook through Resend.
-
-**Mux.** Upload each lesson and paste its playback id into `src/lib/courses.ts`. For
-private playback, create a signing key and set `MUX_SIGNING_KEY_ID` and
-`MUX_SIGNING_KEY_PRIVATE` (base64 of the PEM). Tokens are minted server side per request
-and last three hours.
-
-**Contact form and confirmation email.** Set `RESEND_API_KEY` and `CONTACT_TO`. Without
-them the form and the post-purchase confirmation email still work, logging server side
-instead of sending, so nothing is silently dropped.
-
-**Studio contact details.** Phone, WhatsApp number and Instagram handle live in
-`src/lib/studio.ts` and are placeholders. Replace them there and every page picks them up.
-The location links are Google Maps searches; swap them for real place links, or an embed,
-once the studio supplies street addresses.
+**WhatsApp.** `studio.whatsapp` in `src/lib/studio.ts` is empty because the
+academy has not supplied the number. Every WhatsApp affordance — the floating
+button, the contact row, the footer link — checks for it and renders nothing
+while it is blank, so the site never links to a guessed number. Add the digits
+(no `+`, no spaces) and all three appear.
 
 ## Content rules
 
-Everything on the site is either supplied by the studio or verifiable. There are no
-invented statistics, credentials or reviews.
+Everything on the site comes from the academy's own approved content document.
+There are no invented statistics, credentials, prices or reviews.
 
-- **Testimonials render only when real ones exist.** `voices.items` ships empty in every
-  language and the whole section stays out of the page until quotes are added. Add them
-  with the student's consent, using their real name and role.
-- **Photography.** `public/brand/` holds crops of the artwork the studio supplied. The
-  originals are WhatsApp-compressed, so several stills are 230-700px wide. Replace them
-  with full-resolution exports before launch. `students-certificates.jpg` shows
-  identifiable students and their certificate numbers; it is deliberately not used on any
-  page until written consent exists.
-- **The counters.** "9+ years", "3 locations" and "100% hands-on" match the studio's own
-  material. "500+ students trained" came from the brief with a note to replace it with the
-  real number; it is marked `TODO(studio)` in `src/app/[locale]/page.tsx`.
-- **Credential claims.** "PhiBrows Master" and "International certification" come from the
-  studio's own flyers. PhiBrows is a third-party trademark, referenced by name only; none
-  of its logos or certificate designs are reproduced here.
+- **No prices anywhere.** The academy quotes per course. `npm test` fails if a
+  euro figure, a refund promise or a "lifetime access" claim reappears in any
+  language.
+- **No per-course descriptions.** The academy supplied six names and one shared
+  set of conditions. Those conditions are stated once on the courses page rather
+  than padded into six near-identical pages — which is also why there are no
+  `/courses/[slug]` routes.
+- **Testimonials render only when real ones exist.** `voices.items` ships empty
+  in every language and the whole section stays out of the page until quotes are
+  added. Add them with the student's consent, using their real name and role.
+- **Photography.** `public/brand/` holds crops of the artwork the academy
+  supplied. The originals are WhatsApp-compressed, so several stills are 230-700px
+  wide. Replace them with full-resolution exports before launch.
+  `students-certificates.jpg` shows identifiable students and their certificate
+  numbers; it is deliberately not used on any page until written consent exists.
+- **Facebook is text, not a link.** The academy gave a page name, not a URL.
+
+## Still missing from the academy
+
+These are the only things blocking a launch-ready site:
+
+- WhatsApp number (booking channel one of two)
+- An ordinary email inbox for the contact form
+- A phone number, if they want one shown
+- The Facebook page URL
+- Student testimonials, with consent
+- More before/after pairs (there is one)
 
 ## Tests
 
-`npm test` covers the parts that break silently: lesson-id uniqueness across courses
-(a duplicate would make one course's progress advance another), progress and resume
-maths, certificate-code stability, that every course, module and lesson is translated in
-all four languages, that no orphan translation strings survive a catalogue change, and
-that every referenced image exists on disk.
+`npm test` covers what breaks silently: that the catalogue is still the six
+published courses, that every official fact still matches the client document
+verbatim, that every string the pages read exists in all four languages, that no
+copy from the removed online-course build survived, that no price or refund claim
+has crept back in, and that every referenced image exists on disk.
 
 ## Design system
 
-One accent (champagne gold at two weights), one radius (2px, circles on icon badges only),
-light-primary with an espresso variant on `prefers-color-scheme`. Tokens live at the top
-of `src/app/globals.css`. Motion is `motion/react` only, gated behind
-`prefers-reduced-motion`.
+One accent (champagne gold at two weights), one radius (2px, circles on icon
+badges only), locked to the nude/beige ground — there is no dark variant, by
+design. Tokens live at the top of `src/app/globals.css`. Motion is `motion/react`
+only, gated behind `prefers-reduced-motion`.
 
 ## Known gaps
 
-- Course content lives in code rather than a CMS. Fine for three courses, swap for Sanity
-  or Payload when someone non-technical needs to edit it.
-- Certificates print from the browser rather than being generated as PDFs server side.
-- No terms, privacy or refund pages yet. Stripe requires links to them before going live,
-  and the FAQ already promises a fourteen-day refund.
+- Content lives in code rather than a CMS. Fine at this size; swap for Sanity or
+  Payload when someone non-technical needs to edit it.
+- No terms, privacy or cookie pages yet. An Italian business taking deposits
+  needs at least a privacy notice.
+- No analytics.

@@ -49,32 +49,32 @@
   },
   "why": {
     "eyebrow": "Why Aura Academy",
-    "title": "What every course includes",
-    "sub": "The same conditions across every course, base and advanced.",
+    "title": "The same conditions for everyone",
+    "sub": "They hold for every course in the catalogue, base and advanced.",
     "items": {
       "groups": {
         "title": "Classes of three or four",
         "body": "The maximum number of students per course is three or four."
       },
-      "theory": {
-        "title": "Theory",
-        "body": "The theory behind the technique always comes before practice."
+      "levels": {
+        "title": "Two levels",
+        "body": "Every technique is taught at base level and at advanced level."
       },
-      "practice": {
-        "title": "Practice",
-        "body": "Guided hands-on work on every technique the course covers."
+      "language": {
+        "title": "Taught in Italian",
+        "body": "Courses are held entirely in Italian."
       },
-      "model": {
-        "title": "Live model",
-        "body": "On the courses where one is scheduled, you work on a model."
-      },
-      "support": {
-        "title": "Post-course support",
-        "body": "We stay available after the course has finished."
+      "kit": {
+        "title": "Professional kit",
+        "body": "Available on request. Where it is included, the price reflects it."
       },
       "certificate": {
         "title": "Certificate",
         "body": "A certificate is issued at the end of the course."
+      },
+      "venue": {
+        "title": "On site",
+        "body": "Every course is held at the academy in Giulianova (TE)."
       }
     }
   },

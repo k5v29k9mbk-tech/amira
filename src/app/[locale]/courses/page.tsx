@@ -104,8 +104,11 @@ export default async function CoursesPage({
                   <h2 className="display text-2xl text-bone md:text-3xl">
                     {t(`catalog.courses.${c.slug}`)}
                   </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">
-                    {included.map((k) => t(`catalog.included.${k}`)).join(" · ")}
+                  {/* No per-course blurb: the academy publishes one shared set
+                      of conditions, stated once beneath the list. Repeating it
+                      on all six rows read as filler. */}
+                  <p className="mt-3 text-sm text-muted">
+                    {t("catalog.details.level.value")} · {t("catalog.details.language.value")}
                   </p>
                 </div>
 
