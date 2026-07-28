@@ -178,7 +178,10 @@ export default async function Home({
                 <span className="display block text-xl leading-[1.35] font-light tracking-[0.26em] text-bone uppercase sm:text-2xl xl:text-[1.75rem]">
                   {t("hero.titleA")}
                 </span>
-                <span className="script mt-1 block pb-3 text-[4rem] leading-[1.15] text-accent-hi sm:text-7xl xl:text-[6.5rem]">
+                {/* Sized for the longest translation, "Construisez votre
+                    marque.", which wraps to two lines. text-balance keeps that
+                    break even rather than leaving one word stranded. */}
+                <span className="script mt-2 block pb-3 text-[2.75rem] leading-[1.2] text-balance text-accent-hi sm:text-[3.5rem] xl:text-[4.25rem]">
                   {t("hero.titleB")}
                 </span>
               </h1>
