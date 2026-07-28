@@ -100,7 +100,9 @@ const HOMEPAGE_KEYS = [
     `brand.items.${k}.title`,
     `brand.items.${k}.body`,
   ]),
-  ...["eyebrow", "title", "sub", "before", "after"].map((k) => `success.${k}`),
+  // The results section is the title and the comparison only, so it has no
+  // eyebrow or sub-paragraph to translate.
+  ...["title", "before", "after"].map((k) => `success.${k}`),
   "faq.eyebrow",
   "faq.more",
   ...["roma", "milano", "tortoreto"].map((k) => `contact.cities.${k}.name`),
