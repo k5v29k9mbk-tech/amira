@@ -619,19 +619,24 @@ export default async function Home({
 
       {/* Success stories. Renders the wipes only once matched pairs exist, and
           the quotes only once real consented ones are added. */}
+      {/* The work speaks. Title and the comparison, nothing else: no eyebrow,
+          no explanatory paragraph, no caption invented on the studio's behalf.
+          A single pair is centred rather than stranded in a grid column; from
+          two it becomes a grid. */}
       {beforeAfterPairs.length > 0 && (
         <section id="success" className="border-t border-line py-24 md:py-32">
           <div className={shell}>
             <Reveal>
-              <p className={eyebrow}>
-                <span aria-hidden className="h-px w-8 bg-accent" />
-                {t("success.eyebrow")}
-              </p>
-              <h2 className={`${sectionTitle} mt-6`}>{t("success.title")}</h2>
-              <p className="mt-5 max-w-[50ch] leading-relaxed text-muted">{t("success.sub")}</p>
+              <h2 className={`${sectionTitle} text-center`}>{t("success.title")}</h2>
             </Reveal>
 
-            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div
+              className={`mt-14 grid gap-8 ${
+                beforeAfterPairs.length === 1
+                  ? "mx-auto max-w-3xl"
+                  : "sm:grid-cols-2 lg:grid-cols-3"
+              }`}
+            >
               {beforeAfterPairs.map((pair, i) => (
                 <Reveal key={pair.label} delay={(i % 3) * 0.06}>
                   <BeforeAfter pair={pair} />

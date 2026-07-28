@@ -423,9 +423,7 @@
     }
   },
   "success": {
-    "eyebrow": "Student results",
     "title": "Success stories",
-    "sub": "Healed work from students who trained here. Drag each image to see where it started.",
     "before": "Before",
     "after": "After"
   }

@@ -20,11 +20,21 @@ export const studio = {
 export const welcomeVideoId = process.env.NEXT_PUBLIC_WELCOME_VIDEO_ID ?? "";
 
 /**
- * Healed before / after pairs for the success section. Both files must be the
- * same crop and framing or the wipe looks wrong.
- * TODO(studio): supply matched pairs. The section hides itself while empty.
+ * Before / after pairs for the results section. The two frames are mapped onto
+ * a common canvas from the studio's own photographs, so the eyes sit on the
+ * same pixels in both and the wipe reads as one face rather than two
+ * photographs. Any new pair has to be aligned the same way.
+ *
+ * `label` is the accessible name for the slider and the alt text; it is not
+ * printed on the page.
  */
-export const beforeAfterPairs: { before: string; after: string; label: string }[] = [];
+export const beforeAfterPairs: { before: string; after: string; label: string }[] = [
+  {
+    before: "/brand/brows-before.jpg",
+    after: "/brand/brows-after.jpg",
+    label: "Brow artistry",
+  },
+];
 
 export const whatsappLink = `https://wa.me/${studio.whatsapp}`;
 export const instagramLink = `https://instagram.com/${studio.instagram}`;

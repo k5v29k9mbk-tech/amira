@@ -423,9 +423,7 @@
     }
   },
   "success": {
-    "eyebrow": "Résultats des élèves",
     "title": "Histoires de réussite",
-    "sub": "Des travaux cicatrisés d'élèves formées ici. Faites glisser chaque image pour voir le point de départ.",
     "before": "Avant",
     "after": "Après"
   }
