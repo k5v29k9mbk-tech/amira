@@ -226,7 +226,18 @@
   },
   "voices": {
     "title": "What students say",
-    "items": {}
+    "items": {
+      "a": {
+        "quote": "Fixture one",
+        "name": "Fixture A",
+        "role": "Role"
+      },
+      "b": {
+        "quote": "Fixture two",
+        "name": "Fixture B",
+        "role": "Role"
+      }
+    }
   },
   "faq": {
     "title": "Questions",
