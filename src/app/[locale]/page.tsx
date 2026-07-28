@@ -39,6 +39,8 @@ import { Reveal } from "@/components/Reveal";
 import { Counter } from "@/components/Counter";
 import { Voices } from "@/components/Voices";
 import { BeforeAfter } from "@/components/BeforeAfter";
+import { Gallery } from "@/components/Gallery";
+import { HeroImage } from "@/components/HeroImage";
 import { WelcomeVideo } from "@/components/WelcomeVideo";
 import { ContactForm } from "@/components/ContactForm";
 import { btnGhost, btnPrimary, eyebrow, iconRing, label, sectionTitle, shell } from "@/lib/ui";
@@ -151,16 +153,7 @@ export default async function Home({
             the empty wall on its left is where the headline sits. Focal point
             follows her face so she survives the crop at every ratio. The frame
             is 4:3, so a square well on phones only trims the sides. */}
-        <div className="relative aspect-square w-full lg:absolute lg:inset-0 lg:-z-20 lg:aspect-auto">
-          <Image
-            src="/brand/amira-hero.jpg"
-            alt={t("hero.portrait")}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-[62%_28%]"
-          />
-        </div>
+        <HeroImage src="/brand/amira-hero.jpg" alt={t("hero.portrait")} />
         {/* Scrim in the page's own ground colour, so the copy stays legible
             without tinting the photograph. Solid to 52%, past the 50% the text
             column occupies: at the old 46% the last centimetre of the headline
@@ -565,27 +558,11 @@ export default async function Home({
           </Reveal>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-3 px-5 md:grid-cols-3 md:gap-4 md:px-10">
-          {resultStills.map((src, i) => (
-            <Reveal
-              key={src}
-              delay={(i % 3) * 0.06}
-              className={i === 0 ? "col-span-2 md:col-span-2 md:row-span-2" : ""}
-            >
-              <div
-                className={`relative w-full overflow-hidden ${i === 0 ? "aspect-[16/10] md:aspect-[4/3]" : "aspect-square"}`}
-              >
-                <Image
-                  src={src}
-                  alt=""
-                  fill
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-700 hover:scale-[1.03]"
-                />
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        {/* Masonry, so each still keeps its own proportions instead of being
+            cropped into a uniform square. Click opens the lightbox. */}
+        <Reveal className="mt-14 px-5 md:px-10">
+          <Gallery images={resultStills} />
+        </Reveal>
       </section>
 
       {/* Students: training moments. students-certificates.jpg stays out until

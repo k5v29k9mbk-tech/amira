@@ -50,6 +50,7 @@ const CLIENT_NAMESPACES = [
   "mentor", // WelcomeVideo
   "voices", // Voices
   "success", // BeforeAfter
+  "results", // Gallery
   "contact", // ContactForm, FloatingWhatsapp label
   "catalog", // EnrollButton
   "checkout", // EnrollButton

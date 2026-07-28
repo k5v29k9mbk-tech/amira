@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { List, X } from "@phosphor-icons/react";
@@ -15,14 +15,47 @@ export function Nav() {
   const [solid, setSolid] = useState(false);
   const { scrollY } = useScroll();
   const pathname = usePathname();
+  const [section, setSection] = useState("");
 
   /**
-   * Marks the route the visitor is on. Without it a screen reader reads eight
-   * identical-sounding links with nothing to say which one is current. Only
-   * whole routes qualify: the in-page anchors are not separate locations.
+   * Scroll spy. Watches the sections the nav points at and reports whichever
+   * one owns the upper third of the viewport, so the menu tracks reading
+   * position rather than only route.
+   *
+   * IntersectionObserver rather than a scroll handler: the browser does the
+   * work off the main thread and nothing runs per frame.
    */
-  const current = (href: string) =>
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const ids = ["about", "method", "students", "gallery", "faq", "contact"];
+    const nodes = ids.map((id) => document.getElementById(id)).filter(Boolean) as Element[];
+    if (!nodes.length) return;
+
+    const seen = new Map<string, number>();
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => seen.set(e.target.id, e.intersectionRatio));
+        const best = [...seen.entries()]
+          .filter(([, r]) => r > 0)
+          .sort((a, b) => b[1] - a[1])[0];
+        setSection(best ? best[0] : "");
+      },
+      { rootMargin: "-20% 0px -55% 0px", threshold: [0, 0.25, 0.5, 1] },
+    );
+    nodes.forEach((n) => io.observe(n));
+    return () => io.disconnect();
+  }, [pathname]);
+
+  /**
+   * Marks what the visitor is looking at. Whole routes match on pathname; the
+   * in-page anchors match on the scroll spy. Only routes get aria-current,
+   * since a section is not a separate location.
+   */
+  const isRoute = (href: string) =>
     href === "/" ? pathname === "/" : !href.includes("#") && pathname.startsWith(href);
+
+  const current = (href: string) =>
+    href.includes("#") ? pathname === "/" && href.endsWith(`#${section}`) : isRoute(href);
 
   // Motivated: the bar earns a background only once it overlaps content.
   useMotionValueEvent(scrollY, "change", (y) => setSolid(y > 24));
@@ -64,7 +97,7 @@ export function Nav() {
             <Link
               key={l.href}
               href={l.href}
-              aria-current={current(l.href) ? "page" : undefined}
+              aria-current={isRoute(l.href) ? "page" : undefined}
               className={`text-[11px] font-medium tracking-[0.18em] uppercase transition-colors hover:text-accent-hi ${
                 current(l.href) ? "text-accent-hi" : "text-muted"
               }`}
@@ -113,7 +146,7 @@ export function Nav() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  aria-current={current(l.href) ? "page" : undefined}
+                  aria-current={isRoute(l.href) ? "page" : undefined}
                   className={`display border-b border-line py-3.5 text-xl ${
                     current(l.href) ? "text-accent-hi" : "text-bone"
                   }`}
