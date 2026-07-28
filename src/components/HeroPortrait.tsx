@@ -32,13 +32,14 @@ export function HeroPortrait({ src, alt }: { src: string; alt: string }) {
   return (
     <motion.div
       ref={ref}
-      initial={reduce ? false : { opacity: 0, y: 34, filter: "blur(8px)" }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      transition={{ duration: 1.2, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-      // Capped by viewport height as well as width. 27rem alone still overflowed
-      // a 1366x768 laptop; min() lets short screens shrink the frame instead of
-      // pushing the composition below the fold.
-      className="group relative mx-auto w-full max-w-[21rem] sm:max-w-[24rem] lg:max-w-[min(27rem,44vh)]"
+      // Enters from the outer edge, so it arrives into the composition rather
+      // than rising into it like the copy does.
+      initial={reduce ? false : { opacity: 0, x: 52, filter: "blur(10px)" }}
+      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+      transition={{ duration: 1.3, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+      // Larger than before, still capped by viewport height so short screens
+      // shrink the frame instead of burying the call to action.
+      className="group relative mx-auto w-full max-w-[23rem] sm:max-w-[27rem] lg:max-w-[min(32rem,54vh)] rtl:[--enter:-52px]"
     >
       {/* Warm pool. A plain radial rather than a blurred disc: a 38rem element
           under blur-3xl is a large, repeatedly composited paint. */}
@@ -52,6 +53,13 @@ export function HeroPortrait({ src, alt }: { src: string; alt: string }) {
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         className="relative"
       >
+        {/* Champagne disc the portrait breaks out of: the editorial overlap
+            that stops the frame reading as a box. Offset up and outward so the
+            arch crosses it rather than sitting concentrically inside. */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -end-10 -top-14 -z-20 aspect-square w-[78%] rounded-full bg-[radial-gradient(circle_at_35%_30%,color-mix(in_srgb,var(--accent)_16%,transparent),color-mix(in_srgb,var(--surface-2)_70%,transparent)_62%,transparent_72%)]"
+        />
         {/* Hairline mat, evenly offset on all four sides so it reads as a frame
             rather than a misregistered second copy. */}
         <span
