@@ -196,13 +196,16 @@ export default async function Home({
                 in globals.css strips the tracking, where it would be wrong. */}
             <StaggerItem>
               <h1 className="mt-10">
-                <span className="display block text-[1.375rem] leading-[1.3] font-light tracking-[0.22em] text-bone uppercase sm:text-[1.625rem] xl:text-[2rem]">
+                <span className="display block text-[2.75rem] leading-[1.06] tracking-[-0.02em] text-bone sm:text-[3.5rem] xl:text-[4.5rem]">
                   {t("hero.titleA")}
                 </span>
                 {/* Sized for the longest translation, "Construisez votre
                     marque.", which wraps to two lines. text-balance keeps that
                     break even rather than leaving one word stranded. */}
-                <span className="script mt-2 block pb-3 text-[2.75rem] leading-[1.2] text-balance text-accent-hi sm:text-[3.5rem] xl:text-[4.25rem]">
+                {/* The script is an accent now, not the headline. Carrying the whole
+                    title at 4.25rem it read closer to a wedding invitation
+                    than to an academy, and it buried the serif. */}
+                <span className="script mt-1 block pb-2 text-[1.875rem] leading-[1.35] text-balance text-accent-hi sm:text-[2.25rem] xl:text-[2.75rem]">
                   {t("hero.titleB")}
                 </span>
               </h1>
