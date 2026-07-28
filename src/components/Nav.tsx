@@ -11,6 +11,8 @@ import { btnPrimary, shell } from "@/lib/ui";
 
 export function Nav() {
   const t = useTranslations("nav");
+  // The header action is the booking action, same as the hero primary.
+  const book = useTranslations("hero");
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
   const { scrollY } = useScroll();
@@ -119,8 +121,11 @@ export function Nav() {
           >
             {t("signIn")}
           </Link>
-          <Link href="/courses" className={`${btnPrimary} px-5 py-2.5`}>
-            {t("cta")}
+          <Link
+            href="/#contact"
+            className={`${btnPrimary} px-6 py-3 shadow-[0_10px_26px_-12px_color-mix(in_srgb,var(--accent)_70%,transparent)]`}
+          >
+            {book("secondary")}
           </Link>
         </div>
 
@@ -167,11 +172,11 @@ export function Nav() {
               </Link>
               <div className="mt-5 flex items-center gap-3">
                 <Link
-                  href="/courses"
+                  href="/#contact"
                   onClick={() => setOpen(false)}
                   className={`${btnPrimary} flex-1`}
                 >
-                  {t("cta")}
+                  {book("secondary")}
                 </Link>
                 <LocaleSwitcher />
               </div>

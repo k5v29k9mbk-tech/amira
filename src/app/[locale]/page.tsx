@@ -11,6 +11,7 @@ import {
   Megaphone,
   Storefront,
   ChartLineUp,
+  GlobeHemisphereWest,
   Crown,
   EnvelopeSimple,
   Eye,
@@ -47,6 +48,7 @@ import { ContactForm } from "@/components/ContactForm";
 import {
   btnGhost,
   btnHero,
+  btnHeroGhost,
   btnPrimary,
   eyebrow,
   iconRing,
@@ -62,6 +64,13 @@ export const metadata = { alternates: altLanguages() };
 
 // Claims the studio's own marketing already makes. No invented figures.
 const badges = ["academy", "certification", "groups", "support"] as const;
+
+const trustIcon = {
+  academy: GlobeHemisphereWest,
+  certification: Certificate,
+  groups: UsersThree,
+  support: Lifebuoy,
+} as const;
 
 // Enrollment to certification, in the order a student actually meets it.
 const journey = [
@@ -212,49 +221,49 @@ export default async function Home({
               </p>
             </StaggerItem>
             <StaggerItem>
-              <div className="mt-12 flex flex-col items-start gap-7 sm:flex-row sm:items-center sm:gap-10">
-                <Link href="/courses" className={btnHero}>
-                  {t("hero.primary")}
-                  {/* The arrow travels on hover. One small tell that the button
-                      is alive, rather than a second animation competing with
-                      the panel wipe. */}
+              {/* Booking leads. Browsing the catalogue is the lower-intent
+                  action, so it takes the outline. Both go full width on phones
+                  so neither is a small target. */}
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+                <Link href="/#contact" className={btnHero}>
+                  {t("hero.secondary")}
                   <ArrowRight
                     size={16}
                     weight="light"
                     className="flip-x transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/btn:translate-x-1.5"
                   />
                 </Link>
-                <Link href="/#contact" className={linkQuiet}>
-                  <CalendarCheck size={17} weight="light" className="text-accent" />
-                  {t("hero.secondary")}
+                <Link href="/courses" className={btnHeroGhost}>
+                  {t("hero.primary")}
                 </Link>
               </div>
+            </StaggerItem>
+
+            {/* Trust row. These are the four credentials that used to sit as
+                their own full-width band directly below the hero. Repeating
+                them under the buttons would have shown the same four claims
+                twice on one screen, so the band moves here instead. Every
+                claim is one the studio's own material already makes. */}
+            <StaggerItem>
+              <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-4 border-t border-line pt-8">
+                {badges.map((key) => {
+                  const Icon = trustIcon[key];
+                  return (
+                    <li key={key} className="flex items-center gap-2.5">
+                      <Icon size={15} weight="light" className="shrink-0 text-accent" />
+                      <span className="text-[11px] font-medium tracking-[0.14em] text-muted uppercase">
+                        {t(`proof.${key}.sub`)}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
             </StaggerItem>
           </Stagger>
 
           <div className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7 xl:col-span-6 xl:col-start-7">
             <HeroPortrait src="/brand/amira-hero-portrait.jpg" alt={t("hero.portrait")} />
           </div>
-        </div>
-      </section>
-
-      {/* Credential strip. Hairline separated, no card boxes. */}
-      <section className="border-y border-line">
-        <div className={`${shell} grid grid-cols-2 md:grid-cols-4`}>
-          {badges.map((key, i) => (
-            <Reveal
-              key={key}
-              delay={i * 0.06}
-              className={`border-line py-10 md:py-12 ${i % 2 === 1 ? "border-s ps-6" : "md:border-s md:ps-6"} ${i > 1 ? "border-t md:border-t-0" : ""}`}
-            >
-              <p className="display text-xl leading-snug text-bone md:text-2xl">
-                {t(`proof.${key}.title`)}
-              </p>
-              <p className="mt-2 text-[11px] font-medium tracking-[0.16em] text-accent-hi uppercase">
-                {t(`proof.${key}.sub`)}
-              </p>
-            </Reveal>
-          ))}
         </div>
       </section>
 
