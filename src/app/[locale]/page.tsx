@@ -146,26 +146,21 @@ export default async function Home({
         )}
       />
 
-      {/* Hero. Phones stack: photograph, then copy on solid ground — overlaying
-          a viewport-tall crop left the eyebrow stranded on her face. From lg the
-          banner goes full-bleed and the copy sits over its empty left third. */}
-      <section className="relative flex flex-col overflow-hidden lg:min-h-[100dvh] lg:items-center lg:pt-24 lg:pb-16">
-        {/* No colour grading: the frame is already lit to the nude palette, and
-            the empty wall on its left is where the headline sits. Focal point
-            follows her face so she survives the crop at every ratio. The frame
-            is 4:3, so a square well on phones only trims the sides. */}
-        <HeroImage src="/brand/amira-hero.jpg" alt={t("hero.portrait")} />
-        {/* Scrim in the page's own ground colour, so the copy stays legible
-            without tinting the photograph. Solid to 52%, past the 50% the text
-            column occupies: at the old 46% the last centimetre of the headline
-            sat on the un-scrimmed photograph and lost its contrast guarantee.
-            The 52-64% feather is short enough not to read as a blur. */}
+      {/* Hero.
+          The full-bleed photograph with a scrim over its left third is the shape
+          every template ships. This is editorial instead: the portrait is a
+          framed object with air around it, the type holds its own column, and
+          the whitespace between them does the work the scrim used to.
+          Phones lead with the portrait, then the copy beneath it. */}
+      <section className="relative overflow-hidden pt-28 pb-20 md:pt-32 lg:min-h-[100dvh] lg:pt-36 lg:pb-24">
+        {/* Barely-there warmth in the upper corner, so the ground is lit rather
+            than flat. Decorative, never behind text at strength. */}
         <span
           aria-hidden
-          className="absolute inset-0 -z-10 hidden bg-[linear-gradient(to_right,var(--ink)_0,var(--ink)_52%,transparent_64%)] lg:block"
+          className="pointer-events-none absolute -end-40 -top-40 -z-10 h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,var(--glow),transparent_68%)] blur-3xl"
         />
         <div
-          className={`${shell} grid w-full items-center gap-12 py-14 lg:grid-cols-12 lg:gap-8 lg:py-0`}
+          className={`${shell} grid w-full items-center gap-14 lg:grid-cols-12 lg:gap-10 xl:gap-16`}
         >
           {/* Cinematic entrance: the block plays as one sequence on load rather
               than six independently timed reveals. Each beat lifts, fades and
