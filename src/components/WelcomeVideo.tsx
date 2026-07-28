@@ -1,15 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
-import MuxPlayer from "@mux/mux-player-react";
 import { Play } from "@phosphor-icons/react";
 
 /**
- * Amira's welcome message. Click-to-load: the player is only mounted once the
- * poster is clicked, so the homepage never pays for the video bundle on load.
- * With no playback id set it stays a still with a caption, rather than a
- * broken frame.
+ * The player is imported dynamically, NOT statically. Deferring the render
+ * alone is not enough: a top-level import pulls the whole 1 MB Mux bundle into
+ * the homepage payload whether or not anyone presses play. This way the chunk
+ * is fetched on the click that needs it.
+ */
+const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), { ssr: false });
+
+/**
+ * Amira's welcome message. With no playback id set it stays a still with a
+ * caption, rather than a broken frame.
  */
 export function WelcomeVideo({
   playbackId,

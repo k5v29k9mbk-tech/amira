@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { Cormorant_Garamond, Jost, Parisienne, Noto_Naskh_Arabic } from "next/font/google";
 import { routing, isRtl, siteUrl } from "@/i18n/routing";
 import { Nav } from "@/components/Nav";
@@ -43,6 +43,20 @@ const arabic = Noto_Naskh_Arabic({
   display: "swap",
 });
 
+/** Namespaces read by `"use client"` components. Keep in sync with them. */
+const CLIENT_NAMESPACES = [
+  "nav", // Nav, LocaleSwitcher
+  "hero", // StickyCta
+  "mentor", // WelcomeVideo
+  "voices", // Voices
+  "success", // BeforeAfter
+  "contact", // ContactForm, FloatingWhatsapp label
+  "catalog", // EnrollButton
+  "checkout", // EnrollButton
+  "auth", // AuthForm
+  "learn", // LessonPlayer
+] as const;
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -79,6 +93,20 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const org = await getTranslations({ locale, namespace: "meta" });
 
+  /**
+   * Only the namespaces client components actually read. Left to itself,
+   * NextIntlClientProvider serialises the whole catalogue into the HTML, so
+   * every visitor was downloading all 21 lesson titles, the full syllabus and
+   * every FAQ answer to render a page that shows none of them.
+   *
+   * If a client component starts using a new namespace, add it here or it will
+   * throw MISSING_MESSAGE at runtime.
+   */
+  const all = await getMessages();
+  const clientMessages = Object.fromEntries(
+    CLIENT_NAMESPACES.filter((ns) => ns in all).map((ns) => [ns, all[ns]]),
+  );
+
   return (
     <html
       lang={locale}
@@ -87,7 +115,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="grain font-sans antialiased">
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={clientMessages}>
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[70] focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink"
