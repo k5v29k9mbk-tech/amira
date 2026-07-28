@@ -1,228 +1,177 @@
 {
   "meta": {
-    "title": "Amira Bechini",
-    "tagline": "Élevez votre technique. Transformez des vies.",
-    "description": "Masterclass de maquillage permanent avec Amira Bechini. Sourcils, lip blush et neutralisation des lèvres foncées, avec démonstration en direct et pratique encadrée à Tortoreto, Rome et Milan."
+    "title": "Aura Academy",
+    "tagline": "Formation professionnelle en PMU et lamination",
+    "description": "Aura Academy d'Amira Bechini, Giulianova (TE), Italie. Formations en microblading, powder brows, lip blush, eyeliner PMU et lamination des cils et des sourcils. Théorie, pratique, modèle en direct et suivi après la formation, en groupes de 3 à 4 élèves."
   },
   "nav": {
     "home": "Accueil",
-    "courses": "Cours",
-    "about": "À propos d'Amira",
+    "courses": "Formations",
+    "about": "Qui sommes-nous",
     "method": "La méthode",
-    "students": "Élèves",
+    "students": "En atelier",
     "gallery": "Galerie",
-    "faq": "FAQ",
+    "faq": "Questions",
     "contact": "Contact",
-    "dashboard": "Mon studio",
-    "signIn": "Connexion",
-    "cta": "Découvrir les cours",
     "language": "Langue",
     "menu": "Menu"
   },
   "hero": {
-    "eyebrow": "Masterclass de maquillage permanent",
-    "titleA": "Maîtrisez la technique",
-    "titleB": "Construisez votre marque.",
-    "sub": "Nous n'enseignons pas seulement le maquillage permanent. Nous formons la prochaine génération de professionnelles de la beauté, avec une formation d'élite, un mentorat personnel et une certification internationale, et un accompagnement qui continue bien après la fin du cours.",
-    "primary": "Découvrir les cours",
+    "eyebrow": "Aura Academy d'Amira Bechini",
+    "titleA": "Nous formons des professionnelles",
+    "titleB": "au PMU et à la lamination.",
+    "sub": "Avec une méthode pratique et complète : théorie, pratique, modèle en direct lorsqu'il est prévu et suivi après la formation, en groupes de trois ou quatre élèves.",
+    "primary": "Voir les formations",
     "secondary": "Réservez votre place",
-    "portrait": "Amira Bechini dans le studio de la masterclass"
+    "portrait": "Amira Bechini, fondatrice d'Aura Academy"
   },
   "proof": {
-    "certification": {
-      "title": "Professionnelle",
-      "sub": "Certification"
-    },
-    "academy": {
-      "title": "Internationale",
-      "sub": "Académie PMU"
-    },
-    "groups": {
-      "title": "Petits groupes VIP",
-      "sub": "Places limitées"
-    },
-    "support": {
-      "title": "À vie",
-      "sub": "Accompagnement"
-    }
+    "location": "Basée à Giulianova (TE)",
+    "groups": "Groupes de 3 ou 4 élèves",
+    "certificate": "Certificat en fin de formation",
+    "support": "Suivi après la formation"
   },
   "instructor": {
+    "eyebrow": "Qui sommes-nous",
     "title": "Amira Bechini",
-    "role": "Master PMU artist et formatrice",
-    "body1": "Amira forme des artistes en maquillage permanent à Tortoreto, Rome et Milan. Les élèves repartent avec un certificat reconnu à l'international et des résultats cicatrisés à montrer.",
-    "body2": "Chaque masterclass suit le même ordre : la théorie d'abord, puis une démonstration en direct sur modèle, puis la pratique encadrée jusqu'à ce que la main soit sûre.",
-    "credentials": {
-      "one": "Master certifiée PhiBrows, formation aux standards internationaux",
-      "two": "Démonstration en direct sur modèle à chaque masterclass",
-      "three": "Lieux exclusifs à Tortoreto, Rome et Milan"
+    "role": "Master Internationale PMU et fondatrice d'Aura Academy",
+    "mission": "Former des professionnelles compétentes par des parcours pratiques, un accompagnement continu et des standards élevés.",
+    "body": "Aura Academy forme des professionnelles du maquillage permanent et de la lamination à Giulianova, dans la province de Teramo, en Italie. Les formations se déroulent en italien, en niveau base et avancé, avec un maximum de trois ou quatre élèves par session.",
+    "valuesLabel": "Nos valeurs",
+    "values": {
+      "professionalism": "Professionnalisme",
+      "quality": "Qualité",
+      "innovation": "Innovation",
+      "ethics": "Éthique",
+      "growth": "Progression"
     },
     "portrait": "Portrait d'Amira Bechini"
   },
+  "why": {
+    "eyebrow": "Pourquoi Aura Academy",
+    "title": "Ce que comprend chaque formation",
+    "sub": "Les mêmes conditions pour tous les parcours, base et avancé.",
+    "items": {
+      "groups": {
+        "title": "Groupes de trois ou quatre",
+        "body": "Le nombre maximal d'élèves par formation est de trois ou quatre."
+      },
+      "theory": {
+        "title": "Théorie",
+        "body": "La théorie de la technique précède toujours la pratique."
+      },
+      "practice": {
+        "title": "Pratique",
+        "body": "Exercices guidés sur chaque technique prévue par la formation."
+      },
+      "model": {
+        "title": "Modèle en direct",
+        "body": "Dans les formations où il est prévu, vous travaillez sur un modèle."
+      },
+      "support": {
+        "title": "Suivi après la formation",
+        "body": "Nous restons disponibles après la fin de la formation."
+      },
+      "certificate": {
+        "title": "Certificat",
+        "body": "Un certificat est délivré en fin de parcours."
+      }
+    }
+  },
   "method": {
-    "title": "Comment se déroule une masterclass",
-    "sub": "Trois mouvements, toujours dans le même ordre, pour que rien ne soit sauté ni deviné.",
+    "title": "Comment se déroule une formation",
+    "sub": "Toujours le même ordre, pour chaque technique et pour les deux niveaux.",
     "clips": {
-      "mapping": "Du tracé au travail à la machine, filmé en studio.",
+      "mapping": "Du mapping au travail à la machine, filmé sur place.",
       "pigment": "Lame et pigment, à distance de travail."
     },
     "steps": {
-      "one": {
-        "title": "Lire le visage",
-        "body": "Structure osseuse, asymétrie, comportement de la peau. Le tracé et le choix de la couleur avant le moindre trait."
+      "theory": {
+        "title": "Théorie",
+        "body": "La théorie de la technique, avant tout exercice pratique."
       },
-      "two": {
-        "title": "Regarder, puis faire",
-        "body": "Une démonstration complète sur modèle, puis le latex et la pratique encadrée, corrigée au fur et à mesure."
+      "practice": {
+        "title": "Pratique",
+        "body": "Exercices guidés, suivis pas à pas."
       },
-      "three": {
-        "title": "Cicatriser et corriger",
-        "body": "Le résultat au jour 7, au jour 30, au mois 18, et comment corriger chaque cas."
-      }
-    }
-  },
-  "why": {
-    "eyebrow": "Pourquoi Amira",
-    "title": "Pourquoi choisir AB Academy",
-    "sub": "Des groupes réduits, au plus près du geste, et quelqu'un à vos côtés jusqu'à ce que la main soit juste.",
-    "items": {
-      "luxury": {
-        "title": "Formation haut de gamme",
-        "body": "Un studio conçu pour enseigner, avec le matériel et la lumière de votre futur poste de travail."
-      },
-      "groups": {
-        "title": "Petits groupes VIP",
-        "body": "Les places sont limitées volontairement : chacune suit la démonstration de près."
-      },
-      "mentoring": {
-        "title": "Mentorat individuel",
-        "body": "Votre main corrigée pendant que vous travaillez, pas une vidéo que l'on espère avoir bien copiée."
-      },
-      "certification": {
-        "title": "Certification professionnelle",
-        "body": "Une attestation de fin de formation reconnue à l'international, à votre nom."
-      },
-      "business": {
-        "title": "Coaching business",
-        "body": "Tarifs, image de marque, packaging et les réseaux qui remplissent vraiment un agenda."
+      "model": {
+        "title": "Modèle en direct",
+        "body": "Dans les formations où il est prévu, vous travaillez sur un modèle sous supervision."
       },
       "support": {
-        "title": "Accompagnement continu",
-        "body": "L'échange continue après la masterclass, sur vos premières clientes."
+        "title": "Suivi après la formation",
+        "body": "Nous restons disponibles après la fin de la formation."
       }
     }
   },
-  "syllabus": {
-    "title": "Ce que vous apprendrez",
-    "sub": "Le programme complet, du premier tracé jusqu'à l'attestation.",
-    "items": {
-      "lipBlush": "Lip blush",
-      "darkLips": "Neutralisation des lèvres foncées",
-      "powderBrows": "Powder brows",
-      "browMapping": "Tracé des sourcils",
-      "colourTheory": "Théorie des couleurs",
-      "pigment": "Choix du pigment",
-      "machine": "Technique machine et aiguilles",
-      "liveDemo": "Démonstrations en direct",
-      "latex": "Pratique sur peau synthétique",
-      "model": "Pratique sur modèle",
-      "branding": "Image de marque",
-      "packaging": "Packaging",
-      "business": "Business et marketing",
-      "social": "Réseaux sociaux et photographie",
-      "consultation": "Consultation cliente",
-      "aftercare": "Soins post-séance",
-      "certification": "Certification professionnelle"
+  "catalog": {
+    "eyebrow": "Les formations",
+    "title": "Six formations, un seul standard",
+    "sub": "Maquillage permanent et lamination, en niveau base et avancé. La durée varie selon la formation ; le prix varie selon la formation choisie et selon le kit professionnel éventuellement inclus.",
+    "courses": {
+      "microblading": "Microblading",
+      "powder-brows": "Powder Brows",
+      "lip-blush": "Lip Blush",
+      "eyeliner-pmu": "Eyeliner PMU",
+      "lash-lamination": "Lamination des cils",
+      "brow-lamination": "Lamination des sourcils"
+    },
+    "detailsTitle": "Informations valables pour toutes les formations",
+    "details": {
+      "duration": { "label": "Durée", "value": "Variable selon la formation" },
+      "price": { "label": "Prix", "value": "Variable selon la formation et le kit éventuellement inclus" },
+      "level": { "label": "Niveau", "value": "Base et avancé" },
+      "language": { "label": "Langue", "value": "Italien" },
+      "students": { "label": "Nombre maximal d'élèves", "value": "3-4" },
+      "kit": { "label": "Kit professionnel", "value": "Disponible sur demande" },
+      "certificate": { "label": "Certificat", "value": "Oui, en fin de formation" },
+      "location": { "label": "Lieu", "value": "Lungomare Rodi 20, 64021 Giulianova (TE), Italie" }
+    },
+    "includes": "Chaque formation comprend",
+    "included": {
+      "theory": "Théorie",
+      "practice": "Pratique",
+      "model": "Modèle en direct, lorsqu'il est prévu",
+      "support": "Suivi après la formation"
+    },
+    "priceOnRequest": "Prix sur demande",
+    "cta": "Demander des informations",
+    "payments": "Virement · Carte · PagoDIL"
+  },
+  "journey": {
+    "eyebrow": "Comment réserver",
+    "title": "Du premier message au certificat",
+    "sub": "Cinq étapes, du premier contact au suivi qui continue après la formation.",
+    "steps": {
+      "contact": {
+        "title": "Prise de contact",
+        "body": "Écrivez-nous sur WhatsApp ou via le formulaire de contact du site."
+      },
+      "deposit": {
+        "title": "Confirmation et acompte",
+        "body": "La place se confirme par un acompte, dont le montant est convenu ensemble."
+      },
+      "training": {
+        "title": "La formation",
+        "body": "Théorie, pratique et modèle en direct lorsqu'il est prévu, en italien."
+      },
+      "certificate": {
+        "title": "Certificat",
+        "body": "Vous recevez votre certificat en fin de parcours."
+      },
+      "support": {
+        "title": "Suivi après la formation",
+        "body": "Nous restons disponibles après la fin de la formation."
+      }
     }
   },
-  "stats": {
-    "years": "Années d'expérience",
-    "students": "Élèves formées",
-    "locations": "Lieux de formation",
-    "practice": "Pratique concrète"
-  },
   "students": {
-    "title": "Les élèves au travail",
-    "sub": "Des moments de formation : démonstration, pratique sur latex et le premier modèle encadré."
+    "title": "En atelier",
+    "sub": "Moments de formation : démonstration, exercices guidés et travail sur modèle."
   },
   "results": {
     "title": "Galerie",
-    "sub": "Résultats cicatrisés, tracés et pratique, depuis le studio."
-  },
-  "catalog": {
-    "eyebrow": "Le catalogue",
-    "title": "Trois cours, une seule exigence",
-    "sub": "Prenez un seul cours ou les trois. L'accès n'expire jamais.",
-    "from": "Cours complet",
-    "hours": "heures",
-    "lessons": "leçons",
-    "view": "Voir le cours",
-    "enroll": "S'inscrire",
-    "enrolled": "Vous possédez ce cours",
-    "continue": "Continuer",
-    "outcomes": "À la fin, vous saurez",
-    "curriculum": "Programme",
-    "preview": "Aperçu gratuit",
-    "back": "Tous les cours",
-    "oneTime": "Un paiement, accès à vie",
-    "payments": "Visa · Mastercard · PayPal · Apple Pay · Google Pay",
-    "brow-artistry": {
-      "title": "Sourcils Parfaits",
-      "tagline": "Tracé, poil à poil, et la forme qui survit à la cicatrisation",
-      "description": "Le système complet, de la lecture de la structure osseuse à la seconde retouche. Neuf heures de macro, filmées à la vitesse réelle de travail.",
-      "outcomes": {
-        "one": "Dessiner un sourcil qui va au visage, pas à la tendance",
-        "two": "Poser des poils d'une profondeur constante, sans bavure",
-        "three": "Corriger un travail cicatrisé gris ou orangé sans laser"
-      }
-    },
-    "lip-blush": {
-      "title": "Lip Blush et Neutralisation des Lèvres Foncées",
-      "tagline": "Un lip blush naturel, et la correction propre d'une lèvre foncée",
-      "description": "Douze heures entre science de la peau, hygiène, maniement du dermographe, théorie de la couleur et les deux techniques signature. La masterclass de deux jours, filmée leçon par leçon.",
-      "outcomes": {
-        "one": "Choisir le pigment par le sous-ton, pas par le nuancier",
-        "two": "Mener une séance de lip blush de bout en bout, anesthésie comprise",
-        "three": "Neutraliser une lèvre foncée sans la laisser grise"
-      }
-    },
-    "vip-training": {
-      "title": "VIP Training Experience",
-      "tagline": "En tête-à-tête, démonstration en direct, votre modèle encadré",
-      "description": "Huit heures de l'expérience studio, filmées. Une démonstration complète, la pratique sur latex corrigée trait par trait, puis votre séance sur modèle et la première image de votre portfolio.",
-      "outcomes": {
-        "one": "Mener une séance complète, de la consultation à la fiche de suivi",
-        "two": "Pratiquer sur latex avec la main corrigée en temps réel",
-        "three": "Repartir avec une image de portfolio et un plan pour ouvrir l'agenda"
-      }
-    }
-  },
-  "modules": {
-    "foundations": "Fondamentaux",
-    "technique": "Technique",
-    "aftercare": "Cicatrisation et suivi"
-  },
-  "lessons": {
-    "morphology": "Morphologie du visage et logique du sourcil",
-    "mapping": "Tracé au fil et au compas",
-    "pigment-theory": "Théorie du pigment et sous-ton",
-    "hair-stroke": "Direction et profondeur du poil",
-    "shading": "Ombrage poudré et contrôle du dégradé",
-    "correction": "Corriger un travail ancien ou migré",
-    "healing": "Les trente premiers jours",
-    "retouch": "La retouche à six semaines",
-    "skin-science": "Couches de la peau et comportement du pigment",
-    "hygiene": "Hygiène, consentement et poste de travail",
-    "device-setup": "Dermographe, aiguilles et réglage de vitesse",
-    "lip-blush": "Lip blush, du contour à la saturation",
-    "colour-correction": "Neutraliser une lèvre foncée",
-    "healing-cycles": "Cycles de cicatrisation selon la peau",
-    "complications": "Complications et quand orienter vers un médecin",
-    "consultation": "Consultation et lecture du cas",
-    "live-demo": "Démonstration en direct, du début à la fin",
-    "latex-practice": "Pratique sur latex, corrigée trait par trait",
-    "model-session": "Votre séance sur modèle, encadrée",
-    "portfolio-shot": "La première image de votre portfolio",
-    "launch-plan": "Tarifs et ouverture de l'agenda"
+    "sub": "Travaux, mapping et pratique depuis les locaux de Giulianova."
   },
   "voices": {
     "title": "La parole aux élèves",
@@ -230,200 +179,89 @@
   },
   "faq": {
     "title": "Questions",
-    "items": {
-      "one": {
-        "q": "Combien de temps garde-t-on l'accès ?",
-        "a": "L'accès n'expire pas. Vous achetez le cours une fois et il reste dans votre studio, leçons ajoutées plus tard comprises."
-      },
-      "two": {
-        "q": "Faut-il de l'expérience ?",
-        "a": "Le module fondamentaux de chaque cours n'en suppose aucune. Si vous exercez déjà, commencez au module technique."
-      },
-      "three": {
-        "q": "Le certificat est-il reconnu ?",
-        "a": "Il atteste l'achèvement de cette masterclass. Les règles d'exercice du maquillage permanent varient selon les pays : vérifiez auprès de votre autorité locale."
-      },
-      "four": {
-        "q": "Quelles langues sont disponibles ?",
-        "a": "La plateforme et chaque leçon existent en anglais, italien, français et arabe."
-      },
-      "five": {
-        "q": "Peut-on payer en plusieurs fois ?",
-        "a": "Oui. Carte, Apple Pay, Google Pay et paiement en trois fois sont proposés au moment du règlement."
-      },
-      "six": {
-        "q": "Et si le cours ne me convient pas ?",
-        "a": "Écrivez sous quatorze jours, avant d'avoir dépassé un quart des leçons, et vous êtes remboursée intégralement."
-      }
-    },
     "eyebrow": "Bon à savoir",
-    "more": "Encore hésitante ? Parlez au studio et nous vous aiderons à choisir le bon cours."
+    "more": "Vous ne trouvez pas votre réponse ? Écrivez-nous, nous vous répondons.",
+    "items": {
+      "courses": {
+        "q": "Quelles formations sont disponibles ?",
+        "a": "Microblading, Powder Brows, Lip Blush, Eyeliner PMU, Lamination des cils et Lamination des sourcils, en niveau base et avancé."
+      },
+      "duration": {
+        "q": "Combien de temps dure une formation ?",
+        "a": "La durée varie selon la formation choisie. Nous vous l'indiquons avec le devis."
+      },
+      "price": {
+        "q": "Combien coûte une formation ?",
+        "a": "Le prix varie selon la formation choisie et selon le kit professionnel éventuellement inclus. Écrivez-nous pour recevoir un devis."
+      },
+      "includes": {
+        "q": "Que comprend la formation ?",
+        "a": "Théorie, pratique, modèle en direct lorsqu'il est prévu, et suivi après la formation."
+      },
+      "kit": {
+        "q": "Le kit professionnel est-il inclus ?",
+        "a": "Le kit est disponible sur demande. Lorsqu'il est inclus, le prix de la formation en tient compte."
+      },
+      "students": {
+        "q": "Combien d'élèves par formation ?",
+        "a": "De trois à quatre. Les places sont limitées par choix."
+      },
+      "certificate": {
+        "q": "Délivrez-vous un certificat ?",
+        "a": "Oui, en fin de formation."
+      },
+      "language": {
+        "q": "Dans quelle langue les formations se déroulent-elles ?",
+        "a": "Les formations se déroulent en italien."
+      },
+      "booking": {
+        "q": "Comment réserver et comment payer ?",
+        "a": "La réservation se fait sur WhatsApp ou via le formulaire de contact du site. La place se confirme par un acompte, à convenir ; les paiements se font par virement, carte ou PagoDIL."
+      },
+      "location": {
+        "q": "Où se déroulent les formations ?",
+        "a": "Dans les locaux d'Aura Academy, Lungomare Rodi 20, 64021 Giulianova (TE), Italie."
+      }
+    }
   },
   "contact": {
-    "title": "Écrire au studio",
-    "sub": "Questions sur un cours, licences de groupe, ou formation en présentiel à Tortoreto, Rome et Milan.",
+    "title": "Réservez votre place",
+    "sub": "Écrivez-nous pour connaître les dates, la durée et le prix de la formation qui vous intéresse.",
+    "venue": "Les locaux",
     "map": "Ouvrir dans Google Maps",
+    "channels": "Où nous trouver",
     "whatsapp": "WhatsApp",
     "instagram": "Instagram",
-    "cities": {
-      "roma": {
-        "name": "Rome"
-      },
-      "milano": {
-        "name": "Milan"
-      },
-      "tortoreto": {
-        "name": "Tortoreto"
-      }
-    },
+    "tiktok": "TikTok",
+    "facebook": "Facebook",
+    "pec": "Courriel certifié (PEC)",
     "name": "Votre nom",
-    "email": "Email",
-    "subject": "Objet",
+    "email": "E-mail",
+    "subject": "Formation qui vous intéresse",
     "message": "Message",
     "send": "Envoyer le message",
     "sending": "Envoi en cours",
-    "sent": "Message reçu. Le studio répond sous deux jours ouvrés.",
-    "error": "L'envoi a échoué. Écrivez à studio@amira-bechini.com.",
+    "sent": "Message bien reçu. Nous vous répondons dès que possible.",
+    "error": "L'envoi a échoué. Réessayez ou écrivez-nous sur Instagram.",
     "required": "Obligatoire"
   },
   "footer": {
-    "tagline": "Élevez votre technique. Transformez des vies.",
-    "locations": "Tortoreto · Rome · Milan",
-    "explore": "Explorer",
-    "studio": "Studio",
-    "legal": "Conditions et confidentialité",
+    "tagline": "Nous formons des professionnelles au PMU et à la lamination avec une méthode pratique et complète.",
+    "explore": "Formations",
+    "studio": "Contact",
+    "legal": "Informations légales",
+    "activity": "Formations dans le secteur du maquillage permanent et de la lamination.",
+    "vat": "Numéro de TVA",
+    "rea": "REA",
     "rights": "Tous droits réservés."
   },
-  "auth": {
-    "title": "Votre studio",
-    "sub": "Connectez-vous pour reprendre où vous en étiez.",
-    "email": "Email",
-    "password": "Mot de passe",
-    "signIn": "Connexion",
-    "signUp": "Créer un compte",
-    "toggleToSignUp": "Pas encore de compte ? Créez-en un",
-    "toggleToSignIn": "Vous avez déjà un compte ? Connectez-vous",
-    "working": "Un instant",
-    "checkEmail": "Vérifiez votre boîte mail pour confirmer l'adresse.",
-    "error": "Ces informations ne fonctionnent pas.",
-    "demoMode": "La connexion n'est pas encore branchée. Ajoutez vos clés Supabase dans .env.local pour l'activer."
-  },
-  "dashboard": {
-    "title": "Mon studio",
-    "welcome": "Bon retour",
-    "continue": "Continuer",
-    "review": "Revoir",
-    "certificate": "Voir le certificat",
-    "empty": "Aucun cours pour l'instant",
-    "emptyBody": "Vos cours apparaissent ici dès que le paiement est validé.",
-    "emptyCta": "Découvrir les cours",
-    "lessonsDone": "sur {total} leçons"
-  },
-  "learn": {
-    "back": "Retour au cours",
-    "markComplete": "Marquer comme terminée",
-    "completed": "Terminée",
-    "next": "Leçon suivante",
-    "prev": "Précédente",
-    "locked": "Cette leçon fait partie du cours complet",
-    "lockedBody": "Inscrivez-vous une fois et toutes les leçons se débloquent, y compris les prochaines.",
-    "unlock": "S'inscrire",
-    "preview": "Aperçu gratuit",
-    "duration": "min",
-    "videoSoon": "La vidéo de cette leçon est en cours de mise en ligne.",
-    "finished": "Cours terminé",
-    "finishedBody": "Votre certificat est prêt.",
-    "getCertificate": "Voir le certificat"
-  },
-  "certificate": {
-    "title": "Certificat de réussite",
-    "awarded": "Il est certifié que",
-    "completed": "a terminé",
-    "issued": "Délivré le",
-    "code": "Code de vérification",
-    "signature": "Amira Bechini, Master PMU artist et formatrice",
-    "print": "Imprimer ou enregistrer en PDF",
-    "back": "Retour à mon studio",
-    "notYet": "Le certificat se débloque quand toutes les leçons sont terminées.",
-    "hours": "heures de formation"
-  },
-  "checkout": {
-    "unavailable": "Les paiements ne sont pas encore branchés. Ajoutez vos clés Stripe dans .env.local pour les activer.",
-    "working": "Ouverture du paiement",
-    "success": "Paiement reçu. Votre cours est débloqué.",
-    "cancelled": "Paiement annulé. Rien n'a été débité."
-  },
   "mentor": {
-    "eyebrow": "Votre mentore",
-    "quote": "J'enseigne comme je travaille, et je ne vous laisse pas partir avant que la main soit sûre.",
     "play": "Voir le message de bienvenue",
     "videoSoon": "Message de bienvenue à venir",
     "videoAlt": "Amira Bechini accueille les nouvelles élèves"
   },
-  "journey": {
-    "eyebrow": "L'expérience",
-    "title": "Votre parcours avec nous",
-    "sub": "Du jour où vous réservez votre place à celui de votre première cliente payante, chaque étape est prévue.",
-    "steps": {
-      "book": {
-        "title": "Réservez votre place",
-        "body": "Choisissez une date et une ville. Les places sont limitées et confirmées par ordre de réservation."
-      },
-      "welcome": {
-        "title": "Pack de bienvenue",
-        "body": "Vos notes de préparation, la liste du matériel, et tout à lire avant le premier jour."
-      },
-      "theory": {
-        "title": "Théorie et couleur",
-        "body": "Peau, pigment et sous-ton. Les décisions qui précèdent la moindre aiguille."
-      },
-      "demo": {
-        "title": "Démonstration en direct",
-        "body": "Un soin complet sur modèle, de près, à la vitesse réelle de travail."
-      },
-      "practice": {
-        "title": "Pratique corrigée",
-        "body": "Le latex d'abord, puis votre propre modèle, la main corrigée pendant que vous travaillez."
-      },
-      "certify": {
-        "title": "Certification",
-        "body": "Votre certificat, votre première image de portfolio, et un groupe qui vous reste ouvert."
-      }
-    }
-  },
-  "brand": {
-    "eyebrow": "Au-delà de la technique",
-    "title": "Construisez votre marque",
-    "sub": "La technique remplit un fauteuil. Une marque remplit un agenda. La moitié de ce que nous enseignons est le métier qui transforme un savoir-faire en studio.",
-    "items": {
-      "identity": {
-        "title": "Identité de marque",
-        "body": "Un nom, une image et un packaging qui vous permettent de facturer la juste valeur."
-      },
-      "pricing": {
-        "title": "Tarifs et forfaits",
-        "body": "Tarifer au temps en fauteuil et au résultat, sans copier le salon d'à côté."
-      },
-      "social": {
-        "title": "Réseaux sociaux",
-        "body": "Quoi publier, à quelle fréquence, et quelles publications deviennent des rendez-vous."
-      },
-      "photography": {
-        "title": "Photographie",
-        "body": "Photographier des résultats cicatrisés crédibles sur un écran de téléphone."
-      },
-      "clients": {
-        "title": "Acquisition de clientes",
-        "body": "D'où viennent vos vingt premières clientes, et comment les garder."
-      },
-      "systems": {
-        "title": "Systèmes de studio",
-        "body": "Consultation, consentement, suivi et reprise de rendez-vous, en autonomie."
-      }
-    }
-  },
   "success": {
-    "title": "Histoires de réussite",
+    "title": "Avant et après",
     "before": "Avant",
     "after": "Après"
   }

@@ -1,429 +1,267 @@
 {
   "meta": {
-    "title": "Amira Bechini",
-    "tagline": "Elevate your skills. Transform lives.",
-    "description": "Permanent makeup masterclasses with Amira Bechini. Brow artistry, lip blush and dark lips neutralization, taught with live demonstration and supervised practice in Tortoreto, Roma and Milano."
+    "title": "Aura Academy",
+    "tagline": "Professional training in PMU and lamination",
+    "description": "Aura Academy by Amira Bechini, Giulianova (TE), Italy. Courses in microblading, powder brows, lip blush, PMU eyeliner and lash and brow lamination. Theory, hands-on practice, live model and post-course support, in classes of 3-4 students."
   },
   "nav": {
     "home": "Home",
     "courses": "Courses",
-    "about": "About Amira",
+    "about": "About us",
     "method": "The method",
-    "students": "Students",
+    "students": "In the studio",
     "gallery": "Gallery",
-    "faq": "FAQ",
+    "faq": "Questions",
     "contact": "Contact",
-    "dashboard": "My studio",
-    "signIn": "Sign in",
-    "cta": "Explore courses",
     "language": "Language",
     "menu": "Menu"
   },
   "hero": {
-    "eyebrow": "Permanent makeup masterclass",
-    "titleA": "Master the technique",
-    "titleB": "Build your brand.",
-    "sub": "We do not just teach permanent makeup. We shape the next generation of beauty professionals, with elite training, personal mentorship and international certification, and support that continues long after the course ends.",
-    "primary": "Explore courses",
-    "secondary": "Book your seat",
-    "portrait": "Amira Bechini in the masterclass studio"
+    "eyebrow": "Aura Academy by Amira Bechini",
+    "titleA": "We train professionals",
+    "titleB": "in PMU and lamination.",
+    "sub": "With a practical, complete method: theory, hands-on practice, a live model where scheduled and post-course support, in classes of three or four students.",
+    "primary": "See the courses",
+    "secondary": "Book your place",
+    "portrait": "Amira Bechini, founder of Aura Academy"
   },
   "proof": {
-    "certification": {
-      "title": "Professional",
-      "sub": "Certification"
-    },
-    "academy": {
-      "title": "International",
-      "sub": "PMU academy"
-    },
-    "groups": {
-      "title": "VIP small groups",
-      "sub": "Limited seats"
-    },
-    "support": {
-      "title": "Lifetime",
-      "sub": "Student support"
-    }
+    "location": "Based in Giulianova (TE)",
+    "groups": "Classes of 3 or 4",
+    "certificate": "Certificate on completion",
+    "support": "Post-course support"
   },
   "instructor": {
+    "eyebrow": "About us",
     "title": "Amira Bechini",
-    "role": "Master PMU artist and trainer",
-    "body1": "Amira trains permanent makeup artists in Tortoreto, Roma and Milano. Students leave with an internationally recognised certificate and healed work they can show.",
-    "body2": "Every masterclass runs the same way: theory first, then a live demonstration on a model, then supervised practice until the hand is steady.",
-    "credentials": {
-      "one": "PhiBrows certified master, training artists to international standard",
-      "two": "Live demonstration on a model in every masterclass",
-      "three": "Exclusive locations in Tortoreto, Roma and Milano"
+    "role": "International PMU Master and Founder of Aura Academy",
+    "mission": "To train competent professionals through practical courses, continuous support and high standards.",
+    "body": "Aura Academy trains permanent makeup and lamination professionals in Giulianova, in the province of Teramo, Italy. Courses are taught in Italian, at base and advanced level, with a maximum of three or four students per session.",
+    "valuesLabel": "Our values",
+    "values": {
+      "professionalism": "Professionalism",
+      "quality": "Quality",
+      "innovation": "Innovation",
+      "ethics": "Ethics",
+      "growth": "Growth"
     },
     "portrait": "Portrait of Amira Bechini"
   },
+  "why": {
+    "eyebrow": "Why Aura Academy",
+    "title": "What every course includes",
+    "sub": "The same conditions across every course, base and advanced.",
+    "items": {
+      "groups": {
+        "title": "Classes of three or four",
+        "body": "The maximum number of students per course is three or four."
+      },
+      "theory": {
+        "title": "Theory",
+        "body": "The theory behind the technique always comes before practice."
+      },
+      "practice": {
+        "title": "Practice",
+        "body": "Guided hands-on work on every technique the course covers."
+      },
+      "model": {
+        "title": "Live model",
+        "body": "On the courses where one is scheduled, you work on a model."
+      },
+      "support": {
+        "title": "Post-course support",
+        "body": "We stay available after the course has finished."
+      },
+      "certificate": {
+        "title": "Certificate",
+        "body": "A certificate is issued at the end of the course."
+      }
+    }
+  },
   "method": {
-    "title": "How a masterclass runs",
-    "sub": "Three movements, in the same order every time, so nothing is skipped and nothing is guessed.",
+    "title": "How a course runs",
+    "sub": "The same order every time, for every technique and both levels.",
     "clips": {
-      "mapping": "Mapping through to machine work, filmed in the studio.",
+      "mapping": "From mapping to machine work, filmed at the academy.",
       "pigment": "Blade and pigment, at working distance."
     },
     "steps": {
-      "one": {
-        "title": "Read the face",
-        "body": "Bone structure, asymmetry, skin behaviour. Mapping and colour decisions before a single stroke."
+      "theory": {
+        "title": "Theory",
+        "body": "The theory behind the technique, before any hands-on work."
       },
-      "two": {
-        "title": "Watch, then work",
-        "body": "A full live demonstration on a model, then latex and supervised practice, corrected as you go."
+      "practice": {
+        "title": "Practice",
+        "body": "Guided hands-on work, followed step by step."
       },
-      "three": {
-        "title": "Heal and correct",
-        "body": "What the result looks like at day 7, day 30, month 18, and how to fix each outcome."
-      }
-    }
-  },
-  "why": {
-    "eyebrow": "Why Amira",
-    "title": "Why choose AB Academy",
-    "sub": "Small rooms, close range, and someone standing over your shoulder until the hand is right.",
-    "items": {
-      "luxury": {
-        "title": "Luxury training",
-        "body": "A studio built for teaching, with the equipment and the light you will actually work under."
-      },
-      "groups": {
-        "title": "Small VIP groups",
-        "body": "Places are limited on purpose, so every student sees the demonstration from close range."
-      },
-      "mentoring": {
-        "title": "Individual mentoring",
-        "body": "Your hand corrected while you work, not a video you watch and hope you copied right."
-      },
-      "certification": {
-        "title": "Professional certification",
-        "body": "An internationally recognised certificate of completion, issued in your name."
-      },
-      "business": {
-        "title": "Business coaching",
-        "body": "Pricing, branding, packaging and the social media that actually fills a book."
+      "model": {
+        "title": "Live model",
+        "body": "On the courses where one is scheduled, you work on a model under supervision."
       },
       "support": {
-        "title": "Ongoing support",
-        "body": "The conversation continues after the masterclass, through your first real clients."
+        "title": "Post-course support",
+        "body": "We stay available after the course has finished."
       }
     }
   },
-  "syllabus": {
-    "title": "What you will learn",
-    "sub": "The full syllabus, from the first mapping line to the certificate.",
-    "items": {
-      "lipBlush": "Lip blush",
-      "darkLips": "Dark lip neutralization",
-      "powderBrows": "Powder brows",
-      "browMapping": "Brow mapping",
-      "colourTheory": "Colour theory",
-      "pigment": "Pigment selection",
-      "machine": "Machine and needle technique",
-      "liveDemo": "Live demonstrations",
-      "latex": "Artificial skin practice",
-      "model": "Live model practice",
-      "branding": "Branding",
-      "packaging": "Packaging",
-      "business": "Business and marketing",
-      "social": "Social media and photography",
-      "consultation": "Client consultation",
-      "aftercare": "Aftercare",
-      "certification": "Professional certification"
+  "catalog": {
+    "eyebrow": "The courses",
+    "title": "Six courses, one standard",
+    "sub": "Permanent makeup and lamination, at base and advanced level. Duration varies by course; the price varies by the course chosen and whether a professional kit is included.",
+    "courses": {
+      "microblading": "Microblading",
+      "powder-brows": "Powder Brows",
+      "lip-blush": "Lip Blush",
+      "eyeliner-pmu": "PMU Eyeliner",
+      "lash-lamination": "Lash Lamination",
+      "brow-lamination": "Brow Lamination"
+    },
+    "detailsTitle": "Details that apply to every course",
+    "details": {
+      "duration": { "label": "Duration", "value": "Varies by course" },
+      "price": { "label": "Price", "value": "Varies by course and whether a kit is included" },
+      "level": { "label": "Level", "value": "Base and advanced" },
+      "language": { "label": "Language", "value": "Italian" },
+      "students": { "label": "Maximum students", "value": "3-4" },
+      "kit": { "label": "Professional kit", "value": "Available on request" },
+      "certificate": { "label": "Certificate", "value": "Yes, on completion" },
+      "location": { "label": "Location", "value": "Lungomare Rodi 20, 64021 Giulianova (TE), Italy" }
+    },
+    "includes": "Every course includes",
+    "included": {
+      "theory": "Theory",
+      "practice": "Practice",
+      "model": "Live model, where scheduled",
+      "support": "Post-course support"
+    },
+    "priceOnRequest": "Price on request",
+    "cta": "Request information",
+    "payments": "Bank transfer · Card · PagoDIL"
+  },
+  "journey": {
+    "eyebrow": "How to book",
+    "title": "From first message to certificate",
+    "sub": "Five steps, from getting in touch to the support that continues after the course.",
+    "steps": {
+      "contact": {
+        "title": "Get in touch",
+        "body": "Message us on WhatsApp or use the contact form on this site."
+      },
+      "deposit": {
+        "title": "Confirmation and deposit",
+        "body": "Your place is confirmed with a deposit, the amount agreed between us."
+      },
+      "training": {
+        "title": "The course",
+        "body": "Theory, practice and a live model where scheduled, taught in Italian."
+      },
+      "certificate": {
+        "title": "Certificate",
+        "body": "You receive your certificate at the end of the course."
+      },
+      "support": {
+        "title": "Post-course support",
+        "body": "We stay available to you after the course has finished."
+      }
     }
   },
-  "stats": {
-    "years": "Years of experience",
-    "students": "Students trained",
-    "locations": "Training locations",
-    "practice": "Hands-on practice"
-  },
   "students": {
-    "title": "Students at work",
-    "sub": "Training moments from the masterclass: demonstration, latex practice, and the first supervised model."
+    "title": "In the studio",
+    "sub": "Moments from the courses: demonstration, guided practice and work on a model."
   },
   "results": {
     "title": "Gallery",
-    "sub": "Healed results, mapping and practice from the studio."
-  },
-  "catalog": {
-    "eyebrow": "The catalogue",
-    "title": "Three courses, one standard",
-    "sub": "Take a single course or work through all three. Access does not expire.",
-    "from": "Full course",
-    "hours": "hours",
-    "lessons": "lessons",
-    "view": "View course",
-    "enroll": "Enrol now",
-    "enrolled": "You own this course",
-    "continue": "Continue",
-    "outcomes": "By the end you can",
-    "curriculum": "Curriculum",
-    "preview": "Free preview",
-    "back": "All courses",
-    "oneTime": "One payment, lifetime access",
-    "payments": "Visa · Mastercard · PayPal · Apple Pay · Google Pay",
-    "brow-artistry": {
-      "title": "Brow Artistry",
-      "tagline": "Mapping, hair strokes, and a shape that survives healing",
-      "description": "The full brow system, from reading bone structure to the second retouch. Nine hours of close macro footage, filmed at the speed you would actually work.",
-      "outcomes": {
-        "one": "Map a brow that suits the face rather than the trend",
-        "two": "Lay hair strokes at consistent depth with no blowout",
-        "three": "Correct grey and orange healed work without a laser"
-      }
-    },
-    "lip-blush": {
-      "title": "Lip Blush and Dark Lips Neutralization",
-      "tagline": "Natural lip blush, and clean correction of a dark lip",
-      "description": "Twelve hours across skin science, hygiene, device handling, colour theory and the two signature lip techniques. The two-day masterclass, filmed lesson by lesson.",
-      "outcomes": {
-        "one": "Choose pigment by undertone rather than by swatch",
-        "two": "Run a lip blush session end to end, numbing included",
-        "three": "Neutralise a dark lip without leaving it grey"
-      }
-    },
-    "vip-training": {
-      "title": "VIP Training Experience",
-      "tagline": "One to one, live demonstration, your own supervised model",
-      "description": "Eight hours of the studio experience, filmed. A full demonstration, latex practice corrected stroke by stroke, then your own model session and the first piece of your portfolio.",
-      "outcomes": {
-        "one": "Work a full session from consultation to aftercare card",
-        "two": "Practise on latex with your hand corrected as you go",
-        "three": "Leave with a portfolio image and a plan to open the book"
-      }
-    }
-  },
-  "modules": {
-    "foundations": "Foundations",
-    "technique": "Technique",
-    "aftercare": "Healing and aftercare"
-  },
-  "lessons": {
-    "morphology": "Facial morphology and brow logic",
-    "mapping": "Mapping with thread and caliper",
-    "pigment-theory": "Pigment theory and undertone",
-    "hair-stroke": "Hair stroke direction and depth",
-    "shading": "Powder shading and gradient control",
-    "correction": "Correcting old and migrated work",
-    "healing": "The first thirty days",
-    "retouch": "The six week retouch",
-    "skin-science": "Skin layers and pigment behaviour",
-    "hygiene": "Hygiene, consent and the setup",
-    "device-setup": "Device, needle and speed settings",
-    "lip-blush": "Lip blush from outline to saturation",
-    "colour-correction": "Neutralising a dark lip",
-    "healing-cycles": "Healing cycles across skin types",
-    "complications": "Complications and when to refer out",
-    "consultation": "Consultation and reading the case",
-    "live-demo": "Live demonstration, start to finish",
-    "latex-practice": "Latex practice, corrected stroke by stroke",
-    "model-session": "Your model session, supervised",
-    "portfolio-shot": "Shooting your first portfolio piece",
-    "launch-plan": "Pricing and opening your book"
+    "sub": "Work, mapping and practice from the academy in Giulianova."
   },
   "voices": {
-    "title": "What students say",
+    "title": "In our students' words",
     "items": {}
   },
   "faq": {
     "title": "Questions",
-    "items": {
-      "one": {
-        "q": "How long do I keep access?",
-        "a": "Access does not expire. You buy the course once and it stays in your studio, including any lessons added later."
-      },
-      "two": {
-        "q": "Do I need previous experience?",
-        "a": "The foundations module of every course assumes none. If you already practise, start at the technique module."
-      },
-      "three": {
-        "q": "Is the certificate recognised?",
-        "a": "It certifies completion of this masterclass. Licensing rules for permanent makeup vary by country, so check your local regulator before you practise."
-      },
-      "four": {
-        "q": "Which languages are available?",
-        "a": "The platform and every lesson are available in English, Italian, French and Arabic."
-      },
-      "five": {
-        "q": "Can I pay in instalments?",
-        "a": "Yes. Card, Apple Pay, Google Pay and three-part instalments are all available at checkout."
-      },
-      "six": {
-        "q": "What if the course is not for me?",
-        "a": "Write within fourteen days, before you pass a quarter of the lessons, and you get a full refund."
-      }
-    },
     "eyebrow": "Good to know",
-    "more": "Still deciding? Talk to the studio and we will help you choose the right course."
+    "more": "Can't find your answer? Write to us and we'll reply.",
+    "items": {
+      "courses": {
+        "q": "Which courses are available?",
+        "a": "Microblading, Powder Brows, Lip Blush, PMU Eyeliner, Lash Lamination and Brow Lamination, at base and advanced level."
+      },
+      "duration": {
+        "q": "How long is a course?",
+        "a": "Duration varies by the course chosen. We confirm it along with your quote."
+      },
+      "price": {
+        "q": "How much does a course cost?",
+        "a": "The price varies by the course chosen and whether a professional kit is included. Write to us for a quote."
+      },
+      "includes": {
+        "q": "What does the course include?",
+        "a": "Theory, hands-on practice, a live model where scheduled, and post-course support."
+      },
+      "kit": {
+        "q": "Is the professional kit included?",
+        "a": "The kit is available on request. Where it is included, the course price reflects it."
+      },
+      "students": {
+        "q": "How many students are on a course?",
+        "a": "Three to four. Places are limited by design."
+      },
+      "certificate": {
+        "q": "Do you issue a certificate?",
+        "a": "Yes, at the end of the course."
+      },
+      "language": {
+        "q": "What language are the courses taught in?",
+        "a": "Courses are taught in Italian."
+      },
+      "booking": {
+        "q": "How do I book and how do I pay?",
+        "a": "Book on WhatsApp or through the contact form on this site. Your place is confirmed with a deposit, agreed between us; payment is by bank transfer, card or PagoDIL."
+      },
+      "location": {
+        "q": "Where are the courses held?",
+        "a": "At the Aura Academy premises, Lungomare Rodi 20, 64021 Giulianova (TE), Italy."
+      }
+    }
   },
   "contact": {
-    "title": "Talk to the studio",
-    "sub": "Questions about a course, group licences, or in-person training in Tortoreto, Roma and Milano.",
+    "title": "Book your place",
+    "sub": "Write to us for the dates, duration and price of the course you're interested in.",
+    "venue": "The academy",
     "map": "Open in Google Maps",
+    "channels": "Where to find us",
     "whatsapp": "WhatsApp",
     "instagram": "Instagram",
-    "cities": {
-      "roma": {
-        "name": "Rome"
-      },
-      "milano": {
-        "name": "Milan"
-      },
-      "tortoreto": {
-        "name": "Tortoreto"
-      }
-    },
+    "tiktok": "TikTok",
+    "facebook": "Facebook",
+    "pec": "Certified email (PEC)",
     "name": "Your name",
     "email": "Email",
-    "subject": "Subject",
+    "subject": "Course you're interested in",
     "message": "Message",
     "send": "Send message",
     "sending": "Sending",
-    "sent": "Message received. The studio replies within two working days.",
-    "error": "That did not send. Write to studio@amira-bechini.com instead.",
+    "sent": "Message received. We'll get back to you as soon as we can.",
+    "error": "That didn't send. Try again, or write to us on Instagram.",
     "required": "Required"
   },
   "footer": {
-    "tagline": "Elevate your skills. Transform lives.",
-    "locations": "Tortoreto · Roma · Milano",
-    "explore": "Explore",
-    "studio": "Studio",
-    "legal": "Terms and privacy",
+    "tagline": "We train professionals in PMU and lamination with a practical, complete method.",
+    "explore": "Courses",
+    "studio": "Contact",
+    "legal": "Legal information",
+    "activity": "Training courses in permanent makeup and lamination.",
+    "vat": "VAT number",
+    "rea": "REA",
     "rights": "All rights reserved."
   },
-  "auth": {
-    "title": "Your studio",
-    "sub": "Sign in to continue where you stopped.",
-    "email": "Email",
-    "password": "Password",
-    "signIn": "Sign in",
-    "signUp": "Create account",
-    "toggleToSignUp": "No account yet? Create one",
-    "toggleToSignIn": "Already have an account? Sign in",
-    "working": "One moment",
-    "checkEmail": "Check your inbox to confirm your address.",
-    "error": "Those details did not work.",
-    "demoMode": "Sign in is not connected yet. Add your Supabase keys to .env.local to switch it on."
-  },
-  "dashboard": {
-    "title": "My studio",
-    "welcome": "Welcome back",
-    "continue": "Continue",
-    "review": "Review",
-    "certificate": "View certificate",
-    "empty": "No courses yet",
-    "emptyBody": "Your courses appear here the moment a payment clears.",
-    "emptyCta": "Explore courses",
-    "lessonsDone": "of {total} lessons"
-  },
-  "learn": {
-    "back": "Back to course",
-    "markComplete": "Mark as complete",
-    "completed": "Completed",
-    "next": "Next lesson",
-    "prev": "Previous",
-    "locked": "This lesson is part of the full course",
-    "lockedBody": "Enrol once and every lesson unlocks, including the ones added later.",
-    "unlock": "Enrol now",
-    "preview": "Free preview",
-    "duration": "min",
-    "videoSoon": "Video for this lesson is being uploaded.",
-    "finished": "Course complete",
-    "finishedBody": "Your certificate is ready.",
-    "getCertificate": "View certificate"
-  },
-  "certificate": {
-    "title": "Certificate of completion",
-    "awarded": "This certifies that",
-    "completed": "has completed",
-    "issued": "Issued",
-    "code": "Verification code",
-    "signature": "Amira Bechini, Master PMU artist and trainer",
-    "print": "Print or save as PDF",
-    "back": "Back to my studio",
-    "notYet": "This certificate unlocks when every lesson is complete.",
-    "hours": "hours of instruction"
-  },
-  "checkout": {
-    "unavailable": "Payments are not connected yet. Add your Stripe keys to .env.local to switch them on.",
-    "working": "Opening checkout",
-    "success": "Payment received. Your course is unlocked.",
-    "cancelled": "Checkout cancelled. Nothing was charged."
-  },
   "mentor": {
-    "eyebrow": "Meet your mentor",
-    "quote": "I teach the way I work, and I do not let you leave until your hand is steady.",
-    "play": "Play the welcome message",
+    "play": "Watch the welcome message",
     "videoSoon": "Welcome message coming soon",
     "videoAlt": "Amira Bechini welcomes new students"
   },
-  "journey": {
-    "eyebrow": "The experience",
-    "title": "Your journey with us",
-    "sub": "From the day you reserve a seat to the day you take your first paying client, every step is planned.",
-    "steps": {
-      "book": {
-        "title": "Reserve your seat",
-        "body": "Choose a date and a city. Places are limited and confirmed in the order they are booked."
-      },
-      "welcome": {
-        "title": "Welcome pack",
-        "body": "Your preparation notes, the kit list, and everything to read before day one."
-      },
-      "theory": {
-        "title": "Theory and colour",
-        "body": "Skin, pigment and undertone. The decisions that happen before any needle."
-      },
-      "demo": {
-        "title": "Live demonstration",
-        "body": "A full treatment on a model, at close range, at the speed you will actually work."
-      },
-      "practice": {
-        "title": "Practice, corrected",
-        "body": "Latex first, then your own model, with your hand corrected while you work."
-      },
-      "certify": {
-        "title": "Certification",
-        "body": "Your certificate, your first portfolio image, and a group that stays open to you."
-      }
-    }
-  },
-  "brand": {
-    "eyebrow": "Beyond technique",
-    "title": "Build your beauty brand",
-    "sub": "Technique fills a chair. A brand fills a diary. Half of what we teach is the business that turns a skill into a studio.",
-    "items": {
-      "identity": {
-        "title": "Brand identity",
-        "body": "Name, look and packaging that let you charge what the work is worth."
-      },
-      "pricing": {
-        "title": "Pricing and packages",
-        "body": "Price on chair time and outcome instead of copying the salon next door."
-      },
-      "social": {
-        "title": "Social media",
-        "body": "What to post, how often, and which posts actually turn into bookings."
-      },
-      "photography": {
-        "title": "Photography",
-        "body": "Shooting healed results that read honestly on a phone screen."
-      },
-      "clients": {
-        "title": "Client acquisition",
-        "body": "Where your first twenty clients come from, and how to keep them."
-      },
-      "systems": {
-        "title": "Studio systems",
-        "body": "Consultation, consent, aftercare and rebooking, running without you."
-      }
-    }
-  },
   "success": {
-    "title": "Success stories",
+    "title": "Before and after",
     "before": "Before",
     "after": "After"
   }
