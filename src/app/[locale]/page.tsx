@@ -40,11 +40,21 @@ import { Counter } from "@/components/Counter";
 import { Voices } from "@/components/Voices";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { Gallery } from "@/components/Gallery";
-import { HeroImage } from "@/components/HeroImage";
+import { HeroPortrait } from "@/components/HeroPortrait";
 import { Stagger, StaggerItem } from "@/components/Stagger";
 import { WelcomeVideo } from "@/components/WelcomeVideo";
 import { ContactForm } from "@/components/ContactForm";
-import { btnGhost, btnPrimary, eyebrow, iconRing, label, sectionTitle, shell } from "@/lib/ui";
+import {
+  btnGhost,
+  btnHero,
+  btnPrimary,
+  eyebrow,
+  iconRing,
+  label,
+  linkQuiet,
+  sectionTitle,
+  shell,
+} from "@/lib/ui";
 import { altLanguages } from "@/i18n/routing";
 import { JsonLd, faqSchema } from "@/lib/seo";
 
