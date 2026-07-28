@@ -165,7 +165,7 @@ export default async function Home({
           {/* Cinematic entrance: the block plays as one sequence on load rather
               than six independently timed reveals. Each beat lifts, fades and
               resolves out of a 6px blur. */}
-          <Stagger className="lg:col-span-6 xl:col-span-5">
+          <Stagger className="order-2 lg:order-1 lg:col-span-6 xl:col-span-5 xl:col-start-1">
             <StaggerItem>
               <p className={eyebrow}>
                 <span aria-hidden className="h-px w-8 bg-accent" />
@@ -176,7 +176,7 @@ export default async function Home({
                 line, then the script word carrying the emotion. The Arabic rule
                 in globals.css strips the tracking, where it would be wrong. */}
             <StaggerItem>
-              <h1 className="mt-8">
+              <h1 className="mt-10">
                 <span className="display block text-xl leading-[1.35] font-light tracking-[0.26em] text-bone uppercase sm:text-2xl xl:text-[1.75rem]">
                   {t("hero.titleA")}
                 </span>
@@ -190,20 +190,20 @@ export default async function Home({
             </StaggerItem>
             {/* Gold rule with the poster's diamond. */}
             <StaggerItem>
-              <span aria-hidden className="mt-2 flex items-center gap-3">
+              <span aria-hidden className="mt-6 flex items-center gap-3">
                 <span className="h-px w-16 bg-accent/70" />
                 <span className="text-[8px] text-accent">◆</span>
                 <span className="h-px w-6 bg-accent/40" />
               </span>
             </StaggerItem>
             <StaggerItem>
-              <p className="mt-8 max-w-[46ch] text-base leading-[1.85] text-muted md:text-lg">
+              <p className="mt-8 max-w-[44ch] text-base leading-[1.9] text-muted md:text-[1.0625rem]">
                 {t("hero.sub")}
               </p>
             </StaggerItem>
             <StaggerItem>
-              <div className="mt-10 flex flex-wrap gap-3">
-                <Link href="/courses" className={btnPrimary}>
+              <div className="mt-12 flex flex-col items-start gap-7 sm:flex-row sm:items-center sm:gap-10">
+                <Link href="/courses" className={btnHero}>
                   {t("hero.primary")}
                   {/* The arrow travels on hover. One small tell that the button
                       is alive, rather than a second animation competing with
@@ -211,16 +211,23 @@ export default async function Home({
                   <ArrowRight
                     size={16}
                     weight="light"
-                    className="flip-x transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/btn:translate-x-1"
+                    className="flip-x transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/btn:translate-x-1.5"
                   />
                 </Link>
-                <Link href="/#contact" className={btnGhost}>
-                  <CalendarCheck size={18} weight="light" />
+                <Link href="/#contact" className={linkQuiet}>
+                  <CalendarCheck size={17} weight="light" className="text-accent" />
                   {t("hero.secondary")}
                 </Link>
               </div>
             </StaggerItem>
           </Stagger>
+
+          <Reveal
+            delay={0.1}
+            className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7 xl:col-span-6 xl:col-start-7"
+          >
+            <HeroPortrait src="/brand/amira-hero-portrait.jpg" alt={t("hero.portrait")} />
+          </Reveal>
         </div>
       </section>
 
