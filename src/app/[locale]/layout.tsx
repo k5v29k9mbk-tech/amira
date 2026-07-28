@@ -7,6 +7,7 @@ import { routing, isRtl, siteUrl } from "@/i18n/routing";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { StickyCta } from "@/components/StickyCta";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { FloatingWhatsapp } from "@/components/FloatingWhatsapp";
 import { JsonLd, organizationSchema } from "@/lib/seo";
 import "../globals.css";
@@ -123,6 +124,7 @@ export default async function LocaleLayout({
           >
             {locale === "ar" ? "تخطي إلى المحتوى" : "Skip to content"}
           </a>
+          <ScrollProgress />
           <Nav />
           <main id="main">{children}</main>
           <Footer />

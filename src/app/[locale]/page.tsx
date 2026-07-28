@@ -41,6 +41,7 @@ import { Voices } from "@/components/Voices";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { Gallery } from "@/components/Gallery";
 import { HeroImage } from "@/components/HeroImage";
+import { Stagger, StaggerItem } from "@/components/Stagger";
 import { WelcomeVideo } from "@/components/WelcomeVideo";
 import { ContactForm } from "@/components/ContactForm";
 import { btnGhost, btnPrimary, eyebrow, iconRing, label, sectionTitle, shell } from "@/lib/ui";
@@ -166,17 +167,20 @@ export default async function Home({
         <div
           className={`${shell} grid w-full items-center gap-12 py-14 lg:grid-cols-12 lg:gap-8 lg:py-0`}
         >
-          <div className="lg:col-span-6 xl:col-span-5">
-            <Reveal>
+          {/* Cinematic entrance: the block plays as one sequence on load rather
+              than six independently timed reveals. Each beat lifts, fades and
+              resolves out of a 6px blur. */}
+          <Stagger className="lg:col-span-6 xl:col-span-5">
+            <StaggerItem>
               <p className={eyebrow}>
                 <span aria-hidden className="h-px w-8 bg-accent" />
                 {t("hero.eyebrow")}
               </p>
-            </Reveal>
+            </StaggerItem>
             {/* Two registers, the studio's own lockup: a light, widely tracked
                 line, then the script word carrying the emotion. The Arabic rule
                 in globals.css strips the tracking, where it would be wrong. */}
-            <Reveal delay={0.08}>
+            <StaggerItem>
               <h1 className="mt-8">
                 <span className="display block text-xl leading-[1.35] font-light tracking-[0.26em] text-bone uppercase sm:text-2xl xl:text-[1.75rem]">
                   {t("hero.titleA")}
@@ -188,33 +192,40 @@ export default async function Home({
                   {t("hero.titleB")}
                 </span>
               </h1>
-            </Reveal>
+            </StaggerItem>
             {/* Gold rule with the poster's diamond. */}
-            <Reveal delay={0.14}>
+            <StaggerItem>
               <span aria-hidden className="mt-2 flex items-center gap-3">
                 <span className="h-px w-16 bg-accent/70" />
                 <span className="text-[8px] text-accent">◆</span>
                 <span className="h-px w-6 bg-accent/40" />
               </span>
-            </Reveal>
-            <Reveal delay={0.2}>
+            </StaggerItem>
+            <StaggerItem>
               <p className="mt-8 max-w-[46ch] text-base leading-[1.85] text-muted md:text-lg">
                 {t("hero.sub")}
               </p>
-            </Reveal>
-            <Reveal delay={0.24}>
+            </StaggerItem>
+            <StaggerItem>
               <div className="mt-10 flex flex-wrap gap-3">
                 <Link href="/courses" className={btnPrimary}>
                   {t("hero.primary")}
-                  <ArrowRight size={16} weight="light" className="flip-x" />
+                  {/* The arrow travels on hover. One small tell that the button
+                      is alive, rather than a second animation competing with
+                      the panel wipe. */}
+                  <ArrowRight
+                    size={16}
+                    weight="light"
+                    className="flip-x transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/btn:translate-x-1"
+                  />
                 </Link>
                 <Link href="/#contact" className={btnGhost}>
                   <CalendarCheck size={18} weight="light" />
                   {t("hero.secondary")}
                 </Link>
               </div>
-            </Reveal>
-          </div>
+            </StaggerItem>
+          </Stagger>
         </div>
       </section>
 
@@ -767,7 +778,9 @@ async function CourseTile({
   return (
     <Link
       href={`/courses/${slug}`}
-      className="group flex h-full flex-col border border-line bg-surface transition-colors hover:border-accent"
+      // Lifts on a gold-tinted shadow rather than a grey one, so the depth
+      // stays inside the palette.
+      className="group flex h-full flex-col rounded-[2px] border border-line bg-surface transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-accent hover:shadow-[0_22px_60px_color-mix(in_srgb,var(--accent)_20%,transparent)]"
     >
       <div className={`relative w-full overflow-hidden ${big ? "aspect-[16/10]" : "aspect-[16/9]"}`}>
         <Image
@@ -775,7 +788,12 @@ async function CourseTile({
           alt=""
           fill
           sizes={big ? "(max-width: 1024px) 100vw, 58vw" : "(max-width: 1024px) 100vw, 40vw"}
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
+        />
+        {/* Warm veil, in the ground colour rather than black. */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[var(--ink)] opacity-0 transition-opacity duration-500 group-hover:opacity-10"
         />
       </div>
       <div className="flex flex-1 flex-col p-7 md:p-9">

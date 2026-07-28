@@ -2,11 +2,19 @@
 // Shape lock: 2px on cards, fields and buttons. Circles only on icon badges.
 // Colour lock: one champagne gold. The primary button is ink-on-ivory and
 // inverts with the theme, which keeps it at ~15:1 in both modes.
-export const btnPrimary =
-  "inline-flex items-center justify-center gap-2.5 rounded-[2px] whitespace-nowrap bg-bone px-7 py-3.5 text-[13px] font-medium tracking-[0.12em] text-ink uppercase transition-all duration-300 hover:bg-accent-hi hover:text-accent-ink active:translate-y-px disabled:opacity-50";
+/**
+ * Buttons carry a gold panel that wipes across on hover, drawn on a ::before at
+ * -z-10 so it passes behind the label rather than repainting it. `isolate`
+ * keeps that stacking context local. The wipe starts from the inline start, so
+ * it runs right-to-left in Arabic.
+ */
+const btnBase =
+  "group/btn relative isolate inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-[2px] whitespace-nowrap px-9 py-4 text-[12px] font-medium tracking-[0.16em] uppercase transition-colors duration-500 active:translate-y-px disabled:opacity-50 " +
+  "before:absolute before:inset-0 before:-z-10 before:origin-[left] before:scale-x-0 before:transition-transform before:duration-[600ms] before:ease-[cubic-bezier(0.16,1,0.3,1)] hover:before:scale-x-100 rtl:before:origin-[right]";
 
-export const btnGhost =
-  "inline-flex items-center justify-center gap-2.5 rounded-[2px] whitespace-nowrap border border-accent/60 px-7 py-3.5 text-[13px] font-medium tracking-[0.12em] text-bone uppercase transition-all duration-300 hover:border-accent hover:bg-surface-2 active:translate-y-px disabled:opacity-50";
+export const btnPrimary = `${btnBase} bg-bone text-ink before:bg-accent-hi hover:text-accent-ink`;
+
+export const btnGhost = `${btnBase} border border-accent/60 text-bone before:bg-surface-2 hover:border-accent`;
 
 export const field =
   "w-full rounded-[2px] border border-line bg-surface px-4 py-3.5 text-sm text-bone placeholder:text-muted focus:border-accent focus:outline-none";

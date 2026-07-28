@@ -98,8 +98,12 @@ export function Nav() {
               key={l.href}
               href={l.href}
               aria-current={isRoute(l.href) ? "page" : undefined}
-              className={`text-[11px] font-medium tracking-[0.18em] uppercase transition-colors hover:text-accent-hi ${
-                current(l.href) ? "text-accent-hi" : "text-muted"
+              // Gold hairline draws in from the inline start on hover and stays
+              // drawn on the section being read.
+              className={`relative py-1 text-[11px] font-medium tracking-[0.18em] uppercase transition-colors duration-300 hover:text-accent-hi after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-[left] after:bg-accent after:transition-transform after:duration-500 after:ease-[cubic-bezier(0.16,1,0.3,1)] hover:after:scale-x-100 rtl:after:origin-[right] ${
+                current(l.href)
+                  ? "text-accent-hi after:scale-x-100"
+                  : "text-muted after:scale-x-0"
               }`}
             >
               {l.label}
