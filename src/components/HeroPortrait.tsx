@@ -7,14 +7,17 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 /**
  * The portrait as an object on the page rather than a bleed behind it.
  *
- * Three layers, all decorative except the photograph: a warm pool of light
- * behind, an offset gold hairline arch, then the arch itself. The arch is the
- * studio's own alcove, so the frame is the brand's rather than a generic
- * rounded rectangle.
+ * Width is capped rather than left to fill its grid column. At col-span-6 the
+ * 3:4 frame came out 837px tall, which overflowed the fold on every common
+ * laptop; 27rem keeps the whole composition inside an 800px viewport.
+ *
+ * Three layers, all decorative except the photograph: a pool of warm light
+ * behind, a symmetric hairline mat, then the arch. The arch is the studio's own
+ * alcove, so the frame belongs to the brand rather than to a UI kit.
  *
  * Two motions, both slow enough to read as presence rather than animation: a
- * scroll parallax on the image inside its frame, and a long float on the whole
- * assembly. Driven by motion values, so nothing re-renders per frame.
+ * parallax on the image inside its frame, and a long float on the assembly.
+ * Both run on motion values, so nothing re-renders per frame.
  */
 export function HeroPortrait({ src, alt }: { src: string; alt: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -23,46 +26,58 @@ export function HeroPortrait({ src, alt }: { src: string; alt: string }) {
     target: ref,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["-4%", "4%"]);
+  // Travel stays well inside the -7% inset, so no frame edge is ever exposed.
+  const y = useTransform(scrollYProgress, [0, 1], ["-3.5%", "3.5%"]);
 
   return (
-    <div ref={ref} className="relative mx-auto w-full max-w-[26rem] lg:max-w-none">
-      {/* Pool of warm light. Sits behind everything, never over the copy. */}
+    <motion.div
+      ref={ref}
+      initial={reduce ? false : { opacity: 0, y: 34, filter: "blur(8px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: 1.2, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+      // Capped by viewport height as well as width. 27rem alone still overflowed
+      // a 1366x768 laptop; min() lets short screens shrink the frame instead of
+      // pushing the composition below the fold.
+      className="group relative mx-auto w-full max-w-[21rem] sm:max-w-[24rem] lg:max-w-[min(27rem,44vh)]"
+    >
+      {/* Warm pool. A plain radial rather than a blurred disc: a 38rem element
+          under blur-3xl is a large, repeatedly composited paint. */}
       <span
         aria-hidden
-        className="pointer-events-none absolute -inset-x-10 -top-16 bottom-0 -z-20 bg-[radial-gradient(55%_45%_at_50%_35%,var(--glow),transparent_70%)]"
+        className="pointer-events-none absolute -inset-x-16 -top-20 bottom-0 -z-20 bg-[radial-gradient(50%_42%_at_50%_38%,var(--glow),transparent_72%)]"
       />
 
       <motion.div
-        animate={reduce ? undefined : { y: [0, -9, 0] }}
-        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduce ? undefined : { y: [0, -7, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         className="relative"
       >
-        {/* Offset hairline arch: the frame reads as two planes, not a sticker. */}
+        {/* Hairline mat, evenly offset on all four sides so it reads as a frame
+            rather than a misregistered second copy. */}
         <span
           aria-hidden
-          className="arch absolute -end-4 -top-5 bottom-8 start-4 -z-10 border border-accent/45 md:-end-6 md:start-6"
+          className="arch absolute -inset-x-5 -top-5 bottom-5 -z-10 border border-accent/45 md:-inset-x-7 md:-top-7 md:bottom-7"
         />
 
-        <div className="arch relative aspect-[3/4] w-full shadow-[0_40px_90px_-30px_color-mix(in_srgb,var(--accent)_45%,transparent)]">
-          <motion.div style={reduce ? undefined : { y }} className="absolute inset-[-4%]">
+        <div className="arch relative aspect-[3/4] w-full shadow-[0_44px_90px_-34px_color-mix(in_srgb,var(--accent)_50%,transparent)] transition-shadow duration-700 group-hover:shadow-[0_54px_110px_-34px_color-mix(in_srgb,var(--accent)_62%,transparent)]">
+          <motion.div style={reduce ? undefined : { y }} className="absolute inset-[-7%]">
             <Image
               src={src}
               alt={alt}
               fill
               priority
-              sizes="(max-width: 1024px) 90vw, 42vw"
-              className="object-cover object-[52%_22%]"
+              sizes="(max-width: 640px) 84vw, (max-width: 1024px) 24rem, 27rem"
+              className="object-cover object-[52%_20%] transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.035]"
             />
           </motion.div>
 
-          {/* Light falling from the top of the alcove, as in the studio. */}
+          {/* Light falling from the crown of the alcove, as in the room. */}
           <span
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,color-mix(in_srgb,var(--ink)_22%,transparent),transparent_38%)]"
+            className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,color-mix(in_srgb,var(--ink)_20%,transparent),transparent_36%)]"
           />
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }

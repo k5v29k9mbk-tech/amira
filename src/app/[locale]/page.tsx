@@ -162,12 +162,12 @@ export default async function Home({
           framed object with air around it, the type holds its own column, and
           the whitespace between them does the work the scrim used to.
           Phones lead with the portrait, then the copy beneath it. */}
-      <section className="relative overflow-hidden pt-28 pb-20 md:pt-32 lg:min-h-[100dvh] lg:pt-36 lg:pb-24">
+      <section className="relative overflow-hidden pt-28 pb-20 md:pt-32 lg:flex lg:min-h-[88dvh] lg:items-center lg:pt-32 lg:pb-24">
         {/* Barely-there warmth in the upper corner, so the ground is lit rather
             than flat. Decorative, never behind text at strength. */}
         <span
           aria-hidden
-          className="pointer-events-none absolute -end-40 -top-40 -z-10 h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,var(--glow),transparent_68%)] blur-3xl"
+          className="pointer-events-none absolute -end-32 -top-48 -z-10 h-[42rem] w-[42rem] bg-[radial-gradient(circle,var(--glow),transparent_66%)]"
         />
         <div
           className={`${shell} grid w-full items-center gap-14 lg:grid-cols-12 lg:gap-10 xl:gap-16`}
@@ -187,7 +187,7 @@ export default async function Home({
                 in globals.css strips the tracking, where it would be wrong. */}
             <StaggerItem>
               <h1 className="mt-10">
-                <span className="display block text-xl leading-[1.35] font-light tracking-[0.26em] text-bone uppercase sm:text-2xl xl:text-[1.75rem]">
+                <span className="display block text-[1.375rem] leading-[1.3] font-light tracking-[0.22em] text-bone uppercase sm:text-[1.625rem] xl:text-[2rem]">
                   {t("hero.titleA")}
                 </span>
                 {/* Sized for the longest translation, "Construisez votre
@@ -232,12 +232,9 @@ export default async function Home({
             </StaggerItem>
           </Stagger>
 
-          <Reveal
-            delay={0.1}
-            className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7 xl:col-span-6 xl:col-start-7"
-          >
+          <div className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7 xl:col-span-6 xl:col-start-7">
             <HeroPortrait src="/brand/amira-hero-portrait.jpg" alt={t("hero.portrait")} />
-          </Reveal>
+          </div>
         </div>
       </section>
 
