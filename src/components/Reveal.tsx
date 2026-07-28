@@ -9,17 +9,21 @@ export function Reveal({
   delay = 0,
   className,
   as = "div",
+  id,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
   as?: "div" | "li" | "section";
+  /** Anchor target, for rows the nav or an in-page link points at. */
+  id?: string;
 }) {
   const reduce = useReducedMotion();
   const Tag = motion[as];
 
   return (
     <Tag
+      id={id}
       className={className}
       initial={reduce ? false : { opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}

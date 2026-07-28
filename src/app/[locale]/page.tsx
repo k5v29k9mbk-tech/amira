@@ -4,40 +4,33 @@ import {
   ArrowRight,
   BookOpen,
   CalendarCheck,
-  Camera,
   Certificate,
-  CurrencyEur,
-  Diamond,
-  Megaphone,
-  Storefront,
-  ChartLineUp,
-  GlobeHemisphereWest,
-  Crown,
-  EnvelopeSimple,
-  Eye,
+  FacebookLogo,
   HandHeart,
   InstagramLogo,
   Lifebuoy,
   MapPin,
   PaintBrushHousehold,
-  Phone,
-  Sparkle,
+  SealCheck,
+  ShieldCheck,
+  TiktokLogo,
   UsersThree,
   WhatsappLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
-import { courses, lessonCount, resultStills } from "@/lib/courses";
+import { courses, included, resultStills } from "@/lib/courses";
 import {
+  academy,
+  addressLine,
   beforeAfterPairs,
-  cities,
   instagramLink,
   mapsLink,
   studio,
+  tiktokLink,
   welcomeVideoId,
   whatsappLink,
 } from "@/lib/studio";
 import { Reveal } from "@/components/Reveal";
-import { Counter } from "@/components/Counter";
 import { Voices } from "@/components/Voices";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { Gallery } from "@/components/Gallery";
@@ -49,11 +42,8 @@ import {
   btnGhost,
   btnHero,
   btnHeroGhost,
-  btnPrimary,
   eyebrow,
   iconRing,
-  label,
-  linkQuiet,
   sectionTitle,
   shell,
 } from "@/lib/ui";
@@ -62,89 +52,69 @@ import { JsonLd, faqSchema } from "@/lib/seo";
 
 export const metadata = { alternates: altLanguages() };
 
-// Claims the studio's own marketing already makes. No invented figures.
-const badges = ["academy", "certification", "groups", "support"] as const;
+// The four facts the academy states about itself. No invented figures.
+const badges = [
+  { key: "location", Icon: MapPin },
+  { key: "groups", Icon: UsersThree },
+  { key: "certificate", Icon: Certificate },
+  { key: "support", Icon: Lifebuoy },
+] as const;
 
-const trustIcon = {
-  academy: GlobeHemisphereWest,
-  certification: Certificate,
-  groups: UsersThree,
-  support: Lifebuoy,
-} as const;
+// The five values the academy publishes, in its own order.
+const values = [
+  "professionalism",
+  "quality",
+  "innovation",
+  "ethics",
+  "growth",
+] as const;
 
-// Enrollment to certification, in the order a student actually meets it.
-const journey = [
-  { key: "book", Icon: CalendarCheck },
-  { key: "welcome", Icon: EnvelopeSimple },
+// What every course includes, plus the two conditions that apply to all of them.
+const reasons = [
+  { key: "groups", Icon: UsersThree },
   { key: "theory", Icon: BookOpen },
-  { key: "demo", Icon: Eye },
-  { key: "practice", Icon: HandHeart },
-  { key: "certify", Icon: Certificate },
+  { key: "practice", Icon: PaintBrushHousehold },
+  { key: "model", Icon: HandHeart },
+  { key: "support", Icon: Lifebuoy },
+  { key: "certificate", Icon: Certificate },
 ] as const;
 
-// The half of the training that is not technique.
-const brandPillars = [
-  { key: "identity", Icon: Diamond },
-  { key: "pricing", Icon: CurrencyEur },
-  { key: "social", Icon: Megaphone },
-  { key: "photography", Icon: Camera },
-  { key: "clients", Icon: UsersThree },
-  { key: "systems", Icon: Storefront },
-] as const;
-
+// How a course runs, in the order the academy states it.
 const steps = [
-  { key: "one", Icon: Eye },
-  { key: "two", Icon: PaintBrushHousehold },
-  { key: "three", Icon: Sparkle },
+  { key: "theory", Icon: BookOpen },
+  { key: "practice", Icon: PaintBrushHousehold },
+  { key: "model", Icon: HandHeart },
+  { key: "support", Icon: Lifebuoy },
 ] as const;
 
-// Two clips from the studio floor. Both were shot vertically on a phone, so
+// Booking to post-course support, in the order a student meets it.
+const journey = [
+  { key: "contact", Icon: WhatsappLogo },
+  { key: "deposit", Icon: CalendarCheck },
+  { key: "training", Icon: PaintBrushHousehold },
+  { key: "certificate", Icon: Certificate },
+  { key: "support", Icon: Lifebuoy },
+] as const;
+
+// Two clips from the academy floor. Both were shot vertically on a phone, so
 // they stay portrait rather than being letterboxed into a 16:9 well.
 const clips = [
   { key: "mapping", src: "/brand/mapping.mp4", poster: "/brand/mapping-poster.jpg" },
   { key: "pigment", src: "/brand/pigment.mp4", poster: "/brand/pigment-poster.jpg" },
 ] as const;
 
-const reasons = [
-  { key: "luxury", Icon: Crown },
-  { key: "groups", Icon: UsersThree },
-  { key: "mentoring", Icon: HandHeart },
-  { key: "certification", Icon: Certificate },
-  { key: "business", Icon: ChartLineUp },
-  { key: "support", Icon: Lifebuoy },
+const faqKeys = [
+  "courses",
+  "duration",
+  "price",
+  "includes",
+  "kit",
+  "students",
+  "certificate",
+  "language",
+  "booking",
+  "location",
 ] as const;
-
-// The syllabus as the studio lists it on its own material.
-const syllabus = [
-  "lipBlush",
-  "darkLips",
-  "powderBrows",
-  "browMapping",
-  "colourTheory",
-  "pigment",
-  "machine",
-  "liveDemo",
-  "latex",
-  "model",
-  "branding",
-  "packaging",
-  "business",
-  "social",
-  "consultation",
-  "aftercare",
-  "certification",
-] as const;
-
-// TODO(studio): `students` is the figure from the brief and still needs
-// confirming. The other three are verifiable from the studio's own material.
-const stats = [
-  { key: "years", to: 9, suffix: "+" },
-  { key: "students", to: 500, suffix: "+" },
-  { key: "locations", to: 3, suffix: "" },
-  { key: "practice", to: 100, suffix: "%" },
-] as const;
-
-const faqKeys = ["one", "two", "three", "four", "five", "six"] as const;
 
 export default async function Home({
   params,
@@ -154,7 +124,6 @@ export default async function Home({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations();
-  const [lead, ...rest] = courses;
 
   return (
     <>
@@ -191,20 +160,17 @@ export default async function Home({
                 {t("hero.eyebrow")}
               </p>
             </StaggerItem>
-            {/* Two registers, the studio's own lockup: a light, widely tracked
-                line, then the script word carrying the emotion. The Arabic rule
-                in globals.css strips the tracking, where it would be wrong. */}
+            {/* Two registers, the academy's own lockup: the serif carries the
+                statement, the script accents it. The Arabic rule in globals.css
+                strips the tracking, where it would be wrong. */}
             <StaggerItem>
               <h1 className="mt-10">
                 <span className="display block text-[2.75rem] leading-[1.06] tracking-[-0.02em] text-bone sm:text-[3.5rem] xl:text-[4.5rem]">
                   {t("hero.titleA")}
                 </span>
-                {/* Sized for the longest translation, "Construisez votre
-                    marque.", which wraps to two lines. text-balance keeps that
-                    break even rather than leaving one word stranded. */}
-                {/* The script is an accent now, not the headline. Carrying the whole
-                    title at 4.25rem it read closer to a wedding invitation
-                    than to an academy, and it buried the serif. */}
+                {/* Sized for the longest translation, which wraps to two lines.
+                    text-balance keeps that break even rather than leaving one
+                    word stranded. */}
                 <span className="script mt-1 block pb-2 text-[1.875rem] leading-[1.35] text-balance text-accent-hi sm:text-[2.25rem] xl:text-[2.75rem]">
                   {t("hero.titleB")}
                 </span>
@@ -242,24 +208,19 @@ export default async function Home({
               </div>
             </StaggerItem>
 
-            {/* Trust row. These are the four credentials that used to sit as
-                their own full-width band directly below the hero. Repeating
-                them under the buttons would have shown the same four claims
-                twice on one screen, so the band moves here instead. Every
-                claim is one the studio's own material already makes. */}
+            {/* Trust row. Four facts the academy states about itself: where it
+                is, how many students it takes, that it certifies, and that
+                support continues afterwards. Nothing here is inferred. */}
             <StaggerItem>
               <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-4 border-t border-line pt-8">
-                {badges.map((key) => {
-                  const Icon = trustIcon[key];
-                  return (
-                    <li key={key} className="flex items-center gap-2.5">
-                      <Icon size={15} weight="light" className="shrink-0 text-accent" />
-                      <span className="text-[11px] font-medium tracking-[0.14em] text-muted uppercase">
-                        {t(`proof.${key}.sub`)}
-                      </span>
-                    </li>
-                  );
-                })}
+                {badges.map(({ key, Icon }) => (
+                  <li key={key} className="flex items-center gap-2.5">
+                    <Icon size={15} weight="light" className="shrink-0 text-accent" />
+                    <span className="text-[11px] font-medium tracking-[0.14em] text-muted uppercase">
+                      {t(`proof.${key}`)}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </StaggerItem>
           </Stagger>
@@ -270,10 +231,10 @@ export default async function Home({
         </div>
       </section>
 
-      {/* Everything below this point gets the floating seat button. */}
+      {/* Everything below this point gets the floating booking button. */}
       <div id="sticky-cta-after" aria-hidden />
 
-      {/* Meet your mentor: portrait, biography, welcome message. */}
+      {/* About: portrait, founder, mission, values, welcome message. */}
       <section id="about" className="py-24 md:py-32">
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <Reveal className="lg:col-span-5">
@@ -292,25 +253,33 @@ export default async function Home({
             <Reveal>
               <p className={eyebrow}>
                 <span aria-hidden className="h-px w-8 bg-accent" />
-                {t("mentor.eyebrow")}
+                {t("instructor.eyebrow")}
               </p>
               <h2 className={`${sectionTitle} mt-6`}>{t("instructor.title")}</h2>
               <p className="mt-3 text-sm text-accent-hi">{t("instructor.role")}</p>
             </Reveal>
             <Reveal delay={0.08}>
-              <p className="mt-8 max-w-[62ch] leading-relaxed text-muted">
-                {t("instructor.body1")}
+              {/* The mission, set as the statement it is rather than as body
+                  copy: it is the one sentence the academy leads with. */}
+              <p className="display mt-8 max-w-[34ch] text-2xl leading-[1.35] text-bone md:text-[1.75rem]">
+                {t("instructor.mission")}
               </p>
-              <p className="mt-5 max-w-[62ch] leading-relaxed text-muted">
-                {t("instructor.body2")}
+              <p className="mt-6 max-w-[62ch] leading-relaxed text-muted">
+                {t("instructor.body")}
               </p>
             </Reveal>
             <Reveal delay={0.16}>
-              <ul className="mt-10 grid gap-4 border-t border-line pt-8">
-                {(["one", "two", "three"] as const).map((k) => (
-                  <li key={k} className="flex gap-4 text-sm leading-relaxed text-bone">
-                    <span aria-hidden className="mt-2 h-px w-6 shrink-0 bg-accent" />
-                    {t(`instructor.credentials.${k}`)}
+              <p className="mt-10 text-[11px] font-medium tracking-[0.18em] text-muted uppercase">
+                {t("instructor.valuesLabel")}
+              </p>
+              <ul className="mt-5 flex flex-wrap gap-3 border-t border-line pt-6">
+                {values.map((k) => (
+                  <li
+                    key={k}
+                    className="inline-flex items-center gap-2 rounded-[2px] border border-accent/40 px-3.5 py-2 text-[12px] tracking-[0.06em] text-bone"
+                  >
+                    <SealCheck size={14} weight="light" className="text-accent" />
+                    {t(`instructor.values.${k}`)}
                   </li>
                 ))}
               </ul>
@@ -332,7 +301,7 @@ export default async function Home({
           </Reveal>
           <Reveal delay={0.08} className="lg:col-span-5 lg:self-center">
             <p className="script text-4xl leading-[1.25] text-accent-hi md:text-5xl">
-              {t("mentor.quote")}
+              {t("footer.tagline")}
             </p>
             <p className="mt-6 text-[11px] font-medium tracking-[0.2em] text-muted uppercase">
               {t("instructor.role")}
@@ -341,7 +310,7 @@ export default async function Home({
         </div>
       </section>
 
-      {/* Why choose the academy: six reasons as raised cards. */}
+      {/* What every course includes. */}
       <section id="why" className="bg-surface-2/40 py-28 md:py-36">
         <div className={shell}>
           <Reveal>
@@ -413,10 +382,9 @@ export default async function Home({
           </div>
         </div>
 
-        {/* The three movements, on the studio floor. Native <video> with
-            controls: no player bundle, and preload="none" keeps all 5 MB off
-            the wire until someone actually presses play. Each clip runs to a
-            finished brow, so they play once rather than looping. */}
+        {/* The academy floor. Native <video> with controls: no player bundle,
+            and preload="none" keeps all 5 MB off the wire until someone
+            actually presses play. */}
         <div className={`${shell} mt-16 lg:mt-20`}>
           <div className="mx-auto grid max-w-3xl gap-5 sm:grid-cols-2">
             {clips.map(({ key, src, poster }, i) => (
@@ -441,31 +409,68 @@ export default async function Home({
         </div>
       </section>
 
-      {/* What you'll learn: the full syllabus, set as one list. */}
-      <section id="syllabus" className="seam py-28 md:py-36">
-        <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
-          <div className="lg:col-span-4">
-            <h2 className={sectionTitle}>{t("syllabus.title")}</h2>
-            <p className="mt-6 max-w-[38ch] leading-relaxed text-muted">{t("syllabus.sub")}</p>
-          </div>
-          <ul className="grid gap-x-10 border-t border-line pt-2 sm:grid-cols-2 lg:col-span-7 lg:col-start-6">
-            {syllabus.map((key, i) => (
-              <Reveal
-                key={key}
-                as="li"
-                delay={(i % 6) * 0.04}
-                className="flex items-baseline gap-4 border-b border-line py-4 text-bone"
-              >
-                <span aria-hidden className="h-px w-5 shrink-0 bg-accent" />
-                {t(`syllabus.items.${key}`)}
+      {/* Catalogue: the six courses, names only. The academy supplied no
+          per-course description, so the shared conditions are stated once on
+          the courses page rather than invented six times over. */}
+      <section id="courses" className="seam py-28 md:py-36">
+        <div className={shell}>
+          <Reveal>
+            <p className={eyebrow}>
+              <span aria-hidden className="h-px w-8 bg-accent" />
+              {t("catalog.eyebrow")}
+            </p>
+            <h2 className={`${sectionTitle} mt-6`}>{t("catalog.title")}</h2>
+            <p className="mt-5 max-w-[58ch] leading-relaxed text-muted">{t("catalog.sub")}</p>
+          </Reveal>
+
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {courses.map((c, i) => (
+              <Reveal key={c.slug} delay={(i % 3) * 0.06}>
+                <Link
+                  href="/courses"
+                  className="group flex h-full flex-col rounded-[2px] border border-line bg-surface transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-accent hover:shadow-[0_22px_60px_color-mix(in_srgb,var(--accent)_20%,transparent)]"
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                    <Image
+                      src={c.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
+                      className="object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
+                    />
+                    {/* Warm veil, in the ground colour rather than black. */}
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 bg-[var(--ink)] opacity-0 transition-opacity duration-500 group-hover:opacity-10"
+                    />
+                  </div>
+                  <div className="flex flex-1 items-center justify-between gap-4 p-7 md:p-8">
+                    <h3 className="display text-2xl text-bone">
+                      {t(`catalog.courses.${c.slug}`)}
+                    </h3>
+                    <ArrowRight
+                      size={17}
+                      weight="light"
+                      className="flip-x shrink-0 text-accent transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5"
+                    />
+                  </div>
+                </Link>
               </Reveal>
             ))}
-          </ul>
+          </div>
+
+          <Reveal className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-line pt-8">
+            <p className="text-sm text-accent-hi">{t("catalog.priceOnRequest")}</p>
+            <p className="text-sm text-muted">{t("catalog.payments")}</p>
+            <Link href="/courses" className={`${btnGhost} sm:ms-auto`}>
+              {t("hero.primary")}
+            </Link>
+          </Reveal>
         </div>
       </section>
 
-      {/* Journey: enrollment to certification. Horizontal rail on desktop with a
-          continuous gold spine behind the nodes, vertical spine on phones. */}
+      {/* How to book: contact to post-course support. Horizontal rail on
+          desktop with a continuous gold spine, vertical spine on phones. */}
       <section id="journey" className="seam py-28 md:py-36">
         <div className={shell}>
           <Reveal>
@@ -477,7 +482,7 @@ export default async function Home({
             <p className="mt-5 max-w-[54ch] leading-relaxed text-muted">{t("journey.sub")}</p>
           </Reveal>
 
-          <ol className="relative mt-16 grid gap-10 lg:grid-cols-6 lg:gap-6">
+          <ol className="relative mt-16 grid gap-10 lg:grid-cols-5 lg:gap-6">
             {/* The spine. Vertical behind the nodes on phones, horizontal on lg. */}
             <span
               aria-hidden
@@ -510,78 +515,7 @@ export default async function Home({
         </div>
       </section>
 
-      {/* Build your beauty brand: the half of the training that is not technique. */}
-      <section id="brand" className="bg-surface-2/40 py-28 md:py-36">
-        <div className={shell}>
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <p className={`${eyebrow} justify-center`}>
-              <span aria-hidden className="h-px w-8 bg-accent" />
-              {t("brand.eyebrow")}
-            </p>
-            <h2 className={`${sectionTitle} mt-6`}>{t("brand.title")}</h2>
-            <p className="mt-6 leading-relaxed text-muted">{t("brand.sub")}</p>
-          </Reveal>
-
-          <div className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {brandPillars.map(({ key, Icon }, i) => (
-              <Reveal key={key} delay={(i % 3) * 0.06} className="text-center">
-                <span className={`${iconRing} mx-auto`}>
-                  <Icon size={20} weight="light" />
-                </span>
-                <h3 className="display mt-5 text-xl text-bone">
-                  {t(`brand.items.${key}.title`)}
-                </h3>
-                <p className="mx-auto mt-2 max-w-[32ch] text-sm leading-relaxed text-muted">
-                  {t(`brand.items.${key}.body`)}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Catalogue: bento, exactly four cells for four courses. */}
-      <section id="courses" className="seam py-28 md:py-36">
-        <div className={shell}>
-          <Reveal>
-            <p className={eyebrow}>
-              <span aria-hidden className="h-px w-8 bg-accent" />
-              {t("catalog.eyebrow")}
-            </p>
-            <h2 className={`${sectionTitle} mt-6`}>{t("catalog.title")}</h2>
-            <p className="mt-5 max-w-[52ch] leading-relaxed text-muted">{t("catalog.sub")}</p>
-          </Reveal>
-
-          <div className="mt-14 grid gap-5 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7 lg:row-span-2">
-              <CourseTile slug={lead.slug} image={lead.image} big />
-            </Reveal>
-            {rest.map((c, i) => (
-              <Reveal key={c.slug} delay={0.06 * (i + 1)} className="lg:col-span-5">
-                <CourseTile slug={c.slug} image={c.image} />
-              </Reveal>
-            ))}
-          </div>
-
-          <p className="mt-8 text-sm text-muted">{t("catalog.payments")}</p>
-        </div>
-      </section>
-
-      {/* Figures. Counters run once, on scroll into view. */}
-      <section className="border-t border-line py-20 md:py-24">
-        <div className={`${shell} grid grid-cols-2 gap-y-12 lg:grid-cols-4`}>
-          {stats.map(({ key, to, suffix }, i) => (
-            <Reveal key={key} delay={i * 0.06} className="text-center">
-              <p className="display text-5xl text-accent-hi md:text-6xl">
-                <Counter to={to} suffix={suffix} />
-              </p>
-              <p className={`${label} mt-4`}>{t(`stats.${key}`)}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Gallery: the studio's own stills, edge to edge, no captions or badges. */}
+      {/* Gallery: the academy's own stills, edge to edge, no captions or badges. */}
       <section id="gallery" className="seam py-28 md:py-36">
         <div className={shell}>
           <Reveal>
@@ -598,7 +532,7 @@ export default async function Home({
       </section>
 
       {/* Students: training moments. students-certificates.jpg stays out until
-          the studio has written consent from the people in it. */}
+          the academy has written consent from the people in it. */}
       <section id="students" className="seam py-28 md:py-36">
         <div className={shell}>
           <Reveal>
@@ -626,10 +560,8 @@ export default async function Home({
         </div>
       </section>
 
-      {/* Success stories. Renders the wipes only once matched pairs exist, and
-          the quotes only once real consented ones are added. */}
       {/* The work speaks. Title and the comparison, nothing else: no eyebrow,
-          no explanatory paragraph, no caption invented on the studio's behalf.
+          no explanatory paragraph, no caption invented on the academy's behalf.
           A single pair is centred rather than stranded in a grid column; from
           two it becomes a grid. */}
       {beforeAfterPairs.length > 0 && (
@@ -656,6 +588,7 @@ export default async function Home({
         </section>
       )}
 
+      {/* Renders only once real, consented student quotes exist. */}
       <Voices />
 
       {/* Questions: native disclosure, no JS. Each row is its own panel so the
@@ -709,132 +642,97 @@ export default async function Home({
               {t("contact.sub")}
             </p>
 
-            <ul className="mt-10 grid gap-5 border-t border-line pt-8">
-              {cities.map((c) => (
-                <li key={c.id}>
+            <div className="mt-10 border-t border-line pt-8">
+              <p className="text-[11px] font-medium tracking-[0.18em] text-muted uppercase">
+                {t("contact.venue")}
+              </p>
+              <a
+                href={mapsLink}
+                target="_blank"
+                rel="noreferrer"
+                className="group mt-4 flex items-start gap-4"
+              >
+                <MapPin size={18} weight="light" className="mt-1.5 shrink-0 text-accent" />
+                <span>
+                  <span className="display block text-xl leading-snug text-bone transition-colors group-hover:text-accent-hi">
+                    {academy.street}
+                  </span>
+                  <span className="mt-1 block text-sm text-bone">
+                    {academy.postcode} {academy.city} ({academy.province})
+                  </span>
+                  <span className="mt-2 block text-sm text-accent-hi">{t("contact.map")}</span>
+                </span>
+              </a>
+            </div>
+
+            <div className="mt-8 border-t border-line pt-8">
+              <p className="text-[11px] font-medium tracking-[0.18em] text-muted uppercase">
+                {t("contact.channels")}
+              </p>
+              <ul className="mt-4 grid gap-3 text-sm">
+                {/* Rendered only when the academy has supplied a number, so the
+                    site never links to a guessed one. */}
+                {whatsappLink && (
+                  <li>
+                    <a
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-3 text-bone hover:text-accent-hi"
+                    >
+                      <WhatsappLogo size={18} weight="light" className="text-accent" />
+                      {t("contact.whatsapp")}
+                    </a>
+                  </li>
+                )}
+                <li>
                   <a
-                    href={mapsLink(c.maps)}
+                    href={instagramLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="group flex items-start gap-4"
+                    className="inline-flex items-center gap-3 text-bone hover:text-accent-hi"
                   >
-                    <MapPin size={18} weight="light" className="mt-1 shrink-0 text-accent" />
-                    <span>
-                      <span className="display block text-xl text-bone transition-colors group-hover:text-accent-hi">
-                        {t(`contact.cities.${c.id}.name`)}
-                      </span>
-                      <span className="mt-1 block text-sm text-muted">
-                        {t("contact.map")}
-                      </span>
-                    </span>
+                    <InstagramLogo size={18} weight="light" className="text-accent" />
+                    <span dir="ltr">@{studio.instagram}</span>
                   </a>
                 </li>
-              ))}
-            </ul>
-
-            <ul className="mt-8 grid gap-3 border-t border-line pt-8 text-sm">
-              <li>
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-3 text-bone hover:text-accent-hi"
-                >
-                  <WhatsappLogo size={18} weight="light" className="text-accent" />
-                  {t("contact.whatsapp")}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={instagramLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-3 text-bone hover:text-accent-hi"
-                >
-                  <InstagramLogo size={18} weight="light" className="text-accent" />@
-                  {studio.instagram}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`tel:${studio.phone.replace(/\s/g, "")}`}
-                  className="inline-flex items-center gap-3 text-bone hover:text-accent-hi"
-                >
-                  <Phone size={18} weight="light" className="text-accent" />
-                  <span dir="ltr">{studio.phone}</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${studio.email}`}
-                  className="inline-flex items-center gap-3 text-bone hover:text-accent-hi"
-                >
-                  <EnvelopeSimple size={18} weight="light" className="text-accent" />
-                  {studio.email}
-                </a>
-              </li>
-            </ul>
+                <li>
+                  <a
+                    href={tiktokLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-3 text-bone hover:text-accent-hi"
+                  >
+                    <TiktokLogo size={18} weight="light" className="text-accent" />
+                    <span dir="ltr">@{studio.tiktok}</span>
+                  </a>
+                </li>
+                {/* Text, not a link: the academy gave a page name, not a URL. */}
+                <li className="inline-flex items-center gap-3 text-bone">
+                  <FacebookLogo size={18} weight="light" className="text-accent" />
+                  {studio.facebook}
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${studio.pec}`}
+                    className="inline-flex items-center gap-3 text-bone hover:text-accent-hi"
+                  >
+                    <ShieldCheck size={18} weight="light" className="text-accent" />
+                    <span dir="ltr">{studio.pec}</span>
+                  </a>
+                </li>
+              </ul>
+              <p className="sr-only">{addressLine}</p>
+            </div>
           </div>
           <div className="lg:col-span-7 lg:col-start-6">
             <ContactForm />
+            <p className="mt-6 text-sm text-muted">
+              {included.map((k) => t(`catalog.included.${k}`)).join(" · ")}
+            </p>
           </div>
         </div>
       </section>
     </>
-  );
-}
-
-async function CourseTile({
-  slug,
-  image,
-  big = false,
-}: {
-  slug: string;
-  image: string;
-  big?: boolean;
-}) {
-  const t = await getTranslations();
-  const course = courses.find((c) => c.slug === slug)!;
-
-  return (
-    <Link
-      href={`/courses/${slug}`}
-      // Lifts on a gold-tinted shadow rather than a grey one, so the depth
-      // stays inside the palette.
-      className="group flex h-full flex-col rounded-[2px] border border-line bg-surface transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-accent hover:shadow-[0_22px_60px_color-mix(in_srgb,var(--accent)_20%,transparent)]"
-    >
-      <div className={`relative w-full overflow-hidden ${big ? "aspect-[16/10]" : "aspect-[16/9]"}`}>
-        <Image
-          src={image}
-          alt=""
-          fill
-          sizes={big ? "(max-width: 1024px) 100vw, 58vw" : "(max-width: 1024px) 100vw, 40vw"}
-          className="object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
-        />
-        {/* Warm veil, in the ground colour rather than black. */}
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[var(--ink)] opacity-0 transition-opacity duration-500 group-hover:opacity-10"
-        />
-      </div>
-      <div className="flex flex-1 flex-col p-7 md:p-9">
-        <h3
-          className={`display text-bone ${big ? "text-3xl md:text-[2.5rem]" : "text-2xl"}`}
-        >
-          {t(`catalog.${slug}.title`)}
-        </h3>
-        <p className="mt-3 max-w-[48ch] leading-relaxed text-muted">
-          {t(`catalog.${slug}.tagline`)}
-        </p>
-        <div className="mt-auto flex items-center justify-between gap-4 pt-8 font-mono text-xs text-muted">
-          <span>
-            {course.hours} {t("catalog.hours")} · {lessonCount(course)} {t("catalog.lessons")}
-          </span>
-          <span className="text-bone transition-colors group-hover:text-accent-hi">
-            {course.priceEur} EUR
-          </span>
-        </div>
-      </div>
-    </Link>
   );
 }
