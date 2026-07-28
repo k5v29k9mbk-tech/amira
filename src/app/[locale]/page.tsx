@@ -321,7 +321,7 @@ export default async function Home({
       </section>
 
       {/* Why choose the academy: six reasons as raised cards. */}
-      <section id="why" className="border-t border-line bg-surface-2/40 py-24 md:py-32">
+      <section id="why" className="bg-surface-2/40 py-28 md:py-36">
         <div className={shell}>
           <Reveal>
             <p className={eyebrow}>
@@ -358,7 +358,7 @@ export default async function Home({
       </section>
 
       {/* Method: sticky heading, hairline-separated movements. */}
-      <section id="method" className="border-t border-line py-24 md:py-32">
+      <section id="method" className="seam py-28 md:py-36">
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32">
@@ -421,7 +421,7 @@ export default async function Home({
       </section>
 
       {/* What you'll learn: the full syllabus, set as one list. */}
-      <section id="syllabus" className="border-t border-line py-24 md:py-32">
+      <section id="syllabus" className="seam py-28 md:py-36">
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-4">
             <h2 className={sectionTitle}>{t("syllabus.title")}</h2>
@@ -445,7 +445,7 @@ export default async function Home({
 
       {/* Journey: enrollment to certification. Horizontal rail on desktop with a
           continuous gold spine behind the nodes, vertical spine on phones. */}
-      <section id="journey" className="border-t border-line py-24 md:py-32">
+      <section id="journey" className="seam py-28 md:py-36">
         <div className={shell}>
           <Reveal>
             <p className={eyebrow}>
@@ -490,7 +490,7 @@ export default async function Home({
       </section>
 
       {/* Build your beauty brand: the half of the training that is not technique. */}
-      <section id="brand" className="border-t border-line bg-surface-2/40 py-24 md:py-32">
+      <section id="brand" className="bg-surface-2/40 py-28 md:py-36">
         <div className={shell}>
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className={`${eyebrow} justify-center`}>
@@ -520,7 +520,7 @@ export default async function Home({
       </section>
 
       {/* Catalogue: bento, exactly four cells for four courses. */}
-      <section id="courses" className="border-t border-line py-24 md:py-32">
+      <section id="courses" className="seam py-28 md:py-36">
         <div className={shell}>
           <Reveal>
             <p className={eyebrow}>
@@ -561,7 +561,7 @@ export default async function Home({
       </section>
 
       {/* Gallery: the studio's own stills, edge to edge, no captions or badges. */}
-      <section id="gallery" className="border-t border-line py-24 md:py-32">
+      <section id="gallery" className="seam py-28 md:py-36">
         <div className={shell}>
           <Reveal>
             <h2 className={sectionTitle}>{t("results.title")}</h2>
@@ -578,7 +578,7 @@ export default async function Home({
 
       {/* Students: training moments. students-certificates.jpg stays out until
           the studio has written consent from the people in it. */}
-      <section id="students" className="border-t border-line py-24 md:py-32">
+      <section id="students" className="seam py-28 md:py-36">
         <div className={shell}>
           <Reveal>
             <h2 className={sectionTitle}>{t("students.title")}</h2>
@@ -612,7 +612,7 @@ export default async function Home({
           A single pair is centred rather than stranded in a grid column; from
           two it becomes a grid. */}
       {beforeAfterPairs.length > 0 && (
-        <section id="success" className="border-t border-line py-24 md:py-32">
+        <section id="success" className="seam py-28 md:py-36">
           <div className={shell}>
             <Reveal>
               <h2 className={`${sectionTitle} text-center`}>{t("success.title")}</h2>
@@ -639,7 +639,7 @@ export default async function Home({
 
       {/* Questions: native disclosure, no JS. Each row is its own panel so the
           open state reads as a card lifting out of the page. */}
-      <section id="faq" className="border-t border-line bg-surface-2/40 py-24 md:py-32">
+      <section id="faq" className="bg-surface-2/40 py-28 md:py-36">
         <div className={shell}>
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className={`${eyebrow} justify-center`}>
@@ -680,7 +680,7 @@ export default async function Home({
       </section>
 
       {/* Contact */}
-      <section id="contact" className="border-t border-line py-24 md:py-32">
+      <section id="contact" className="seam py-28 md:py-36">
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-4">
             <h2 className={sectionTitle}>{t("contact.title")}</h2>

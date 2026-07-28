@@ -4,7 +4,8 @@ import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { courses, lessonCount } from "@/lib/courses";
 import { Reveal } from "@/components/Reveal";
-import { sectionTitle, shell } from "@/lib/ui";
+import { eyebrow, sectionTitle, shell } from "@/lib/ui";
+import { Stagger, StaggerItem } from "@/components/Stagger";
 import { altLanguages, routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -25,17 +26,39 @@ export default async function CoursesPage({
   return (
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
       <div className={shell}>
-        <Reveal>
-          <h1 className={sectionTitle}>{t("catalog.title")}</h1>
-          <p className="mt-5 max-w-[52ch] leading-relaxed text-muted">{t("catalog.sub")}</p>
-        </Reveal>
+        {/* Same orchestrated entrance as the homepage hero, so arriving here
+            does not feel like landing on a different site. */}
+        <Stagger className="max-w-3xl">
+          <StaggerItem>
+            <p className={eyebrow}>
+              <span aria-hidden className="h-px w-8 bg-accent" />
+              {t("catalog.eyebrow")}
+            </p>
+          </StaggerItem>
+          <StaggerItem>
+            <h1 className={`${sectionTitle} mt-6`}>{t("catalog.title")}</h1>
+          </StaggerItem>
+          <StaggerItem>
+            <span aria-hidden className="mt-6 flex items-center gap-3">
+              <span className="h-px w-16 bg-accent/70" />
+              <span className="text-[8px] text-accent">◆</span>
+              <span className="h-px w-6 bg-accent/40" />
+            </span>
+          </StaggerItem>
+          <StaggerItem>
+            <p className="mt-6 max-w-[52ch] leading-[1.85] text-muted">{t("catalog.sub")}</p>
+          </StaggerItem>
+        </Stagger>
 
         <ul className="mt-16 border-t border-line">
           {courses.map((c, i) => (
             <Reveal as="li" key={c.slug} delay={i * 0.05}>
               <Link
                 href={`/courses/${c.slug}`}
-                className="group grid gap-6 border-b border-line py-8 transition-colors hover:bg-surface md:grid-cols-12 md:items-center md:gap-8 md:py-10"
+                // The row inhales on hover: it warms, gains a little inline
+                // space and the image drifts. Cheaper than a card, and it keeps
+                // the editorial list feeling of the page.
+                className="group grid gap-6 border-b border-line py-8 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-surface hover:ps-4 md:grid-cols-12 md:items-center md:gap-8 md:py-10"
               >
                 <div className="relative aspect-[16/9] w-full overflow-hidden md:col-span-4 md:aspect-[4/3]">
                   <Image
@@ -43,7 +66,7 @@ export default async function CoursesPage({
                     alt=""
                     fill
                     sizes="(max-width: 768px) 100vw, 30vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    className="object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
                   />
                 </div>
 

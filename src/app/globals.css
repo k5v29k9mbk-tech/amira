@@ -82,6 +82,32 @@ body {
   letter-spacing: 0;
 }
 
+/*
+  Section seam. Eight identical hairlines down the page read as a ruled pad,
+  not as luxury. This replaces the rule with a hairline that fades out at both
+  ends, so the join is felt at the centre of the composition and dissolves at
+  the margins. Sections that sit on a tinted band keep a plain edge instead,
+  since the tone change is already the seam.
+*/
+.seam {
+  position: relative;
+}
+
+.seam::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--line) 18%,
+    var(--line) 82%,
+    transparent
+  );
+}
+
 /* Arch: the poster's alcove behind the portrait. Top corners fully rounded. */
 .arch {
   border-radius: 50vw 50vw var(--radius-card) var(--radius-card);
