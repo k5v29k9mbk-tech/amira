@@ -77,7 +77,7 @@ export default async function LessonPage({
             {t(`catalog.${slug}.title`)}
           </Link>
 
-          <div className="mt-5 border border-line bg-black">
+          <div className="mt-5 overflow-hidden rounded-[2px] border border-line bg-black shadow-[0_22px_60px_color-mix(in_srgb,var(--accent)_12%,transparent)]">
             <LessonPlayer
               playbackId={lesson.playbackId}
               token={muxPlaybackToken(lesson.playbackId)}
@@ -123,7 +123,7 @@ export default async function LessonPage({
           </div>
 
           {percent === 100 && enrollment && (
-            <div className="mt-10 border border-accent bg-surface p-7">
+            <div className="mt-10 rounded-[2px] border border-accent bg-surface p-8 shadow-[0_18px_50px_color-mix(in_srgb,var(--accent)_14%,transparent)]">
               <h2 className="display text-xl text-bone">
                 {t("learn.finished")}
               </h2>
@@ -142,8 +142,11 @@ export default async function LessonPage({
               <span>{t("catalog.curriculum")}</span>
               <span className="text-bone">{percent}%</span>
             </div>
-            <div className="mt-2 h-px w-full bg-line">
-              <div className="h-px bg-accent" style={{ width: `${percent}%` }} />
+            <div className="mt-3 h-[3px] w-full overflow-hidden rounded-full bg-line">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-accent/70 to-accent-hi transition-[width] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={{ width: `${percent}%` }}
+              />
             </div>
 
             <div className="mt-7 max-h-[62vh] overflow-y-auto pe-1">
