@@ -15,8 +15,10 @@ export const label = "block text-[11px] font-medium tracking-[0.18em] text-muted
 
 export const shell = "mx-auto w-full max-w-[1400px] px-5 md:px-10";
 
+// Cormorant has a small x-height, so it needs roughly 12% more size than the
+// Didone did to read at the same visual weight.
 export const sectionTitle =
-  "display text-[2rem] leading-[1.1] text-bone sm:text-5xl md:text-[3.5rem]";
+  "display text-[2.25rem] leading-[1.12] text-bone sm:text-[3.25rem] md:text-[4rem]";
 
 /** Small caps label with a gold hairline. The poster's TECNICA · PRECISIONE rule. */
 export const eyebrow =

@@ -170,16 +170,29 @@ export default async function Home({
                 {t("hero.eyebrow")}
               </p>
             </Reveal>
+            {/* Two registers, the studio's own lockup: a light, widely tracked
+                line, then the script word carrying the emotion. The Arabic rule
+                in globals.css strips the tracking, where it would be wrong. */}
             <Reveal delay={0.08}>
-              <h1 className="display mt-7 text-[3rem] leading-[1.04] text-bone sm:text-6xl xl:text-[4.75rem]">
-                {t("hero.titleA")}{" "}
-                <span className="script inline-block pb-2 text-[1.15em] leading-[1.1] text-accent-hi">
+              <h1 className="mt-8">
+                <span className="display block text-xl leading-[1.35] font-light tracking-[0.26em] text-bone uppercase sm:text-2xl xl:text-[1.75rem]">
+                  {t("hero.titleA")}
+                </span>
+                <span className="script mt-1 block pb-3 text-[4rem] leading-[1.15] text-accent-hi sm:text-7xl xl:text-[6.5rem]">
                   {t("hero.titleB")}
                 </span>
               </h1>
             </Reveal>
-            <Reveal delay={0.16}>
-              <p className="mt-7 max-w-[46ch] text-base leading-relaxed text-muted md:text-lg">
+            {/* Gold rule with the poster's diamond. */}
+            <Reveal delay={0.14}>
+              <span aria-hidden className="mt-2 flex items-center gap-3">
+                <span className="h-px w-16 bg-accent/70" />
+                <span className="text-[8px] text-accent">◆</span>
+                <span className="h-px w-6 bg-accent/40" />
+              </span>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-8 max-w-[46ch] text-base leading-[1.85] text-muted md:text-lg">
                 {t("hero.sub")}
               </p>
             </Reveal>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Jost, Parisienne, Playfair_Display, Noto_Naskh_Arabic } from "next/font/google";
+import { Cormorant_Garamond, Jost, Parisienne, Noto_Naskh_Arabic } from "next/font/google";
 import { routing, isRtl, siteUrl } from "@/i18n/routing";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -11,7 +11,11 @@ import "../globals.css";
 
 // Didone display from the brand lockup, geometric sans for body, script for the
 // signature moments only. Arabic gets a Naskh face that sits with the serif.
-const display = Playfair_Display({
+// Cormorant rather than a Didone: finer strokes, longer extenders, a softer
+// axis. It carries the light weight the hero lockup needs, which Playfair
+// (400 minimum) could not.
+const display = Cormorant_Garamond({
+  weight: ["300", "400", "500", "600"],
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",

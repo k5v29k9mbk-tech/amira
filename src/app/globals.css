@@ -44,10 +44,10 @@
   --font-sans: var(--font-body), var(--font-arabic), ui-sans-serif, system-ui;
   --font-serif: var(--font-display), var(--font-arabic), ui-serif, Georgia, serif;
   --font-script: var(--font-script), var(--font-display), cursive;
-  /* Figures (prices, durations, percentages) are set in the Didone, not a
-     monospace. Overriding the built-in keeps `font-mono` as the one figure
-     class instead of renaming it across every page. */
-  --font-mono: var(--font-display), ui-serif, Georgia, serif;
+  /* Figures (prices, durations, percentages) sit in the sans. Cormorant's
+     numerals are too fine to hold at 11px. Overriding the built-in keeps
+     `font-mono` as the one figure class instead of renaming it everywhere. */
+  --font-mono: var(--font-body), ui-sans-serif, system-ui;
   --radius-card: 2px;
 }
 
@@ -62,11 +62,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Display type is the Didone from the brand lockup. Wide tracking on caps. */
+/* Display type. Cormorant runs small and light for its size, so headings take
+   a touch more weight and near-zero tracking rather than the Didone's negative. */
 .display {
   font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.015em;
+  font-weight: 500;
+  letter-spacing: -0.005em;
 }
 
 .lockup {
