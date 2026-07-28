@@ -16,6 +16,21 @@ export const btnPrimary = `${btnBase} bg-bone text-ink before:bg-accent-hi hover
 
 export const btnGhost = `${btnBase} border border-accent/60 text-bone before:bg-surface-2 hover:border-accent`;
 
+/**
+ * Hero-scale primary. Larger, and it carries a soft gold shadow that deepens
+ * and lifts on hover, so the one action on the first screen has weight the
+ * body buttons do not.
+ */
+export const btnHero = `${btnBase} bg-bone px-12 py-5 text-[13px] text-ink before:bg-accent-hi hover:text-accent-ink shadow-[0_14px_36px_-12px_color-mix(in_srgb,var(--accent)_60%,transparent)] hover:shadow-[0_22px_50px_-14px_color-mix(in_srgb,var(--accent)_75%,transparent)] hover:-translate-y-0.5 transition-[color,transform,box-shadow] duration-500`;
+
+/**
+ * Quiet companion to btnHero. A second filled button splits attention; this
+ * reads as an option rather than a competing choice, and draws its gold
+ * underline in on hover.
+ */
+export const linkQuiet =
+  "group/quiet inline-flex items-center gap-3 py-2 text-[12px] font-medium tracking-[0.16em] text-bone uppercase transition-colors duration-300 hover:text-accent-hi relative after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-[left] after:scale-x-0 after:bg-accent after:transition-transform after:duration-500 after:ease-[cubic-bezier(0.16,1,0.3,1)] hover:after:scale-x-100 rtl:after:origin-[right]";
+
 export const field =
   "w-full rounded-[2px] border border-line bg-surface px-4 py-3.5 text-sm text-bone placeholder:text-muted focus:border-accent focus:outline-none";
 
