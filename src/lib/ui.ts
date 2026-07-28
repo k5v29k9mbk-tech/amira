@@ -21,7 +21,10 @@ export const btnGhost = `${btnBase} border border-accent/60 text-bone before:bg-
  * and lifts on hover, so the one action on the first screen has weight the
  * body buttons do not.
  */
-export const btnHero = `${btnBase} bg-bone px-12 py-5 text-[13px] text-ink before:bg-accent-hi hover:text-accent-ink shadow-[0_14px_36px_-12px_color-mix(in_srgb,var(--accent)_60%,transparent)] hover:shadow-[0_22px_50px_-14px_color-mix(in_srgb,var(--accent)_75%,transparent)] hover:-translate-y-0.5 transition-[color,transform,box-shadow] duration-500`;
+export const btnHero = `${btnBase} w-full sm:w-auto bg-bone px-12 py-5 text-[13px] text-ink before:bg-accent-hi hover:text-accent-ink rounded-[3px] shadow-[0_14px_36px_-12px_color-mix(in_srgb,var(--accent)_60%,transparent)] hover:shadow-[0_24px_54px_-14px_color-mix(in_srgb,var(--accent)_80%,transparent)] hover:-translate-y-0.5 transition-[color,transform,box-shadow] duration-500 motion-safe:animate-[cta-breathe_6s_ease-in-out_infinite]`;
+
+/** Outline companion at hero scale. Quieter than btnHero, louder than a link. */
+export const btnHeroGhost = `${btnBase} w-full sm:w-auto rounded-[3px] border border-accent/55 px-11 py-5 text-[13px] text-bone before:bg-surface-2 hover:border-accent hover:-translate-y-0.5 transition-[color,transform,border-color] duration-500`;
 
 /**
  * Quiet companion to btnHero. A second filled button splits attention; this

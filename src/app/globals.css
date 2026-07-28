@@ -108,6 +108,22 @@ body {
   );
 }
 
+/*
+  Primary call to action. A breath, not a pulse: the shadow swells and settles
+  over six seconds, which catches the eye in peripheral vision without ever
+  reading as a blinking button. Transform is left alone so it never fights the
+  hover lift.
+*/
+@keyframes cta-breathe {
+  0%,
+  100% {
+    box-shadow: 0 14px 36px -12px color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+  50% {
+    box-shadow: 0 18px 44px -12px color-mix(in srgb, var(--accent) 78%, transparent);
+  }
+}
+
 /* Arch: the poster's alcove behind the portrait. Top corners fully rounded. */
 .arch {
   border-radius: 50vw 50vw var(--radius-card) var(--radius-card);
