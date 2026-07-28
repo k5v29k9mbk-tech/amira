@@ -151,7 +151,7 @@ export default async function CoursePage({
           {/* Purchase panel */}
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-28">
-              <div className="relative aspect-[4/3] w-full overflow-hidden">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-[2px]">
                 <Image
                   src={course.image}
                   alt=""
@@ -162,9 +162,9 @@ export default async function CoursePage({
                 />
               </div>
 
-              <div className="border border-t-0 border-line bg-surface p-7 md:p-8">
+              <div className="rounded-b-[2px] border border-t-0 border-line bg-surface p-8 shadow-[0_22px_60px_color-mix(in_srgb,var(--accent)_14%,transparent)] md:p-9">
                 <p className="text-sm text-muted">{t("catalog.from")}</p>
-                <p className="mt-2 display text-4xl text-bone">
+                <p className="display mt-2 text-5xl text-accent-hi">
                   {course.priceEur} EUR
                 </p>
                 <p className="mt-2 text-sm text-muted">{t("catalog.oneTime")}</p>
