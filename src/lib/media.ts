@@ -31,23 +31,27 @@ export type Media = {
 };
 
 /**
- * Homepage hero.
+ * Homepage hero portrait.
  *
- * TODO(academy): drop the abstract pigment/glass clip in here when it is
- * graded. `videoSrc` is the 16:9 cut, `mobileVideoSrc` the 9:16 one. Nothing
- * else has to change: the poster below stays as the fallback and the
- * reduced-motion frame.
+ * The studio frame rather than the salon one: Amira against a seamless beige
+ * sweep, so the arch holds a person and not a room. `amira-portrait-hero.jpg`
+ * is the graded master, derived from `amira-studio.jpg` at 1440x1920 with a
+ * light unsharp pass for clarity and a 4% lift in colour. The original is kept
+ * beside it; regenerate with the recipe in the README if the grade needs
+ * changing.
+ *
+ * The clip fields stay: dropping a `videoSrc` here plays it inside the arch,
+ * with this frame as the poster and the reduced-motion fallback.
  */
 export const heroMedia: Media = {
   videoSrc: null,
   mobileVideoSrc: null,
-  posterSrc: "/brand/amira-hero.jpg",
+  posterSrc: "/brand/amira-portrait-hero.jpg",
   alt: "",
-  position: "50% 28%",
-  mobilePosition: "58% 24%",
-  overlay: 34,
-  width: 2560,
-  height: 1429,
+  position: "50% 22%",
+  mobilePosition: "50% 18%",
+  width: 1440,
+  height: 1920,
 };
 
 /** Closing frame. The pigment macro is the one abstract clip the academy owns. */
@@ -61,10 +65,14 @@ export const closingMedia: Media = {
   height: 656,
 };
 
-/** Founder portrait. Real photography, never generated. */
+/**
+ * Founder portrait, homepage. The working frame: beige blazer, the academy
+ * behind her. Deliberately not the hero portrait, so the page does not print
+ * the same photograph twice. Real photography, never generated.
+ */
 export const founderMedia: Media = {
-  posterSrc: "/brand/amira-studio.jpg",
-  position: "52% 22%",
+  posterSrc: "/brand/amira-hero-portrait.jpg",
+  position: "46% 26%",
   width: 1200,
   height: 1600,
 };
