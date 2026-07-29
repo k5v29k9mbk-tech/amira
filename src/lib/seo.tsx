@@ -37,7 +37,8 @@ export function organizationSchema(locale: string, name: string, description: st
     legalName: legal.company,
     description,
     url: `${siteUrl}/${locale}`,
-    logo: `${siteUrl}/icon`,
+    // The real plate rather than the tab tile: search engines render this one.
+    logo: `${siteUrl}/brand/aura-logo-dark.png`,
     image: `${siteUrl}/brand/amira-hero.jpg`,
     email: studio.pec,
     vatID: legal.vat,

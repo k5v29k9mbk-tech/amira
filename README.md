@@ -44,9 +44,117 @@ clip can actually play. To turn any still into a clip, set `videoSrc` and leave
 the poster alone. `position` is a CSS `object-position`; phones use
 `mobilePosition` where the vertical crop needs a different focal point.
 
-The homepage hero is the one frame still waiting for its clip: `heroMedia.videoSrc`
-is `null` and the still carries the section until the graded abstract footage
-arrives.
+The homepage hero holds Amira in the arch. `heroMedia.videoSrc` is `null`, so
+the portrait carries it; setting a clip there plays it inside the same frame.
+
+## The logo
+
+The academy's own artwork: a serif A with a swoosh over AURA over ACADEMY, gold
+on black. The master is `public/brand/aura-logo-source.jpg` and it is never
+edited. Everything the site shows is derived from it by
+
+```bash
+python3 scripts/build-logo.py
+```
+
+which writes three inks and two crops, plus the two files Next serves as the
+tab icon and the iOS tile:
+
+| File | Where it is used |
+| --- | --- |
+| `aura-logo-gold.png` | footer, opening sequence |
+| `aura-logo-dark.png` | share card, schema.org `logo` |
+| `aura-logo-light.png` | spare, for photography and black grounds |
+| `aura-mark-{gold,dark,light}.png` | header, mobile menu, loading state |
+| `src/app/icon.png`, `apple-icon.png` | browser tab, home screen |
+
+**How the cutout works.** The master is gold on black, which is a premultiplied
+composite: on black, what a pixel shows is the ink times its coverage. So the
+alpha is arithmetic rather than a colour key. Coverage comes from the brightest
+channel, because gold is weak in blue and a luma reading would thin the strokes,
+and dividing each pixel by its own coverage recovers the ink with its metallic
+gradient intact. The flat inks reuse that same alpha with a hardened ramp, since
+one solid colour at the gradient's own coverage reads as a washed out letter.
+
+**Three rules worth keeping.** Gold only on near-black. Every piece of site
+chrome carries the monogram, never the plate: the lockup is stacked, and in a
+76px header its ACADEMY line would land four pixels tall. The full plate is
+reserved for the two moments that are only the brand, the opening film and the
+wait between routes.
+
+`src/components/Logo.tsx` is the only component that knows any of this. Callers
+pass a crop, an ink and a CSS height.
+
+If the academy sends new artwork, replace the master and re-run the script. Do
+not edit the derived files by hand; `npm test` checks that the whole set is
+present, and the point of the pipeline is that the versions cannot drift apart.
+
+The previous marks are in git history: the AB monogram from the salon wall, and
+the arch A drawn before this artwork arrived.
+
+## The opening sequence
+
+A full-screen film that plays once per browser session before the homepage, and
+fades into a page that is already rendered behind it.
+
+Three beats: the logo holds the black while the clip loads, the film plays, and
+then a beat before it runs out the film fades back to black and the logo returns
+to sit alone for about a second. Logo and black then dissolve together over a
+homepage already rising into place underneath. Skipping is immediate and does
+not play the ending; only the clip reaching its own end does.
+
+| Path | Role |
+| --- | --- |
+| `src/components/IntroVideo.tsx` | the overlay: playback, exits, skip control |
+| `src/lib/intro.ts` | the bootstrap script, the session key, `endIntro()` |
+| `src/lib/use-intro-ready.ts` | what entrance animations wait on |
+| `public/videos/` | the film itself, see the README in that folder |
+| `scripts/encode-intro.sh` | master file to webm + mp4 + poster |
+
+Mounted in `src/app/[locale]/layout.tsx`, as three things in this order: the
+inline bootstrap script, the black shield, then `<IntroVideo />`.
+
+The script is the part worth understanding. It runs during HTML parse, before
+anything paints, and decides whether the film is due: homepage only, not if
+`aura-intro-played` is in `sessionStorage`, never under
+`prefers-reduced-motion`, always if the URL carries `?intro=1`. It writes
+`<html data-intro-pending>`, which is what shows the shield and locks scrolling.
+Deciding this in React instead would flash a frame of the homepage before the
+overlay covered it.
+
+**Forcing a replay while working on it:** add `?intro=1` to the homepage URL.
+
+The overlay can never hold the site hostage. It stands down on `ended`, on a
+fade cue about a second before the end, on `error`, on a rejected autoplay
+promise, on Escape, on the skip control, if playback has not started within six
+seconds, or if a running clip freezes for three and a half. There is
+deliberately no hard cap on a healthy clip: that would truncate the film. The
+guards are against failure, not against length.
+
+`Stagger` and `HeroPortrait` call `useIntroReady()`, so the hero's entrance
+waits for the fade rather than playing out behind a black overlay.
+
+### The hero master
+
+`public/brand/amira-portrait-hero.jpg` is a graded derivative of
+`amira-studio.jpg`, not a separate shoot. Both stay in the repo. To regenerate
+after a retouch, or to soften the grade:
+
+```python
+from PIL import Image, ImageEnhance, ImageFilter
+im = Image.open("public/brand/amira-studio.jpg").convert("RGB")
+im = im.resize((1440, 1920), Image.LANCZOS)          # headroom for 2x displays
+im = im.filter(ImageFilter.UnsharpMask(16, 14, 6))   # clarity, not edges
+im = im.filter(ImageFilter.UnsharpMask(1.6, 46, 4))  # detail, gentle
+im = ImageEnhance.Color(im).enhance(1.04)            # skin warmth, barely
+im = ImageEnhance.Contrast(im).enhance(1.03)
+im.save("public/brand/amira-portrait-hero.jpg", quality=92, subsampling=0,
+        optimize=True, progressive=True)
+```
+
+The two unsharp passes are deliberately mild: the first is a large-radius local
+contrast lift, the second a small-radius pass for lash and fabric detail. Push
+either much further and it stops reading as photography.
 
 ## The business model this site describes
 
@@ -115,7 +223,8 @@ These are the only things blocking a launch-ready site:
 - The Facebook page URL
 - Student testimonials, with consent
 - More before/after pairs (there is one)
-- The abstract hero clip, plus its 9:16 cut for phones
+- An abstract clip for the hero arch, if they want the frame to move (optional:
+  the portrait carries the section as it is)
 - Full-resolution exports of the course photography (several stills are 230-700px
   wide, which is thin for a panel that fills two thirds of the screen)
 

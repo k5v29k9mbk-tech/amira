@@ -373,5 +373,8 @@
   "closing": {
     "title": "Votre prochaine technique commence par une conversation.",
     "sub": "Dites-nous où vous en êtes dans votre parcours et quelle discipline vous voulez maîtriser."
+  },
+  "intro": {
+    "skip": "Passer l'intro"
   }
 }

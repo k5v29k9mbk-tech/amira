@@ -11,6 +11,7 @@ import {
 } from "@/lib/studio";
 import { shell } from "@/lib/ui";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { Logo } from "./Logo";
 
 /**
  * Near black, so the page ends on the same ground the closing frame sits on.
@@ -28,8 +29,11 @@ export async function Footer() {
     <footer className="no-print bg-night text-ivory">
       <div className={`${shell} grid gap-14 py-20 md:grid-cols-12 md:gap-10 md:py-24`}>
         <div className="md:col-span-4">
-          <p className="display text-[19px] tracking-[0.26em] uppercase">Aura Academy</p>
-          <p className="mt-6 max-w-[30ch] text-[15px] leading-relaxed text-mute-dark">
+          {/* The monogram here too. The full plate is reserved for the two
+              moments that are only the brand: the opening film and the wait
+              between routes. */}
+          <Logo variant="mark" tone="gold" className="h-14 w-auto" sizes="120px" />
+          <p className="mt-8 max-w-[30ch] text-[15px] leading-relaxed text-mute-dark">
             {t("footer.tagline")}
           </p>
         </div>

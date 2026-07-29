@@ -99,7 +99,7 @@ export default async function Home({
           <Parallax distance={12} className="lg:col-span-7">
             <div className="relative aspect-[4/5] w-full">
               <MediaFrame
-                media={{ ...founderMedia, alt: t("instructor.portrait") }}
+                media={{ ...founderMedia, alt: t("about.portrait") }}
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="absolute inset-0 h-full w-full"
               />

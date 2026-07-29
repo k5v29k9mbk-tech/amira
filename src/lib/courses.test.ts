@@ -14,6 +14,7 @@ import {
   founderMedia,
   galleryFrames,
   heroMedia,
+  introMedia,
   methodMedia,
 } from "./media.ts";
 import { academy, addressLine, brand, legal, studio } from "./studio.ts";
@@ -42,6 +43,7 @@ const PAGE_KEYS = [
   "nav.language",
   "nav.menu",
   "nav.close",
+  "intro.skip",
   "hero.eyebrow",
   "hero.titleA",
   "hero.titleB",
@@ -225,6 +227,33 @@ test("every poster and clip the pages point at exists on disk", () => {
       if (src) assert.ok(existsSync(`public${src}`), `missing asset: ${src}`);
     }
   }
+});
+
+test("the opening sequence ships whole, or not at all", () => {
+  // The overlay stands down cleanly when the film is missing, so an empty
+  // public/videos is a valid state. What must never ship is half a set: an mp4
+  // with no poster means a first frame of black, an mp4 with no webm means
+  // every visitor downloads the larger file.
+  const has = (src: string) => existsSync(`public${src}`);
+  if (has(introMedia.mp4Src)) {
+    assert.ok(has(introMedia.webmSrc), `missing ${introMedia.webmSrc}`);
+    assert.ok(has(introMedia.posterSrc), `missing ${introMedia.posterSrc}`);
+  }
+});
+
+test("every cut of the logo the pages ask for exists", () => {
+  // All of these are derived from one supplied master by scripts/build-logo.py.
+  // If the academy sends new artwork, re-run it rather than editing a file
+  // here: the three inks and two crops have to stay the same drawing.
+  const cuts = ["logo", "mark"].flatMap((crop) =>
+    ["gold", "dark", "light"].map((ink) => `public/brand/aura-${crop}-${ink}.png`),
+  );
+  for (const file of [...cuts, "public/brand/aura-logo-source.jpg"]) {
+    assert.ok(existsSync(file), `missing ${file}`);
+  }
+  // Next serves these two by filename. Without them there is no tab icon.
+  assert.ok(existsSync("src/app/icon.png"), "missing src/app/icon.png");
+  assert.ok(existsSync("src/app/apple-icon.png"), "missing src/app/apple-icon.png");
 });
 
 test("every method chapter has a frame", () => {

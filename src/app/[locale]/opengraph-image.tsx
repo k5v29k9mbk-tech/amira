@@ -1,13 +1,23 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { getTranslations } from "next-intl/server";
-import { markDataUri } from "@/lib/mark";
 import { academy, brand } from "@/lib/studio";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = brand.full;
 
-// ponytail: generated at build time from the same tokens as the site, so the
+/**
+ * The card ground is ivory, so it takes the espresso cut of the logo rather
+ * than the gold one. `next/og` cannot fetch a relative path, so the plate is
+ * inlined as a data URI, read once per server process.
+ */
+const LOGO = `data:image/png;base64,${readFileSync(
+  join(process.cwd(), "public/brand/aura-logo-dark.png"),
+).toString("base64")}`;
+
+// ponytail: generated at build time from the same assets as the site, so the
 // share card never drifts from the brand. No design file to keep in sync.
 export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -28,15 +38,11 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
           fontFamily: "serif",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+        {/* The lockup already sets the name twice. Printing it again beside it
+            would be the same words three times on one card. */}
+        <div style={{ display: "flex" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={markDataUri("#98715a")} width={57} height={60} alt="" />
-          <div style={{ display: "flex", letterSpacing: 12, fontSize: 22 }}>
-            AURA ACADEMY
-          </div>
-          <div style={{ display: "flex", letterSpacing: 8, fontSize: 13, color: "#6e5d52" }}>
-            DI AMIRA BECHINI
-          </div>
+          <img src={LOGO} width={135} height={160} alt="" />
         </div>
 
         <div style={{ display: "flex", fontSize: 58, lineHeight: 1.1 }}>{t("tagline")}</div>

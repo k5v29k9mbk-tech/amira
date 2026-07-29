@@ -6,6 +6,8 @@ import { Cormorant_Garamond, Jost, Noto_Naskh_Arabic } from "next/font/google";
 import { routing, isRtl, siteUrl } from "@/i18n/routing";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { IntroVideo } from "@/components/IntroVideo";
+import { INTRO_BOOTSTRAP } from "@/lib/intro";
 import { JsonLd, organizationSchema } from "@/lib/seo";
 import "../globals.css";
 
@@ -38,6 +40,7 @@ const arabic = Noto_Naskh_Arabic({
 const CLIENT_NAMESPACES = [
   "nav", // Header, LocaleSwitcher
   "hero", // Header booking action
+  "intro", // IntroVideo skip control
   "manifesto", // Manifesto
   "catalog", // CourseSelector
   "method", // MethodStory
@@ -105,7 +108,19 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="grain font-sans antialiased">
+        {/*
+          Opening sequence, in two halves. This script runs during HTML parse
+          and decides, before anything paints, whether the film is due: it
+          checks the route, the session flag, prefers-reduced-motion and the
+          ?intro=1 override, and marks <html data-intro-pending>. The shield
+          below is what that attribute shows, so a first visit paints black
+          rather than flashing the homepage. IntroVideo mounts on top of it.
+        */}
+        <script dangerouslySetInnerHTML={{ __html: INTRO_BOOTSTRAP }} />
+        <div className="intro-shield" aria-hidden />
+
         <NextIntlClientProvider messages={clientMessages}>
+          <IntroVideo />
           <a
             href="#main"
             className="label sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[70] focus:bg-espresso focus:px-4 focus:py-3 focus:text-ivory"

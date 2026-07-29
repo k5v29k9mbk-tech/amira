@@ -5,17 +5,18 @@ import { useTranslations } from "next-intl";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { Logo } from "./Logo";
 import { brand } from "@/lib/studio";
 import { shell } from "@/lib/ui";
 
 /**
  * Header.
  *
- * Over the homepage hero it is nothing but type on the photograph: no bar, no
- * pill, no blur. It takes a warm ivory ground and a hairline only once the hero
- * is behind the visitor, which is also the moment the type has to change
- * colour to stay legible. Every other route starts solid, since there is no
- * full-bleed media under it.
+ * Over the homepage hero it is type on the ivory field and nothing else: no
+ * bar, no pill, no blur. It takes a ground and a hairline only once the hero is
+ * behind the visitor. The type stays espresso throughout, because the hero is
+ * a light composition rather than a dark photograph, so nothing has to change
+ * colour mid-transition. Every other route starts solid.
  *
  * The phone menu is a full-screen ivory field with the navigation set at
  * display size, not a drawer.
@@ -67,16 +68,12 @@ export function Header() {
       }`}
     >
       <div
-        className={`${shell} flex h-[68px] items-center justify-between gap-8 md:h-[76px] ${
-          solid ? "text-espresso" : "text-ivory"
-        }`}
+        className={`${shell} flex h-[68px] items-center justify-between gap-8 text-espresso md:h-[76px]`}
       >
-        <Link
-          href="/"
-          aria-label={brand.full}
-          className="display text-[17px] tracking-[0.26em] uppercase md:text-[19px]"
-        >
-          Aura
+        {/* The monogram, not the full plate: the supplied lockup is stacked,
+            and a 76px bar would set its ACADEMY line four pixels tall. */}
+        <Link href="/" aria-label={brand.full}>
+          <Logo variant="mark" tone="dark" priority className="h-9 w-auto md:h-10" sizes="80px" />
         </Link>
 
         <nav aria-label={brand.short} className="hidden items-center gap-9 lg:flex">
@@ -95,14 +92,10 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-6 lg:flex">
-          <LocaleSwitcher tone={solid ? "dark" : "light"} />
+          <LocaleSwitcher tone="dark" />
           <Link
             href="/contact"
-            className={`label border px-6 py-3 transition-colors duration-500 ease-[var(--ease-aura)] ${
-              solid
-                ? "border-espresso bg-espresso text-ivory hover:bg-bronze-ink hover:border-bronze-ink"
-                : "border-ivory/70 text-ivory hover:bg-ivory hover:text-espresso"
-            }`}
+            className="label border border-espresso bg-espresso px-6 py-3 text-ivory transition-colors duration-500 ease-[var(--ease-aura)] hover:border-bronze-ink hover:bg-bronze-ink"
           >
             {cta("secondary")}
           </Link>
@@ -128,7 +121,7 @@ export function Header() {
             className="fixed inset-0 z-50 bg-ivory text-espresso lg:hidden"
           >
             <div className={`${shell} flex h-[68px] items-center justify-between`}>
-              <span className="display text-[17px] tracking-[0.26em] uppercase">Aura</span>
+              <Logo variant="mark" tone="dark" className="h-9 w-auto" sizes="80px" />
               <button
                 type="button"
                 autoFocus

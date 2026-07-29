@@ -31,6 +31,25 @@ export type Media = {
 };
 
 /**
+ * The opening sequence.
+ *
+ * Drop the graded promotional film at these three paths and it plays once per
+ * browser session over the homepage. WebM is offered first and MP4 is the
+ * fallback; the poster is what a visitor sees for the frame before playback
+ * begins, and is also what a blocked autoplay leaves on screen for the instant
+ * before the overlay stands down.
+ *
+ * `scripts/encode-intro.sh` produces all three from one master file. Until they
+ * exist the overlay finds no playable source, exits immediately, and the site
+ * behaves as though there were no intro at all.
+ */
+export const introMedia = {
+  webmSrc: "/videos/aura-intro.webm",
+  mp4Src: "/videos/aura-intro.mp4",
+  posterSrc: "/videos/aura-intro-poster.webp",
+} as const;
+
+/**
  * Homepage hero portrait.
  *
  * The studio frame rather than the salon one: Amira against a seamless beige

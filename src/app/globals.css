@@ -127,6 +127,32 @@ body {
 }
 
 /*
+  Opening sequence.
+
+  The shield is a plain black plane rendered in the first HTML chunk and shown
+  only when the bootstrap script has decided the intro is due. It exists so the
+  first paint of a first visit is already black: the React overlay mounts a few
+  milliseconds later, on top of it, and the visitor never sees the homepage
+  flash past before the film starts. The overlay drops the attribute the moment
+  it begins fading, which takes the shield with it and gives scrolling back.
+*/
+.intro-shield {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: var(--aura-black);
+}
+
+[data-intro-pending] .intro-shield {
+  display: block;
+}
+
+[data-intro-pending] body {
+  overflow: hidden;
+}
+
+/*
   The arch. The alcove shape from the academy's own room, and the one place on
   the site that carries a large radius: the top is a half round, the base keeps
   the 4px the rest of the system uses. Applied to the hero portrait and to the

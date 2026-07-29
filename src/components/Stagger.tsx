@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
+import { useIntroReady } from "@/lib/use-intro-ready";
 
 /**
  * Orchestrated entrance for above-the-fold content.
@@ -10,6 +11,10 @@ import type { ReactNode } from "react";
  * seconds, where the sequence matters. Children animate on mount in order,
  * driven by staggerChildren rather than hand-tuned delay props, so adding or
  * reordering a line does not require retiming everything after it.
+ *
+ * When the opening film is playing, the sequence waits for it: it would
+ * otherwise run to completion behind a black overlay, and the homepage would
+ * arrive already finished.
  */
 const container = (stagger: number, delay: number) => ({
   hidden: {},
@@ -38,12 +43,13 @@ export function Stagger({
   delay?: number;
 }) {
   const reduce = useReducedMotion();
+  const ready = useIntroReady();
   return (
     <motion.div
       className={className}
       variants={container(stagger, delay)}
       initial={reduce ? false : "hidden"}
-      animate="show"
+      animate={ready ? "show" : "hidden"}
     >
       {children}
     </motion.div>
