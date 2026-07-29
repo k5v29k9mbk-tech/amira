@@ -45,6 +45,38 @@ const PAGE_KEYS = [
   "proof.groups",
   "proof.certificate",
   "proof.support",
+  "about.meta.title",
+  "about.meta.description",
+  "about.eyebrow",
+  "about.titleA",
+  "about.titleB",
+  "about.lede",
+  "about.portrait",
+  "about.readStory",
+  "about.story.eyebrow",
+  "about.story.title",
+  "about.story.role",
+  "about.story.imageAlt",
+  "about.story.p1",
+  "about.story.p2",
+  "about.story.p3",
+  "about.story.p4",
+  "about.story.signature",
+  "about.different.eyebrow",
+  "about.different.title",
+  "about.different.sub",
+  "about.beyond.eyebrow",
+  "about.beyond.title",
+  "about.beyond.sub",
+  "about.mission.eyebrow",
+  "about.mission.quote",
+  "about.mission.body",
+  "about.vision.eyebrow",
+  "about.vision.title",
+  "about.vision.body",
+  "about.vision.closing",
+  "about.cta.title",
+  "about.cta.body",
   "instructor.eyebrow",
   "instructor.title",
   "instructor.role",
@@ -111,6 +143,19 @@ const PAGE_KEYS = [
 ] as const;
 
 const VALUES = ["professionalism", "quality", "innovation", "ethics", "growth"] as const;
+const ABOUT_FACTS = ["years", "students", "reach"] as const;
+const ABOUT_DIFFERENT = ["experience", "small", "support"] as const;
+const ABOUT_BEYOND = [
+  "mindset",
+  "marketing",
+  "clients",
+  "consultation",
+  "photography",
+  "communication",
+  "branding",
+  "growth",
+] as const;
+const ABOUT_VISION = ["quality", "professionalism", "innovation", "growth"] as const;
 const REASONS = [
   "groups",
   "levels",
@@ -192,6 +237,13 @@ test("every page string is translated in all four languages", () => {
   const keys = [
     ...PAGE_KEYS,
     ...VALUES.map((k) => `instructor.values.${k}`),
+    ...ABOUT_FACTS.flatMap((k) => [`about.facts.${k}.value`, `about.facts.${k}.label`]),
+    ...ABOUT_DIFFERENT.flatMap((k) => [
+      `about.different.items.${k}.title`,
+      `about.different.items.${k}.body`,
+    ]),
+    ...ABOUT_BEYOND.map((k) => `about.beyond.items.${k}`),
+    ...ABOUT_VISION.map((k) => `about.vision.points.${k}`),
     ...REASONS.flatMap((k) => [`why.items.${k}.title`, `why.items.${k}.body`]),
     ...STEPS.flatMap((k) => [`method.steps.${k}.title`, `method.steps.${k}.body`]),
     ...JOURNEY.flatMap((k) => [`journey.steps.${k}.title`, `journey.steps.${k}.body`]),

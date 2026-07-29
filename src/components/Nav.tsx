@@ -30,7 +30,7 @@ export function Nav() {
    */
   useEffect(() => {
     if (pathname !== "/") return;
-    const ids = ["about", "method", "students", "gallery", "faq", "contact"];
+    const ids = ["method", "students", "gallery", "faq", "contact"];
     const nodes = ids.map((id) => document.getElementById(id)).filter(Boolean) as Element[];
     if (!nodes.length) return;
 
@@ -66,7 +66,7 @@ export function Nav() {
   const links = [
     { href: "/", label: t("home") },
     { href: "/courses", label: t("courses") },
-    { href: "/#about", label: t("about") },
+    { href: "/about", label: t("about") },
     { href: "/#method", label: t("method") },
     { href: "/#students", label: t("students") },
     { href: "/#gallery", label: t("gallery") },

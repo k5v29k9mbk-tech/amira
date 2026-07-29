@@ -288,6 +288,16 @@ export default async function Home({
                   </li>
                 ))}
               </ul>
+              {/* The founder page carries the story, the numbers and the
+                  business curriculum. This section is the summary of it. */}
+              <Link href="/about" className={`${btnGhost} mt-8`}>
+                {t("about.readStory")}
+                <ArrowRight
+                  size={16}
+                  weight="light"
+                  className="flip-x transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/btn:translate-x-1.5"
+                />
+              </Link>
             </Reveal>
           </div>
         </div>

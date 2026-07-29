@@ -87,6 +87,26 @@ export function courseListSchema(locale: string, names: string[], description: s
   };
 }
 
+/**
+ * The founder as an entity of her own, emitted on the about page. Search
+ * engines link it to the organisation payload through `worksFor`, so the
+ * academy and the person it is built on resolve as one knowledge graph.
+ */
+export function personSchema(locale: string, jobTitle: string, description: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${siteUrl}/#founder`,
+    name: brand.founder,
+    jobTitle,
+    description,
+    url: `${siteUrl}/${locale}/about`,
+    image: `${siteUrl}/brand/amira-studio.jpg`,
+    worksFor: { "@id": `${siteUrl}/#organization` },
+    sameAs: [instagramLink, tiktokLink],
+  };
+}
+
 export function faqSchema(items: { q: string; a: string }[]) {
   return {
     "@context": "https://schema.org",

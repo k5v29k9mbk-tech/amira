@@ -31,6 +31,89 @@
     "certificate": "Certificate on completion",
     "support": "Post-course support"
   },
+  "about": {
+    "meta": {
+      "title": "About us",
+      "description": "Aura Academy was founded by Amira Bechini, CEO of Amira Beauty Suite: over 8 years in the beauty industry and more than 150 students trained. Professional training in permanent makeup and lash and brow lamination throughout Italy, headquarters in Tortoreto (TE)."
+    },
+    "eyebrow": "About Aura Academy",
+    "titleA": "We teach from inside the profession,",
+    "titleB": "not from a textbook.",
+    "lede": "Aura Academy was founded by Amira Bechini — CEO of Amira Beauty Suite and a permanent makeup artist with more than eight years in the industry. Every technique taught here is one she performs on real clients, in her own institute, every day.",
+    "portrait": "Amira Bechini in her beauty institute",
+    "readStory": "Read her story",
+    "facts": {
+      "years": { "value": "8+", "label": "Years in the beauty industry" },
+      "students": { "value": "150+", "label": "Students trained" },
+      "reach": { "value": "Tortoreto (TE)", "label": "Headquarters, training throughout Italy" }
+    },
+    "story": {
+      "eyebrow": "The founder",
+      "title": "From the treatment room to the classroom",
+      "role": "Founder of Aura Academy · CEO of Amira Beauty Suite",
+      "imageAlt": "Amira Bechini at work during a course",
+      "p1": "My name is Amira Bechini. I run Amira Beauty Suite, a beauty institute specialised in advanced aesthetic treatments, and I founded Aura Academy to teach what I practise: permanent makeup and lash and brow lamination.",
+      "p2": "In more than eight years in the beauty industry I have trained over 150 students, and along the way I built a method of my own — one that holds technical excellence, hands-on practice and entrepreneurial vision together. My passion for this work began with a simple desire: to help people feel confident, and to create real career opportunities for women who want to turn that passion into a profession.",
+      "p3": "I have never stopped studying — international masterclasses, the latest PMU techniques, continuous investment in my own education. Working every day inside my institute taught me the rest: not only the technical side of the profession, but the real needs of clients and of the beauty market.",
+      "p4": "That is why Aura Academy exists. It is the school I wanted when I started: personalised guidance, practical education, continuous support, and the confidence to build a career that lasts. Today we train students throughout Italy, from our headquarters in Tortoreto (TE).",
+      "signature": "Amira Bechini"
+    },
+    "different": {
+      "eyebrow": "What makes us different",
+      "title": "Built on the work, not on the theory",
+      "sub": "Three deliberate choices sit behind every course we run.",
+      "items": {
+        "experience": {
+          "title": "Real industry experience",
+          "body": "Aura Academy grew out of daily practice inside a working beauty institute. What you learn here has already been tested on real clients."
+        },
+        "small": {
+          "title": "Small classes, by design",
+          "body": "Places are intentionally limited. A small group is what makes individual attention and personalised coaching possible, rather than something we promise and cannot give."
+        },
+        "support": {
+          "title": "Before, during and after",
+          "body": "Every student is supported throughout: continuous mentoring, practical feedback, correction of their work, and professional guidance once the course has ended."
+        }
+      }
+    },
+    "beyond": {
+      "eyebrow": "Beyond the technique",
+      "title": "A technique alone is not a career.",
+      "sub": "A successful PMU artist has to master far more than the treatment itself. Alongside the technical training, we teach the eight things that turn a skill into a business.",
+      "items": {
+        "mindset": "Business mindset",
+        "marketing": "Marketing strategies",
+        "clients": "Client management",
+        "consultation": "Professional consultations",
+        "photography": "Beauty photography",
+        "communication": "Communication",
+        "branding": "Personal branding",
+        "growth": "Business growth"
+      }
+    },
+    "mission": {
+      "eyebrow": "Our mission",
+      "quote": "The certificate is not the point. The career is.",
+      "body": "At Aura Academy we don't simply teach beauty treatments. We educate future professionals, combining technical excellence, practical experience, an entrepreneurial mindset and continuous support, so that every student leaves confident and genuinely prepared for today's beauty industry."
+    },
+    "vision": {
+      "eyebrow": "Our vision",
+      "title": "An international reference for PMU education",
+      "body": "We are building Aura Academy into an international point of reference for professional education in permanent makeup and beauty lamination — growing across Italy and internationally through a network of certified trainers and a community of professionals who hold the same standards.",
+      "closing": "Our goal is modern, practical, market-oriented education — and more women able to build an independent and successful future.",
+      "points": {
+        "quality": "Quality",
+        "professionalism": "Professionalism",
+        "innovation": "Innovation",
+        "growth": "Continuous growth"
+      }
+    },
+    "cta": {
+      "title": "Your career starts with one conversation.",
+      "body": "Tell us which course you're interested in and we'll come back to you with dates, duration and everything you need to know."
+    }
+  },
   "instructor": {
     "eyebrow": "About us",
     "title": "Amira Bechini",
