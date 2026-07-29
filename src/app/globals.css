@@ -1,54 +1,61 @@
 @import "tailwindcss";
 
 /*
-  Amira Bechini design tokens.
+  AURA ACADEMY design tokens.
 
-  Palette lock: warm ivory ground, espresso ink, one champagne-gold accent at two
-  weights. Gold is taken from the brand poster, not chosen as a default; --accent
-  is decorative only (rules, fills, icon rings) and --accent-hi is the darkened
-  text-safe weight, because champagne gold on ivory is ~2.4:1 and fails AA.
+  Editorial system, not a UI kit. Two grounds (warm ivory, near black), one
+  metal (bronze) used at hairline weight, and a lot of air. Nothing here is a
+  card, a pill or a glow.
 
-  Shape lock: 2px on cards, fields and buttons; full circle on icon badges;
-  arch (.arch) on portrait imagery. Nothing else gets a radius.
-
-  Theme: nude / beige, locked. There is deliberately no prefers-color-scheme
-  dark variant: the studio's identity is the warm ground, and flipping to
-  espresso on a visitor's system setting made the brand unrecognisable.
-  `color-scheme: light` also stops the browser darkening form controls.
+  Contrast: the raw brand bronze (#98715A) is 3.7:1 on ivory, which clears AA
+  for large text and UI but not for 11px labels, so text-weight variants are
+  defined separately for each ground and are the only ones type ever uses.
+  --aura-taupe is likewise a *state*, not a text colour: it is where manifesto
+  words start before they resolve to espresso.
 */
 :root {
-  /* Sampled off the studio's own poster mockup, not eyeballed. */
-  --ink: #ece1d3; /* page ground, warm nude */
-  --surface: #fbf6f0; /* cards and panels, lifts off the ground */
-  --surface-2: #e9dac6; /* tinted section bands */
-  --line: #ded0ba;
-  --bone: #16130f; /* text and the dark band, warm near-black */
-  --muted: #6b5f53; /* 4.8:1 on the ground */
-  --accent: #b8934e; /* decorative gold only: rules, fills, icon rings */
-  --accent-hi: #795a26; /* text-safe gold, 4.6:1 on the tinted band */
-  --accent-ink: #f7f1e9;
-  --glow: rgba(184, 151, 79, 0.16);
+  --aura-ivory: #f2eee7;
+  --aura-paper: #faf8f3;
+  --aura-espresso: #211916;
+  --aura-bronze: #98715a;
+  --aura-taupe: #b6a79c;
+  --aura-charcoal: #171513;
+  --aura-black: #0b0a09;
+  --aura-white: #ffffff;
+
+  /* Text-safe derivatives. */
+  --aura-mute: #6e5d52; /* 5.6:1 on ivory */
+  --aura-mute-dark: #a2938a; /* 6.2:1 on black */
+  --aura-bronze-ink: #7a5643; /* 5.1:1 on ivory */
+  --aura-bronze-hi: #b98a6e; /* 6.2:1 on black */
+
+  --aura-hair: color-mix(in srgb, var(--aura-espresso) 15%, transparent);
+  --aura-hair-dark: color-mix(in srgb, var(--aura-white) 16%, transparent);
+
   color-scheme: light;
 }
 
 @theme inline {
-  --color-ink: var(--ink);
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
-  --color-line: var(--line);
-  --color-bone: var(--bone);
-  --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --color-accent-hi: var(--accent-hi);
-  --color-accent-ink: var(--accent-ink);
+  --color-ivory: var(--aura-ivory);
+  --color-paper: var(--aura-paper);
+  --color-espresso: var(--aura-espresso);
+  --color-bronze: var(--aura-bronze);
+  --color-bronze-ink: var(--aura-bronze-ink);
+  --color-bronze-hi: var(--aura-bronze-hi);
+  --color-taupe: var(--aura-taupe);
+  --color-charcoal: var(--aura-charcoal);
+  --color-night: var(--aura-black);
+  --color-mute: var(--aura-mute);
+  --color-mute-dark: var(--aura-mute-dark);
+  --color-hair: var(--aura-hair);
+  --color-hair-dark: var(--aura-hair-dark);
+
   --font-sans: var(--font-body), var(--font-arabic), ui-sans-serif, system-ui;
   --font-serif: var(--font-display), var(--font-arabic), ui-serif, Georgia, serif;
-  --font-script: var(--font-script), var(--font-display), cursive;
-  /* Figures (prices, durations, percentages) sit in the sans. Cormorant's
-     numerals are too fine to hold at 11px. Overriding the built-in keeps
-     `font-mono` as the one figure class instead of renaming it everywhere. */
+  /* Figures sit in the sans: Cormorant's numerals are too fine at label size. */
   --font-mono: var(--font-body), ui-sans-serif, system-ui;
-  --radius-card: 2px;
+
+  --ease-aura: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
@@ -56,108 +63,121 @@ html {
 }
 
 body {
-  background: var(--ink);
-  color: var(--bone);
+  background: var(--aura-ivory);
+  color: var(--aura-espresso);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Display type. Cormorant runs small and light for its size, so headings take
-   a touch more weight and near-zero tracking rather than the Didone's negative. */
+/*
+  Display type. Cormorant runs light and small for its size, so headlines take
+  a touch more weight, tight leading and near-zero tracking. Everything
+  oversized on this site uses this class; nothing else gets a serif.
+*/
 .display {
   font-family: var(--font-serif);
-  font-weight: 500;
-  letter-spacing: -0.005em;
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
 }
 
-.lockup {
-  font-family: var(--font-serif);
-  letter-spacing: 0.34em;
+/* Small caps label. The only place tracking goes wide. */
+.label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 
-.script {
-  font-family: var(--font-script);
-  font-weight: 400;
-  letter-spacing: 0;
+@media (min-width: 768px) {
+  .label {
+    font-size: 0.75rem;
+  }
 }
 
 /*
-  Section seam. Eight identical hairlines down the page read as a ruled pad,
-  not as luxury. This replaces the rule with a hairline that fades out at both
-  ends, so the join is felt at the centre of the composition and dissolves at
-  the margins. Sections that sit on a tinted band keep a plain edge instead,
-  since the tone change is already the seam.
+  Crop control. Every image and video on the site carries its focal point as a
+  custom property rather than a class, because the value comes from data
+  (lib/media.ts) and Tailwind cannot compile a class it never sees in source.
+  Phones read --obj-m and fall back to the desktop crop.
 */
-.seam {
-  position: relative;
+.media-fit {
+  object-fit: cover;
+  object-position: var(--obj-m, var(--obj, 50% 50%));
 }
 
-.seam::before {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  top: 0;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--line) 18%,
-    var(--line) 82%,
-    transparent
-  );
+@media (min-width: 768px) {
+  .media-fit {
+    object-position: var(--obj, 50% 50%);
+  }
 }
 
-/*
-  Primary call to action. A breath, not a pulse: the shadow swells and settles
-  over six seconds, which catches the eye in peripheral vision without ever
-  reading as a blinking button. Transform is left alone so it never fights the
-  hover lift.
-*/
-@keyframes cta-breathe {
-  0%,
+/* A closed course panel is ~70px wide, so its title turns on its side. Only
+   from lg, and never in Arabic: rotated Naskh is unreadable, so those titles
+   stay horizontal and clip against the panel edge. */
+@media (min-width: 1024px) {
+  .vtext-lg {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+}
+
+[lang="ar"] .vtext-lg {
+  writing-mode: horizontal-tb;
+}
+
+/* Media inside an intentional crop. Slow settle from 1.03 to 1 on entry. */
+@keyframes aura-settle {
+  from {
+    transform: scale(1.03);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.settle {
+  animation: aura-settle 1400ms var(--ease-aura) both;
+}
+
+/* Scroll cue. Fills from the top, empties from the top, never bounces. */
+@keyframes aura-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
   100% {
-    box-shadow: 0 14px 36px -12px color-mix(in srgb, var(--accent) 60%, transparent);
-  }
-  50% {
-    box-shadow: 0 18px 44px -12px color-mix(in srgb, var(--accent) 78%, transparent);
+    transform: scaleY(0);
+    transform-origin: bottom;
   }
 }
 
-/* Arch: the poster's alcove behind the portrait. Top corners fully rounded. */
-.arch {
-  border-radius: 50vw 50vw var(--radius-card) var(--radius-card);
-  overflow: hidden;
-}
-
-/* Warm alcove light behind the hero portrait. Decorative, never over text. */
-.alcove::before {
-  content: "";
-  position: absolute;
-  inset: -12% -8% 0;
-  z-index: -1;
-  background: radial-gradient(60% 55% at 50% 32%, var(--glow), transparent 72%);
-  pointer-events: none;
-}
-
-:where(a, button, input, textarea, select, summary):focus-visible {
-  outline: 2px solid var(--accent-hi);
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid currentColor;
   outline-offset: 3px;
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: var(--aura-espresso);
+  color: var(--aura-ivory);
 }
 
-/* Fixed grain overlay. Never on a scrolling container (GPU repaint cost). */
+/* Fixed grain. Never on a scrolling container (GPU repaint cost). */
 .grain::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.028;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -165,14 +185,15 @@ body {
   transform: scaleX(-1);
 }
 
-/* Arabic has no Didone equivalent, so the Naskh face carries the display role. */
-[lang="ar"] .display,
-[lang="ar"] .script {
+/* Arabic has no Didone equivalent, so the Naskh face carries the display role
+   and neither the negative tracking nor the 0.98 leading suits it. */
+[lang="ar"] .display {
   letter-spacing: 0;
+  line-height: 1.18;
 }
 
-[lang="ar"] .lockup {
-  letter-spacing: 0.1em;
+[lang="ar"] .label {
+  letter-spacing: 0.08em;
 }
 
 @media (prefers-reduced-motion: reduce) {

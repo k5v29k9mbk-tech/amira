@@ -35,7 +35,7 @@ export function WelcomeVideo({
         playbackId={playbackId}
         autoPlay
         streamType="on-demand"
-        accentColor="#b8974f"
+        accentColor="#98715a"
         metadata={{ video_title: alt }}
         className="aspect-video w-full"
       />
@@ -53,15 +53,13 @@ export function WelcomeVideo({
     >
       <span
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(to_top,color-mix(in_srgb,var(--ink)_78%,transparent),transparent_62%)]"
+        className="absolute inset-0 bg-gradient-to-t from-night/75 to-transparent"
       />
-      <span className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-        <span className="flex h-16 w-16 items-center justify-center rounded-full border border-accent bg-ink/40 text-accent-hi backdrop-blur-sm transition-transform duration-300 group-hover:scale-105">
-          <Play size={22} weight="fill" className="flip-x" />
+      <span className="absolute inset-0 flex flex-col items-center justify-center gap-5 text-ivory">
+        <span className="flex h-16 w-16 items-center justify-center border border-ivory/60 transition-colors duration-500 group-hover:bg-ivory group-hover:text-espresso">
+          <Play size={20} weight="light" className="flip-x" />
         </span>
-        <span className="text-[11px] font-medium tracking-[0.2em] text-bone uppercase">
-          {playbackId ? t("play") : t("videoSoon")}
-        </span>
+        <span className="label">{playbackId ? t("play") : t("videoSoon")}</span>
       </span>
     </button>
   );

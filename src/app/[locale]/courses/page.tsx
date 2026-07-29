@@ -1,11 +1,20 @@
-import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { courses, included } from "@/lib/courses";
+import { beforeAfterPairs } from "@/lib/studio";
+import { BeforeAfter } from "@/components/BeforeAfter";
+import { MediaFrame } from "@/components/MediaFrame";
 import { Reveal } from "@/components/Reveal";
-import { btnPrimary, eyebrow, sectionTitle, shell } from "@/lib/ui";
 import { Stagger, StaggerItem } from "@/components/Stagger";
+import {
+  btnSolid,
+  displayLarge,
+  displaySection,
+  linkRule,
+  sectionPad,
+  shell,
+} from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
 import { JsonLd, courseListSchema } from "@/lib/seo";
 
@@ -16,13 +25,14 @@ export function generateStaticParams() {
 export const metadata = { alternates: altLanguages("/courses") };
 
 /**
- * The academy publishes six course names and one shared set of conditions that
- * applies to all of them — duration, price, level, language, class size, kit,
- * certificate and venue are the same statement for every course.
+ * One page for six courses.
  *
- * So there is one courses page rather than six near-identical ones. Six pages
- * differing only in their title would be thin duplicate content, and filling
- * them out would mean inventing syllabuses the academy has not supplied.
+ * The academy publishes six names, a one-line description of each discipline
+ * and one shared set of conditions that applies to all of them: duration,
+ * price, level, language, class size, kit, certificate and venue are the same
+ * statement whichever course you choose. Six near-identical pages would be thin
+ * duplicate content, and filling them out would mean inventing syllabuses that
+ * do not exist, so the conditions are stated once, below the list.
  */
 const detailKeys = [
   "duration",
@@ -45,8 +55,7 @@ export default async function CoursesPage({
   const t = await getTranslations();
 
   return (
-    <div className="pt-32 pb-24 md:pt-40 md:pb-32">
-      {/* Course rich results: one entry per course, provider and language. */}
+    <>
       <JsonLd
         data={courseListSchema(
           locale,
@@ -55,120 +64,126 @@ export default async function CoursesPage({
         )}
       />
 
-      <div className={shell}>
-        {/* Same orchestrated entrance as the homepage hero, so arriving here
-            does not feel like landing on a different site. */}
-        <Stagger className="max-w-3xl">
-          <StaggerItem>
-            <p className={eyebrow}>
-              <span aria-hidden className="h-px w-8 bg-accent" />
-              {t("catalog.eyebrow")}
-            </p>
-          </StaggerItem>
-          <StaggerItem>
-            <h1 className={`${sectionTitle} mt-6`}>{t("catalog.title")}</h1>
-          </StaggerItem>
-          <StaggerItem>
-            <span aria-hidden className="mt-6 flex items-center gap-3">
-              <span className="h-px w-16 bg-accent/70" />
-              <span className="text-[8px] text-accent">◆</span>
-              <span className="h-px w-6 bg-accent/40" />
-            </span>
-          </StaggerItem>
-          <StaggerItem>
-            <p className="mt-6 max-w-[58ch] leading-[1.85] text-muted">{t("catalog.sub")}</p>
-          </StaggerItem>
-        </Stagger>
+      <section className="bg-ivory pt-[7.5rem] pb-16 md:pt-40 md:pb-24">
+        <div className={shell}>
+          <Stagger className="max-w-[24ch]">
+            <StaggerItem>
+              <p className="label text-bronze-ink">{t("catalog.eyebrow")}</p>
+            </StaggerItem>
+            <StaggerItem>
+              <h1 className={`${displaySection} mt-8`}>{t("catalog.title")}</h1>
+            </StaggerItem>
+          </Stagger>
+          <p className="mt-10 max-w-[56ch] text-[17px] leading-relaxed text-mute">
+            {t("catalog.sub")}
+          </p>
+        </div>
+      </section>
 
-        <ul className="mt-16 border-t border-line">
-          {courses.map((c, i) => (
-            <Reveal as="li" key={c.slug} delay={i * 0.05} id={c.slug}>
-              <Link
-                href="/#contact"
-                // The row inhales on hover: it warms, gains a little inline
-                // space and the image drifts. Cheaper than a card, and it keeps
-                // the editorial list feeling of the page.
-                className="group grid gap-6 border-b border-line py-8 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-surface hover:ps-4 md:grid-cols-12 md:items-center md:gap-8 md:py-10"
-              >
-                <div className="relative aspect-[16/9] w-full overflow-hidden md:col-span-4 md:aspect-[4/3]">
-                  <Image
-                    src={c.image}
-                    alt=""
-                    fill
-                    sizes="(max-width: 768px) 100vw, 30vw"
-                    className="object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
-                  />
-                </div>
+      {/* The catalogue as a list of rows rather than a grid of cards: the media
+          leads, the name carries the row, the conditions are stated once. */}
+      <section className="bg-ivory">
+        <ol className={`${shell} border-t border-hair`}>
+          {courses.map((course, i) => (
+            <Reveal
+              as="li"
+              key={course.slug}
+              id={course.slug}
+              className="grid scroll-mt-28 gap-6 border-b border-hair py-10 md:grid-cols-12 md:gap-10 md:py-14"
+            >
+              <div className="relative aspect-[16/10] w-full md:col-span-5 md:aspect-[4/3]">
+                <MediaFrame
+                  media={course.media}
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="absolute inset-0 h-full w-full"
+                />
+              </div>
 
-                <div className="md:col-span-6">
-                  <h2 className="display text-2xl text-bone md:text-3xl">
-                    {t(`catalog.courses.${c.slug}`)}
-                  </h2>
-                  {/* No per-course blurb: the academy publishes one shared set
-                      of conditions, stated once beneath the list. Repeating it
-                      on all six rows read as filler. */}
-                  <p className="mt-3 text-sm text-muted">
-                    {t("catalog.details.level.value")} · {t("catalog.details.language.value")}
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-between gap-4 md:col-span-2 md:flex-col md:items-end md:justify-center md:gap-3">
-                  <span className="text-sm text-bone">{t("catalog.priceOnRequest")}</span>
-                  <span className="inline-flex items-center gap-2 text-sm text-accent-hi">
-                    {t("catalog.cta")}
-                    <ArrowRight size={15} weight="light" className="flip-x" />
-                  </span>
-                </div>
-              </Link>
+              <div className="md:col-span-6 md:col-start-7 md:self-center">
+                <span className="label font-mono text-bronze-ink">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h2 className={`${displayLarge} mt-4`}>{t(`catalog.courses.${course.slug}`)}</h2>
+                <p className="mt-5 max-w-[48ch] text-[16px] leading-relaxed text-mute">
+                  {t(`catalog.blurbs.${course.slug}`)}
+                </p>
+                <p className="label mt-6 text-mute">
+                  {t("catalog.details.level.value")} · {t("catalog.details.language.value")}
+                </p>
+                <Link href="/contact" className={`${linkRule} mt-6`}>
+                  {t("catalog.cta")}
+                  <ArrowRight size={14} weight="light" className="flip-x" />
+                </Link>
+              </div>
             </Reveal>
           ))}
-        </ul>
+        </ol>
+      </section>
 
-        {/* The shared conditions, stated once. Every value here is a direct
-            quotation of the academy's own course information. */}
-        <div className="mt-20 grid gap-12 lg:grid-cols-12 lg:gap-16">
+      {/* The shared conditions. Every value is a direct quotation of the
+          academy's own course information. */}
+      <section className={`${sectionPad} bg-paper`}>
+        <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <Reveal className="lg:col-span-4">
-            <h2 className="display text-3xl leading-tight text-bone md:text-[2.5rem]">
-              {t("catalog.detailsTitle")}
-            </h2>
-            <p className="mt-6 text-sm leading-relaxed text-muted">{t("catalog.payments")}</p>
-            <Link href="/#contact" className={`${btnPrimary} mt-8`}>
-              {t("catalog.cta")}
-              <ArrowRight size={16} weight="light" className="flip-x" />
+            <h2 className={`${displaySection} max-w-[12ch]`}>{t("catalog.detailsTitle")}</h2>
+            <p className="mt-8 text-[15px] text-mute">{t("catalog.payments")}</p>
+            <Link href="/contact" className={`${btnSolid} mt-10`}>
+              {t("hero.secondary")}
             </Link>
           </Reveal>
 
           <Reveal delay={0.08} className="lg:col-span-7 lg:col-start-6">
-            <dl className="grid border-t border-line">
+            <dl className="border-t border-hair">
               {detailKeys.map((k) => (
                 <div
                   key={k}
-                  className="grid gap-1 border-b border-line py-5 sm:grid-cols-5 sm:gap-6"
+                  className="grid gap-1 border-b border-hair py-5 sm:grid-cols-5 sm:gap-6"
                 >
-                  <dt className="text-[11px] font-medium tracking-[0.16em] text-muted uppercase sm:col-span-2 sm:pt-1">
+                  <dt className="label text-mute sm:col-span-2 sm:pt-1">
                     {t(`catalog.details.${k}.label`)}
                   </dt>
-                  <dd className="leading-relaxed text-bone sm:col-span-3">
+                  <dd className="text-[16px] leading-relaxed sm:col-span-3">
                     {t(`catalog.details.${k}.value`)}
                   </dd>
                 </div>
               ))}
             </dl>
 
-            <p className="mt-8 text-[11px] font-medium tracking-[0.16em] text-muted uppercase">
-              {t("catalog.includes")}
-            </p>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+            <p className="label mt-10 text-mute">{t("catalog.includes")}</p>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
               {included.map((k) => (
-                <li key={k} className="flex items-baseline gap-4 text-bone">
-                  <span aria-hidden className="h-px w-5 shrink-0 bg-accent" />
+                <li key={k} className="flex items-baseline gap-4 text-[16px]">
+                  <span aria-hidden className="h-px w-5 shrink-0 bg-bronze" />
                   {t(`catalog.included.${k}`)}
                 </li>
               ))}
             </ul>
           </Reveal>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* The work itself. Title and the comparison, no caption invented on the
+          academy's behalf. */}
+      {beforeAfterPairs.length > 0 && (
+        <section className={`${sectionPad} bg-ivory`}>
+          <div className={shell}>
+            <Reveal>
+              <h2 className={`${displaySection} max-w-[12ch]`}>{t("success.title")}</h2>
+            </Reveal>
+            <div
+              className={`mt-14 grid gap-10 ${
+                beforeAfterPairs.length === 1 ? "max-w-3xl" : "sm:grid-cols-2 lg:grid-cols-3"
+              }`}
+            >
+              {beforeAfterPairs.map((pair, i) => (
+                <Reveal key={pair.label} delay={(i % 3) * 0.06}>
+                  <BeforeAfter pair={pair} />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 }

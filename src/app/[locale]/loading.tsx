@@ -10,7 +10,7 @@ export default function Loading() {
     <div className="flex min-h-[70dvh] items-center justify-center">
       <div className="flex flex-col items-center gap-6">
         <Monogram className="animate-pulse text-4xl" />
-        <span aria-hidden className="h-px w-16 bg-accent/40" />
+        <span aria-hidden className="h-px w-16 bg-bronze/40" />
         <span className="sr-only">Loading</span>
       </div>
     </div>

@@ -22,19 +22,19 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#f3eae0",
-          color: "#1b1613",
+          background: "#f2eee7",
+          color: "#211916",
           padding: 76,
           fontFamily: "serif",
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={markDataUri("#7e5f2b")} width={57} height={60} alt="" />
+          <img src={markDataUri("#98715a")} width={57} height={60} alt="" />
           <div style={{ display: "flex", letterSpacing: 12, fontSize: 22 }}>
             AURA ACADEMY
           </div>
-          <div style={{ display: "flex", letterSpacing: 8, fontSize: 13, color: "#6e6157" }}>
+          <div style={{ display: "flex", letterSpacing: 8, fontSize: 13, color: "#6e5d52" }}>
             DI AMIRA BECHINI
           </div>
         </div>
@@ -42,8 +42,8 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
         <div style={{ display: "flex", fontSize: 58, lineHeight: 1.1 }}>{t("tagline")}</div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
-          <div style={{ display: "flex", height: 3, width: 140, background: "#b8974f" }} />
-          <div style={{ display: "flex", letterSpacing: 6, fontSize: 15, color: "#6e6157" }}>
+          <div style={{ display: "flex", height: 3, width: 140, background: "#98715a" }} />
+          <div style={{ display: "flex", letterSpacing: 6, fontSize: 15, color: "#6e5d52" }}>
             {`${academy.city.toUpperCase()} (${academy.province})`}
           </div>
         </div>

@@ -15,13 +15,38 @@ npm test                     # content + translation-completeness checks, no fra
 
 | Path | Purpose |
 | --- | --- |
-| `src/app/[locale]/page.tsx` | Homepage: hero, about, conditions, method, catalogue, booking steps, gallery, before/after, FAQ, contact |
-| `src/app/[locale]/courses/page.tsx` | The six courses and the shared conditions that apply to all of them |
+| `src/app/[locale]/page.tsx` | Homepage: hero, manifesto, course selector, method, founder, gallery, voices, six questions, closing frame |
+| `src/app/[locale]/courses/page.tsx` | The six courses, the shared conditions, before/after |
+| `src/app/[locale]/about/page.tsx` | Amira, the values, the business curriculum, the welcome message |
+| `src/app/[locale]/faq/page.tsx` | All eleven questions, and the FAQ structured data |
+| `src/app/[locale]/contact/page.tsx` | Enquiry form, channels, venue, the booking sequence |
 | `src/lib/studio.ts` | Every official fact: brand names, address, legal data, social handles |
-| `src/lib/courses.ts` | The six course slugs and their images |
-| `src/lib/seo.tsx` | schema.org payloads: organisation, course list, FAQ |
+| `src/lib/courses.ts` | The six course slugs and their media |
+| `src/lib/media.ts` | All art direction: posters, clips, crops, overlays, gallery composition |
+| `src/lib/ui.ts` | The shared class strings (buttons, links, display sizes, page shell) |
+| `src/lib/seo.tsx` | schema.org payloads: organisation, course list, person, FAQ |
 | `messages/` | All copy, in `en` `it` `fr` `ar` |
 | `public/brand/` | Academy photography, cut from the supplied artwork |
+
+## Swapping a video or an image
+
+Nothing on the pages hardcodes a file path. Every frame is a `Media` object in
+`src/lib/media.ts`:
+
+```ts
+{ videoSrc, mobileVideoSrc, posterSrc, alt, position, mobilePosition, overlay }
+```
+
+`MediaFrame` renders the poster as a normal `next/image` (so it is the LCP
+candidate and reserves its space) and layers the clip over it only when the
+frame is near the viewport, the reader has not asked for reduced motion, and the
+clip can actually play. To turn any still into a clip, set `videoSrc` and leave
+the poster alone. `position` is a CSS `object-position`; phones use
+`mobilePosition` where the vertical crop needs a different focal point.
+
+The homepage hero is the one frame still waiting for its clip: `heroMedia.videoSrc`
+is `null` and the still carries the section until the graded abstract footage
+arrives.
 
 ## The business model this site describes
 
@@ -63,10 +88,13 @@ There are no invented statistics, credentials, prices or reviews.
 - **No prices anywhere.** The academy quotes per course. `npm test` fails if a
   euro figure, a refund promise or a "lifetime access" claim reappears in any
   language.
-- **No per-course descriptions.** The academy supplied six names and one shared
-  set of conditions. Those conditions are stated once on the courses page rather
-  than padded into six near-identical pages — which is also why there are no
-  `/courses/[slug]` routes.
+- **One line per course, and it describes the technique.** `catalog.blurbs.*`
+  says what microblading or lip blush *is*, in neutral terms. It makes no claim
+  about the academy's version of it, because the academy supplied no per-course
+  syllabus, price or duration. The shared conditions are stated once on the
+  courses page rather than padded into six near-identical pages, which is also
+  why there are no `/courses/[slug]` routes. Have the academy sign off the six
+  lines before launch.
 - **Testimonials render only when real ones exist.** `voices.items` ships empty
   in every language and the whole section stays out of the page until quotes are
   added. Add them with the student's consent, using their real name and role.
@@ -87,6 +115,9 @@ These are the only things blocking a launch-ready site:
 - The Facebook page URL
 - Student testimonials, with consent
 - More before/after pairs (there is one)
+- The abstract hero clip, plus its 9:16 cut for phones
+- Full-resolution exports of the course photography (several stills are 230-700px
+  wide, which is thin for a panel that fills two thirds of the screen)
 
 ## Tests
 
@@ -98,10 +129,23 @@ has crept back in, and that every referenced image exists on disk.
 
 ## Design system
 
-One accent (champagne gold at two weights), one radius (2px, circles on icon
-badges only), locked to the nude/beige ground — there is no dark variant, by
-design. Tokens live at the top of `src/app/globals.css`. Motion is `motion/react`
-only, gated behind `prefers-reduced-motion`.
+Editorial, not a UI kit. Two grounds (warm ivory `#F2EEE7` and near black
+`#0B0A09`), espresso type, and one metal: bronze, used at hairline weight for
+section numbers, rules and small labels. Raw bronze is 3.7:1 on ivory, so type
+never uses it directly; `--aura-bronze-ink` and `--aura-bronze-hi` are the
+text-safe weights per ground and both clear AA.
+
+Everything is square. The only radius on the site is 2px on form fields. No
+shadows, no glass, no gradient type, no filled progress tracks: hierarchy comes
+from type size, ground colour and one-pixel hairlines.
+
+Two faces: Cormorant Garamond for anything oversized, Jost for interface text,
+Noto Naskh Arabic for `ar`. Tokens live at the top of `src/app/globals.css`,
+shared class strings in `src/lib/ui.ts`.
+
+Motion is `motion/react` only, and every animation is either a reveal, a 10-20px
+parallax, a media cross-fade or a panel expansion. All of it is gated behind
+`prefers-reduced-motion`, which also stops video from loading at all.
 
 ## Known gaps
 

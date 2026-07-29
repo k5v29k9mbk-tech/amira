@@ -2,11 +2,20 @@
 //
 // The site's whole risk is content drift: a claim on the page that the academy
 // never made, or a translation that quietly says something the Italian does
-// not. These tests guard exactly that.
+// not. These tests guard exactly that, plus the media the redesign made
+// data-driven: every poster and clip the pages point at has to exist on disk.
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
 import { test } from "node:test";
-import { courses, included, resultStills } from "./courses.ts";
+import { courses, included, chapters } from "./courses.ts";
+import type { Media } from "./media.ts";
+import {
+  closingMedia,
+  founderMedia,
+  galleryFrames,
+  heroMedia,
+  methodMedia,
+} from "./media.ts";
 import { academy, addressLine, brand, legal, studio } from "./studio.ts";
 
 import en from "../../messages/en.json" with { type: "json" };
@@ -28,23 +37,25 @@ const PAGE_KEYS = [
   "nav.courses",
   "nav.about",
   "nav.method",
-  "nav.students",
-  "nav.gallery",
   "nav.faq",
   "nav.contact",
   "nav.language",
   "nav.menu",
+  "nav.close",
   "hero.eyebrow",
   "hero.titleA",
   "hero.titleB",
   "hero.sub",
   "hero.primary",
   "hero.secondary",
-  "hero.portrait",
-  "proof.location",
-  "proof.groups",
-  "proof.certificate",
-  "proof.support",
+  "hero.meetAmira",
+  "sections.courses",
+  "sections.method",
+  "sections.amira",
+  "sections.inside",
+  "manifesto.one",
+  "manifesto.two",
+  "manifesto.note",
   "about.meta.title",
   "about.meta.description",
   "about.eyebrow",
@@ -64,7 +75,6 @@ const PAGE_KEYS = [
   "about.story.signature",
   "about.different.eyebrow",
   "about.different.title",
-  "about.different.sub",
   "about.beyond.eyebrow",
   "about.beyond.title",
   "about.beyond.sub",
@@ -77,23 +87,20 @@ const PAGE_KEYS = [
   "about.vision.closing",
   "about.cta.title",
   "about.cta.body",
-  "instructor.eyebrow",
   "instructor.title",
+  "instructor.headline",
   "instructor.role",
   "instructor.mission",
   "instructor.body",
   "instructor.valuesLabel",
   "instructor.portrait",
-  "why.eyebrow",
-  "why.title",
-  "why.sub",
   "method.title",
   "method.sub",
-  "method.clips.mapping",
-  "method.clips.pigment",
   "catalog.eyebrow",
   "catalog.title",
   "catalog.sub",
+  "catalog.selectorTitle",
+  "catalog.viewCourse",
   "catalog.detailsTitle",
   "catalog.includes",
   "catalog.priceOnRequest",
@@ -104,12 +111,18 @@ const PAGE_KEYS = [
   "journey.sub",
   "students.title",
   "students.sub",
-  "results.title",
-  "results.sub",
   "voices.title",
+  "voices.prev",
+  "voices.next",
   "faq.title",
-  "faq.eyebrow",
   "faq.more",
+  "faq.viewAll",
+  "faq.meta.title",
+  "faq.meta.description",
+  "closing.title",
+  "closing.sub",
+  "contact.meta.title",
+  "contact.meta.description",
   "contact.title",
   "contact.sub",
   "contact.venue",
@@ -136,6 +149,8 @@ const PAGE_KEYS = [
   "footer.vat",
   "footer.rea",
   "footer.rights",
+  "mentor.play",
+  "mentor.videoSoon",
   "mentor.videoAlt",
   "success.title",
   "success.before",
@@ -156,15 +171,6 @@ const ABOUT_BEYOND = [
   "growth",
 ] as const;
 const ABOUT_VISION = ["quality", "professionalism", "innovation", "growth"] as const;
-const REASONS = [
-  "groups",
-  "levels",
-  "language",
-  "kit",
-  "certificate",
-  "venue",
-] as const;
-const STEPS = ["theory", "practice", "model", "support"] as const;
 const JOURNEY = ["contact", "deposit", "training", "certificate", "support"] as const;
 const DETAILS = [
   "duration",
@@ -178,6 +184,7 @@ const DETAILS = [
 ] as const;
 const FAQ = [
   "courses",
+  "beginners",
   "duration",
   "price",
   "includes",
@@ -203,9 +210,26 @@ test("the catalogue is the six courses the academy published", () => {
   );
 });
 
-test("every course image exists on disk", () => {
-  for (const src of [...courses.map((c) => c.image), ...resultStills]) {
-    assert.ok(existsSync(`public${src}`), `missing image: ${src}`);
+test("every poster and clip the pages point at exists on disk", () => {
+  const media: Media[] = [
+    heroMedia,
+    closingMedia,
+    founderMedia,
+    ...Object.values(methodMedia),
+    ...galleryFrames,
+    ...courses.map((c) => c.media),
+  ];
+
+  for (const m of media) {
+    for (const src of [m.posterSrc, m.videoSrc, m.mobileVideoSrc]) {
+      if (src) assert.ok(existsSync(`public${src}`), `missing asset: ${src}`);
+    }
+  }
+});
+
+test("every method chapter has a frame", () => {
+  for (const key of chapters) {
+    assert.ok(methodMedia[key], `no media for chapter ${key}`);
   }
 });
 
@@ -244,13 +268,15 @@ test("every page string is translated in all four languages", () => {
     ]),
     ...ABOUT_BEYOND.map((k) => `about.beyond.items.${k}`),
     ...ABOUT_VISION.map((k) => `about.vision.points.${k}`),
-    ...REASONS.flatMap((k) => [`why.items.${k}.title`, `why.items.${k}.body`]),
-    ...STEPS.flatMap((k) => [`method.steps.${k}.title`, `method.steps.${k}.body`]),
+    ...chapters.flatMap((k) => [`method.steps.${k}.title`, `method.steps.${k}.body`]),
     ...JOURNEY.flatMap((k) => [`journey.steps.${k}.title`, `journey.steps.${k}.body`]),
     ...DETAILS.flatMap((k) => [`catalog.details.${k}.label`, `catalog.details.${k}.value`]),
     ...FAQ.flatMap((k) => [`faq.items.${k}.q`, `faq.items.${k}.a`]),
     ...included.map((k) => `catalog.included.${k}`),
-    ...courses.map((c) => `catalog.courses.${c.slug}`),
+    ...courses.flatMap((c) => [
+      `catalog.courses.${c.slug}`,
+      `catalog.blurbs.${c.slug}`,
+    ]),
   ];
 
   for (const [locale, messages] of Object.entries(LOCALES)) {
@@ -262,9 +288,10 @@ test("every page string is translated in all four languages", () => {
   }
 });
 
-test("no orphaned strings survived the rewrite", () => {
-  // Namespaces that belonged to the online-course build. If one comes back it
-  // means dead copy is shipping to the browser again.
+test("no orphaned strings survived the rewrites", () => {
+  // Namespaces that belonged to the online-course build, plus the ones the
+  // redesign folded into a single source. If one comes back it means dead copy
+  // is shipping to the browser again.
   const gone = [
     "syllabus",
     "stats",
@@ -276,6 +303,9 @@ test("no orphaned strings survived the rewrite", () => {
     "learn",
     "certificate",
     "checkout",
+    "proof",
+    "results",
+    "why",
   ];
   for (const [locale, messages] of Object.entries(LOCALES)) {
     for (const ns of gone) {
@@ -306,5 +336,13 @@ test("testimonials render nothing until real ones are supplied", () => {
   for (const [locale, messages] of Object.entries(LOCALES)) {
     const items = at(messages, "voices.items");
     assert.deepEqual(items, {}, `${locale} has unverified testimonials`);
+  }
+});
+
+test("no em dash survived into the copy", () => {
+  // The house rule is a comma or a colon. An em dash in a headline is the one
+  // punctuation mark that reads as machine-written.
+  for (const [locale, messages] of Object.entries(LOCALES)) {
+    assert.equal(/[—–]/.test(JSON.stringify(messages)), false, `${locale} carries an em dash`);
   }
 });

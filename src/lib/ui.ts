@@ -1,55 +1,53 @@
-// Shared class strings.
-// Shape lock: 2px on cards, fields and buttons. Circles only on icon badges.
-// Colour lock: one champagne gold. The primary button is ink-on-ivory and
-// inverts with the theme, which keeps it at ~15:1 in both modes.
 /**
- * Buttons carry a gold panel that wipes across on hover, drawn on a ::before at
- * -z-10 so it passes behind the label rather than repainting it. `isolate`
- * keeps that stacking context local. The wipe starts from the inline start, so
- * it runs right-to-left in Arabic.
+ * Shared class strings.
+ *
+ * Shape lock: everything is square. Radius appears nowhere except 2px on form
+ * fields, where a hard corner reads as a broken input rather than as a
+ * decision. No shadows, no glows, no filled tracks: hierarchy is carried by
+ * type size, ground colour and one-pixel hairlines.
+ *
+ * Colour lock: espresso on ivory, ivory on near-black, bronze at hairline
+ * weight. The two bronze variants are the text-safe ones per ground; the raw
+ * brand bronze is only ever a rule or a border.
  */
+
+/** 1600px content field with the page gutter. */
+export const shell = "mx-auto w-full max-w-[1600px] px-5 md:px-8 lg:px-12";
+
+/** Section rhythm: 80px on phones, 128 on tablet, 176 on desktop. */
+export const sectionPad = "py-20 md:py-32 lg:py-44";
+
+export const displayHero = "display text-[clamp(2.75rem,8vw,9rem)]";
+export const displaySection = "display text-[clamp(2.25rem,6vw,7rem)]";
+export const displayManifesto = "display text-[clamp(2.25rem,7vw,8rem)]";
+export const displayLarge = "display text-[clamp(1.75rem,3.4vw,3.25rem)]";
+
 const btnBase =
-  "group/btn relative isolate inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-[2px] whitespace-nowrap px-9 py-4 text-[12px] font-medium tracking-[0.16em] uppercase transition-colors duration-500 active:translate-y-px disabled:opacity-50 " +
-  "before:absolute before:inset-0 before:-z-10 before:origin-[left] before:scale-x-0 before:transition-transform before:duration-[600ms] before:ease-[cubic-bezier(0.16,1,0.3,1)] hover:before:scale-x-100 rtl:before:origin-[right]";
+  "label inline-flex items-center justify-center gap-3 whitespace-nowrap px-10 py-4 transition-colors duration-500 ease-[var(--ease-aura)] active:translate-y-px disabled:opacity-50";
 
-export const btnPrimary = `${btnBase} bg-bone text-ink before:bg-accent-hi hover:text-accent-ink`;
+/** Primary action on a light ground. */
+export const btnSolid = `${btnBase} bg-espresso text-ivory hover:bg-bronze-ink`;
 
-export const btnGhost = `${btnBase} border border-accent/60 text-bone before:bg-surface-2 hover:border-accent`;
+/** Primary action on a dark ground. */
+export const btnSolidLight = `${btnBase} bg-ivory text-espresso hover:bg-bronze-hi`;
 
-/**
- * Hero-scale primary. Larger, and it carries a soft gold shadow that deepens
- * and lifts on hover, so the one action on the first screen has weight the
- * body buttons do not.
- */
-export const btnHero = `${btnBase} w-full sm:w-auto bg-bone px-12 py-5 text-[13px] text-ink before:bg-accent-hi hover:text-accent-ink rounded-[3px] shadow-[0_14px_36px_-12px_color-mix(in_srgb,var(--accent)_60%,transparent)] hover:shadow-[0_24px_54px_-14px_color-mix(in_srgb,var(--accent)_80%,transparent)] hover:-translate-y-0.5 transition-[color,transform,box-shadow] duration-500 motion-safe:animate-[cta-breathe_6s_ease-in-out_infinite]`;
+/** Secondary action, light ground. */
+export const btnLine = `${btnBase} border border-espresso/35 text-espresso hover:border-espresso hover:bg-espresso hover:text-ivory`;
 
-/** Outline companion at hero scale. Quieter than btnHero, louder than a link. */
-export const btnHeroGhost = `${btnBase} w-full sm:w-auto rounded-[3px] border border-accent/55 px-11 py-5 text-[13px] text-bone before:bg-surface-2 hover:border-accent hover:-translate-y-0.5 transition-[color,transform,border-color] duration-500`;
+/** Secondary action, dark ground. */
+export const btnLineLight = `${btnBase} border border-white/30 text-ivory hover:border-ivory hover:bg-ivory hover:text-espresso`;
 
 /**
- * Quiet companion to btnHero. A second filled button splits attention; this
- * reads as an option rather than a competing choice, and draws its gold
- * underline in on hover.
+ * Text link with a rule that draws in from the inline start. It is the only
+ * hover decoration on the site, so it looks the same everywhere it appears.
  */
-export const linkQuiet =
-  "group/quiet inline-flex items-center gap-3 py-2 text-[12px] font-medium tracking-[0.16em] text-bone uppercase transition-colors duration-300 hover:text-accent-hi relative after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-[left] after:scale-x-0 after:bg-accent after:transition-transform after:duration-500 after:ease-[cubic-bezier(0.16,1,0.3,1)] hover:after:scale-x-100 rtl:after:origin-[right]";
+export const linkRule =
+  "label group/link relative inline-flex items-center gap-3 py-1 text-espresso transition-colors duration-300 hover:text-bronze-ink after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-[left] after:scale-x-0 after:bg-bronze after:transition-transform after:duration-500 after:ease-[var(--ease-aura)] hover:after:scale-x-100 rtl:after:origin-[right]";
+
+export const linkRuleLight =
+  "label group/link relative inline-flex items-center gap-3 py-1 text-ivory transition-colors duration-300 hover:text-bronze-hi after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-[left] after:scale-x-0 after:bg-bronze-hi after:transition-transform after:duration-500 after:ease-[var(--ease-aura)] hover:after:scale-x-100 rtl:after:origin-[right]";
 
 export const field =
-  "w-full rounded-[2px] border border-line bg-surface px-4 py-3.5 text-sm text-bone placeholder:text-muted focus:border-accent focus:outline-none";
+  "w-full rounded-[2px] border border-hair bg-transparent px-4 py-3.5 text-[15px] text-espresso placeholder:text-mute focus:border-espresso focus:outline-none";
 
-export const label = "block text-[11px] font-medium tracking-[0.18em] text-muted uppercase";
-
-export const shell = "mx-auto w-full max-w-[1400px] px-5 md:px-10";
-
-// Cormorant has a small x-height, so it needs roughly 12% more size than the
-// Didone did to read at the same visual weight.
-export const sectionTitle =
-  "display text-[2.25rem] leading-[1.12] text-bone sm:text-[3.25rem] md:text-[4rem]";
-
-/** Small caps label with a gold hairline. The poster's TECNICA · PRECISIONE rule. */
-export const eyebrow =
-  "flex items-center gap-3 text-[11px] font-medium tracking-[0.28em] text-accent-hi uppercase";
-
-/** Circular gold icon ring, straight off the brand poster's feature list. */
-export const iconRing =
-  "flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent/50 text-accent-hi";
+export const fieldLabel = "label block text-mute";

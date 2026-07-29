@@ -1,23 +1,19 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import {
-  ArrowRight,
-  Buildings,
-  Lifebuoy,
-  SealCheck,
-  UsersThree,
-} from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/Reveal";
 import { Stagger, StaggerItem } from "@/components/Stagger";
-import { HeroPortrait } from "@/components/HeroPortrait";
+import { MediaFrame } from "@/components/MediaFrame";
+import { Parallax } from "@/components/Parallax";
+import { WelcomeVideo } from "@/components/WelcomeVideo";
+import { welcomeVideoId } from "@/lib/studio";
 import {
-  btnHero,
-  btnHeroGhost,
-  eyebrow,
-  iconRing,
-  sectionTitle,
+  btnLine,
+  btnSolid,
+  displayLarge,
+  displaySection,
+  sectionPad,
   shell,
 } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
@@ -44,24 +40,17 @@ export async function generateMetadata({
 /**
  * The founder page.
  *
- * The academy's whole differentiator is a person: someone who teaches the
- * techniques she performs on paying clients every day, in her own institute.
- * That is the argument this page makes, in the order a first-time visitor
- * needs it — who she is, what she has done, why the school exists, what it
- * teaches beyond the needle, and where it is going.
+ * The academy's differentiator is a person: someone who teaches the techniques
+ * she performs on paying clients every day, in her own institute. That is the
+ * argument this page makes, in the order a first-time visitor needs it. It also
+ * holds what the homepage deliberately no longer carries: the academy's stated
+ * values, the business curriculum, and the welcome message.
  *
- * Every claim on this page is a rewrite of the academy's own approved
- * document. The two figures (8+ years, 150+ students) are the only numbers the
- * academy has stated about itself, so they are the only numbers here.
+ * The two figures (8+ years, 150+ students) are the only numbers the academy
+ * has stated about itself, so they are the only numbers here.
  */
-const differences = [
-  { key: "experience", Icon: Buildings },
-  { key: "small", Icon: UsersThree },
-  { key: "support", Icon: Lifebuoy },
-] as const;
+const differences = ["experience", "small", "support"] as const;
 
-// The eight non-technical subjects, in the academy's own order. Names only:
-// the academy supplied no description for them, so none is invented.
 const beyond = [
   "mindset",
   "marketing",
@@ -73,6 +62,7 @@ const beyond = [
   "growth",
 ] as const;
 
+const values = ["professionalism", "quality", "innovation", "ethics", "growth"] as const;
 const visionPoints = ["quality", "professionalism", "innovation", "growth"] as const;
 
 export default async function AboutPage({
@@ -83,121 +73,102 @@ export default async function AboutPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("about");
-  // The two actions are the same two the hero offers, with the same labels.
+  const inst = await getTranslations("instructor");
   const cta = await getTranslations("hero");
+  const mentor = await getTranslations("mentor");
 
   return (
     <>
-      {/* Amira as a search entity in her own right, tied to the organisation
-          payload the layout already emits. */}
       <JsonLd data={personSchema(locale, t("story.role"), t("lede"))} />
 
-      {/* Opening statement. Same lockup and entrance as the homepage hero, so
-          arriving here reads as the same house rather than a subpage. */}
-      <section className="relative overflow-hidden pt-28 pb-16 md:pt-32 md:pb-20">
-        <span
-          aria-hidden
-          className="pointer-events-none absolute -end-32 -top-48 -z-10 h-[42rem] w-[42rem] bg-[radial-gradient(circle,var(--glow),transparent_66%)]"
-        />
-        <div className={`${shell} grid w-full items-center gap-14 lg:grid-cols-12 lg:gap-10`}>
-          <Stagger className="order-2 lg:order-1 lg:col-span-6">
+      <section className="bg-ivory pt-[7.5rem] pb-16 md:pt-40 md:pb-24">
+        <div className={`${shell} grid items-end gap-10 lg:grid-cols-12 lg:gap-12`}>
+          <Stagger className="lg:col-span-6">
             <StaggerItem>
-              <p className={eyebrow}>
-                <span aria-hidden className="h-px w-8 bg-accent" />
-                {t("eyebrow")}
-              </p>
+              <p className="label text-bronze-ink">{t("eyebrow")}</p>
             </StaggerItem>
             <StaggerItem>
-              <h1 className="mt-10">
-                <span className="display block text-[2.5rem] leading-[1.08] tracking-[-0.02em] text-balance text-bone sm:text-[3.25rem] xl:text-[4rem]">
-                  {t("titleA")}
-                </span>
-                <span className="script mt-1 block pb-2 text-[1.75rem] leading-[1.35] text-balance text-accent-hi sm:text-[2.125rem] xl:text-[2.5rem]">
-                  {t("titleB")}
-                </span>
+              <h1 className={`${displaySection} mt-8 max-w-[14ch] text-balance`}>
+                <span className="block">{t("titleA")}</span>
+                <span className="block text-mute">{t("titleB")}</span>
               </h1>
             </StaggerItem>
             <StaggerItem>
-              <span aria-hidden className="mt-6 flex items-center gap-3">
-                <span className="h-px w-16 bg-accent/70" />
-                <span className="text-[8px] text-accent">◆</span>
-                <span className="h-px w-6 bg-accent/40" />
-              </span>
-            </StaggerItem>
-            <StaggerItem>
-              <p className="mt-8 max-w-[52ch] text-base leading-[1.9] text-muted md:text-[1.0625rem]">
+              <p className="mt-10 max-w-[50ch] text-[17px] leading-relaxed text-mute">
                 {t("lede")}
               </p>
             </StaggerItem>
           </Stagger>
 
-          <div className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7">
-            <HeroPortrait src="/brand/amira-studio.jpg" alt={t("portrait")} />
-          </div>
+          <Parallax distance={10} className="lg:col-span-5 lg:col-start-8">
+            <div className="relative aspect-[3/4] w-full">
+              <MediaFrame
+                media={{
+                  posterSrc: "/brand/amira-hero-portrait.jpg",
+                  alt: t("portrait"),
+                  position: "52% 22%",
+                }}
+                priority
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="absolute inset-0 h-full w-full"
+                imageClassName="settle"
+              />
+            </div>
+          </Parallax>
         </div>
       </section>
 
-      <div id="sticky-cta-after" aria-hidden />
-
-      {/* The two figures the academy states about itself, plus where it is.
-          The site's first honest numbers: they belong high, where a visitor is
-          still deciding whether this is a real school. */}
-      <section className="seam py-14 md:py-16">
+      {/* The two figures the academy states about itself, and where it is. */}
+      <section className="bg-ivory pb-16 md:pb-24">
         <div className={shell}>
-          <dl className="grid gap-10 border-y border-line py-10 sm:grid-cols-3 sm:gap-6">
+          <dl className="grid border-t border-hair sm:grid-cols-3">
             {(["years", "students", "reach"] as const).map((k, i) => (
-              <Reveal key={k} delay={i * 0.08} className="sm:text-center">
-                <dt className="display text-[2.25rem] leading-none text-bone md:text-[2.75rem]">
-                  {t(`facts.${k}.value`)}
-                </dt>
-                <dd className="mt-3 text-[11px] font-medium tracking-[0.16em] text-muted uppercase">
-                  {t(`facts.${k}.label`)}
-                </dd>
+              <Reveal
+                key={k}
+                delay={i * 0.08}
+                className={`border-b border-hair py-8 sm:border-b-0 ${
+                  i > 0 ? "sm:border-s sm:ps-8" : ""
+                }`}
+              >
+                <dt className="display text-[clamp(2rem,3.4vw,3rem)]">{t(`facts.${k}.value`)}</dt>
+                <dd className="label mt-4 max-w-[24ch] text-mute">{t(`facts.${k}.label`)}</dd>
               </Reveal>
             ))}
           </dl>
         </div>
       </section>
 
-      {/* Her story, in her own voice. First person is the point: this is the
-          one place on the site where the founder speaks directly. */}
-      <section className="py-20 md:py-28">
+      {/* Her story, in her own voice. */}
+      <section className={`${sectionPad} bg-paper`}>
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
-          <Reveal className="lg:col-span-5">
+          <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32">
-              <div className="relative aspect-[3/4] w-full overflow-hidden">
-                <Image
-                  src="/brand/at-work.jpg"
-                  alt={t("story.imageAlt")}
-                  fill
+              <div className="relative aspect-[3/4] w-full">
+                <MediaFrame
+                  media={{
+                    posterSrc: "/brand/at-work.jpg",
+                    alt: t("story.imageAlt"),
+                    position: "48% 38%",
+                  }}
                   sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover"
+                  className="absolute inset-0 h-full w-full"
                 />
               </div>
-              <p className="mt-6 text-[11px] font-medium tracking-[0.18em] text-muted uppercase">
-                {t("story.role")}
-              </p>
+              <p className="label mt-6 text-mute">{t("story.role")}</p>
             </div>
-          </Reveal>
+          </div>
 
           <div className="lg:col-span-6 lg:col-start-7">
             <Reveal>
-              <p className={eyebrow}>
-                <span aria-hidden className="h-px w-8 bg-accent" />
-                {t("story.eyebrow")}
-              </p>
-              <h2 className={`${sectionTitle} mt-6`}>{t("story.title")}</h2>
+              <p className="label text-bronze-ink">{t("story.eyebrow")}</p>
+              <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("story.title")}</h2>
             </Reveal>
 
-            {/* Four movements: who she is, what she has built, how she keeps
-                learning, and why the academy exists. */}
             {(["p1", "p2", "p3", "p4"] as const).map((k, i) => (
               <Reveal key={k} delay={0.06 + i * 0.04}>
                 <p
-                  className={`max-w-[62ch] leading-[1.9] text-muted ${
-                    i === 0
-                      ? "mt-8 text-[1.0625rem] text-bone md:text-[1.125rem]"
-                      : "mt-6"
+                  className={`max-w-[62ch] leading-relaxed text-mute ${
+                    i === 0 ? "mt-10 text-[18px] text-espresso" : "mt-6 text-[16px]"
                   }`}
                 >
                   {t(`story.${k}`)}
@@ -206,7 +177,7 @@ export default async function AboutPage({
             ))}
 
             <Reveal delay={0.24}>
-              <p className="script mt-10 text-4xl leading-none text-accent-hi md:text-5xl">
+              <p className="display mt-12 text-[clamp(1.5rem,2.6vw,2.25rem)] italic">
                 {t("story.signature")}
               </p>
             </Reveal>
@@ -214,79 +185,84 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* The differentiator, as three claims a visitor can check. */}
-      <section className="bg-surface-2/40 py-24 md:py-32">
-        <div className={shell}>
-          <Reveal>
-            <p className={eyebrow}>
-              <span aria-hidden className="h-px w-8 bg-accent" />
-              {t("different.eyebrow")}
-            </p>
-            <h2 className={`${sectionTitle} mt-6`}>{t("different.title")}</h2>
-            <p className="mt-5 max-w-[52ch] leading-relaxed text-muted">
-              {t("different.sub")}
-            </p>
+      {/* Amira's welcome message. Click to load, so the page never carries the
+          player bundle for a video most visitors will not open. */}
+      <section className={`${sectionPad} bg-ivory`}>
+        <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-16`}>
+          <Reveal className="lg:col-span-7">
+            <WelcomeVideo
+              playbackId={welcomeVideoId}
+              poster="/brand/amira-hero.jpg"
+              alt={mentor("videoAlt")}
+            />
           </Reveal>
-
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {differences.map(({ key, Icon }, i) => (
-              <Reveal key={key} delay={i * 0.06}>
-                <article className="group relative h-full overflow-hidden rounded-[2px] border border-line bg-surface p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent hover:shadow-[0_18px_50px_color-mix(in_srgb,var(--accent)_18%,transparent)] md:p-10">
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-x-0 -top-24 h-40 bg-[radial-gradient(60%_100%_at_50%_100%,var(--glow),transparent)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  />
-                  <span className={iconRing}>
-                    <Icon size={20} weight="light" />
-                  </span>
-                  <h3 className="display mt-6 text-2xl text-bone">
-                    {t(`different.items.${key}.title`)}
-                  </h3>
-                  <p className="mt-3 leading-relaxed text-muted">
-                    {t(`different.items.${key}.body`)}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={0.08} className="lg:col-span-4 lg:col-start-9 lg:self-center">
+            <p className={displayLarge}>{inst("mission")}</p>
+            <p className="mt-8 text-[16px] leading-relaxed text-mute">{inst("body")}</p>
+            <p className="label mt-8 text-mute">{inst("role")}</p>
+          </Reveal>
         </div>
       </section>
 
-      {/* The business curriculum. This is what a student is really buying, so
-          it gets a section rather than a bullet under the method. */}
-      <section className="seam py-24 md:py-32">
+      {/* Three claims a visitor can check. */}
+      <section className={`${sectionPad} bg-paper`}>
+        <div className={shell}>
+          <Reveal className="max-w-[22ch]">
+            <p className="label text-bronze-ink">{t("different.eyebrow")}</p>
+            <h2 className={`${displaySection} mt-8`}>{t("different.title")}</h2>
+          </Reveal>
+
+          <ol className="mt-14 border-t border-hair md:mt-20">
+            {differences.map((k, i) => (
+              <Reveal
+                as="li"
+                key={k}
+                delay={i * 0.06}
+                className="grid gap-3 border-b border-hair py-8 md:grid-cols-12 md:gap-10"
+              >
+                <span className="label font-mono text-bronze-ink md:col-span-1">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="display text-[clamp(1.25rem,2.2vw,1.875rem)] md:col-span-4">
+                  {t(`different.items.${k}.title`)}
+                </h3>
+                <p className="max-w-[52ch] text-[16px] leading-relaxed text-mute md:col-span-6 md:col-start-7">
+                  {t(`different.items.${k}.body`)}
+                </p>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* The business curriculum. Names only: the academy supplied no syllabus
+          for these, and eight invented blurbs would be eight invented claims. */}
+      <section className={`${sectionPad} bg-ivory`}>
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32">
               <Reveal>
-                <p className={eyebrow}>
-                  <span aria-hidden className="h-px w-8 bg-accent" />
-                  {t("beyond.eyebrow")}
-                </p>
-                <h2 className={`${sectionTitle} mt-6`}>{t("beyond.title")}</h2>
-                <p className="mt-6 max-w-[46ch] leading-relaxed text-muted">
+                <p className="label text-bronze-ink">{t("beyond.eyebrow")}</p>
+                <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("beyond.title")}</h2>
+                <p className="mt-8 max-w-[44ch] text-[16px] leading-relaxed text-mute">
                   {t("beyond.sub")}
                 </p>
               </Reveal>
             </div>
           </div>
 
-          {/* Names only, set as an index. The academy supplied no syllabus for
-              these, and eight invented blurbs would be eight invented claims. */}
-          <ol className="lg:col-span-6 lg:col-start-7">
+          <ol className="grid gap-x-10 sm:grid-cols-2 lg:col-span-6 lg:col-start-7">
             {beyond.map((k, i) => (
               <Reveal
                 as="li"
                 key={k}
                 delay={(i % 4) * 0.05}
-                className={`flex items-baseline gap-6 py-5 ${
-                  i > 0 ? "border-t border-line" : ""
-                }`}
+                className="flex items-baseline gap-5 border-b border-hair py-5"
               >
-                <span className="font-mono text-xs text-accent">
+                <span className="label font-mono text-bronze-ink">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="display text-xl text-bone md:text-2xl">
+                <span className="display text-[1.25rem] md:text-[1.5rem]">
                   {t(`beyond.items.${k}`)}
                 </span>
               </Reveal>
@@ -295,75 +271,68 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Mission, as the one sentence it is. */}
-      <section className="seam py-24 md:py-32">
-        <div className={`${shell} mx-auto max-w-3xl text-center`}>
-          <Reveal>
-            <p className={`${eyebrow} justify-center`}>
-              <span aria-hidden className="h-px w-8 bg-accent" />
-              {t("mission.eyebrow")}
-            </p>
-            <p className="display mt-8 text-[1.75rem] leading-[1.3] text-balance text-bone md:text-[2.5rem]">
+      {/* Mission, vision and the values the academy publishes. */}
+      <section className={`${sectionPad} bg-night text-ivory`}>
+        <div className={shell}>
+          <Reveal className="max-w-[24ch]">
+            <p className="label text-bronze-hi">{t("mission.eyebrow")}</p>
+            <p className="display mt-10 text-[clamp(2rem,5vw,4.5rem)] text-balance">
               {t("mission.quote")}
             </p>
-            <span aria-hidden className="mt-8 flex items-center justify-center gap-3">
-              <span className="h-px w-16 bg-accent/70" />
-              <span className="text-[8px] text-accent">◆</span>
-              <span className="h-px w-16 bg-accent/70" />
-            </span>
-            <p className="mt-8 leading-[1.9] text-muted">{t("mission.body")}</p>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Vision. Quieter than the mission: it is where the academy is going,
-          not what it sells today. */}
-      <section className="bg-surface-2/40 py-24 md:py-32">
-        <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
-          <Reveal className="lg:col-span-6">
-            <p className={eyebrow}>
-              <span aria-hidden className="h-px w-8 bg-accent" />
-              {t("vision.eyebrow")}
-            </p>
-            <h2 className={`${sectionTitle} mt-6`}>{t("vision.title")}</h2>
+          <Reveal delay={0.08} className="mt-12 max-w-[62ch]">
+            <p className="text-[17px] leading-relaxed text-mute-dark">{t("mission.body")}</p>
           </Reveal>
 
-          <Reveal delay={0.08} className="lg:col-span-6 lg:self-center">
-            <p className="max-w-[58ch] leading-[1.9] text-muted">{t("vision.body")}</p>
-            <ul className="mt-8 flex flex-wrap gap-3">
-              {visionPoints.map((k) => (
-                <li
-                  key={k}
-                  className="inline-flex items-center gap-2 rounded-[2px] border border-accent/40 px-3.5 py-2 text-[12px] tracking-[0.06em] text-bone"
-                >
-                  <SealCheck size={14} weight="light" className="text-accent" />
-                  {t(`vision.points.${k}`)}
+          <div className="mt-20 grid gap-10 border-t border-white/12 pt-14 lg:grid-cols-12 lg:gap-16 md:mt-28">
+            <Reveal className="lg:col-span-5">
+              <p className="label text-bronze-hi">{t("vision.eyebrow")}</p>
+              <h2 className={`${displayLarge} mt-8 max-w-[16ch]`}>{t("vision.title")}</h2>
+            </Reveal>
+            <Reveal delay={0.08} className="lg:col-span-6 lg:col-start-7">
+              <p className="max-w-[58ch] text-[16px] leading-relaxed text-mute-dark">
+                {t("vision.body")}
+              </p>
+              <p className="mt-8 max-w-[58ch] text-[16px] leading-relaxed text-ivory">
+                {t("vision.closing")}
+              </p>
+              <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
+                {visionPoints.map((k) => (
+                  <li key={k} className="label text-mute-dark">
+                    {t(`vision.points.${k}`)}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+
+          <div className="mt-16 border-t border-white/12 pt-10">
+            <p className="label text-bronze-hi">{inst("valuesLabel")}</p>
+            <ul className="mt-6 flex flex-wrap gap-x-10 gap-y-4">
+              {values.map((k) => (
+                <li key={k} className="display text-[1.25rem] md:text-[1.5rem]">
+                  {inst(`values.${k}`)}
                 </li>
               ))}
             </ul>
-            <p className="mt-8 max-w-[58ch] leading-[1.9] text-bone">
-              {t("vision.closing")}
-            </p>
-          </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* One action, at the end of the argument. */}
-      <section className="seam py-24 md:py-32">
-        <div className={`${shell} mx-auto max-w-2xl text-center`}>
-          <Reveal>
-            <h2 className={sectionTitle}>{t("cta.title")}</h2>
-            <p className="mt-6 leading-relaxed text-muted">{t("cta.body")}</p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
-              <Link href="/#contact" className={btnHero}>
+      <section className={`${sectionPad} bg-ivory`}>
+        <div className={shell}>
+          <Reveal className="max-w-[20ch]">
+            <h2 className={displaySection}>{t("cta.title")}</h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-mute">
+              {t("cta.body")}
+            </p>
+            <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
+              <Link href="/contact" className={btnSolid}>
                 {cta("secondary")}
-                <ArrowRight
-                  size={16}
-                  weight="light"
-                  className="flip-x transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/btn:translate-x-1.5"
-                />
               </Link>
-              <Link href="/courses" className={btnHeroGhost}>
+              <Link href="/courses" className={btnLine}>
                 {cta("primary")}
               </Link>
             </div>

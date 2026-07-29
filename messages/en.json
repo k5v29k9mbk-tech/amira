@@ -7,29 +7,22 @@
   "nav": {
     "home": "Home",
     "courses": "Courses",
-    "about": "About us",
+    "about": "Amira",
     "method": "The method",
-    "students": "In the studio",
-    "gallery": "Gallery",
     "faq": "Questions",
     "contact": "Contact",
     "language": "Language",
-    "menu": "Menu"
+    "menu": "Menu",
+    "close": "Close"
   },
   "hero": {
-    "eyebrow": "Aura Academy by Amira Bechini",
-    "titleA": "We train professionals",
-    "titleB": "in PMU and lamination.",
-    "sub": "With a practical, complete method: theory, hands-on practice, a live model where scheduled and post-course support, in classes of three or four students.",
-    "primary": "See the courses",
+    "eyebrow": "Aura Academy · Italy",
+    "titleA": "Master the craft",
+    "titleB": "of permanent beauty.",
+    "sub": "Professional PMU education shaped by precision, practice and personal mentorship.",
+    "primary": "Explore the courses",
     "secondary": "Book your place",
-    "portrait": "Amira Bechini, founder of Aura Academy"
-  },
-  "proof": {
-    "location": "Based in Giulianova (TE)",
-    "groups": "Classes of 3 or 4",
-    "certificate": "Certificate on completion",
-    "support": "Post-course support"
+    "meetAmira": "Meet Amira"
   },
   "about": {
     "meta": {
@@ -39,13 +32,22 @@
     "eyebrow": "About Aura Academy",
     "titleA": "We teach from inside the profession,",
     "titleB": "not from a textbook.",
-    "lede": "Aura Academy was founded by Amira Bechini — CEO of Amira Beauty Suite and a permanent makeup artist with more than eight years in the industry. Every technique taught here is one she performs on real clients, in her own institute, every day.",
+    "lede": "Aura Academy was founded by Amira Bechini, CEO of Amira Beauty Suite and a permanent makeup artist with more than eight years in the industry. Every technique taught here is one she performs on real clients, in her own institute, every day.",
     "portrait": "Amira Bechini in her beauty institute",
-    "readStory": "Read her story",
+    "readStory": "Discover Amira's story",
     "facts": {
-      "years": { "value": "8+", "label": "Years in the beauty industry" },
-      "students": { "value": "150+", "label": "Students trained" },
-      "reach": { "value": "Tortoreto (TE)", "label": "Headquarters, training throughout Italy" }
+      "years": {
+        "value": "8+",
+        "label": "Years in the beauty industry"
+      },
+      "students": {
+        "value": "150+",
+        "label": "Students trained"
+      },
+      "reach": {
+        "value": "Tortoreto (TE)",
+        "label": "Headquarters, training throughout Italy"
+      }
     },
     "story": {
       "eyebrow": "The founder",
@@ -53,8 +55,8 @@
       "role": "Founder of Aura Academy · CEO of Amira Beauty Suite",
       "imageAlt": "Amira Bechini at work during a course",
       "p1": "My name is Amira Bechini. I run Amira Beauty Suite, a beauty institute specialised in advanced aesthetic treatments, and I founded Aura Academy to teach what I practise: permanent makeup and lash and brow lamination.",
-      "p2": "In more than eight years in the beauty industry I have trained over 150 students, and along the way I built a method of my own — one that holds technical excellence, hands-on practice and entrepreneurial vision together. My passion for this work began with a simple desire: to help people feel confident, and to create real career opportunities for women who want to turn that passion into a profession.",
-      "p3": "I have never stopped studying — international masterclasses, the latest PMU techniques, continuous investment in my own education. Working every day inside my institute taught me the rest: not only the technical side of the profession, but the real needs of clients and of the beauty market.",
+      "p2": "In more than eight years in the beauty industry I have trained over 150 students, and along the way I built a method of my own, one that holds technical excellence, hands-on practice and entrepreneurial vision together. My passion for this work began with a simple desire: to help people feel confident, and to create real career opportunities for women who want to turn that passion into a profession.",
+      "p3": "I have never stopped studying, international masterclasses, the latest PMU techniques, continuous investment in my own education. Working every day inside my institute taught me the rest: not only the technical side of the profession, but the real needs of clients and of the beauty market.",
       "p4": "That is why Aura Academy exists. It is the school I wanted when I started: personalised guidance, practical education, continuous support, and the confidence to build a career that lasts. Today we train students throughout Italy, from our headquarters in Tortoreto (TE).",
       "signature": "Amira Bechini"
     },
@@ -100,8 +102,8 @@
     "vision": {
       "eyebrow": "Our vision",
       "title": "An international reference for PMU education",
-      "body": "We are building Aura Academy into an international point of reference for professional education in permanent makeup and beauty lamination — growing across Italy and internationally through a network of certified trainers and a community of professionals who hold the same standards.",
-      "closing": "Our goal is modern, practical, market-oriented education — and more women able to build an independent and successful future.",
+      "body": "We are building Aura Academy into an international point of reference for professional education in permanent makeup and beauty lamination, growing across Italy and internationally through a network of certified trainers and a community of professionals who hold the same standards.",
+      "closing": "Our goal is modern, practical, market-oriented education, and more women able to build an independent and successful future.",
       "points": {
         "quality": "Quality",
         "professionalism": "Professionalism",
@@ -115,7 +117,6 @@
     }
   },
   "instructor": {
-    "eyebrow": "About us",
     "title": "Amira Bechini",
     "role": "International PMU Master and Founder of Aura Academy",
     "mission": "To train competent professionals through practical courses, continuous support and high standards.",
@@ -128,46 +129,12 @@
       "ethics": "Ethics",
       "growth": "Growth"
     },
-    "portrait": "Portrait of Amira Bechini"
-  },
-  "why": {
-    "eyebrow": "Why Aura Academy",
-    "title": "The same conditions for everyone",
-    "sub": "They hold for every course in the catalogue, base and advanced.",
-    "items": {
-      "groups": {
-        "title": "Classes of three or four",
-        "body": "The maximum number of students per course is three or four."
-      },
-      "levels": {
-        "title": "Two levels",
-        "body": "Every technique is taught at base level and at advanced level."
-      },
-      "language": {
-        "title": "Taught in Italian",
-        "body": "Courses are held entirely in Italian."
-      },
-      "kit": {
-        "title": "Professional kit",
-        "body": "Available on request. Where it is included, the price reflects it."
-      },
-      "certificate": {
-        "title": "Certificate",
-        "body": "A certificate is issued at the end of the course."
-      },
-      "venue": {
-        "title": "On site",
-        "body": "Every course is held at the academy in Giulianova (TE)."
-      }
-    }
+    "portrait": "Portrait of Amira Bechini",
+    "headline": "The master behind the method"
   },
   "method": {
-    "title": "How a course runs",
+    "title": "Technique is built in stages.",
     "sub": "The same order every time, for every technique and both levels.",
-    "clips": {
-      "mapping": "From mapping to machine work, filmed at the academy.",
-      "pigment": "Blade and pigment, at working distance."
-    },
     "steps": {
       "theory": {
         "title": "Theory",
@@ -201,14 +168,38 @@
     },
     "detailsTitle": "Details that apply to every course",
     "details": {
-      "duration": { "label": "Duration", "value": "Varies by course" },
-      "price": { "label": "Price", "value": "Varies by course and whether a kit is included" },
-      "level": { "label": "Level", "value": "Base and advanced" },
-      "language": { "label": "Language", "value": "Italian" },
-      "students": { "label": "Maximum students", "value": "3-4" },
-      "kit": { "label": "Professional kit", "value": "Available on request" },
-      "certificate": { "label": "Certificate", "value": "Yes, on completion" },
-      "location": { "label": "Location", "value": "Lungomare Rodi 20, 64021 Giulianova (TE), Italy" }
+      "duration": {
+        "label": "Duration",
+        "value": "Varies by course"
+      },
+      "price": {
+        "label": "Price",
+        "value": "Varies by course and whether a kit is included"
+      },
+      "level": {
+        "label": "Level",
+        "value": "Base and advanced"
+      },
+      "language": {
+        "label": "Language",
+        "value": "Italian"
+      },
+      "students": {
+        "label": "Maximum students",
+        "value": "3-4"
+      },
+      "kit": {
+        "label": "Professional kit",
+        "value": "Available on request"
+      },
+      "certificate": {
+        "label": "Certificate",
+        "value": "Yes, on completion"
+      },
+      "location": {
+        "label": "Location",
+        "value": "Lungomare Rodi 20, 64021 Giulianova (TE), Italy"
+      }
     },
     "includes": "Every course includes",
     "included": {
@@ -219,7 +210,17 @@
     },
     "priceOnRequest": "Price on request",
     "cta": "Request information",
-    "payments": "Bank transfer · Card · PagoDIL"
+    "payments": "Bank transfer · Card · PagoDIL",
+    "selectorTitle": "Choose your discipline.",
+    "viewCourse": "View course",
+    "blurbs": {
+      "microblading": "Hair by hair strokes drawn with a manual blade, following the natural growth of the brow.",
+      "powder-brows": "A soft shaded brow built with the machine, from a light veil to a defined finish.",
+      "lip-blush": "Colour worked into the lip to correct the tone and redefine the border.",
+      "eyeliner-pmu": "A line set at the base of the lashes, from a discreet enhancement to a defined eye.",
+      "lash-lamination": "A lifting treatment that opens the eye by reshaping the natural lash.",
+      "brow-lamination": "The brow hair restructured and set in the direction that suits the face."
+    }
   },
   "journey": {
     "eyebrow": "How to book",
@@ -252,17 +253,14 @@
     "title": "In the studio",
     "sub": "Moments from the courses: demonstration, guided practice and work on a model."
   },
-  "results": {
-    "title": "Gallery",
-    "sub": "Work, mapping and practice from the academy in Giulianova."
-  },
   "voices": {
     "title": "In our students' words",
-    "items": {}
+    "items": {},
+    "prev": "Previous",
+    "next": "Next"
   },
   "faq": {
-    "title": "Questions",
-    "eyebrow": "Good to know",
+    "title": "Before you begin.",
     "more": "Can't find your answer? Write to us and we'll reply.",
     "items": {
       "courses": {
@@ -304,7 +302,16 @@
       "location": {
         "q": "Where are the courses held?",
         "a": "At the Aura Academy premises, Lungomare Rodi 20, 64021 Giulianova (TE), Italy."
+      },
+      "beginners": {
+        "q": "Is the course suitable for beginners?",
+        "a": "Yes. Every technique is taught at base level, which starts from the beginning, and at advanced level for those already working."
       }
+    },
+    "viewAll": "View all questions",
+    "meta": {
+      "title": "Questions",
+      "description": "Answers on levels, class size, live model practice, the professional kit, certificates and how to reserve a place at Aura Academy in Giulianova (TE), Italy."
     }
   },
   "contact": {
@@ -326,7 +333,11 @@
     "sending": "Sending",
     "sent": "Message received. We'll get back to you as soon as we can.",
     "error": "That didn't send. Try again, or write to us on Instagram.",
-    "required": "Required"
+    "required": "Required",
+    "meta": {
+      "title": "Book your place",
+      "description": "Book a place on a PMU or lamination course at Aura Academy, Lungomare Rodi 20, Giulianova (TE), Italy. Write to us for dates, duration and price."
+    }
   },
   "footer": {
     "tagline": "We train professionals in PMU and lamination with a practical, complete method.",
@@ -347,5 +358,20 @@
     "title": "Before and after",
     "before": "Before",
     "after": "After"
+  },
+  "sections": {
+    "courses": "Courses",
+    "method": "The method",
+    "amira": "Amira",
+    "inside": "Inside Aura"
+  },
+  "manifesto": {
+    "one": "We do not teach a technique.",
+    "two": "We teach the eye, the hand, and the standard behind it.",
+    "note": "Small classes. Guided practice. Professional standards that continue after the course."
+  },
+  "closing": {
+    "title": "Your next technique starts with a conversation.",
+    "sub": "Tell us where you are in your career and which discipline you want to master."
   }
 }

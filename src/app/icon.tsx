@@ -18,11 +18,11 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#f3eae0",
+          background: "#f2eee7",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={markDataUri("#1b1613")} width={44} height={46} alt="" />
+        <img src={markDataUri("#211916")} width={44} height={46} alt="" />
       </div>
     ),
     size,

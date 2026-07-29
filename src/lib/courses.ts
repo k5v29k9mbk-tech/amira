@@ -5,36 +5,84 @@
 // to all of them (variable duration, price on request, base and advanced
 // levels, theory + practice + live model + post-course support, kit on request,
 // certificate, 3-4 students, taught in Italian). It supplied no per-course
-// description, price or syllabus, so there is deliberately none here: the
-// shared facts are stated once, in `catalog.*`, on the courses page.
+// price or syllabus, so there is none here: the shared facts are stated once,
+// in `catalog.*`, on the courses page.
 //
-// Names are translated in messages/*.json under `catalog.courses.<slug>`.
-// Images are decorative studio photographs (alt=""), not claims about a course.
+// Names live in messages/*.json under `catalog.courses.<slug>` and the one-line
+// description of each discipline under `catalog.blurbs.<slug>`. Those blurbs
+// describe the technique itself, not the academy's version of it, so they carry
+// no claim the academy has not made.
+//
+// `media` is a Media object (see lib/media.ts): set `videoSrc` on any course to
+// give its expanded panel a muted clip instead of a still.
+
+import type { Media } from "./media";
 
 export type Course = {
   slug: string;
-  image: string;
+  media: Media;
 };
 
 export const courses: Course[] = [
-  { slug: "microblading", image: "/brand/brow-macro.jpg" },
-  { slug: "powder-brows", image: "/brand/brows-healed-hero.jpg" },
-  { slug: "lip-blush", image: "/brand/lips-result-hero.jpg" },
-  { slug: "eyeliner-pmu", image: "/brand/brows-eyes.jpg" },
-  { slug: "lash-lamination", image: "/brand/at-work.jpg" },
-  { slug: "brow-lamination", image: "/brand/brow-mapping.jpg" },
+  {
+    slug: "microblading",
+    media: {
+      videoSrc: "/brand/mapping.mp4",
+      posterSrc: "/brand/brow-macro.jpg",
+      position: "50% 45%",
+      width: 371,
+      height: 295,
+    },
+  },
+  {
+    slug: "powder-brows",
+    media: {
+      posterSrc: "/brand/brows-healed-hero.jpg",
+      position: "50% 36%",
+      width: 1179,
+      height: 884,
+    },
+  },
+  {
+    slug: "lip-blush",
+    media: {
+      posterSrc: "/brand/lips-neutralization.jpg",
+      position: "50% 45%",
+      width: 232,
+      height: 300,
+    },
+  },
+  {
+    slug: "eyeliner-pmu",
+    media: {
+      posterSrc: "/brand/brows-eyes.jpg",
+      position: "50% 42%",
+      width: 235,
+      height: 300,
+    },
+  },
+  {
+    slug: "lash-lamination",
+    media: {
+      posterSrc: "/brand/live-demo.jpg",
+      position: "50% 40%",
+      width: 557,
+      height: 335,
+    },
+  },
+  {
+    slug: "brow-lamination",
+    media: {
+      posterSrc: "/brand/brow-mapping.jpg",
+      position: "50% 50%",
+      width: 332,
+      height: 295,
+    },
+  },
 ];
 
 /** What every course includes, exactly as the academy states it. */
 export const included = ["theory", "practice", "model", "support"] as const;
 
-/** Every still the academy has supplied, for the gallery. */
-export const resultStills = [
-  "/brand/brow-macro.jpg",
-  "/brand/brow-mapping.jpg",
-  "/brand/lips-neutralization.jpg",
-  "/brand/brows-eyes.jpg",
-  "/brand/practice-latex.jpg",
-  "/brand/at-work.jpg",
-  "/brand/group-training.jpg",
-];
+/** The method, in the order the academy teaches it. Media in lib/media.ts. */
+export const chapters = ["theory", "practice", "model", "support"] as const;

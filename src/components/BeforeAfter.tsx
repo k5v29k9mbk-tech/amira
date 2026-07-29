@@ -44,12 +44,12 @@ export function BeforeAfter({ pair }: { pair: Pair }) {
 
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-y-0 w-px bg-accent"
+          className="pointer-events-none absolute inset-y-0 w-px bg-bronze"
           style={{ insetInlineStart: `${pos}%` }}
         />
         <span
           aria-hidden
-          className="pointer-events-none absolute top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-accent bg-ink/60 text-accent-hi backdrop-blur-sm"
+          className="pointer-events-none absolute top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-espresso bg-night/50 text-bronze-ink backdrop-blur-sm"
           style={{ insetInlineStart: `calc(${pos}% - 1.375rem)` }}
         >
           <ArrowsHorizontal size={18} weight="light" />
@@ -71,10 +71,10 @@ export function BeforeAfter({ pair }: { pair: Pair }) {
       {/* Only the two markers. The pair label carries the alt text and the
           slider's accessible name; printing it here would be a caption the
           studio never wrote. */}
-      <figcaption className="mt-5 flex items-center justify-between text-[11px] font-medium tracking-[0.18em] text-muted uppercase">
-        <span className={pos > 50 ? "text-accent-hi" : undefined}>{t("before")}</span>
+      <figcaption className="mt-5 flex items-center justify-between text-[11px] font-medium tracking-[0.18em] text-mute uppercase">
+        <span className={pos > 50 ? "text-bronze-ink" : undefined}>{t("before")}</span>
         <span aria-hidden className="mx-4 h-px flex-1 bg-line" />
-        <span className={pos <= 50 ? "text-accent-hi" : undefined}>{t("after")}</span>
+        <span className={pos <= 50 ? "text-bronze-ink" : undefined}>{t("after")}</span>
       </figcaption>
     </figure>
   );

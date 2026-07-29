@@ -2,21 +2,18 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
-import { Cormorant_Garamond, Jost, Parisienne, Noto_Naskh_Arabic } from "next/font/google";
+import { Cormorant_Garamond, Jost, Noto_Naskh_Arabic } from "next/font/google";
 import { routing, isRtl, siteUrl } from "@/i18n/routing";
-import { Nav } from "@/components/Nav";
+import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { StickyCta } from "@/components/StickyCta";
-import { ScrollProgress } from "@/components/ScrollProgress";
-import { FloatingWhatsapp } from "@/components/FloatingWhatsapp";
 import { JsonLd, organizationSchema } from "@/lib/seo";
 import "../globals.css";
 
-// Didone display from the brand lockup, geometric sans for body, script for the
-// signature moments only. Arabic gets a Naskh face that sits with the serif.
-// Cormorant rather than a Didone: finer strokes, longer extenders, a softer
-// axis. It carries the light weight the hero lockup needs, which Playfair
-// (400 minimum) could not.
+// Two faces and nothing else: an editorial serif for everything oversized, a
+// neutral geometric sans for interface text. Cormorant carries the light weight
+// the display sizes need without the brittleness of a true Didone. Arabic gets
+// a Naskh face that sits with the serif; the script face the previous design
+// used for accents is gone, along with its request.
 const display = Cormorant_Garamond({
   weight: ["300", "400", "500", "600"],
   subsets: ["latin"],
@@ -30,13 +27,6 @@ const body = Jost({
   display: "swap",
 });
 
-const script = Parisienne({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-script",
-  display: "swap",
-});
-
 const arabic = Noto_Naskh_Arabic({
   subsets: ["arabic"],
   weight: ["400", "500", "600"],
@@ -46,13 +36,15 @@ const arabic = Noto_Naskh_Arabic({
 
 /** Namespaces read by `"use client"` components. Keep in sync with them. */
 const CLIENT_NAMESPACES = [
-  "nav", // Nav, LocaleSwitcher
-  "hero", // StickyCta
+  "nav", // Header, LocaleSwitcher
+  "hero", // Header booking action
+  "manifesto", // Manifesto
+  "catalog", // CourseSelector
+  "method", // MethodStory
+  "voices", // Testimonial
   "mentor", // WelcomeVideo
-  "voices", // Voices
   "success", // BeforeAfter
-  "results", // Gallery
-  "contact", // ContactForm, FloatingWhatsapp label
+  "contact", // ContactForm
 ] as const;
 
 export function generateStaticParams() {
@@ -109,23 +101,20 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={isRtl(locale) ? "rtl" : "ltr"}
-      className={`${display.variable} ${body.variable} ${script.variable} ${arabic.variable}`}
+      className={`${display.variable} ${body.variable} ${arabic.variable}`}
       suppressHydrationWarning
     >
       <body className="grain font-sans antialiased">
         <NextIntlClientProvider messages={clientMessages}>
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[70] focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink"
+            className="label sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[70] focus:bg-espresso focus:px-4 focus:py-3 focus:text-ivory"
           >
             {locale === "ar" ? "تخطي إلى المحتوى" : "Skip to content"}
           </a>
-          <ScrollProgress />
-          <Nav />
+          <Header />
           <main id="main">{children}</main>
           <Footer />
-          <StickyCta />
-          <FloatingWhatsapp />
           <JsonLd data={organizationSchema(locale, org("title"), org("description"))} />
         </NextIntlClientProvider>
       </body>

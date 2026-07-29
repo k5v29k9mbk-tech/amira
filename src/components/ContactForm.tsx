@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { btnPrimary, field, label } from "@/lib/ui";
+import { btnSolid, field, fieldLabel } from "@/lib/ui";
 
 type State = "idle" | "sending" | "sent" | "error";
 
@@ -29,7 +29,7 @@ export function ContactForm() {
 
   if (state === "sent") {
     return (
-      <p className="border border-accent bg-surface p-8 text-lg leading-snug tracking-tight text-bone">
+      <p className="border border-espresso bg-paper p-8 text-lg leading-snug tracking-tight text-espresso">
         {t("sent")}
       </p>
     );
@@ -39,13 +39,13 @@ export function ContactForm() {
     <form onSubmit={onSubmit} className="grid gap-5" noValidate={false}>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="grid gap-2">
-          <label className={label} htmlFor="name">
+          <label className={fieldLabel} htmlFor="name">
             {t("name")}
           </label>
           <input id="name" name="name" required maxLength={120} className={field} />
         </div>
         <div className="grid gap-2">
-          <label className={label} htmlFor="email">
+          <label className={fieldLabel} htmlFor="email">
             {t("email")}
           </label>
           <input
@@ -60,14 +60,14 @@ export function ContactForm() {
       </div>
 
       <div className="grid gap-2">
-        <label className={label} htmlFor="subject">
+        <label className={fieldLabel} htmlFor="subject">
           {t("subject")}
         </label>
         <input id="subject" name="subject" maxLength={160} className={field} />
       </div>
 
       <div className="grid gap-2">
-        <label className={label} htmlFor="message">
+        <label className={fieldLabel} htmlFor="message">
           {t("message")}
         </label>
         <textarea
@@ -81,13 +81,13 @@ export function ContactForm() {
       </div>
 
       {state === "error" && (
-        <p role="alert" className="text-sm text-accent-hi">
+        <p role="alert" className="text-sm text-bronze-ink">
           {t("error")}
         </p>
       )}
 
       <div>
-        <button type="submit" disabled={state === "sending"} className={btnPrimary}>
+        <button type="submit" disabled={state === "sending"} className={btnSolid}>
           {state === "sending" ? t("sending") : t("send")}
         </button>
       </div>
