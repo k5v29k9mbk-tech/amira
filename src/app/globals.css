@@ -126,6 +126,16 @@ body {
   writing-mode: horizontal-tb;
 }
 
+/*
+  The arch. The alcove shape from the academy's own room, and the one place on
+  the site that carries a large radius: the top is a half round, the base keeps
+  the 4px the rest of the system uses. Applied to the hero portrait and to the
+  hairline mat that sits behind it.
+*/
+.arch {
+  border-radius: 999px 999px 4px 4px;
+}
+
 /* Media inside an intentional crop. Slow settle from 1.03 to 1 on entry. */
 @keyframes aura-settle {
   from {
