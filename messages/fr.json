@@ -16,10 +16,16 @@
     "close": "Fermer"
   },
   "hero": {
-    "eyebrow": "Aura Academy · Italie",
-    "titleA": "Maîtrisez l'art",
-    "titleB": "de la beauté permanente.",
-    "sub": "Une formation PMU professionnelle faite de précision, de pratique et d'accompagnement personnel.",
+    "eyebrow": "Aura Academy · Formation beauté professionnelle · Italie",
+    "titleA": "Maîtrisez l'art.",
+    "titleB": "Créez votre carrière.",
+    "sub": "Formation professionnelle en PMU et beauté avec Amira Bechini : technique, expérience du terrain et vision entrepreneuriale, les trois bases d'une vraie carrière dans la beauté.",
+    "founder": "Amira Bechini · Fondatrice et Master PMU",
+    "facts": {
+      "years": { "value": "8+", "label": "Années d'expérience" },
+      "students": { "value": "150+", "label": "Élèves formés" },
+      "classes": { "value": "3-4", "label": "Élèves par formation" }
+    },
     "primary": "Découvrir les formations",
     "secondary": "Réservez votre place",
     "meetAmira": "Rencontrer Amira"

@@ -16,10 +16,16 @@
     "close": "Close"
   },
   "hero": {
-    "eyebrow": "Aura Academy · Italy",
-    "titleA": "Master the craft",
-    "titleB": "of permanent beauty.",
-    "sub": "Professional PMU education shaped by precision, practice and personal mentorship.",
+    "eyebrow": "Aura Academy · Professional beauty education · Italy",
+    "titleA": "Master the art.",
+    "titleB": "Build your career.",
+    "sub": "Professional PMU and beauty training by Amira Bechini: technique, real-world experience and business knowledge, the three things a serious career in beauty is built on.",
+    "founder": "Amira Bechini · Founder and PMU Master",
+    "facts": {
+      "years": { "value": "8+", "label": "Years experience" },
+      "students": { "value": "150+", "label": "Students trained" },
+      "classes": { "value": "3-4", "label": "Students per class" }
+    },
     "primary": "Explore the courses",
     "secondary": "Book your place",
     "meetAmira": "Meet Amira"

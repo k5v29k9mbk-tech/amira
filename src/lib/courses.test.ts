@@ -48,6 +48,7 @@ const PAGE_KEYS = [
   "hero.titleA",
   "hero.titleB",
   "hero.sub",
+  "hero.founder",
   "hero.primary",
   "hero.secondary",
   "hero.meetAmira",
@@ -160,6 +161,7 @@ const PAGE_KEYS = [
 ] as const;
 
 const VALUES = ["professionalism", "quality", "innovation", "ethics", "growth"] as const;
+const HERO_FACTS = ["years", "students", "classes"] as const;
 const ABOUT_FACTS = ["years", "students", "reach"] as const;
 const ABOUT_DIFFERENT = ["experience", "small", "support"] as const;
 const ABOUT_BEYOND = [
@@ -290,6 +292,7 @@ test("every page string is translated in all four languages", () => {
   const keys = [
     ...PAGE_KEYS,
     ...VALUES.map((k) => `instructor.values.${k}`),
+    ...HERO_FACTS.flatMap((k) => [`hero.facts.${k}.value`, `hero.facts.${k}.label`]),
     ...ABOUT_FACTS.flatMap((k) => [`about.facts.${k}.value`, `about.facts.${k}.label`]),
     ...ABOUT_DIFFERENT.flatMap((k) => [
       `about.different.items.${k}.title`,

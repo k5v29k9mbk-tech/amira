@@ -27,10 +27,15 @@ import { MediaFrame } from "./MediaFrame";
  *
  * Width is capped against viewport height as well as against a maximum, since
  * a 3:4 frame left to fill its grid column overruns the fold on every common
- * laptop. Within that cap it is roughly a fifth larger than the frame it
- * replaces, and the largest object on the page.
+ * laptop. The caption is part of that budget: the caps came down a step when it
+ * was added, so the block as a whole still clears the fold. Within the cap the
+ * frame is still the largest object on the page.
+ *
+ * `caption` is the gallery label under the frame: it puts a name and a role on
+ * the face, which is the one thing the photograph cannot say by itself. It sits
+ * outside the float so the type stays still while the portrait breathes.
  */
-export function HeroPortrait({ alt }: { alt: string }) {
+export function HeroPortrait({ alt, caption }: { alt: string; caption?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   // Holds the entrance until the opening film has finished, so the portrait
@@ -49,7 +54,7 @@ export function HeroPortrait({ alt }: { alt: string }) {
       initial={reduce ? false : { opacity: 0, y: 26 }}
       animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 26 }}
       transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mx-auto w-full max-w-[min(20rem,42svh)] sm:max-w-[min(26rem,46svh)] lg:max-w-[min(38rem,58vh)]"
+      className="relative mx-auto w-full max-w-[min(17.5rem,36svh)] sm:max-w-[min(26rem,46svh)] lg:max-w-[min(38rem,54vh)]"
     >
       {/* Ambient warmth. A plain radial rather than a blurred disc: a 40rem
           element under a blur filter is a large, repeatedly composited paint. */}
@@ -97,6 +102,10 @@ export function HeroPortrait({ alt }: { alt: string }) {
           />
         </div>
       </motion.div>
+
+      {caption ? (
+        <p className="label mt-5 text-center leading-[1.9] text-mute md:mt-6">{caption}</p>
+      ) : null}
     </motion.div>
   );
 }

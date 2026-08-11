@@ -6,12 +6,28 @@ import { HeroPortrait } from "./HeroPortrait";
 import { Stagger, StaggerItem } from "./Stagger";
 
 /**
+ * The three marks the academy can prove, in the order a visitor weighs them:
+ * how long she has done this, how many she has taught, how many are in the
+ * room. Values are quoted from the client's document, never rounded up here.
+ */
+const facts = ["years", "students", "classes"] as const;
+
+/**
  * Opening composition.
  *
  * Two columns on a warm ivory field: the statement on the left, Amira in the
  * arch on the right, and a lot of air around both. The grid is bottom aligned,
  * so the primary action and the base of the frame sit on the same line, which
  * is what holds the two halves together.
+ *
+ * The first screen has to answer four questions before anything is scrolled:
+ * who teaches, what is taught, on what evidence, and what to do next. The
+ * eyebrow carries the name and the country, the portrait carries its own
+ * caption so the face has a name attached to it, and one hairline-ruled line of
+ * figures sits between the promise and the action. Nothing here is a card or a
+ * badge: the figures are set in the display serif and their labels in the same
+ * small caps as every other label on the site, so the row reads as a masthead
+ * rather than as statistics.
  *
  * 100svh, not 100vh: the small viewport unit is the one that does not jump when
  * the mobile address bar collapses. It is a floor rather than a cap, so a long
@@ -47,24 +63,42 @@ export async function Hero() {
       >
         <Stagger className="order-2 max-w-[38rem] lg:order-1 lg:col-span-6 lg:pb-2">
           <StaggerItem>
-            <p className="label text-bronze-ink">{t("eyebrow")}</p>
+            {/* Three facts, one line: the academy, what it does, where. Wraps
+                to two lines on a phone, so it carries its own leading. */}
+            <p className="label leading-[1.8] text-bronze-ink">{t("eyebrow")}</p>
           </StaggerItem>
 
           <StaggerItem>
-            <h1 className={`${displayHero} mt-8 max-w-[13ch] text-balance`}>
+            <h1 className={`${displayHero} mt-6 max-w-[15ch] text-balance md:mt-8`}>
               <span className="block">{t("titleA")}</span>
               <span className="block">{t("titleB")}</span>
             </h1>
           </StaggerItem>
 
           <StaggerItem>
-            <p className="mt-8 max-w-[44ch] text-[17px] leading-relaxed text-mute md:text-[19px]">
+            <p className="mt-6 max-w-[46ch] text-[17px] leading-relaxed text-mute md:mt-8 md:text-[19px]">
               {t("sub")}
             </p>
           </StaggerItem>
 
+          {/* Proof, on one line. A hairline above it and nothing around it: the
+              figures are the evidence for the sentence above and the reason to
+              press the button below, so they sit between the two. */}
           <StaggerItem>
-            <div className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-10">
+            <dl className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-3 border-t border-hair pt-6 md:mt-10 md:gap-x-12">
+              {facts.map((k) => (
+                <div key={k} className="flex items-baseline gap-2.5">
+                  <dt className="display text-[1.375rem] leading-none text-espresso md:text-[1.5rem]">
+                    {t(`facts.${k}.value`)}
+                  </dt>
+                  <dd className="label text-mute">{t(`facts.${k}.label`)}</dd>
+                </div>
+              ))}
+            </dl>
+          </StaggerItem>
+
+          <StaggerItem>
+            <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-10">
               <Link href="/courses" className={btnSolid}>
                 {t("primary")}
               </Link>
@@ -77,7 +111,7 @@ export async function Hero() {
         </Stagger>
 
         <div className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7">
-          <HeroPortrait alt={inst("portrait")} />
+          <HeroPortrait alt={inst("portrait")} caption={t("founder")} />
         </div>
       </div>
 

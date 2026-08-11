@@ -16,10 +16,16 @@
     "close": "Chiudi"
   },
   "hero": {
-    "eyebrow": "Aura Academy · Italia",
-    "titleA": "Padroneggia l'arte",
-    "titleB": "della bellezza permanente.",
-    "sub": "Formazione PMU professionale fatta di precisione, pratica e guida personale.",
+    "eyebrow": "Aura Academy · Formazione beauty professionale · Italia",
+    "titleA": "Padroneggia l'arte.",
+    "titleB": "Crea la tua carriera.",
+    "sub": "Formazione professionale in PMU e beauty con Amira Bechini: tecnica, esperienza sul campo e visione imprenditoriale, le tre basi di una carriera vera nel beauty.",
+    "founder": "Amira Bechini · Fondatrice e Master PMU",
+    "facts": {
+      "years": { "value": "8+", "label": "Anni di esperienza" },
+      "students": { "value": "150+", "label": "Studenti formati" },
+      "classes": { "value": "3-4", "label": "Studenti per corso" }
+    },
     "primary": "Scopri i corsi",
     "secondary": "Prenota il tuo posto",
     "meetAmira": "Conosci Amira"
