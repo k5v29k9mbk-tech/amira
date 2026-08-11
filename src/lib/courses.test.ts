@@ -78,6 +78,7 @@ const PAGE_KEYS = [
   "about.story.signature",
   "about.different.eyebrow",
   "about.different.title",
+  "about.different.sub",
   "about.beyond.eyebrow",
   "about.beyond.title",
   "about.beyond.sub",
@@ -364,10 +365,82 @@ test("no price, refund or lifetime-access claim is left anywhere", () => {
   }
 });
 
-test("testimonials render nothing until real ones are supplied", () => {
+/**
+ * Quotes invented for the removed online-course build. They were deleted, but
+ * they are still reachable in this repository's git history, which makes them
+ * exactly the kind of thing that gets "restored" by someone looking for content
+ * that already exists. No testimonial on this site may be authored by anyone
+ * but the student who said it.
+ */
+const FABRICATED = [
+  "Ghita Benslimane",
+  "Sofia Marchetti",
+  "Camille Dorval",
+  "Yasmine Trabelsi",
+  "Fixture",
+];
+
+test("no fabricated testimonial can come back from git history", () => {
   for (const [locale, messages] of Object.entries(LOCALES)) {
-    const items = at(messages, "voices.items");
-    assert.deepEqual(items, {}, `${locale} has unverified testimonials`);
+    const text = JSON.stringify(at(messages, "voices.items") ?? {});
+    for (const name of FABRICATED) {
+      assert.equal(text.includes(name), false, `${locale} carries invented quote "${name}"`);
+    }
+  }
+});
+
+test("any testimonial that does exist is complete in all four languages", () => {
+  // Zero is a valid state and stays valid: the section removes itself from the
+  // page when `voices.items` is empty. What must never ship is a half-supplied
+  // set, where a visitor switching to French gets a carousel one quote shorter
+  // than the Italian one, or an attribution with no name against it.
+  const perLocale = Object.entries(LOCALES).map(
+    ([locale, messages]) =>
+      [locale, (at(messages, "voices.items") ?? {}) as Record<string, unknown>] as const,
+  );
+
+  const [, reference] = perLocale[0];
+  const expected = Object.keys(reference);
+
+  for (const [locale, items] of perLocale) {
+    assert.deepEqual(
+      Object.keys(items),
+      expected,
+      `${locale} carries a different set of testimonials`,
+    );
+
+    for (const key of expected) {
+      const voice = items[key] as Record<string, unknown>;
+      // `course` is optional, but optional per testimonial, not per language:
+      // if the Italian quote names the discipline, every other language does.
+      for (const field of ["quote", "name", "role"]) {
+        assert.equal(
+          typeof voice?.[field],
+          "string",
+          `${locale}.voices.items.${key} is missing ${field}`,
+        );
+        assert.ok(
+          (voice[field] as string).trim().length > 0,
+          `${locale}.voices.items.${key}.${field} is empty`,
+        );
+      }
+      assert.equal(
+        "course" in voice,
+        "course" in (reference[key] as Record<string, unknown>),
+        `${locale}.voices.items.${key} disagrees about the course line`,
+      );
+      if ("course" in voice) {
+        assert.equal(
+          typeof voice.course,
+          "string",
+          `${locale}.voices.items.${key}.course is not a string`,
+        );
+        assert.ok(
+          (voice.course as string).trim().length > 0,
+          `${locale}.voices.items.${key}.course is empty`,
+        );
+      }
+    }
   }
 });
 

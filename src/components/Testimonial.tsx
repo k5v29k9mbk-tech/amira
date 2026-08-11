@@ -16,12 +16,23 @@ import { sectionPad, shell } from "@/lib/ui";
  * The section renders nothing until real, consented quotes exist in
  * messages/*.json under `voices.items`. Inventing testimonials for a working
  * business is not an option, so the section stays out of the page rather than
- * shipping a placeholder.
+ * shipping a placeholder. Four fabricated quotes from the removed online-course
+ * build sit in this repository's git history; `npm test` blocks them by name so
+ * they cannot be restored by accident. See "Adding student testimonials" in the
+ * README for the shape and the consent rule.
+ *
+ * `course` is the optional fourth line, and it is the one that does the work: a
+ * quote signs itself with a name, but it earns its place with the discipline
+ * the student actually trained in. It is set in the same bronze small caps as
+ * the section numbers, so it reads as a filing mark rather than as a caption.
  */
+type Voice = { quote?: string; name?: string; role?: string; course?: string };
+
 export function Testimonial() {
   const t = useTranslations("voices");
-  const messages = useMessages() as { voices?: { items?: Record<string, unknown> } };
-  const keys = Object.keys(messages.voices?.items ?? {});
+  const messages = useMessages() as { voices?: { items?: Record<string, Voice> } };
+  const items = messages.voices?.items ?? {};
+  const keys = Object.keys(items);
   const reduce = useReducedMotion();
 
   const [i, setI] = useState(0);
@@ -42,7 +53,16 @@ export function Testimonial() {
 
   return (
     <section className={`${sectionPad} bg-night text-ivory`}>
+      {/* The heading this section never shows. `voices.title` was already
+          translated in all four languages and rendered nowhere: on a field this
+          bare a visible heading would compete with the quotation, but a
+          keyboard or screen-reader user still needs to know what the region is
+          and that the arrows belong to it. Focusable only when there is more
+          than one voice to move between. */}
       <div
+        role="region"
+        aria-label={t("title")}
+        tabIndex={many ? 0 : undefined}
         className={shell}
         onKeyDown={(e) => {
           if (!many) return;
@@ -72,6 +92,11 @@ export function Testimonial() {
               <figcaption className="mt-12 flex flex-col gap-1">
                 <span className="label text-ivory">{t(`items.${k}.name`)}</span>
                 <span className="text-[15px] text-mute-dark">{t(`items.${k}.role`)}</span>
+                {items[k]?.course ? (
+                  <span className="label mt-3 font-mono text-bronze-hi">
+                    {t(`items.${k}.course`)}
+                  </span>
+                ) : null}
               </figcaption>
             </motion.figure>
           </AnimatePresence>

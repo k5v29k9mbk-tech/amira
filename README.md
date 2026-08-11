@@ -15,7 +15,7 @@ npm test                     # content + translation-completeness checks, no fra
 
 | Path | Purpose |
 | --- | --- |
-| `src/app/[locale]/page.tsx` | Homepage: hero, manifesto, course selector, method, founder, gallery, voices, six questions, closing frame |
+| `src/app/[locale]/page.tsx` | Homepage: hero, manifesto, course selector, method, founder, gallery, the three claims, voices, six questions, closing frame |
 | `src/app/[locale]/courses/page.tsx` | The six courses, the shared conditions, before/after |
 | `src/app/[locale]/about/page.tsx` | Amira, the values, the business curriculum, the welcome message |
 | `src/app/[locale]/faq/page.tsx` | All eleven questions, and the FAQ structured data |
@@ -206,12 +206,52 @@ There are no invented statistics, credentials, prices or reviews.
 - **Testimonials render only when real ones exist.** `voices.items` ships empty
   in every language and the whole section stays out of the page until quotes are
   added. Add them with the student's consent, using their real name and role.
+  See [Adding student testimonials](#adding-student-testimonials) for the shape.
+  Four fabricated quotes from the removed online-course build are still in this
+  repository's git history; `npm test` blocks them by name, because content that
+  already exists somewhere is exactly what gets "restored" by mistake.
 - **Photography.** `public/brand/` holds crops of the artwork the academy
   supplied. The originals are WhatsApp-compressed, so several stills are 230-700px
   wide. Replace them with full-resolution exports before launch.
   `students-certificates.jpg` shows identifiable students and their certificate
   numbers; it is deliberately not used on any page until written consent exists.
 - **Facebook is text, not a link.** The academy gave a page name, not a URL.
+
+## Adding student testimonials
+
+The section is built and waiting. It is the only significant piece of proof the
+homepage is missing, and it needs nothing from a developer: paste the quotes in
+and it appears.
+
+For each student, collect four things, **with their written consent to publish**:
+
+| Field | What it is | Example shape |
+| --- | --- | --- |
+| `quote` | Their own words, one or two sentences. Not edited into marketing copy. | "..." |
+| `name` | Real first and last name. | "..." |
+| `role` | What they do now, and the town. This is what makes it checkable. | "Brow artist, Pescara" |
+| `course` | *Optional.* The discipline they trained in, and the year. Shown in bronze small caps under the name. | "Powder Brows · 2026" |
+
+Then add them to `voices.items` in **all four** `messages/*.json` files, using
+the same keys in each. Only `quote` and `role` get translated; `name` and
+`course` stay identical across languages.
+
+```jsonc
+// messages/en.json → "voices"
+"items": {
+  "giulia": {
+    "quote": "Her words, as she said them.",
+    "name": "Real Name",
+    "role": "Brow artist, Pescara",
+    "course": "Powder Brows · 2026"
+  }
+}
+```
+
+`npm test` enforces the rest: every locale must carry the same set of quotes,
+every quote must have a name and a role in every language, and the four
+fabricated quotes in git history can never come back. One quote is enough for
+the section to render, and it drops the counter and arrows automatically.
 
 ## Still missing from the academy
 

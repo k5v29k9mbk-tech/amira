@@ -28,9 +28,9 @@ import { SectionLabel } from "@/components/SectionLabel";
 export const metadata = { alternates: altLanguages() };
 
 /**
- * The homepage is six acts and a closing frame, in this order: the hero, the
- * statement, the catalogue, the method, the founder, the gallery, the voices,
- * six questions, and the invitation.
+ * The homepage is seven acts and a closing frame, in this order: the hero, the
+ * statement, the catalogue, the method, the founder, the gallery, the three
+ * claims, the voices, six questions, and the invitation.
  *
  * Everything operational lives one click away rather than here: the shared
  * course conditions and the before/after on /courses, the booking sequence and
@@ -45,6 +45,22 @@ const homeFaq = [
   "certificate",
   "booking",
 ] as const;
+
+/**
+ * The three claims, in the academy's own words (`about.different.*`).
+ *
+ * This is the page's proof section, and it is deliberately not a testimonial:
+ * the academy has supplied no consented student quotes, and until it does, the
+ * honest form of proof is a claim a visitor can go and check. Each of these is
+ * checkable. She trained in a working institute; the class cap is 3-4 and is
+ * stated on every course; the support after the course is written into the
+ * booking sequence on /contact.
+ *
+ * The copy is the same copy /about carries, translated once and read twice. It
+ * belongs on both: /about argues it at length to someone already interested,
+ * the homepage states it to someone deciding whether to be.
+ */
+const differences = ["experience", "small", "support"] as const;
 
 export default async function Home({
   params,
@@ -140,7 +156,53 @@ export default async function Home({
         </div>
       </section>
 
-      {/* Renders only once real, consented student quotes exist. */}
+      {/* 05 WHAT MAKES US DIFFERENT
+          On the near-black ground, which is the page's weight: the gallery
+          above and the questions below are both light, and this is the one
+          claim the page makes about itself rather than about the craft. The
+          hairlines and the muted text switch to their dark-ground variants;
+          nothing else about the row changes from the way /about sets it. */}
+      <section id="why" className={`${sectionPad} scroll-mt-20 bg-night text-ivory`}>
+        <div className={shell}>
+          <Reveal className="max-w-[22ch]">
+            <SectionLabel n={5} tone="light">
+              {t("about.different.eyebrow")}
+            </SectionLabel>
+            <h2 className={`${displaySection} mt-8`}>{t("about.different.title")}</h2>
+          </Reveal>
+
+          <Reveal delay={0.06}>
+            <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-mute-dark">
+              {t("about.different.sub")}
+            </p>
+          </Reveal>
+
+          <ol className="mt-14 border-t border-hair-dark md:mt-20">
+            {differences.map((k, i) => (
+              <Reveal
+                as="li"
+                key={k}
+                delay={i * 0.06}
+                className="grid gap-3 border-b border-hair-dark py-8 md:grid-cols-12 md:gap-10"
+              >
+                <span className="label font-mono text-bronze-hi md:col-span-1">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="display text-[clamp(1.25rem,2.2vw,1.875rem)] md:col-span-4">
+                  {t(`about.different.items.${k}.title`)}
+                </h3>
+                <p className="max-w-[52ch] text-[16px] leading-relaxed text-mute-dark md:col-span-6 md:col-start-7">
+                  {t(`about.different.items.${k}.body`)}
+                </p>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Renders only once real, consented student quotes exist. When they do,
+          they land here, directly under the claims: the claim, then the person
+          who can confirm it. */}
       <Testimonial />
 
       <section id="faq" className={`${sectionPad} scroll-mt-20 bg-paper`}>
