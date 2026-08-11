@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
+import { WhatsappLogo } from "@phosphor-icons/react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { Logo } from "./Logo";
-import { brand } from "@/lib/studio";
+import { brand, whatsappLinkWith } from "@/lib/studio";
 import { shell } from "@/lib/ui";
 
 /**
@@ -20,10 +21,22 @@ import { shell } from "@/lib/ui";
  *
  * The phone menu is a full-screen ivory field with the navigation set at
  * display size, not a drawer.
+ *
+ * The WhatsApp mark is the one thing in the bar that is not navigation, and it
+ * is here because of what the phone layout used to be: the booking button is
+ * `lg:flex`, so below that width the header offered a logo and the word Menu
+ * and nothing else. The homepage runs to about twenty phone screens, and the
+ * first action a reader could reach without opening the menu was in the closing
+ * frame, at the bottom of all of it. One glyph at hairline weight fixes that
+ * without becoming a floating button or a bar of chrome: it is the same mark,
+ * the same line and the same prefilled message as every other WhatsApp action
+ * on the site, and it disappears with them when no number is on file.
  */
 export function Header() {
   const t = useTranslations("nav");
   const cta = useTranslations("hero");
+  const contact = useTranslations("contact");
+  const whatsappHref = whatsappLinkWith(contact("whatsappMessage"));
   const pathname = usePathname();
   const overHero = pathname === "/";
 
@@ -91,24 +104,42 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-6 lg:flex">
-          <LocaleSwitcher tone="dark" />
-          <Link
-            href="/contact"
-            className="label border border-espresso bg-espresso px-6 py-3 text-ivory transition-colors duration-500 ease-[var(--ease-aura)] hover:border-bronze-ink hover:bg-bronze-ink"
-          >
-            {cta("secondary")}
-          </Link>
-        </div>
+        <div className="flex items-center gap-4 sm:gap-5 lg:gap-6">
+          {/* Icon alone, at the same hairline weight as the arrows: a labelled
+              button here would be a second call to action competing with the
+              one beside it, and on a phone there is no room for two. The name
+              is carried for assistive tech rather than printed. */}
+          {whatsappHref ? (
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              className="-m-2.5 p-2.5 text-espresso transition-colors duration-300 hover:text-bronze-ink"
+            >
+              <WhatsappLogo size={21} weight="light" aria-hidden />
+              <span className="sr-only">{contact("whatsapp")}</span>
+            </a>
+          ) : null}
 
-        <button
-          type="button"
-          aria-expanded={open}
-          onClick={() => setOpen(true)}
-          className="label py-2 lg:hidden"
-        >
-          {t("menu")}
-        </button>
+          <div className="hidden items-center gap-6 lg:flex">
+            <LocaleSwitcher tone="dark" />
+            <Link
+              href="/contact"
+              className="label border border-espresso bg-espresso px-6 py-3 text-ivory transition-colors duration-500 ease-[var(--ease-aura)] hover:border-bronze-ink hover:bg-bronze-ink"
+            >
+              {cta("secondary")}
+            </Link>
+          </div>
+
+          <button
+            type="button"
+            aria-expanded={open}
+            onClick={() => setOpen(true)}
+            className="label py-2 lg:hidden"
+          >
+            {t("menu")}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
