@@ -108,8 +108,8 @@ const PAGE_KEYS = [
   "catalog.viewCourse",
   "catalog.detailsTitle",
   "catalog.includes",
-  "catalog.priceOnRequest",
   "catalog.cta",
+  "catalog.privateNote",
   "catalog.payments",
   "journey.eyebrow",
   "journey.title",
@@ -180,7 +180,6 @@ const ABOUT_VISION = ["quality", "professionalism", "innovation", "growth"] as c
 const JOURNEY = ["contact", "deposit", "training", "certificate", "support"] as const;
 const DETAILS = [
   "duration",
-  "price",
   "level",
   "language",
   "students",
@@ -346,6 +345,37 @@ test("no orphaned strings survived the rewrites", () => {
       assert.equal(at(messages, ns), undefined, `${locale} still carries "${ns}"`);
     }
   }
+});
+
+test("course fees stay private", () => {
+  // Standing instruction from the academy: pricing is never displayed. It is
+  // quoted to an enquirer by Amira directly, so the site carries no figure, no
+  // price row in the shared conditions, and no "price on request" placeholder
+  // standing in for one. `catalog.privateNote` says the fee comes from her and
+  // the action beside it starts that conversation; that is the whole of it.
+  for (const [locale, messages] of Object.entries(LOCALES)) {
+    assert.equal(
+      at(messages, "catalog.details.price"),
+      undefined,
+      `${locale} put the price row back into the shared conditions`,
+    );
+    assert.equal(
+      at(messages, "catalog.priceOnRequest"),
+      undefined,
+      `${locale} brought back the price-on-request placeholder`,
+    );
+    assert.equal(
+      typeof at(messages, "catalog.privateNote"),
+      "string",
+      `${locale} is missing the note that replaces the price`,
+    );
+  }
+  // The page must not render a price row even if a key reappears.
+  assert.equal(
+    (DETAILS as readonly string[]).includes("price"),
+    false,
+    "the shared conditions table lists a price row again",
+  );
 });
 
 test("no price, refund or lifetime-access claim is left anywhere", () => {
