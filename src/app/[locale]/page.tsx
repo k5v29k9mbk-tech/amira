@@ -1,9 +1,9 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { altLanguages } from "@/i18n/routing";
 import { closingMedia, founderMedia } from "@/lib/media";
-import { beforeAfterPairs } from "@/lib/studio";
+import { beforeAfterPairs, whatsappLinkWith } from "@/lib/studio";
 import {
   btnLineLight,
   btnSolidLight,
@@ -31,9 +31,9 @@ import { SectionLabel } from "@/components/SectionLabel";
 export const metadata = { alternates: altLanguages() };
 
 /**
- * The homepage is eight acts and a closing frame, in this order: the hero, the
+ * The homepage is nine acts and a closing frame, in this order: the hero, the
  * statement, the catalogue, the method, the work, the founder, the gallery, the
- * three claims, the voices, six questions, and the invitation.
+ * three claims, the voices, how to book, six questions, and the invitation.
  *
  * Everything operational lives one click away rather than here: the shared
  * course conditions on /courses, the booking sequence and the channels on
@@ -51,7 +51,7 @@ export const metadata = { alternates: altLanguages() };
  *   paper   the method, the work            how it is taught, what it produces
  *   ivory   Amira, the studio               who teaches it, and where
  *   night   the three claims                the one thing said about ourselves
- *   paper   the questions
+ *   paper   how to book, the questions      what happens if you write
  *   night   the invitation
  *
  * Two consequences worth knowing before moving a section. The founder's copy
@@ -112,6 +112,25 @@ const practical = [
   ["catalog.paymentsLabel", "catalog.payments"],
 ] as const;
 
+/**
+ * What happens after you write, in the order it happens (`journey.*`).
+ *
+ * The page spent eight acts earning the enquiry and then asked for it without
+ * ever saying what an enquiry leads to. That is the last thing standing between
+ * a convinced reader and the button: not whether the training is good, but what
+ * she is agreeing to by getting in touch, and whether a deposit is going to be
+ * asked for before anyone has spoken to her.
+ *
+ * Five steps answers it, and the academy had already written them. They render
+ * on /contact, which is a page you reach by having already decided.
+ *
+ * Set as a numbered strip across the field rather than as stacked rows: the
+ * claims above are stacked rows, and the difference in shape is what stops the
+ * two reading as one long list. It is also what a sequence looks like. Step one
+ * carries the WhatsApp action, because step one is the one that names it.
+ */
+const journeySteps = ["contact", "deposit", "training", "certificate", "support"] as const;
+
 export default async function Home({
   params,
 }: {
@@ -120,6 +139,8 @@ export default async function Home({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations();
+  // Null while no number is on file, which is what hides both CTAs.
+  const whatsappHref = whatsappLinkWith(t("contact.whatsappMessage"));
 
   return (
     <>
@@ -301,6 +322,57 @@ export default async function Home({
           who can confirm it. */}
       <Testimonial />
 
+      {/* 07 HOW TO BOOK
+          On paper with the questions below it, so the practical half of the
+          page reads as one chapter: what happens, then what is still unclear,
+          then the invitation. One hairline over the set and none between the
+          steps, because a rule between each would make five boxes out of a
+          sequence. */}
+      <section id="booking" className={`${sectionPad} scroll-mt-20 bg-paper`}>
+        <div className={shell}>
+          <Reveal className="max-w-[22ch]">
+            <SectionLabel n={7}>{t("journey.eyebrow")}</SectionLabel>
+            <h2 className={`${displaySection} mt-8`}>{t("journey.title")}</h2>
+          </Reveal>
+
+          <Reveal delay={0.06}>
+            <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-mute">
+              {t("journey.sub")}
+            </p>
+          </Reveal>
+
+          <ol className="mt-12 grid gap-x-8 gap-y-10 border-t border-hair pt-10 sm:grid-cols-2 md:mt-16 lg:grid-cols-5 lg:gap-x-10">
+            {journeySteps.map((k, i) => (
+              <Reveal as="li" key={k} delay={i * 0.05}>
+                <span className="label font-mono text-bronze-ink">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className={`${displayRow} mt-4`}>{t(`journey.steps.${k}.title`)}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-mute">
+                  {t(`journey.steps.${k}.body`)}
+                </p>
+
+                {/* Step one names WhatsApp, so step one carries it. A reader
+                    who is ready at this point should not have to scroll to the
+                    bottom to act on the sentence she has just read. Renders
+                    only while the academy has a number on file. */}
+                {k === "contact" && whatsappHref ? (
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`${linkRule} mt-5`}
+                  >
+                    <WhatsappLogo size={15} weight="light" />
+                    {t("contact.whatsapp")}
+                  </a>
+                ) : null}
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       <section id="faq" className={`${sectionPad} scroll-mt-20 bg-paper`}>
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <Reveal className="lg:col-span-4">
@@ -356,12 +428,34 @@ export default async function Home({
             <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-ivory/80">
               {t("closing.sub")}
             </p>
+            {/* Two ways to start the same conversation, in the order most
+                people want them: the message that needs no form, and the form
+                for anyone who would rather write at length or not hand over a
+                phone number. The catalogue link that used to sit here has gone:
+                at the foot of the page, after the whole catalogue and the five
+                steps, sending a decided reader back to browse is the one thing
+                this frame should not do.
+
+                The WhatsApp action appears only while a number is on file, and
+                the form is never conditional, so this frame always offers at
+                least one way through. */}
             <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
-              <Link href="/contact" className={btnSolidLight}>
+              {whatsappHref ? (
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={btnSolidLight}
+                >
+                  <WhatsappLogo size={17} weight="light" />
+                  {t("contact.whatsapp")}
+                </a>
+              ) : null}
+              <Link
+                href="/contact"
+                className={whatsappHref ? btnLineLight : btnSolidLight}
+              >
                 {t("hero.secondary")}
-              </Link>
-              <Link href="/courses" className={btnLineLight}>
-                {t("hero.primary")}
               </Link>
             </div>
           </Reveal>

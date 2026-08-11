@@ -135,6 +135,7 @@ const PAGE_KEYS = [
   "contact.map",
   "contact.channels",
   "contact.whatsapp",
+  "contact.whatsappMessage",
   "contact.instagram",
   "contact.tiktok",
   "contact.facebook",

@@ -14,7 +14,7 @@ import {
   mapsLink,
   studio,
   tiktokLink,
-  whatsappLink,
+  whatsappLinkWith,
 } from "@/lib/studio";
 import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/Reveal";
@@ -55,6 +55,7 @@ export default async function ContactPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations();
+  const whatsappHref = whatsappLinkWith(t("contact.whatsappMessage"));
   const row = "flex items-center gap-4 text-[16px] transition-colors hover:text-bronze-ink";
 
   return (
@@ -86,9 +87,9 @@ export default async function ContactPage({
               <ul className="mt-5 grid gap-4">
                 {/* Rendered only when the academy has supplied a number, so the
                     site never links to a guessed one. */}
-                {whatsappLink && (
+                {whatsappHref && (
                   <li>
-                    <a href={whatsappLink} target="_blank" rel="noreferrer" className={row}>
+                    <a href={whatsappHref} target="_blank" rel="noreferrer" className={row}>
                       <WhatsappLogo size={18} weight="light" className="text-bronze" />
                       {t("contact.whatsapp")}
                     </a>

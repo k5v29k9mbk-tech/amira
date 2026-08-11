@@ -46,15 +46,31 @@ export const studio = {
    */
   facebook: "Amira Bechini",
   /**
-   * TODO(academy): digits only, no + or spaces. Empty until the academy
-   * supplies the number. Every WhatsApp affordance on the site — the floating
-   * button, the contact row — checks `whatsappLink` and disappears while this
-   * is blank, so nothing links to a guessed number.
+   * The academy's WhatsApp line, supplied as +39 345 323 6514. Stored the way
+   * wa.me wants it and the way the test enforces: digits only, country code
+   * first, no plus and no spaces.
+   *
+   * Every WhatsApp affordance on the site reads `whatsappLink` and renders
+   * nothing while this is blank, so emptying this string is all it takes to
+   * pull the channel off the site again. Nothing hardcodes the number.
    */
-  whatsapp: "",
+  whatsapp: "393453236514",
 } as const;
 
 export const whatsappLink = studio.whatsapp ? `https://wa.me/${studio.whatsapp}` : null;
+
+/**
+ * The same line with the visitor's opening message already typed, so the first
+ * thing she has to do is press send rather than compose. `message` is the
+ * localised `contact.whatsappMessage`, encoded because it travels in a query
+ * string and every translation of it carries a comma.
+ *
+ * Null when no number is on file, exactly like `whatsappLink`, so a caller
+ * cannot accidentally render a live-looking button for a channel that is off.
+ * The plain link is what schema.org uses: an identity URL, not an action.
+ */
+export const whatsappLinkWith = (message: string) =>
+  whatsappLink ? `${whatsappLink}?text=${encodeURIComponent(message)}` : null;
 export const instagramLink = `https://instagram.com/${studio.instagram}`;
 export const tiktokLink = `https://tiktok.com/@${studio.tiktok}`;
 

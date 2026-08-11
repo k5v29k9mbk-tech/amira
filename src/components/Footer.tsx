@@ -7,7 +7,7 @@ import {
   legal,
   studio,
   tiktokLink,
-  whatsappLink,
+  whatsappLinkWith,
 } from "@/lib/studio";
 import { shell } from "@/lib/ui";
 import { LocaleSwitcher } from "./LocaleSwitcher";
@@ -22,6 +22,7 @@ import { Logo } from "./Logo";
  */
 export async function Footer() {
   const t = await getTranslations();
+  const whatsappHref = whatsappLinkWith(t("contact.whatsappMessage"));
   const year = new Date().getFullYear();
   const link = "text-[15px] text-mute-dark transition-colors duration-300 hover:text-ivory";
 
@@ -69,9 +70,9 @@ export async function Footer() {
                 {t("nav.contact")}
               </Link>
             </li>
-            {whatsappLink && (
+            {whatsappHref && (
               <li>
-                <a href={whatsappLink} target="_blank" rel="noreferrer" className={link}>
+                <a href={whatsappHref} target="_blank" rel="noreferrer" className={link}>
                   {t("contact.whatsapp")}
                 </a>
               </li>
