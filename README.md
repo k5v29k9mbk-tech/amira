@@ -15,7 +15,7 @@ npm test                     # content + translation-completeness checks, no fra
 
 | Path | Purpose |
 | --- | --- |
-| `src/app/[locale]/page.tsx` | Homepage: hero, manifesto, course selector, method, founder, gallery, the three claims, voices, six questions, closing frame |
+| `src/app/[locale]/page.tsx` | Homepage: hero, manifesto, course selector, method, before/after, founder, gallery, the three claims, voices, six questions, closing frame |
 | `src/app/[locale]/courses/page.tsx` | The six courses, the shared conditions, before/after |
 | `src/app/[locale]/about/page.tsx` | Amira, the values, the business curriculum, the welcome message |
 | `src/app/[locale]/faq/page.tsx` | All eleven questions, and the FAQ structured data |

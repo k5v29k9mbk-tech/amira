@@ -54,6 +54,7 @@ const PAGE_KEYS = [
   "hero.meetAmira",
   "sections.courses",
   "sections.method",
+  "sections.work",
   "sections.amira",
   "sections.inside",
   "manifesto.one",

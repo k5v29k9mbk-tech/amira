@@ -11,8 +11,19 @@ export type Pair = { before: string; after: string; label: string };
  * Drag the handle to wipe between the healed result and the starting point.
  * Keyboard accessible through the range input, which is also what carries the
  * position, so there is no scroll-frame state anywhere.
+ *
+ * `sizes` is a prop because the same figure now appears at two widths: a third
+ * of the row on /courses, and roughly half the field on the homepage. The
+ * source frames are 900px wide, which is the ceiling on how large this can be
+ * shown before it softens, so neither caller asks for more than it can serve.
  */
-export function BeforeAfter({ pair }: { pair: Pair }) {
+export function BeforeAfter({
+  pair,
+  sizes = "(max-width: 768px) 100vw, 33vw",
+}: {
+  pair: Pair;
+  sizes?: string;
+}) {
   const t = useTranslations("success");
   const [pos, setPos] = useState(50);
   const frame = useRef<HTMLDivElement>(null);
@@ -25,7 +36,7 @@ export function BeforeAfter({ pair }: { pair: Pair }) {
           src={pair.after}
           alt={`${pair.label}, ${t("after")}`}
           fill
-          sizes="(max-width: 768px) 100vw, 33vw"
+          sizes={sizes}
           className="object-cover"
         />
         {/* Clipped overlay holds the "before" state. */}
@@ -37,7 +48,7 @@ export function BeforeAfter({ pair }: { pair: Pair }) {
             src={pair.before}
             alt={`${pair.label}, ${t("before")}`}
             fill
-            sizes="(max-width: 768px) 100vw, 33vw"
+            sizes={sizes}
             className="object-cover"
           />
         </div>
@@ -73,7 +84,7 @@ export function BeforeAfter({ pair }: { pair: Pair }) {
           studio never wrote. */}
       <figcaption className="mt-5 flex items-center justify-between text-[11px] font-medium tracking-[0.18em] text-mute uppercase">
         <span className={pos > 50 ? "text-bronze-ink" : undefined}>{t("before")}</span>
-        <span aria-hidden className="mx-4 h-px flex-1 bg-line" />
+        <span aria-hidden className="mx-4 h-px flex-1 bg-hair" />
         <span className={pos <= 50 ? "text-bronze-ink" : undefined}>{t("after")}</span>
       </figcaption>
     </figure>

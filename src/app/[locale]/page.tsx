@@ -3,6 +3,7 @@ import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { altLanguages } from "@/i18n/routing";
 import { closingMedia, founderMedia } from "@/lib/media";
+import { beforeAfterPairs } from "@/lib/studio";
 import {
   btnLineLight,
   btnSolidLight,
@@ -14,6 +15,7 @@ import {
 } from "@/lib/ui";
 import { JsonLd, faqSchema } from "@/lib/seo";
 import { Hero } from "@/components/Hero";
+import { BeforeAfter } from "@/components/BeforeAfter";
 import { Manifesto } from "@/components/Manifesto";
 import { CourseSelector } from "@/components/CourseSelector";
 import { MethodStory } from "@/components/MethodStory";
@@ -28,14 +30,16 @@ import { SectionLabel } from "@/components/SectionLabel";
 export const metadata = { alternates: altLanguages() };
 
 /**
- * The homepage is seven acts and a closing frame, in this order: the hero, the
- * statement, the catalogue, the method, the founder, the gallery, the three
- * claims, the voices, six questions, and the invitation.
+ * The homepage is eight acts and a closing frame, in this order: the hero, the
+ * statement, the catalogue, the method, the work, the founder, the gallery, the
+ * three claims, the voices, six questions, and the invitation.
  *
  * Everything operational lives one click away rather than here: the shared
- * course conditions and the before/after on /courses, the booking sequence and
- * the channels on /contact, the full question list on /faq, the values, the
- * business curriculum and the welcome message on /about.
+ * course conditions on /courses, the booking sequence and the channels on
+ * /contact, the full question list on /faq, the values, the business curriculum
+ * and the welcome message on /about. The before/after is the one thing that is
+ * now in both places: it is the only proof of outcome the academy has supplied,
+ * and a visitor who never reaches /courses should still see it.
  */
 const homeFaq = [
   "beginners",
@@ -109,7 +113,53 @@ export default async function Home({
         </div>
       </section>
 
-      {/* 03 AMIRA */}
+      {/* 03 THE WORK
+          The method section above explains how the technique is built; this is
+          what it produces. It sits directly after it for that reason, and it is
+          the only place on the homepage that shows an outcome rather than a
+          process: the gallery further down is the room, not the result.
+
+          One pair is what the academy has supplied and one pair is what shows.
+          The section removes itself if that ever becomes none, and lays the set
+          out two-up if it becomes more, so it never has to be rewritten to take
+          the photographs the academy still owes.
+
+          Held to 34rem rather than filling the column: the source frames are
+          900px wide, and stretched across two thirds of a desktop field they
+          would soften. Better a smaller frame that is sharp. */}
+      {beforeAfterPairs.length > 0 && (
+        <section id="work" className={`${sectionPad} scroll-mt-20 bg-ivory`}>
+          <div className={`${shell} grid items-start gap-12 lg:grid-cols-12 lg:gap-16`}>
+            <Reveal className="lg:col-span-4">
+              <SectionLabel n={3}>{t("sections.work")}</SectionLabel>
+              <h2 className={`${displaySection} mt-8 max-w-[10ch]`}>{t("success.title")}</h2>
+            </Reveal>
+
+            <div
+              className={`lg:col-span-7 lg:col-start-6 ${
+                beforeAfterPairs.length === 1
+                  ? "max-w-[34rem]"
+                  : "grid gap-8 sm:grid-cols-2"
+              }`}
+            >
+              {beforeAfterPairs.map((pair, i) => (
+                <Reveal key={pair.label} delay={i * 0.06}>
+                  <BeforeAfter
+                    pair={pair}
+                    sizes={
+                      beforeAfterPairs.length === 1
+                        ? "(max-width: 1024px) 100vw, 34rem"
+                        : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 26vw"
+                    }
+                  />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 04 AMIRA */}
       <section id="amira" className={`${sectionPad} scroll-mt-20 bg-paper`}>
         <div className={`${shell} grid items-center gap-10 lg:grid-cols-12 lg:gap-0`}>
           <Parallax distance={12} className="lg:col-span-7">
@@ -125,7 +175,7 @@ export default async function Home({
           {/* The copy plate crosses the edge of the portrait rather than
               sitting beside it. Same ground as the page, no border, no card. */}
           <Reveal className="lg:col-span-5 lg:-ms-20 lg:bg-paper lg:py-16 lg:ps-16">
-            <SectionLabel n={3}>{t("sections.amira")}</SectionLabel>
+            <SectionLabel n={4}>{t("sections.amira")}</SectionLabel>
             <h2 className={`${displaySection} mt-8 max-w-[12ch]`}>
               {t("instructor.headline")}
             </h2>
@@ -142,11 +192,11 @@ export default async function Home({
         </div>
       </section>
 
-      {/* 04 INSIDE AURA */}
+      {/* 05 INSIDE AURA */}
       <section id="gallery" className={`${sectionPad} scroll-mt-20 bg-ivory`}>
         <div className={shell}>
           <Reveal className="pb-14 md:pb-20">
-            <SectionLabel n={4}>{t("sections.inside")}</SectionLabel>
+            <SectionLabel n={5}>{t("sections.inside")}</SectionLabel>
             <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("students.title")}</h2>
             <p className="mt-8 max-w-[48ch] text-[17px] leading-relaxed text-mute">
               {t("students.sub")}
@@ -156,7 +206,7 @@ export default async function Home({
         </div>
       </section>
 
-      {/* 05 WHAT MAKES US DIFFERENT
+      {/* 06 WHAT MAKES US DIFFERENT
           On the near-black ground, which is the page's weight: the gallery
           above and the questions below are both light, and this is the one
           claim the page makes about itself rather than about the craft. The
@@ -165,7 +215,7 @@ export default async function Home({
       <section id="why" className={`${sectionPad} scroll-mt-20 bg-night text-ivory`}>
         <div className={shell}>
           <Reveal className="max-w-[22ch]">
-            <SectionLabel n={5} tone="light">
+            <SectionLabel n={6} tone="light">
               {t("about.different.eyebrow")}
             </SectionLabel>
             <h2 className={`${displaySection} mt-8`}>{t("about.different.title")}</h2>
