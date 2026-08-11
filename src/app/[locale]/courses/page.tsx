@@ -29,14 +29,20 @@ export const metadata = { alternates: altLanguages("/courses") };
  *
  * The academy publishes six names, a one-line description of each discipline
  * and one shared set of conditions that applies to all of them: duration,
- * price, level, language, class size, kit, certificate and venue are the same
+ * level, language, class size, kit, certificate and venue are the same
  * statement whichever course you choose. Six near-identical pages would be thin
  * duplicate content, and filling them out would mean inventing syllabuses that
  * do not exist, so the conditions are stated once, below the list.
+ *
+ * Fees are not among them, by instruction. The academy quotes each course
+ * privately, so there is no price row, no "from" figure and no price-on-request
+ * placeholder: a table row that exists only to say it cannot tell you anything
+ * is worse than no row. In its place the conditions column carries one line
+ * explaining that the quote comes from Amira directly, and the action next to
+ * it asks for exactly that.
  */
 const detailKeys = [
   "duration",
-  "price",
   "level",
   "language",
   "students",
@@ -126,10 +132,18 @@ export default async function CoursesPage({
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <Reveal className="lg:col-span-4">
             <h2 className={`${displaySection} max-w-[12ch]`}>{t("catalog.detailsTitle")}</h2>
-            <p className="mt-8 text-[15px] text-mute">{t("catalog.payments")}</p>
-            <Link href="/contact" className={`${btnSolid} mt-10`}>
-              {t("hero.secondary")}
+
+            {/* Where the price row used to be. The fee is a conversation with
+                Amira, so the page says so plainly and then offers the action
+                that starts it, rather than leaving a visitor to guess whether
+                the figure is hidden or simply missing. */}
+            <p className="mt-8 max-w-[42ch] text-[16px] leading-relaxed text-mute">
+              {t("catalog.privateNote")}
+            </p>
+            <Link href="/contact" className={`${btnSolid} mt-8`}>
+              {t("catalog.cta")}
             </Link>
+            <p className="label mt-8 text-mute">{t("catalog.payments")}</p>
           </Reveal>
 
           <Reveal delay={0.08} className="lg:col-span-7 lg:col-start-6">

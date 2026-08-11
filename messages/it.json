@@ -22,9 +22,18 @@
     "sub": "Formazione professionale in PMU e beauty con Amira Bechini: tecnica, esperienza sul campo e visione imprenditoriale, le tre basi di una carriera vera nel beauty.",
     "founder": "Amira Bechini · Fondatrice e Master PMU",
     "facts": {
-      "years": { "value": "8+", "label": "Anni di esperienza" },
-      "students": { "value": "150+", "label": "Studenti formati" },
-      "classes": { "value": "3-4", "label": "Studenti per corso" }
+      "years": {
+        "value": "8+",
+        "label": "Anni di esperienza"
+      },
+      "students": {
+        "value": "150+",
+        "label": "Studenti formati"
+      },
+      "classes": {
+        "value": "3-4",
+        "label": "Studenti per corso"
+      }
     },
     "primary": "Scopri i corsi",
     "secondary": "Prenota il tuo posto",
@@ -163,7 +172,7 @@
   "catalog": {
     "eyebrow": "I corsi",
     "title": "Sei corsi, un unico standard",
-    "sub": "Trucco permanente e laminazione, a livello base e avanzato. La durata varia in base al corso; il prezzo varia in base al corso scelto e all'eventuale kit professionale incluso.",
+    "sub": "Trucco permanente e laminazione, a livello base e avanzato. La durata varia in base al corso e ogni corso viene preventivato singolarmente.",
     "courses": {
       "microblading": "Microblading",
       "powder-brows": "Powder Brows",
@@ -177,10 +186,6 @@
       "duration": {
         "label": "Durata",
         "value": "Variabile in base al corso"
-      },
-      "price": {
-        "label": "Prezzo",
-        "value": "Variabile in base al corso e all'eventuale kit incluso"
       },
       "level": {
         "label": "Livello",
@@ -214,8 +219,8 @@
       "model": "Modella dal vivo, quando prevista",
       "support": "Assistenza post-corso"
     },
-    "priceOnRequest": "Prezzo su richiesta",
-    "cta": "Richiedi informazioni",
+    "cta": "Richiedi i dettagli",
+    "privateNote": "I costi dei corsi non sono pubblicati. Scrivici e Amira ti invierà tutti i dettagli del corso che hai in mente, compresa l'opzione del kit professionale.",
     "payments": "Bonifico · Carta · PagoDIL",
     "selectorTitle": "Scegli la tua disciplina.",
     "viewCourse": "Vedi il corso",
@@ -279,7 +284,7 @@
       },
       "price": {
         "q": "Quanto costa un corso?",
-        "a": "Il prezzo varia in base al corso scelto e all'eventuale kit professionale incluso. Scrivici per ricevere il preventivo."
+        "a": "Ogni corso viene preventivato singolarmente e i dettagli si condividono in privato, non si pubblicano. Scrivici o contatta Amira e riceverai tutte le informazioni sul corso che ti interessa, compresa l'opzione del kit professionale."
       },
       "includes": {
         "q": "Che cosa comprende il corso?",

@@ -22,9 +22,18 @@
     "sub": "Formation professionnelle en PMU et beauté avec Amira Bechini : technique, expérience du terrain et vision entrepreneuriale, les trois bases d'une vraie carrière dans la beauté.",
     "founder": "Amira Bechini · Fondatrice et Master PMU",
     "facts": {
-      "years": { "value": "8+", "label": "Années d'expérience" },
-      "students": { "value": "150+", "label": "Élèves formés" },
-      "classes": { "value": "3-4", "label": "Élèves par formation" }
+      "years": {
+        "value": "8+",
+        "label": "Années d'expérience"
+      },
+      "students": {
+        "value": "150+",
+        "label": "Élèves formés"
+      },
+      "classes": {
+        "value": "3-4",
+        "label": "Élèves par formation"
+      }
     },
     "primary": "Découvrir les formations",
     "secondary": "Réservez votre place",
@@ -163,7 +172,7 @@
   "catalog": {
     "eyebrow": "Les formations",
     "title": "Six formations, un seul standard",
-    "sub": "Maquillage permanent et lamination, en niveau base et avancé. La durée varie selon la formation ; le prix varie selon la formation choisie et selon le kit professionnel éventuellement inclus.",
+    "sub": "Maquillage permanent et lamination, en niveau base et avancé. La durée varie selon la formation, et chaque formation fait l'objet d'un devis individuel.",
     "courses": {
       "microblading": "Microblading",
       "powder-brows": "Powder Brows",
@@ -177,10 +186,6 @@
       "duration": {
         "label": "Durée",
         "value": "Variable selon la formation"
-      },
-      "price": {
-        "label": "Prix",
-        "value": "Variable selon la formation et le kit éventuellement inclus"
       },
       "level": {
         "label": "Niveau",
@@ -214,8 +219,8 @@
       "model": "Modèle en direct, lorsqu'il est prévu",
       "support": "Suivi après la formation"
     },
-    "priceOnRequest": "Prix sur demande",
-    "cta": "Demander des informations",
+    "cta": "Demander les détails",
+    "privateNote": "Les tarifs des formations ne sont pas publiés. Écrivez-nous et Amira vous enverra tous les détails de la formation qui vous intéresse, y compris l'option du kit professionnel.",
     "payments": "Virement · Carte · PagoDIL",
     "selectorTitle": "Choisissez votre discipline.",
     "viewCourse": "Voir la formation",
@@ -279,7 +284,7 @@
       },
       "price": {
         "q": "Combien coûte une formation ?",
-        "a": "Le prix varie selon la formation choisie et selon le kit professionnel éventuellement inclus. Écrivez-nous pour recevoir un devis."
+        "a": "Chaque formation fait l'objet d'un devis individuel, et les détails se communiquent en privé plutôt que de s'afficher. Écrivez-nous ou contactez Amira et vous recevrez toutes les informations sur la formation qui vous intéresse, y compris l'option du kit professionnel."
       },
       "includes": {
         "q": "Que comprend la formation ?",

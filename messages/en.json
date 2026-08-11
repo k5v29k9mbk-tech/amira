@@ -22,9 +22,18 @@
     "sub": "Professional PMU and beauty training by Amira Bechini: technique, real-world experience and business knowledge, the three things a serious career in beauty is built on.",
     "founder": "Amira Bechini · Founder and PMU Master",
     "facts": {
-      "years": { "value": "8+", "label": "Years experience" },
-      "students": { "value": "150+", "label": "Students trained" },
-      "classes": { "value": "3-4", "label": "Students per class" }
+      "years": {
+        "value": "8+",
+        "label": "Years experience"
+      },
+      "students": {
+        "value": "150+",
+        "label": "Students trained"
+      },
+      "classes": {
+        "value": "3-4",
+        "label": "Students per class"
+      }
     },
     "primary": "Explore the courses",
     "secondary": "Book your place",
@@ -163,7 +172,7 @@
   "catalog": {
     "eyebrow": "The courses",
     "title": "Six courses, one standard",
-    "sub": "Permanent makeup and lamination, at base and advanced level. Duration varies by course; the price varies by the course chosen and whether a professional kit is included.",
+    "sub": "Permanent makeup and lamination, at base and advanced level. Duration varies by course, and every course is quoted individually.",
     "courses": {
       "microblading": "Microblading",
       "powder-brows": "Powder Brows",
@@ -177,10 +186,6 @@
       "duration": {
         "label": "Duration",
         "value": "Varies by course"
-      },
-      "price": {
-        "label": "Price",
-        "value": "Varies by course and whether a kit is included"
       },
       "level": {
         "label": "Level",
@@ -214,8 +219,8 @@
       "model": "Live model, where scheduled",
       "support": "Post-course support"
     },
-    "priceOnRequest": "Price on request",
-    "cta": "Request information",
+    "cta": "Request course details",
+    "privateNote": "Course fees are not published. Write to us and Amira will send you the full details for the course you have in mind, including the professional kit option.",
     "payments": "Bank transfer · Card · PagoDIL",
     "selectorTitle": "Choose your discipline.",
     "viewCourse": "View course",
@@ -279,7 +284,7 @@
       },
       "price": {
         "q": "How much does a course cost?",
-        "a": "The price varies by the course chosen and whether a professional kit is included. Write to us for a quote."
+        "a": "Every course is quoted individually, and the details are shared privately rather than published. Write to us or message Amira and you will receive the full information for the course you are interested in, including the professional kit option."
       },
       "includes": {
         "q": "What does the course include?",
