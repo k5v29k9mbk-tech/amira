@@ -42,7 +42,7 @@
   "about": {
     "meta": {
       "title": "Chi siamo",
-      "description": "Aura Academy nasce da Amira Bechini, CEO di Amira Beauty Suite: oltre 8 anni di esperienza nel settore beauty e più di 150 studenti formati. Formazione professionale in trucco permanente e laminazione ciglia e sopracciglia in tutta Italia, sede ufficiale a Tortoreto (TE)."
+      "description": "Aura Academy nasce da Amira Bechini, CEO di Amira Beauty Suite: oltre 8 anni di esperienza nel settore beauty e più di 150 studenti formati. Formazione professionale in trucco permanente e laminazione ciglia e sopracciglia in tutta Italia."
     },
     "eyebrow": "Chi è Aura Academy",
     "titleA": "Insegniamo dall'interno della professione,",
@@ -60,8 +60,8 @@
         "label": "Studenti formati"
       },
       "reach": {
-        "value": "Tortoreto (TE)",
-        "label": "Sede ufficiale, formazione in tutta Italia"
+        "value": "Tutta Italia",
+        "label": "Dove formiamo"
       }
     },
     "story": {
@@ -72,7 +72,7 @@
       "p1": "Mi chiamo Amira Bechini. Guido Amira Beauty Suite, istituto di bellezza specializzato in trattamenti estetici avanzati, e ho fondato Aura Academy per insegnare ciò che pratico: trucco permanente e laminazione di ciglia e sopracciglia.",
       "p2": "In più di otto anni nel settore ho formato oltre 150 studenti e ho costruito un metodo mio, che tiene insieme eccellenza tecnica, pratica sul campo e visione imprenditoriale. La mia passione è nata da un desiderio semplice: aiutare le persone a sentirsi sicure di sé e creare opportunità professionali concrete per le donne che vogliono trasformare questa passione in un mestiere.",
       "p3": "Non ho mai smesso di studiare: masterclass internazionali, le tecniche PMU più recenti, un investimento continuo nella mia formazione. Il lavoro quotidiano nel mio istituto mi ha insegnato il resto, non solo l'aspetto tecnico della professione, ma i bisogni reali delle clienti e del mercato.",
-      "p4": "È per questo che esiste Aura Academy: la scuola che avrei voluto quando ho iniziato. Guida personalizzata, formazione pratica, supporto continuo e la sicurezza necessaria per costruire una carriera che duri. Oggi formiamo in tutta Italia, con sede ufficiale a Tortoreto (TE).",
+      "p4": "È per questo che esiste Aura Academy: la scuola che avrei voluto quando ho iniziato. Guida personalizzata, formazione pratica, supporto continuo e la sicurezza necessaria per costruire una carriera che duri. Oggi formiamo in tutta Italia.",
       "signature": "Amira Bechini"
     },
     "different": {
@@ -135,7 +135,7 @@
     "title": "Amira Bechini",
     "role": "Master Internazionale PMU e Fondatrice di Aura Academy",
     "mission": "Formare professioniste competenti con percorsi pratici, supporto continuo e standard elevati.",
-    "body": "Aura Academy forma professioniste nel trucco permanente e nella laminazione a Giulianova, in provincia di Teramo. I corsi si tengono in italiano, a livello base e avanzato, con un massimo di tre o quattro allieve per sessione.",
+    "body": "Aura Academy forma professioniste nel trucco permanente e nella laminazione in tutta Italia. I corsi si tengono in italiano, a livello base e avanzato, con un massimo di tre o quattro allieve per sessione.",
     "valuesLabel": "I nostri valori",
     "values": {
       "professionalism": "Professionalità",
@@ -208,8 +208,8 @@
         "value": "Sì, a fine corso"
       },
       "location": {
-        "label": "Sede",
-        "value": "Lungomare Rodi 20, 64021 Giulianova (TE)"
+        "label": "Dove",
+        "value": "Tutta Italia"
       }
     },
     "includes": "Ogni corso comprende",
@@ -221,6 +221,7 @@
     },
     "cta": "Richiedi i dettagli",
     "privateNote": "I costi dei corsi non sono pubblicati. Scrivici e Amira ti invierà tutti i dettagli del corso che hai in mente, compresa l'opzione del kit professionale.",
+    "paymentsLabel": "Pagamento",
     "payments": "Bonifico · Carta · PagoDIL",
     "selectorTitle": "Scegli la tua disciplina.",
     "viewCourse": "Vedi il corso",

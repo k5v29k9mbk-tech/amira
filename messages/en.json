@@ -42,7 +42,7 @@
   "about": {
     "meta": {
       "title": "About us",
-      "description": "Aura Academy was founded by Amira Bechini, CEO of Amira Beauty Suite: over 8 years in the beauty industry and more than 150 students trained. Professional training in permanent makeup and lash and brow lamination throughout Italy, headquarters in Tortoreto (TE)."
+      "description": "Aura Academy was founded by Amira Bechini, CEO of Amira Beauty Suite: over 8 years in the beauty industry and more than 150 students trained. Professional training in permanent makeup and lash and brow lamination throughout Italy."
     },
     "eyebrow": "About Aura Academy",
     "titleA": "We teach from inside the profession,",
@@ -60,8 +60,8 @@
         "label": "Students trained"
       },
       "reach": {
-        "value": "Tortoreto (TE)",
-        "label": "Headquarters, training throughout Italy"
+        "value": "Across Italy",
+        "label": "Where we train"
       }
     },
     "story": {
@@ -72,7 +72,7 @@
       "p1": "My name is Amira Bechini. I run Amira Beauty Suite, a beauty institute specialised in advanced aesthetic treatments, and I founded Aura Academy to teach what I practise: permanent makeup and lash and brow lamination.",
       "p2": "In more than eight years in the beauty industry I have trained over 150 students, and along the way I built a method of my own, one that holds technical excellence, hands-on practice and entrepreneurial vision together. My passion for this work began with a simple desire: to help people feel confident, and to create real career opportunities for women who want to turn that passion into a profession.",
       "p3": "I have never stopped studying, international masterclasses, the latest PMU techniques, continuous investment in my own education. Working every day inside my institute taught me the rest: not only the technical side of the profession, but the real needs of clients and of the beauty market.",
-      "p4": "That is why Aura Academy exists. It is the school I wanted when I started: personalised guidance, practical education, continuous support, and the confidence to build a career that lasts. Today we train students throughout Italy, from our headquarters in Tortoreto (TE).",
+      "p4": "That is why Aura Academy exists. It is the school I wanted when I started: personalised guidance, practical education, continuous support, and the confidence to build a career that lasts. Today we train students throughout Italy.",
       "signature": "Amira Bechini"
     },
     "different": {
@@ -135,7 +135,7 @@
     "title": "Amira Bechini",
     "role": "International PMU Master and Founder of Aura Academy",
     "mission": "To train competent professionals through practical courses, continuous support and high standards.",
-    "body": "Aura Academy trains permanent makeup and lamination professionals in Giulianova, in the province of Teramo, Italy. Courses are taught in Italian, at base and advanced level, with a maximum of three or four students per session.",
+    "body": "Aura Academy trains permanent makeup and lamination professionals across Italy. Courses are taught in Italian, at base and advanced level, with a maximum of three or four students per session.",
     "valuesLabel": "Our values",
     "values": {
       "professionalism": "Professionalism",
@@ -209,7 +209,7 @@
       },
       "location": {
         "label": "Location",
-        "value": "Lungomare Rodi 20, 64021 Giulianova (TE), Italy"
+        "value": "Across Italy"
       }
     },
     "includes": "Every course includes",
@@ -221,6 +221,7 @@
     },
     "cta": "Request course details",
     "privateNote": "Course fees are not published. Write to us and Amira will send you the full details for the course you have in mind, including the professional kit option.",
+    "paymentsLabel": "Payment",
     "payments": "Bank transfer · Card · PagoDIL",
     "selectorTitle": "Choose your discipline.",
     "viewCourse": "View course",

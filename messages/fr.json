@@ -42,7 +42,7 @@
   "about": {
     "meta": {
       "title": "À propos",
-      "description": "Aura Academy a été fondée par Amira Bechini, CEO d'Amira Beauty Suite : plus de 8 ans d'expérience dans la beauté et plus de 150 élèves formés. Formation professionnelle en maquillage permanent et lamination des cils et sourcils dans toute l'Italie, siège officiel à Tortoreto (TE)."
+      "description": "Aura Academy a été fondée par Amira Bechini, CEO d'Amira Beauty Suite : plus de 8 ans d'expérience dans la beauté et plus de 150 élèves formés. Formation professionnelle en maquillage permanent et lamination des cils et sourcils dans toute l'Italie."
     },
     "eyebrow": "Qui est Aura Academy",
     "titleA": "Nous enseignons depuis l'intérieur du métier,",
@@ -60,8 +60,8 @@
         "label": "Élèves formés"
       },
       "reach": {
-        "value": "Tortoreto (TE)",
-        "label": "Siège officiel, formations dans toute l'Italie"
+        "value": "Dans toute l'Italie",
+        "label": "Où nous formons"
       }
     },
     "story": {
@@ -72,7 +72,7 @@
       "p1": "Je m'appelle Amira Bechini. Je dirige Amira Beauty Suite, un institut de beauté spécialisé en soins esthétiques avancés, et j'ai fondé Aura Academy pour enseigner ce que je pratique : le maquillage permanent et la lamination des cils et des sourcils.",
       "p2": "En plus de huit ans dans le secteur, j'ai formé plus de 150 élèves et construit ma propre méthode, qui réunit excellence technique, pratique sur le terrain et vision entrepreneuriale. Ma passion est née d'un désir simple : aider les gens à se sentir sûrs d'eux et créer de véritables opportunités de carrière pour les femmes qui veulent faire de cette passion un métier.",
       "p3": "Je n'ai jamais cessé d'apprendre : masterclasses internationales, dernières techniques PMU, investissement continu dans ma propre formation. Le travail quotidien dans mon institut m'a appris le reste, non seulement l'aspect technique du métier, mais les besoins réels des clientes et du marché.",
-      "p4": "C'est pour cela qu'Aura Academy existe : l'école que j'aurais voulue à mes débuts. Un accompagnement personnalisé, une formation pratique, un soutien continu et la confiance nécessaire pour bâtir une carrière durable. Aujourd'hui nous formons dans toute l'Italie, depuis notre siège de Tortoreto (TE).",
+      "p4": "C'est pour cela qu'Aura Academy existe : l'école que j'aurais voulue à mes débuts. Un accompagnement personnalisé, une formation pratique, un soutien continu et la confiance nécessaire pour bâtir une carrière durable. Aujourd'hui nous formons dans toute l'Italie.",
       "signature": "Amira Bechini"
     },
     "different": {
@@ -135,7 +135,7 @@
     "title": "Amira Bechini",
     "role": "Master Internationale PMU et fondatrice d'Aura Academy",
     "mission": "Former des professionnelles compétentes par des parcours pratiques, un accompagnement continu et des standards élevés.",
-    "body": "Aura Academy forme des professionnelles du maquillage permanent et de la lamination à Giulianova, dans la province de Teramo, en Italie. Les formations se déroulent en italien, en niveau base et avancé, avec un maximum de trois ou quatre élèves par session.",
+    "body": "Aura Academy forme des professionnelles du maquillage permanent et de la lamination dans toute l'Italie. Les formations se déroulent en italien, en niveau base et avancé, avec un maximum de trois ou quatre élèves par session.",
     "valuesLabel": "Nos valeurs",
     "values": {
       "professionalism": "Professionnalisme",
@@ -209,7 +209,7 @@
       },
       "location": {
         "label": "Lieu",
-        "value": "Lungomare Rodi 20, 64021 Giulianova (TE), Italie"
+        "value": "Dans toute l'Italie"
       }
     },
     "includes": "Chaque formation comprend",
@@ -221,6 +221,7 @@
     },
     "cta": "Demander les détails",
     "privateNote": "Les tarifs des formations ne sont pas publiés. Écrivez-nous et Amira vous enverra tous les détails de la formation qui vous intéresse, y compris l'option du kit professionnel.",
+    "paymentsLabel": "Paiement",
     "payments": "Virement · Carte · PagoDIL",
     "selectorTitle": "Choisissez votre discipline.",
     "viewCourse": "Voir la formation",

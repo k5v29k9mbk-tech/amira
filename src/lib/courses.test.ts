@@ -110,6 +110,7 @@ const PAGE_KEYS = [
   "catalog.includes",
   "catalog.cta",
   "catalog.privateNote",
+  "catalog.paymentsLabel",
   "catalog.payments",
   "journey.eyebrow",
   "journey.title",

@@ -84,6 +84,34 @@ const homeFaq = [
  */
 const differences = ["experience", "small", "support"] as const;
 
+/**
+ * The practical frame: where, in what language, what you leave with, how it is
+ * paid for. Label key and value key, both quoted from the academy's own course
+ * information, all four already translated for /courses.
+ *
+ * It sits under the questions because that is where a visitor is deciding
+ * rather than browsing, and it answers the four things she cannot find out by
+ * reading further: the academy teaches across Italy, the teaching is in
+ * Italian, the certificate is issued, and the payment is not necessarily one
+ * transfer.
+ *
+ * The location is the reach, not a street. The academy trains throughout the
+ * country, which is what a student wants to know before she reads further; the
+ * venue for her own course is settled in the conversation that follows. The
+ * registered address is still on /contact and in the schema.org payload, where
+ * it belongs, and it is untouched here.
+ *
+ * The fee is not here and does not belong here. It is quoted privately, which
+ * `catalog.privateNote` says on /courses; a row saying "on request" would only
+ * take up space to say nothing.
+ */
+const practical = [
+  ["catalog.details.location.label", "catalog.details.location.value"],
+  ["catalog.details.language.label", "catalog.details.language.value"],
+  ["catalog.details.certificate.label", "catalog.details.certificate.value"],
+  ["catalog.paymentsLabel", "catalog.payments"],
+] as const;
+
 export default async function Home({
   params,
 }: {
@@ -285,6 +313,27 @@ export default async function Home({
               <ArrowRight size={14} weight="light" className="flip-x" />
             </Link>
           </div>
+
+          {/* Four facts across the full width, under the questions and directly
+              above the invitation. Two columns on a phone, four from md, one
+              hairline over the set and none between: a border around each cell
+              would make four boxes out of what is one row of small print.
+              `catalog.detailsTitle` names it, in the small caps the rest of the
+              page uses for a label rather than at the display size /courses
+              gives it. */}
+          <Reveal delay={0.08} className="lg:col-span-12">
+            <p className="label text-bronze-ink">{t("catalog.detailsTitle")}</p>
+            <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-8 border-t border-hair pt-8 md:grid-cols-4 md:gap-x-12 md:pt-10">
+              {practical.map(([labelKey, valueKey]) => (
+                <div key={labelKey}>
+                  <dt className="label text-mute">{t(labelKey)}</dt>
+                  <dd className="mt-3 text-[16px] leading-relaxed text-espresso">
+                    {t(valueKey)}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
         </div>
       </section>
 
