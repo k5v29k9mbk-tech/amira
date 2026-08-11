@@ -8,6 +8,7 @@ import {
   btnLineLight,
   btnSolidLight,
   displayLarge,
+  displayRow,
   displaySection,
   linkRule,
   sectionPad,
@@ -40,6 +41,23 @@ export const metadata = { alternates: altLanguages() };
  * and the welcome message on /about. The before/after is the one thing that is
  * now in both places: it is the only proof of outcome the academy has supplied,
  * and a visitor who never reaches /courses should still see it.
+ *
+ * The two grounds are paced in pairs rather than alternated. Alternating on
+ * every section makes eight switches on the way down the page, and a ground
+ * that changes that often stops reading as a change at all. Paired, each switch
+ * marks a turn in the argument:
+ *
+ *   ivory   hero, statement, catalogue      what this is
+ *   paper   the method, the work            how it is taught, what it produces
+ *   ivory   Amira, the studio               who teaches it, and where
+ *   night   the three claims                the one thing said about ourselves
+ *   paper   the questions
+ *   night   the invitation
+ *
+ * Two consequences worth knowing before moving a section. The founder's copy
+ * plate is painted with the section's own ground so it can cross the edge of
+ * the portrait, so it changes when the section does. And the method section
+ * needs its own bottom padding now that the ground changes under it.
  */
 const homeFaq = [
   "beginners",
@@ -90,7 +108,7 @@ export default async function Home({
       <Manifesto />
 
       {/* 01 COURSES */}
-      <section id="courses" className="scroll-mt-20 bg-ivory pb-20 md:pb-28 lg:pb-36">
+      <section id="courses" className="scroll-mt-20 bg-ivory pb-20 md:pb-32 lg:pb-44">
         <div className={`${shell} pb-12 md:pb-16`}>
           <Reveal>
             <SectionLabel n={1}>{t("sections.courses")}</SectionLabel>
@@ -103,7 +121,7 @@ export default async function Home({
       </section>
 
       {/* 02 THE METHOD */}
-      <section id="method" className="scroll-mt-20 bg-paper pt-20 md:pt-32 lg:pt-44">
+      <section id="method" className="scroll-mt-20 bg-paper pt-20 pb-20 md:pt-32 md:pb-32 lg:pt-44 lg:pb-44">
         <div className={shell}>
           <Reveal className="max-w-[20ch] pb-8 lg:pb-4">
             <SectionLabel n={2}>{t("sections.method")}</SectionLabel>
@@ -128,7 +146,7 @@ export default async function Home({
           900px wide, and stretched across two thirds of a desktop field they
           would soften. Better a smaller frame that is sharp. */}
       {beforeAfterPairs.length > 0 && (
-        <section id="work" className={`${sectionPad} scroll-mt-20 bg-ivory`}>
+        <section id="work" className={`${sectionPad} scroll-mt-20 bg-paper`}>
           <div className={`${shell} grid items-start gap-12 lg:grid-cols-12 lg:gap-16`}>
             <Reveal className="lg:col-span-4">
               <SectionLabel n={3}>{t("sections.work")}</SectionLabel>
@@ -160,7 +178,7 @@ export default async function Home({
       )}
 
       {/* 04 AMIRA */}
-      <section id="amira" className={`${sectionPad} scroll-mt-20 bg-paper`}>
+      <section id="amira" className={`${sectionPad} scroll-mt-20 bg-ivory`}>
         <div className={`${shell} grid items-center gap-10 lg:grid-cols-12 lg:gap-0`}>
           <Parallax distance={12} className="lg:col-span-7">
             <div className="relative aspect-[4/5] w-full">
@@ -174,7 +192,7 @@ export default async function Home({
 
           {/* The copy plate crosses the edge of the portrait rather than
               sitting beside it. Same ground as the page, no border, no card. */}
-          <Reveal className="lg:col-span-5 lg:-ms-20 lg:bg-paper lg:py-16 lg:ps-16">
+          <Reveal className="lg:col-span-5 lg:-ms-20 lg:bg-ivory lg:py-16 lg:ps-16">
             <SectionLabel n={4}>{t("sections.amira")}</SectionLabel>
             <h2 className={`${displaySection} mt-8 max-w-[12ch]`}>
               {t("instructor.headline")}
@@ -195,7 +213,7 @@ export default async function Home({
       {/* 05 INSIDE AURA */}
       <section id="gallery" className={`${sectionPad} scroll-mt-20 bg-ivory`}>
         <div className={shell}>
-          <Reveal className="pb-14 md:pb-20">
+          <Reveal className="pb-12 md:pb-16">
             <SectionLabel n={5}>{t("sections.inside")}</SectionLabel>
             <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("students.title")}</h2>
             <p className="mt-8 max-w-[48ch] text-[17px] leading-relaxed text-mute">
@@ -227,7 +245,7 @@ export default async function Home({
             </p>
           </Reveal>
 
-          <ol className="mt-14 border-t border-hair-dark md:mt-20">
+          <ol className="mt-12 border-t border-hair-dark md:mt-16">
             {differences.map((k, i) => (
               <Reveal
                 as="li"
@@ -238,7 +256,7 @@ export default async function Home({
                 <span className="label font-mono text-bronze-hi md:col-span-1">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="display text-[clamp(1.25rem,2.2vw,1.875rem)] md:col-span-4">
+                <h3 className={`${displayRow} md:col-span-4`}>
                   {t(`about.different.items.${k}.title`)}
                 </h3>
                 <p className="max-w-[52ch] text-[16px] leading-relaxed text-mute-dark md:col-span-6 md:col-start-7">
@@ -283,7 +301,7 @@ export default async function Home({
         />
         <div className={`${shell} relative pb-20 text-ivory md:pb-28`}>
           <Reveal>
-            <h2 className="display max-w-[18ch] text-[clamp(2.25rem,6vw,6.5rem)] text-balance">
+            <h2 className={`${displaySection} max-w-[18ch] text-balance`}>
               {t("closing.title")}
             </h2>
             <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-ivory/80">

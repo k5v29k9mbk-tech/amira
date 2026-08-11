@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { chapters } from "@/lib/courses";
 import { methodMedia } from "@/lib/media";
+import { displayChapter } from "@/lib/ui";
 import { MediaFrame } from "./MediaFrame";
 
 /**
@@ -93,7 +94,7 @@ export function MethodStory() {
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="display mt-5 text-[clamp(1.75rem,3.2vw,3rem)]">
+              <h3 className={`${displayChapter} mt-5`}>
                 {t(`steps.${key}.title`)}
               </h3>
               <p className="mt-5 max-w-[46ch] text-[17px] leading-relaxed text-mute">

@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { displayRow } from "@/lib/ui";
 
 /**
  * Native disclosure rows. No JavaScript, correct keyboard and screen reader
@@ -13,7 +14,7 @@ export async function Faq({ items }: { items: readonly string[] }) {
       {items.map((k) => (
         <details key={k} className="group border-b border-hair">
           <summary className="flex cursor-pointer list-none items-start justify-between gap-8 py-7 [&::-webkit-details-marker]:hidden">
-            <span className="display text-[clamp(1.25rem,2.2vw,1.875rem)]">
+            <span className={displayRow}>
               {t(`items.${k}.q`)}
             </span>
             {/* Two hairlines. The vertical one flattens when the row opens. */}

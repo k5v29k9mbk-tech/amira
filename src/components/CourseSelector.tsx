@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { ArrowRight } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 import { courses } from "@/lib/courses";
-import { shell } from "@/lib/ui";
+import { chapterSize, displayChapter, shell } from "@/lib/ui";
 import { MediaFrame } from "./MediaFrame";
 
 /**
@@ -78,7 +78,7 @@ export function CourseSelector() {
                 <span className="label font-mono text-bronze-ink">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="display mt-3 text-[clamp(1.75rem,7vw,2.5rem)]">
+                <h3 className={`${displayChapter} mt-3`}>
                   {t(`courses.${course.slug}`)}
                 </h3>
                 <p className="mt-4 max-w-[46ch] text-[15px] leading-relaxed text-mute">
@@ -167,7 +167,7 @@ export function CourseSelector() {
                     open ? "mt-4" : "mt-0 lg:mt-6"
                   } ${
                     open
-                      ? "text-[clamp(1.75rem,2.8vw,3rem)]"
+                      ? chapterSize
                       : "vtext-lg text-[1.0625rem] lg:tracking-[0.18em] lg:uppercase"
                   }`}
                 >
