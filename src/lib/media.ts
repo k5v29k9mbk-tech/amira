@@ -98,12 +98,26 @@ export const founderMedia: Media = {
 
 /** One frame per method chapter, keyed by the chapter's message key. */
 export const methodMedia: Record<string, Media> = {
+  /**
+   * The academy's own classroom, supplied by the client: Amira at the flipchart
+   * drawing the stroke patterns, the class following from the bench. It stands
+   * where a cropped mapping still used to, because the theory chapter is the one
+   * place on the page that has to show teaching rather than a technique.
+   *
+   * The frame is 4:5 and the photograph is 3:4, so `cover` scales it to the full
+   * width and loses 6% of its height, nothing else. There is no horizontal crop
+   * at any breakpoint, which is why one `position` serves phone and desktop
+   * alike: the pull upward keeps the raised hand and the whiteboard whole and
+   * spends the loss on the foreground table instead.
+   *
+   * `alt` is set by MethodStory from the message catalogue, not here, because it
+   * is the one frame on the site that carries meaning in four languages.
+   */
   theory: {
-    posterSrc: "/brand/mapping-poster.jpg",
-    alt: "",
+    posterSrc: "/brand/theory-classroom.jpg",
     position: "50% 40%",
-    width: 480,
-    height: 768,
+    width: 1200,
+    height: 1600,
   },
   practice: {
     posterSrc: "/brand/group-training.jpg",

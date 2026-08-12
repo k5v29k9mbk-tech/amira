@@ -304,6 +304,9 @@ test("every page string is translated in all four languages", () => {
     ...ABOUT_BEYOND.map((k) => `about.beyond.items.${k}`),
     ...ABOUT_VISION.map((k) => `about.vision.points.${k}`),
     ...chapters.flatMap((k) => [`method.steps.${k}.title`, `method.steps.${k}.body`]),
+    // The one frame with a described photograph rather than a decorative one.
+    // An alt that exists in Italian and not in Arabic is a silent regression.
+    "method.steps.theory.alt",
     ...JOURNEY.flatMap((k) => [`journey.steps.${k}.title`, `journey.steps.${k}.body`]),
     ...DETAILS.flatMap((k) => [`catalog.details.${k}.label`, `catalog.details.${k}.value`]),
     ...FAQ.flatMap((k) => [`faq.items.${k}.q`, `faq.items.${k}.a`]),

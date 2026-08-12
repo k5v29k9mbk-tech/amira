@@ -25,6 +25,15 @@ export function MethodStory() {
   const [active, setActive] = useState(0);
   const marks = useRef<(HTMLLIElement | null)[]>([]);
 
+  /**
+   * Theory is the only chapter whose frame is a photograph of the academy
+   * teaching rather than a texture, so it is the only one with something to
+   * describe. The other three stay decorative and keep their empty alt, which
+   * is what a screen reader wants from an image the sentence beside it already
+   * covers.
+   */
+  const altFor = (key: string) => (key === "theory" ? t("steps.theory.alt") : undefined);
+
   useEffect(() => {
     const nodes = marks.current.filter(Boolean) as HTMLLIElement[];
     if (!nodes.length) return;
@@ -53,6 +62,7 @@ export function MethodStory() {
               <MediaFrame
                 key={key}
                 media={methodMedia[key]}
+                alt={altFor(key)}
                 active={i === active}
                 sizes="55vw"
                 className={`absolute inset-0 h-full w-full transition-[opacity,transform] duration-[1000ms] ease-[var(--ease-aura)] ${
@@ -76,6 +86,7 @@ export function MethodStory() {
             <div className="relative mb-8 aspect-[4/5] w-full lg:hidden">
               <MediaFrame
                 media={methodMedia[key]}
+                alt={altFor(key)}
                 active={i === active}
                 sizes="100vw"
                 className="absolute inset-0 h-full w-full"

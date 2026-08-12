@@ -17,9 +17,15 @@ import type { Media } from "@/lib/media";
  *  - a dead or slow source degrades to the poster instead of a black rectangle.
  *
  * `active` is for panels that share a section: only the open one plays.
+ *
+ * `alt` overrides the art direction's own. Art direction is written once, in
+ * English, in media.ts, which is right for the frames that are decorative and
+ * wrong for a frame that describes something; a caller holding a translation
+ * passes it here instead.
  */
 export function MediaFrame({
   media,
+  alt,
   sizes = "100vw",
   priority = false,
   active = true,
@@ -27,6 +33,7 @@ export function MediaFrame({
   imageClassName = "",
 }: {
   media: Media;
+  alt?: string;
   sizes?: string;
   priority?: boolean;
   active?: boolean;
@@ -78,7 +85,7 @@ export function MediaFrame({
     >
       <Image
         src={media.posterSrc}
-        alt={media.alt ?? ""}
+        alt={alt ?? media.alt ?? ""}
         fill
         priority={priority}
         sizes={sizes}
