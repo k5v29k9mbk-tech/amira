@@ -373,6 +373,19 @@
     "before": "Before",
     "after": "After"
   },
+  "work": {
+    "title": "Real work, unretouched.",
+    "sub": "Permanent makeup and brow treatments photographed in the studio. Nothing on this page is retouched, filtered or generated.",
+    "open": "Open larger",
+    "close": "Close",
+    "alt": {
+      "healedBrows": "Healed permanent makeup brows, photographed close up after the treatment.",
+      "strokes": "Close-up of individual brow strokes.",
+      "brows": "Brows after a permanent makeup treatment.",
+      "lipDetail": "Close-up of lips after a pigmentation treatment.",
+      "lips": "Lips after a pigmentation treatment."
+    }
+  },
   "sections": {
     "courses": "Courses",
     "method": "The method",

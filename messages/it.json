@@ -373,6 +373,19 @@
     "before": "Prima",
     "after": "Dopo"
   },
+  "work": {
+    "title": "Lavoro reale, senza ritocchi.",
+    "sub": "Trucco permanente e trattamenti sopracciglia fotografati in studio. Nulla in questa pagina è ritoccato, filtrato o generato.",
+    "open": "Apri più grande",
+    "close": "Chiudi",
+    "alt": {
+      "healedBrows": "Sopracciglia con trucco permanente guarito, fotografate da vicino dopo il trattamento.",
+      "strokes": "Primo piano dei singoli peli disegnati sul sopracciglio.",
+      "brows": "Sopracciglia dopo un trattamento di trucco permanente.",
+      "lipDetail": "Primo piano delle labbra dopo un trattamento di pigmentazione.",
+      "lips": "Labbra dopo un trattamento di pigmentazione."
+    }
+  },
   "sections": {
     "courses": "Corsi",
     "method": "Il metodo",

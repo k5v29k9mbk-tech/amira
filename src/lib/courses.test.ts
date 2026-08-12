@@ -16,6 +16,7 @@ import {
   heroMedia,
   introMedia,
   methodMedia,
+  resultFrames,
 } from "./media.ts";
 import { academy, addressLine, brand, legal, studio } from "./studio.ts";
 
@@ -162,6 +163,10 @@ const PAGE_KEYS = [
   "success.title",
   "success.before",
   "success.after",
+  "work.title",
+  "work.sub",
+  "work.open",
+  "work.close",
 ] as const;
 
 const VALUES = ["professionalism", "quality", "innovation", "ethics", "growth"] as const;
@@ -224,6 +229,7 @@ test("every poster and clip the pages point at exists on disk", () => {
     founderMedia,
     ...Object.values(methodMedia),
     ...galleryFrames,
+    ...resultFrames,
     ...courses.map((c) => c.media),
   ];
 
@@ -267,6 +273,44 @@ test("every method chapter has a frame", () => {
   }
 });
 
+test("no treatment photograph is cropped by its own frame", () => {
+  // The work section's whole claim is that the result is shown as it was
+  // photographed. `cover` crops whatever the frame's ratio does not match, so a
+  // frame set to anything but the file's own ratio takes a slice off a brow or
+  // a lip line. Native ratio is the only setting that takes nothing.
+  for (const frame of resultFrames) {
+    assert.equal(
+      frame.ratio.replace(/\s+/g, ""),
+      `${frame.width}/${frame.height}`,
+      `${frame.posterSrc} is framed at "${frame.ratio}" rather than its own ratio`,
+    );
+  }
+});
+
+test("only photographs with pixels to spare open full screen", () => {
+  // Opening a frame larger has to actually show more. The academy's close-ups
+  // are 232px to 371px wide and are already displayed at about that size, so
+  // an overlay on one of them would enlarge nothing and soften what is there.
+  // If a small file ever gets the flag, this is where it stops.
+  for (const frame of resultFrames) {
+    if (!frame.zoom) continue;
+    assert.ok(
+      frame.width >= 900,
+      `${frame.posterSrc} is only ${frame.width}px wide and opens full screen`,
+    );
+  }
+});
+
+test("the work section and the studio gallery never show the same frame", () => {
+  // They sit two sections apart on one page. The results moved out of the
+  // studio gallery precisely so that neither is competing with the other for
+  // the same glance, and a photograph reused across both undoes that quietly.
+  const shared = resultFrames
+    .map((f) => f.posterSrc)
+    .filter((src) => galleryFrames.some((g) => g.posterSrc === src));
+  assert.deepEqual(shared, [], "a photograph is printed twice on the homepage");
+});
+
 test("official facts match the client's document exactly", () => {
   // These are quoted, not paraphrased. If one changes, the client changed it.
   assert.equal(brand.full, "Aura Academy di Amira Bechini");
@@ -304,9 +348,12 @@ test("every page string is translated in all four languages", () => {
     ...ABOUT_BEYOND.map((k) => `about.beyond.items.${k}`),
     ...ABOUT_VISION.map((k) => `about.vision.points.${k}`),
     ...chapters.flatMap((k) => [`method.steps.${k}.title`, `method.steps.${k}.body`]),
-    // The one frame with a described photograph rather than a decorative one.
+    // The frames with a described photograph rather than a decorative one.
     // An alt that exists in Italian and not in Arabic is a silent regression.
     "method.steps.theory.alt",
+    // Read off the composition rather than listed, so a frame added to the
+    // work section cannot ship without its description in all four languages.
+    ...resultFrames.map((f) => `work.alt.${f.altKey}`),
     ...JOURNEY.flatMap((k) => [`journey.steps.${k}.title`, `journey.steps.${k}.body`]),
     ...DETAILS.flatMap((k) => [`catalog.details.${k}.label`, `catalog.details.${k}.value`]),
     ...FAQ.flatMap((k) => [`faq.items.${k}.q`, `faq.items.${k}.a`]),

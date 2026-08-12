@@ -25,7 +25,7 @@ export function FrameGallery() {
           <div className="relative w-full" style={{ aspectRatio: frame.ratio }}>
             <MediaFrame
               media={frame}
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 60vw, 45vw"
+              sizes={frame.sizes}
               className="absolute inset-0 h-full w-full"
             />
           </div>

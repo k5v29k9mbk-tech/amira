@@ -47,6 +47,7 @@ const CLIENT_NAMESPACES = [
   "voices", // Testimonial
   "mentor", // WelcomeVideo
   "success", // BeforeAfter
+  "work", // WorkGallery
   "contact", // ContactForm
 ] as const;
 

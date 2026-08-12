@@ -85,10 +85,11 @@ export const closingMedia: Media = {
 };
 
 /**
- * Founder portrait, homepage. The studio frame: black blazer, arms crossed,
- * against a plain sweep. Deliberately not the hero portrait, so the page does
- * not print the same photograph twice. Real photography, never generated, and
- * shipped exactly as the academy supplied it — no grade, no retouch, no upscale.
+ * Founder portrait, homepage. The studio frame: black blazer, the brow calipers
+ * raised to the eye, against a plain sweep. Deliberately not the hero portrait,
+ * so the page does not print the same photograph twice. Shipped exactly as the
+ * academy supplied it, byte for byte: no grade, no retouch, no upscale, and no
+ * re-encode, which is why the file is copied rather than exported.
  *
  * The photograph is 928x1152 and the frame that holds it is 4:5, a difference of
  * under a percent. `cover` spends all of it on the left and right edges of the
@@ -189,9 +190,10 @@ export type Frame = Media & {
  * `pairFrame` below.
  *
  * The order is the reading order on a phone, where the composition collapses to
- * a single column: the brow result, the strokes that built it, the pair that
- * proves it, the healed brows, then the lip work, closing on the strongest lip
- * frame. On desktop the same six land in three staggered rows.
+ * a single column: the healed brow, the strokes that built it, the pair that
+ * proves it, a second brow, then the lip work, closing on the strongest lip
+ * frame. On desktop the same six land in three staggered rows, two frames to a
+ * row, alternating which side carries the weight.
  *
  * `altKey` names the frame's alt text under `work.alt.*`. These are the only
  * photographs on the site that are the argument rather than the atmosphere, so
@@ -207,7 +209,13 @@ export type Frame = Media & {
  * shows identifiable students and their certificate numbers and stays off the
  * site until the academy holds written consent.
  */
-export const resultFrames: (Frame & { altKey: string; zoom?: boolean })[] = [
+export const resultFrames: (Frame & {
+  altKey: string;
+  zoom?: boolean;
+  /** Required here, not optional: the overlay sizes itself off these. */
+  width: number;
+  height: number;
+})[] = [
   {
     posterSrc: "/brand/brows-healed-hero.jpg",
     altKey: "healedBrows",
@@ -243,6 +251,7 @@ export const resultFrames: (Frame & { altKey: string; zoom?: boolean })[] = [
     posterSrc: "/brand/lips-neutralization.jpg",
     altKey: "lipDetail",
     span: "col-span-6 md:col-span-4 lg:col-span-2 lg:col-start-2 lg:mt-24",
+    sizes: "(max-width: 768px) 47vw, (max-width: 1024px) 31vw, 14vw",
     ratio: "232 / 300",
     position: "50% 45%",
     width: 232,
@@ -253,6 +262,7 @@ export const resultFrames: (Frame & { altKey: string; zoom?: boolean })[] = [
     altKey: "lips",
     zoom: true,
     span: "col-span-12 lg:col-span-6 lg:col-start-5 lg:mt-8",
+    sizes: "(max-width: 1024px) 100vw, 46vw",
     ratio: "1286 / 965",
     position: "50% 40%",
     width: 1286,
@@ -273,6 +283,13 @@ export const resultFrames: (Frame & { altKey: string; zoom?: boolean })[] = [
  * its own `col-start`, so they keep their columns and lose only a row.
  */
 export const pairFrame = {
+  /**
+   * Rendered directly after this index in `resultFrames`, which puts it third
+   * in the reading order and opens the second row on desktop. Order is what the
+   * grid places by, so this is not cosmetic: move the slider to the end of the
+   * list and the second row is a single 2-column frame beside a void.
+   */
+  after: 1,
   span: "col-span-12 lg:col-span-6 lg:col-start-2 lg:mt-28",
   sizes: "(max-width: 1024px) 100vw, 46vw",
 } as const;
@@ -291,6 +308,7 @@ export const galleryFrames: Frame[] = [
   {
     posterSrc: "/brand/theory-classroom.jpg",
     span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-1",
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 30vw",
     ratio: "3 / 4",
     position: "50% 40%",
     width: 1200,
@@ -299,6 +317,7 @@ export const galleryFrames: Frame[] = [
   {
     posterSrc: "/brand/group-training.jpg",
     span: "col-span-12 lg:col-span-6 lg:col-start-6 lg:mt-20",
+    sizes: "(max-width: 1024px) 100vw, 46vw",
     ratio: "1800 / 1004",
     position: "50% 42%",
     width: 1800,
@@ -307,6 +326,7 @@ export const galleryFrames: Frame[] = [
   {
     posterSrc: "/brand/practice-latex.jpg",
     span: "col-span-12 md:col-span-8 lg:col-span-5 lg:col-start-2 lg:mt-24",
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 63vw, 38vw",
     ratio: "690 / 265",
     position: "50% 55%",
     width: 690,
@@ -315,6 +335,7 @@ export const galleryFrames: Frame[] = [
   {
     posterSrc: "/brand/brow-mapping.jpg",
     span: "col-span-6 md:col-span-4 lg:col-span-3 lg:col-start-8 lg:mt-16",
+    sizes: "(max-width: 768px) 47vw, (max-width: 1024px) 31vw, 22vw",
     ratio: "332 / 295",
     position: "50% 50%",
     width: 332,
@@ -323,6 +344,7 @@ export const galleryFrames: Frame[] = [
   {
     posterSrc: "/brand/live-demo.jpg",
     span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-6 lg:mt-28",
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 30vw",
     ratio: "557 / 335",
     position: "50% 40%",
     width: 557,

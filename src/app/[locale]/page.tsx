@@ -3,7 +3,7 @@ import { ArrowRight, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { altLanguages } from "@/i18n/routing";
 import { closingMedia, founderMedia } from "@/lib/media";
-import { beforeAfterPairs, whatsappLinkWith } from "@/lib/studio";
+import { whatsappLinkWith } from "@/lib/studio";
 import {
   btnLineLight,
   btnSolidLight,
@@ -16,10 +16,10 @@ import {
 } from "@/lib/ui";
 import { JsonLd, faqSchema } from "@/lib/seo";
 import { Hero } from "@/components/Hero";
-import { BeforeAfter } from "@/components/BeforeAfter";
 import { Manifesto } from "@/components/Manifesto";
 import { CourseSelector } from "@/components/CourseSelector";
 import { MethodStory } from "@/components/MethodStory";
+import { WorkGallery } from "@/components/WorkGallery";
 import { FrameGallery } from "@/components/FrameGallery";
 import { Testimonial } from "@/components/Testimonial";
 import { Faq } from "@/components/Faq";
@@ -39,8 +39,10 @@ export const metadata = { alternates: altLanguages() };
  * course conditions on /courses, the booking sequence and the channels on
  * /contact, the full question list on /faq, the values, the business curriculum
  * and the welcome message on /about. The before/after is the one thing that is
- * now in both places: it is the only proof of outcome the academy has supplied,
- * and a visitor who never reaches /courses should still see it.
+ * now in both places: it is the only outcome the academy has supplied that a
+ * visitor can operate rather than look at, and someone who never reaches
+ * /courses should still see it. Here it is set among the other results rather
+ * than alone, which is the whole of the work section.
  *
  * The two grounds are paced in pairs rather than alternated. Alternating on
  * every section makes eight switches on the way down the page, and a ground
@@ -186,45 +188,32 @@ export default async function Home({
           the only place on the homepage that shows an outcome rather than a
           process: the gallery further down is the room, not the result.
 
-          One pair is what the academy has supplied and one pair is what shows.
-          The section removes itself if that ever becomes none, and lays the set
-          out two-up if it becomes more, so it never has to be rewritten to take
-          the photographs the academy still owes.
+          This used to be the before/after slider alone, beside a heading, at
+          34rem. It is now the section the page has been building towards: five
+          treatment photographs and the pair, set as one composition. The pair
+          has not been demoted, it has been given company, and it still carries
+          the only outcome a visitor can operate rather than look at.
 
-          Held to 34rem rather than filling the column: the source frames are
-          900px wide, and stretched across two thirds of a desktop field they
-          would soften. Better a smaller frame that is sharp. */}
-      {beforeAfterPairs.length > 0 && (
-        <section id="work" className={`${sectionPad} scroll-mt-20 bg-paper`}>
-          <div className={`${shell} grid items-start gap-12 lg:grid-cols-12 lg:gap-16`}>
-            <Reveal className="lg:col-span-4">
-              <SectionLabel n={3}>{t("sections.work")}</SectionLabel>
-              <h2 className={`${displaySection} mt-8 max-w-[10ch]`}>{t("success.title")}</h2>
-            </Reveal>
+          The composition, the crops and which frames open larger are all data
+          in lib/media.ts; WorkGallery only arranges them. Nothing here is
+          retouched, graded or generated, and no frame is ever set wider than
+          the file behind it, which is what keeps the small close-ups sharp.
 
-            <div
-              className={`lg:col-span-7 lg:col-start-6 ${
-                beforeAfterPairs.length === 1
-                  ? "max-w-[34rem]"
-                  : "grid gap-8 sm:grid-cols-2"
-              }`}
-            >
-              {beforeAfterPairs.map((pair, i) => (
-                <Reveal key={pair.label} delay={i * 0.06}>
-                  <BeforeAfter
-                    pair={pair}
-                    sizes={
-                      beforeAfterPairs.length === 1
-                        ? "(max-width: 1024px) 100vw, 34rem"
-                        : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 26vw"
-                    }
-                  />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+          The heading block sits above the composition rather than beside it.
+          Beside it there was room for one frame; above it there is room for
+          six, and the section's job is now the photographs. */}
+      <section id="work" className={`${sectionPad} scroll-mt-20 bg-paper`}>
+        <div className={shell}>
+          <Reveal className="pb-12 md:pb-16">
+            <SectionLabel n={3}>{t("sections.work")}</SectionLabel>
+            <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("work.title")}</h2>
+            <p className="mt-8 max-w-[48ch] text-[17px] leading-relaxed text-mute">
+              {t("work.sub")}
+            </p>
+          </Reveal>
+          <WorkGallery />
+        </div>
+      </section>
 
       {/* 04 AMIRA */}
       <section id="amira" className={`${sectionPad} scroll-mt-20 bg-ivory`}>
