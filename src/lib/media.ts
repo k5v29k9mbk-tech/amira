@@ -247,6 +247,27 @@ export const resultFrames: (Frame & {
     width: 235,
     height: 300,
   },
+  /**
+   * The band. Both brows in one frame, close enough to read the individual
+   * strokes, and the only landscape photograph the academy has supplied at a
+   * width worth spending. It sits alone on its row on purpose: the brow half of
+   * the section is above it and the lip half below, and a single horizontal
+   * frame across the middle is the pause between them.
+   *
+   * Eight columns is 992px against a 1320px file, so it is the widest frame in
+   * the section and still not upscaled.
+   */
+  {
+    posterSrc: "/brand/brows-pair-macro.jpg",
+    altKey: "browsPair",
+    zoom: true,
+    span: "col-span-12 lg:col-span-8 lg:col-start-3 lg:mt-16",
+    sizes: "(max-width: 1024px) 100vw, 62vw",
+    ratio: "1320 / 689",
+    position: "50% 50%",
+    width: 1320,
+    height: 689,
+  },
   {
     posterSrc: "/brand/lips-neutralization.jpg",
     altKey: "lipDetail",
