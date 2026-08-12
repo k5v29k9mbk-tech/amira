@@ -191,9 +191,10 @@ export type Frame = Media & {
  *
  * The order is the reading order on a phone, where the composition collapses to
  * a single column: the healed brow, the strokes that built it, the pair that
- * proves it, a second brow, then the lip work, closing on the strongest lip
- * frame. On desktop the same six land in three staggered rows, two frames to a
- * row, alternating which side carries the weight.
+ * proves it, a second brow, both brows across the full width, then the lip
+ * work, closing on two finished faces. On desktop the same nine land in five
+ * staggered rows, two frames to a row and the band alone in the middle,
+ * alternating which side carries the weight.
  *
  * `altKey` names the frame's alt text under `work.alt.*`. These are the only
  * photographs on the site that are the argument rather than the atmosphere, so
@@ -201,9 +202,11 @@ export type Frame = Media & {
  * decorative.
  *
  * `zoom` opens the frame full screen. It is set only where the file has pixels
- * the layout is not already spending: these two are 1179 and 1286 wide against
- * frames of 864 and 736. The other four are shown at their own size already,
- * so opening them larger would enlarge nothing and soften what is there.
+ * the layout is not already spending: the two 1179 and 1286 wide files against
+ * frames of 864 and 736, and the three 1320 wide ones the academy supplied
+ * last, against frames of 992, 736 and 480. The three small close-ups are shown
+ * at their own size already, so opening them larger would enlarge nothing and
+ * soften what is there.
  *
  * students-certificates.jpg is deliberately absent, here and everywhere. It
  * shows identifiable students and their certificate numbers and stays off the
