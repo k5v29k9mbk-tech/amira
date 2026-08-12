@@ -382,8 +382,11 @@
       "healedBrows": "Sopracciglia con trucco permanente guarito, fotografate da vicino dopo il trattamento.",
       "strokes": "Primo piano dei singoli peli disegnati sul sopracciglio.",
       "brows": "Sopracciglia dopo un trattamento di trucco permanente.",
+      "browsPair": "Entrambe le sopracciglia in un'unica inquadratura dopo un trattamento di trucco permanente, fotografate da vicino.",
       "lipDetail": "Primo piano delle labbra dopo un trattamento di pigmentazione.",
-      "lips": "Labbra dopo un trattamento di pigmentazione."
+      "lips": "Labbra dopo un trattamento di pigmentazione.",
+      "browsPortrait": "Sopracciglia dopo un trattamento di trucco permanente, fotografate da vicino con il viso girato verso la luce.",
+      "browsLips": "Sopracciglia e labbra dopo un trattamento di trucco permanente, fotografate dall'alto."
     }
   },
   "sections": {

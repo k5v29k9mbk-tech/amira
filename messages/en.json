@@ -382,8 +382,11 @@
       "healedBrows": "Healed permanent makeup brows, photographed close up after the treatment.",
       "strokes": "Close-up of individual brow strokes.",
       "brows": "Brows after a permanent makeup treatment.",
+      "browsPair": "Both brows in one frame after a permanent makeup treatment, photographed close up.",
       "lipDetail": "Close-up of lips after a pigmentation treatment.",
-      "lips": "Lips after a pigmentation treatment."
+      "lips": "Lips after a pigmentation treatment.",
+      "browsPortrait": "Brows after a permanent makeup treatment, photographed close up with the face turned to the light.",
+      "browsLips": "Brows and lips after a permanent makeup treatment, photographed from above."
     }
   },
   "sections": {
