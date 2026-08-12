@@ -149,61 +149,181 @@ export const methodMedia: Record<string, Media> = {
 };
 
 /**
- * The editorial gallery: six frames, mixed proportions, deliberately not a grid
- * of squares. `span` is the column span at lg, `ratio` the aspect the frame is
- * cropped to, so the composition is data rather than markup.
+ * One frame in an editorial composition.
  *
- * students-certificates.jpg is deliberately absent. It shows identifiable
- * students and their certificate numbers and stays out of every page until the
- * academy holds written consent.
+ * `span` carries the whole of the frame's placement: its column span at every
+ * breakpoint, its explicit `col-start` at lg, and the vertical offset that
+ * makes the set stagger rather than line up. The grid is twelve columns and
+ * auto-placement is what reads these: an item whose `col-start` is behind the
+ * cursor drops to a new row, which is how the rows below are built out of a
+ * flat list. Composition is data, so a frame moves by editing this file.
+ *
+ * `ratio` is the frame's aspect. Everywhere below it is the photograph's own
+ * ratio, to the pixel: at native ratio `cover` crops nothing, so no part of a
+ * treatment is ever cut off by the layout. That is also why the spans are what
+ * they are. Every frame is held at or under the width its file actually has,
+ * so nothing on the page is upscaled. The academy's close-ups are small files
+ * (235px, 232px, 332px wide), and a small photograph shown small is sharp,
+ * where the same photograph stretched across a desktop column is not.
+ *
+ * Replace a file with a larger one and the frame can grow: raise its span, and
+ * keep the new `width`/`height` in step so the ratio stays native.
  */
-export const galleryFrames: (Media & { span: string; ratio: string })[] = [
+export type Frame = Media & {
+  /** Column span, start and offset, per breakpoint. */
+  span: string;
+  /** Aspect ratio. The photograph's own, so the crop is nothing. */
+  ratio: string;
+  /**
+   * What the frame actually measures at each breakpoint, so next/image asks
+   * for the right file rather than the widest one. Derived from `span`: move a
+   * frame and move this with it, or the page downloads the wrong picture.
+   */
+  sizes: string;
+};
+
+/**
+ * The work, homepage section 03. What the method produces, in the academy's
+ * own photographs: healed permanent makeup, the hair strokes close up, and the
+ * lip work. The before/after slider sits inside this composition too, at
+ * `pairFrame` below.
+ *
+ * The order is the reading order on a phone, where the composition collapses to
+ * a single column: the brow result, the strokes that built it, the pair that
+ * proves it, the healed brows, then the lip work, closing on the strongest lip
+ * frame. On desktop the same six land in three staggered rows.
+ *
+ * `altKey` names the frame's alt text under `work.alt.*`. These are the only
+ * photographs on the site that are the argument rather than the atmosphere, so
+ * every one of them is described, in all four languages, rather than shipped
+ * decorative.
+ *
+ * `zoom` opens the frame full screen. It is set only where the file has pixels
+ * the layout is not already spending: these two are 1179 and 1286 wide against
+ * frames of 864 and 736. The other four are shown at their own size already,
+ * so opening them larger would enlarge nothing and soften what is there.
+ *
+ * students-certificates.jpg is deliberately absent, here and everywhere. It
+ * shows identifiable students and their certificate numbers and stays off the
+ * site until the academy holds written consent.
+ */
+export const resultFrames: (Frame & { altKey: string; zoom?: boolean })[] = [
+  {
+    posterSrc: "/brand/brows-healed-hero.jpg",
+    altKey: "healedBrows",
+    zoom: true,
+    span: "col-span-12 lg:col-span-7 lg:col-start-1",
+    sizes: "(max-width: 1024px) 100vw, 54vw",
+    ratio: "1179 / 884",
+    position: "50% 36%",
+    width: 1179,
+    height: 884,
+  },
   {
     posterSrc: "/brand/brow-macro.jpg",
-    span: "lg:col-span-5 lg:col-start-1",
-    ratio: "4 / 5",
+    altKey: "strokes",
+    span: "col-span-12 md:col-span-6 lg:col-span-3 lg:col-start-9 lg:mt-32",
+    ratio: "371 / 295",
     position: "50% 45%",
     width: 371,
     height: 295,
   },
   {
+    posterSrc: "/brand/brows-eyes.jpg",
+    altKey: "brows",
+    span: "col-span-6 md:col-span-4 lg:col-span-2 lg:col-start-9 lg:mt-44",
+    ratio: "235 / 300",
+    position: "50% 42%",
+    width: 235,
+    height: 300,
+  },
+  {
+    posterSrc: "/brand/lips-neutralization.jpg",
+    altKey: "lipDetail",
+    span: "col-span-6 md:col-span-4 lg:col-span-2 lg:col-start-2 lg:mt-24",
+    ratio: "232 / 300",
+    position: "50% 45%",
+    width: 232,
+    height: 300,
+  },
+  {
     posterSrc: "/brand/lips-result-hero.jpg",
-    span: "lg:col-span-4 lg:col-start-8 lg:mt-32",
-    ratio: "3 / 4",
+    altKey: "lips",
+    zoom: true,
+    span: "col-span-12 lg:col-span-6 lg:col-start-5 lg:mt-8",
+    ratio: "1286 / 965",
     position: "50% 40%",
     width: 1286,
     height: 965,
   },
+];
+
+/**
+ * Where the before/after slider sits in the same composition: third in reading
+ * order, second row on desktop, under the opening frame and across from the
+ * brow detail. Held to six columns because the aligned source frames are 900px
+ * wide and six columns is 736.
+ *
+ * The slider is the one piece of proof the academy has supplied that a visitor
+ * can operate rather than look at, which is why it is set among the results
+ * rather than off in a section of its own. If the pair is ever withdrawn the
+ * component drops it and the five frames around it close up: each one carries
+ * its own `col-start`, so they keep their columns and lose only a row.
+ */
+export const pairFrame = {
+  span: "col-span-12 lg:col-span-6 lg:col-start-2 lg:mt-28",
+  sizes: "(max-width: 1024px) 100vw, 46vw",
+} as const;
+
+/**
+ * Inside Aura, homepage section 05: the room and the teaching, which is what
+ * the section's own copy promises ("moments from the courses: demonstration,
+ * guided practice and work on a model").
+ *
+ * It used to carry four of the treatment results as well. They have moved to
+ * the work section above, where they are the argument rather than atmosphere,
+ * and where they are not competing with a photograph of a classroom for the
+ * same glance. Nothing is shown twice on the page.
+ */
+export const galleryFrames: Frame[] = [
+  {
+    posterSrc: "/brand/theory-classroom.jpg",
+    span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-1",
+    ratio: "3 / 4",
+    position: "50% 40%",
+    width: 1200,
+    height: 1600,
+  },
+  {
+    posterSrc: "/brand/group-training.jpg",
+    span: "col-span-12 lg:col-span-6 lg:col-start-6 lg:mt-20",
+    ratio: "1800 / 1004",
+    position: "50% 42%",
+    width: 1800,
+    height: 1004,
+  },
   {
     posterSrc: "/brand/practice-latex.jpg",
-    span: "lg:col-span-7 lg:col-start-3 lg:mt-24",
-    ratio: "16 / 7",
+    span: "col-span-12 md:col-span-8 lg:col-span-5 lg:col-start-2 lg:mt-24",
+    ratio: "690 / 265",
     position: "50% 55%",
     width: 690,
     height: 265,
   },
   {
     posterSrc: "/brand/brow-mapping.jpg",
-    span: "lg:col-span-3 lg:col-start-10 lg:mt-16",
-    ratio: "1 / 1",
+    span: "col-span-6 md:col-span-4 lg:col-span-3 lg:col-start-8 lg:mt-16",
+    ratio: "332 / 295",
     position: "50% 50%",
     width: 332,
     height: 295,
   },
   {
-    posterSrc: "/brand/group-training.jpg",
-    span: "lg:col-span-6 lg:col-start-1 lg:mt-24",
-    ratio: "3 / 2",
-    position: "50% 42%",
-    width: 1800,
-    height: 1004,
-  },
-  {
-    posterSrc: "/brand/brows-healed-hero.jpg",
-    span: "lg:col-span-4 lg:col-start-8 lg:mt-40",
-    ratio: "4 / 5",
-    position: "50% 38%",
-    width: 1179,
-    height: 884,
+    posterSrc: "/brand/live-demo.jpg",
+    span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-6 lg:mt-28",
+    ratio: "557 / 335",
+    position: "50% 40%",
+    width: 557,
+    height: 335,
   },
 ];
