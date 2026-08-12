@@ -289,6 +289,39 @@ export const resultFrames: (Frame & {
     width: 1286,
     height: 965,
   },
+  /**
+   * The closing pair: two faces rather than two details, which is what the
+   * section has been building towards. Both are 1320px files, the largest the
+   * academy has supplied, and both are held well under that width.
+   *
+   * They are deliberately not the same size. Six columns beside four, with the
+   * smaller one dropped 112px, keeps the row a composition rather than two
+   * equal tiles, and the near-square proportions of both files are close enough
+   * that any other arrangement would read as a pair of thumbnails. On tablet
+   * they halve into a diptych, on a phone they stack full width.
+   */
+  {
+    posterSrc: "/brand/brows-defined-portrait.jpg",
+    altKey: "browsPortrait",
+    zoom: true,
+    span: "col-span-12 md:col-span-6 lg:col-start-1",
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 46vw",
+    ratio: "1320 / 1323",
+    position: "50% 45%",
+    width: 1320,
+    height: 1323,
+  },
+  {
+    posterSrc: "/brand/brows-lips-result.jpg",
+    altKey: "browsLips",
+    zoom: true,
+    span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-8 lg:mt-28",
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 30vw",
+    ratio: "1320 / 1235",
+    position: "50% 48%",
+    width: 1320,
+    height: 1235,
+  },
 ];
 
 /**
