@@ -85,15 +85,21 @@ export const closingMedia: Media = {
 };
 
 /**
- * Founder portrait, homepage. The working frame: beige blazer, the academy
- * behind her. Deliberately not the hero portrait, so the page does not print
- * the same photograph twice. Real photography, never generated.
+ * Founder portrait, homepage. The studio frame: black blazer, arms crossed,
+ * against a plain sweep. Deliberately not the hero portrait, so the page does
+ * not print the same photograph twice. Real photography, never generated, and
+ * shipped exactly as the academy supplied it — no grade, no retouch, no upscale.
+ *
+ * The photograph is 928x1152 and the frame that holds it is 4:5, a difference of
+ * under a percent. `cover` spends all of it on the left and right edges of the
+ * backdrop and none on the height, so the whole figure survives at every
+ * breakpoint and the centred crop needs no pull in either direction.
  */
 export const founderMedia: Media = {
-  posterSrc: "/brand/amira-hero-portrait.jpg",
-  position: "46% 26%",
-  width: 1200,
-  height: 1600,
+  posterSrc: "/brand/amira-founder-portrait.jpg",
+  position: "50% 50%",
+  width: 928,
+  height: 1152,
 };
 
 /** One frame per method chapter, keyed by the chapter's message key. */
