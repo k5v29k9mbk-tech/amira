@@ -263,6 +263,35 @@ body {
   letter-spacing: 0.08em;
 }
 
+/*
+  Reduced motion.
+
+  Three layers hold this, and they are not interchangeable.
+
+  The rule below is for CSS: the keyframe animations declared in this file (the
+  settle, the scroll cue) and every Tailwind transition.
+
+  Motion's own animations are handled in JavaScript, by `reducedMotion="user"` in
+  MotionProvider, because they are driven by rAF rather than by the CSS engine and
+  a duration override cannot reach them. That is also where the reasoning lives
+  for why no component may branch on the preference while rendering: the server
+  cannot know it, so anything that chooses markup from it hydrates into a
+  mismatch.
+
+  The two rules after it are for the third case, which neither of the others can
+  touch: a motion value bound straight to `style`. The scroll drift and the
+  manifesto's word colour are written to the inline style every frame and no
+  animation is ever started for them, so there is nothing for Motion's policy to
+  shorten and no transition for the rule above to zero. An author `!important`
+  declaration outranks an inline style, which makes this the one mechanism that
+  works on them, and it is the right one anyway: it is the browser's own media
+  query, applied before the first paint, so there is no frame of movement to see.
+
+  Both selectors are contracts with a component. `.drift` is on whichever element
+  Parallax and HeroPortrait put the transform on; `.word-resolve` is on the
+  manifesto's word spans. Moving the transform without moving the class silently
+  turns the preference off.
+*/
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -273,6 +302,17 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /* Scroll-linked drift: the frames sit where the layout put them. */
+  .drift {
+    transform: none !important;
+  }
+
+  /* The statement is set resolved rather than resolving. Taupe on ivory is
+     2.3:1, so a word that never resolves is a word that never meets contrast. */
+  .word-resolve {
+    color: var(--aura-espresso) !important;
   }
 }
 

@@ -2,7 +2,7 @@
 
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { ArrowsOut, X } from "@phosphor-icons/react";
 import { pairFrame, resultFrames } from "@/lib/media";
@@ -46,7 +46,6 @@ import { Parallax } from "./Parallax";
  */
 export function WorkGallery() {
   const t = useTranslations("work");
-  const reduce = useReducedMotion();
 
   /** Index into `resultFrames`, or null when the overlay is closed. */
   const [open, setOpen] = useState<number | null>(null);
@@ -171,9 +170,9 @@ export function WorkGallery() {
             aria-modal="true"
             aria-label={t(`alt.${active.altKey}`)}
             onClick={close}
-            initial={reduce ? false : { opacity: 0 }}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={reduce ? undefined : { opacity: 0 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="no-print fixed inset-0 z-[70] flex items-center justify-center bg-night/95 p-5 md:p-10"
           >
@@ -189,9 +188,9 @@ export function WorkGallery() {
 
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              initial={reduce ? false : { opacity: 0, scale: 0.985 }}
+              initial={{ opacity: 0, scale: 0.985 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={reduce ? undefined : { opacity: 0, scale: 0.985 }}
+              exit={{ opacity: 0, scale: 0.985 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
               <Image

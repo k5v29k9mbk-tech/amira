@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { useMessages, useTranslations } from "next-intl";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import {
   displayQuote,
@@ -37,7 +37,6 @@ export function Testimonial() {
   const messages = useMessages() as { voices?: { items?: Record<string, Voice> } };
   const items = messages.voices?.items ?? {};
   const keys = Object.keys(items);
-  const reduce = useReducedMotion();
 
   const [i, setI] = useState(0);
   const [dir, setDir] = useState(1);
@@ -85,9 +84,9 @@ export function Testimonial() {
           <AnimatePresence mode="wait" custom={dir}>
             <motion.figure
               key={k}
-              initial={reduce ? false : { opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={reduce ? { opacity: 0 } : { opacity: 0, y: -10 }}
+              exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
               <blockquote className={`${displayQuote} text-balance`}>
