@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { heroMedia } from "@/lib/media";
 import { displayItem } from "@/lib/ui";
 import { useIntroReady } from "@/lib/use-intro-ready";
@@ -29,7 +29,16 @@ import { MediaFrame } from "./MediaFrame";
  * on load, a 3px float over nine seconds, and a parallax on the image inside
  * its frame. Float and parallax are separate elements so the two transforms
  * never fight, and both run on motion values, so nothing re-renders per frame.
- * Under prefers-reduced-motion the portrait simply appears and holds still.
+ *
+ * Under a reduced-motion preference the portrait fades in and holds still, and it
+ * takes two mechanisms to get there because the three motions are not the same
+ * kind of thing. The entrance and the float are animations, so MotionProvider's
+ * `reducedMotion="user"` gives their transforms an instant transition: the rise
+ * resolves to nothing and the float never travels. The parallax is a scroll-bound
+ * motion value written to `style`, which no animation policy can see, so it
+ * carries `drift` and is neutralised by the `prefers-reduced-motion` block in
+ * globals.css. All three used to branch on the preference during render, which
+ * put a hydration mismatch in the first element of the first screen.
  *
  * Width is capped against viewport height as well as against a maximum, since
  * a 3:4 frame left to fill its grid column overruns the fold on every common
@@ -68,7 +77,6 @@ export function HeroPortrait({
   role?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
   // Holds the entrance until the opening film has finished, so the portrait
   // rises into view with the copy rather than behind the overlay.
   const ready = useIntroReady();
@@ -82,7 +90,7 @@ export function HeroPortrait({
   return (
     <motion.div
       ref={ref}
-      initial={reduce ? false : { opacity: 0, y: 26 }}
+      initial={{ opacity: 0, y: 26 }}
       animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 26 }}
       transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
       /* The phone cap was 12.5rem, which is 200px whatever the handset, and a
@@ -101,7 +109,7 @@ export function HeroPortrait({
         className="pointer-events-none absolute -inset-x-[22%] -top-[14%] bottom-[-8%] -z-20 bg-[radial-gradient(52%_46%_at_50%_42%,color-mix(in_srgb,var(--aura-bronze)_16%,transparent),transparent_70%)]"
       />
       <motion.div
-        animate={reduce ? undefined : { y: [0, -3, 0] }}
+        animate={{ y: [0, -3, 0] }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         className="relative"
       >
@@ -113,7 +121,7 @@ export function HeroPortrait({
         />
 
         <div className="arch relative aspect-[3/4] w-full overflow-hidden shadow-[0_46px_90px_-46px_color-mix(in_srgb,var(--aura-espresso)_55%,transparent)]">
-          <motion.div style={reduce ? undefined : { y }} className="absolute inset-[-6%]">
+          <motion.div style={{ y }} className="drift absolute inset-[-6%]">
             <MediaFrame
               media={{ ...heroMedia, alt }}
               priority

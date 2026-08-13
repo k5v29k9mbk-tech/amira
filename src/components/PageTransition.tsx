@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { ReactNode } from "react";
 
 /**
@@ -10,11 +10,13 @@ import type { ReactNode } from "react";
  * The children are passed straight through, so they stay server components and
  * this costs nothing beyond the wrapper. Deliberately short and translation
  * free: a long slide on navigation reads as latency, not luxury.
+ *
+ * A fade is all this ever was, so there is nothing here for a reduced-motion
+ * preference to remove and no branch on it. There used to be one, returning the
+ * children bare, and because it wrapped every route it put the hydration mismatch
+ * on every page of the site rather than only on the homepage.
  */
 export function PageTransition({ children }: { children: ReactNode }) {
-  const reduce = useReducedMotion();
-  if (reduce) return <>{children}</>;
-
   return (
     <motion.div
       initial={{ opacity: 0 }}

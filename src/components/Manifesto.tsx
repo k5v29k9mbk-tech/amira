@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import type { MotionValue } from "motion/react";
 import { displayManifesto, sectionPad, shell } from "@/lib/ui";
 
@@ -14,7 +14,14 @@ import { displayManifesto, sectionPad, shell } from "@/lib/ui";
  * once. Colour is driven by a motion value per word, which never touches React
  * state: nothing re-renders while scrolling.
  *
- * Under prefers-reduced-motion the whole statement is simply set in espresso.
+ * Under prefers-reduced-motion the whole statement is simply set in espresso,
+ * which is a legibility floor and not a nicety: taupe on ivory is 2.3:1, so a
+ * reader whose words never resolve is left with a headline that does not meet
+ * contrast at any size. It is done in globals.css, by a `.word-resolve` rule in
+ * the `prefers-reduced-motion` block, because the colour is a scroll-bound motion
+ * value written to the inline style and MotionProvider's animation policy cannot
+ * see it. Doing it here instead meant rendering a different element per word than
+ * the server did, which was a hydration mismatch multiplied by the word count.
  *
  * The statement is now the whole of the section. A line of small print used to
  * follow it, `manifesto.note`: "Small classes. Guided practice. Professional
@@ -39,7 +46,7 @@ function Word({
 }) {
   const color = useTransform(progress, range, ["#b6a79c", "#211916"]);
   return (
-    <motion.span style={{ color }} className="me-[0.22em] inline-block">
+    <motion.span style={{ color }} className="word-resolve me-[0.22em] inline-block">
       {children}
     </motion.span>
   );
@@ -47,7 +54,6 @@ function Word({
 
 export function Manifesto() {
   const t = useTranslations("manifesto");
-  const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -63,19 +69,10 @@ export function Manifesto() {
       <div className={shell}>
         <div ref={ref} className="max-w-[24ch]">
           {lines.map((words, li) => (
-            <p
-              key={li}
-              className={`${displayManifesto} ${li > 0 ? "mt-[0.35em]" : ""} ${
-                reduce ? "text-espresso" : ""
-              }`}
-            >
+            <p key={li} className={`${displayManifesto} ${li > 0 ? "mt-[0.35em]" : ""}`}>
               {words.map((word) => {
                 const i = cursor++;
-                return reduce ? (
-                  <span key={`${li}-${i}`} className="me-[0.22em] inline-block">
-                    {word}
-                  </span>
-                ) : (
+                return (
                   <Word
                     key={`${li}-${i}`}
                     progress={scrollYProgress}

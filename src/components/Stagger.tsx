@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { ReactNode } from "react";
 import { useIntroReady } from "@/lib/use-intro-ready";
 
@@ -15,6 +15,12 @@ import { useIntroReady } from "@/lib/use-intro-ready";
  * When the opening film is playing, the sequence waits for it: it would
  * otherwise run to completion behind a black overlay, and the homepage would
  * arrive already finished.
+ *
+ * Neither the container nor the item branches on a reduced-motion preference; the
+ * policy is MotionProvider's. Under it the travel and the blur arrive instantly
+ * and the first screen fades in, in sequence, which is the intended effect minus
+ * the movement. Both used to branch here, and since this is the hero, the
+ * mismatch it caused was above the fold.
  */
 const container = (stagger: number, delay: number) => ({
   hidden: {},
@@ -42,13 +48,12 @@ export function Stagger({
   stagger?: number;
   delay?: number;
 }) {
-  const reduce = useReducedMotion();
   const ready = useIntroReady();
   return (
     <motion.div
       className={className}
       variants={container(stagger, delay)}
-      initial={reduce ? false : "hidden"}
+      initial="hidden"
       animate={ready ? "show" : "hidden"}
     >
       {children}
@@ -64,9 +69,8 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
-  const reduce = useReducedMotion();
   return (
-    <motion.div className={className} variants={reduce ? undefined : item}>
+    <motion.div className={className} variants={item}>
       {children}
     </motion.div>
   );
