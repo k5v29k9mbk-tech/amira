@@ -15,6 +15,18 @@ import { displayManifesto, sectionPad, shell } from "@/lib/ui";
  * state: nothing re-renders while scrolling.
  *
  * Under prefers-reduced-motion the whole statement is simply set in espresso.
+ *
+ * The statement is now the whole of the section. A line of small print used to
+ * follow it, `manifesto.note`: "Small classes. Guided practice. Professional
+ * standards that continue after the course." Every one of those three is stated
+ * again further down the page, with a reason attached and at length: small
+ * classes and the support after the course are two of the three claims in act
+ * 06, and guided practice is a chapter of the method in act 02. Three benefits
+ * asserted as a list, four sections before the same three are argued, is the
+ * page telling a reader something and then telling her again — and it was
+ * sitting directly under the sentence that says this school does not sell a
+ * checklist. The key stays in all four catalogues, unused, so restoring it is
+ * one line if the academy wants it back.
  */
 function Word({
   children,
@@ -76,10 +88,6 @@ export function Manifesto() {
             </p>
           ))}
         </div>
-
-        <p className="mt-16 max-w-[52ch] text-[17px] leading-relaxed text-mute md:mt-24">
-          {t("note")}
-        </p>
       </div>
     </section>
   );
