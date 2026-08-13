@@ -204,7 +204,6 @@ export default async function Home({
               <MediaFrame
                 media={{ ...founderMedia, alt: t("about.portrait") }}
                 sizes="(max-width: 1024px) 100vw, 58vw"
-                className="absolute inset-0 h-full w-full"
               />
             </div>
           </Parallax>
@@ -526,7 +525,6 @@ export default async function Home({
         <MediaFrame
           media={closingMedia}
           sizes="100vw"
-          className="absolute inset-0 h-full w-full"
         />
         <span
           aria-hidden

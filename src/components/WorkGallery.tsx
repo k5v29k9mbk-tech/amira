@@ -110,7 +110,6 @@ export function WorkGallery() {
                     media={frame}
                     alt={t(`alt.${frame.altKey}`)}
                     sizes={frame.sizes}
-                    className="absolute inset-0 h-full w-full"
                     imageClassName="transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover:scale-[1.03]"
                   />
 

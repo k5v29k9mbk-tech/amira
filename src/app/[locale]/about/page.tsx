@@ -118,7 +118,6 @@ export default async function AboutPage({
                 }}
                 priority
                 sizes="(max-width: 1024px) 100vw, 40vw"
-                className="absolute inset-0 h-full w-full"
                 imageClassName="settle"
               />
             </div>
@@ -177,7 +176,6 @@ export default async function AboutPage({
                     position: "50% 42%",
                   }}
                   sizes="(max-width: 1024px) 100vw, 38vw"
-                  className="absolute inset-0 h-full w-full"
                 />
               </div>
             </Parallax>

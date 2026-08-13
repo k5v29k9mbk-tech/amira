@@ -22,6 +22,31 @@ import type { Media } from "@/lib/media";
  * English, in media.ts, which is right for the frames that are decorative and
  * wrong for a frame that describes something; a caller holding a translation
  * passes it here instead.
+ *
+ * POSITIONING. The root is `absolute inset-0`, and that is a contract rather than
+ * a default: this component must be given a positioned parent that has a size of
+ * its own, which in practice means a box carrying an aspect ratio or an explicit
+ * height. Every one of the nine callers already does exactly that.
+ *
+ * It used to be `relative`, and every caller then passed `absolute inset-0
+ * h-full w-full` to override it. None of them did. `relative` and `absolute` are
+ * single classes of equal specificity, so which one applies is decided by their
+ * order in the compiled stylesheet, not by their order in the class attribute,
+ * and Tailwind emits `.relative` last. The override was silently dropped
+ * everywhere.
+ *
+ * It was mostly invisible, because a static child with `h-full w-full` fills a
+ * ratio box just as an absolute one does. It was not invisible in the two places
+ * something else shared the box. In the method's sticky column the three frames
+ * stacked in flow instead of overlaying, making the panel three times too tall
+ * and riding up over the heading above it. In the closing frame the media became
+ * a flex item beside the copy and rendered at 687px of a 1440px viewport, which
+ * is what Next was reporting when it warned that an image with `sizes="100vw"`
+ * was not being rendered at full viewport width.
+ *
+ * Both are the same bug, and this is the one line that fixes it. Callers no
+ * longer pass positioning; if a future caller needs something other than filling
+ * its parent, give this a prop rather than passing a class that cannot win.
  */
 export function MediaFrame({
   media,
@@ -85,7 +110,7 @@ export function MediaFrame({
   return (
     <div
       ref={ref}
-      className={`relative overflow-hidden ${className}`}
+      className={`absolute inset-0 overflow-hidden ${className}`}
       style={
         {
           "--obj": media.position ?? "50% 50%",

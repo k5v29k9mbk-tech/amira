@@ -168,7 +168,6 @@ export function MethodStory() {
                   alt={altFor(key)}
                   active={i === active}
                   sizes="100vw"
-                  className="absolute inset-0 h-full w-full"
                 />
               </div>
             ) : null}

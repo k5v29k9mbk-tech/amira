@@ -134,7 +134,6 @@ export default async function CoursesPage({
                   <MediaFrame
                     media={course.media}
                     sizes="(max-width: 768px) 100vw, 40vw"
-                    className="absolute inset-0 h-full w-full"
                     imageClassName="transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover/row:scale-[1.03]"
                   />
                 </div>

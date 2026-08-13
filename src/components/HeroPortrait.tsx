@@ -126,7 +126,6 @@ export function HeroPortrait({
               media={{ ...heroMedia, alt }}
               priority
               sizes="(max-width: 640px) 72vw, (max-width: 1024px) 22rem, 40rem"
-              className="absolute inset-0 h-full w-full"
               imageClassName="settle"
             />
           </motion.div>

@@ -95,7 +95,6 @@ export function CourseSelector() {
                   <MediaFrame
                     media={course.media}
                     sizes="(max-width: 640px) 100vw, 45vw"
-                    className="absolute inset-0 h-full w-full"
                   />
                 </div>
               ) : null}

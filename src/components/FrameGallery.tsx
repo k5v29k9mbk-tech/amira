@@ -48,7 +48,6 @@ export async function FrameGallery() {
               <MediaFrame
                 media={frame}
                 sizes={frame.sizes}
-                className="absolute inset-0 h-full w-full"
                 imageClassName="transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover:scale-[1.03]"
               />
             </div>
