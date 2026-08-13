@@ -56,7 +56,22 @@ export function CourseSelector() {
           only separator, and the whole row is the link. No panel, no cage, no
           tap required to find out what a discipline is. */}
       <ul className={`${shell} lg:hidden`}>
-        {courses.map((course, i) => (
+        {courses.map((course, i) => {
+          /* Which side the frame takes, from sm. Six rows with the photograph
+             always on the same edge is a results list; alternated, the row is a
+             composition and the eye crosses the page instead of running down one
+             column of thumbnails. It is the cheapest rhythm available in a
+             stacked layout and the reason this reads as a catalogue rather than
+             as six repeats of one card.
+
+             Explicit `row-start-1` on both cells, because the flipped rows place
+             the copy at column 1 after the frame has already claimed column 8:
+             auto-placement would read that as a cursor that has gone backwards
+             and drop the copy onto a second row. The starts are logical, so
+             Arabic mirrors the whole alternation with no separate rule. */
+          const flip = i % 2 === 1;
+
+          return (
           <li key={course.slug} className="border-b border-hair last:border-b-0">
             <Link
               href={`/courses#${course.slug}`}
@@ -72,7 +87,11 @@ export function CourseSelector() {
                   row: a blank 4:5 box beside the text is the one thing worse
                   than no photograph. */}
               {!course.posterOffHome ? (
-                <div className="relative aspect-[3/2] w-full sm:col-span-5 sm:aspect-[4/5]">
+                <div
+                  className={`relative aspect-[3/2] w-full sm:col-span-5 sm:row-start-1 sm:aspect-[4/5] ${
+                    flip ? "sm:col-start-8" : "sm:col-start-1"
+                  }`}
+                >
                   <MediaFrame
                     media={course.media}
                     sizes="(max-width: 640px) 100vw, 45vw"
@@ -81,7 +100,15 @@ export function CourseSelector() {
                 </div>
               ) : null}
 
-              <div className={course.posterOffHome ? "sm:col-span-12" : "sm:col-span-7"}>
+              <div
+                className={
+                  course.posterOffHome
+                    ? "sm:col-span-12"
+                    : `sm:col-span-7 sm:row-start-1 ${
+                        flip ? "sm:col-start-1" : "sm:col-start-6"
+                      }`
+                }
+              >
                 <span className="label font-mono text-bronze-ink">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -99,7 +126,8 @@ export function CourseSelector() {
               </div>
             </Link>
           </li>
-        ))}
+          );
+        })}
       </ul>
 
       {/* From lg: the panel row, unchanged. */}
