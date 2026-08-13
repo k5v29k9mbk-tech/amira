@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { ReactNode } from "react";
 
 /**
@@ -26,7 +26,15 @@ import type { ReactNode } from "react";
  *
  * Nothing here touches layout: transform and opacity are composited, so no
  * frame moves its neighbours while it arrives and the space is reserved from
- * the first paint. Under `prefers-reduced-motion` the frame is simply there.
+ * the first paint.
+ *
+ * Under a reduced-motion preference the travel and the scale arrive instantly and
+ * the frame simply fades up, which is what MotionProvider's policy does to every
+ * transform on the site. This component used to return a plain `<div>` in that
+ * case, swapping the element out from under React: the server has no way to know
+ * the preference, so it rendered the motion element, and a reduced-motion client
+ * rendered the div. That was the loudest half of a hydration mismatch that made
+ * React discard the server markup for the entire page.
  */
 export function FrameReveal({
   children,
@@ -37,10 +45,6 @@ export function FrameReveal({
   delay?: number;
   className?: string;
 }) {
-  const reduce = useReducedMotion();
-
-  if (reduce) return <div className={className}>{children}</div>;
-
   return (
     <motion.div
       className={className}

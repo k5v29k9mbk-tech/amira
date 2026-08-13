@@ -7,6 +7,7 @@ import { routing, isRtl, siteUrl, altLanguages } from "@/i18n/routing";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { IntroVideo } from "@/components/IntroVideo";
+import { MotionProvider } from "@/components/MotionProvider";
 import { INTRO_BOOTSTRAP } from "@/lib/intro";
 import { introFilmReady } from "@/lib/intro-film";
 import { JsonLd, organizationSchema } from "@/lib/seo";
@@ -171,7 +172,11 @@ export default async function LocaleLayout({
           </>
         ) : null}
 
+        {/* MotionProvider wraps everything that moves, which is the header, the
+            intro overlay, every page and the footer. It carries the site's whole
+            reduced-motion policy; see the note in the component. */}
         <NextIntlClientProvider messages={clientMessages}>
+          <MotionProvider>
           {introFilmReady ? <IntroVideo /> : null}
           {/* Four languages, four skip links. This was English for everyone
               except Arabic, which is the one string on the site a keyboard
@@ -186,6 +191,7 @@ export default async function LocaleLayout({
           <main id="main">{children}</main>
           <Footer />
           <JsonLd data={organizationSchema(locale, org("title"), org("description"))} />
+          </MotionProvider>
         </NextIntlClientProvider>
       </body>
     </html>
