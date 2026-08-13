@@ -96,13 +96,24 @@ export async function Hero() {
               one to a line and the masthead became a bulleted list down the
               left edge. Stacked in three columns the figures stay on one
               baseline, which is the only thing about the row that has to be
-              true for it to read as a masthead. */}
+              true for it to read as a masthead.
+
+              And back to three columns from lg, which is the width where the
+              inline row stopped working. From lg this column is 6 of 12, so it
+              is about 430px at that breakpoint and 716 at the 1600px cap, while
+              the three pairs set inline need roughly 700 of type plus 80 of
+              gutter. The row wrapped, and it wrapped in the worst available
+              shape: two pairs on the first line and the third alone under them,
+              which reads as a list that has run out of room rather than as a
+              masthead. Three columns holds the three figures on one baseline at
+              every width, and it is shorter than the wrap it replaces, which the
+              first screen has better uses for. */}
           <StaggerItem>
-            <dl className="mt-8 grid grid-cols-3 gap-x-4 gap-y-3 border-t border-hair pt-6 sm:flex sm:flex-wrap sm:items-baseline sm:gap-x-8 md:mt-10 md:gap-x-10">
+            <dl className="mt-8 grid grid-cols-3 gap-x-4 gap-y-3 border-t border-hair pt-6 sm:flex sm:flex-wrap sm:items-baseline sm:gap-x-8 md:mt-10 md:gap-x-10 lg:grid lg:grid-cols-3 lg:gap-x-6 xl:gap-x-8">
               {facts.map((k) => (
                 <div
                   key={k}
-                  className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-2.5"
+                  className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-2.5 lg:flex-col lg:items-start lg:gap-2"
                 >
                   <dt className="display text-[1.375rem] leading-none text-espresso md:text-[1.5rem]">
                     {t(`facts.${k}.value`)}
