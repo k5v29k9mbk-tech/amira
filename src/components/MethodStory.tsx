@@ -92,21 +92,48 @@ export function MethodStory() {
     <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
       <div className="hidden lg:col-span-6 lg:block">
         <div className="sticky top-0 flex h-svh items-center py-16">
+          {/* The frames overlay, and the position has to be on this wrapper
+              rather than on MediaFrame.
+
+              MediaFrame hardcodes `relative` on its own root and appends the
+              caller's classes after it. That is a class-attribute order, not a
+              cascade order: `.relative` and `.absolute` are single classes of
+              equal specificity, so the one that wins is whichever Tailwind
+              emitted later in the stylesheet, and that is `.relative`. Passing
+              `absolute inset-0` straight to MediaFrame therefore did nothing.
+
+              Everywhere else on the site that is invisible, because every other
+              caller puts one frame inside a box that already has a ratio, and a
+              static child with `h-full w-full` fills it either way. This is the
+              only place three frames share one box, and here it was the whole
+              bug: the three stacked in flow instead of overlaying, so the panel
+              measured 2340px rather than 780, the sticky pin was computed
+              against a box three times too tall, and the first frame rode up out
+              of the column and printed over the section heading above it. The
+              cross-fade never ran at all; what looked like it was the three
+              frames scrolling past one behind the other.
+
+              A plain div takes the absolute position and the cross-fade, and
+              MediaFrame simply fills it. */}
           <div className="relative aspect-[4/5] w-full">
             {framed.map((key) => (
-              <MediaFrame
+              <div
                 key={key}
-                media={methodMedia[key]}
-                alt={altFor(key)}
-                active={key === heldFrame}
-                // The column is 6 of 12 with a 64px gutter, so it measures
-                // ~416px at lg and 704px once the shell hits its 1600px cap.
-                // 55vw asked for half again as much file as it can ever show.
-                sizes="(min-width: 1600px) 704px, 45vw"
-                className={`absolute inset-0 h-full w-full transition-[opacity,transform] duration-[1000ms] ease-[var(--ease-aura)] ${
+                className={`absolute inset-0 transition-[opacity,transform] duration-[1000ms] ease-[var(--ease-aura)] ${
                   key === heldFrame ? "opacity-100" : "scale-[1.03] opacity-0"
                 }`}
-              />
+              >
+                <MediaFrame
+                  media={methodMedia[key]}
+                  alt={altFor(key)}
+                  active={key === heldFrame}
+                  // The column is 6 of 12 with a 64px gutter, so it measures
+                  // ~416px at lg and 704px once the shell hits its 1600px cap.
+                  // 55vw asked for half again as much file as it can ever show.
+                  sizes="(min-width: 1600px) 704px, 45vw"
+                  className="h-full w-full"
+                />
+              </div>
             ))}
           </div>
         </div>
