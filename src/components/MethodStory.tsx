@@ -112,7 +112,20 @@ export function MethodStory() {
         </div>
       </div>
 
-      <ol className="lg:col-span-5 lg:col-start-8">
+      <ol className="relative ps-6 lg:col-span-5 lg:col-start-8 lg:ps-12">
+        {/* The rail, and the distance travelled along it. Logical inset, so in
+            Arabic the spine runs down the right edge of the column and the
+            chapters indent away from it, with no separate rule. */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 start-0 w-px bg-hair"
+        />
+        <span
+          aria-hidden
+          style={{ transform: `scaleY(${(active + 1) / chapters.length})` }}
+          className="pointer-events-none absolute inset-y-0 start-0 w-px origin-top bg-bronze transition-transform duration-[900ms] ease-[var(--ease-aura)]"
+        />
+
         {chapters.map((key, i) => (
           <li
             key={key}
