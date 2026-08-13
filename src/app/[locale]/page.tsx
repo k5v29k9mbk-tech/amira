@@ -210,8 +210,21 @@ export default async function Home({
           </Parallax>
 
           {/* The copy plate crosses the edge of the portrait rather than
-              sitting beside it. Same ground as the page, no border, no card. */}
-          <Reveal className="lg:col-span-5 lg:-ms-20 lg:bg-ivory lg:py-16 lg:ps-16">
+              sitting beside it. Same ground as the page, no border, no card.
+
+              `lg:relative lg:z-10` is what makes the crossing work, and without
+              it the section is broken rather than merely flat: the portrait was
+              painting over the plate, so at lg the first 80px of every line in
+              this column, including the heading, was hidden behind the
+              photograph. The cause is not obvious from the markup. Parallax puts
+              a transform on the portrait, a transform makes a stacking context,
+              and a stacking context is painted in a later step of the algorithm
+              than a plain in-flow sibling's background and text: DOM order stops
+              deciding, so the earlier element wins. Positioning the plate puts it
+              back in the same step as the portrait, where tree order decides
+              again and the later element is on top. Any element that has to cover
+              a Parallax needs this. */}
+          <Reveal className="lg:relative lg:z-10 lg:col-span-5 lg:-ms-20 lg:bg-ivory lg:py-16 lg:ps-16">
             <SectionLabel n={1}>{t("sections.amira")}</SectionLabel>
             <h2 className={`${displaySection} mt-8 max-w-[12ch]`}>
               {t("instructor.headline")}
