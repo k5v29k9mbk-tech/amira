@@ -265,19 +265,36 @@ export default async function Home({
           the only outcome a visitor can operate rather than look at.
 
           The composition, the crops and which frames open larger are all data
-          in lib/media.ts; WorkGallery only arranges them. Nothing here is
-          retouched, graded or generated, and no frame is ever set wider than
-          the file behind it, which is what keeps the small close-ups sharp.
+          in lib/media.ts; WorkGallery only arranges them. No result is graded,
+          filtered, retouched or generated, three of the files are rotated
+          upright and nothing else, and no frame is ever set wider than the file
+          behind it, which is what keeps the small close-ups sharp.
 
-          The heading block sits above the composition rather than beside it.
-          Beside it there was room for one frame; above it there is room for
-          six, and the section's job is now the photographs. */}
+          WHAT THE COPY MAY CLAIM. `work.title` read "Real work, unretouched."
+          and `work.sub` ended "Nothing on this page is retouched, filtered or
+          generated." Of the results that is true. Of the page it is not: the
+          hero portrait two acts up is a graded master, by a light unsharp pass
+          and a four percent lift in colour, which lib/media.ts says plainly. An
+          absolute claim that is false about one photograph on the page is worth
+          less than no claim at all, and it is the kind of sentence a competitor
+          screenshots. Both lines now say what is checkable instead, which is
+          that these are the academy's own client photographs. Scope any future
+          wording the same way: to the results, never to the page.
+
+          The heading block sits above the composition rather than beside it, and
+          splits across the field at lg: the title takes five columns and the
+          line under it four, set from column eight. Stacked, the two ran down
+          the inline edge in a single narrow measure and the section opened like
+          a blog post. Across the field they read as a masthead over the plate,
+          which is the register the photographs below are in. */}
       <section id="work" className={`${sectionPadBottom} scroll-mt-20 bg-paper`}>
         <div className={shell}>
-          <Reveal className="pb-12 md:pb-16">
-            <SectionLabel n={3}>{t("sections.work")}</SectionLabel>
-            <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("work.title")}</h2>
-            <p className="mt-8 max-w-[48ch] text-[17px] leading-relaxed text-mute">
+          <Reveal className="grid gap-8 pb-12 md:pb-16 lg:grid-cols-12 lg:items-end lg:gap-10">
+            <div className="lg:col-span-6">
+              <SectionLabel n={3}>{t("sections.work")}</SectionLabel>
+              <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("work.title")}</h2>
+            </div>
+            <p className="max-w-[48ch] text-[17px] leading-relaxed text-mute lg:col-span-5 lg:col-start-8 lg:pb-3">
               {t("work.sub")}
             </p>
           </Reveal>
@@ -285,51 +302,46 @@ export default async function Home({
         </div>
       </section>
 
-      {/* 04 AMIRA */}
-      <section id="amira" className={`${sectionPad} scroll-mt-20 bg-ivory`}>
-        <div className={`${shell} grid items-center gap-10 lg:grid-cols-12 lg:gap-0`}>
-          <Parallax distance={12} className="lg:col-span-7">
-            <div className="relative aspect-[4/5] w-full">
-              <MediaFrame
-                media={{ ...founderMedia, alt: t("about.portrait") }}
-                sizes="(max-width: 1024px) 100vw, 58vw"
-                className="absolute inset-0 h-full w-full"
-              />
-            </div>
-          </Parallax>
+      {/* 04 INSIDE AURA
+          Opens the second ivory block, so it carries the full rhythm: the work
+          above it is the last of the paper pair, and this is a new turn in the
+          argument rather than a continuation of it.
 
-          {/* The copy plate crosses the edge of the portrait rather than
-              sitting beside it. Same ground as the page, no border, no card. */}
-          <Reveal className="lg:col-span-5 lg:-ms-20 lg:bg-ivory lg:py-16 lg:ps-16">
-            <SectionLabel n={4}>{t("sections.amira")}</SectionLabel>
-            <h2 className={`${displaySection} mt-8 max-w-[12ch]`}>
-              {t("instructor.headline")}
-            </h2>
-            <p className="mt-10 text-[17px] text-espresso">{t("instructor.title")}</p>
-            <p className="mt-2 text-[15px] text-mute">{t("instructor.role")}</p>
-            <p className={`${displayLarge} mt-10 max-w-[26ch] text-balance`}>
-              {t("instructor.mission")}
-            </p>
-            <Link href="/about" className={`${linkRule} mt-12`}>
-              {t("about.readStory")}
-              <ArrowRight size={14} weight="light" className="flip-x" />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 05 INSIDE AURA */}
-      <section id="gallery" className={`${sectionPadBottom} scroll-mt-20 bg-ivory`}>
+          The line that used to sit under the heading listed the three things the
+          three photographs are ("the lesson, the mapping drawn by hand, the
+          demonstration on the model"). It is now set under the frame each clause
+          names, in FrameGallery, where it labels a picture instead of promising
+          one. Removing it from here is not a cut: it is the same sentence, moved
+          to where the eye already is. */}
+      <section id="gallery" className={`${sectionPad} scroll-mt-20 bg-ivory`}>
         <div className={shell}>
           <Reveal className="pb-12 md:pb-16">
-            <SectionLabel n={5}>{t("sections.inside")}</SectionLabel>
+            <SectionLabel n={4}>{t("sections.inside")}</SectionLabel>
             <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("students.title")}</h2>
-            <p className="mt-8 max-w-[48ch] text-[17px] leading-relaxed text-mute">
-              {t("students.sub")}
-            </p>
           </Reveal>
           <FrameGallery />
         </div>
+      </section>
+
+      {/* 05 COURSES
+          The catalogue arrives after the master, the method, the results and
+          the room, which is the whole of the reordering: a reader reaches this
+          row already knowing who teaches, how, to what standard and where, so
+          six names are a choice rather than a demand.
+
+          It continues the ivory block the studio opens, so it takes only the
+          tail of the rhythm. The panel row is full bleed by design and sits
+          outside the shell; only the heading keeps the page gutter. */}
+      <section id="courses" className={`${sectionPadBottom} scroll-mt-20 bg-ivory`}>
+        <div className={`${shell} pb-12 md:pb-16`}>
+          <Reveal>
+            <SectionLabel n={5}>{t("sections.courses")}</SectionLabel>
+            <h2 className={`${displaySection} mt-8 max-w-[16ch]`}>
+              {t("catalog.selectorTitle")}
+            </h2>
+          </Reveal>
+        </div>
+        <CourseSelector />
       </section>
 
       {/* 06 WHAT MAKES US DIFFERENT
