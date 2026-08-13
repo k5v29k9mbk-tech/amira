@@ -57,7 +57,15 @@ const PAGE_KEYS = [
   "hero.titleA",
   "hero.titleB",
   "hero.sub",
+  // Held, not read. `hero.founder` was the portrait's one-line credit and
+  // `hero.meetAmira` its secondary action; the credit is now `instructor.title`
+  // over `hero.founderRole`, and the action is the booking. `manifesto.note` and
+  // `students.sub` are the same case: both were removed from the page as
+  // repetition, not as content. All four stay listed here on purpose. They are
+  // one line from being rendered again, and a translation that rots while the
+  // key sits unused is exactly the regression this list exists to catch.
   "hero.founder",
+  "hero.founderRole",
   "hero.primary",
   "hero.secondary",
   "hero.meetAmira",
@@ -316,6 +324,46 @@ test("only photographs with pixels to spare open full screen", () => {
   }
 });
 
+test("the graded portrait never appears among the results", () => {
+  // The work section's copy is a claim about the photographs in it, so what may
+  // sit in it is constrained. `amira-portrait-hero.jpg` is the one graded file on
+  // the site, by a light unsharp pass and a four percent lift in colour (see
+  // heroMedia in media.ts), and the results are shipped exactly as the academy
+  // supplied them apart from three rotations. Those two facts are compatible only
+  // while the graded master stays out of this section. Putting it in, or reusing
+  // it as a result, would make the section's own standfirst false.
+  const graded = [heroMedia.posterSrc];
+  for (const src of graded) {
+    assert.ok(
+      !resultFrames.some((f) => f.posterSrc === src),
+      `${src} is graded and cannot be shown as a result`,
+    );
+  }
+});
+
+test("no absolute authenticity claim is made about the page", () => {
+  // `work.title` read "Real work, unretouched." and `work.sub` ended "Nothing on
+  // this page is retouched, filtered or generated." True of the results, false of
+  // the page: the hero portrait two acts above them is a graded master. The copy
+  // now claims only what is checkable, which is that these are the academy's own
+  // client photographs.
+  //
+  // A word list cannot police this across four languages and is not trying to.
+  // What it can do is catch the exact wording coming back, in the two languages
+  // the copy is drafted in, which is how it got here the first time.
+  const absolutes = [/unretouch/i, /senza ritocchi/i, /sans retouche/i, /nothing on this page/i];
+  for (const [locale, messages] of Object.entries(LOCALES)) {
+    const text = JSON.stringify(messages);
+    for (const pattern of absolutes) {
+      assert.equal(
+        pattern.test(text),
+        false,
+        `${locale} claims ${pattern} about the whole page again`,
+      );
+    }
+  }
+});
+
 test("the work section and the studio gallery never show the same frame", () => {
   // They sit two sections apart on one page. The results moved out of the
   // studio gallery precisely so that neither is competing with the other for
@@ -369,6 +417,11 @@ test("every page string is translated in all four languages", () => {
     // Read off the composition rather than listed, so a frame added to the
     // work section cannot ship without its description in all four languages.
     ...resultFrames.map((f) => `work.alt.${f.altKey}`),
+    // Same for the studio gallery's captions, which are the clauses the
+    // section's old standfirst listed, now set under the frame each one names.
+    // Read off the data for the same reason: caption a fourth frame and its
+    // translations are required by this test rather than by someone remembering.
+    ...galleryFrames.flatMap((f) => (f.captionKey ? [`students.captions.${f.captionKey}`] : [])),
     ...JOURNEY.flatMap((k) => [`journey.steps.${k}.title`, `journey.steps.${k}.body`]),
     ...DETAILS.flatMap((k) => [`catalog.details.${k}.label`, `catalog.details.${k}.value`]),
     ...FAQ.flatMap((k) => [`faq.items.${k}.q`, `faq.items.${k}.a`]),
