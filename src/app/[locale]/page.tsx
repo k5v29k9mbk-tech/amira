@@ -159,7 +159,7 @@ export default async function Home({
       <Manifesto />
 
       {/* 01 COURSES */}
-      <section id="courses" className="scroll-mt-20 bg-ivory pb-20 md:pb-32 lg:pb-44">
+      <section id="courses" className="scroll-mt-20 bg-ivory pb-24 md:pb-36 lg:pb-52">
         <div className={`${shell} pb-12 md:pb-16`}>
           <Reveal>
             <SectionLabel n={1}>{t("sections.courses")}</SectionLabel>
@@ -172,7 +172,7 @@ export default async function Home({
       </section>
 
       {/* 02 THE METHOD */}
-      <section id="method" className="scroll-mt-20 bg-paper pt-20 pb-20 md:pt-32 md:pb-32 lg:pt-44 lg:pb-44">
+      <section id="method" className="scroll-mt-20 bg-paper pt-24 pb-24 md:pt-36 md:pb-36 lg:pt-52 lg:pb-52">
         <div className={shell}>
           <Reveal className="max-w-[20ch] pb-8 lg:pb-4">
             <SectionLabel n={2}>{t("sections.method")}</SectionLabel>

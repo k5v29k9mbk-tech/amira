@@ -109,7 +109,7 @@ export async function Footer() {
       </div>
 
       <div
-        className={`${shell} flex flex-col gap-4 border-t border-white/12 py-7 text-[13px] text-mute-dark sm:flex-row sm:items-center sm:justify-between`}
+        className={`${shell} flex flex-col gap-4 border-t border-hair-dark py-7 text-[13px] text-mute-dark sm:flex-row sm:items-center sm:justify-between`}
       >
         <p>
           {year} {legal.company}. {t("footer.rights")}

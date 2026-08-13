@@ -158,7 +158,6 @@ const PAGE_KEYS = [
   "footer.rea",
   "footer.rights",
   "mentor.play",
-  "mentor.videoSoon",
   "mentor.videoAlt",
   "success.title",
   "success.before",
@@ -378,6 +377,20 @@ test("every page string is translated in all four languages", () => {
       assert.equal(typeof value, "string", `${locale} is missing ${key}`);
       assert.ok((value as string).length > 0, `${locale}.${key} is empty`);
     }
+  }
+});
+
+test("no placeholder copy stands in for media the academy has not supplied", () => {
+  // "Welcome message coming soon" was a caption under a play control that could
+  // not play. A promise with no date is worse than the photograph on its own,
+  // so WelcomeVideo now renders the still alone and the string is gone from all
+  // four catalogues. If it reappears, a placeholder is shipping again.
+  for (const [locale, messages] of Object.entries(LOCALES)) {
+    assert.equal(
+      at(messages, "mentor.videoSoon"),
+      undefined,
+      `${locale} brought back the "coming soon" placeholder`,
+    );
   }
 });
 

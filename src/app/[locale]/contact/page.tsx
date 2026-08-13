@@ -18,7 +18,14 @@ import {
 } from "@/lib/studio";
 import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/Reveal";
-import { displaySection, sectionPad, shell } from "@/lib/ui";
+import {
+  displayRow,
+  displaySection,
+  eyebrow,
+  pageHeader,
+  sectionPad,
+  shell,
+} from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -60,7 +67,7 @@ export default async function ContactPage({
 
   return (
     <>
-      <section className="bg-ivory pt-[7.5rem] pb-16 md:pt-40 md:pb-24">
+      <section className={`${pageHeader} bg-ivory`}>
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-5">
             <h1 className={`${displaySection} max-w-[12ch]`}>{t("contact.title")}</h1>
@@ -132,7 +139,7 @@ export default async function ContactPage({
       <section className={`${sectionPad} bg-paper`}>
         <div className={shell}>
           <Reveal className="max-w-[20ch]">
-            <p className="label text-bronze-ink">{t("journey.eyebrow")}</p>
+            <p className={eyebrow}>{t("journey.eyebrow")}</p>
             <h2 className={`${displaySection} mt-8`}>{t("journey.title")}</h2>
             <p className="mt-8 max-w-[44ch] text-[16px] leading-relaxed text-mute">
               {t("journey.sub")}
@@ -150,7 +157,7 @@ export default async function ContactPage({
                 <span className="label font-mono text-bronze-ink md:col-span-1">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="display text-[clamp(1.25rem,2.2vw,1.875rem)] md:col-span-4">
+                <h3 className={`${displayRow} md:col-span-4`}>
                   {t(`journey.steps.${k}.title`)}
                 </h3>
                 <p className="max-w-[52ch] text-[16px] leading-relaxed text-mute md:col-span-6 md:col-start-7">

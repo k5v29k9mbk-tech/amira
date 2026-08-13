@@ -365,7 +365,6 @@
   },
   "mentor": {
     "play": "Voir le message de bienvenue",
-    "videoSoon": "Message de bienvenue à venir",
     "videoAlt": "Amira Bechini accueille les nouvelles élèves"
   },
   "success": {
@@ -384,7 +383,6 @@
       "brows": "Sourcils après un traitement de maquillage permanent.",
       "browsPair": "Les deux sourcils dans un même cadre après un traitement de maquillage permanent, photographiés de près.",
       "lipDetail": "Gros plan des lèvres après un traitement de pigmentation.",
-      "lips": "Lèvres après un traitement de pigmentation.",
       "browsPortrait": "Sourcils après un traitement de maquillage permanent, photographiés de près, le visage tourné vers la lumière.",
       "browsLips": "Sourcils et lèvres après un traitement de maquillage permanent, photographiés d'en haut."
     }

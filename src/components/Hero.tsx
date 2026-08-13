@@ -59,9 +59,9 @@ export async function Hero() {
       />
 
       <div
-        className={`${shell} grid w-full items-end gap-12 py-10 lg:grid-cols-12 lg:gap-10 lg:py-0`}
+        className={`${shell} grid w-full items-end gap-7 py-8 sm:gap-10 md:py-10 lg:grid-cols-12 lg:gap-10 lg:py-0`}
       >
-        <Stagger className="order-2 max-w-[38rem] lg:order-1 lg:col-span-6 lg:pb-2">
+        <Stagger className="order-2 max-w-[42rem] lg:order-1 lg:col-span-6 lg:pb-2">
           <StaggerItem>
             {/* Three facts, one line: the academy, what it does, where. Wraps
                 to two lines on a phone, so it carries its own leading. */}
@@ -85,7 +85,7 @@ export async function Hero() {
               figures are the evidence for the sentence above and the reason to
               press the button below, so they sit between the two. */}
           <StaggerItem>
-            <dl className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-3 border-t border-hair pt-6 md:mt-10 md:gap-x-12">
+            <dl className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-3 border-t border-hair pt-6 md:mt-10 md:gap-x-10">
               {facts.map((k) => (
                 <div key={k} className="flex items-baseline gap-2.5">
                   <dt className="display text-[1.375rem] leading-none text-espresso md:text-[1.5rem]">
@@ -110,7 +110,15 @@ export async function Hero() {
           </StaggerItem>
         </Stagger>
 
-        <div className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7">
+        {/* The columns stay even; the asymmetry is in where the frame sits
+            inside its half, not in how many columns each half owns. Taking a
+            column off the statement only forced the figures below onto two
+            lines, and a masthead that wraps is worse than a symmetrical grid.
+            On the widest screens the column is allowed to eat the page gutter,
+            so the frame runs past the margin the rest of the page keeps. The
+            margin is logical, so in Arabic the frame leans on the left edge
+            exactly as it leans on the right in the other three. */}
+        <div className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7 xl:-me-6 2xl:-me-12">
           <HeroPortrait alt={inst("portrait")} caption={t("founder")} />
         </div>
       </div>

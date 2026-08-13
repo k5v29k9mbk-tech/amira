@@ -27,9 +27,17 @@ import { MediaFrame } from "./MediaFrame";
  *
  * Width is capped against viewport height as well as against a maximum, since
  * a 3:4 frame left to fill its grid column overruns the fold on every common
- * laptop. The caption is part of that budget: the caps came down a step when it
- * was added, so the block as a whole still clears the fold. Within the cap the
- * frame is still the largest object on the page.
+ * laptop. The caption is part of that budget, and the budget is tighter than it
+ * looks: a 3:4 frame is a third taller than it is wide, so every vh added to
+ * the cap costs 1.33 of them in height. On a 900px laptop the section keeps
+ * 744px for the frame and its caption, which is what puts the ceiling at 56vh.
+ * Above that the caption lands on the fold line, which is what 60vh did.
+ *
+ * From lg the frame is aligned to the inline end of its column rather than
+ * centred in it. A portrait centred in half a page reads as an illustration
+ * beside some text; the same portrait held against the edge of the paper reads
+ * as the composition the text was set into. The alignment is logical, so Arabic
+ * gets the mirror of it rather than a special case.
  *
  * `caption` is the gallery label under the frame: it puts a name and a role on
  * the face, which is the one thing the photograph cannot say by itself. It sits
@@ -54,7 +62,7 @@ export function HeroPortrait({ alt, caption }: { alt: string; caption?: string }
       initial={reduce ? false : { opacity: 0, y: 26 }}
       animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 26 }}
       transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mx-auto w-full max-w-[min(17.5rem,36svh)] sm:max-w-[min(26rem,46svh)] lg:max-w-[min(38rem,54vh)]"
+      className="relative mx-auto w-full max-w-[min(12.5rem,25svh)] sm:max-w-[min(22rem,40svh)] lg:ms-auto lg:me-0 lg:max-w-[min(40rem,56vh)]"
     >
       {/* Ambient warmth. A plain radial rather than a blurred disc: a 40rem
           element under a blur filter is a large, repeatedly composited paint. */}

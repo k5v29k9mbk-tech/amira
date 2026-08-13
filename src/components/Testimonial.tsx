@@ -4,7 +4,11 @@ import { useCallback, useRef, useState } from "react";
 import { useMessages, useTranslations } from "next-intl";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
-import { sectionPad, shell } from "@/lib/ui";
+import {
+  displayQuote,
+  sectionPad,
+  shell,
+} from "@/lib/ui";
 
 /**
  * One voice at a time, on a near-black field.
@@ -86,7 +90,7 @@ export function Testimonial() {
               exit={reduce ? { opacity: 0 } : { opacity: 0, y: -10 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              <blockquote className="display text-[clamp(1.75rem,4vw,3.5rem)] text-balance">
+              <blockquote className={`${displayQuote} text-balance`}>
                 {t(`items.${k}.quote`)}
               </blockquote>
               <figcaption className="mt-12 flex flex-col gap-1">

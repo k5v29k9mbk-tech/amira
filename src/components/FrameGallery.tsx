@@ -1,4 +1,5 @@
 import { galleryFrames } from "@/lib/media";
+import { FrameReveal } from "./FrameReveal";
 import { MediaFrame } from "./MediaFrame";
 import { Parallax } from "./Parallax";
 
@@ -20,13 +21,15 @@ export function FrameGallery() {
           distance={i % 2 === 0 ? 16 : -12}
           className={frame.span}
         >
-          <div className="relative w-full" style={{ aspectRatio: frame.ratio }}>
-            <MediaFrame
-              media={frame}
-              sizes={frame.sizes}
-              className="absolute inset-0 h-full w-full"
-            />
-          </div>
+          <FrameReveal delay={i * 0.08}>
+            <div className="relative w-full" style={{ aspectRatio: frame.ratio }}>
+              <MediaFrame
+                media={frame}
+                sizes={frame.sizes}
+                className="absolute inset-0 h-full w-full"
+              />
+            </div>
+          </FrameReveal>
         </Parallax>
       ))}
     </div>

@@ -61,7 +61,7 @@ export default async function FaqPage({
         )}
       />
 
-      <section className="bg-ivory pt-[7.5rem] pb-20 md:pt-40 md:pb-32 lg:pb-44">
+      <section className="bg-ivory pt-[7.5rem] pb-24 md:pt-40 md:pb-36 lg:pb-52">
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-4">
             <h1 className={`${displaySection} max-w-[10ch]`}>{t("faq.title")}</h1>

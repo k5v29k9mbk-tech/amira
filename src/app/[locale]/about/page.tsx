@@ -11,8 +11,15 @@ import { welcomeVideoId } from "@/lib/studio";
 import {
   btnLine,
   btnSolid,
+  displayItem,
   displayLarge,
+  displayQuote,
+  displayRow,
   displaySection,
+  displayStat,
+  eyebrow,
+  eyebrowLight,
+  pageHeader,
   sectionPad,
   shell,
 } from "@/lib/ui";
@@ -81,11 +88,11 @@ export default async function AboutPage({
     <>
       <JsonLd data={personSchema(locale, t("story.role"), t("lede"))} />
 
-      <section className="bg-ivory pt-[7.5rem] pb-16 md:pt-40 md:pb-24">
+      <section className={`${pageHeader} bg-ivory`}>
         <div className={`${shell} grid items-end gap-10 lg:grid-cols-12 lg:gap-12`}>
           <Stagger className="lg:col-span-6">
             <StaggerItem>
-              <p className="label text-bronze-ink">{t("eyebrow")}</p>
+              <p className={eyebrow}>{t("eyebrow")}</p>
             </StaggerItem>
             <StaggerItem>
               <h1 className={`${displaySection} mt-8 max-w-[14ch] text-balance`}>
@@ -130,7 +137,7 @@ export default async function AboutPage({
                   i > 0 ? "sm:border-s sm:ps-8" : ""
                 }`}
               >
-                <dt className="display text-[clamp(2rem,3.4vw,3rem)]">{t(`facts.${k}.value`)}</dt>
+                <dt className={displayStat}>{t(`facts.${k}.value`)}</dt>
                 <dd className="label mt-4 max-w-[24ch] text-mute">{t(`facts.${k}.label`)}</dd>
               </Reveal>
             ))}
@@ -147,7 +154,7 @@ export default async function AboutPage({
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32">
               <Reveal>
-                <p className="label text-bronze-ink">{t("story.eyebrow")}</p>
+                <p className={eyebrow}>{t("story.eyebrow")}</p>
                 <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("story.title")}</h2>
                 <p className="label mt-8 max-w-[28ch] text-mute">{t("story.role")}</p>
               </Reveal>
@@ -199,7 +206,7 @@ export default async function AboutPage({
       <section className={`${sectionPad} bg-paper`}>
         <div className={shell}>
           <Reveal className="max-w-[22ch]">
-            <p className="label text-bronze-ink">{t("different.eyebrow")}</p>
+            <p className={eyebrow}>{t("different.eyebrow")}</p>
             <h2 className={`${displaySection} mt-8`}>{t("different.title")}</h2>
           </Reveal>
 
@@ -214,7 +221,7 @@ export default async function AboutPage({
                 <span className="label font-mono text-bronze-ink md:col-span-1">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="display text-[clamp(1.25rem,2.2vw,1.875rem)] md:col-span-4">
+                <h3 className={`${displayRow} md:col-span-4`}>
                   {t(`different.items.${k}.title`)}
                 </h3>
                 <p className="max-w-[52ch] text-[16px] leading-relaxed text-mute md:col-span-6 md:col-start-7">
@@ -233,7 +240,7 @@ export default async function AboutPage({
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32">
               <Reveal>
-                <p className="label text-bronze-ink">{t("beyond.eyebrow")}</p>
+                <p className={eyebrow}>{t("beyond.eyebrow")}</p>
                 <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("beyond.title")}</h2>
                 <p className="mt-8 max-w-[44ch] text-[16px] leading-relaxed text-mute">
                   {t("beyond.sub")}
@@ -253,7 +260,7 @@ export default async function AboutPage({
                 <span className="label font-mono text-bronze-ink">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="display text-[1.25rem] md:text-[1.5rem]">
+                <span className={displayItem}>
                   {t(`beyond.items.${k}`)}
                 </span>
               </Reveal>
@@ -265,9 +272,16 @@ export default async function AboutPage({
       {/* Mission, vision and the values the academy publishes. */}
       <section className={`${sectionPad} bg-night text-ivory`}>
         <div className={shell}>
-          <Reveal className="max-w-[24ch]">
-            <p className="label text-bronze-hi">{t("mission.eyebrow")}</p>
-            <p className="display mt-10 text-[clamp(2rem,5vw,4.5rem)] text-balance">
+          {/* The measure belongs on the quote, not on the block around it.
+              `ch` resolves against the element's own font size, so a 24ch cap
+              set on the wrapper was 24 characters of body text, about 260px,
+              and the quote inside it was being set at 72px: eight lines of one
+              or two words each down the left edge of an empty section. Moving
+              the cap onto the line itself, at the size it is actually set in,
+              gives it the three lines it was written for. */}
+          <Reveal>
+            <p className={eyebrowLight}>{t("mission.eyebrow")}</p>
+            <p className={`${displayQuote} mt-10 max-w-[18ch] text-balance`}>
               {t("mission.quote")}
             </p>
           </Reveal>
@@ -275,9 +289,9 @@ export default async function AboutPage({
             <p className="text-[17px] leading-relaxed text-mute-dark">{t("mission.body")}</p>
           </Reveal>
 
-          <div className="mt-20 grid gap-10 border-t border-white/12 pt-14 lg:grid-cols-12 lg:gap-16 md:mt-28">
+          <div className="mt-20 grid gap-10 border-t border-hair-dark pt-14 lg:grid-cols-12 lg:gap-16 md:mt-28">
             <Reveal className="lg:col-span-5">
-              <p className="label text-bronze-hi">{t("vision.eyebrow")}</p>
+              <p className={eyebrowLight}>{t("vision.eyebrow")}</p>
               <h2 className={`${displayLarge} mt-8 max-w-[16ch]`}>{t("vision.title")}</h2>
             </Reveal>
             <Reveal delay={0.08} className="lg:col-span-6 lg:col-start-7">
@@ -297,11 +311,11 @@ export default async function AboutPage({
             </Reveal>
           </div>
 
-          <div className="mt-16 border-t border-white/12 pt-10">
-            <p className="label text-bronze-hi">{inst("valuesLabel")}</p>
+          <div className="mt-16 border-t border-hair-dark pt-10">
+            <p className={eyebrowLight}>{inst("valuesLabel")}</p>
             <ul className="mt-6 flex flex-wrap gap-x-10 gap-y-4">
               {values.map((k) => (
-                <li key={k} className="display text-[1.25rem] md:text-[1.5rem]">
+                <li key={k} className={displayItem}>
                   {inst(`values.${k}`)}
                 </li>
               ))}

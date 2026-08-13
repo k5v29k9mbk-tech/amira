@@ -8,9 +8,9 @@ import { ArrowsOut, X } from "@phosphor-icons/react";
 import { pairFrame, resultFrames } from "@/lib/media";
 import { beforeAfterPairs } from "@/lib/studio";
 import { BeforeAfter } from "./BeforeAfter";
+import { FrameReveal } from "./FrameReveal";
 import { MediaFrame } from "./MediaFrame";
 import { Parallax } from "./Parallax";
-import { Reveal } from "./Reveal";
 
 /**
  * The work: seven treatment photographs and the before/after slider, set as one
@@ -102,7 +102,7 @@ export function WorkGallery() {
         {resultFrames.map((frame, i) => (
           <Fragment key={frame.posterSrc}>
             <Parallax distance={i % 2 === 0 ? 14 : -10} className={frame.span}>
-              <Reveal delay={(i % 3) * 0.06}>
+              <FrameReveal delay={(i % 3) * 0.06}>
                 <div
                   className="group relative w-full"
                   style={{ aspectRatio: frame.ratio }}
@@ -138,7 +138,7 @@ export function WorkGallery() {
                     </button>
                   ) : null}
                 </div>
-              </Reveal>
+              </FrameReveal>
             </Parallax>
 
             {/* The one pair the academy has supplied. It renders only while a
@@ -146,9 +146,9 @@ export function WorkGallery() {
                 its absence costs a row and nothing else. */}
             {i === pairFrame.after && beforeAfterPairs.length > 0 ? (
               <Parallax distance={-10} className={pairFrame.span}>
-                <Reveal delay={0.06}>
+                <FrameReveal delay={0.06}>
                   <BeforeAfter pair={beforeAfterPairs[0]} sizes={pairFrame.sizes} />
-                </Reveal>
+                </FrameReveal>
               </Parallax>
             ) : null}
           </Fragment>

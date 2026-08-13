@@ -113,7 +113,7 @@ export function CourseSelector() {
               key={course.slug}
               style={{ flexGrow: open ? 4.2 : 1 }}
               className={`group relative basis-0 overflow-hidden bg-night transition-[flex-grow] duration-[900ms] ease-[var(--ease-aura)] ${
-                i > 0 ? "border-white/15 lg:border-s" : ""
+                i > 0 ? "border-hair-dark lg:border-s" : ""
               }`}
             >
               {/* A course whose poster is off the homepage keeps its panel and

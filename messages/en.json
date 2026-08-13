@@ -19,7 +19,7 @@
     "eyebrow": "Aura Academy · Professional beauty education · Italy",
     "titleA": "Master the art.",
     "titleB": "Build your career.",
-    "sub": "Professional PMU and beauty training by Amira Bechini: technique, real-world experience and business knowledge, the three things a serious career in beauty is built on.",
+    "sub": "Professional PMU training. Technique, real experience and the business knowledge a career is built on.",
     "founder": "Amira Bechini · Founder and PMU Master",
     "facts": {
       "years": {
@@ -47,7 +47,7 @@
     "eyebrow": "About Aura Academy",
     "titleA": "We teach from inside the profession,",
     "titleB": "not from a textbook.",
-    "lede": "Aura Academy was founded by Amira Bechini, CEO of Amira Beauty Suite and a permanent makeup artist with more than eight years in the industry. Every technique taught here is one she performs on real clients, in her own institute, every day.",
+    "lede": "Founded by Amira Bechini: CEO of Amira Beauty Suite, permanent makeup artist, more than eight years in the industry. Every technique taught here is one she performs on real clients.",
     "portrait": "Amira Bechini in her beauty institute",
     "readStory": "Discover Amira's story",
     "facts": {
@@ -69,10 +69,10 @@
       "title": "From the treatment room to the classroom",
       "role": "Founder of Aura Academy · CEO of Amira Beauty Suite",
       "imageAlt": "Amira Bechini at work during a course",
-      "p1": "My name is Amira Bechini. I run Amira Beauty Suite, a beauty institute specialised in advanced aesthetic treatments, and I founded Aura Academy to teach what I practise: permanent makeup and lash and brow lamination.",
-      "p2": "In more than eight years in the beauty industry I have trained over 150 students, and along the way I built a method of my own, one that holds technical excellence, hands-on practice and entrepreneurial vision together. My passion for this work began with a simple desire: to help people feel confident, and to create real career opportunities for women who want to turn that passion into a profession.",
-      "p3": "I have never stopped studying, international masterclasses, the latest PMU techniques, continuous investment in my own education. Working every day inside my institute taught me the rest: not only the technical side of the profession, but the real needs of clients and of the beauty market.",
-      "p4": "That is why Aura Academy exists. It is the school I wanted when I started: personalised guidance, practical education, continuous support, and the confidence to build a career that lasts. Today we train students throughout Italy.",
+      "p1": "I run Amira Beauty Suite, an institute specialised in advanced aesthetic treatments, and founded Aura Academy to teach what I practise: permanent makeup and lash and brow lamination.",
+      "p2": "In more than eight years I have trained over 150 students and built a method of my own: technical excellence, hands-on practice, entrepreneurial vision. It began simply, to help people feel confident, and to give women a real profession.",
+      "p3": "I have never stopped studying: international masterclasses, the latest PMU techniques. My own institute taught me the rest, not just the technique, but what clients and the market need.",
+      "p4": "Aura Academy is the school I wanted when I started: personalised guidance, practical education, continuous support, and a career that lasts. Today we train across Italy.",
       "signature": "Amira Bechini"
     },
     "different": {
@@ -82,22 +82,22 @@
       "items": {
         "experience": {
           "title": "Real industry experience",
-          "body": "Aura Academy grew out of daily practice inside a working beauty institute. What you learn here has already been tested on real clients."
+          "body": "Aura Academy grew out of daily practice inside a working institute. What you learn here has already been tested on real clients."
         },
         "small": {
           "title": "Small classes, by design",
-          "body": "Places are intentionally limited. A small group is what makes individual attention and personalised coaching possible, rather than something we promise and cannot give."
+          "body": "Places are intentionally limited. A small group is what makes individual attention possible, rather than something we promise and cannot give."
         },
         "support": {
           "title": "Before, during and after",
-          "body": "Every student is supported throughout: continuous mentoring, practical feedback, correction of their work, and professional guidance once the course has ended."
+          "body": "Continuous mentoring, practical feedback, correction of your work, and professional guidance once the course has ended."
         }
       }
     },
     "beyond": {
       "eyebrow": "Beyond the technique",
       "title": "A technique alone is not a career.",
-      "sub": "A successful PMU artist has to master far more than the treatment itself. Alongside the technical training, we teach the eight things that turn a skill into a business.",
+      "sub": "A PMU artist has to master more than the treatment. Alongside the technique, we teach the eight things that turn a skill into a business.",
       "items": {
         "mindset": "Business mindset",
         "marketing": "Marketing strategies",
@@ -112,13 +112,13 @@
     "mission": {
       "eyebrow": "Our mission",
       "quote": "The certificate is not the point. The career is.",
-      "body": "At Aura Academy we don't simply teach beauty treatments. We educate future professionals, combining technical excellence, practical experience, an entrepreneurial mindset and continuous support, so that every student leaves confident and genuinely prepared for today's beauty industry."
+      "body": "We don't simply teach treatments. We educate professionals, combining technical excellence, practical experience, entrepreneurial mindset and continuous support, so every student leaves genuinely prepared."
     },
     "vision": {
       "eyebrow": "Our vision",
       "title": "An international reference for PMU education",
-      "body": "We are building Aura Academy into an international point of reference for professional education in permanent makeup and beauty lamination, growing across Italy and internationally through a network of certified trainers and a community of professionals who hold the same standards.",
-      "closing": "Our goal is modern, practical, market-oriented education, and more women able to build an independent and successful future.",
+      "body": "An international reference for professional education in permanent makeup and lamination, built through a network of certified trainers and a community that holds the same standards.",
+      "closing": "Modern, practical, market-oriented education, and more women able to build an independent future.",
       "points": {
         "quality": "Quality",
         "professionalism": "Professionalism",
@@ -128,14 +128,14 @@
     },
     "cta": {
       "title": "Your career starts with one conversation.",
-      "body": "Tell us which course you're interested in and we'll come back to you with dates, duration and everything you need to know."
+      "body": "Tell us which course interests you. We'll come back with dates, duration and everything you need to know."
     }
   },
   "instructor": {
     "title": "Amira Bechini",
     "role": "International PMU Master and Founder of Aura Academy",
     "mission": "To train competent professionals through practical courses, continuous support and high standards.",
-    "body": "Aura Academy trains permanent makeup and lamination professionals across Italy. Courses are taught in Italian, at base and advanced level, with a maximum of three or four students per session.",
+    "body": "Permanent makeup and lamination training across Italy. Taught in Italian, at base and advanced level, three to four students per session.",
     "valuesLabel": "Our values",
     "values": {
       "professionalism": "Professionalism",
@@ -173,7 +173,7 @@
   "catalog": {
     "eyebrow": "The courses",
     "title": "Six courses, one standard",
-    "sub": "Permanent makeup and lamination, at base and advanced level. Duration varies by course, and every course is quoted individually.",
+    "sub": "Permanent makeup and lamination, base and advanced. Duration varies by course; every course is quoted individually.",
     "courses": {
       "microblading": "Microblading",
       "powder-brows": "Powder Brows",
@@ -221,7 +221,7 @@
       "support": "Post-course support"
     },
     "cta": "Request course details",
-    "privateNote": "Course fees are not published. Write to us and Amira will send you the full details for the course you have in mind, including the professional kit option.",
+    "privateNote": "Fees are not published. Write to us and Amira will send the full details for your course, including the kit option.",
     "paymentsLabel": "Payment",
     "payments": "Bank transfer · Card · PagoDIL",
     "selectorTitle": "Choose your discipline.",
@@ -264,7 +264,7 @@
   },
   "students": {
     "title": "In the studio",
-    "sub": "Moments from the courses: demonstration, guided practice and work on a model."
+    "sub": "Moments from the courses: teaching, demonstration and guided practice."
   },
   "voices": {
     "title": "In our students' words",
@@ -286,7 +286,7 @@
       },
       "price": {
         "q": "How much does a course cost?",
-        "a": "Every course is quoted individually, and the details are shared privately rather than published. Write to us or message Amira and you will receive the full information for the course you are interested in, including the professional kit option."
+        "a": "Every course is quoted individually and shared privately rather than published. Write to us and you'll receive the full information, including the kit option."
       },
       "includes": {
         "q": "What does the course include?",
@@ -310,7 +310,7 @@
       },
       "booking": {
         "q": "How do I book and how do I pay?",
-        "a": "Book on WhatsApp or through the contact form on this site. Your place is confirmed with a deposit, agreed between us; payment is by bank transfer, card or PagoDIL."
+        "a": "Book on WhatsApp or the contact form. Your place is confirmed with a deposit, agreed between us; payment by bank transfer, card or PagoDIL."
       },
       "location": {
         "q": "Where are the courses held?",
@@ -318,7 +318,7 @@
       },
       "beginners": {
         "q": "Is the course suitable for beginners?",
-        "a": "Yes. Every technique is taught at base level, which starts from the beginning, and at advanced level for those already working."
+        "a": "Yes. Every technique is taught at base level, from the beginning, and at advanced level for those already working."
       }
     },
     "viewAll": "View all questions",
@@ -365,7 +365,6 @@
   },
   "mentor": {
     "play": "Watch the welcome message",
-    "videoSoon": "Welcome message coming soon",
     "videoAlt": "Amira Bechini welcomes new students"
   },
   "success": {
@@ -384,7 +383,6 @@
       "brows": "Brows after a permanent makeup treatment.",
       "browsPair": "Both brows in one frame after a permanent makeup treatment, photographed close up.",
       "lipDetail": "Close-up of lips after a pigmentation treatment.",
-      "lips": "Lips after a pigmentation treatment.",
       "browsPortrait": "Brows after a permanent makeup treatment, photographed close up with the face turned to the light.",
       "browsLips": "Brows and lips after a permanent makeup treatment, photographed from above."
     }

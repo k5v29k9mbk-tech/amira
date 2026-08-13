@@ -5,13 +5,16 @@ import { courses, included } from "@/lib/courses";
 import { beforeAfterPairs } from "@/lib/studio";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { MediaFrame } from "@/components/MediaFrame";
+import { Parallax } from "@/components/Parallax";
 import { Reveal } from "@/components/Reveal";
 import { Stagger, StaggerItem } from "@/components/Stagger";
 import {
   btnSolid,
   displayLarge,
   displaySection,
+  eyebrow,
   linkRule,
+  pageHeader,
   sectionPad,
   shell,
 } from "@/lib/ui";
@@ -70,11 +73,11 @@ export default async function CoursesPage({
         )}
       />
 
-      <section className="bg-ivory pt-[7.5rem] pb-16 md:pt-40 md:pb-24">
+      <section className={`${pageHeader} bg-ivory`}>
         <div className={shell}>
           <Stagger className="max-w-[24ch]">
             <StaggerItem>
-              <p className="label text-bronze-ink">{t("catalog.eyebrow")}</p>
+              <p className={eyebrow}>{t("catalog.eyebrow")}</p>
             </StaggerItem>
             <StaggerItem>
               <h1 className={`${displaySection} mt-8`}>{t("catalog.title")}</h1>
@@ -95,15 +98,23 @@ export default async function CoursesPage({
               as="li"
               key={course.slug}
               id={course.slug}
-              className="grid scroll-mt-28 gap-6 border-b border-hair py-10 md:grid-cols-12 md:gap-10 md:py-14"
+              className="group/row grid scroll-mt-28 gap-6 border-b border-hair py-10 md:grid-cols-12 md:gap-10 md:py-14"
             >
-              <div className="relative aspect-[16/10] w-full md:col-span-5 md:aspect-[4/3]">
-                <MediaFrame
-                  media={course.media}
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                  className="absolute inset-0 h-full w-full"
-                />
-              </div>
+              {/* The same treatment the work section gives a photograph: a few
+                  pixels of drift against the scroll for depth, and a slow push
+                  in on hover. The hover is keyed to the whole row rather than
+                  to the frame, because the row is what a reader is pointing at
+                  when they are reading a course. */}
+              <Parallax distance={10} className="md:col-span-5">
+                <div className="relative aspect-[16/10] w-full md:aspect-[4/3]">
+                  <MediaFrame
+                    media={course.media}
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    className="absolute inset-0 h-full w-full"
+                    imageClassName="transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover/row:scale-[1.03]"
+                  />
+                </div>
+              </Parallax>
 
               <div className="md:col-span-6 md:col-start-7 md:self-center">
                 <span className="label font-mono text-bronze-ink">

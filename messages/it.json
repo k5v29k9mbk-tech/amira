@@ -365,7 +365,6 @@
   },
   "mentor": {
     "play": "Guarda il messaggio di benvenuto",
-    "videoSoon": "Messaggio di benvenuto in arrivo",
     "videoAlt": "Amira Bechini dà il benvenuto alle nuove allieve"
   },
   "success": {
@@ -384,7 +383,6 @@
       "brows": "Sopracciglia dopo un trattamento di trucco permanente.",
       "browsPair": "Entrambe le sopracciglia in un'unica inquadratura dopo un trattamento di trucco permanente, fotografate da vicino.",
       "lipDetail": "Primo piano delle labbra dopo un trattamento di pigmentazione.",
-      "lips": "Labbra dopo un trattamento di pigmentazione.",
       "browsPortrait": "Sopracciglia dopo un trattamento di trucco permanente, fotografate da vicino con il viso girato verso la luce.",
       "browsLips": "Sopracciglia e labbra dopo un trattamento di trucco permanente, fotografate dall'alto."
     }
