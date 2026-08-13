@@ -198,6 +198,18 @@ export type Frame = Media & {
    * frame and move this with it, or the page downloads the wrong picture.
    */
   sizes: string;
+  /**
+   * Message key under `students.captions.*`, for a frame that is named on the
+   * page rather than left to the atmosphere.
+   *
+   * Set on the studio frames and deliberately absent from every result. A
+   * caption under a client's healed brow would have to name the discipline that
+   * produced it, and the site does not know that from the photograph: it would
+   * be a guess printed under someone's face. The studio frames are the opposite
+   * case, because what they show is exactly what the academy's own copy already
+   * says they show.
+   */
+  captionKey?: string;
 };
 
 /**
@@ -402,6 +414,7 @@ export const pairFrame = {
 export const galleryFrames: Frame[] = [
   {
     posterSrc: "/brand/theory-classroom.jpg",
+    captionKey: "lesson",
     span: "col-span-12 md:col-span-7 lg:col-span-7 lg:col-start-1",
     sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 56vw, 54vw",
     ratio: "4 / 3",
@@ -411,6 +424,7 @@ export const galleryFrames: Frame[] = [
   },
   {
     posterSrc: "/brand/brow-mapping.jpg",
+    captionKey: "mapping",
     span: "col-span-5 md:col-span-4 md:col-start-9 md:mt-16 lg:col-span-3 lg:col-start-9 lg:mt-40",
     sizes: "(max-width: 768px) 40vw, (max-width: 1024px) 31vw, 22vw",
     ratio: "332 / 295",
@@ -420,6 +434,7 @@ export const galleryFrames: Frame[] = [
   },
   {
     posterSrc: "/brand/live-demo.jpg",
+    captionKey: "demo",
     span: "col-span-7 md:col-span-6 md:col-start-4 md:mt-6 lg:col-span-4 lg:col-start-4 lg:mt-10",
     sizes: "(max-width: 768px) 56vw, (max-width: 1024px) 47vw, 31vw",
     ratio: "557 / 335",
