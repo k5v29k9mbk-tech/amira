@@ -42,9 +42,13 @@ export async function Hero() {
 
   return (
     <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-ivory pt-[68px] pb-16 md:pt-[76px] md:pb-20">
-      {/* Ground. A soft beige wash across the upper field and a barely-there
-          warm pool low on the inline end, so the ivory has depth rather than
-          reading as flat paper. Decorative, never behind text at strength. */}
+      {/* Ground. Two layers, no more: a soft beige wash across the upper field
+          and one warm pool behind the arch, so the ivory has depth rather than
+          reading as flat paper. Decorative, never behind text at strength.
+          A third wash used to sit low on the inline start, under the statement
+          and the action. Three tints and two outline circles is the vocabulary
+          of a template, not of a composition, and the one of the three that was
+          behind type was the one that could not be strengthened anyway. */}
       <span
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[70%] bg-[linear-gradient(to_bottom,var(--aura-paper),transparent)]"
@@ -52,10 +56,6 @@ export async function Hero() {
       <span
         aria-hidden
         className="pointer-events-none absolute -end-[12%] top-[8%] -z-10 aspect-square w-[52%] rounded-full bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--aura-bronze)_9%,transparent),transparent)]"
-      />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute -start-[18%] bottom-[-10%] -z-10 aspect-square w-[42%] rounded-full bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--aura-taupe)_18%,transparent),transparent)]"
       />
 
       <div
@@ -118,14 +118,22 @@ export async function Hero() {
               element in the composition that reads as an afterthought, and it
               is the only thing on the first screen a visitor is meant to
               press. The secondary stays a text link at every width, so the
-              hierarchy between the two never becomes two buttons. */}
+              hierarchy between the two never becomes two buttons.
+
+              The two actions are now the two things a visitor can do here:
+              read the catalogue, or book. The secondary used to be "Meet
+              Amira", pointing at /about, which was the right link while the
+              founder arrived two thirds of the way down this page. She is now
+              the first act after the statement, with her own link to the full
+              story, so the first screen no longer has to carry a third
+              destination: it asks for the enquiry instead. */}
           <StaggerItem>
             <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-10">
               <Link href="/courses" className={`${btnSolid} w-full sm:w-auto`}>
                 {t("primary")}
               </Link>
-              <Link href="/about" className={linkRule}>
-                {t("meetAmira")}
+              <Link href="/contact" className={linkRule}>
+                {t("secondary")}
                 <ArrowRight size={14} weight="light" className="flip-x" />
               </Link>
             </div>
@@ -141,7 +149,11 @@ export async function Hero() {
             margin is logical, so in Arabic the frame leans on the left edge
             exactly as it leans on the right in the other three. */}
         <div className="order-1 w-full lg:order-2 lg:col-span-6 lg:col-start-7 xl:-me-6 2xl:-me-12">
-          <HeroPortrait alt={inst("portrait")} caption={t("founder")} />
+          <HeroPortrait
+            alt={inst("portrait")}
+            name={inst("title")}
+            role={t("founderRole")}
+          />
         </div>
       </div>
 
