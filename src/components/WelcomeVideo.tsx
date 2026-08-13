@@ -14,8 +14,9 @@ import { Play } from "@phosphor-icons/react";
 const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), { ssr: false });
 
 /**
- * Amira's welcome message. With no playback id set it stays a still with a
- * caption, rather than a broken frame.
+ * Amira's welcome message. With no playback id set it is her still and nothing
+ * else: a play control that cannot play, and a caption promising a video that
+ * has no date, are both worse than the photograph on its own.
  */
 export function WelcomeVideo({
   playbackId,
@@ -29,7 +30,18 @@ export function WelcomeVideo({
   const t = useTranslations("mentor");
   const [playing, setPlaying] = useState(false);
 
-  if (playing && playbackId) {
+  if (!playbackId) {
+    return (
+      <div
+        role="img"
+        aria-label={alt}
+        className="aspect-video w-full bg-cover bg-center"
+        style={{ backgroundImage: `url(${poster})` }}
+      />
+    );
+  }
+
+  if (playing) {
     return (
       <MuxPlayer
         playbackId={playbackId}
@@ -45,10 +57,9 @@ export function WelcomeVideo({
   return (
     <button
       type="button"
-      onClick={() => playbackId && setPlaying(true)}
-      disabled={!playbackId}
-      aria-label={playbackId ? t("play") : t("videoSoon")}
-      className="group relative block aspect-video w-full overflow-hidden bg-cover bg-center disabled:cursor-default"
+      onClick={() => setPlaying(true)}
+      aria-label={t("play")}
+      className="group relative block aspect-video w-full overflow-hidden bg-cover bg-center"
       style={{ backgroundImage: `url(${poster})` }}
     >
       <span
@@ -59,7 +70,7 @@ export function WelcomeVideo({
         <span className="flex h-16 w-16 items-center justify-center border border-ivory/60 transition-colors duration-500 group-hover:bg-ivory group-hover:text-espresso">
           <Play size={20} weight="light" className="flip-x" />
         </span>
-        <span className="label">{playbackId ? t("play") : t("videoSoon")}</span>
+        <span className="label">{t("play")}</span>
       </span>
     </button>
   );

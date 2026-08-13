@@ -103,7 +103,14 @@ export const founderMedia: Media = {
   height: 1152,
 };
 
-/** One frame per method chapter, keyed by the chapter's message key. */
+/**
+ * The method's frames, keyed by the chapter's message key.
+ *
+ * Not every chapter has one. Practice carries no photograph, and MethodStory
+ * reads this record for what is in it rather than assuming one entry per
+ * chapter: the sticky column mounts the frames that exist and holds the one
+ * above while an unframed chapter is read, so it never fades to an empty panel.
+ */
 export const methodMedia: Record<string, Media> = {
   /**
    * The academy's own classroom, supplied by the client: Amira at the flipchart
@@ -125,13 +132,6 @@ export const methodMedia: Record<string, Media> = {
     position: "50% 40%",
     width: 1200,
     height: 1600,
-  },
-  practice: {
-    posterSrc: "/brand/group-training.jpg",
-    alt: "",
-    position: "50% 42%",
-    width: 1800,
-    height: 1004,
   },
   model: {
     posterSrc: "/brand/at-work.jpg",
@@ -191,10 +191,10 @@ export type Frame = Media & {
  *
  * The order is the reading order on a phone, where the composition collapses to
  * a single column: the healed brow, the strokes that built it, the pair that
- * proves it, a second brow, both brows across the full width, then the lip
- * work, closing on two finished faces. On desktop the same nine land in five
- * staggered rows, two frames to a row and the band alone in the middle,
- * alternating which side carries the weight.
+ * proves it, a second brow, both brows across the full width, the lip detail,
+ * closing on two finished faces. On desktop the same seven land in four
+ * staggered rows, two frames to a row, alternating which side carries the
+ * weight.
  *
  * `altKey` names the frame's alt text under `work.alt.*`. These are the only
  * photographs on the site that are the argument rather than the atmosphere, so
@@ -202,11 +202,11 @@ export type Frame = Media & {
  * decorative.
  *
  * `zoom` opens the frame full screen. It is set only where the file has pixels
- * the layout is not already spending: the two 1179 and 1286 wide files against
- * frames of 864 and 736, and the three 1320 wide ones the academy supplied
- * last, against frames of 992, 736 and 480. The three small close-ups are shown
- * at their own size already, so opening them larger would enlarge nothing and
- * soften what is there.
+ * the layout is not already spending: the 1179 wide file against a frame of
+ * 864, and the three 1320 wide ones the academy supplied last, against frames
+ * of 992, 736 and 480. The three small close-ups are shown at their own size
+ * already, so opening them larger would enlarge nothing and soften what is
+ * there.
  *
  * students-certificates.jpg is deliberately absent, here and everywhere. It
  * shows identifiable students and their certificate numbers and stays off the
@@ -253,9 +253,9 @@ export const resultFrames: (Frame & {
   /**
    * The band. Both brows in one frame, close enough to read the individual
    * strokes, and the only landscape photograph the academy has supplied at a
-   * width worth spending. It sits alone on its row on purpose: the brow half of
-   * the section is above it and the lip half below, and a single horizontal
-   * frame across the middle is the pause between them.
+   * width worth spending. It carries its row almost alone: the brow half of the
+   * section is above it, the two finished faces are below, and the lip detail
+   * tucks into the two columns left at its right edge.
    *
    * Eight columns is 992px against a 1320px file, so it is the widest frame in
    * the section and still not upscaled.
@@ -274,23 +274,12 @@ export const resultFrames: (Frame & {
   {
     posterSrc: "/brand/lips-neutralization.jpg",
     altKey: "lipDetail",
-    span: "col-span-6 md:col-span-4 lg:col-span-2 lg:col-start-2 lg:mt-24",
+    span: "col-span-6 md:col-span-4 lg:col-span-2 lg:col-start-11 lg:mt-24",
     sizes: "(max-width: 768px) 47vw, (max-width: 1024px) 31vw, 14vw",
     ratio: "232 / 300",
     position: "50% 45%",
     width: 232,
     height: 300,
-  },
-  {
-    posterSrc: "/brand/lips-result-hero.jpg",
-    altKey: "lips",
-    zoom: true,
-    span: "col-span-12 lg:col-span-6 lg:col-start-5 lg:mt-8",
-    sizes: "(max-width: 1024px) 100vw, 46vw",
-    ratio: "1286 / 965",
-    position: "50% 40%",
-    width: 1286,
-    height: 965,
   },
   /**
    * The closing pair: two faces rather than two details, which is what the
@@ -360,48 +349,27 @@ export const pairFrame = {
  * the work section above, where they are the argument rather than atmosphere,
  * and where they are not competing with a photograph of a classroom for the
  * same glance. Nothing is shown twice on the page.
+ *
+ * Two frames, one row: the academy's own classroom held tall on the left, the
+ * demonstration close-up dropped against it on the right. The spans are set so
+ * the pair reads as a composition rather than two tiles, and neither is ever
+ * wider than the file behind it (600px of a 1200px classroom, 480px of a 557px
+ * close-up).
  */
 export const galleryFrames: Frame[] = [
   {
     posterSrc: "/brand/theory-classroom.jpg",
-    span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-1",
-    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 30vw",
+    span: "col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-1",
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 38vw",
     ratio: "3 / 4",
     position: "50% 40%",
     width: 1200,
     height: 1600,
   },
   {
-    posterSrc: "/brand/group-training.jpg",
-    span: "col-span-12 lg:col-span-6 lg:col-start-6 lg:mt-20",
-    sizes: "(max-width: 1024px) 100vw, 46vw",
-    ratio: "1800 / 1004",
-    position: "50% 42%",
-    width: 1800,
-    height: 1004,
-  },
-  {
-    posterSrc: "/brand/practice-latex.jpg",
-    span: "col-span-12 md:col-span-8 lg:col-span-5 lg:col-start-2 lg:mt-24",
-    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 63vw, 38vw",
-    ratio: "690 / 265",
-    position: "50% 55%",
-    width: 690,
-    height: 265,
-  },
-  {
-    posterSrc: "/brand/brow-mapping.jpg",
-    span: "col-span-6 md:col-span-4 lg:col-span-3 lg:col-start-8 lg:mt-16",
-    sizes: "(max-width: 768px) 47vw, (max-width: 1024px) 31vw, 22vw",
-    ratio: "332 / 295",
-    position: "50% 50%",
-    width: 332,
-    height: 295,
-  },
-  {
     posterSrc: "/brand/live-demo.jpg",
-    span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-6 lg:mt-28",
-    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 30vw",
+    span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-8 lg:mt-32",
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 31vw",
     ratio: "557 / 335",
     position: "50% 40%",
     width: 557,

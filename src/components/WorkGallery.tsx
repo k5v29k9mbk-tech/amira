@@ -13,7 +13,7 @@ import { Parallax } from "./Parallax";
 import { Reveal } from "./Reveal";
 
 /**
- * The work: five treatment photographs and the before/after slider, set as one
+ * The work: seven treatment photographs and the before/after slider, set as one
  * composition rather than a grid of equal tiles.
  *
  * Every decision about where a frame sits, how wide it is and what proportion

@@ -267,10 +267,18 @@ test("every cut of the logo the pages ask for exists", () => {
   assert.ok(existsSync("src/app/apple-icon.png"), "missing src/app/apple-icon.png");
 });
 
-test("every method chapter has a frame", () => {
-  for (const key of chapters) {
-    assert.ok(methodMedia[key], `no media for chapter ${key}`);
+test("every method frame belongs to a chapter that is actually told", () => {
+  // A chapter may go without a photograph: MethodStory mounts the frames that
+  // exist and holds the one above while an unframed chapter is read, so the
+  // sticky column never fades to an empty panel. A frame keyed to a chapter
+  // that is not in `chapters`, on the other hand, is a file nothing renders.
+  for (const key of Object.keys(methodMedia)) {
+    assert.ok(
+      (chapters as readonly string[]).includes(key),
+      `methodMedia.${key} is not a chapter`,
+    );
   }
+  assert.ok(chapters.some((key) => methodMedia[key]), "the method has no frames at all");
 });
 
 test("no treatment photograph is cropped by its own frame", () => {

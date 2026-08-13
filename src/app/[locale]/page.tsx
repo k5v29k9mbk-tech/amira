@@ -189,7 +189,7 @@ export default async function Home({
           process: the gallery further down is the room, not the result.
 
           This used to be the before/after slider alone, beside a heading, at
-          34rem. It is now the section the page has been building towards: five
+          34rem. It is now the section the page has been building towards: seven
           treatment photographs and the pair, set as one composition. The pair
           has not been demoted, it has been given company, and it still carries
           the only outcome a visitor can operate rather than look at.

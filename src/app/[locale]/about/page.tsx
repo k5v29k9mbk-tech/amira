@@ -138,37 +138,28 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Her story, in her own voice. */}
+      {/* Her story, in her own voice. The heading travels with the reader down
+          the left column, the way the curriculum section below is set: the
+          section carries no photograph, so nothing is left holding an empty
+          column beside the text. */}
       <section className={`${sectionPad} bg-paper`}>
-        <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
+        <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32">
-              <div className="relative aspect-[3/4] w-full">
-                <MediaFrame
-                  media={{
-                    posterSrc: "/brand/at-work.jpg",
-                    alt: t("story.imageAlt"),
-                    position: "48% 38%",
-                  }}
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="absolute inset-0 h-full w-full"
-                />
-              </div>
-              <p className="label mt-6 text-mute">{t("story.role")}</p>
+              <Reveal>
+                <p className="label text-bronze-ink">{t("story.eyebrow")}</p>
+                <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("story.title")}</h2>
+                <p className="label mt-8 max-w-[28ch] text-mute">{t("story.role")}</p>
+              </Reveal>
             </div>
           </div>
 
           <div className="lg:col-span-6 lg:col-start-7">
-            <Reveal>
-              <p className="label text-bronze-ink">{t("story.eyebrow")}</p>
-              <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("story.title")}</h2>
-            </Reveal>
-
             {(["p1", "p2", "p3", "p4"] as const).map((k, i) => (
               <Reveal key={k} delay={0.06 + i * 0.04}>
                 <p
                   className={`max-w-[62ch] leading-relaxed text-mute ${
-                    i === 0 ? "mt-10 text-[18px] text-espresso" : "mt-6 text-[16px]"
+                    i === 0 ? "text-[18px] text-espresso" : "mt-6 text-[16px]"
                   }`}
                 >
                   {t(`story.${k}`)}

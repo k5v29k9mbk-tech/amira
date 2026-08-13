@@ -65,16 +65,23 @@ export function CourseSelector() {
               {/* Landscape on a phone, portrait once the row splits in two:
                   six stacked 4:5 frames would make the catalogue a very long
                   scroll for the sake of a crop. The focal point in lib/media
-                  carries the crop, so both work. */}
-              <div className="relative aspect-[3/2] w-full sm:col-span-5 sm:aspect-[4/5]">
-                <MediaFrame
-                  media={course.media}
-                  sizes="(max-width: 640px) 100vw, 45vw"
-                  className="absolute inset-0 h-full w-full"
-                />
-              </div>
+                  carries the crop, so both work.
 
-              <div className="sm:col-span-7">
+                  A course whose poster is off the homepage drops the cell
+                  rather than holding an empty one, and its copy takes the whole
+                  row: a blank 4:5 box beside the text is the one thing worse
+                  than no photograph. */}
+              {!course.posterOffHome ? (
+                <div className="relative aspect-[3/2] w-full sm:col-span-5 sm:aspect-[4/5]">
+                  <MediaFrame
+                    media={course.media}
+                    sizes="(max-width: 640px) 100vw, 45vw"
+                    className="absolute inset-0 h-full w-full"
+                  />
+                </div>
+              ) : null}
+
+              <div className={course.posterOffHome ? "sm:col-span-12" : "sm:col-span-7"}>
                 <span className="label font-mono text-bronze-ink">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -109,14 +116,20 @@ export function CourseSelector() {
                 i > 0 ? "border-white/15 lg:border-s" : ""
               }`}
             >
-              <MediaFrame
-                media={course.media}
-                active={open}
-                sizes="(max-width: 1024px) 100vw, 60vw"
-                className={`absolute inset-0 h-full w-full transition-opacity duration-[900ms] ${
-                  open ? "opacity-100" : "opacity-55"
-                }`}
-              />
+              {/* A course whose poster is off the homepage keeps its panel and
+                  everything in it, on the night the panel already carries. It
+                  opens, reads and links exactly like the other five; only the
+                  photograph is absent. */}
+              {!course.posterOffHome ? (
+                <MediaFrame
+                  media={course.media}
+                  active={open}
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  className={`absolute inset-0 h-full w-full transition-opacity duration-[900ms] ${
+                    open ? "opacity-100" : "opacity-55"
+                  }`}
+                />
+              ) : null}
               <span
                 aria-hidden
                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/85 via-night/25 to-night/10"

@@ -13,8 +13,8 @@ import { MediaFrame } from "./MediaFrame";
  * The visual is pinned with `position: sticky` while the chapters scroll past
  * it, and the frame changes when a chapter crosses the middle of the viewport.
  * IntersectionObserver decides that, not a scroll handler, so nothing runs per
- * frame. All four frames stay mounted and cross-fade, which keeps the clip from
- * reloading every time the reader scrolls back up.
+ * frame. Every frame stays mounted and they cross-fade, which keeps the clip
+ * from reloading every time the reader scrolls back up.
  *
  * Below lg the sticky column is dropped entirely and each chapter carries its
  * own image above it: on a phone a pinned half-screen panel leaves too little
@@ -28,11 +28,25 @@ export function MethodStory() {
   /**
    * Theory is the only chapter whose frame is a photograph of the academy
    * teaching rather than a texture, so it is the only one with something to
-   * describe. The other three stay decorative and keep their empty alt, which
-   * is what a screen reader wants from an image the sentence beside it already
+   * describe. The others stay decorative and keep their empty alt, which is
+   * what a screen reader wants from an image the sentence beside it already
    * covers.
    */
   const altFor = (key: string) => (key === "theory" ? t("steps.theory.alt") : undefined);
+
+  /**
+   * Not every chapter has a frame. Practice no longer carries a photograph, so
+   * the sticky column mounts only the frames that exist and holds the one from
+   * the chapter above while that chapter is read, rather than cross-fading to
+   * an empty panel. Below lg the chapter simply arrives without an image.
+   */
+  const framed = chapters.filter((key) => methodMedia[key]);
+  const heldFrame = (() => {
+    for (let i = active; i >= 0; i -= 1) {
+      if (methodMedia[chapters[i]]) return chapters[i];
+    }
+    return framed[0];
+  })();
 
   useEffect(() => {
     const nodes = marks.current.filter(Boolean) as HTMLLIElement[];
@@ -58,15 +72,15 @@ export function MethodStory() {
       <div className="hidden lg:col-span-6 lg:block">
         <div className="sticky top-0 flex h-svh items-center py-16">
           <div className="relative aspect-[4/5] w-full">
-            {chapters.map((key, i) => (
+            {framed.map((key) => (
               <MediaFrame
                 key={key}
                 media={methodMedia[key]}
                 alt={altFor(key)}
-                active={i === active}
+                active={key === heldFrame}
                 sizes="55vw"
                 className={`absolute inset-0 h-full w-full transition-[opacity,transform] duration-[1000ms] ease-[var(--ease-aura)] ${
-                  i === active ? "opacity-100" : "scale-[1.03] opacity-0"
+                  key === heldFrame ? "opacity-100" : "scale-[1.03] opacity-0"
                 }`}
               />
             ))}
@@ -83,15 +97,17 @@ export function MethodStory() {
             }}
             className="flex min-h-[60svh] flex-col justify-center py-12 lg:min-h-[80svh] lg:py-0"
           >
-            <div className="relative mb-8 aspect-[4/5] w-full lg:hidden">
-              <MediaFrame
-                media={methodMedia[key]}
-                alt={altFor(key)}
-                active={i === active}
-                sizes="100vw"
-                className="absolute inset-0 h-full w-full"
-              />
-            </div>
+            {methodMedia[key] ? (
+              <div className="relative mb-8 aspect-[4/5] w-full lg:hidden">
+                <MediaFrame
+                  media={methodMedia[key]}
+                  alt={altFor(key)}
+                  active={i === active}
+                  sizes="100vw"
+                  className="absolute inset-0 h-full w-full"
+                />
+              </div>
+            ) : null}
 
             <div
               className={`transition-opacity duration-700 ease-[var(--ease-aura)] ${

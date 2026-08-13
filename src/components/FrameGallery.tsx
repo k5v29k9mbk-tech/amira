@@ -9,9 +9,7 @@ import { Parallax } from "./Parallax";
  * is the only thing separating them: no captions, no badges, no rounded tiles.
  *
  * On phones the composition collapses to full width, in the same order, because
- * an asymmetric grid at 360px is just a stack with worse crops. The one
- * exception is the mapping frame, a 332px file that stays half width rather
- * than being stretched to the gutter.
+ * an asymmetric grid at 360px is just a stack with worse crops.
  */
 export function FrameGallery() {
   return (

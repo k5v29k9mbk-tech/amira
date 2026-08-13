@@ -21,6 +21,16 @@ import type { Media } from "./media";
 export type Course = {
   slug: string;
   media: Media;
+  /**
+   * Keep the course in the homepage catalogue but stand its photograph down
+   * there. The row keeps its number, name, blurb, level and link, and the
+   * courses page still ships the poster, so nothing about the course changes
+   * except which of the two pages prints its frame.
+   *
+   * Set on brow-lamination while the academy replaces the supplied photograph.
+   * Delete the flag when the new one lands and the homepage prints it again.
+   */
+  posterOffHome?: true;
 };
 
 export const courses: Course[] = [
@@ -72,6 +82,7 @@ export const courses: Course[] = [
   },
   {
     slug: "brow-lamination",
+    posterOffHome: true,
     media: {
       posterSrc: "/brand/brow-mapping.jpg",
       position: "50% 50%",
