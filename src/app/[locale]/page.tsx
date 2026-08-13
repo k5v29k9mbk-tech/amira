@@ -41,9 +41,25 @@ export async function generateMetadata({
 }
 
 /**
- * The homepage is nine acts and a closing frame, in this order: the hero, the
- * statement, the catalogue, the method, the work, the founder, the gallery, the
+ * The homepage is eight acts and a closing frame, in this order: the hero, the
+ * statement, the founder, the method, the work, the studio, the catalogue, the
  * three claims, the voices, how to book, six questions, and the invitation.
+ *
+ * ORDER. The page is arranged as the argument a visitor actually needs, which is
+ * a person before a product:
+ *
+ *   Amira -> the method -> the results -> the room -> the courses -> booking
+ *
+ * The founder used to be act 04, after the catalogue, the method and the work.
+ * That is late enough that a reader met the school first and the master
+ * afterwards, as though she were a member of staff the page got round to
+ * introducing; and it left the first thing after the statement as a row of six
+ * courses, which is a decision asked for before any reason to trust it had been
+ * given. She is now the first act. Everything after her is evidence for her: how
+ * she teaches, what it produces, where it happens, and only then what you can
+ * book. The catalogue has not been demoted, it has been given the four acts of
+ * argument it used to sit in front of, and the hero's primary action still goes
+ * straight to it for anyone who arrived already decided.
  *
  * Everything operational lives one click away rather than here: the shared
  * course conditions on /courses, the booking sequence and the channels on
@@ -59,17 +75,20 @@ export async function generateMetadata({
  * that changes that often stops reading as a change at all. Paired, each switch
  * marks a turn in the argument:
  *
- *   ivory   hero, statement, catalogue      what this is
- *   paper   the method, the work            how it is taught, what it produces
- *   ivory   Amira, the studio               who teaches it, and where
- *   night   the three claims                the one thing said about ourselves
- *   paper   how to book, the questions      what happens if you write
+ *   ivory   hero, statement, Amira         what this is, and who teaches it
+ *   paper   the method, the work           how it is taught, what it produces
+ *   ivory   the studio, the catalogue      where it happens, and what to book
+ *   night   the three claims               the one thing said about ourselves
+ *   paper   how to book, the questions     what happens if you write
  *   night   the invitation
  *
  * Two consequences worth knowing before moving a section. The founder's copy
  * plate is painted with the section's own ground so it can cross the edge of
- * the portrait, so it changes when the section does. And the method section
- * needs its own bottom padding now that the ground changes under it.
+ * the portrait: it is ivory because her act is in the ivory block, and it has to
+ * move with her. And a section that opens a ground carries the full rhythm
+ * (`sectionPad`) while one that continues it carries only the tail
+ * (`sectionPadBottom`), which is what makes the ground changes read as chapter
+ * marks rather than as arbitrary switches.
  */
 const homeFaq = [
   "beginners",
@@ -168,17 +187,58 @@ export default async function Home({
 
       <Manifesto />
 
-      {/* 01 COURSES */}
-      <section id="courses" className={`${sectionPadBottom} scroll-mt-20 bg-ivory`}>
-        <div className={`${shell} pb-12 md:pb-16`}>
-          <Reveal>
-            <SectionLabel n={1}>{t("sections.courses")}</SectionLabel>
-            <h2 className={`${displaySection} mt-8 max-w-[16ch]`}>
-              {t("catalog.selectorTitle")}
+      {/* 01 AMIRA
+          The first act, and the reason the rest of the page is worth reading.
+          It continues the ivory block the hero and the statement are set on, so
+          it opens with no rhythm of its own and lives on the statement's tail:
+          the founder is the second half of the opening, not a new chapter.
+
+          Her portrait here is deliberately not the hero's. The hero has the
+          studio frame against a seamless sweep; this is the working one, with
+          the brow calipers raised. Same person, two registers: the poised
+          portrait, then the practitioner. */}
+      <section id="amira" className={`${sectionPadBottom} scroll-mt-20 bg-ivory`}>
+        <div className={`${shell} grid items-center gap-10 lg:grid-cols-12 lg:gap-0`}>
+          <Parallax distance={12} className="lg:col-span-7">
+            <div className="relative aspect-[4/5] w-full">
+              <MediaFrame
+                media={{ ...founderMedia, alt: t("about.portrait") }}
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                className="absolute inset-0 h-full w-full"
+              />
+            </div>
+          </Parallax>
+
+          {/* The copy plate crosses the edge of the portrait rather than
+              sitting beside it. Same ground as the page, no border, no card. */}
+          <Reveal className="lg:col-span-5 lg:-ms-20 lg:bg-ivory lg:py-16 lg:ps-16">
+            <SectionLabel n={1}>{t("sections.amira")}</SectionLabel>
+            <h2 className={`${displaySection} mt-8 max-w-[12ch]`}>
+              {t("instructor.headline")}
             </h2>
+            <p className="mt-10 text-[17px] text-espresso">{t("instructor.title")}</p>
+            <p className="mt-2 text-[15px] text-mute">{t("instructor.role")}</p>
+
+            {/* The one paragraph of substance in the act, and the reason it can
+                stay one paragraph: it is the only place on the page that says
+                she runs the institute the teaching comes out of, and that what
+                is taught here is what she performs on paying clients. Both are
+                checkable, both are the academy's own words for itself, and
+                between them they are the whole of the authority claim. The long
+                version is the four paragraphs on /about, one link below. */}
+            <p className="mt-8 max-w-[44ch] text-[16px] leading-relaxed text-mute">
+              {t("about.lede")}
+            </p>
+
+            <p className={`${displayLarge} mt-10 max-w-[26ch] text-balance`}>
+              {t("instructor.mission")}
+            </p>
+            <Link href="/about" className={`${linkRule} mt-12`}>
+              {t("about.readStory")}
+              <ArrowRight size={14} weight="light" className="flip-x" />
+            </Link>
           </Reveal>
         </div>
-        <CourseSelector />
       </section>
 
       {/* 02 THE METHOD */}

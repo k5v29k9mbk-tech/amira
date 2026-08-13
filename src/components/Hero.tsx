@@ -22,9 +22,9 @@ const facts = ["years", "students", "classes"] as const;
  *
  * The first screen has to answer four questions before anything is scrolled:
  * who teaches, what is taught, on what evidence, and what to do next. The
- * eyebrow carries the name and the country, the portrait carries its own
- * caption so the face has a name attached to it, and one hairline-ruled line of
- * figures sits between the promise and the action. Nothing here is a card or a
+ * eyebrow carries the name and the country, the portrait carries its own credit
+ * so the face has a name and a role attached to it, and one hairline-ruled line
+ * of figures sits between the promise and the action. Nothing here is a card or a
  * badge: the figures are set in the display serif and their labels in the same
  * small caps as every other label on the site, so the row reads as a masthead
  * rather than as statistics.

@@ -3,21 +3,27 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { heroMedia } from "@/lib/media";
+import { displayItem } from "@/lib/ui";
 import { useIntroReady } from "@/lib/use-intro-ready";
 import { MediaFrame } from "./MediaFrame";
 
 /**
  * The hero portrait, as an object on the page rather than a bleed behind it.
  *
- * Five layers, only one of which is the photograph:
+ * Four layers, only one of which is the photograph:
  *   1. a warm pool of light, wider than the frame, so the arch is lit rather
  *      than pasted onto the ground,
- *   2. a thin outline ring set off centre, the one decorative shape in the
- *      composition,
- *   3. a hairline beige mat, evenly offset, that reads as the frame's edge,
- *   4. the arch itself, carrying a single warm shadow for depth,
- *   5. the image, oversized inside the arch so the parallax never exposes an
+ *   2. a hairline beige mat, evenly offset, that reads as the frame's edge,
+ *   3. the arch itself, carrying a single warm shadow for depth,
+ *   4. the image, oversized inside the arch so the parallax never exposes an
  *      edge.
+ *
+ * There were two more: an outline ring set off centre and a small filled disc
+ * low on the other side. Both have gone. A bronze circle floating behind a
+ * portrait is the single most reproduced device on a beauty-industry template,
+ * and with the arch, the mat, the pool and the page's own two washes already in
+ * this corner of the composition, they were the fifth and sixth decorative
+ * shape competing for the same glance. The arch is the shape here.
  *
  * Three motions, all of them slow enough to read as presence: a fade and rise
  * on load, a 3px float over nine seconds, and a parallax on the image inside
@@ -39,11 +45,28 @@ import { MediaFrame } from "./MediaFrame";
  * as the composition the text was set into. The alignment is logical, so Arabic
  * gets the mirror of it rather than a special case.
  *
- * `caption` is the gallery label under the frame: it puts a name and a role on
+ * `name` and `role` are the gallery credit under the frame: they put a name on
  * the face, which is the one thing the photograph cannot say by itself. It sits
  * outside the float so the type stays still while the portrait breathes.
+ *
+ * The credit is two lines rather than one, and the name is in the display serif.
+ * It used to be a single small-caps line, "Amira Bechini · Founder and PMU
+ * Master", which is a photo credit: the same 11px the site uses for the word
+ * "Level". This page's whole argument is that the academy is a named master
+ * rather than an institution, and on the one screen where her face is at full
+ * size her name was the smallest type in the composition. Set in the serif it
+ * reads as a signature under a portrait, which is what it is, and the role
+ * stays in the small caps underneath so the hierarchy between them is legible.
  */
-export function HeroPortrait({ alt, caption }: { alt: string; caption?: string }) {
+export function HeroPortrait({
+  alt,
+  name,
+  role,
+}: {
+  alt: string;
+  name?: string;
+  role?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   // Holds the entrance until the opening film has finished, so the portrait
@@ -77,16 +100,6 @@ export function HeroPortrait({ alt, caption }: { alt: string; caption?: string }
         aria-hidden
         className="pointer-events-none absolute -inset-x-[22%] -top-[14%] bottom-[-8%] -z-20 bg-[radial-gradient(52%_46%_at_50%_42%,color-mix(in_srgb,var(--aura-bronze)_16%,transparent),transparent_70%)]"
       />
-      {/* Outline ring, off centre so it crosses the arch instead of framing it. */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute -end-[14%] -top-[9%] -z-20 aspect-square w-[62%] rounded-full border border-bronze/25"
-      />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute -start-[16%] bottom-[6%] -z-20 aspect-square w-[34%] rounded-full bg-bronze/[0.07]"
-      />
-
       <motion.div
         animate={reduce ? undefined : { y: [0, -3, 0] }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
@@ -118,8 +131,13 @@ export function HeroPortrait({ alt, caption }: { alt: string; caption?: string }
         </div>
       </motion.div>
 
-      {caption ? (
-        <p className="label mt-5 text-center leading-[1.9] text-mute md:mt-6">{caption}</p>
+      {name ? (
+        <div className="mt-5 text-center md:mt-6">
+          <p className={`${displayItem} leading-none text-espresso`}>{name}</p>
+          {role ? (
+            <p className="label mt-2.5 leading-[1.7] text-mute">{role}</p>
+          ) : null}
+        </div>
       ) : null}
     </motion.div>
   );
