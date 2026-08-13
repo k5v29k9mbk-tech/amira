@@ -19,6 +19,27 @@ import { MediaFrame } from "./MediaFrame";
  * Below lg the sticky column is dropped entirely and each chapter carries its
  * own image above it: on a phone a pinned half-screen panel leaves too little
  * room for the text it is meant to support.
+ *
+ * THE SPINE. The chapters run against a hairline rail with a bronze rule that
+ * fills to the chapter being read. The section's argument is that the technique
+ * is built in a fixed order, and until now the only thing on the page saying so
+ * was the figures 01 to 04: four numbers, which is a list, not a progression. A
+ * reader four fifths of the way through could not see that she was four fifths
+ * of the way through. The rail is what makes the order visible as distance
+ * travelled, and it is the one addition on this page that earns a scroll-linked
+ * state rather than decorating one.
+ *
+ * It costs nothing to run. The fill is a single 1px element scaled on the y
+ * axis, so it is composited rather than laid out, and it is driven by the same
+ * IntersectionObserver that already changes the frame: no scroll handler, no
+ * state per frame, one transform per chapter crossed. The rail is the only thing
+ * on the page that is not either type or a photograph, which is the reason it is
+ * a hairline in the brand metal and not a track with a knob.
+ *
+ * It matters on a phone more than anywhere: below lg there is no sticky frame,
+ * so without it the method is four headings and four paragraphs in a column.
+ * That is why the chapters are indented into the rail at every width and not
+ * only where the two-column layout exists.
  */
 export function MethodStory() {
   const t = useTranslations("method");
