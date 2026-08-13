@@ -219,15 +219,23 @@ export default async function Home({
             <p className="mt-10 text-[17px] text-espresso">{t("instructor.title")}</p>
             <p className="mt-2 text-[15px] text-mute">{t("instructor.role")}</p>
 
-            {/* The one paragraph of substance in the act, and the reason it can
-                stay one paragraph: it is the only place on the page that says
-                she runs the institute the teaching comes out of, and that what
-                is taught here is what she performs on paying clients. Both are
-                checkable, both are the academy's own words for itself, and
-                between them they are the whole of the authority claim. The long
-                version is the four paragraphs on /about, one link below. */}
+            {/* One paragraph of substance, in her own voice, and it is the third
+                of the four on /about rather than the lede.
+
+                The lede was the obvious choice and it is the wrong one here:
+                "Founded by Amira Bechini: CEO of Amira Beauty Suite, permanent
+                makeup artist..." repeats the two lines directly above it, which
+                already print her name and then that exact title. Two blocks of
+                type saying the same thing, touching, is worse than no paragraph.
+
+                This one adds instead of echoing, and it adds precisely the two
+                credentials the act was missing: the training she has gone on
+                taking (international masterclasses) and the thing no course can
+                teach, which is what running a working institute taught her about
+                clients and the market. First person, because the pull-quote under
+                it is hers too. */}
             <p className="mt-8 max-w-[44ch] text-[16px] leading-relaxed text-mute">
-              {t("about.lede")}
+              {t("about.story.p3")}
             </p>
 
             <p className={`${displayLarge} mt-10 max-w-[26ch] text-balance`}>
