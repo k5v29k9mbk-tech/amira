@@ -282,19 +282,6 @@ export default async function Home({
             </p>
           </Reveal>
           <WorkGallery />
-
-          {/* The section spends its whole length proving what the training
-              produces and then used to hand the reader back to the scroll. This
-              is the page's strongest moment to ask for something, so it asks
-              for the smallest next step rather than the booking: a reader who
-              has just been convinced by the work wants to know what it would
-              take to learn it, not to be sold a place. */}
-          <Reveal delay={0.1}>
-            <Link href="/courses" className={`${linkRule} mt-14 md:mt-20`}>
-              {t("hero.primary")}
-              <ArrowRight size={14} weight="light" className="flip-x" />
-            </Link>
-          </Reveal>
         </div>
       </section>
 
