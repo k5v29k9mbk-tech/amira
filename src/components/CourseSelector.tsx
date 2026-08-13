@@ -112,14 +112,23 @@ export function CourseSelector() {
             <li
               key={course.slug}
               style={{ flexGrow: open ? 4.2 : 1 }}
-              className={`group relative basis-0 overflow-hidden bg-night transition-[flex-grow] duration-[900ms] ease-[var(--ease-aura)] ${
-                i > 0 ? "border-hair-dark lg:border-s" : ""
-              }`}
+              className={`group relative basis-0 overflow-hidden transition-[flex-grow] duration-[900ms] ease-[var(--ease-aura)] ${
+                course.posterOffHome ? "bg-paper" : "bg-night"
+              } ${i > 0 ? (course.posterOffHome ? "border-hair lg:border-s" : "border-hair-dark lg:border-s") : ""}`}
             >
-              {/* A course whose poster is off the homepage keeps its panel and
-                  everything in it, on the night the panel already carries. It
-                  opens, reads and links exactly like the other five; only the
-                  photograph is absent. */}
+              {/* A course whose poster is off the homepage used to keep the
+                  night ground the photographic panels carry, which made it a
+                  black rectangle with a gradient over nothing: the one panel in
+                  the row that looked like a template block rather than a
+                  photograph someone chose.
+
+                  It is now set on paper instead, in espresso, so the absence
+                  reads as a typographic panel deliberately placed among
+                  photographic ones rather than as an image that failed to load.
+                  It opens, reads and links exactly like the other five. When the
+                  academy supplies the replacement photograph, deleting the
+                  `posterOffHome` flag returns it to the night ground with no
+                  other change. */}
               {!course.posterOffHome ? (
                 <MediaFrame
                   media={course.media}
@@ -130,10 +139,12 @@ export function CourseSelector() {
                   }`}
                 />
               ) : null}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/85 via-night/25 to-night/10"
-              />
+              {!course.posterOffHome ? (
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/85 via-night/25 to-night/10"
+                />
+              ) : null}
 
               {/* The hit area. Covers the panel, names itself for screen readers. */}
               <button
@@ -163,12 +174,16 @@ export function CourseSelector() {
 
               <div
                 id={`course-panel-${course.slug}`}
-                className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-end p-4 text-ivory md:p-7 lg:p-9"
+                className={`pointer-events-none absolute inset-0 z-20 flex flex-col justify-end p-4 md:p-7 lg:p-9 ${
+                  course.posterOffHome ? "text-espresso" : "text-ivory"
+                }`}
               >
                 {/* A closed strip on a phone is ~65px tall, which is room for the
                     title and nothing else, so the figure steps aside there. */}
                 <span
-                  className={`label font-mono text-bronze-hi ${open ? "" : "hidden lg:block"}`}
+                  className={`label font-mono ${
+                    course.posterOffHome ? "text-bronze-ink" : "text-bronze-hi"
+                  } ${open ? "" : "hidden lg:block"}`}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -196,14 +211,28 @@ export function CourseSelector() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="max-w-[42ch] text-[15px] leading-relaxed text-ivory/85">
+                    <p
+                      className={`max-w-[42ch] text-[15px] leading-relaxed ${
+                        course.posterOffHome ? "text-mute" : "text-ivory/85"
+                      }`}
+                    >
                       {t(`blurbs.${course.slug}`)}
                     </p>
-                    <p className="label mt-5 text-ivory/60">{t("details.level.value")}</p>
+                    <p
+                      className={`label mt-5 ${
+                        course.posterOffHome ? "text-mute" : "text-ivory/60"
+                      }`}
+                    >
+                      {t("details.level.value")}
+                    </p>
                     <Link
                       href={`/courses#${course.slug}`}
                       tabIndex={open ? 0 : -1}
-                      className="label pointer-events-auto mt-6 inline-flex items-center gap-3 border-b border-ivory/40 pb-1 text-ivory transition-colors duration-300 hover:border-ivory"
+                      className={`label pointer-events-auto mt-6 inline-flex items-center gap-3 border-b pb-1 transition-colors duration-300 ${
+                        course.posterOffHome
+                          ? "border-espresso/40 text-espresso hover:border-espresso"
+                          : "border-ivory/40 text-ivory hover:border-ivory"
+                      }`}
                     >
                       {t("viewCourse")}
                       <ArrowRight size={13} weight="light" className="flip-x" />

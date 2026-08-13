@@ -8,7 +8,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { Logo } from "./Logo";
 import { brand, whatsappLinkWith } from "@/lib/studio";
-import { shell } from "@/lib/ui";
+import { btnSolid, shell } from "@/lib/ui";
 
 /**
  * Header.
@@ -123,13 +123,21 @@ export function Header() {
 
           <div className="hidden items-center gap-6 lg:flex">
             <LocaleSwitcher tone="dark" />
-            <Link
-              href="/contact"
-              className="label border border-espresso bg-espresso px-6 py-3 text-ivory transition-colors duration-500 ease-[var(--ease-aura)] hover:border-bronze-ink hover:bg-bronze-ink"
-            >
-              {cta("secondary")}
-            </Link>
           </div>
+
+          {/* The booking action, from md rather than from lg.
+              It used to appear only at lg, on the reasoning that a phone has no
+              room for two actions beside the menu. That is true of a phone and
+              was never true of a tablet, where the bar carries a logo, an icon
+              and a menu word across 768px and had space for this all along.
+              Below md it is not dropped, it moves: the menu overlay now closes
+              on it, which is the one place a phone does have room. */}
+          <Link
+            href="/contact"
+            className="label hidden border border-espresso bg-espresso px-6 py-3 text-ivory transition-colors duration-500 ease-[var(--ease-aura)] hover:border-bronze-ink hover:bg-bronze-ink md:inline-flex"
+          >
+            {cta("secondary")}
+          </Link>
 
           <button
             type="button"
@@ -189,9 +197,31 @@ export function Header() {
                   </motion.div>
                 ),
               )}
-              <div className="mt-10 border-t border-hair pt-8">
-                <LocaleSwitcher tone="dark" />
-              </div>
+              {/* The action the bar cannot hold on a phone. It closes the
+                  menu rather than sitting in it silently, so the one screen a
+                  phone visitor opens deliberately always ends in something to
+                  do. Full width, because a menu is not a toolbar. */}
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.08 + (links.length + 2) * 0.05,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="mt-10 border-t border-hair pt-8"
+              >
+                <Link
+                  href="/contact"
+                  onClick={() => setOpen(false)}
+                  className={`${btnSolid} w-full`}
+                >
+                  {cta("secondary")}
+                </Link>
+                <div className="mt-8">
+                  <LocaleSwitcher tone="dark" />
+                </div>
+              </motion.div>
             </nav>
           </motion.div>
         )}
