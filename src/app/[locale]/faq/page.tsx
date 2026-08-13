@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { Faq } from "@/components/Faq";
-import { displaySection, linkRule, sectionPad, shell } from "@/lib/ui";
+import { displaySection, linkRule, shell } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
 import { JsonLd, faqSchema } from "@/lib/seo";
 
