@@ -64,11 +64,34 @@ export function Header() {
   }, [open]);
 
   const solid = past || !overHero;
+
+  /**
+   * The bar carries four. It is not an arbitrary four: at 1024px the shell
+   * leaves 896px, and in French the four labels, the logo, the WhatsApp mark,
+   * the language control and "Réservez votre place" already come to within a
+   * few pixels of it. A fifth would push the bar into a wrap on the one
+   * breakpoint where the desktop navigation first appears.
+   *
+   * The work is the fifth, and it goes where there is room for it: the phone
+   * menu, which is a full screen, and the footer, which is a column. So the
+   * page that proves the training is reachable from the navigation on a phone
+   * and from the foot of every page, and the bar stays a bar.
+   */
   const links = [
     { href: "/courses", label: t("courses") },
     { href: "/#method", label: t("method") },
     { href: "/about", label: t("about") },
     { href: "/faq", label: t("faq") },
+  ] as const;
+
+  const menuLinks = [
+    { href: "/", label: t("home") },
+    { href: "/courses", label: t("courses") },
+    { href: "/#method", label: t("method") },
+    { href: "/#work", label: t("work") },
+    { href: "/about", label: t("about") },
+    { href: "/faq", label: t("faq") },
+    { href: "/contact", label: t("contact") },
   ] as const;
 
   const isCurrent = (href: string) =>
@@ -89,7 +112,9 @@ export function Header() {
           <Logo variant="mark" tone="dark" priority className="h-9 w-auto md:h-10" sizes="80px" />
         </Link>
 
-        <nav aria-label={brand.short} className="hidden items-center gap-9 lg:flex">
+        {/* gap-6 at lg, gap-9 from xl. The wider gutter is right on a 1440px
+            screen and is 108px the French labels do not have at 1024. */}
+        <nav aria-label={brand.short} className="hidden items-center gap-6 lg:flex xl:gap-9">
           {links.map((l) => (
             <Link
               key={l.href}
@@ -134,7 +159,7 @@ export function Header() {
               on it, which is the one place a phone does have room. */}
           <Link
             href="/contact"
-            className="label hidden border border-espresso bg-espresso px-6 py-3 text-ivory transition-colors duration-500 ease-[var(--ease-aura)] hover:border-bronze-ink hover:bg-bronze-ink md:inline-flex"
+            className="label hidden border border-espresso bg-espresso px-5 py-3 text-ivory transition-colors duration-500 ease-[var(--ease-aura)] hover:border-bronze-ink hover:bg-bronze-ink md:inline-flex xl:px-6"
           >
             {cta("secondary")}
           </Link>
@@ -153,6 +178,9 @@ export function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={t("menu")}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -171,12 +199,22 @@ export function Header() {
               </button>
             </div>
 
+            {/* Centred when it fits, scrollable when it does not, and the two
+                are not the same rule. Seven display-size lines and the action
+                beneath them come to about 660px, and a 667px handset has 599
+                once the bar is off it, so on the smallest phones this list is
+                taller than the screen it is on. `justify-center` in a
+                scrolling flex column is the trap here: the overflow goes off
+                the *top*, where a scrollbar cannot reach it, and the first two
+                items become unreachable. An `m-auto` child centres while there
+                is room and resolves to zero when there is not, which is the
+                behaviour this actually wants. */}
             <nav
               aria-label={brand.short}
-              className={`${shell} flex h-[calc(100dvh-68px)] flex-col justify-center gap-2 pb-16`}
+              className={`${shell} flex h-[calc(100dvh-68px)] flex-col overflow-y-auto`}
             >
-              {[{ href: "/", label: t("home") }, ...links, { href: "/contact", label: t("contact") }].map(
-                (l, i) => (
+              <div className="m-auto grid w-full gap-1 py-10">
+                {menuLinks.map((l, i) => (
                   <motion.div
                     key={l.href}
                     initial={{ opacity: 0, y: 18 }}
@@ -190,38 +228,38 @@ export function Header() {
                     <Link
                       href={l.href}
                       onClick={() => setOpen(false)}
-                      className="display block py-2 text-[clamp(2.25rem,11vw,3.75rem)]"
+                      className="display block py-2 text-[clamp(2rem,10vw,3.5rem)] transition-colors duration-300 hover:text-bronze-ink"
                     >
                       {l.label}
                     </Link>
                   </motion.div>
-                ),
-              )}
-              {/* The action the bar cannot hold on a phone. It closes the
-                  menu rather than sitting in it silently, so the one screen a
-                  phone visitor opens deliberately always ends in something to
-                  do. Full width, because a menu is not a toolbar. */}
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.08 + (links.length + 2) * 0.05,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="mt-10 border-t border-hair pt-8"
-              >
-                <Link
-                  href="/contact"
-                  onClick={() => setOpen(false)}
-                  className={`${btnSolid} w-full`}
+                ))}
+                {/* The action the bar cannot hold on a phone. It closes the
+                    menu rather than sitting in it silently, so the one screen a
+                    phone visitor opens deliberately always ends in something to
+                    do. Full width, because a menu is not a toolbar. */}
+                <motion.div
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.08 + menuLinks.length * 0.05,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="mt-8 border-t border-hair pt-8"
                 >
-                  {cta("secondary")}
-                </Link>
-                <div className="mt-8">
-                  <LocaleSwitcher tone="dark" />
-                </div>
-              </motion.div>
+                  <Link
+                    href="/contact"
+                    onClick={() => setOpen(false)}
+                    className={`${btnSolid} w-full`}
+                  >
+                    {cta("secondary")}
+                  </Link>
+                  <div className="mt-8">
+                    <LocaleSwitcher tone="dark" />
+                  </div>
+                </motion.div>
+              </div>
             </nav>
           </motion.div>
         )}

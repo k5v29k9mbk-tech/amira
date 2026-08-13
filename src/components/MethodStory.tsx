@@ -78,7 +78,10 @@ export function MethodStory() {
                 media={methodMedia[key]}
                 alt={altFor(key)}
                 active={key === heldFrame}
-                sizes="55vw"
+                // The column is 6 of 12 with a 64px gutter, so it measures
+                // ~416px at lg and 704px once the shell hits its 1600px cap.
+                // 55vw asked for half again as much file as it can ever show.
+                sizes="(min-width: 1600px) 704px, 45vw"
                 className={`absolute inset-0 h-full w-full transition-[opacity,transform] duration-[1000ms] ease-[var(--ease-aura)] ${
                   key === heldFrame ? "opacity-100" : "scale-[1.03] opacity-0"
                 }`}

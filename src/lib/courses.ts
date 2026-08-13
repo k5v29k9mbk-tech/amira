@@ -35,9 +35,15 @@ export type Course = {
 
 export const courses: Course[] = [
   {
+    /**
+     * The clip that used to hang off this panel has gone to the method section,
+     * where it belongs: the poster here was a healed brow and the clip was a
+     * needle, so opening the panel cross-faded between two unrelated pictures.
+     * A catalogue panel wants the outcome of the discipline it names, and a
+     * hair-stroke macro is exactly that.
+     */
     slug: "microblading",
     media: {
-      videoSrc: "/brand/mapping.mp4",
       posterSrc: "/brand/brow-macro.jpg",
       position: "50% 45%",
       width: 371,
@@ -56,10 +62,10 @@ export const courses: Course[] = [
   {
     slug: "lip-blush",
     media: {
-      posterSrc: "/brand/lips-neutralization.jpg",
-      position: "50% 45%",
-      width: 232,
-      height: 300,
+      posterSrc: "/brand/lips-upright.jpg",
+      position: "50% 50%",
+      width: 230,
+      height: 206,
     },
   },
   {

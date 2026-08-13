@@ -13,7 +13,10 @@
     "contact": "Contatti",
     "language": "Lingua",
     "menu": "Menu",
-    "close": "Chiudi"
+    "close": "Chiudi",
+    "skip": "Vai al contenuto",
+    "loading": "Caricamento",
+    "work": "Il lavoro"
   },
   "hero": {
     "eyebrow": "Aura Academy · Formazione beauty professionale · Italia",
@@ -68,7 +71,7 @@
       "eyebrow": "La fondatrice",
       "title": "Dalla cabina all'aula",
       "role": "Fondatrice di Aura Academy · CEO di Amira Beauty Suite",
-      "imageAlt": "Amira Bechini al lavoro durante un corso",
+      "imageAlt": "Amira Bechini in studio, il compasso per sopracciglia all'altezza dell'occhio.",
       "p1": "Mi chiamo Amira Bechini. Guido Amira Beauty Suite, istituto di bellezza specializzato in trattamenti estetici avanzati, e ho fondato Aura Academy per insegnare ciò che pratico: trucco permanente e laminazione di ciglia e sopracciglia.",
       "p2": "In più di otto anni nel settore ho formato oltre 150 studenti e ho costruito un metodo mio, che tiene insieme eccellenza tecnica, pratica sul campo e visione imprenditoriale. La mia passione è nata da un desiderio semplice: aiutare le persone a sentirsi sicure di sé e creare opportunità professionali concrete per le donne che vogliono trasformare questa passione in un mestiere.",
       "p3": "Non ho mai smesso di studiare: masterclass internazionali, le tecniche PMU più recenti, un investimento continuo nella mia formazione. Il lavoro quotidiano nel mio istituto mi ha insegnato il resto, non solo l'aspetto tecnico della professione, ma i bisogni reali delle clienti e del mercato.",
@@ -264,7 +267,7 @@
   },
   "students": {
     "title": "In aula",
-    "sub": "Momenti dai corsi: dimostrazione, esercitazione guidata e lavoro su modella."
+    "sub": "Momenti dai corsi: la lezione, il disegno della mappatura, la dimostrazione sulla modella."
   },
   "voices": {
     "title": "La parola alle allieve",
@@ -405,5 +408,9 @@
   },
   "intro": {
     "skip": "Salta l'intro"
+  },
+  "notFound": {
+    "title": "Questa pagina non esiste.",
+    "body": "Il link potrebbe non essere più valido, oppure la pagina ha cambiato indirizzo. Riparti dall'inizio, o vai direttamente ai corsi."
   }
 }

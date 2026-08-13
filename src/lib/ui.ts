@@ -30,6 +30,25 @@ export const shell = "mx-auto w-full max-w-[1600px] px-6 md:px-10 lg:px-16";
  */
 export const sectionPad = "py-24 md:py-36 lg:py-52";
 
+/**
+ * The half of that rhythm, for a section that continues the one above it.
+ *
+ * The page is paced in pairs: two sections share a ground, then the ground
+ * changes and a new part of the argument starts. Every section carried the full
+ * measure top and bottom, so a join *inside* a pair was 208px of padding plus
+ * another 208, the same 416px as the break *between* two pairs. Nothing about
+ * the spacing said which of the two a reader had just crossed, and half a
+ * viewport of empty ivory in the middle of one chapter reads as the page having
+ * ended rather than as air.
+ *
+ * A continuing section now opens with no padding of its own and lives on the
+ * closing measure of the section above, so a join inside a pair is 208px and a
+ * break between them is still 416. Same tokens, half the value, and the
+ * difference is what makes the ground changes legible as chapter marks.
+ */
+export const sectionPadBottom = "pb-24 md:pb-36 lg:pb-52";
+export const sectionPadTop = "pt-24 md:pt-36 lg:pt-52";
+
 /*
  * The display scale, largest to smallest. Five steps and no sixth: every
  * oversized line on the site is one of these, so a heading's size states its
@@ -51,7 +70,13 @@ export const sectionPad = "py-24 md:py-36 lg:py-52";
  * roughly 50px of the first screen back and costs nothing anyone can see, since
  * the headline is still the largest thing on the site by a wide margin.
  */
-export const displayHero = "display text-[clamp(2.75rem,7.2vw,8rem)]";
+/*
+ * The floor is 2.5rem rather than 2.75. At 44px the longest of the four
+ * statements, "Créez votre carrière.", is wider than the gutter of a 375px
+ * phone and broke to a one-word third line; at 40px it holds. Nothing above
+ * 640px changes, because 7.2vw passes 40px at 556.
+ */
+export const displayHero = "display text-[clamp(2.5rem,7.2vw,8rem)]";
 export const displaySection = "display text-[clamp(2.25rem,6vw,7rem)]";
 export const displayManifesto = "display text-[clamp(2.25rem,7vw,8rem)]";
 export const displayLarge = "display text-[clamp(1.75rem,3.4vw,3.25rem)]";

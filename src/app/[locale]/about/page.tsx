@@ -21,6 +21,7 @@ import {
   eyebrowLight,
   pageHeader,
   sectionPad,
+  sectionPadBottom,
   shell,
 } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
@@ -40,7 +41,7 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    alternates: altLanguages("/about"),
+    alternates: altLanguages("/about", locale),
   };
 }
 
@@ -145,53 +146,81 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Her story, in her own voice. The heading travels with the reader down
-          the left column, the way the curriculum section below is set: the
-          section carries no photograph, so nothing is left holding an empty
-          column beside the text. */}
-      <section className={`${sectionPad} bg-paper`}>
-        <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-16`}>
-          <div className="lg:col-span-5">
-            <div className="lg:sticky lg:top-32">
-              <Reveal>
-                <p className={eyebrow}>{t("story.eyebrow")}</p>
-                <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("story.title")}</h2>
-                <p className="label mt-8 max-w-[28ch] text-mute">{t("story.role")}</p>
-              </Reveal>
-            </div>
-          </div>
+      {/* Her story, in her own voice.
+          The heading used to travel with the reader down a sticky left column,
+          because the section had no photograph and there was nothing else to
+          put beside the text. That is the shape of a biography, and a
+          biography is what this page most has to avoid being: four paragraphs
+          of prose in a bare column, with the only face on the page two screens
+          above it.
 
-          <div className="lg:col-span-6 lg:col-start-7">
-            {(["p1", "p2", "p3", "p4"] as const).map((k, i) => (
-              <Reveal key={k} delay={0.06 + i * 0.04}>
-                <p
-                  className={`max-w-[62ch] leading-relaxed text-mute ${
-                    i === 0 ? "text-[18px] text-espresso" : "mt-6 text-[16px]"
-                  }`}
-                >
-                  {t(`story.${k}`)}
+          The heading now sits over both columns and the column beside the text
+          carries the founder portrait, so the story is read against the person
+          telling it. The frame is the one photograph the academy has of her at
+          the work rather than in front of it, and `story.imageAlt` describes
+          exactly what it shows. */}
+      <section className={`${sectionPad} bg-paper`}>
+        <div className={shell}>
+          <Reveal className="max-w-[36rem]">
+            <p className={eyebrow}>{t("story.eyebrow")}</p>
+            <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("story.title")}</h2>
+            <p className="label mt-8 max-w-[34ch] text-mute">{t("story.role")}</p>
+          </Reveal>
+
+          <div className="mt-14 grid gap-10 md:mt-20 lg:grid-cols-12 lg:gap-16">
+            <Parallax distance={12} className="lg:col-span-5">
+              <div className="relative aspect-[4/5] w-full">
+                <MediaFrame
+                  media={{
+                    posterSrc: "/brand/amira-founder-portrait.jpg",
+                    alt: t("story.imageAlt"),
+                    position: "50% 42%",
+                  }}
+                  sizes="(max-width: 1024px) 100vw, 38vw"
+                  className="absolute inset-0 h-full w-full"
+                />
+              </div>
+            </Parallax>
+
+            <div className="lg:col-span-6 lg:col-start-7 lg:self-center">
+              {(["p1", "p2", "p3", "p4"] as const).map((k, i) => (
+                <Reveal key={k} delay={0.06 + i * 0.04}>
+                  <p
+                    className={`max-w-[62ch] leading-relaxed text-mute ${
+                      i === 0 ? "text-[18px] text-espresso" : "mt-6 text-[16px]"
+                    }`}
+                  >
+                    {t(`story.${k}`)}
+                  </p>
+                </Reveal>
+              ))}
+
+              <Reveal delay={0.24}>
+                <p className="display mt-12 text-[clamp(1.5rem,2.6vw,2.25rem)] italic">
+                  {t("story.signature")}
                 </p>
               </Reveal>
-            ))}
-
-            <Reveal delay={0.24}>
-              <p className="display mt-12 text-[clamp(1.5rem,2.6vw,2.25rem)] italic">
-                {t("story.signature")}
-              </p>
-            </Reveal>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Amira's welcome message. Click to load, so the page never carries the
-          player bundle for a video most visitors will not open. */}
-      <section className={`${sectionPad} bg-ivory`}>
+          player bundle for a video most visitors will not open.
+
+          On paper, with the story above it: the two sections are one chapter,
+          her account of the work and then her own voice over it, and the page
+          had them on two different grounds. The alt follows what is actually
+          on screen. Until the clip is uploaded this frame is a photograph of
+          her institute and nothing else, so describing it as a welcome message
+          would be describing something that is not there. */}
+      <section className={`${sectionPadBottom} bg-paper`}>
         <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-16`}>
           <Reveal className="lg:col-span-7">
             <WelcomeVideo
               playbackId={welcomeVideoId}
               poster="/brand/amira-hero.jpg"
-              alt={mentor("videoAlt")}
+              alt={welcomeVideoId ? mentor("videoAlt") : t("portrait")}
             />
           </Reveal>
           <Reveal delay={0.08} className="lg:col-span-4 lg:col-start-9 lg:self-center">
@@ -202,8 +231,12 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Three claims a visitor can check. */}
-      <section className={`${sectionPad} bg-paper`}>
+      {/* Three claims a visitor can check, and the curriculum under them: one
+          chapter on ivory about what the school is, between her story on paper
+          and the mission on black. The grounds used to change on every section
+          down this page, which is seven switches on the way to the bottom and
+          the point at which a change of ground stops reading as a change. */}
+      <section className={`${sectionPad} bg-ivory`}>
         <div className={shell}>
           <Reveal className="max-w-[22ch]">
             <p className={eyebrow}>{t("different.eyebrow")}</p>
@@ -235,7 +268,7 @@ export default async function AboutPage({
 
       {/* The business curriculum. Names only: the academy supplied no syllabus
           for these, and eight invented blurbs would be eight invented claims. */}
-      <section className={`${sectionPad} bg-ivory`}>
+      <section className={`${sectionPadBottom} bg-ivory`}>
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32">

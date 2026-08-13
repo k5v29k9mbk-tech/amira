@@ -21,7 +21,7 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    alternates: altLanguages("/faq"),
+    alternates: altLanguages("/faq", locale),
   };
 }
 
@@ -76,6 +76,15 @@ export default async function FaqPage({
 
           <div className="lg:col-span-7 lg:col-start-6">
             <Faq items={allFaq} />
+
+            {/* The way on, at the bottom of the column the reader is actually
+                in. The same offer sits in the left column, which is a screen
+                and a half above by the eleventh question and has scrolled out
+                of the page long before anyone gets there. */}
+            <Link href="/contact" className={`${linkRule} mt-12`}>
+              {t("hero.secondary")}
+              <ArrowRight size={14} weight="light" className="flip-x" />
+            </Link>
           </div>
         </div>
       </section>

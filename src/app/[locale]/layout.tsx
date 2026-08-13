@@ -1,14 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { Cormorant_Garamond, Jost, Noto_Naskh_Arabic } from "next/font/google";
-import { routing, isRtl, siteUrl } from "@/i18n/routing";
+import { routing, isRtl, siteUrl, altLanguages } from "@/i18n/routing";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { IntroVideo } from "@/components/IntroVideo";
 import { INTRO_BOOTSTRAP } from "@/lib/intro";
+import { introFilmReady } from "@/lib/intro-film";
 import { JsonLd, organizationSchema } from "@/lib/seo";
+import { brand } from "@/lib/studio";
 import "../globals.css";
 
 // Two faces and nothing else: an editorial serif for everything oversized, a
@@ -55,6 +57,16 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+/**
+ * The ivory ground, so a phone's status bar and the browser chrome carry the
+ * page's colour rather than a default white band above a warm field. Set here
+ * rather than per route because every route on the site opens on ivory.
+ */
+export const viewport: Viewport = {
+  themeColor: "#f2eee7",
+  colorScheme: "light",
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -62,16 +74,39 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
+  const title = `${t("title")} | ${t("tagline")}`;
   return {
     metadataBase: new URL(siteUrl),
-    title: { default: `${t("title")} | ${t("tagline")}`, template: `%s | ${t("title")}` },
+    title: { default: title, template: `%s | ${t("title")}` },
     description: t("description"),
+    applicationName: brand.short,
+    // The pages carry their own; this is the fallback for anything that does
+    // not, and it is what stops four language variants of one page reading as
+    // four unrelated documents.
+    alternates: altLanguages("", locale),
     openGraph: {
-      title: `${t("title")} | ${t("tagline")}`,
+      title,
       description: t("description"),
+      siteName: brand.full,
       locale,
       type: "website",
     },
+    // Same card, stated the way X reads it. Without this the share falls back
+    // to a bare link with no image on the one network that will not infer it
+    // from the OpenGraph block.
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: t("description"),
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    },
+    // An Italian address and a VAT number in the footer are exactly the shapes
+    // iOS turns into blue telephone links inside a near-black legal column.
+    formatDetection: { telephone: false, address: false, email: false },
   };
 }
 
@@ -86,6 +121,7 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const org = await getTranslations({ locale, namespace: "meta" });
+  const nav = await getTranslations({ locale, namespace: "nav" });
 
   /**
    * Only the namespaces client components actually read. Left to itself,
@@ -110,23 +146,41 @@ export default async function LocaleLayout({
     >
       <body className="grain font-sans antialiased">
         {/*
-          Opening sequence, in two halves. This script runs during HTML parse
-          and decides, before anything paints, whether the film is due: it
-          checks the route, the session flag, prefers-reduced-motion and the
-          ?intro=1 override, and marks <html data-intro-pending>. The shield
-          below is what that attribute shows, so a first visit paints black
-          rather than flashing the homepage. IntroVideo mounts on top of it.
+          Opening sequence, in two halves, and only when there is a film.
+
+          The script runs during HTML parse and decides, before anything
+          paints, whether the intro is due: it checks the route, the session
+          flag, prefers-reduced-motion and the ?intro=1 override, and marks
+          <html data-intro-pending>. The shield below is what that attribute
+          shows, so a first visit paints black rather than flashing the
+          homepage. IntroVideo mounts on top of it.
+
+          What none of that could check is whether the film exists, which is
+          what `introFilmReady` reads off the disk on the server. Without the
+          guard the whole apparatus runs against three missing files and the
+          site opens on a black screen it then has to recover from. With it,
+          nothing about the intro reaches the browser until the film does: no
+          script, no shield, no scroll lock, and the hero's entrance is
+          released on the first frame rather than waiting for a cue that is
+          never coming.
         */}
-        <script dangerouslySetInnerHTML={{ __html: INTRO_BOOTSTRAP }} />
-        <div className="intro-shield" aria-hidden />
+        {introFilmReady ? (
+          <>
+            <script dangerouslySetInnerHTML={{ __html: INTRO_BOOTSTRAP }} />
+            <div className="intro-shield" aria-hidden />
+          </>
+        ) : null}
 
         <NextIntlClientProvider messages={clientMessages}>
-          <IntroVideo />
+          {introFilmReady ? <IntroVideo /> : null}
+          {/* Four languages, four skip links. This was English for everyone
+              except Arabic, which is the one string on the site a keyboard
+              user meets first and the only one that was never translated. */}
           <a
             href="#main"
-            className="label sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[70] focus:bg-espresso focus:px-4 focus:py-3 focus:text-ivory"
+            className="label sr-only focus:not-sr-only focus:fixed focus:top-4 focus:start-4 focus:z-[70] focus:bg-espresso focus:px-4 focus:py-3 focus:text-ivory"
           >
-            {locale === "ar" ? "تخطي إلى المحتوى" : "Skip to content"}
+            {nav("skip")}
           </a>
           <Header />
           <main id="main">{children}</main>

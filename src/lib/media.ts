@@ -133,12 +133,29 @@ export const methodMedia: Record<string, Media> = {
     width: 1200,
     height: 1600,
   },
-  model: {
-    posterSrc: "/brand/at-work.jpg",
+  /**
+   * The one moving frame on the homepage that is a technique rather than a
+   * texture: the academy's own macro of the machine working a brow, poster and
+   * clip from the same take. It sits on the practice chapter, which had no
+   * photograph at all, and it holds through the live-model chapter below it,
+   * which is what MethodStory does with a chapter that carries no frame.
+   *
+   * It used to hang off the microblading panel in the catalogue above, with an
+   * unrelated still as its poster: the panel opened on a healed brow and then
+   * cross-faded to a needle. Poster and clip are the same footage here, so the
+   * frame resolves into motion instead of cutting to a different photograph.
+   *
+   * 480x768 is the whole of the source. The sticky column is about 620px at
+   * desktop, which is the reason its `sizes` is set to the column and not to
+   * the old 55vw: a macro at 1.3x is grain, the same macro at 1.7x is mush.
+   */
+  practice: {
+    videoSrc: "/brand/mapping.mp4",
+    posterSrc: "/brand/mapping-poster.jpg",
     alt: "",
-    position: "48% 38%",
-    width: 1800,
-    height: 1004,
+    position: "50% 45%",
+    width: 480,
+    height: 768,
   },
   support: {
     posterSrc: "/brand/amira-hero.jpg",
@@ -211,6 +228,21 @@ export type Frame = Media & {
  * students-certificates.jpg is deliberately absent, here and everywhere. It
  * shows identifiable students and their certificate numbers and stays off the
  * site until the academy holds written consent.
+ *
+ * ORIENTATION. Four of these were shot with the client reclined and the camera
+ * over her, which is how every PMU artist photographs a finished brow and why
+ * the files come off the phone lying on their side or upside down. Three of
+ * them printed that way: a face inverted, a face on its side, a mouth standing
+ * vertically. On a portfolio grid that reads as a mistake in the website rather
+ * than as a convention of the trade, and the one thing this section cannot
+ * afford is to look careless about the work it is proving.
+ *
+ * `*-upright.jpg` is each of those files turned the right way up and nothing
+ * else: a 90 or 180 degree rotation, which resamples no pixel and moves no
+ * detail, plus one border trim on the lip macro where the source carried the
+ * grey edge of a screenshot. No grade, no retouch, no upscale, and the
+ * originals are kept beside them untouched. The claim in `work.sub` is
+ * unaffected and stays true.
  */
 export const resultFrames: (Frame & {
   altKey: string;
@@ -261,7 +293,7 @@ export const resultFrames: (Frame & {
    * the section and still not upscaled.
    */
   {
-    posterSrc: "/brand/brows-pair-macro.jpg",
+    posterSrc: "/brand/brows-pair-upright.jpg",
     altKey: "browsPair",
     zoom: true,
     span: "col-span-12 lg:col-span-8 lg:col-start-3 lg:mt-16",
@@ -272,14 +304,14 @@ export const resultFrames: (Frame & {
     height: 689,
   },
   {
-    posterSrc: "/brand/lips-neutralization.jpg",
+    posterSrc: "/brand/lips-upright.jpg",
     altKey: "lipDetail",
-    span: "col-span-6 md:col-span-4 lg:col-span-2 lg:col-start-11 lg:mt-24",
+    span: "col-span-6 md:col-span-4 lg:col-span-2 lg:col-start-11 lg:mt-40",
     sizes: "(max-width: 768px) 47vw, (max-width: 1024px) 31vw, 14vw",
-    ratio: "232 / 300",
-    position: "50% 45%",
-    width: 232,
-    height: 300,
+    ratio: "230 / 206",
+    position: "50% 50%",
+    width: 230,
+    height: 206,
   },
   /**
    * The closing pair: two faces rather than two details, which is what the
@@ -293,18 +325,18 @@ export const resultFrames: (Frame & {
    * they halve into a diptych, on a phone they stack full width.
    */
   {
-    posterSrc: "/brand/brows-defined-portrait.jpg",
+    posterSrc: "/brand/brows-defined-upright.jpg",
     altKey: "browsPortrait",
     zoom: true,
     span: "col-span-12 md:col-span-6 lg:col-start-1",
     sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 46vw",
-    ratio: "1320 / 1323",
+    ratio: "1323 / 1320",
     position: "50% 45%",
-    width: 1320,
-    height: 1323,
+    width: 1323,
+    height: 1320,
   },
   {
-    posterSrc: "/brand/brows-lips-result.jpg",
+    posterSrc: "/brand/brows-lips-upright.jpg",
     altKey: "browsLips",
     zoom: true,
     span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-8 lg:mt-28",
@@ -350,26 +382,46 @@ export const pairFrame = {
  * and where they are not competing with a photograph of a classroom for the
  * same glance. Nothing is shown twice on the page.
  *
- * Two frames, one row: the academy's own classroom held tall on the left, the
- * demonstration close-up dropped against it on the right. The spans are set so
- * the pair reads as a composition rather than two tiles, and neither is ever
- * wider than the file behind it (600px of a 1200px classroom, 480px of a 557px
- * close-up).
+ * Three frames now, and they are the three things the copy names, in that
+ * order: the room during a lesson, the mapping drawn out by hand, the
+ * demonstration on skin. It was two, and neither of them said "guided
+ * practice".
+ *
+ * The classroom is deliberately cropped differently from the way the method
+ * section above sets the same photograph. There it is a 3:4 portrait of Amira
+ * at the flipchart; here it is a 4:3 band pulled down into the bench, so what
+ * this section prints is the class and the kit rather than the teacher. Same
+ * room, different frame, which is what stops a reader who has scrolled three
+ * sections from feeling she has seen this picture already. The academy has one
+ * photograph of its classroom; until it sends more, a second crop of it is the
+ * honest way to show the room twice.
+ *
+ * No frame is ever wider than the file behind it: 845px of a 1200px classroom,
+ * 344px of a 332px mapping still, 469px of a 557px close-up.
  */
 export const galleryFrames: Frame[] = [
   {
     posterSrc: "/brand/theory-classroom.jpg",
-    span: "col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-1",
-    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 38vw",
-    ratio: "3 / 4",
-    position: "50% 40%",
+    span: "col-span-12 md:col-span-7 lg:col-span-7 lg:col-start-1",
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 56vw, 54vw",
+    ratio: "4 / 3",
+    position: "50% 58%",
     width: 1200,
     height: 1600,
   },
   {
+    posterSrc: "/brand/brow-mapping.jpg",
+    span: "col-span-5 md:col-span-4 md:col-start-9 md:mt-16 lg:col-span-3 lg:col-start-9 lg:mt-40",
+    sizes: "(max-width: 768px) 40vw, (max-width: 1024px) 31vw, 22vw",
+    ratio: "332 / 295",
+    position: "50% 50%",
+    width: 332,
+    height: 295,
+  },
+  {
     posterSrc: "/brand/live-demo.jpg",
-    span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-8 lg:mt-32",
-    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 31vw",
+    span: "col-span-7 md:col-span-6 md:col-start-4 md:mt-6 lg:col-span-4 lg:col-start-4 lg:mt-10",
+    sizes: "(max-width: 768px) 56vw, (max-width: 1024px) 47vw, 31vw",
     ratio: "557 / 335",
     position: "50% 40%",
     width: 557,

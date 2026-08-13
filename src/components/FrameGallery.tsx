@@ -22,11 +22,18 @@ export function FrameGallery() {
           className={frame.span}
         >
           <FrameReveal delay={i * 0.08}>
-            <div className="relative w-full" style={{ aspectRatio: frame.ratio }}>
+            {/* Same three percent over 1.4s the work section and the course
+                rows use. It was the one set of frames on the site that did
+                nothing at all under a pointer. */}
+            <div
+              className="group relative w-full overflow-hidden"
+              style={{ aspectRatio: frame.ratio }}
+            >
               <MediaFrame
                 media={frame}
                 sizes={frame.sizes}
                 className="absolute inset-0 h-full w-full"
+                imageClassName="transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover:scale-[1.03]"
               />
             </div>
           </FrameReveal>

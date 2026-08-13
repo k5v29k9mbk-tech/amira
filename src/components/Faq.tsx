@@ -12,9 +12,11 @@ export async function Faq({ items }: { items: readonly string[] }) {
   return (
     <div className="border-t border-hair">
       {items.map((k) => (
-        <details key={k} className="group border-b border-hair">
+        <details key={k} className="disclosure group border-b border-hair">
           <summary className="flex cursor-pointer list-none items-start justify-between gap-8 py-7 [&::-webkit-details-marker]:hidden">
-            <span className={displayRow}>
+            <span
+              className={`${displayRow} transition-colors duration-300 group-hover:text-bronze-ink group-open:text-bronze-ink`}
+            >
               {t(`items.${k}.q`)}
             </span>
             {/* Two hairlines. The vertical one flattens when the row opens. */}

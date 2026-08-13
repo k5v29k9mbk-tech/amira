@@ -196,6 +196,37 @@ body {
   }
 }
 
+/*
+  Disclosure rows.
+
+  The questions are native <details>, which is the right element and the reason
+  the answers are in the DOM for a crawler and correct for a keyboard without a
+  line of JavaScript. What it is not, by default, is animated: a row snapped
+  open, and on a page where everything else settles over most of a second that
+  snap was the one abrupt thing on the site.
+
+  `::details-content` is the browser's own wrapper around everything below the
+  summary, and `interpolate-size` is what makes `auto` a height a transition can
+  actually reach. Where either is unsupported the row simply snaps open exactly
+  as it did before, which is why this needs no feature query: the whole rule is
+  additive, and the reduced-motion block below already flattens the duration.
+*/
+:root {
+  interpolate-size: allow-keywords;
+}
+
+.disclosure::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 520ms var(--ease-aura),
+    content-visibility 520ms allow-discrete;
+}
+
+.disclosure[open]::details-content {
+  block-size: auto;
+}
+
 :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;

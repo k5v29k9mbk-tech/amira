@@ -12,6 +12,7 @@ import {
   displaySection,
   linkRule,
   sectionPad,
+  sectionPadBottom,
   shell,
 } from "@/lib/ui";
 import { JsonLd, faqSchema } from "@/lib/seo";
@@ -28,7 +29,16 @@ import { Parallax } from "@/components/Parallax";
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
 
-export const metadata = { alternates: altLanguages() };
+// A function rather than a constant, because the canonical is per language and
+// a static `metadata` export cannot see which one it is being rendered for.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return { alternates: altLanguages("", locale) };
+}
 
 /**
  * The homepage is nine acts and a closing frame, in this order: the hero, the
@@ -159,7 +169,7 @@ export default async function Home({
       <Manifesto />
 
       {/* 01 COURSES */}
-      <section id="courses" className="scroll-mt-20 bg-ivory pb-24 md:pb-36 lg:pb-52">
+      <section id="courses" className={`${sectionPadBottom} scroll-mt-20 bg-ivory`}>
         <div className={`${shell} pb-12 md:pb-16`}>
           <Reveal>
             <SectionLabel n={1}>{t("sections.courses")}</SectionLabel>
@@ -172,7 +182,7 @@ export default async function Home({
       </section>
 
       {/* 02 THE METHOD */}
-      <section id="method" className="scroll-mt-20 bg-paper pt-24 pb-24 md:pt-36 md:pb-36 lg:pt-52 lg:pb-52">
+      <section id="method" className={`${sectionPad} scroll-mt-20 bg-paper`}>
         <div className={shell}>
           <Reveal className="max-w-[20ch] pb-8 lg:pb-4">
             <SectionLabel n={2}>{t("sections.method")}</SectionLabel>
@@ -202,7 +212,7 @@ export default async function Home({
           The heading block sits above the composition rather than beside it.
           Beside it there was room for one frame; above it there is room for
           six, and the section's job is now the photographs. */}
-      <section id="work" className={`${sectionPad} scroll-mt-20 bg-paper`}>
+      <section id="work" className={`${sectionPadBottom} scroll-mt-20 bg-paper`}>
         <div className={shell}>
           <Reveal className="pb-12 md:pb-16">
             <SectionLabel n={3}>{t("sections.work")}</SectionLabel>
@@ -262,7 +272,7 @@ export default async function Home({
       </section>
 
       {/* 05 INSIDE AURA */}
-      <section id="gallery" className={`${sectionPad} scroll-mt-20 bg-ivory`}>
+      <section id="gallery" className={`${sectionPadBottom} scroll-mt-20 bg-ivory`}>
         <div className={shell}>
           <Reveal className="pb-12 md:pb-16">
             <SectionLabel n={5}>{t("sections.inside")}</SectionLabel>
@@ -375,10 +385,16 @@ export default async function Home({
         </div>
       </section>
 
-      <section id="faq" className={`${sectionPad} scroll-mt-20 bg-paper`}>
+      {/* 08 THE QUESTIONS
+          Numbered, like every other act. It was the one section on the page
+          that arrived without its figure, which made the sequence read 01 to 07
+          and then stop counting two thirds of the way down. `nav.faq` is the
+          word the header already uses for it, in all four languages. */}
+      <section id="faq" className={`${sectionPadBottom} scroll-mt-20 bg-paper`}>
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <Reveal className="lg:col-span-4">
-            <h2 className={`${displaySection} max-w-[10ch]`}>{t("faq.title")}</h2>
+            <SectionLabel n={8}>{t("nav.faq")}</SectionLabel>
+            <h2 className={`${displaySection} mt-8 max-w-[10ch]`}>{t("faq.title")}</h2>
           </Reveal>
           <div className="lg:col-span-7 lg:col-start-6">
             <Faq items={homeFaq} />

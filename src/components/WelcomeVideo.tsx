@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Play } from "@phosphor-icons/react";
 
@@ -17,6 +18,13 @@ const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), { ssr: false })
  * Amira's welcome message. With no playback id set it is her still and nothing
  * else: a play control that cannot play, and a caption promising a video that
  * has no date, are both worse than the photograph on its own.
+ *
+ * The still is a `next/image`, not a CSS background. It used to be one, which
+ * meant this frame shipped the full 2560px original to every phone: no
+ * srcset, no WebP, no lazy loading and no reserved box. It is the largest
+ * photograph on /about, so that was the single most expensive thing on the
+ * page, and it was invisible to every image budget because the browser found
+ * it in a style attribute rather than in the markup.
  */
 export function WelcomeVideo({
   playbackId,
@@ -30,18 +38,7 @@ export function WelcomeVideo({
   const t = useTranslations("mentor");
   const [playing, setPlaying] = useState(false);
 
-  if (!playbackId) {
-    return (
-      <div
-        role="img"
-        aria-label={alt}
-        className="aspect-video w-full bg-cover bg-center"
-        style={{ backgroundImage: `url(${poster})` }}
-      />
-    );
-  }
-
-  if (playing) {
+  if (playing && playbackId) {
     return (
       <MuxPlayer
         playbackId={playbackId}
@@ -54,14 +51,29 @@ export function WelcomeVideo({
     );
   }
 
+  const still = (
+    <Image
+      src={poster}
+      alt={playbackId ? "" : alt}
+      fill
+      sizes="(max-width: 1024px) 100vw, 52vw"
+      className="object-cover object-[50%_26%] transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover:scale-[1.03]"
+    />
+  );
+
+  if (!playbackId) {
+    return (
+      <div className="relative aspect-video w-full overflow-hidden">{still}</div>
+    );
+  }
+
   return (
     <button
       type="button"
       onClick={() => setPlaying(true)}
-      aria-label={t("play")}
-      className="group relative block aspect-video w-full overflow-hidden bg-cover bg-center"
-      style={{ backgroundImage: `url(${poster})` }}
+      className="group relative block aspect-video w-full overflow-hidden"
     >
+      {still}
       <span
         aria-hidden
         className="absolute inset-0 bg-gradient-to-t from-night/75 to-transparent"

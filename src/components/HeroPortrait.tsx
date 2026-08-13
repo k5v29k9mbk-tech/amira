@@ -62,7 +62,14 @@ export function HeroPortrait({ alt, caption }: { alt: string; caption?: string }
       initial={reduce ? false : { opacity: 0, y: 26 }}
       animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 26 }}
       transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mx-auto w-full max-w-[min(12.5rem,25svh)] sm:max-w-[min(22rem,40svh)] lg:ms-auto lg:me-0 lg:max-w-[min(40rem,56vh)]"
+      /* The phone cap was 12.5rem, which is 200px whatever the handset, and a
+         200px arch above a 40px headline reads as a thumbnail of a portrait
+         rather than as the portrait. It was set that tight to hold the whole
+         hero inside one screen, a budget the section has never actually met:
+         the copy alone is over 500px before the frame is counted. Spending the
+         truth of that gets the composition a portrait at about two thirds of
+         the screen width, which is the size at which a face is a person. */
+      className="relative mx-auto w-full max-w-[min(17rem,30svh)] sm:max-w-[min(22rem,40svh)] lg:ms-auto lg:me-0 lg:max-w-[min(40rem,56vh)]"
     >
       {/* Ambient warmth. A plain radial rather than a blurred disc: a 40rem
           element under a blur filter is a large, repeatedly composited paint. */}
@@ -97,7 +104,7 @@ export function HeroPortrait({ alt, caption }: { alt: string; caption?: string }
             <MediaFrame
               media={{ ...heroMedia, alt }}
               priority
-              sizes="(max-width: 640px) 88vw, (max-width: 1024px) 28rem, 38rem"
+              sizes="(max-width: 640px) 72vw, (max-width: 1024px) 22rem, 40rem"
               className="absolute inset-0 h-full w-full"
               imageClassName="settle"
             />

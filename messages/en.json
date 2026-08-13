@@ -13,7 +13,10 @@
     "contact": "Contact",
     "language": "Language",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Close",
+    "skip": "Skip to content",
+    "loading": "Loading",
+    "work": "The work"
   },
   "hero": {
     "eyebrow": "Aura Academy · Professional beauty education · Italy",
@@ -68,7 +71,7 @@
       "eyebrow": "The founder",
       "title": "From the treatment room to the classroom",
       "role": "Founder of Aura Academy · CEO of Amira Beauty Suite",
-      "imageAlt": "Amira Bechini at work during a course",
+      "imageAlt": "Amira Bechini in the studio, brow calipers raised to the eye.",
       "p1": "I run Amira Beauty Suite, an institute specialised in advanced aesthetic treatments, and founded Aura Academy to teach what I practise: permanent makeup and lash and brow lamination.",
       "p2": "In more than eight years I have trained over 150 students and built a method of my own: technical excellence, hands-on practice, entrepreneurial vision. It began simply, to help people feel confident, and to give women a real profession.",
       "p3": "I have never stopped studying: international masterclasses, the latest PMU techniques. My own institute taught me the rest, not just the technique, but what clients and the market need.",
@@ -264,7 +267,7 @@
   },
   "students": {
     "title": "In the studio",
-    "sub": "Moments from the courses: teaching, demonstration and guided practice."
+    "sub": "Moments from the courses: the lesson, the mapping drawn by hand, the demonstration on the model."
   },
   "voices": {
     "title": "In our students' words",
@@ -405,5 +408,9 @@
   },
   "intro": {
     "skip": "Skip intro"
+  },
+  "notFound": {
+    "title": "That page isn't here.",
+    "body": "The link may be out of date, or the page may have been renamed. Start again from the beginning, or go straight to the courses."
   }
 }

@@ -60,6 +60,14 @@ export async function Footer() {
                 {t("nav.about")}
               </Link>
             </li>
+            {/* The results, from every page. The bar has no room for a fifth
+                item at 1024px, so this and the phone menu are how a reader who
+                is not on the homepage reaches the work. */}
+            <li>
+              <Link href="/#work" className={link}>
+                {t("nav.work")}
+              </Link>
+            </li>
             <li>
               <Link href="/faq" className={link}>
                 {t("nav.faq")}

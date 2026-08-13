@@ -9,6 +9,13 @@ export async function POST(req: Request) {
   const body = await req.json().catch(() => null);
   if (!body) return NextResponse.json({ error: "bad request" }, { status: 400 });
 
+  // Honeypot. The field is off screen, aria-hidden and out of tab order, so a
+  // person cannot fill it and a bot fills everything. Answer 200: a 400 here
+  // tells the sender exactly which field gave it away.
+  if (String(body.company ?? "").trim()) {
+    return NextResponse.json({ ok: true, delivered: false });
+  }
+
   const name = String(body.name ?? "").trim().slice(0, 120);
   const email = String(body.email ?? "").trim().slice(0, 160);
   const subject = String(body.subject ?? "").trim().slice(0, 160);

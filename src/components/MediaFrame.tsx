@@ -45,8 +45,22 @@ export function MediaFrame({
   const video = useRef<HTMLVideoElement>(null);
   const [near, setNear] = useState(false);
   const [ready, setReady] = useState(false);
+  const [phone, setPhone] = useState(false);
 
   const src = media.videoSrc;
+
+  // Which cut of the clip to play. Read from a listener rather than inline
+  // during render: computed inline it was decided once, on the first client
+  // render, and a tablet turned on its side or a window dragged narrower kept
+  // whichever cut it had happened to pick.
+  useEffect(() => {
+    if (!src) return;
+    const mq = window.matchMedia("(max-width: 767px)");
+    const sync = () => setPhone(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [src]);
 
   useEffect(() => {
     if (!src || reduce || !ref.current) return;
@@ -66,11 +80,7 @@ export function MediaFrame({
     else el.pause();
   }, [active, ready]);
 
-  const mobileSrc = media.mobileVideoSrc ?? src;
-  const chosen =
-    typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
-      ? mobileSrc
-      : src;
+  const chosen = phone ? (media.mobileVideoSrc ?? src) : src;
 
   return (
     <div

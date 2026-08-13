@@ -18,6 +18,7 @@ import {
 } from "@/lib/studio";
 import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/Reveal";
+import { Stagger, StaggerItem } from "@/components/Stagger";
 import {
   displayRow,
   displaySection,
@@ -42,7 +43,7 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    alternates: altLanguages("/contact"),
+    alternates: altLanguages("/contact", locale),
   };
 }
 
@@ -70,10 +71,23 @@ export default async function ContactPage({
       <section className={`${pageHeader} bg-ivory`}>
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-5">
-            <h1 className={`${displaySection} max-w-[12ch]`}>{t("contact.title")}</h1>
-            <p className="mt-8 max-w-[40ch] text-[17px] leading-relaxed text-mute">
-              {t("contact.sub")}
-            </p>
+            {/* Eyebrow, heading, sentence, in the entrance the other three
+                pages open with. This one arrived with no filing label above it
+                and no sequence at all, which made it the only page on the site
+                whose first screen simply appeared. */}
+            <Stagger>
+              <StaggerItem>
+                <p className={eyebrow}>{t("nav.contact")}</p>
+              </StaggerItem>
+              <StaggerItem>
+                <h1 className={`${displaySection} mt-8 max-w-[12ch]`}>{t("contact.title")}</h1>
+              </StaggerItem>
+              <StaggerItem>
+                <p className="mt-8 max-w-[40ch] text-[17px] leading-relaxed text-mute">
+                  {t("contact.sub")}
+                </p>
+              </StaggerItem>
+            </Stagger>
 
             <div className="mt-14 border-t border-hair pt-8">
               <p className="label text-mute">{t("contact.venue")}</p>

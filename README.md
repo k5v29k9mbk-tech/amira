@@ -25,6 +25,7 @@ npm test                     # content + translation-completeness checks, no fra
 | `src/lib/media.ts` | All art direction: posters, clips, crops, overlays, gallery composition |
 | `src/lib/ui.ts` | The shared class strings (buttons, links, display sizes, page shell) |
 | `src/lib/seo.tsx` | schema.org payloads: organisation, course list, person, FAQ |
+| `src/lib/intro-film.ts` | server-side check for whether the opening film exists on disk |
 | `messages/` | All copy, in `en` `it` `fr` `ar` |
 | `public/brand/` | Academy photography, cut from the supplied artwork |
 
@@ -107,12 +108,24 @@ not play the ending; only the clip reaching its own end does.
 | --- | --- |
 | `src/components/IntroVideo.tsx` | the overlay: playback, exits, skip control |
 | `src/lib/intro.ts` | the bootstrap script, the session key, `endIntro()` |
+| `src/lib/intro-film.ts` | whether there is a film at all |
 | `src/lib/use-intro-ready.ts` | what entrance animations wait on |
 | `public/videos/` | the film itself, see the README in that folder |
 | `scripts/encode-intro.sh` | master file to webm + mp4 + poster |
 
 Mounted in `src/app/[locale]/layout.tsx`, as three things in this order: the
 inline bootstrap script, the black shield, then `<IntroVideo />`.
+
+**None of it ships unless the film does.** `introFilmReady` checks
+`public/videos/aura-intro.mp4` on the server, once per process, and the layout
+emits the script, the shield and the overlay only if it is there. That guard is
+load-bearing while the academy has not sent the film, which is the state the
+repository is in: without it the bootstrap decides the intro is due on every
+first visit, CSS paints the black shield over the first frame, and the overlay
+then asks a `<video>` with two dead sources to play and waits for that to fail.
+The homepage opens on a black screen it has to recover from, for as long as
+hydration takes at best and six seconds at worst. Drop the three files in and
+everything turns itself back on.
 
 The script is the part worth understanding. It runs during HTML parse, before
 anything paints, and decides whether the film is due: homepage only, not if
@@ -215,6 +228,18 @@ There are no invented statistics, credentials, prices or reviews.
   wide. Replace them with full-resolution exports before launch.
   `students-certificates.jpg` shows identifiable students and their certificate
   numbers; it is deliberately not used on any page until written consent exists.
+  `group-training.jpg` and `lips-result-hero.jpg` are also unused: the first is
+  not the academy's room or its students, the second carries a different brand's
+  watermark. Neither belongs in a section whose claim is that the work on it is
+  the academy's own.
+- **Orientation.** Four of the result photographs were shot with the client
+  reclined and the camera above her, so they come off the phone on their side or
+  upside down. Three of them were printing that way. `*-upright.jpg` is each of
+  those turned the right way up: a 90 or 180 degree rotation, which resamples
+  nothing, plus one border trim on the lip macro where the source carried the
+  grey edge of a screenshot. The originals are kept beside them and are what
+  `lib/media.ts` no longer points at. A rotation is not a retouch, so
+  `work.sub` still says what it always said.
 - **Facebook is text, not a link.** The academy gave a page name, not a URL.
 
 ## Adding student testimonials
@@ -263,10 +288,21 @@ These are the only things blocking a launch-ready site:
 - The Facebook page URL
 - Student testimonials, with consent
 - More before/after pairs (there is one)
+- The opening film, or a decision not to have one (`public/videos/`; nothing
+  about the sequence ships until the files do)
 - An abstract clip for the hero arch, if they want the frame to move (optional:
   the portrait carries the section as it is)
 - Full-resolution exports of the course photography (several stills are 230-700px
   wide, which is thin for a panel that fills two thirds of the screen)
+- **More photographs of the room and the teaching.** This is the largest
+  remaining gap and it is the reason five photographs are printed twice on the
+  homepage: once small in the catalogue and once at size in the results or the
+  studio gallery. There are about twelve usable frames for about sixteen slots.
+  Six to eight more, of a class in progress, a workstation, a student working on
+  a model and the kit, would end the reuse outright.
+- A Naskh font file, if the Arabic share card should carry the tagline. `next/og`
+  rasterises with the fonts it is handed and cannot shape Arabic without one, so
+  that card ships as the brand plate and the town.
 
 ## Tests
 

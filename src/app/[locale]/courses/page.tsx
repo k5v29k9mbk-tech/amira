@@ -1,14 +1,16 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { courses, included } from "@/lib/courses";
-import { beforeAfterPairs } from "@/lib/studio";
+import { beforeAfterPairs, whatsappLinkWith } from "@/lib/studio";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { MediaFrame } from "@/components/MediaFrame";
 import { Parallax } from "@/components/Parallax";
 import { Reveal } from "@/components/Reveal";
 import { Stagger, StaggerItem } from "@/components/Stagger";
 import {
+  btnLine,
   btnSolid,
   displayLarge,
   displaySection,
@@ -25,7 +27,27 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export const metadata = { alternates: altLanguages("/courses") };
+/**
+ * The catalogue is the second page the site is trying to be found for and it
+ * was the only one carrying no title and no description of its own, so every
+ * search result and every share of it read as the homepage. Both come from the
+ * copy already at the top of the page: `catalog.title` names it and
+ * `catalog.sub` is the sentence under the heading, which is exactly the sentence
+ * a result ought to show.
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "catalog" });
+  return {
+    title: t("title"),
+    description: t("sub"),
+    alternates: altLanguages("/courses", locale),
+  };
+}
 
 /**
  * One page for six courses.
@@ -62,6 +84,8 @@ export default async function CoursesPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations();
+  // Null while no number is on file, which is what hides the action.
+  const whatsappHref = whatsappLinkWith(t("contact.whatsappMessage"));
 
   return (
     <>
@@ -209,6 +233,56 @@ export default async function CoursesPage({
           </div>
         </section>
       )}
+
+      {/* The end of the catalogue.
+          This page used to stop: six courses, the conditions, a comparison,
+          and then the footer. A reader who has gone through the whole
+          catalogue is the most decided reader the site has, and the last thing
+          she was offered was a link inside a course row a screen and a half
+          back. The heading and the sentence are the contact page's own, which
+          is where both actions go, so nothing here is copy written twice to
+          fill a band.
+
+          On ivory, not on the near black the homepage closes with. The footer
+          is already near black, and a flat black band directly above it makes
+          one undifferentiated field half a screen tall: the homepage gets away
+          with it because its closing frame is a photograph. This is the same
+          shape /about ends on, which is what the three inner pages should have
+          in common. */}
+      <section className={`${sectionPad} bg-ivory`}>
+        <div className={shell}>
+          <Reveal className="max-w-[20ch]">
+            <h2 className={`${displaySection} text-balance`}>{t("contact.title")}</h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-mute">
+              {t("contact.sub")}
+            </p>
+            <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
+              {whatsappHref ? (
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={btnSolid}
+                >
+                  <WhatsappLogo size={17} weight="light" />
+                  {t("contact.whatsapp")}
+                </a>
+              ) : null}
+              {/* Not `hero.secondary`. In English that string and the heading
+                  above it are the same three words, so the band was printing
+                  "Book your place" twice, once at 7rem and once inside the
+                  button underneath it. The label the six rows already use is
+                  the honest one anyway: the fee is quoted in the conversation
+                  this starts, so the first step is asking, not booking. */}
+              <Link href="/contact" className={whatsappHref ? btnLine : btnSolid}>
+                {t("catalog.cta")}
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </>
   );
 }

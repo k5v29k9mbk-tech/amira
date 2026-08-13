@@ -13,7 +13,10 @@
     "contact": "Contact",
     "language": "Langue",
     "menu": "Menu",
-    "close": "Fermer"
+    "close": "Fermer",
+    "skip": "Aller au contenu",
+    "loading": "Chargement",
+    "work": "Le travail"
   },
   "hero": {
     "eyebrow": "Aura Academy · Formation beauté professionnelle · Italie",
@@ -68,7 +71,7 @@
       "eyebrow": "La fondatrice",
       "title": "De la cabine à la salle de formation",
       "role": "Fondatrice d'Aura Academy · CEO d'Amira Beauty Suite",
-      "imageAlt": "Amira Bechini au travail pendant une formation",
+      "imageAlt": "Amira Bechini en studio, le compas à sourcils levé à hauteur des yeux.",
       "p1": "Je m'appelle Amira Bechini. Je dirige Amira Beauty Suite, un institut de beauté spécialisé en soins esthétiques avancés, et j'ai fondé Aura Academy pour enseigner ce que je pratique : le maquillage permanent et la lamination des cils et des sourcils.",
       "p2": "En plus de huit ans dans le secteur, j'ai formé plus de 150 élèves et construit ma propre méthode, qui réunit excellence technique, pratique sur le terrain et vision entrepreneuriale. Ma passion est née d'un désir simple : aider les gens à se sentir sûrs d'eux et créer de véritables opportunités de carrière pour les femmes qui veulent faire de cette passion un métier.",
       "p3": "Je n'ai jamais cessé d'apprendre : masterclasses internationales, dernières techniques PMU, investissement continu dans ma propre formation. Le travail quotidien dans mon institut m'a appris le reste, non seulement l'aspect technique du métier, mais les besoins réels des clientes et du marché.",
@@ -264,7 +267,7 @@
   },
   "students": {
     "title": "En atelier",
-    "sub": "Moments de formation : démonstration, exercices guidés et travail sur modèle."
+    "sub": "Moments de formation : le cours, le tracé du mapping, la démonstration sur le modèle."
   },
   "voices": {
     "title": "La parole aux élèves",
@@ -405,5 +408,9 @@
   },
   "intro": {
     "skip": "Passer l'intro"
+  },
+  "notFound": {
+    "title": "Cette page n'existe pas.",
+    "body": "Le lien n'est peut-être plus valide, ou la page a changé d'adresse. Reprenez depuis le début, ou allez directement aux formations."
   }
 }

@@ -59,7 +59,7 @@ export async function Hero() {
       />
 
       <div
-        className={`${shell} grid w-full items-end gap-7 py-8 sm:gap-10 md:py-10 lg:grid-cols-12 lg:gap-10 lg:py-0`}
+        className={`${shell} grid w-full items-end gap-10 py-8 sm:gap-12 md:py-10 lg:grid-cols-12 lg:gap-10 lg:py-0`}
       >
         <Stagger className="order-2 max-w-[42rem] lg:order-1 lg:col-span-6 lg:pb-2">
           <StaggerItem>
@@ -69,37 +69,59 @@ export async function Hero() {
           </StaggerItem>
 
           <StaggerItem>
-            <h1 className={`${displayHero} mt-6 max-w-[15ch] text-balance md:mt-8`}>
+            {/* The measure is lifted below sm. 15ch of Cormorant at the floor
+                size is about 330px, and a 390px phone has 342 of gutter to
+                gutter: the cap was throwing "carriera." and "carrière." onto a
+                third line to save nothing. Above sm it is the reading measure
+                again, which is what keeps the statement from running the width
+                of a laptop. */}
+            <h1 className={`${displayHero} mt-6 max-w-[19ch] text-balance sm:max-w-[15ch] md:mt-8`}>
               <span className="block">{t("titleA")}</span>
               <span className="block">{t("titleB")}</span>
             </h1>
           </StaggerItem>
 
           <StaggerItem>
-            <p className="mt-6 max-w-[46ch] text-[17px] leading-relaxed text-mute md:mt-8 md:text-[19px]">
+            <p className="mt-6 max-w-[46ch] text-[16px] leading-relaxed text-mute sm:text-[17px] md:mt-8 md:text-[19px]">
               {t("sub")}
             </p>
           </StaggerItem>
 
-          {/* Proof, on one line. A hairline above it and nothing around it: the
-              figures are the evidence for the sentence above and the reason to
-              press the button below, so they sit between the two. */}
+          {/* Proof. A hairline above it and nothing around it: the figures are
+              the evidence for the sentence above and the reason to press the
+              button below, so they sit between the two.
+
+              Three columns on a phone, one line from sm. Set inline, the three
+              pairs are about 520px of type and a phone has 342, so they broke
+              one to a line and the masthead became a bulleted list down the
+              left edge. Stacked in three columns the figures stay on one
+              baseline, which is the only thing about the row that has to be
+              true for it to read as a masthead. */}
           <StaggerItem>
-            <dl className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-3 border-t border-hair pt-6 md:mt-10 md:gap-x-10">
+            <dl className="mt-8 grid grid-cols-3 gap-x-4 gap-y-3 border-t border-hair pt-6 sm:flex sm:flex-wrap sm:items-baseline sm:gap-x-8 md:mt-10 md:gap-x-10">
               {facts.map((k) => (
-                <div key={k} className="flex items-baseline gap-2.5">
+                <div
+                  key={k}
+                  className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-2.5"
+                >
                   <dt className="display text-[1.375rem] leading-none text-espresso md:text-[1.5rem]">
                     {t(`facts.${k}.value`)}
                   </dt>
-                  <dd className="label text-mute">{t(`facts.${k}.label`)}</dd>
+                  <dd className="label leading-[1.5] text-mute">{t(`facts.${k}.label`)}</dd>
                 </div>
               ))}
             </dl>
           </StaggerItem>
 
+          {/* The primary action takes the width on a phone. A 230px button
+              floated against the inline edge of a 390px screen is the one
+              element in the composition that reads as an afterthought, and it
+              is the only thing on the first screen a visitor is meant to
+              press. The secondary stays a text link at every width, so the
+              hierarchy between the two never becomes two buttons. */}
           <StaggerItem>
             <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-10">
-              <Link href="/courses" className={btnSolid}>
+              <Link href="/courses" className={`${btnSolid} w-full sm:w-auto`}>
                 {t("primary")}
               </Link>
               <Link href="/about" className={linkRule}>
@@ -118,7 +140,7 @@ export async function Hero() {
             so the frame runs past the margin the rest of the page keeps. The
             margin is logical, so in Arabic the frame leans on the left edge
             exactly as it leans on the right in the other three. */}
-        <div className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7 xl:-me-6 2xl:-me-12">
+        <div className="order-1 w-full lg:order-2 lg:col-span-6 lg:col-start-7 xl:-me-6 2xl:-me-12">
           <HeroPortrait alt={inst("portrait")} caption={t("founder")} />
         </div>
       </div>

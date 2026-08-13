@@ -44,6 +44,14 @@ const PAGE_KEYS = [
   "nav.language",
   "nav.menu",
   "nav.close",
+  // The two strings a keyboard or screen-reader user meets before any content.
+  // Both shipped in English on the Italian, French and Arabic routes until
+  // they were listed here.
+  "nav.skip",
+  "nav.loading",
+  "nav.work",
+  "notFound.title",
+  "notFound.body",
   "intro.skip",
   "hero.eyebrow",
   "hero.titleA",
