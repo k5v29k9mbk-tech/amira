@@ -161,7 +161,7 @@ export function CourseSelector() {
                   media={course.media}
                   active={open}
                   sizes="(max-width: 1024px) 100vw, 60vw"
-                  className={`absolute inset-0 h-full w-full transition-opacity duration-[900ms] ${
+                  className={`transition-opacity duration-[900ms] ${
                     open ? "opacity-100" : "opacity-55"
                   }`}
                 />
