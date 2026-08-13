@@ -265,9 +265,19 @@ export default async function Home({
       {/* 02 THE METHOD */}
       <section id="method" className={`${sectionPad} scroll-mt-20 bg-paper`}>
         <div className={shell}>
-          <Reveal className="max-w-[20ch] pb-8 lg:pb-4">
+          {/* The measure belongs on the heading, not on the block around it.
+              `ch` is the width of the font's own "0", so it is resolved against
+              the element that carries it: on this wrapper, which inherits the
+              16px body face, 20ch is about 180px, and the section heading and its
+              eyebrow were both being folded into a 180px column. That is what set
+              "Technique is built in stages." as five lines of one and two words
+              with the label above it broken in half, and it is the same mistake
+              in three sections. On the h2 the same 20ch is 20 characters of
+              Cormorant at display size, which is what was meant. Every other act
+              on this page already measures its heading this way. */}
+          <Reveal className="pb-8 lg:pb-4">
             <SectionLabel n={2}>{t("sections.method")}</SectionLabel>
-            <h2 className={`${displaySection} mt-8`}>{t("method.title")}</h2>
+            <h2 className={`${displaySection} mt-8 max-w-[20ch]`}>{t("method.title")}</h2>
           </Reveal>
           <MethodStory />
         </div>
@@ -373,11 +383,14 @@ export default async function Home({
           nothing else about the row changes from the way /about sets it. */}
       <section id="why" className={`${sectionPad} scroll-mt-20 bg-night text-ivory`}>
         <div className={shell}>
-          <Reveal className="max-w-[22ch]">
+          {/* Measure on the heading. See the note in the method section. */}
+          <Reveal>
             <SectionLabel n={6} tone="light">
               {t("about.different.eyebrow")}
             </SectionLabel>
-            <h2 className={`${displaySection} mt-8`}>{t("about.different.title")}</h2>
+            <h2 className={`${displaySection} mt-8 max-w-[22ch]`}>
+              {t("about.different.title")}
+            </h2>
           </Reveal>
 
           <Reveal delay={0.06}>
@@ -422,9 +435,10 @@ export default async function Home({
           sequence. */}
       <section id="booking" className={`${sectionPad} scroll-mt-20 bg-paper`}>
         <div className={shell}>
-          <Reveal className="max-w-[22ch]">
+          {/* Measure on the heading. See the note in the method section. */}
+          <Reveal>
             <SectionLabel n={7}>{t("journey.eyebrow")}</SectionLabel>
-            <h2 className={`${displaySection} mt-8`}>{t("journey.title")}</h2>
+            <h2 className={`${displaySection} mt-8 max-w-[22ch]`}>{t("journey.title")}</h2>
           </Reveal>
 
           <Reveal delay={0.06}>
