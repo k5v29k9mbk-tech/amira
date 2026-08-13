@@ -24,6 +24,7 @@
     "titleB": "Build your career.",
     "sub": "Professional PMU training. Technique, real experience and the business knowledge a career is built on.",
     "founder": "Amira Bechini · Founder and PMU Master",
+    "founderRole": "Founder and PMU Master",
     "facts": {
       "years": {
         "value": "8+",
@@ -267,7 +268,12 @@
   },
   "students": {
     "title": "In the studio",
-    "sub": "Moments from the courses: the lesson, the mapping drawn by hand, the demonstration on the model."
+    "sub": "Moments from the courses: the lesson, the mapping drawn by hand, the demonstration on the model.",
+    "captions": {
+      "lesson": "The lesson",
+      "mapping": "The mapping, drawn by hand",
+      "demo": "The demonstration on the model"
+    }
   },
   "voices": {
     "title": "In our students' words",
@@ -376,8 +382,8 @@
     "after": "After"
   },
   "work": {
-    "title": "Real work, unretouched.",
-    "sub": "Permanent makeup and brow treatments photographed in the studio. Nothing on this page is retouched, filtered or generated.",
+    "title": "Real work, real clients.",
+    "sub": "Permanent makeup and brow treatments photographed in the academy's studio. Every frame is the academy's own client work.",
     "open": "Open larger",
     "close": "Close",
     "alt": {

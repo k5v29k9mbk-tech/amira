@@ -24,6 +24,7 @@
     "titleB": "Crea la tua carriera.",
     "sub": "Formazione professionale in PMU e beauty con Amira Bechini: tecnica, esperienza sul campo e visione imprenditoriale, le tre basi di una carriera vera nel beauty.",
     "founder": "Amira Bechini · Fondatrice e Master PMU",
+    "founderRole": "Fondatrice e Master PMU",
     "facts": {
       "years": {
         "value": "8+",
@@ -267,7 +268,12 @@
   },
   "students": {
     "title": "In aula",
-    "sub": "Momenti dai corsi: la lezione, il disegno della mappatura, la dimostrazione sulla modella."
+    "sub": "Momenti dai corsi: la lezione, il disegno della mappatura, la dimostrazione sulla modella.",
+    "captions": {
+      "lesson": "La lezione",
+      "mapping": "Il disegno della mappatura",
+      "demo": "La dimostrazione sulla modella"
+    }
   },
   "voices": {
     "title": "La parola alle allieve",
@@ -376,8 +382,8 @@
     "after": "Dopo"
   },
   "work": {
-    "title": "Lavoro reale, senza ritocchi.",
-    "sub": "Trucco permanente e trattamenti sopracciglia fotografati in studio. Nulla in questa pagina è ritoccato, filtrato o generato.",
+    "title": "Lavoro reale, clienti reali.",
+    "sub": "Trucco permanente e trattamenti sopracciglia fotografati in studio. Ogni immagine è lavoro dell'accademia su clienti reali.",
     "open": "Apri più grande",
     "close": "Chiudi",
     "alt": {
