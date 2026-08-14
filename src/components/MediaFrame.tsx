@@ -54,6 +54,7 @@ export function MediaFrame({
   sizes = "100vw",
   priority = false,
   active = true,
+  eager = false,
   className = "",
   imageClassName = "",
 }: {
@@ -62,6 +63,25 @@ export function MediaFrame({
   sizes?: string;
   priority?: boolean;
   active?: boolean;
+  /**
+   * Load the clip on mount rather than on approach, and let the browser buffer
+   * ahead instead of holding at `preload="none"`.
+   *
+   * For the eight frames that scroll into view this would be waste: it is the
+   * observer and the idle preload that keep a page of clips from costing a page
+   * of downloads. The hero film is the one case where both are backwards. It is
+   * on screen at nought pixels of scroll, so "near the viewport" is a question
+   * with a known answer, and it is the first thing a visitor sees, so the frame
+   * it resolves on is the frame they judge the site by.
+   *
+   * What this deliberately does not do is mount the video during the first
+   * render. `near` still starts false on the server and on the client, and this
+   * flips it from an effect, because the decision downstream is gated on
+   * `prefers-reduced-motion` and that preference has no answer on a server. One
+   * render's delay is imperceptible; a hydration mismatch on the homepage is
+   * not, and is the exact bug MotionProvider documents.
+   */
+  eager?: boolean;
   className?: string;
   imageClassName?: string;
 }) {
