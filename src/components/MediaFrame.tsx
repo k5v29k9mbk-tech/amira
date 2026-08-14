@@ -161,7 +161,7 @@ export function MediaFrame({
           muted
           loop
           playsInline
-          preload="none"
+          preload={eager ? "auto" : "none"}
           aria-hidden
           tabIndex={-1}
           onCanPlay={() => setReady(true)}
