@@ -78,6 +78,13 @@ export function Header() {
   const solid = past || !overHero;
 
   /**
+   * Light type, and only in one place: over the hero film, before it has
+   * scrolled away. Derived from `solid` rather than tracked separately, so the
+   * bar cannot end up with a ground and light type on it for a frame.
+   */
+  const onFilm = !solid;
+
+  /**
    * The bar carries four. It is not an arbitrary four: at 1024px the shell
    * leaves 896px, and in French the four labels, the logo, the WhatsApp mark,
    * the language control and "Réservez votre place" already come to within a
