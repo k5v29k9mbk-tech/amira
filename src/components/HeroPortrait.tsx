@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { useRef, useState } from "react";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "motion/react";
 import { heroMedia } from "@/lib/media";
 import { displayItem } from "@/lib/ui";
 import { dur, ease, heroBeat, imageScale } from "@/lib/motion";
@@ -113,32 +113,39 @@ export function HeroPortrait({
   const plateY = useTransform(exit, [0.2, 1], [0, -28]);
   const mediaScale = useTransform(exit, [0.2, 1], [1, imageScale.depth]);
 
-  /**
-   * The furniture recede: the mat, the ambient pool and the credit clearing as the
-   * plate takes over.
-   *
-   * The fade travels as a CSS custom property rather than as `style.opacity`, and
-   * that is not a stylistic choice. A scroll-linked `style={{ opacity: value }}` on
-   * a motion component is not applied in this version of Motion: the property is
-   * left at whatever the server rendered and is never written again. It is a
-   * genuinely confusing failure to diagnose, because everything around it works.
-   * On one and the same element, from one and the same scroll value, `y` writes and
-   * updates correctly, and so does `boxShadow`, which is not even a transform. Only
-   * `opacity` is dropped. It was measured three ways before this: the inline style
-   * carried `opacity: 1` beside a correctly interpolated `translateY(-14px)`;
-   * forcing the property by hand moved the computed value, proving nothing was
-   * overriding it with `!important`; and the reduced-motion rule that does carry an
-   * `!important` was confirmed to be inside a media query that was not matching.
-   *
-   * A custom property is written reliably, so the value is published as `--recede`
-   * and the class consumes it with `opacity-[var(--recede)]`. Same scroll source,
-   * same interpolation, same single composited property in the end; it simply takes
-   * a route that arrives. If a future Motion version fixes the direct form, this can
-   * go back to `style={{ opacity }}` and the classes come off.
-   */
-  const recede = useTransform(exit, [0.15, 0.6], [1, 0]);
   const matY = useTransform(exit, [0.15, 0.6], [0, -14]);
   const creditY = useTransform(exit, [0.15, 0.6], [0, -14]);
+
+  /**
+   * The furniture clearing: the mat, the ambient pool and the credit fading out as
+   * the plate takes over.
+   *
+   * This is a threshold and an animation rather than a scroll-linked opacity, and
+   * the reason is that a scroll-linked opacity does not work. `style={{ opacity }}`
+   * fed by a motion value is never applied in this version of Motion: the property
+   * keeps whatever the server rendered and is not written again. It is an unusually
+   * confusing thing to diagnose because everything immediately around it is fine. On
+   * one and the same element, from one and the same scroll value, `y` interpolates
+   * and writes correctly, and so does `boxShadow`, which is not even a transform.
+   * Only `opacity` is dropped.
+   *
+   * It was measured three ways before being worked around: the inline style carried
+   * a literal `opacity: 1` beside a correctly interpolated `translateY(-14px)`;
+   * setting the property by hand moved the computed value, which rules out anything
+   * overriding it with `!important`; and the one rule that does carry an `!important`
+   * was confirmed to sit inside a media query that was not matching. Deriving a
+   * separate motion value per element changed nothing, so it is not value sharing.
+   *
+   * So the fade goes through Motion's animation path, which is proven to work
+   * everywhere else on this page. `exit` flips one boolean at 0.28 and the three
+   * elements animate to it. The visible result is the same clearing, on the site's
+   * own cross-fade curve, and it costs one re-render per crossing rather than one
+   * style write per frame: React bails out when the boolean is unchanged, which is
+   * every scroll event but two.
+   */
+  const [cleared, setCleared] = useState(false);
+  useMotionValueEvent(exit, "change", (v) => setCleared(v > 0.28));
+  const clearing = { duration: dur.quick, ease: ease.inOut };
   const shadow = useTransform(
     exit,
     [0.2, 1],
@@ -159,8 +166,9 @@ export function HeroPortrait({
           It clears with the rest of the furniture as the plate takes over. */}
       <motion.span
         aria-hidden
-        style={{ "--recede": recede }}
-        className="signature pointer-events-none absolute -inset-x-[22%] -top-[14%] bottom-[-8%] -z-20 opacity-[var(--recede)] bg-[radial-gradient(52%_46%_at_50%_42%,color-mix(in_srgb,var(--aura-bronze)_16%,transparent),transparent_70%)]"
+        animate={{ opacity: cleared ? 0 : 1 }}
+        transition={clearing}
+        className="signature pointer-events-none absolute -inset-x-[22%] -top-[14%] bottom-[-8%] -z-20 bg-[radial-gradient(52%_46%_at_50%_42%,color-mix(in_srgb,var(--aura-bronze)_16%,transparent),transparent_70%)]"
       />
 
       <motion.div
@@ -185,8 +193,10 @@ export function HeroPortrait({
         >
           <motion.span
             aria-hidden
-            style={{ "--recede": recede, y: matY }}
-            className="signature block h-full w-full opacity-[var(--recede)]"
+            style={{ y: matY }}
+            animate={{ opacity: cleared ? 0 : 1 }}
+            transition={clearing}
+            className="signature block h-full w-full"
           />
         </motion.span>
 
@@ -229,8 +239,10 @@ export function HeroPortrait({
 
       {name ? (
         <motion.div
-          style={{ "--recede": recede, y: creditY }}
-          className="signature mt-5 text-center opacity-[var(--recede)] md:mt-6"
+          style={{ y: creditY }}
+          animate={{ opacity: cleared ? 0 : 1 }}
+          transition={clearing}
+          className="signature mt-5 text-center md:mt-6"
         >
           <MaskReveal onMount play={ready} delay={heroBeat.name} duration={dur.base}>
             <p className={`${displayItem} leading-none text-espresso`}>{name}</p>
