@@ -255,7 +255,11 @@ export function HeroPortrait({
           className="signature mt-5 text-center md:mt-6"
         >
           <MaskReveal onMount play={ready} delay={heroBeat.name} duration={dur.base}>
-            <p className={`${displayItem} leading-none text-espresso`}>{name}</p>
+            <p
+              className={`${displayItem} leading-none ${light ? "text-ivory" : "text-espresso"}`}
+            >
+              {name}
+            </p>
           </MaskReveal>
           {role ? (
             <MaskReveal
