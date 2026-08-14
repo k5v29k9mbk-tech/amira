@@ -109,32 +109,41 @@ export const imageScale = {
 /**
  * The hero's opening sequence, as an ordered score.
  *
- * The brief for the first screen is eight beats in a fixed order: the bar, the
- * portrait, its frame, her name, her role, the headline line by line, the
- * supporting line, then the figures. Written as delays in one place because the
- * only thing that makes a sequence read as choreography rather than as things
- * appearing is the interval between beats, and that is impossible to tune when
- * the numbers live in eight components.
+ * The first screen is now the academy's film with type set over it, and the
+ * score is the order a reader meets that type: the bar, the statement line by
+ * line, the supporting line, the figures, the two actions, and last of all the
+ * signature. Written as delays in one place because the only thing that makes a
+ * sequence read as choreography rather than as things appearing is the interval
+ * between beats, and that is impossible to tune when the numbers live in six
+ * components.
  *
- * The whole reveal lands inside 1.8s, which is the budget and is met by measuring
- * from the last thing to finish rather than the last thing to start. The portrait's
- * aperture is the longest single move on the screen and closes at 1.72
- * (0.12 + `plate`); the headline's second line closes at 1.79; the figures, which
- * are deliberately last, close at 1.75. Nothing here waits on anything below the
- * fold, and the headline is legible from about 0.9.
+ * THE SIGNATURE LANDS LAST, and that is the whole shape of it. The film is
+ * already playing when the page arrives, so the reveal has nothing to wait for
+ * and nothing to cover; what it can do instead is sign the composition once
+ * everything it is signing has been read. Her name closes at 1.56 and her role
+ * at 1.66, which is inside the 1.8s budget the screen has always had, and the
+ * 0.10 between them is the smallest interval on the site that still reads as two
+ * beats rather than one block arriving.
+ *
+ * `portrait` and `frame` are the arch's two beats. Nothing on the homepage plays
+ * them any more: the portrait came off the first screen when the film went
+ * behind it, and `HeroPortrait` is kept, unmounted, for whatever composition
+ * wants an arch next. They stay in the score so that component still reads from
+ * one place rather than inventing its own numbers when it is next mounted.
  *
  * `intro` is added to all of these by the components when the opening film has
  * played, so the sequence starts after the overlay rather than behind it.
  */
 export const heroBeat = {
   bar: 0.0,
+  headline: 0.14,
+  sub: 0.5,
+  facts: 0.62,
+  actions: 0.72,
+  name: 0.86,
+  role: 0.96,
   portrait: 0.12,
   frame: 0.26,
-  name: 0.44,
-  role: 0.56,
-  headline: 0.68,
-  sub: 0.94,
-  facts: 1.05,
 } as const;
 
 /** Shared variant: a block fading up into place. */
