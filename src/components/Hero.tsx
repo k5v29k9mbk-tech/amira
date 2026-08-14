@@ -61,31 +61,60 @@ export async function Hero() {
       <div
         className={`${shell} grid w-full items-end gap-10 py-8 sm:gap-12 md:py-10 lg:grid-cols-12 lg:gap-10 lg:py-0`}
       >
-        <Stagger className="order-2 max-w-[42rem] lg:order-1 lg:col-span-6 lg:pb-2">
-          <StaggerItem>
-            {/* Three facts, one line: the academy, what it does, where. Wraps
-                to two lines on a phone, so it carries its own leading. */}
+        {/* The opening score.
+
+            The beats and their intervals are `heroBeat` in lib/motion.ts, not
+            numbers typed here, because the only thing that makes a sequence read
+            as choreography rather than as things appearing is the interval
+            between beats, and that cannot be tuned when it is spread across two
+            components. The order is the bar, the portrait, its frame, her name,
+            her role, the headline line by line, this line, then the figures: a
+            reader meets the person, then the promise, then the evidence.
+
+            The eyebrow and the statement open through apertures; the supporting
+            line and the figures fade up. That split is the point. An aperture is
+            expensive-looking and used four times on the first screen it stops
+            being an event, so it is spent on the three pieces of type that carry
+            the argument and withheld from the two that support them. */}
+        <HeroCopy>
+          {/* Three facts, one line: the academy, what it does, where. Wraps
+              to two lines on a phone, so it carries its own leading. */}
+          <MaskReveal onMount delay={heroBeat.bar} duration={dur.base}>
             <p className="label leading-[1.8] text-bronze-ink">{t("eyebrow")}</p>
-          </StaggerItem>
+          </MaskReveal>
 
-          <StaggerItem>
-            {/* The measure is lifted below sm. 15ch of Cormorant at the floor
-                size is about 330px, and a 390px phone has 342 of gutter to
-                gutter: the cap was throwing "carriera." and "carrière." onto a
-                third line to save nothing. Above sm it is the reading measure
-                again, which is what keeps the statement from running the width
-                of a laptop. */}
-            <h1 className={`${displayHero} mt-6 max-w-[19ch] text-balance sm:max-w-[15ch] md:mt-8`}>
+          {/* The measure is lifted below sm. 15ch of Cormorant at the floor
+              size is about 330px, and a 390px phone has 342 of gutter to
+              gutter: the cap was throwing "carriera." and "carrière." onto a
+              third line to save nothing. Above sm it is the reading measure
+              again, which is what keeps the statement from running the width
+              of a laptop.
+
+              Two blocks, two apertures, one beat apart. The statement was
+              already set as two lines the academy wrote separately, which is
+              what makes line masking possible here without measuring anything:
+              nothing is split by code, so nothing can split differently in
+              Italian, French or Arabic. The second line's aperture is a
+              `stagger.line` behind the first, which is what makes the headline
+              read as typesetting rather than as a block arriving. */}
+          <h1 className={`${displayHero} mt-6 max-w-[19ch] text-balance sm:max-w-[15ch] md:mt-8`}>
+            <MaskReveal onMount delay={heroBeat.headline} duration={dur.frame}>
               <span className="block">{t("titleA")}</span>
+            </MaskReveal>
+            <MaskReveal
+              onMount
+              delay={heroBeat.headline + stagger.line}
+              duration={dur.frame}
+            >
               <span className="block">{t("titleB")}</span>
-            </h1>
-          </StaggerItem>
+            </MaskReveal>
+          </h1>
 
-          <StaggerItem>
+          <HeroBeat delay={heroBeat.sub}>
             <p className="mt-6 max-w-[46ch] text-[16px] leading-relaxed text-mute sm:text-[17px] md:mt-8 md:text-[19px]">
               {t("sub")}
             </p>
-          </StaggerItem>
+          </HeroBeat>
 
           {/* Proof. A hairline above it and nothing around it: the figures are
               the evidence for the sentence above and the reason to press the
@@ -108,7 +137,7 @@ export async function Hero() {
               masthead. Three columns holds the three figures on one baseline at
               every width, and it is shorter than the wrap it replaces, which the
               first screen has better uses for. */}
-          <StaggerItem>
+          <HeroBeat delay={heroBeat.facts}>
             <dl className="mt-8 grid grid-cols-3 gap-x-4 gap-y-3 border-t border-hair pt-6 sm:flex sm:flex-wrap sm:items-baseline sm:gap-x-8 md:mt-10 md:gap-x-10 lg:grid lg:grid-cols-3 lg:gap-x-6 xl:gap-x-8">
               {facts.map((k) => (
                 <div
@@ -122,7 +151,7 @@ export async function Hero() {
                 </div>
               ))}
             </dl>
-          </StaggerItem>
+          </HeroBeat>
 
           {/* The primary action takes the width on a phone. A 230px button
               floated against the inline edge of a 390px screen is the one
@@ -138,7 +167,7 @@ export async function Hero() {
               the first act after the statement, with her own link to the full
               story, so the first screen no longer has to carry a third
               destination: it asks for the enquiry instead. */}
-          <StaggerItem>
+          <HeroBeat delay={heroBeat.facts + stagger.base}>
             <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-10">
               <Link href="/courses" className={`${btnSolid} w-full sm:w-auto`}>
                 {t("primary")}
@@ -148,8 +177,8 @@ export async function Hero() {
                 <ArrowRight size={14} weight="light" className="flip-x" />
               </Link>
             </div>
-          </StaggerItem>
-        </Stagger>
+          </HeroBeat>
+        </HeroCopy>
 
         {/* The columns stay even; the asymmetry is in where the frame sits
             inside its half, not in how many columns each half owns. Taking a

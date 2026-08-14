@@ -309,6 +309,24 @@ body {
     transform: none !important;
   }
 
+  /*
+    The hero's signature sequence. Every layer of it is a motion value bound to
+    `style` and driven by scroll position, which is the one category neither the
+    rule above nor Motion's own policy can reach, so it is pinned here: the plate
+    does not scale, nothing lifts, and the furniture around the portrait neither
+    recedes nor fades. What a reduced-motion visitor gets is the composition at
+    rest, which is the same composition, held still.
+
+    `opacity` is pinned as well as `transform`, and deliberately: the mat, the
+    ambient pool and the credit all fade out on scroll in the full sequence, and a
+    reader who has asked for no movement should not watch the frame around a
+    portrait dissolve as she reads past it.
+  */
+  .signature {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
   /* The statement is set resolved rather than resolving. Taupe on ivory is
      2.3:1, so a word that never resolves is a word that never meets contrast. */
   .word-resolve {
