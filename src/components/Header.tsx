@@ -123,12 +123,20 @@ export function Header() {
       }`}
     >
       <div
-        className={`${shell} flex h-[68px] items-center justify-between gap-8 text-espresso md:h-[76px]`}
+        className={`${shell} flex h-[68px] items-center justify-between gap-8 transition-colors duration-500 ease-[var(--ease-aura)] md:h-[76px] ${
+          onFilm ? "text-ivory" : "text-espresso"
+        }`}
       >
         {/* The monogram, not the full plate: the supplied lockup is stacked,
             and a 76px bar would set its ACADEMY line four pixels tall. */}
         <Link href="/" aria-label={brand.full}>
-          <Logo variant="mark" tone="dark" priority className="h-9 w-auto md:h-10" sizes="80px" />
+          <Logo
+            variant="mark"
+            tone={onFilm ? "light" : "dark"}
+            priority
+            className="h-9 w-auto md:h-10"
+            sizes="80px"
+          />
         </Link>
 
         {/* gap-6 at lg, gap-9 from xl. The wider gutter is right on a 1440px
