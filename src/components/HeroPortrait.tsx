@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import type { CSSProperties } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { heroMedia } from "@/lib/media";
 import { displayItem } from "@/lib/ui";
@@ -159,7 +160,7 @@ export function HeroPortrait({
           It clears with the rest of the furniture as the plate takes over. */}
       <motion.span
         aria-hidden
-        style={{ "--recede": recede } as React.CSSProperties}
+        style={{ "--recede": recede } as CSSProperties}
         className="signature pointer-events-none absolute -inset-x-[22%] -top-[14%] bottom-[-8%] -z-20 opacity-[var(--recede)] bg-[radial-gradient(52%_46%_at_50%_42%,color-mix(in_srgb,var(--aura-bronze)_16%,transparent),transparent_70%)]"
       />
 
@@ -185,7 +186,7 @@ export function HeroPortrait({
         >
           <motion.span
             aria-hidden
-            style={{ "--recede": recede, y: matY } as React.CSSProperties}
+            style={{ "--recede": recede, y: matY } as CSSProperties}
             className="signature block h-full w-full opacity-[var(--recede)]"
           />
         </motion.span>
@@ -229,7 +230,7 @@ export function HeroPortrait({
 
       {name ? (
         <motion.div
-          style={{ "--recede": recede, y: creditY } as React.CSSProperties}
+          style={{ "--recede": recede, y: creditY } as CSSProperties}
           className="signature mt-5 text-center opacity-[var(--recede)] md:mt-6"
         >
           <MaskReveal onMount play={ready} delay={heroBeat.name} duration={dur.base}>
