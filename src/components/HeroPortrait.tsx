@@ -156,7 +156,7 @@ export function HeroPortrait({
           It clears with the rest of the furniture as the plate takes over. */}
       <motion.span
         aria-hidden
-        style={{ opacity: furniture }}
+        style={{ opacity: glowOpacity }}
         className="signature pointer-events-none absolute -inset-x-[22%] -top-[14%] bottom-[-8%] -z-20 bg-[radial-gradient(52%_46%_at_50%_42%,color-mix(in_srgb,var(--aura-bronze)_16%,transparent),transparent_70%)]"
       />
 
@@ -182,7 +182,7 @@ export function HeroPortrait({
         >
           <motion.span
             aria-hidden
-            style={{ opacity: furniture, y: furnitureY }}
+            style={{ opacity: matOpacity, y: matY }}
             className="signature block h-full w-full"
           />
         </motion.span>
@@ -226,7 +226,7 @@ export function HeroPortrait({
 
       {name ? (
         <motion.div
-          style={{ opacity: furniture, y: furnitureY }}
+          style={{ opacity: creditOpacity, y: creditY }}
           className="signature mt-5 text-center md:mt-6"
         >
           <MaskReveal onMount play={ready} delay={heroBeat.name} duration={dur.base}>
