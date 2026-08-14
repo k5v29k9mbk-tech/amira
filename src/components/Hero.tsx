@@ -45,22 +45,29 @@ export async function Hero() {
   const inst = await getTranslations("instructor");
 
   return (
-    <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-ivory pt-[68px] pb-16 md:pt-[76px] md:pb-20">
-      {/* Ground. Two layers, no more: a soft beige wash across the upper field
-          and one warm pool behind the arch, so the ivory has depth rather than
-          reading as flat paper. Decorative, never behind text at strength.
-          A third wash used to sit low on the inline start, under the statement
-          and the action. Three tints and two outline circles is the vocabulary
-          of a template, not of a composition, and the one of the three that was
-          behind type was the one that could not be strengthened anyway. */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[70%] bg-[linear-gradient(to_bottom,var(--aura-paper),transparent)]"
-      />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute -end-[12%] top-[8%] -z-10 aspect-square w-[52%] rounded-full bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--aura-bronze)_9%,transparent),transparent)]"
-      />
+    <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-night text-ivory pt-[68px] pb-16 md:pt-[76px] md:pb-20">
+      {/* Ground. The academy's own film, full bleed, and the two layers that
+          make type legible over it.
+
+          It replaces two ivory washes: a beige gradient across the upper field
+          and a warm pool behind the arch. Both were there to give flat paper
+          some depth, and both were painting over the footage the moment the
+          ground stopped being paper.
+
+          The scrim is deliberately two layers rather than one. `overlay` on the
+          media is a flat 52% of night across the whole frame, which is what
+          holds the statement and the figures; the gradient over it is weighted
+          to the two edges, where the fixed header sits above and the scroll cue
+          and the primary action sit below. A single flat scrim strong enough for
+          the edges would have taken the film with it, and the film is the point.
+
+          `bg-night` on the section is the floor under all of it, so the first
+          paint, a blocked autoplay and a reduced-motion visit are all a dark
+          composition rather than a flash of white. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <MediaFrame media={heroFilmMedia} priority sizes="100vw" />
+        <span className="absolute inset-0 bg-[linear-gradient(to_bottom,color-mix(in_srgb,var(--aura-black)_70%,transparent),transparent_26%,transparent_54%,color-mix(in_srgb,var(--aura-black)_75%,transparent))]" />
+      </div>
 
       <div
         className={`${shell} grid w-full items-end gap-10 py-8 sm:gap-12 md:py-10 lg:grid-cols-12 lg:gap-10 lg:py-0`}
@@ -84,7 +91,7 @@ export async function Hero() {
           {/* Three facts, one line: the academy, what it does, where. Wraps
               to two lines on a phone, so it carries its own leading. */}
           <MaskReveal onMount delay={heroBeat.bar} duration={dur.base}>
-            <p className="label leading-[1.8] text-bronze-ink">{t("eyebrow")}</p>
+            <p className="label leading-[1.8] text-bronze-hi">{t("eyebrow")}</p>
           </MaskReveal>
 
           {/* The measure is lifted below sm. 15ch of Cormorant at the floor
@@ -115,7 +122,7 @@ export async function Hero() {
           </h1>
 
           <HeroBeat delay={heroBeat.sub}>
-            <p className="mt-6 max-w-[46ch] text-[16px] leading-relaxed text-mute sm:text-[17px] md:mt-8 md:text-[19px]">
+            <p className="mt-6 max-w-[46ch] text-[16px] leading-relaxed text-ivory/85 sm:text-[17px] md:mt-8 md:text-[19px]">
               {t("sub")}
             </p>
           </HeroBeat>
