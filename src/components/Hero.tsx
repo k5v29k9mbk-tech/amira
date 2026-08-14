@@ -204,6 +204,7 @@ export async function Hero() {
             alt={inst("portrait")}
             name={inst("title")}
             role={t("founderRole")}
+            tone="light"
           />
         </div>
       </div>

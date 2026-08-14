@@ -14,11 +14,22 @@ import { dur, ease, stagger } from "@/lib/motion";
 /**
  * Header.
  *
- * Over the homepage hero it is type on the ivory field and nothing else: no
- * bar, no pill, no blur. It takes a ground and a hairline only once the hero is
- * behind the visitor. The type stays espresso throughout, because the hero is
- * a light composition rather than a dark photograph, so nothing has to change
- * colour mid-transition. Every other route starts solid.
+ * Over the homepage hero it is type on the film and nothing else: no bar, no
+ * pill, no blur. It takes a ground and a hairline only once the hero is behind
+ * the visitor. Every other route starts solid.
+ *
+ * The type does change colour, and it has to. The hero is now the academy's own
+ * footage under a scrim rather than an ivory field, and espresso type on it is
+ * not dim, it is gone. So the bar is set light while it is over the film and
+ * espresso once it has a ground, and the two states cross-fade on the same
+ * 500ms house curve as the ground itself, which is what keeps it one movement
+ * rather than a bar that repaints. Everything in it turns together: the
+ * monogram, the navigation, the WhatsApp mark, the language control and the
+ * booking action, each through the tone its own component already had.
+ *
+ * The scrim is weighted at the top of the hero for exactly this, so the light
+ * state is legible over the brightest frame of the film rather than only over
+ * the average one.
  *
  * The phone menu is a full-screen ivory field with the navigation set at
  * display size, not a drawer.
