@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { Faq } from "@/components/Faq";
-import { displaySection, linkRule, shell } from "@/lib/ui";
+import { arrow, displaySection, linkRule, shell } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
 import { JsonLd, faqSchema } from "@/lib/seo";
 
@@ -70,7 +70,7 @@ export default async function FaqPage({
             </p>
             <Link href="/contact" className={`${linkRule} mt-8`}>
               {t("hero.secondary")}
-              <ArrowRight size={14} weight="light" className="flip-x" />
+              <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
             </Link>
           </div>
 
@@ -83,7 +83,7 @@ export default async function FaqPage({
                 of the page long before anyone gets there. */}
             <Link href="/contact" className={`${linkRule} mt-12`}>
               {t("hero.secondary")}
-              <ArrowRight size={14} weight="light" className="flip-x" />
+              <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
             </Link>
           </div>
         </div>

@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/Logo";
-import { btnSolid, displaySection, eyebrow, linkRule, shell } from "@/lib/ui";
+import { arrow, btnSolid, displaySection, eyebrow, linkRule, shell } from "@/lib/ui";
 
 /**
  * The page a broken link lands on.
@@ -41,7 +41,7 @@ export default async function NotFound() {
           </Link>
           <Link href="/courses" className={linkRule}>
             {t("hero.primary")}
-            <ArrowRight size={14} weight="light" className="flip-x" />
+            <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
           </Link>
         </div>
       </div>

@@ -10,6 +10,7 @@ import { Parallax } from "@/components/Parallax";
 import { Reveal } from "@/components/Reveal";
 import { Stagger, StaggerItem } from "@/components/Stagger";
 import {
+  arrow,
   btnLine,
   btnSolid,
   displayLarge,
@@ -152,7 +153,7 @@ export default async function CoursesPage({
                 </p>
                 <Link href="/contact" className={`${linkRule} mt-6`}>
                   {t("catalog.cta")}
-                  <ArrowRight size={14} weight="light" className="flip-x" />
+                  <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
                 </Link>
               </div>
             </Reveal>

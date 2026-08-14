@@ -115,8 +115,22 @@ export const pageHeader = "pt-[7.5rem] pb-16 md:pt-40 md:pb-24";
 export const eyebrow = "label text-bronze-ink";
 export const eyebrowLight = "label text-bronze-hi";
 
+/**
+ * Micro-interaction contract for the two action shapes below.
+ *
+ * `group/btn` and `group/link` are named groups, not bare `group`, and that is
+ * load-bearing rather than tidy: several of these sit inside a card or a row that
+ * is itself a `group` (the course rows, the gallery frames), and an unnamed group
+ * would let a hover anywhere on the parent drive the arrow inside the button. The
+ * name scopes the hover to the control the pointer is actually on.
+ *
+ * An arrow inside either shape moves on hover, 4px along the inline axis, by
+ * carrying `arrow` on the icon. It is `translate-x` under a logical selector
+ * rather than `translate-x` alone, because in Arabic the arrow is mirrored by
+ * `flip-x` and an unmirrored nudge would send it backwards into the label.
+ */
 const btnBase =
-  "label inline-flex items-center justify-center gap-3 whitespace-nowrap px-10 py-4 transition-colors duration-500 ease-[var(--ease-aura)] active:translate-y-px disabled:opacity-50";
+  "label group/btn inline-flex items-center justify-center gap-3 whitespace-nowrap px-10 py-4 transition-colors duration-500 ease-[var(--ease-aura)] active:translate-y-px disabled:opacity-50";
 
 /** Primary action on a light ground. */
 export const btnSolid = `${btnBase} bg-espresso text-ivory hover:bg-bronze-ink`;
@@ -133,12 +147,33 @@ export const btnLineLight = `${btnBase} border border-white/30 text-ivory hover:
 /**
  * Text link with a rule that draws in from the inline start. It is the only
  * hover decoration on the site, so it looks the same everywhere it appears.
+ *
+ * The rule draws over 500ms on the house curve and the arrow beside it moves 4px
+ * on 300ms, deliberately out of step: the shorter travel finishing first is what
+ * makes the pair read as one gesture with a follow-through rather than as two
+ * properties transitioning together.
  */
 export const linkRule =
   "label group/link relative inline-flex items-center gap-3 py-1 text-espresso transition-colors duration-300 hover:text-bronze-ink after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-[left] after:scale-x-0 after:bg-bronze after:transition-transform after:duration-500 after:ease-[var(--ease-aura)] hover:after:scale-x-100 rtl:after:origin-[right]";
 
 export const linkRuleLight =
   "label group/link relative inline-flex items-center gap-3 py-1 text-ivory transition-colors duration-300 hover:text-bronze-hi after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-[left] after:scale-x-0 after:bg-bronze-hi after:transition-transform after:duration-500 after:ease-[var(--ease-aura)] hover:after:scale-x-100 rtl:after:origin-[right]";
+
+/**
+ * The arrow inside a `linkRule`, a button or a course row.
+ *
+ * One class on the icon, and it is the site's smallest and most repeated piece of
+ * motion: 4px along the inline axis when the control it belongs to is hovered or
+ * holds focus. Focus is included on purpose, so a keyboard reaches the same
+ * affordance a pointer does.
+ *
+ * `rtl:group-hover/*:-translate-x-1` is the mirror. The glyph is already flipped
+ * in Arabic by `flip-x`, so a positive nudge would drive it back into the label it
+ * points away from. Three group names are covered because an arrow appears inside
+ * all three shapes and Tailwind cannot resolve a group name at runtime.
+ */
+export const arrow =
+  "transition-transform duration-300 ease-[var(--ease-aura)] group-hover/link:translate-x-1 group-focus-visible/link:translate-x-1 group-hover/btn:translate-x-1 group-hover/row:translate-x-1 rtl:group-hover/link:-translate-x-1 rtl:group-focus-visible/link:-translate-x-1 rtl:group-hover/btn:-translate-x-1 rtl:group-hover/row:-translate-x-1";
 
 export const field =
   "w-full rounded-[2px] border border-hair bg-transparent px-4 py-3.5 text-[15px] text-espresso placeholder:text-mute focus:border-espresso focus:outline-none";

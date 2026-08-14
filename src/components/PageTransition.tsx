@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import type { ReactNode } from "react";
+import { dur, ease } from "@/lib/motion";
 
 /**
  * Cross-page fade. Mounted from template.tsx, which Next remounts on every
@@ -21,7 +22,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: dur.quick, ease: ease.soft }}
     >
       {children}
     </motion.div>

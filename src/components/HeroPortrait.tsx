@@ -7,7 +7,7 @@ import { displayItem } from "@/lib/ui";
 import { dur, ease, heroBeat, imageScale } from "@/lib/motion";
 import { useIntroReady } from "@/lib/use-intro-ready";
 import { MediaFrame } from "./MediaFrame";
-import { MaskReveal } from "./MaskReveal";
+import { FrameMask, MaskReveal } from "./MaskReveal";
 
 /**
  * The hero portrait, and the site's signature moment.
@@ -173,13 +173,11 @@ export function HeroPortrait({
         >
           {/* The entrance aperture. Opens over the arch's own height while the
               photograph holds still inside it. */}
-          <MaskReveal
-            fill
+          <FrameMask
             onMount
             play={ready}
             delay={heroBeat.portrait}
             duration={dur.plate}
-            pad="0px"
           >
             <motion.div
               style={{ scale: mediaScale }}
@@ -194,7 +192,7 @@ export function HeroPortrait({
                 />
               </motion.div>
             </motion.div>
-          </MaskReveal>
+          </FrameMask>
 
           {/* Light falling from the crown of the arch, as in the room. */}
           <span

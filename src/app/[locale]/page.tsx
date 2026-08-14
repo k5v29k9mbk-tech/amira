@@ -5,6 +5,7 @@ import { altLanguages } from "@/i18n/routing";
 import { closingMedia, founderMedia } from "@/lib/media";
 import { whatsappLinkWith } from "@/lib/studio";
 import {
+  arrow,
   btnLineLight,
   btnSolidLight,
   displayLarge,
@@ -15,6 +16,7 @@ import {
   sectionPadBottom,
   shell,
 } from "@/lib/ui";
+import { stagger } from "@/lib/motion";
 import { JsonLd, faqSchema } from "@/lib/seo";
 import { Hero } from "@/components/Hero";
 import { Manifesto } from "@/components/Manifesto";
@@ -26,6 +28,7 @@ import { Testimonial } from "@/components/Testimonial";
 import { Faq } from "@/components/Faq";
 import { MediaFrame } from "@/components/MediaFrame";
 import { Parallax } from "@/components/Parallax";
+import { MaskReveal } from "@/components/MaskReveal";
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
 
@@ -224,10 +227,14 @@ export default async function Home({
               again and the later element is on top. Any element that has to cover
               a Parallax needs this. */}
           <Reveal className="lg:relative lg:z-10 lg:col-span-5 lg:-ms-20 lg:bg-ivory lg:py-16 lg:ps-16">
-            <SectionLabel n={1}>{t("sections.amira")}</SectionLabel>
-            <h2 className={`${displaySection} mt-8 max-w-[12ch]`}>
-              {t("instructor.headline")}
-            </h2>
+            <MaskReveal>
+              <SectionLabel n={1}>{t("sections.amira")}</SectionLabel>
+            </MaskReveal>
+            <MaskReveal delay={stagger.base} className="mt-8">
+              <h2 className={`${displaySection} max-w-[12ch]`}>
+                {t("instructor.headline")}
+              </h2>
+            </MaskReveal>
             <p className="mt-10 text-[17px] text-espresso">{t("instructor.title")}</p>
             <p className="mt-2 text-[15px] text-mute">{t("instructor.role")}</p>
 
@@ -255,7 +262,7 @@ export default async function Home({
             </p>
             <Link href="/about" className={`${linkRule} mt-12`}>
               {t("about.readStory")}
-              <ArrowRight size={14} weight="light" className="flip-x" />
+              <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
             </Link>
           </Reveal>
         </div>
@@ -274,10 +281,14 @@ export default async function Home({
               in three sections. On the h2 the same 20ch is 20 characters of
               Cormorant at display size, which is what was meant. Every other act
               on this page already measures its heading this way. */}
-          <Reveal className="pb-8 lg:pb-4">
-            <SectionLabel n={2}>{t("sections.method")}</SectionLabel>
-            <h2 className={`${displaySection} mt-8 max-w-[20ch]`}>{t("method.title")}</h2>
-          </Reveal>
+          <div className="pb-8 lg:pb-4">
+            <MaskReveal>
+              <SectionLabel n={2}>{t("sections.method")}</SectionLabel>
+            </MaskReveal>
+            <MaskReveal delay={stagger.base} className="mt-8">
+              <h2 className={`${displaySection} max-w-[20ch]`}>{t("method.title")}</h2>
+            </MaskReveal>
+          </div>
           <MethodStory />
         </div>
       </section>
@@ -319,15 +330,21 @@ export default async function Home({
           which is the register the photographs below are in. */}
       <section id="work" className={`${sectionPadBottom} scroll-mt-20 bg-paper`}>
         <div className={shell}>
-          <Reveal className="grid gap-8 pb-12 md:pb-16 lg:grid-cols-12 lg:items-end lg:gap-10">
+          <div className="grid gap-8 pb-12 md:pb-16 lg:grid-cols-12 lg:items-end lg:gap-10">
             <div className="lg:col-span-6">
-              <SectionLabel n={3}>{t("sections.work")}</SectionLabel>
-              <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("work.title")}</h2>
+              <MaskReveal>
+                <SectionLabel n={3}>{t("sections.work")}</SectionLabel>
+              </MaskReveal>
+              <MaskReveal delay={stagger.base} className="mt-8">
+                <h2 className={`${displaySection} max-w-[14ch]`}>{t("work.title")}</h2>
+              </MaskReveal>
             </div>
-            <p className="max-w-[48ch] text-[17px] leading-relaxed text-mute lg:col-span-5 lg:col-start-8 lg:pb-3">
-              {t("work.sub")}
-            </p>
-          </Reveal>
+            <Reveal delay={stagger.line} className="lg:col-span-5 lg:col-start-8 lg:pb-3">
+              <p className="max-w-[48ch] text-[17px] leading-relaxed text-mute">
+                {t("work.sub")}
+              </p>
+            </Reveal>
+          </div>
           <WorkGallery />
         </div>
       </section>
@@ -345,10 +362,14 @@ export default async function Home({
           to where the eye already is. */}
       <section id="gallery" className={`${sectionPad} scroll-mt-20 bg-ivory`}>
         <div className={shell}>
-          <Reveal className="pb-12 md:pb-16">
-            <SectionLabel n={4}>{t("sections.inside")}</SectionLabel>
-            <h2 className={`${displaySection} mt-8 max-w-[14ch]`}>{t("students.title")}</h2>
-          </Reveal>
+          <div className="pb-12 md:pb-16">
+            <MaskReveal>
+              <SectionLabel n={4}>{t("sections.inside")}</SectionLabel>
+            </MaskReveal>
+            <MaskReveal delay={stagger.base} className="mt-8">
+              <h2 className={`${displaySection} max-w-[14ch]`}>{t("students.title")}</h2>
+            </MaskReveal>
+          </div>
           <FrameGallery />
         </div>
       </section>
@@ -364,12 +385,14 @@ export default async function Home({
           outside the shell; only the heading keeps the page gutter. */}
       <section id="courses" className={`${sectionPadBottom} scroll-mt-20 bg-ivory`}>
         <div className={`${shell} pb-12 md:pb-16`}>
-          <Reveal>
+          <MaskReveal>
             <SectionLabel n={5}>{t("sections.courses")}</SectionLabel>
-            <h2 className={`${displaySection} mt-8 max-w-[16ch]`}>
+          </MaskReveal>
+          <MaskReveal delay={stagger.base} className="mt-8">
+            <h2 className={`${displaySection} max-w-[16ch]`}>
               {t("catalog.selectorTitle")}
             </h2>
-          </Reveal>
+          </MaskReveal>
         </div>
         <CourseSelector />
       </section>
@@ -383,14 +406,16 @@ export default async function Home({
       <section id="why" className={`${sectionPad} scroll-mt-20 bg-night text-ivory`}>
         <div className={shell}>
           {/* Measure on the heading. See the note in the method section. */}
-          <Reveal>
+          <MaskReveal>
             <SectionLabel n={6} tone="light">
               {t("about.different.eyebrow")}
             </SectionLabel>
-            <h2 className={`${displaySection} mt-8 max-w-[22ch]`}>
+          </MaskReveal>
+          <MaskReveal delay={stagger.base} className="mt-8">
+            <h2 className={`${displaySection} max-w-[22ch]`}>
               {t("about.different.title")}
             </h2>
-          </Reveal>
+          </MaskReveal>
 
           <Reveal delay={0.06}>
             <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-mute-dark">
@@ -435,10 +460,12 @@ export default async function Home({
       <section id="booking" className={`${sectionPad} scroll-mt-20 bg-paper`}>
         <div className={shell}>
           {/* Measure on the heading. See the note in the method section. */}
-          <Reveal>
+          <MaskReveal>
             <SectionLabel n={7}>{t("journey.eyebrow")}</SectionLabel>
-            <h2 className={`${displaySection} mt-8 max-w-[22ch]`}>{t("journey.title")}</h2>
-          </Reveal>
+          </MaskReveal>
+          <MaskReveal delay={stagger.base} className="mt-8">
+            <h2 className={`${displaySection} max-w-[22ch]`}>{t("journey.title")}</h2>
+          </MaskReveal>
 
           <Reveal delay={0.06}>
             <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-mute">
@@ -485,15 +512,19 @@ export default async function Home({
           word the header already uses for it, in all four languages. */}
       <section id="faq" className={`${sectionPadBottom} scroll-mt-20 bg-paper`}>
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
-          <Reveal className="lg:col-span-4">
-            <SectionLabel n={8}>{t("nav.faq")}</SectionLabel>
-            <h2 className={`${displaySection} mt-8 max-w-[10ch]`}>{t("faq.title")}</h2>
-          </Reveal>
+          <div className="lg:col-span-4">
+            <MaskReveal>
+              <SectionLabel n={8}>{t("nav.faq")}</SectionLabel>
+            </MaskReveal>
+            <MaskReveal delay={stagger.base} className="mt-8">
+              <h2 className={`${displaySection} max-w-[10ch]`}>{t("faq.title")}</h2>
+            </MaskReveal>
+          </div>
           <div className="lg:col-span-7 lg:col-start-6">
             <Faq items={homeFaq} />
             <Link href="/faq" className={`${linkRule} mt-10`}>
               {t("faq.viewAll")}
-              <ArrowRight size={14} weight="light" className="flip-x" />
+              <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
             </Link>
           </div>
 
@@ -532,9 +563,11 @@ export default async function Home({
         />
         <div className={`${shell} relative pb-20 text-ivory md:pb-28`}>
           <Reveal>
-            <h2 className={`${displaySection} max-w-[18ch] text-balance`}>
-              {t("closing.title")}
-            </h2>
+            <MaskReveal>
+              <h2 className={`${displaySection} max-w-[18ch] text-balance`}>
+                {t("closing.title")}
+              </h2>
+            </MaskReveal>
             <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-ivory/80">
               {t("closing.sub")}
             </p>

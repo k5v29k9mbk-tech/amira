@@ -116,9 +116,12 @@ export const imageScale = {
  * appearing is the interval between beats, and that is impossible to tune when
  * the numbers live in eight components.
  *
- * The whole reveal lands inside 1.8s: the last beat starts at 1.16 and takes
- * `base`, so the figures have settled by 1.86 with the headline legible from
- * about 0.9. Nothing here waits on anything below the fold.
+ * The whole reveal lands inside 1.8s, which is the budget and is met by measuring
+ * from the last thing to finish rather than the last thing to start. The portrait's
+ * aperture is the longest single move on the screen and closes at 1.72
+ * (0.12 + `plate`); the headline's second line closes at 1.79; the figures, which
+ * are deliberately last, close at 1.75. Nothing here waits on anything below the
+ * fold, and the headline is legible from about 0.9.
  *
  * `intro` is added to all of these by the components when the opening film has
  * played, so the sequence starts after the overlay rather than behind it.
@@ -130,8 +133,8 @@ export const heroBeat = {
   name: 0.44,
   role: 0.56,
   headline: 0.68,
-  sub: 1.0,
-  facts: 1.16,
+  sub: 0.94,
+  facts: 1.05,
 } as const;
 
 /** Shared variant: a block fading up into place. */

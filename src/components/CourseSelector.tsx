@@ -5,8 +5,10 @@ import { useTranslations } from "next-intl";
 import { ArrowRight } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 import { courses } from "@/lib/courses";
-import { chapterSize, displayChapter, shell } from "@/lib/ui";
+import { arrow, chapterSize, displayChapter, shell } from "@/lib/ui";
+import { stagger } from "@/lib/motion";
 import { MediaFrame } from "./MediaFrame";
+import { Reveal } from "./Reveal";
 
 /**
  * The catalogue, in two layouts, because the expanding panel is a pointer idea.
@@ -72,10 +74,20 @@ export function CourseSelector() {
           const flip = i % 2 === 1;
 
           return (
-          <li key={course.slug} className="border-b border-hair last:border-b-0">
+          /* The rows arrive in sequence. `stagger.tight` is 50ms, which over six
+             rows is 300ms end to end: enough that the catalogue reads as being
+             dealt out rather than switched on, short enough that the sixth row is
+             never waiting on the first. Any longer and a reader scrolling at speed
+             arrives at a row that has not appeared yet. */
+          <Reveal
+            as="li"
+            key={course.slug}
+            delay={i * stagger.tight}
+            className="border-b border-hair last:border-b-0"
+          >
             <Link
               href={`/courses#${course.slug}`}
-              className="group grid gap-5 py-8 sm:grid-cols-12 sm:items-center sm:gap-8"
+              className="group group/row grid gap-5 py-8 sm:grid-cols-12 sm:items-center sm:gap-8"
             >
               {/* Landscape on a phone, portrait once the row splits in two:
                   six stacked 4:5 frames would make the catalogue a very long
@@ -120,11 +132,11 @@ export function CourseSelector() {
                 <p className="label mt-5 text-mute">{t("details.level.value")}</p>
                 <span className="label mt-6 inline-flex items-center gap-3 text-espresso transition-colors duration-300 group-hover:text-bronze-ink">
                   {t("viewCourse")}
-                  <ArrowRight size={13} weight="light" className="flip-x" />
+                  <ArrowRight size={13} weight="light" className={`flip-x ${arrow}`} />
                 </span>
               </div>
             </Link>
-          </li>
+          </Reveal>
           );
         })}
       </ul>
@@ -262,7 +274,7 @@ export function CourseSelector() {
                       }`}
                     >
                       {t("viewCourse")}
-                      <ArrowRight size={13} weight="light" className="flip-x" />
+                      <ArrowRight size={13} weight="light" className={`flip-x ${arrow}`} />
                     </Link>
                   </div>
                 </div>

@@ -9,6 +9,7 @@ import { LocaleSwitcher } from "./LocaleSwitcher";
 import { Logo } from "./Logo";
 import { brand, whatsappLinkWith } from "@/lib/studio";
 import { btnSolid, shell } from "@/lib/ui";
+import { dur, ease, stagger } from "@/lib/motion";
 
 /**
  * Header.
@@ -184,7 +185,7 @@ export function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: dur.quick, ease: ease.aura }}
             className="fixed inset-0 z-50 bg-ivory text-espresso lg:hidden"
           >
             <div className={`${shell} flex h-[68px] items-center justify-between`}>
@@ -220,9 +221,9 @@ export function Header() {
                     initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
-                      duration: 0.6,
-                      delay: 0.08 + i * 0.05,
-                      ease: [0.22, 1, 0.36, 1],
+                      duration: dur.base,
+                      delay: stagger.base + i * stagger.tight,
+                      ease: ease.aura,
                     }}
                   >
                     <Link
@@ -242,9 +243,9 @@ export function Header() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.6,
-                    delay: 0.08 + menuLinks.length * 0.05,
-                    ease: [0.22, 1, 0.36, 1],
+                    duration: dur.base,
+                    delay: stagger.base + menuLinks.length * stagger.tight,
+                    ease: ease.aura,
                   }}
                   className="mt-8 border-t border-hair pt-8"
                 >

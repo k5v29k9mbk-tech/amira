@@ -1,9 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
-import { btnSolid, displayHero, linkRule, shell } from "@/lib/ui";
+import { arrow, btnSolid, displayHero, linkRule, shell } from "@/lib/ui";
+import { dur, heroBeat, stagger } from "@/lib/motion";
 import { HeroPortrait } from "./HeroPortrait";
-import { Stagger, StaggerItem } from "./Stagger";
+import { HeroBeat, HeroCopy } from "./HeroChoreography";
+import { MaskReveal } from "./MaskReveal";
 
 /**
  * The three marks the academy can prove, in the order a visitor weighs them:
@@ -76,7 +78,7 @@ export async function Hero() {
             expensive-looking and used four times on the first screen it stops
             being an event, so it is spent on the three pieces of type that carry
             the argument and withheld from the two that support them. */}
-        <HeroCopy>
+        <HeroCopy className="order-2 max-w-[42rem] lg:order-1 lg:col-span-6 lg:pb-2">
           {/* Three facts, one line: the academy, what it does, where. Wraps
               to two lines on a phone, so it carries its own leading. */}
           <MaskReveal onMount delay={heroBeat.bar} duration={dur.base}>
@@ -98,13 +100,13 @@ export async function Hero() {
               `stagger.line` behind the first, which is what makes the headline
               read as typesetting rather than as a block arriving. */}
           <h1 className={`${displayHero} mt-6 max-w-[19ch] text-balance sm:max-w-[15ch] md:mt-8`}>
-            <MaskReveal onMount delay={heroBeat.headline} duration={dur.frame}>
+            <MaskReveal onMount delay={heroBeat.headline} duration={dur.slow}>
               <span className="block">{t("titleA")}</span>
             </MaskReveal>
             <MaskReveal
               onMount
               delay={heroBeat.headline + stagger.line}
-              duration={dur.frame}
+              duration={dur.slow}
             >
               <span className="block">{t("titleB")}</span>
             </MaskReveal>
@@ -174,7 +176,7 @@ export async function Hero() {
               </Link>
               <Link href="/contact" className={linkRule}>
                 {t("secondary")}
-                <ArrowRight size={14} weight="light" className="flip-x" />
+                <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
               </Link>
             </div>
           </HeroBeat>

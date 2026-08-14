@@ -3,42 +3,41 @@
 import { motion } from "motion/react";
 import type { ReactNode } from "react";
 import { dist, dur, ease } from "@/lib/motion";
+import { useHeroReady } from "./HeroChoreography";
 
 /**
- * An aperture opening, which is the one motion primitive the rest of this pass is
- * built from.
+ * A line of type rising into a fixed slot: the site's text reveal.
  *
- * Two elements move in opposite directions by the same amount. The outer element
- * clips, and slides up from fully covering its own height; the inner element
- * slides down by exactly as much. The sum is zero, so the content never travels:
- * what a reader sees is a slot opening over stationary type or a stationary
- * photograph. That is the difference between an editorial reveal and a panel
- * sliding in, and it is why this is not a fade.
+ * The slot is a static box with `overflow: hidden`; the content starts below it
+ * and translates up into place. One moving element, one property, and the reason
+ * it is that simple is worth recording, because the first attempt at this was
+ * cleverer and silently did nothing.
  *
- * WHY NOT clip-path. A clip-path wipe is the obvious way to build this and it is
- * the wrong one here for a specific reason: `clipPath` is not a positional value
- * in Motion's reduced-motion set, so it would keep wiping for a visitor who has
- * asked for no movement, and would need its own CSS override to switch off. Two
- * translates are transforms, so MotionProvider's `reducedMotion="user"` already
- * makes them instant and the content is simply present. No new CSS, no branch on
- * the preference, nothing to keep in sync. See the note in lib/motion.ts.
+ * WHAT NOT TO DO. The richer version of this effect keeps the content stationary
+ * and moves the aperture over it: an element translating down while its child
+ * translates up by the same amount, so the sums cancel and what the reader sees is
+ * a slot growing rather than type travelling. That is the `FrameMask` construction
+ * below, and it only works if the *moving* element is the one that clips. Put the
+ * `overflow: hidden` on a static parent instead and the two translates still
+ * cancel, so the content sits exactly where it always was, inside a clip box that
+ * never excluded it: no reveal, no error, nothing in the console, and type that is
+ * simply present from the first frame. It measured as animating the whole time,
+ * because it was, in equal and opposite directions.
  *
- * `overflow: hidden` on type clips descenders, which is why the outer element
- * carries vertical padding and pulls it straight back off with a negative margin.
- * Without it the tail of a "g" or a "y" is shaved for the length of the animation
- * and, on a heading whose last line ends in one, permanently. The pad is in em so
- * it tracks the type size rather than being a fixed guess at one. A frame passes
- * `pad="0px"`, because a photograph has no descenders and the box has to stay
- * exactly the size the layout reserved for it.
+ * DESCENDERS. `overflow: hidden` on a line of type shaves the tail of a "g" or a
+ * "y", and permanently, not just while the animation runs. The slot carries
+ * vertical padding so the clip box is taller than the glyphs and pulls the same
+ * amount back off as negative margin so the layout is unchanged. The travel is
+ * then 130% rather than 100%, because 100% of the content's own height leaves it
+ * still overlapping the padding at the bottom of the slot, which shows as a sliver
+ * of the tops of the letters before the reveal starts.
  *
- * Both levels carry their own `initial` and target rather than relying on
- * Motion's parent-to-child variant propagation. Propagation would work, and it
- * would also mean the inner element's server-rendered markup depended on the
- * parent resolving first; stating both is one line longer and has no such
- * ordering.
- *
- * `once` is on for the scroll form: a reveal that replays every time a section
- * re-enters the viewport stops being a reveal and becomes a loop.
+ * REDUCED MOTION. `y` is a transform, so `reducedMotion="user"` in MotionProvider
+ * already gives it an instant transition and a reader who has asked for no
+ * movement simply finds the type in place. This is why the reveal is not built
+ * from `clip-path`: clip-path is not in Motion's positional set, so it would keep
+ * animating for that reader and would need its own CSS override. The full
+ * reasoning is in lib/motion.ts.
  */
 export function MaskReveal({
   children,
@@ -47,12 +46,14 @@ export function MaskReveal({
   className = "",
   pad = "0.14em",
   amount = 0.4,
-  /** Fill the parent, for a frame rather than a line of type. */
-  fill = false,
   /** Play on mount instead of on scroll, for above-the-fold choreography. */
   onMount = false,
-  /** Held false while something upstream (the opening film) owns the screen. */
-  play = true,
+  /**
+   * Held false while something upstream owns the screen. Left undefined it reads
+   * the hero's cue, which is `true` everywhere outside the first screen, so a
+   * scroll reveal elsewhere on the site is unaffected.
+   */
+  play,
 }: {
   children: ReactNode;
   delay?: number;
@@ -60,83 +61,100 @@ export function MaskReveal({
   className?: string;
   pad?: string;
   amount?: number;
-  fill?: boolean;
   onMount?: boolean;
   play?: boolean;
 }) {
-  const transition = { duration, delay, ease: ease.aura };
-  const box = fill ? "block h-full w-full" : "block";
+  const cue = useHeroReady();
+  const go = play ?? cue;
+  const hidden = "130%";
 
   const state = onMount
-    ? { animate: play ? { y: "0%" } : { y: "100%" } }
-    : { whileInView: { y: "0%" }, viewport: { once: true, amount } };
-
-  const inner = onMount
-    ? { animate: play ? { y: "0%" } : { y: "-100%" } }
+    ? { animate: go ? { y: "0%" } : { y: hidden } }
     : { whileInView: { y: "0%" }, viewport: { once: true, amount } };
 
   return (
     <span
-      className={`${box} overflow-hidden ${className}`}
+      className={`block overflow-hidden ${className}`}
       style={pad === "0px" ? undefined : { paddingBlock: pad, marginBlock: `-${pad}` }}
     >
       <motion.span
-        className={box}
-        initial={{ y: "100%" }}
-        transition={transition}
+        className="block"
+        initial={{ y: hidden }}
+        transition={{ duration, delay, ease: ease.aura }}
         {...state}
       >
-        <motion.span
-          className={box}
-          initial={{ y: "-100%" }}
-          transition={transition}
-          {...inner}
-        >
-          {children}
-        </motion.span>
+        {children}
       </motion.span>
     </span>
   );
 }
 
 /**
- * The same aperture, for a photograph entering on scroll.
+ * An aperture opening over a stationary photograph.
  *
- * A frame differs from a line of type in three ways and each is a separate
- * decision. It opens over a longer duration, because the eye needs longer on an
- * image than on a sentence and a fast reveal on a large frame reads as a flicker.
- * It carries no descender padding, so the box stays exactly the size the layout
- * reserved and there is no shift at any point. And the photograph resolves out of
- * a six percent overshoot as the aperture opens, which is what stops the two
- * edges reading as one rigid panel sliding past.
+ * This is the construction the type reveal above deliberately does not use, and
+ * here it is worth the extra element. Two boxes move by the same amount in
+ * opposite directions: the aperture translates down out of view and back up, and
+ * the photograph inside translates up and back down. The sums cancel, so the
+ * photograph never travels. What opens is the slot.
+ *
+ * The load-bearing detail, and the one that made the first attempt at this a
+ * no-op: `overflow: hidden` is on the *moving* element, not on the static parent.
+ * The aperture has to be the thing that clips, or the two translates cancel into
+ * a photograph sitting exactly where it started inside a clip box that never
+ * excluded it. The static wrapper clips too, but only to keep the displaced
+ * aperture from spilling into the layout while it is out of frame.
+ *
+ * Neither box carries padding, so both are exactly the height of the frame and
+ * the cancellation is exact. A photograph has no descenders to protect, and the
+ * box has to stay precisely the size the layout reserved so there is no shift at
+ * any point in the reveal.
+ *
+ * The photograph resolves out of a six percent overshoot as the slot opens, which
+ * is what stops the two edges reading as one rigid panel sliding past: held at 1
+ * the effect is a wipe, resolving it is a reveal.
  */
 export function FrameMask({
   children,
   delay = 0,
+  duration = dur.frame,
   className = "",
+  onMount = false,
+  play,
 }: {
   children: ReactNode;
   delay?: number;
+  duration?: number;
   className?: string;
+  /** Play on mount instead of on scroll, for the hero's own plate. */
+  onMount?: boolean;
+  play?: boolean;
 }) {
-  const transition = { duration: dur.frame, delay, ease: ease.aura };
+  const cue = useHeroReady();
+  const go = play ?? cue;
+  const transition = { duration, delay, ease: ease.aura };
   const viewport = { once: true, amount: 0.2 } as const;
+
+  const aperture = onMount
+    ? { animate: go ? { y: "0%" } : { y: "100%" } }
+    : { whileInView: { y: "0%" }, viewport };
+  const content = onMount
+    ? { animate: go ? { y: "0%", scale: 1 } : { y: "-100%", scale: 1.06 } }
+    : { whileInView: { y: "0%", scale: 1 }, viewport };
 
   return (
     <span className={`block h-full w-full overflow-hidden ${className}`}>
       <motion.span
-        className="block h-full w-full"
+        className="block h-full w-full overflow-hidden"
         initial={{ y: "100%" }}
-        whileInView={{ y: "0%" }}
-        viewport={viewport}
         transition={transition}
+        {...aperture}
       >
         <motion.span
           className="block h-full w-full"
           initial={{ y: "-100%", scale: 1.06 }}
-          whileInView={{ y: "0%", scale: 1 }}
-          viewport={viewport}
           transition={transition}
+          {...content}
         >
           {children}
         </motion.span>

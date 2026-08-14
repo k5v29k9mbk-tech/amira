@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { ArrowsOut, X } from "@phosphor-icons/react";
 import { pairFrame, resultFrames } from "@/lib/media";
+import { dur, ease } from "@/lib/motion";
 import { beforeAfterPairs } from "@/lib/studio";
 import { BeforeAfter } from "./BeforeAfter";
 import { FrameReveal } from "./FrameReveal";
@@ -172,7 +173,7 @@ export function WorkGallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: dur.micro, ease: ease.aura }}
             className="no-print fixed inset-0 z-[70] flex items-center justify-center bg-night/95 p-5 md:p-10"
           >
             <button
@@ -190,7 +191,7 @@ export function WorkGallery() {
               initial={{ opacity: 0, scale: 0.985 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.985 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: dur.quick, ease: ease.aura }}
             >
               <Image
                 src={active.posterSrc}
