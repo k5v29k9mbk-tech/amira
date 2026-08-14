@@ -50,6 +50,46 @@ export const introMedia = {
 } as const;
 
 /**
+ * The hero film: the academy's own footage, behind the first screen.
+ *
+ * The file is the one the academy supplied, at the name it supplied it under,
+ * used byte for byte and never re-encoded. The extension is upper case because
+ * that is how the camera wrote it and how the file sits in `public/`; a URL path
+ * is case sensitive in production even where macOS is forgiving locally, so this
+ * string has to match the file exactly rather than tidily.
+ *
+ * The footage is 480x848, shot vertically on a phone in a treatment room lit by
+ * one magenta tube. Two things follow from that and both are deliberate here.
+ * It is dark to begin with, so the scrim over it is 52 rather than the 70 a
+ * daylight clip would need to carry ivory type. And it is 480px wide against a
+ * desktop viewport that is three or four times that, so `cover` is scaling it
+ * up: what survives the scale is the colour and the movement, which is what a
+ * ground is for, and the detail that does not survive is not being asked to
+ * carry anything. Drop a larger master at this path and the frame sharpens with
+ * no change to any component.
+ *
+ * The poster is a frame of the film itself, so the first paint is the same image
+ * the video resolves into, and a visitor who has asked for reduced motion gets
+ * that frame and no video at all.
+ */
+export const heroFilmMedia: Media = {
+  videoSrc: "/06aa8692-35d7-4b5a-8475-4d9504116b39.MP4",
+  posterSrc: "/brand/hero-film-poster.jpg",
+  alt: "",
+  /**
+   * The subject sits low and inline-end in the frame, and the tall crop is what
+   * a wide viewport throws away. Holding at 40% keeps the lit tablet and the
+   * student in shot on a laptop instead of cropping to the empty curtain above
+   * her; phones see almost the whole frame and sit at the centre.
+   */
+  position: "50% 40%",
+  mobilePosition: "50% 50%",
+  overlay: 52,
+  width: 480,
+  height: 848,
+};
+
+/**
  * Homepage hero portrait.
  *
  * The studio frame rather than the salon one: Amira against a seamless beige
