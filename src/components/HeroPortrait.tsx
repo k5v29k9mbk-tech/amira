@@ -114,27 +114,30 @@ export function HeroPortrait({
   const mediaScale = useTransform(exit, [0.2, 1], [1, imageScale.depth]);
 
   /**
-   * The furniture recede, as one derived value per element rather than one value
-   * shared by three.
+   * The furniture recede: the mat, the ambient pool and the credit clearing as the
+   * plate takes over.
    *
-   * This looks like pointless duplication and is not. The three elements first
-   * shared a single `furniture` motion value for opacity, and only one of them
-   * ever received it: the ambient pool kept the opacity React server-rendered and
-   * was never written to again, while the mat and the credit were written the
-   * constant 1 no matter where the scroll was. The giveaway was that `y`, shared
-   * between two of the same elements, updated correctly on both, so the scroll
-   * source and the ranges were provably right. A motion value drives the element
-   * that binds it; handing the same instance to three of them is not a contract
-   * Motion makes, and the failure is silent, which is the worst kind.
+   * The fade travels as a CSS custom property rather than as `style.opacity`, and
+   * that is not a stylistic choice. A scroll-linked `style={{ opacity: value }}` on
+   * a motion component is not applied in this version of Motion: the property is
+   * left at whatever the server rendered and is never written again. It is a
+   * genuinely confusing failure to diagnose, because everything around it works.
+   * On one and the same element, from one and the same scroll value, `y` writes and
+   * updates correctly, and so does `boxShadow`, which is not even a transform. Only
+   * `opacity` is dropped. It was measured three ways before this: the inline style
+   * carried `opacity: 1` beside a correctly interpolated `translateY(-14px)`;
+   * forcing the property by hand moved the computed value, proving nothing was
+   * overriding it with `!important`; and the reduced-motion rule that does carry an
+   * `!important` was confirmed to be inside a media query that was not matching.
    *
-   * Deriving one per element costs three subscriptions to a scroll value that
-   * already exists and removes the question entirely. If a fourth thing ever needs
-   * to recede, give it its own.
+   * A custom property is written reliably, so the value is published as `--recede`
+   * and the class consumes it with `opacity-[var(--recede)]`. Same scroll source,
+   * same interpolation, same single composited property in the end; it simply takes
+   * a route that arrives. If a future Motion version fixes the direct form, this can
+   * go back to `style={{ opacity }}` and the classes come off.
    */
-  const glowOpacity = useTransform(exit, [0.15, 0.6], [1, 0]);
-  const matOpacity = useTransform(exit, [0.15, 0.6], [1, 0]);
+  const recede = useTransform(exit, [0.15, 0.6], [1, 0]);
   const matY = useTransform(exit, [0.15, 0.6], [0, -14]);
-  const creditOpacity = useTransform(exit, [0.15, 0.6], [1, 0]);
   const creditY = useTransform(exit, [0.15, 0.6], [0, -14]);
   const shadow = useTransform(
     exit,
@@ -156,8 +159,8 @@ export function HeroPortrait({
           It clears with the rest of the furniture as the plate takes over. */}
       <motion.span
         aria-hidden
-        style={{ opacity: glowOpacity }}
-        className="signature pointer-events-none absolute -inset-x-[22%] -top-[14%] bottom-[-8%] -z-20 bg-[radial-gradient(52%_46%_at_50%_42%,color-mix(in_srgb,var(--aura-bronze)_16%,transparent),transparent_70%)]"
+        style={{ "--recede": recede } as React.CSSProperties}
+        className="signature pointer-events-none absolute -inset-x-[22%] -top-[14%] bottom-[-8%] -z-20 opacity-[var(--recede)] bg-[radial-gradient(52%_46%_at_50%_42%,color-mix(in_srgb,var(--aura-bronze)_16%,transparent),transparent_70%)]"
       />
 
       <motion.div
@@ -182,8 +185,8 @@ export function HeroPortrait({
         >
           <motion.span
             aria-hidden
-            style={{ opacity: matOpacity, y: matY }}
-            className="signature block h-full w-full"
+            style={{ "--recede": recede, y: matY } as React.CSSProperties}
+            className="signature block h-full w-full opacity-[var(--recede)]"
           />
         </motion.span>
 
@@ -226,8 +229,8 @@ export function HeroPortrait({
 
       {name ? (
         <motion.div
-          style={{ opacity: creditOpacity, y: creditY }}
-          className="signature mt-5 text-center md:mt-6"
+          style={{ "--recede": recede, y: creditY } as React.CSSProperties}
+          className="signature mt-5 text-center opacity-[var(--recede)] md:mt-6"
         >
           <MaskReveal onMount play={ready} delay={heroBeat.name} duration={dur.base}>
             <p className={`${displayItem} leading-none text-espresso`}>{name}</p>
