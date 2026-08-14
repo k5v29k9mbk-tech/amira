@@ -112,8 +112,30 @@ export function HeroPortrait({
   const plateScale = useTransform(exit, [0.2, 1], [1, 1.06]);
   const plateY = useTransform(exit, [0.2, 1], [0, -28]);
   const mediaScale = useTransform(exit, [0.2, 1], [1, imageScale.depth]);
-  const furniture = useTransform(exit, [0.15, 0.6], [1, 0]);
-  const furnitureY = useTransform(exit, [0.15, 0.6], [0, -14]);
+
+  /**
+   * The furniture recede, as one derived value per element rather than one value
+   * shared by three.
+   *
+   * This looks like pointless duplication and is not. The three elements first
+   * shared a single `furniture` motion value for opacity, and only one of them
+   * ever received it: the ambient pool kept the opacity React server-rendered and
+   * was never written to again, while the mat and the credit were written the
+   * constant 1 no matter where the scroll was. The giveaway was that `y`, shared
+   * between two of the same elements, updated correctly on both, so the scroll
+   * source and the ranges were provably right. A motion value drives the element
+   * that binds it; handing the same instance to three of them is not a contract
+   * Motion makes, and the failure is silent, which is the worst kind.
+   *
+   * Deriving one per element costs three subscriptions to a scroll value that
+   * already exists and removes the question entirely. If a fourth thing ever needs
+   * to recede, give it its own.
+   */
+  const glowOpacity = useTransform(exit, [0.15, 0.6], [1, 0]);
+  const matOpacity = useTransform(exit, [0.15, 0.6], [1, 0]);
+  const matY = useTransform(exit, [0.15, 0.6], [0, -14]);
+  const creditOpacity = useTransform(exit, [0.15, 0.6], [1, 0]);
+  const creditY = useTransform(exit, [0.15, 0.6], [0, -14]);
   const shadow = useTransform(
     exit,
     [0.2, 1],
