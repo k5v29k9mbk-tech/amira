@@ -108,14 +108,19 @@ export function MediaFrame({
   }, [src]);
 
   useEffect(() => {
-    if (!src || reduce || !ref.current) return;
+    if (!src || reduce) return;
+    if (eager) {
+      setNear(true);
+      return;
+    }
+    if (!ref.current) return;
     const io = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setNear(true),
       { rootMargin: "300px" },
     );
     io.observe(ref.current);
     return () => io.disconnect();
-  }, [src, reduce]);
+  }, [src, reduce, eager]);
 
   // Pausing the off-panel clips keeps six decoders from running at once.
   useEffect(() => {
