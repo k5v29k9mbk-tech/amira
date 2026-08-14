@@ -77,14 +77,30 @@ export const heroFilmMedia: Media = {
   posterSrc: "/brand/hero-film-poster.jpg",
   alt: "",
   /**
-   * The subject sits low and inline-end in the frame, and the tall crop is what
-   * a wide viewport throws away. Holding at 40% keeps the lit tablet and the
-   * student in shot on a laptop instead of cropping to the empty curtain above
-   * her; phones see almost the whole frame and sit at the centre.
+   * Where the crop sits, and it is a different problem at each end.
+   *
+   * The frame is 480x848 and the subject, a lit tablet with a brow on it, sits
+   * a little above the middle. A wide viewport scales the clip to its width and
+   * loses most of the height: at 1440x900 only about a third of the frame is on
+   * screen, so the crop has to be aimed. 38% puts the tablet on the upper third
+   * of the composition, above the statement and clear of it, rather than the
+   * empty curtain that sits above it in the source.
+   *
+   * A phone is the opposite case. The viewport is taller than it is wide and so
+   * is the clip, so almost the whole frame survives and there is nothing to aim:
+   * the centre is the honest crop, and pulling it anywhere would only throw away
+   * footage the screen had room for.
    */
-  position: "50% 40%",
+  position: "50% 38%",
   mobilePosition: "50% 50%",
-  overlay: 52,
+  /**
+   * No flat scrim. The film is the composition now rather than a ground behind
+   * one, and a wash across the whole frame is what makes footage look like a
+   * background image: it takes the black out of the shadows and the life out of
+   * the highlights in one move. Legibility is bought instead by two gradients in
+   * `HeroFilm`, each shaped to the type it is under, which leaves the middle of
+   * the frame at full strength where nothing is set over it.
+   */
   width: 480,
   height: 848,
 };
