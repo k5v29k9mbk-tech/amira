@@ -1,11 +1,13 @@
 import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
-import { arrow, btnSolid, displayHero, linkRule, shell } from "@/lib/ui";
+import { arrow, btnSolidLight, displayHero, linkRuleLight, shell } from "@/lib/ui";
 import { dur, heroBeat, stagger } from "@/lib/motion";
+import { heroFilmMedia } from "@/lib/media";
 import { HeroPortrait } from "./HeroPortrait";
 import { HeroBeat, HeroCopy } from "./HeroChoreography";
 import { MaskReveal } from "./MaskReveal";
+import { MediaFrame } from "./MediaFrame";
 
 /**
  * The three marks the academy can prove, in the order a visitor weighs them:
