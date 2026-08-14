@@ -180,10 +180,10 @@ export async function Hero() {
               destination: it asks for the enquiry instead. */}
           <HeroBeat delay={heroBeat.facts + stagger.base}>
             <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-10">
-              <Link href="/courses" className={`${btnSolid} w-full sm:w-auto`}>
+              <Link href="/courses" className={`${btnSolidLight} w-full sm:w-auto`}>
                 {t("primary")}
               </Link>
-              <Link href="/contact" className={linkRule}>
+              <Link href="/contact" className={linkRuleLight}>
                 {t("secondary")}
                 <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
               </Link>
@@ -211,9 +211,9 @@ export async function Hero() {
       {/* Scroll cue: a hairline that fills and empties. No word, no icon. */}
       <span
         aria-hidden
-        className="pointer-events-none absolute bottom-8 left-1/2 hidden h-12 w-px -translate-x-1/2 overflow-hidden bg-espresso/15 lg:block"
+        className="pointer-events-none absolute bottom-8 left-1/2 hidden h-12 w-px -translate-x-1/2 overflow-hidden bg-ivory/20 lg:block"
       >
-        <span className="block h-full w-full origin-top bg-espresso/60 motion-safe:animate-[aura-cue_3s_ease-in-out_infinite]" />
+        <span className="block h-full w-full origin-top bg-ivory/70 motion-safe:animate-[aura-cue_3s_ease-in-out_infinite]" />
       </span>
     </section>
   );
