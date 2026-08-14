@@ -269,7 +269,9 @@ export function HeroPortrait({
               duration={dur.base}
               className="mt-2.5"
             >
-              <p className="label leading-[1.7] text-mute">{role}</p>
+              <p className={`label leading-[1.7] ${light ? "text-mute-dark" : "text-mute"}`}>
+              {role}
+            </p>
             </MaskReveal>
           ) : null}
         </motion.div>
