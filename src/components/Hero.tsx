@@ -149,16 +149,16 @@ export async function Hero() {
               every width, and it is shorter than the wrap it replaces, which the
               first screen has better uses for. */}
           <HeroBeat delay={heroBeat.facts}>
-            <dl className="mt-8 grid grid-cols-3 gap-x-4 gap-y-3 border-t border-hair pt-6 sm:flex sm:flex-wrap sm:items-baseline sm:gap-x-8 md:mt-10 md:gap-x-10 lg:grid lg:grid-cols-3 lg:gap-x-6 xl:gap-x-8">
+            <dl className="mt-8 grid grid-cols-3 gap-x-4 gap-y-3 border-t border-hair-dark pt-6 sm:flex sm:flex-wrap sm:items-baseline sm:gap-x-8 md:mt-10 md:gap-x-10 lg:grid lg:grid-cols-3 lg:gap-x-6 xl:gap-x-8">
               {facts.map((k) => (
                 <div
                   key={k}
                   className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-2.5 lg:flex-col lg:items-start lg:gap-2"
                 >
-                  <dt className="display text-[1.375rem] leading-none text-espresso md:text-[1.5rem]">
+                  <dt className="display text-[1.375rem] leading-none text-ivory md:text-[1.5rem]">
                     {t(`facts.${k}.value`)}
                   </dt>
-                  <dd className="label leading-[1.5] text-mute">{t(`facts.${k}.label`)}</dd>
+                  <dd className="label leading-[1.5] text-mute-dark">{t(`facts.${k}.label`)}</dd>
                 </div>
               ))}
             </dl>
