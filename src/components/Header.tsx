@@ -166,7 +166,9 @@ export function Header() {
               href={whatsappHref}
               target="_blank"
               rel="noreferrer"
-              className="-m-2.5 p-2.5 text-espresso transition-colors duration-300 hover:text-bronze-ink"
+              className={`-m-2.5 p-2.5 transition-colors duration-300 ${
+                onFilm ? "hover:text-bronze-hi" : "text-espresso hover:text-bronze-ink"
+              }`}
             >
               <WhatsappLogo size={21} weight="light" aria-hidden />
               <span className="sr-only">{contact("whatsapp")}</span>
@@ -174,7 +176,7 @@ export function Header() {
           ) : null}
 
           <div className="hidden items-center gap-6 lg:flex">
-            <LocaleSwitcher tone="dark" />
+            <LocaleSwitcher tone={onFilm ? "light" : "dark"} />
           </div>
 
           {/* The booking action, from md rather than from lg.
@@ -186,7 +188,11 @@ export function Header() {
               on it, which is the one place a phone does have room. */}
           <Link
             href="/contact"
-            className="label hidden border border-espresso bg-espresso px-5 py-3 text-ivory transition-colors duration-500 ease-[var(--ease-aura)] hover:border-bronze-ink hover:bg-bronze-ink md:inline-flex xl:px-6"
+            className={`label hidden border px-5 py-3 transition-colors duration-500 ease-[var(--ease-aura)] md:inline-flex xl:px-6 ${
+              onFilm
+                ? "border-ivory bg-ivory text-espresso hover:border-bronze-hi hover:bg-bronze-hi"
+                : "border-espresso bg-espresso text-ivory hover:border-bronze-ink hover:bg-bronze-ink"
+            }`}
           >
             {cta("secondary")}
           </Link>
