@@ -73,11 +73,21 @@ export function HeroPortrait({
   alt,
   name,
   role,
+  tone = "dark",
 }: {
   alt: string;
   name?: string;
   role?: string;
+  /**
+   * Which ground the credit is set on, named as `LocaleSwitcher` and `Logo`
+   * name it: `light` is light type, for the film behind the first screen.
+   * Only the two lines of the credit read this. The arch, its mat and the
+   * light off its crown are the same on either ground, because they are drawn
+   * in bronze and white at hairline strength rather than in the text colours.
+   */
+  tone?: "dark" | "light";
 }) {
+  const light = tone === "light";
   const ref = useRef<HTMLDivElement>(null);
   // Holds the entrance until the opening film has finished, so the portrait
   // opens with the copy rather than behind the overlay.
