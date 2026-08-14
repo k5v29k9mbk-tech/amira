@@ -37,10 +37,14 @@ const HeroReady = createContext(true);
 export const useHeroReady = () => useContext(HeroReady);
 
 /**
- * The copy column, and the conductor for the whole first screen.
+ * The conductor for the whole first screen.
  *
- * It carries the column's own grid classes so the layout is unchanged from the
- * `Stagger` it replaces: same order, same span, same measure.
+ * It carries whatever layout classes it is given and adds nothing of its own, so
+ * it can be the grid the composition is built on rather than one column inside
+ * it. That is what it is used as now: one provider around both halves of the
+ * hero, the statement and the signature, so the two cannot start on different
+ * frames. It began as a wrapper for the copy column alone, which was correct
+ * only while the other half was a portrait that read the cue for itself.
  */
 export function HeroCopy({
   children,

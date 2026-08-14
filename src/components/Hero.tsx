@@ -1,13 +1,18 @@
 import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
-import { arrow, btnSolidLight, displayHero, linkRuleLight, shell } from "@/lib/ui";
+import {
+  arrow,
+  btnSolidLight,
+  displayHero,
+  displayLarge,
+  linkRuleLight,
+  shell,
+} from "@/lib/ui";
 import { dur, heroBeat, stagger } from "@/lib/motion";
-import { heroFilmMedia } from "@/lib/media";
-import { HeroPortrait } from "./HeroPortrait";
+import { HeroFilm } from "./HeroFilm";
 import { HeroBeat, HeroCopy } from "./HeroChoreography";
 import { MaskReveal } from "./MaskReveal";
-import { MediaFrame } from "./MediaFrame";
 
 /**
  * The three marks the academy can prove, in the order a visitor weighs them:
@@ -17,77 +22,78 @@ import { MediaFrame } from "./MediaFrame";
 const facts = ["years", "students", "classes"] as const;
 
 /**
- * Opening composition.
+ * Opening composition: the academy's film, and the campaign set on it.
  *
- * Two columns on a warm ivory field: the statement on the left, Amira in the
- * arch on the right, and a lot of air around both. The grid is bottom aligned,
- * so the primary action and the base of the frame sit on the same line, which
- * is what holds the two halves together.
+ * THE CHANGE OF FORM. This screen used to be two columns on ivory, a statement
+ * beside Amira in the arch. The film is now the composition rather than a
+ * ground behind one, and a full-bleed clip with a portrait plate parked on top
+ * of it is two focal images competing inside one frame: the eye is given a face
+ * to read and a room to read and settles on neither. So the arch comes off the
+ * first screen. `HeroPortrait` is kept, and so is the graded master it holds
+ * (`heroMedia`, `amira-portrait-hero.jpg`), which is exactly as it was on disk;
+ * nothing else on the site loses a photograph, and the founder's own section
+ * further down the page still carries her portrait.
  *
- * The first screen has to answer four questions before anything is scrolled:
- * who teaches, what is taught, on what evidence, and what to do next. The
- * eyebrow carries the name and the country, the portrait carries its own credit
- * so the face has a name and a role attached to it, and one hairline-ruled line
- * of figures sits between the promise and the action. Nothing here is a card or a
- * badge: the figures are set in the display serif and their labels in the same
- * small caps as every other label on the site, so the row reads as a masthead
- * rather than as statistics.
+ * What replaces the plate is her name. A campaign is signed rather than
+ * illustrated, and this one now signs itself at the inline end of the last line
+ * of the composition.
+ *
+ * THE GRID, AND WHY NOTHING IS CENTRED. Twelve columns, bottom aligned, with the
+ * whole composition sitting on the closing measure of the section: the statement
+ * and its evidence on columns 1 to 7, the signature alone on 9 to 12, and the
+ * top third of the screen left as nothing but film. That asymmetry is the
+ * design. A statement centred in the middle of a video is the house style of
+ * every template that has ever shipped with a stock clip behind it, and it wins
+ * legibility by covering the footage evenly, which is the one thing this screen
+ * cannot afford to do.
+ *
+ * Bottom alignment is what makes the film readable as film. A reader meets the
+ * frame first, uninterrupted, and the type second, and the scrim in `HeroFilm`
+ * is shaped to exactly that: heavy along the bottom band and the inline start
+ * where the type is, eight percent across the middle where it is not.
  *
  * 100svh, not 100vh: the small viewport unit is the one that does not jump when
  * the mobile address bar collapses. It is a floor rather than a cap, so a long
  * translation lengthens the section instead of overflowing it.
  *
- * On phones the portrait leads and the copy follows, because the portrait is
- * the argument: this is a person, and she teaches what she practises.
+ * On phones the twelve columns collapse to one and the order is the reading
+ * order: the bar, the statement, the promise, the evidence, the two actions,
+ * then the signature at the foot of it. The signature keeps its rule and loses
+ * only its alignment, which is the one thing about it that needs a second
+ * column to mean anything.
  */
 export async function Hero() {
   const t = await getTranslations("hero");
   const inst = await getTranslations("instructor");
 
   return (
-    <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-night text-ivory pt-[68px] pb-16 md:pt-[76px] md:pb-20">
-      {/* Ground. The academy's own film, full bleed, and the two layers that
-          make type legible over it.
+    <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-espresso text-ivory pt-[68px] pb-14 md:pt-[76px] md:pb-16 lg:pb-20">
+      <HeroFilm />
 
-          It replaces two ivory washes: a beige gradient across the upper field
-          and a warm pool behind the arch. Both were there to give flat paper
-          some depth, and both were painting over the footage the moment the
-          ground stopped being paper.
+      {/* The opening score.
 
-          The scrim is deliberately two layers rather than one. `overlay` on the
-          media is a flat 52% of night across the whole frame, which is what
-          holds the statement and the figures; the gradient over it is weighted
-          to the two edges, where the fixed header sits above and the scroll cue
-          and the primary action sit below. A single flat scrim strong enough for
-          the edges would have taken the film with it, and the film is the point.
+          The beats and their intervals are `heroBeat` in lib/motion.ts, not
+          numbers typed here, because the only thing that makes a sequence read
+          as choreography rather than as things appearing is the interval
+          between beats, and that cannot be tuned when it is spread across two
+          components. The order is the bar, the statement line by line, the
+          supporting line, the figures, the actions, then her name and her role.
 
-          `bg-night` on the section is the floor under all of it, so the first
-          paint, a blocked autoplay and a reduced-motion visit are all a dark
-          composition rather than a flash of white. */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <MediaFrame media={heroFilmMedia} priority sizes="100vw" />
-        <span className="absolute inset-0 bg-[linear-gradient(to_bottom,color-mix(in_srgb,var(--aura-black)_70%,transparent),transparent_26%,transparent_54%,color-mix(in_srgb,var(--aura-black)_75%,transparent))]" />
-      </div>
+          `HeroCopy` wraps the whole grid rather than the copy column alone, so
+          the cue that holds the screen until any opening film has finished is
+          read once and handed to both halves. Two blocks polling the same event
+          is how a sequence acquires a stutter nobody can find later.
 
-      <div
-        className={`${shell} grid w-full items-end gap-10 py-8 sm:gap-12 md:py-10 lg:grid-cols-12 lg:gap-10 lg:py-0`}
+          The bar, the statement and the signature open through apertures; the
+          supporting line, the figures and the actions fade up. That split is the
+          point. An aperture is the expensive-looking reveal, and used six times
+          on one screen it stops being an event, so it is spent on the three
+          pieces of type that carry the argument and withheld from the three that
+          support them. */}
+      <HeroCopy
+        className={`${shell} grid w-full items-end gap-y-12 sm:gap-y-14 lg:grid-cols-12 lg:gap-10`}
       >
-        {/* The opening score.
-
-            The beats and their intervals are `heroBeat` in lib/motion.ts, not
-            numbers typed here, because the only thing that makes a sequence read
-            as choreography rather than as things appearing is the interval
-            between beats, and that cannot be tuned when it is spread across two
-            components. The order is the bar, the portrait, its frame, her name,
-            her role, the headline line by line, this line, then the figures: a
-            reader meets the person, then the promise, then the evidence.
-
-            The eyebrow and the statement open through apertures; the supporting
-            line and the figures fade up. That split is the point. An aperture is
-            expensive-looking and used four times on the first screen it stops
-            being an event, so it is spent on the three pieces of type that carry
-            the argument and withheld from the two that support them. */}
-        <HeroCopy className="order-2 max-w-[42rem] lg:order-1 lg:col-span-6 lg:pb-2">
+        <div className="max-w-[42rem] lg:col-span-7 lg:col-start-1">
           {/* Three facts, one line: the academy, what it does, where. Wraps
               to two lines on a phone, so it carries its own leading. */}
           <MaskReveal onMount delay={heroBeat.bar} duration={dur.base}>
@@ -139,8 +145,8 @@ export async function Hero() {
               true for it to read as a masthead.
 
               And back to three columns from lg, which is the width where the
-              inline row stopped working. From lg this column is 6 of 12, so it
-              is about 430px at that breakpoint and 716 at the 1600px cap, while
+              inline row stopped working. From lg this column is 7 of 12, so it
+              is about 500px at that breakpoint and 836 at the 1600px cap, while
               the three pairs set inline need roughly 700 of type plus 80 of
               gutter. The row wrapped, and it wrapped in the worst available
               shape: two pairs on the first line and the third alone under them,
@@ -171,14 +177,12 @@ export async function Hero() {
               press. The secondary stays a text link at every width, so the
               hierarchy between the two never becomes two buttons.
 
-              The two actions are now the two things a visitor can do here:
-              read the catalogue, or book. The secondary used to be "Meet
-              Amira", pointing at /about, which was the right link while the
-              founder arrived two thirds of the way down this page. She is now
-              the first act after the statement, with her own link to the full
-              story, so the first screen no longer has to carry a third
-              destination: it asks for the enquiry instead. */}
-          <HeroBeat delay={heroBeat.facts + stagger.base}>
+              Both are the light-ground pair now. On the film, an espresso
+              button is a hole cut in the footage and an espresso rule under a
+              link is invisible; the ivory pair is the same two shapes on the
+              other ground, and ui.ts has carried it for the dark sections since
+              before this screen needed it. */}
+          <HeroBeat delay={heroBeat.actions}>
             <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-10">
               <Link href="/courses" className={`${btnSolidLight} w-full sm:w-auto`}>
                 {t("primary")}
@@ -189,27 +193,45 @@ export async function Hero() {
               </Link>
             </div>
           </HeroBeat>
-        </HeroCopy>
-
-        {/* The columns stay even; the asymmetry is in where the frame sits
-            inside its half, not in how many columns each half owns. Taking a
-            column off the statement only forced the figures below onto two
-            lines, and a masthead that wraps is worse than a symmetrical grid.
-            On the widest screens the column is allowed to eat the page gutter,
-            so the frame runs past the margin the rest of the page keeps. The
-            margin is logical, so in Arabic the frame leans on the left edge
-            exactly as it leans on the right in the other three. */}
-        <div className="order-1 w-full lg:order-2 lg:col-span-6 lg:col-start-7 xl:-me-6 2xl:-me-12">
-          <HeroPortrait
-            alt={inst("portrait")}
-            name={inst("title")}
-            role={t("founderRole")}
-            tone="light"
-          />
         </div>
-      </div>
 
-      {/* Scroll cue: a hairline that fills and empties. No word, no icon. */}
+        {/* The signature.
+
+            Her name is the last thing to arrive and the only type on the screen
+            set against the far margin, which is what makes it read as a
+            signature on the frame rather than as a second heading. It is the
+            display serif at the pull-quote size: comfortably below the
+            statement, comfortably above everything else, so it is the second
+            thing the eye finds and never competes for first.
+
+            The rule above it is the same hairline that carries the figures on
+            the other side of the grid, cut to 3.5rem. It arrives a beat ahead of
+            the name and inside the same aperture, so the pair wipes in as one
+            gesture: the line draws, the name lands on it.
+
+            Alignment is the one thing that changes with the breakpoint. From lg
+            the block is pushed to columns 9 to 12 and set to the inline end,
+            which puts her name at the far corner of the composition, diagonally
+            opposite the eyebrow. Below lg there is one column and no far corner
+            to sign, so it keeps the margin every other line is hung on. Both are
+            logical properties, so Arabic gets the mirror rather than a special
+            case. */}
+        <div className="lg:col-span-4 lg:col-start-9 lg:pb-1 lg:text-end">
+          <MaskReveal onMount delay={heroBeat.name} duration={dur.slow}>
+            <span className="mb-5 block h-px w-14 bg-bronze-hi/50 lg:ms-auto" />
+            <p className={`${displayLarge} leading-[1.1] text-ivory`}>{inst("title")}</p>
+          </MaskReveal>
+
+          <HeroBeat delay={heroBeat.role} className="mt-3.5">
+            <p className="label leading-[1.7] text-bronze-hi">{t("founderRole")}</p>
+          </HeroBeat>
+        </div>
+      </HeroCopy>
+
+      {/* Scroll cue: a hairline that fills and empties. No word, no icon.
+          It sits in the band between the actions and the signature, which is the
+          one part of the last line of the composition that carries no type at
+          any width above lg. */}
       <span
         aria-hidden
         className="pointer-events-none absolute bottom-8 left-1/2 hidden h-12 w-px -translate-x-1/2 overflow-hidden bg-ivory/20 lg:block"
