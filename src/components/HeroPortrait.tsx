@@ -12,6 +12,15 @@ import { FrameMask, MaskReveal } from "./MaskReveal";
 /**
  * The hero portrait, and the site's signature moment.
  *
+ * NOT MOUNTED ANYWHERE TODAY. The first screen is the academy's film now, and a
+ * portrait plate over a full-bleed clip is two focal images inside one frame, so
+ * the arch came off it; the name it used to caption is set against the far
+ * margin of that composition instead. Nothing here is deleted and neither is the
+ * graded master it holds, because this is the one piece of choreography on the
+ * site that reads as a camera rather than as a web page, and the composition
+ * that wants it next should not have to rebuild it. It still reads its beats
+ * from `heroBeat` for the same reason.
+ *
  * COMPOSITION, unchanged. Four layers, only one of which is the photograph: a
  * warm pool of light wider than the frame so the arch is lit rather than pasted
  * on; a hairline beige mat, evenly offset, that reads as the frame's edge; the
