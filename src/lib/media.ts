@@ -228,12 +228,32 @@ export const methodMedia: Record<string, Media> = {
     width: 480,
     height: 768,
   },
+  /**
+   * The support chapter, 04. Amira over a student's shoulder while the mapping
+   * is drawn: the one frame in the method that shows her correcting rather than
+   * demonstrating, which is what the chapter beside it is about. It replaces a
+   * crop of the hero portrait, a frame that showed her alone and said nothing
+   * about being stood next to.
+   *
+   * Supplied as the academy sent it, byte for byte, saved under the extension
+   * its bytes actually are: the file arrived named `.png` and is JPEG data, and
+   * a wrong extension is a re-encode waiting to happen the next time someone
+   * opens and saves it.
+   *
+   * The photograph is 848x1264 and the frame is 4:5, so this is the one method
+   * frame with a real crop: `cover` matches the width and spends 16% of the
+   * height. All of it comes off the bottom, which is the empty foreground of
+   * the couch and the tissue box. `position` holds at 20% so the loss stays
+   * there: both faces and the sheet being drawn on sit in the top two thirds,
+   * and centring the crop would start eating the ceiling above Amira's head
+   * while keeping foreground nobody needs to see.
+   */
   support: {
-    posterSrc: "/brand/amira-hero.jpg",
+    posterSrc: "/brand/support-mentoring.jpg",
     alt: "",
-    position: "50% 26%",
-    width: 2560,
-    height: 1429,
+    position: "50% 20%",
+    width: 848,
+    height: 1264,
   },
 };
 
