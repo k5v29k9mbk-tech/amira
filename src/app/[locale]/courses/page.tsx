@@ -229,13 +229,23 @@ export default async function CoursesPage({
           the middle of it reads as a held breath. It is the same device the hero
           and the closing frame already use.
 
-          Every sentence in it describes the technique and nothing else. There is
-          no healing time, no longevity, no suitability claim, no before and
-          after, and no price, because the academy has supplied none of those and
-          a section like this is exactly where invented ones would look most at
-          home. The three lines under the standfirst are the two facts the
-          academy does state about every course, level and language and group
-          size, plus the one thing the technique itself is.
+          Every sentence in it describes the technique in general terms and
+          nothing else: what it is (permanent makeup for the eyebrow), what it
+          is worked with (a machine, in fine dots), and what it looks like (a
+          soft shaded finish rather than drawn hairs). There is no healing time,
+          no longevity, no treatment duration, no suitability claim, no before
+          and after, no result and no price, because the academy has supplied
+          none of those and a section like this is exactly where invented ones
+          would look most at home. Nothing here describes how Amira in
+          particular works, only what the discipline is.
+
+          Of the three lines under the standfirst, the first is the distinction
+          from microblading stated as instrument and mark, which is the one thing
+          a reader most needs and the only reason this section exists rather than
+          a second blurb. The second is `catalog.blurbs.powder-brows` verbatim,
+          so it introduces no claim that was not already approved and shipping.
+          The third is level, language and group size, which the academy states
+          about every course it runs. */}
 
           The photograph carries alt="" on purpose. The site's standing rule is
           that it does not name the discipline that produced a client's brow,

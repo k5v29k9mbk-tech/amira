@@ -436,10 +436,10 @@
   "powder": {
     "eyebrow": "Powder Brows",
     "title": "A brow built in shade, not in strokes.",
-    "intro": "Powder brows is a machine technique. Pigment is worked into the skin as very fine dots that build up into a soft, even shade across the brow, so the finish reads as powder rather than as hairs drawn one by one. The density is built gradually, from a light veil to a more defined shape.",
+    "intro": "Powder brows is a permanent makeup technique for the eyebrow. Pigment is applied with a machine in fine dots, so the brow reads as a soft, shaded finish rather than as individual hair strokes.",
     "points": {
-      "technique": "Where microblading draws individual hairs with a blade, powder brows builds shade with the machine, in fine dots.",
-      "finish": "A soft, shaded finish, from a light veil to a defined brow.",
+      "technique": "Where microblading draws individual hairs with a blade, powder brows is shaded with the machine.",
+      "finish": "A soft shaded brow built with the machine, from a light veil to a defined finish.",
       "levels": "Taught at base and advanced level, in Italian, in groups of 3-4 students."
     },
     "cta": "Ask about Powder Brows"

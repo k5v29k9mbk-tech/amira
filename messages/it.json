@@ -436,10 +436,10 @@
   "powder": {
     "eyebrow": "Powder Brows",
     "title": "Un sopracciglio costruito in sfumatura, non a pelo.",
-    "intro": "Il powder brows è una tecnica a macchinetta. Il pigmento viene lavorato nella pelle a punti finissimi che costruiscono una sfumatura morbida e uniforme, così la finitura si legge come una polvere e non come peli disegnati uno a uno. La densità si costruisce per gradi, da un velo leggero a una forma più definita.",
+    "intro": "Il powder brows è una tecnica di trucco permanente per il sopracciglio. Il pigmento si applica a macchinetta a punti finissimi, così il sopracciglio si legge come una sfumatura morbida e non come peli disegnati uno a uno.",
     "points": {
-      "technique": "Dove il microblading disegna peli singoli con la lama, il powder brows costruisce la sfumatura a macchinetta, a punti finissimi.",
-      "finish": "Finitura morbida e sfumata, dal velo leggero al sopracciglio definito.",
+      "technique": "Dove il microblading disegna peli singoli con la lama, il powder brows si sfuma a macchinetta.",
+      "finish": "Un sopracciglio sfumato a macchinetta, dal velo leggero alla definizione piena.",
       "levels": "Si insegna a livello base e avanzato, in italiano, in classi da 3-4 allieve."
     },
     "cta": "Chiedi informazioni"
