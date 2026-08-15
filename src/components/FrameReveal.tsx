@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
-import type { ReactNode } from "react";
+import { motion, useInView } from "motion/react";
+import { useRef, type ReactNode } from "react";
 import { dur, ease } from "@/lib/motion";
 
 /**
@@ -41,6 +41,23 @@ import { dur, ease } from "@/lib/motion";
  * normalised to the three-value `inset(0px 0px 100%)`, the two forms do not
  * interpolate, and every frame in the work section stayed clipped shut. Transform
  * and opacity are the two properties that animate reliably everywhere.
+ *
+ * WHAT TRIGGERS IT, and why it is `useInView` on the outer box rather than
+ * `whileInView` on the aperture. The aperture cannot watch itself. It begins at
+ * `y: 100%`, one full height below the static box that clips it, and
+ * IntersectionObserver clips a target by its ancestors' overflow before it
+ * reports a ratio. So the aperture measured a 0x0 intersection wherever the page
+ * was scrolled, `whileInView` never fired, and the two translates below stayed
+ * exactly where they started: aperture down 256px, photograph up 256px, sums
+ * cancelling into an image sitting in its correct place inside a clip box that
+ * had moved off it. Every frame in the work section and the studio gallery
+ * rendered, loaded its file, reported `complete`, and painted nothing. This is
+ * the second time this component has been shut for a reason with no console
+ * output; the clip-path note above is the first.
+ *
+ * The outer box is the one thing here that never moves and is never clipped by
+ * anything, so it is the only honest place to ask the question "is this frame on
+ * screen yet". Both inner elements are driven off that one boolean.
  */
 export function FrameReveal({
   children,
@@ -52,10 +69,11 @@ export function FrameReveal({
   className?: string;
 }) {
   const transition = { duration: dur.frame, delay, ease: ease.aura };
-  const viewport = { once: true, amount: 0.2 } as const;
+  const box = useRef<HTMLDivElement>(null);
+  const seen = useInView(box, { once: true, amount: 0.2 });
 
   return (
-    <div className={`overflow-hidden ${className ?? ""}`}>
+    <div ref={box} className={`overflow-hidden ${className ?? ""}`}>
       {/* `overflow-hidden` is on this element, the one that moves, and that is the
           whole mechanism. The aperture has to be the thing that clips: put it on
           the static parent alone and the two translates below cancel into a
@@ -66,14 +84,12 @@ export function FrameReveal({
       <motion.div
         className="overflow-hidden"
         initial={{ y: "100%" }}
-        whileInView={{ y: "0%" }}
-        viewport={viewport}
+        animate={seen ? { y: "0%" } : { y: "100%" }}
         transition={transition}
       >
         <motion.div
           initial={{ y: "-100%", scale: 1.06 }}
-          whileInView={{ y: "0%", scale: 1 }}
-          viewport={viewport}
+          animate={seen ? { y: "0%", scale: 1 } : { y: "-100%", scale: 1.06 }}
           transition={transition}
         >
           {children}
