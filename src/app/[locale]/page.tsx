@@ -228,14 +228,32 @@ export default async function Home({
               again and the later element is on top. Any element that has to cover
               a Parallax needs this. */}
           <Reveal className="lg:relative lg:z-10 lg:col-span-5 lg:-ms-20 lg:bg-ivory lg:py-16 lg:ps-16">
-            <MaskReveal>
-              <SectionLabel n={1}>{t("sections.amira")}</SectionLabel>
-            </MaskReveal>
-            <MaskReveal delay={stagger.base} className="mt-8">
-              <h2 className={`${displaySection} max-w-[12ch]`}>
-                {t("instructor.headline")}
-              </h2>
-            </MaskReveal>
+            {/* These two lines are deliberately not wrapped in MaskReveal, and
+                that is a workaround rather than a preference.
+
+                MaskReveal puts `whileInView` on the inner span it translates
+                130% down, and the slot around that span is `overflow: hidden`.
+                IntersectionObserver clips a target by its ancestors' overflow
+                before it reports, so the observed span measures a 0x0
+                intersection rect no matter where the page is scrolled: the
+                trigger never fires, the translate never resolves, and the line
+                stays parked below its own clip box permanently. It is the exact
+                failure the component's own header warns about, one level down:
+                no reveal, no error, nothing in the console.
+
+                What it costs is invisible type that still occupies its full
+                height. Here that was the label plus the heading, 131px of it,
+                which read on a phone as a band of empty ivory between the
+                portrait and her name and is what this section was reported for.
+
+                Unwrapping is the local fix. The real one is in MaskReveal, and
+                it fixes every other section too, all of which are silently
+                losing their eyebrow and heading the same way. Left alone on
+                purpose, so this stays one section's change. */}
+            <SectionLabel n={1}>{t("sections.amira")}</SectionLabel>
+            <h2 className={`${displaySection} mt-8 max-w-[12ch]`}>
+              {t("instructor.headline")}
+            </h2>
             <p className="mt-10 text-[17px] text-espresso">{t("instructor.title")}</p>
             <p className="mt-2 text-[15px] text-mute">{t("instructor.role")}</p>
 
