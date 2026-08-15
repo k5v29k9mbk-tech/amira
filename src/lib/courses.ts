@@ -18,8 +18,32 @@
 
 import type { Media } from "./media";
 
+/**
+ * The three families the six courses fall into, in the order the courses page
+ * prints them.
+ *
+ * This is a grouping, not a reordering: `courses` below stays in the exact
+ * sequence the academy published it in, because that order is asserted in
+ * courses.test.ts and is what the homepage catalogue and the selector read. The
+ * families are applied at render time, so the same six entries can be listed
+ * flat in one place and grouped in another without either being a fork of the
+ * other.
+ *
+ * Brows first because it is the largest of the three and the reason most
+ * enquiries arrive, and because it is the family a visitor most needs help
+ * telling apart: microblading and powder brows are both permanent and are
+ * routinely confused with one another, and brow lamination is not permanent at
+ * all. The family's standfirst says exactly that, and Powder Brows keeps its
+ * own section below the catalogue on top of its row here.
+ */
+export const families = ["brows", "lipsEyes", "lashes"] as const;
+
+export type Family = (typeof families)[number];
+
 export type Course = {
   slug: string;
+  /** Which of the three groups the courses page lists this course under. */
+  family: Family;
   media: Media;
   /**
    * Keep the course in the homepage catalogue but stand its photograph down
@@ -43,6 +67,7 @@ export const courses: Course[] = [
      * hair-stroke macro is exactly that.
      */
     slug: "microblading",
+    family: "brows",
     media: {
       posterSrc: "/brand/brow-macro.jpg",
       position: "50% 45%",
@@ -52,6 +77,7 @@ export const courses: Course[] = [
   },
   {
     slug: "powder-brows",
+    family: "brows",
     media: {
       posterSrc: "/brand/brows-healed-hero.jpg",
       position: "50% 36%",
@@ -61,6 +87,7 @@ export const courses: Course[] = [
   },
   {
     slug: "lip-blush",
+    family: "lipsEyes",
     media: {
       posterSrc: "/brand/lips-upright.jpg",
       position: "50% 50%",
@@ -70,6 +97,7 @@ export const courses: Course[] = [
   },
   {
     slug: "eyeliner-pmu",
+    family: "lipsEyes",
     media: {
       posterSrc: "/brand/brows-eyes.jpg",
       position: "50% 42%",
@@ -79,6 +107,7 @@ export const courses: Course[] = [
   },
   {
     slug: "lash-lamination",
+    family: "lashes",
     media: {
       posterSrc: "/brand/live-demo.jpg",
       position: "50% 40%",
@@ -88,6 +117,7 @@ export const courses: Course[] = [
   },
   {
     slug: "brow-lamination",
+    family: "brows",
     posterOffHome: true,
     media: {
       posterSrc: "/brand/brow-mapping.jpg",

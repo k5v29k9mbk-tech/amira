@@ -73,12 +73,28 @@ body {
   Display type. Cormorant runs light and small for its size, so headlines take
   a touch more weight, tight leading and near-zero tracking. Everything
   oversized on this site uses this class; nothing else gets a serif.
+
+  Leading is set twice, because 0.98 is a size, not a taste. It is the right
+  measure for a headline set at 5rem across a desktop column, where the line is
+  long, the eye travels far horizontally and tight leading is what stops the
+  block reading as a list. The same 0.98 on a phone is a different typographic
+  object: the clamp floors these at 36-40px, the measure narrows to about 12
+  characters, and a four-word heading becomes four stacked lines whose
+  descenders very nearly touch the caps beneath them. 1.06 is still tight
+  enough to read as display rather than as body, and it is the difference
+  between a heading that looks set and one that looks cramped.
 */
 .display {
   font-family: var(--font-serif);
   font-weight: 400;
-  line-height: 0.98;
+  line-height: 1.06;
   letter-spacing: -0.015em;
+}
+
+@media (min-width: 768px) {
+  .display {
+    line-height: 0.98;
+  }
 }
 
 /* Small caps label. The only place tracking goes wide. */

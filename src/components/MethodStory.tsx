@@ -154,7 +154,25 @@ export function MethodStory() {
             ref={(el) => {
               marks.current[i] = el;
             }}
-            className="flex min-h-[60svh] flex-col justify-center py-12 lg:min-h-[80svh] lg:py-0"
+            /* The tall chapter is a desktop mechanism and now says so. At lg the
+               height is the scroll distance: the frame column beside this one is
+               sticky, and it needs 80svh of travel per chapter to cross-fade
+               from one frame to the next and to hold the previous frame through
+               a chapter that has none.
+
+               On a phone none of that exists. Each chapter carries its own frame
+               inline, nothing is sticky, and 60svh was buying a chapter exactly
+               nothing while forcing it to fill 500px of an 844px screen. A
+               chapter with a photograph roughly filled it; the live-model
+               chapter, which deliberately has no photograph, is a label, a
+               heading and one line of body, so the rule centred about 150px of
+               type inside 500px and printed the remaining 350 as blank ivory in
+               the middle of the section. That is the "excessive vertical gap" on
+               mobile, and it was a viewport-height rule, not a margin.
+
+               Padding alone now sets the mobile rhythm, so a chapter is as tall
+               as what is in it. Desktop is untouched. */
+            className="flex flex-col justify-center py-12 lg:min-h-[80svh] lg:py-0"
           >
             {methodMedia[key] ? (
               <div className="relative mb-8 aspect-[4/5] w-full lg:hidden">
