@@ -141,22 +141,26 @@ export const closingMedia: Media = {
 };
 
 /**
- * Founder portrait, homepage. The studio frame: black blazer, the brow calipers
- * raised to the eye, against a plain sweep. Deliberately not the hero portrait,
- * so the page does not print the same photograph twice. Shipped exactly as the
- * academy supplied it, byte for byte: no grade, no retouch, no upscale, and no
- * re-encode, which is why the file is copied rather than exported.
+ * Founder portrait, homepage. The three-quarter studio frame: black blazer,
+ * arms folded, the brow calipers held at the collar, against a plain sweep.
+ * Deliberately not the hero portrait, so the page does not print the same
+ * photograph twice. Shipped exactly as the academy supplied it, byte for byte:
+ * no grade, no retouch, no upscale, and no re-encode, which is why the file is
+ * copied rather than exported.
  *
- * The photograph is 928x1152 and the frame that holds it is 4:5, a difference of
- * under a percent. `cover` spends all of it on the left and right edges of the
- * backdrop and none on the height, so the whole figure survives at every
- * breakpoint and the centred crop needs no pull in either direction.
+ * The photograph is 1179x1469 and the frame that holds it is 4:5, a difference
+ * of a third of a percent. `cover` spends all of it on the left and right edges
+ * of the backdrop and none on the height, so the full figure survives at every
+ * breakpoint: nothing is taken off the top of her hair or the foot of the
+ * blazer, and the centred crop needs no pull in either direction. The face sits
+ * a little above the middle of the frame by composition rather than by crop,
+ * which is the reason this one position serves phone and desktop alike.
  */
 export const founderMedia: Media = {
   posterSrc: "/brand/amira-founder-portrait.jpg",
   position: "50% 50%",
-  width: 928,
-  height: 1152,
+  width: 1179,
+  height: 1469,
 };
 
 /**

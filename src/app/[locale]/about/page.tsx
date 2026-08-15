@@ -154,8 +154,8 @@ export default async function AboutPage({
 
           The heading now sits over both columns and the column beside the text
           carries the founder portrait, so the story is read against the person
-          telling it. The frame is the one photograph the academy has of her at
-          the work rather than in front of it, and `story.imageAlt` describes
+          telling it. The frame is the studio portrait, the same one the
+          homepage opens its first act on, and `story.imageAlt` describes
           exactly what it shows. */}
       <section className={`${sectionPad} bg-paper`}>
         <div className={shell}>

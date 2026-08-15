@@ -196,10 +196,11 @@ export default async function Home({
           it opens with no rhythm of its own and lives on the statement's tail:
           the founder is the second half of the opening, not a new chapter.
 
-          Her portrait here is deliberately not the hero's. The hero has the
-          studio frame against a seamless sweep; this is the working one, with
-          the brow calipers raised. Same person, two registers: the poised
-          portrait, then the practitioner. */}
+          Her portrait here is deliberately not the hero's. The hero has her in
+          the institute, camel blazer, the treatment room behind her; this is
+          the studio frame against a seamless sweep, black blazer, the brow
+          calipers held at the collar. Same person, two registers: the founder
+          in her rooms, then the founder against nothing at all. */}
       <section id="amira" className={`${sectionPadBottom} scroll-mt-20 bg-ivory`}>
         <div className={`${shell} grid items-center gap-10 lg:grid-cols-12 lg:gap-0`}>
           <Parallax distance={12} className="lg:col-span-7">
