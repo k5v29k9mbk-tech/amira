@@ -171,8 +171,17 @@ export function MethodStory() {
                mobile, and it was a viewport-height rule, not a margin.
 
                Padding alone now sets the mobile rhythm, so a chapter is as tall
-               as what is in it. Desktop is untouched. */
-            className="flex flex-col justify-center py-12 lg:min-h-[80svh] lg:py-0"
+               as what is in it. Desktop is untouched.
+
+               `py-8` rather than `py-12`, for hierarchy rather than for tightness.
+               A section on a phone is `py-24`, 96px, and `py-12` put 48px above
+               and below each chapter, so the space between two chapters *inside*
+               the method was also 96px. A step break was landing with exactly the
+               weight of a whole new act, which is the one thing intra-section
+               spacing must never do. 64px keeps the four steps reading as one
+               sequence and leaves the section breaks as the loudest gaps on the
+               page, which is the order they belong in. */
+            className="flex flex-col justify-center py-8 lg:min-h-[80svh] lg:py-0"
           >
             {methodMedia[key] ? (
               <div className="relative mb-8 aspect-[4/5] w-full lg:hidden">
