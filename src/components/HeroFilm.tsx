@@ -81,13 +81,22 @@ export function HeroFilm() {
         />
       </motion.div>
 
-      {/* Under the header, and under the statement. Eight percent across the
-          middle, where the film is the composition and nothing is written. */}
-      <span className="absolute inset-0 bg-[linear-gradient(to_bottom,color-mix(in_srgb,var(--aura-espresso)_60%,transparent)_0%,color-mix(in_srgb,var(--aura-espresso)_12%,transparent)_20%,color-mix(in_srgb,var(--aura-espresso)_8%,transparent)_50%,color-mix(in_srgb,var(--aura-espresso)_72%,transparent)_100%)]" />
+      {/* Under the header, and under the composition.
+          Ten percent across the upper middle, which is the band the film has to
+          itself; then a long ramp from 38% rather than a late one, because the
+          copy column starts at the eyebrow and not at the buttons, and a
+          gradient that waits until the last quarter leaves the statement to take
+          its chances against whatever the footage is doing. Long is the
+          operative word: over roughly 60% of the height nothing about it reads
+          as an edge. */}
+      <span className="absolute inset-0 bg-[linear-gradient(to_bottom,color-mix(in_srgb,var(--aura-espresso)_60%,transparent)_0%,color-mix(in_srgb,var(--aura-espresso)_12%,transparent)_18%,color-mix(in_srgb,var(--aura-espresso)_10%,transparent)_38%,color-mix(in_srgb,var(--aura-espresso)_58%,transparent)_74%,color-mix(in_srgb,var(--aura-espresso)_80%,transparent)_100%)]" />
 
       {/* The inline start, where every line of type in the composition hangs.
-          Mirrored in Arabic so the weight follows the margin. */}
-      <span className="absolute inset-0 bg-[linear-gradient(to_right,color-mix(in_srgb,var(--aura-espresso)_45%,transparent)_0%,transparent_60%)] rtl:bg-[linear-gradient(to_left,color-mix(in_srgb,var(--aura-espresso)_45%,transparent)_0%,transparent_60%)]" />
+          It carries the statement specifically: the clip is a lit room and the
+          brightest thing in it, a white sleeve, drifts through the middle of the
+          frame where the headline is set. Mirrored in Arabic so the weight
+          follows the margin rather than staying on the left. */}
+      <span className="absolute inset-0 bg-[linear-gradient(to_right,color-mix(in_srgb,var(--aura-espresso)_58%,transparent)_0%,color-mix(in_srgb,var(--aura-espresso)_28%,transparent)_38%,transparent_70%)] rtl:bg-[linear-gradient(to_left,color-mix(in_srgb,var(--aura-espresso)_58%,transparent)_0%,color-mix(in_srgb,var(--aura-espresso)_28%,transparent)_38%,transparent_70%)]" />
     </div>
   );
 }
