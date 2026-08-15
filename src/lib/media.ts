@@ -142,22 +142,33 @@ export const closingMedia: Media = {
 
 /**
  * Founder portrait, homepage. The three-quarter studio frame: black blazer,
- * arms folded, the brow calipers held at the collar, against a plain sweep.
- * Deliberately not the hero portrait, so the page does not print the same
- * photograph twice. Shipped exactly as the academy supplied it, byte for byte:
- * no grade, no retouch, no upscale, and no re-encode, which is why the file is
- * copied rather than exported.
+ * arms folded, the brow calipers held at the collar. Deliberately not the hero
+ * portrait, so the page does not print the same photograph twice. Shipped
+ * exactly as the academy supplied it, byte for byte: no grade, no retouch, no
+ * upscale, and no re-encode, which is why the file is copied rather than
+ * exported.
+ *
+ * PNG, and it has to be. The academy supplied this cut with the studio sweep
+ * masked out, so half the file is transparent and the figure stands directly on
+ * whatever ground the section paints. A JPEG has no alpha channel and would
+ * flatten that mask to a white rectangle sitting on the ivory, so the format is
+ * load bearing here rather than incidental: if this file is ever re-exported,
+ * it stays PNG (or WebP). Next re-encodes it to WebP on the way out and keeps
+ * the alpha, so the 780KB source is not what a visitor downloads.
  *
  * The photograph is 1179x1469 and the frame that holds it is 4:5, a difference
  * of a third of a percent. `cover` spends all of it on the left and right edges
- * of the backdrop and none on the height, so the full figure survives at every
- * breakpoint: nothing is taken off the top of her hair or the foot of the
- * blazer, and the centred crop needs no pull in either direction. The face sits
- * a little above the middle of the frame by composition rather than by crop,
- * which is the reason this one position serves phone and desktop alike.
+ * and none on the height, so the full figure survives at every breakpoint:
+ * nothing is taken off the top of her hair or the foot of the blazer.
+ *
+ * `position` is doing nothing and cannot do anything, which is worth knowing
+ * before reaching for it. With four pixels of horizontal overflow there is no
+ * slack to pan: the figure sits where the mask puts it, which is against the
+ * right of the frame with the air on the left, because that is how it was shot.
+ * To recentre the figure the mask would have to be re-cut, not the crop.
  */
 export const founderMedia: Media = {
-  posterSrc: "/brand/amira-founder-portrait.jpg",
+  posterSrc: "/brand/amira-founder-portrait.png",
   position: "50% 50%",
   width: 1179,
   height: 1469,

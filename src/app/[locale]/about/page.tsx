@@ -170,7 +170,7 @@ export default async function AboutPage({
               <div className="relative aspect-[4/5] w-full">
                 <MediaFrame
                   media={{
-                    posterSrc: "/brand/amira-founder-portrait.jpg",
+                    posterSrc: "/brand/amira-founder-portrait.png",
                     alt: t("story.imageAlt"),
                     // The photograph is a hair wider than the 4:5 box, so cover
                     // takes its third of a percent off the sides and nothing
