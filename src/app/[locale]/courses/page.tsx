@@ -115,16 +115,53 @@ export default async function CoursesPage({
       </section>
 
       {/* The catalogue as a list of rows rather than a grid of cards: the media
-          leads, the name carries the row, the conditions are stated once. */}
+          leads, the name carries the row, the conditions are stated once.
+
+          The six rows are now grouped into the three families rather than run
+          as one flat list of six. A flat list made a visitor do the sorting: the
+          two techniques most often confused with each other, microblading and
+          powder brows, sat next to a lip treatment and a lash treatment with
+          nothing to say they were answers to different questions. Grouped, the
+          page states the discipline first and the technique second, which is the
+          order someone chooses in.
+
+          The row markup, the numbering, the anchors and every string are the
+          ones that were already here. What is new is the heading above each
+          group, so nothing is lost by the regrouping and no course moves out of
+          the catalogue.
+
+          The number is `n`, counted across the whole page rather than restarted
+          per family, so the catalogue still reads as six courses under one
+          standard and the figure on a row is stable no matter which group it
+          lands in. */}
       <section className="bg-ivory">
-        <ol className={`${shell} border-t border-hair`}>
-          {courses.map((course, i) => (
-            <Reveal
-              as="li"
-              key={course.slug}
-              id={course.slug}
-              className="group/row grid scroll-mt-28 gap-6 border-b border-hair py-10 md:grid-cols-12 md:gap-10 md:py-14"
-            >
+        <div className={`${shell} border-t border-hair`}>
+          {(() => {
+            let n = 0;
+            return families.map((family) => {
+              const inFamily = courses.filter((c) => c.family === family);
+              if (!inFamily.length) return null;
+              return (
+                <section key={family} className="border-b border-hair last:border-b-0">
+                  <Reveal className="pt-14 pb-2 md:pt-20">
+                    <h2 className={`${displayLarge} max-w-[16ch]`}>
+                      {t(`catalog.families.${family}.title`)}
+                    </h2>
+                    <p className="mt-4 max-w-[52ch] text-[16px] leading-relaxed text-mute">
+                      {t(`catalog.families.${family}.sub`)}
+                    </p>
+                  </Reveal>
+
+                  <ol>
+                    {inFamily.map((course) => {
+                      const i = n++;
+                      return (
+                        <Reveal
+                          as="li"
+                          key={course.slug}
+                          id={course.slug}
+                          className="group/row grid scroll-mt-28 gap-6 border-t border-hair py-10 md:grid-cols-12 md:gap-10 md:py-14"
+                        >
               {/* The same treatment the work section gives a photograph: a few
                   pixels of drift against the scroll for depth, and a slow push
                   in on hover. The hover is keyed to the whole row rather than
