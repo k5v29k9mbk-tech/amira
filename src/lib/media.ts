@@ -52,46 +52,67 @@ export const introMedia = {
 /**
  * The hero film: the academy's own footage, behind the first screen.
  *
- * The file is the one the academy supplied, at the name it supplied it under,
- * used byte for byte and never re-encoded. The extension is upper case because
- * that is how the camera wrote it and how the file sits in `public/`; a URL path
- * is case sensitive in production even where macOS is forgiving locally, so this
- * string has to match the file exactly rather than tidily.
+ * The clip is the classroom the site is selling: Amira at the flipchart drawing
+ * the stroke patterns, the mapping worked out by hand, the class following from
+ * the bench. It replaces the treatment-room clip that stood here before, which
+ * showed a lit tablet and nobody, and it is the first screen's own answer to the
+ * statement set over it.
  *
- * The footage is 480x848, shot vertically on a phone in a treatment room lit by
- * one magenta tube. Two things follow from that and both are deliberate here.
- * It is dark to begin with, so the scrim over it is 52 rather than the 70 a
- * daylight clip would need to carry ivory type. And it is 480px wide against a
- * desktop viewport that is three or four times that, so `cover` is scaling it
- * up: what survives the scale is the colour and the movement, which is what a
- * ground is for, and the detail that does not survive is not being asked to
- * carry anything. Drop a larger master at this path and the frame sharpens with
- * no change to any component.
+ * WHAT WAS DONE TO THE FILE, AND WHAT WAS NOT. The academy's master is 1080x1920
+ * H.264, shot vertically on a phone at 30fps. Not one video frame is re-encoded
+ * here: the pixels are the camera's, passed through untouched. Two things were
+ * cut, both losslessly, by a stream copy.
  *
- * The poster is a frame of the film itself, so the first paint is the same image
- * the video resolves into, and a visitor who has asked for reduced motion gets
- * that frame and no video at all.
+ * The tail: the master runs 19.1s and the picture ends at about 14.8s, so the
+ * last four and a half seconds are black. A background that loops has no use for
+ * a fade to nothing — it reads as the site breaking rather than as an edit — so
+ * the clip is cut at 14.7s, the last frame with light in it.
+ *
+ * The audio: the video track is copied into the new container alone. `MediaFrame`
+ * plays every clip muted, so an AAC track is bytes the first screen waits on and
+ * never sounds.
+ *
+ * MP4 rather than the camera's .MOV, and that part is not cosmetic. The bytes are
+ * the same H.264, but Firefox and Chrome do not reliably play a QuickTime
+ * container; Safari does. Shipping the .MOV would have given two of the three
+ * engines a still poster and no film.
+ *
+ * THE PROPORTION. The source is 9:16 and the screen it fills is not. `cover` on
+ * a full-bleed 100svh section is what turns the phone footage into the 16:9
+ * frame a desktop reads: the clip scales to the viewport's width and the crop is
+ * spent on its height, which is why `position` below is aimed rather than
+ * centred. A phone gets the opposite trade and keeps almost the whole frame.
+ *
+ * The poster is the film's own first frame, so the first paint is exactly the
+ * image the video resolves into rather than a cut to somewhere else, and a
+ * visitor who has asked for reduced motion is left holding that frame with no
+ * video loaded at all.
  */
 export const heroFilmMedia: Media = {
-  videoSrc: "/06aa8692-35d7-4b5a-8475-4d9504116b39.MP4",
-  posterSrc: "/brand/hero-film-poster.jpg",
+  videoSrc: "/brand/hero-class.mp4",
+  posterSrc: "/brand/hero-class-poster.jpg",
   alt: "",
   /**
    * Where the crop sits, and it is a different problem at each end.
    *
-   * The frame is 480x848 and the subject, a lit tablet with a brow on it, sits
-   * a little above the middle. A wide viewport scales the clip to its width and
-   * loses most of the height: at 1440x900 only about a third of the frame is on
-   * screen, so the crop has to be aimed. 38% puts the tablet on the upper third
-   * of the composition, above the statement and clear of it, rather than the
-   * empty curtain that sits above it in the source.
+   * DESKTOP. A 16:9 window keeps 1080x608 of a 1080x1920 frame: less than a
+   * third of the film is on screen, so the crop is the composition. 40% is where
+   * Amira survives the whole clip. The montage cuts between a close shot of her
+   * at the board, where her face sits just below the middle of the frame, and a
+   * wide of the room, where she is high in it and the students fill the bottom;
+   * 45% takes the top of her head off in the wide, 35% loses her face in the
+   * close shot. 40% holds both, and it puts her in the upper half of the screen,
+   * which is the band the composition leaves to the film — the statement, the
+   * figures and the buttons all sit below it.
    *
-   * A phone is the opposite case. The viewport is taller than it is wide and so
-   * is the clip, so almost the whole frame survives and there is nothing to aim:
-   * the centre is the honest crop, and pulling it anywhere would only throw away
-   * footage the screen had room for.
+   * PHONE. The viewport is taller than it is wide and so is the clip, so `cover`
+   * scales to the height and spends about a fifth of the width, a tenth off each
+   * edge. Amira is a little right of centre in the source and stays comfortably
+   * inside that crop, so the centre is the honest aim: pulling it toward her
+   * would only throw away footage the screen had room for and push her to the
+   * edge in the wider shots.
    */
-  position: "50% 38%",
+  position: "50% 40%",
   mobilePosition: "50% 50%",
   /**
    * No flat scrim. The film is the composition now rather than a ground behind
@@ -101,8 +122,8 @@ export const heroFilmMedia: Media = {
    * `HeroFilm`, each shaped to the type it is under, which leaves the middle of
    * the frame at full strength where nothing is set over it.
    */
-  width: 480,
-  height: 848,
+  width: 1080,
+  height: 1920,
 };
 
 /**
