@@ -162,40 +162,54 @@ export default async function CoursesPage({
                           id={course.slug}
                           className="group/row grid scroll-mt-28 gap-6 border-t border-hair py-10 md:grid-cols-12 md:gap-10 md:py-14"
                         >
-              {/* The same treatment the work section gives a photograph: a few
-                  pixels of drift against the scroll for depth, and a slow push
-                  in on hover. The hover is keyed to the whole row rather than
-                  to the frame, because the row is what a reader is pointing at
-                  when they are reading a course. */}
-              <Parallax distance={10} className="md:col-span-5">
-                <div className="relative aspect-[16/10] w-full md:aspect-[4/3]">
-                  <MediaFrame
-                    media={course.media}
-                    sizes="(max-width: 768px) 100vw, 40vw"
-                    imageClassName="transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover/row:scale-[1.03]"
-                  />
-                </div>
-              </Parallax>
+                          {/* The same treatment the work section gives a
+                              photograph: a few pixels of drift against the
+                              scroll for depth, and a slow push in on hover. The
+                              hover is keyed to the whole row rather than to the
+                              frame, because the row is what a reader is pointing
+                              at when they are reading a course. */}
+                          <Parallax distance={10} className="md:col-span-5">
+                            <div className="relative aspect-[16/10] w-full md:aspect-[4/3]">
+                              <MediaFrame
+                                media={course.media}
+                                sizes="(max-width: 768px) 100vw, 40vw"
+                                imageClassName="transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover/row:scale-[1.03]"
+                              />
+                            </div>
+                          </Parallax>
 
-              <div className="md:col-span-6 md:col-start-7 md:self-center">
-                <span className="label font-mono text-bronze-ink">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h2 className={`${displayLarge} mt-4`}>{t(`catalog.courses.${course.slug}`)}</h2>
-                <p className="mt-5 max-w-[48ch] text-[16px] leading-relaxed text-mute">
-                  {t(`catalog.blurbs.${course.slug}`)}
-                </p>
-                <p className="label mt-6 text-mute">
-                  {t("catalog.details.level.value")} · {t("catalog.details.language.value")}
-                </p>
-                <Link href="/contact" className={`${linkRule} mt-6`}>
-                  {t("catalog.cta")}
-                  <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
-                </Link>
-              </div>
-            </Reveal>
-          ))}
-        </ol>
+                          <div className="md:col-span-6 md:col-start-7 md:self-center">
+                            <span className="label font-mono text-bronze-ink">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            {/* h3, not h2. The family above is the h2 now, and a
+                                course sits under it: the outline was six h2s in
+                                a row with nothing saying which of them were
+                                answers to the same question. */}
+                            <h3 className={`${displayLarge} mt-4`}>
+                              {t(`catalog.courses.${course.slug}`)}
+                            </h3>
+                            <p className="mt-5 max-w-[48ch] text-[16px] leading-relaxed text-mute">
+                              {t(`catalog.blurbs.${course.slug}`)}
+                            </p>
+                            <p className="label mt-6 text-mute">
+                              {t("catalog.details.level.value")} ·{" "}
+                              {t("catalog.details.language.value")}
+                            </p>
+                            <Link href="/contact" className={`${linkRule} mt-6`}>
+                              {t("catalog.cta")}
+                              <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
+                            </Link>
+                          </div>
+                        </Reveal>
+                      );
+                    })}
+                  </ol>
+                </section>
+              );
+            });
+          })()}
+        </div>
       </section>
 
       {/* The shared conditions. Every value is a direct quotation of the
