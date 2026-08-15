@@ -99,6 +99,17 @@ export const introMedia = {
  */
 export const heroFilmMedia: Media = {
   videoSrc: "/brand/hero-class.mp4",
+  /**
+   * The phone cut: the same 14.7s at 720x1280 and 1.4 Mbit/s, 2.5MB.
+   *
+   * `MediaFrame` picks this below 768px and it is the one place on the site
+   * where a second encode pays for itself twice over. A phone shows the film at
+   * about 390 CSS px wide, which is 780 device pixels on a 2x screen, so 720 is
+   * the honest resolution for it and the 1080 file would be downloading detail
+   * the panel cannot draw. It is also the connection most likely to be metered
+   * and slow, and this halves what the first screen costs on it.
+   */
+  mobileVideoSrc: "/brand/hero-class-mobile.mp4",
   posterSrc: "/brand/hero-class-poster.jpg",
   alt: "",
   /**
