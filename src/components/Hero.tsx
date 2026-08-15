@@ -38,36 +38,49 @@ const facts = ["years", "students", "classes"] as const;
  * illustrated, and this one now signs itself at the inline end of the last line
  * of the composition.
  *
- * THE GRID, AND WHY NOTHING IS CENTRED. Twelve columns, bottom aligned, with the
- * whole composition sitting on the closing measure of the section: the statement
- * and its evidence on columns 1 to 7, the signature alone on 9 to 12, and the
- * top third of the screen left as nothing but film. That asymmetry is the
- * design. A statement centred in the middle of a video is the house style of
- * every template that has ever shipped with a stock clip behind it, and it wins
- * legibility by covering the footage evenly, which is the one thing this screen
- * cannot afford to do.
+ * THE AXIS. One centred column, optically centred in the screen: the bar, the
+ * statement, the promise, the evidence, the two actions, then her name. Same
+ * seven pieces in the same reading order at every width, hung on the middle of
+ * the frame instead of on the inline margin.
  *
- * Bottom alignment is what makes the film readable as film. A reader meets the
- * frame first, uninterrupted, and the type second, and the scrim in `HeroFilm`
- * is shaped to exactly that: heavy along the bottom band and the inline start
- * where the type is, eight percent across the middle where it is not.
+ * This screen was built asymmetric — statement on columns 1 to 7, signature
+ * alone on 9 to 12, everything bottom aligned — and the reasoning for that was
+ * sound while the ground was a dark treatment room: the eye met the frame first
+ * and the type second, and the scrim could be heavy down one side and eight
+ * percent everywhere else. The footage is now the academy's own classroom, which
+ * is lit, busy across its whole width, and half white flipchart. There is no
+ * quiet side left to hang type on, and an off-centre statement over a frame with
+ * no quiet side reads as type that missed rather than type that was placed.
+ *
+ * Centred, the composition has a single axis and the scrim can be built to it:
+ * `HeroFilm` pools its darkness in the middle where the words are and releases
+ * the corners and the top of the frame, so the film stays film exactly where
+ * nothing is set over it. Symmetry is also the cheapest luxury there is — it is
+ * how a title card is set, and a title card is what this screen is.
+ *
+ * The one thing centring must not become is a template hero, and the guards
+ * against that are the measure and the vertical placement. The statement is held
+ * to 15ch, so it breaks into three short lines the way a title is set and never
+ * runs the width of a laptop; the supporting line is held to 46ch under it; and
+ * the whole block is centred against a section that carries the header's height
+ * at the top and the scroll cue's at the foot, so it sits on the optical centre
+ * rather than the arithmetic one.
  *
  * 100svh, not 100vh: the small viewport unit is the one that does not jump when
  * the mobile address bar collapses. It is a floor rather than a cap, so a long
  * translation lengthens the section instead of overflowing it.
- *
- * On phones the twelve columns collapse to one and the order is the reading
- * order: the bar, the statement, the promise, the evidence, the two actions,
- * then the signature at the foot of it. The signature keeps its rule and loses
- * only its alignment, which is the one thing about it that needs a second
- * column to mean anything.
  */
 export async function Hero() {
   const t = await getTranslations("hero");
   const inst = await getTranslations("instructor");
 
   return (
-    <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-espresso text-ivory pt-[68px] pb-14 md:pt-[76px] md:pb-16 lg:pb-20">
+    {/* Centred on both axes, and the two paddings are not equal on purpose.
+        The section is the full small viewport, but it does not own all of it:
+        the fixed header sits on the top 68px and the scroll cue on the bottom
+        56. Centring inside the padding box rather than the border box is what
+        puts the composition on the middle of what a reader can actually see. */}
+    <section className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-espresso text-ivory pt-[92px] pb-20 md:pt-[100px] md:pb-24">
       <HeroFilm />
 
       {/* The opening score.
@@ -79,9 +92,9 @@ export async function Hero() {
           components. The order is the bar, the statement line by line, the
           supporting line, the figures, the actions, then her name and her role.
 
-          `HeroCopy` wraps the whole grid rather than the copy column alone, so
+          `HeroCopy` wraps the whole composition rather than one part of it, so
           the cue that holds the screen until any opening film has finished is
-          read once and handed to both halves. Two blocks polling the same event
+          read once and handed to every beat. Two blocks polling the same event
           is how a sequence acquires a stutter nobody can find later.
 
           The bar, the statement and the signature open through apertures; the
@@ -90,135 +103,127 @@ export async function Hero() {
           on one screen it stops being an event, so it is spent on the three
           pieces of type that carry the argument and withheld from the three that
           support them. */}
-      <HeroCopy
-        className={`${shell} grid w-full items-end gap-y-12 sm:gap-y-14 lg:grid-cols-12 lg:gap-10`}
-      >
-        <div className="max-w-[42rem] lg:col-span-7 lg:col-start-1">
-          {/* Three facts, one line: the academy, what it does, where. Wraps
-              to two lines on a phone, so it carries its own leading. */}
-          <MaskReveal onMount delay={heroBeat.bar} duration={dur.base}>
-            <p className="label leading-[1.8] text-bronze-hi">{t("eyebrow")}</p>
+      <HeroCopy className={`${shell} flex w-full flex-col items-center text-center`}>
+        {/* Three facts, one line: the academy, what it does, where. Wraps
+            to two lines on a phone, so it carries its own leading. */}
+        <MaskReveal onMount delay={heroBeat.bar} duration={dur.base}>
+          <p className="label leading-[1.8] text-bronze-hi">{t("eyebrow")}</p>
+        </MaskReveal>
+
+        {/* The measure is lifted below sm. 15ch of Cormorant at the floor
+            size is about 330px, and a 390px phone has 342 of gutter to
+            gutter: the cap was throwing "carriera." and "carrière." onto a
+            third line to save nothing. Above sm it is the reading measure
+            again, which is what keeps the statement from running the width
+            of a laptop, and it matters more centred than it did against the
+            margin: a centred line that runs long has two ragged ends instead
+            of one, and the eye has to hunt for the start of the next line.
+
+            Two blocks, two apertures, one beat apart. The statement was
+            already set as two lines the academy wrote separately, which is
+            what makes line masking possible here without measuring anything:
+            nothing is split by code, so nothing can split differently in
+            Italian, French or Arabic. The second line's aperture is a
+            `stagger.line` behind the first, which is what makes the headline
+            read as typesetting rather than as a block arriving. */}
+        <h1 className={`${displayHero} mt-6 max-w-[19ch] text-balance sm:max-w-[15ch] md:mt-8`}>
+          <MaskReveal onMount delay={heroBeat.headline} duration={dur.slow}>
+            <span className="block">{t("titleA")}</span>
           </MaskReveal>
+          <MaskReveal
+            onMount
+            delay={heroBeat.headline + stagger.line}
+            duration={dur.slow}
+          >
+            <span className="block">{t("titleB")}</span>
+          </MaskReveal>
+        </h1>
 
-          {/* The measure is lifted below sm. 15ch of Cormorant at the floor
-              size is about 330px, and a 390px phone has 342 of gutter to
-              gutter: the cap was throwing "carriera." and "carrière." onto a
-              third line to save nothing. Above sm it is the reading measure
-              again, which is what keeps the statement from running the width
-              of a laptop.
+        <HeroBeat delay={heroBeat.sub}>
+          <p className="mt-6 max-w-[46ch] text-[16px] leading-relaxed text-ivory/85 sm:text-[17px] md:mt-8 md:text-[19px]">
+            {t("sub")}
+          </p>
+        </HeroBeat>
 
-              Two blocks, two apertures, one beat apart. The statement was
-              already set as two lines the academy wrote separately, which is
-              what makes line masking possible here without measuring anything:
-              nothing is split by code, so nothing can split differently in
-              Italian, French or Arabic. The second line's aperture is a
-              `stagger.line` behind the first, which is what makes the headline
-              read as typesetting rather than as a block arriving. */}
-          <h1 className={`${displayHero} mt-6 max-w-[19ch] text-balance sm:max-w-[15ch] md:mt-8`}>
-            <MaskReveal onMount delay={heroBeat.headline} duration={dur.slow}>
-              <span className="block">{t("titleA")}</span>
-            </MaskReveal>
-            <MaskReveal
-              onMount
-              delay={heroBeat.headline + stagger.line}
-              duration={dur.slow}
-            >
-              <span className="block">{t("titleB")}</span>
-            </MaskReveal>
-          </h1>
+        {/* Proof. A hairline above it and nothing around it: the figures are
+            the evidence for the sentence above and the reason to press the
+            button below, so they sit between the two.
 
-          <HeroBeat delay={heroBeat.sub}>
-            <p className="mt-6 max-w-[46ch] text-[16px] leading-relaxed text-ivory/85 sm:text-[17px] md:mt-8 md:text-[19px]">
-              {t("sub")}
-            </p>
-          </HeroBeat>
+            Three columns at every width, on one baseline, and held to 34rem so
+            the row stays a masthead rather than three figures spread across a
+            laptop. That cap is also what the rule above it is for: a hairline
+            drawn to the width of the figures reads as a rule under the
+            statement, where the same hairline drawn to the full width of the
+            section would cut the screen in half.
 
-          {/* Proof. A hairline above it and nothing around it: the figures are
-              the evidence for the sentence above and the reason to press the
-              button below, so they sit between the two.
+            Set inline on a phone the three pairs are about 520px of type
+            against 342 of gutter, so they broke one to a line and the masthead
+            became a list. Stacked in three columns, each figure over its own
+            label, they hold one baseline from 320px up. */}
+        <HeroBeat delay={heroBeat.facts} className="w-full">
+          <dl className="mx-auto mt-8 grid w-full max-w-[34rem] grid-cols-3 gap-x-4 gap-y-3 border-t border-hair-dark pt-6 md:mt-10 md:gap-x-8">
+            {facts.map((k) => (
+              <div key={k} className="flex flex-col items-center gap-1.5 md:gap-2">
+                <dt className="display text-[1.375rem] leading-none text-ivory md:text-[1.5rem]">
+                  {t(`facts.${k}.value`)}
+                </dt>
+                <dd className="label leading-[1.5] text-mute-dark">{t(`facts.${k}.label`)}</dd>
+              </div>
+            ))}
+          </dl>
+        </HeroBeat>
 
-              Three columns on a phone, one line from sm. Set inline, the three
-              pairs are about 520px of type and a phone has 342, so they broke
-              one to a line and the masthead became a bulleted list down the
-              left edge. Stacked in three columns the figures stay on one
-              baseline, which is the only thing about the row that has to be
-              true for it to read as a masthead.
+        {/* The primary action takes the width on a phone. A 230px button
+            floated against the edge of a 390px screen is the one element in
+            the composition that reads as an afterthought, and it is the only
+            thing on the first screen a visitor is meant to press. The
+            secondary stays a text link at every width, so the hierarchy
+            between the two never becomes two buttons.
 
-              And back to three columns from lg, which is the width where the
-              inline row stopped working. From lg this column is 7 of 12, so it
-              is about 500px at that breakpoint and 836 at the 1600px cap, while
-              the three pairs set inline need roughly 700 of type plus 80 of
-              gutter. The row wrapped, and it wrapped in the worst available
-              shape: two pairs on the first line and the third alone under them,
-              which reads as a list that has run out of room rather than as a
-              masthead. Three columns holds the three figures on one baseline at
-              every width, and it is shorter than the wrap it replaces, which the
-              first screen has better uses for. */}
-          <HeroBeat delay={heroBeat.facts}>
-            <dl className="mt-8 grid grid-cols-3 gap-x-4 gap-y-3 border-t border-hair-dark pt-6 sm:flex sm:flex-wrap sm:items-baseline sm:gap-x-8 md:mt-10 md:gap-x-10 lg:grid lg:grid-cols-3 lg:gap-x-6 xl:gap-x-8">
-              {facts.map((k) => (
-                <div
-                  key={k}
-                  className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-2.5 lg:flex-col lg:items-start lg:gap-2"
-                >
-                  <dt className="display text-[1.375rem] leading-none text-ivory md:text-[1.5rem]">
-                    {t(`facts.${k}.value`)}
-                  </dt>
-                  <dd className="label leading-[1.5] text-mute-dark">{t(`facts.${k}.label`)}</dd>
-                </div>
-              ))}
-            </dl>
-          </HeroBeat>
+            From sm they sit side by side on the axis, button then link, which
+            is the one place the composition is not symmetrical about its
+            centre: two actions of equal weight either side of the middle would
+            be a choice between them, and there is a primary here.
 
-          {/* The primary action takes the width on a phone. A 230px button
-              floated against the inline edge of a 390px screen is the one
-              element in the composition that reads as an afterthought, and it
-              is the only thing on the first screen a visitor is meant to
-              press. The secondary stays a text link at every width, so the
-              hierarchy between the two never becomes two buttons.
-
-              Both are the light-ground pair now. On the film, an espresso
-              button is a hole cut in the footage and an espresso rule under a
-              link is invisible; the ivory pair is the same two shapes on the
-              other ground, and ui.ts has carried it for the dark sections since
-              before this screen needed it. */}
-          <HeroBeat delay={heroBeat.actions}>
-            <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-10">
-              <Link href="/courses" className={`${btnSolidLight} w-full sm:w-auto`}>
-                {t("primary")}
-              </Link>
-              <Link href="/contact" className={linkRuleLight}>
-                {t("secondary")}
-                <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
-              </Link>
-            </div>
-          </HeroBeat>
-        </div>
+            Both are the light-ground pair. On the film, an espresso button is a
+            hole cut in the footage and an espresso rule under a link is
+            invisible; the ivory pair is the same two shapes on the other
+            ground, and ui.ts has carried it for the dark sections since before
+            this screen needed it. */}
+        <HeroBeat delay={heroBeat.actions} className="w-full">
+          <div className="mt-10 flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10 md:mt-12">
+            <Link href="/courses" className={`${btnSolidLight} w-full sm:w-auto`}>
+              {t("primary")}
+            </Link>
+            <Link href="/contact" className={linkRuleLight}>
+              {t("secondary")}
+              <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
+            </Link>
+          </div>
+        </HeroBeat>
 
         {/* The signature.
 
-            Her name is the last thing to arrive and the only type on the screen
-            set against the far margin, which is what makes it read as a
-            signature on the frame rather than as a second heading. It is the
-            display serif at the pull-quote size: comfortably below the
+            Her name is the last thing to arrive and the only display type on
+            the screen besides the statement itself, which is what makes it read
+            as a signature on the frame rather than as a second heading. It is
+            the display serif at the pull-quote size: comfortably below the
             statement, comfortably above everything else, so it is the second
             thing the eye finds and never competes for first.
 
-            The rule above it is the same hairline that carries the figures on
-            the other side of the grid, cut to 3.5rem. It arrives a beat ahead of
-            the name and inside the same aperture, so the pair wipes in as one
-            gesture: the line draws, the name lands on it.
+            It used to sign the far corner of an asymmetric grid. On a centred
+            composition there is no far corner to sign, and a name pushed to one
+            side of a symmetrical block is the one thing that would break the
+            axis; so it closes the column instead, on the same centre line as
+            everything above it, the way a title card is signed at its foot.
 
-            Alignment is the one thing that changes with the breakpoint. From lg
-            the block is pushed to columns 9 to 12 and set to the inline end,
-            which puts her name at the far corner of the composition, diagonally
-            opposite the eyebrow. Below lg there is one column and no far corner
-            to sign, so it keeps the margin every other line is hung on. Both are
-            logical properties, so Arabic gets the mirror rather than a special
-            case. */}
-        <div className="lg:col-span-4 lg:col-start-9 lg:pb-1 lg:text-end">
+            The rule above it is the same hairline that carries the figures, cut
+            to 3.5rem and centred. It arrives a beat ahead of the name and inside
+            the same aperture, so the pair wipes in as one gesture: the line
+            draws, the name lands on it. */}
+        <div className="mt-12 md:mt-14">
           <MaskReveal onMount delay={heroBeat.name} duration={dur.slow}>
-            <span className="mb-5 block h-px w-14 bg-bronze-hi/50 lg:ms-auto" />
+            <span className="mx-auto mb-5 block h-px w-14 bg-bronze-hi/50" />
             <p className={`${displayLarge} leading-[1.1] text-ivory`}>{inst("title")}</p>
           </MaskReveal>
 
