@@ -82,14 +82,29 @@ export function HeroFilm() {
       </motion.div>
 
       {/* Under the header, and under the composition.
-          Ten percent across the upper middle, which is the band the film has to
-          itself; then a long ramp from 38% rather than a late one, because the
-          copy column starts at the eyebrow and not at the buttons, and a
-          gradient that waits until the last quarter leaves the statement to take
-          its chances against whatever the footage is doing. Long is the
+          A quiet band across the upper middle, which is the part of the frame
+          the film has to itself; then a long ramp rather than a late one,
+          because the copy column starts at the eyebrow and not at the buttons,
+          and a gradient that waits until the last quarter leaves the statement
+          to take its chances against whatever the footage is doing. Long is the
           operative word: over roughly 60% of the height nothing about it reads
-          as an edge. */}
-      <span className="absolute inset-0 bg-[linear-gradient(to_bottom,color-mix(in_srgb,var(--aura-espresso)_60%,transparent)_0%,color-mix(in_srgb,var(--aura-espresso)_12%,transparent)_18%,color-mix(in_srgb,var(--aura-espresso)_10%,transparent)_38%,color-mix(in_srgb,var(--aura-espresso)_58%,transparent)_74%,color-mix(in_srgb,var(--aura-espresso)_80%,transparent)_100%)]" />
+          as an edge.
+
+          The strengths are the classroom's, not the treatment room's. The clip
+          this screen used to carry was a dark room lit by one magenta tube, and
+          ivory type sat on it at ten percent. The academy's own lesson is the
+          opposite exposure: a lit room, and a white flipchart that fills half
+          the frame and passes directly under the statement. Ten percent of
+          espresso over white paper leaves ivory type on ivory. The quiet band is
+          22 here, and the ramp opens earlier and closes darker.
+
+          Two sets of stops, because the crop is two different pictures. A
+          desktop keeps a 16:9 slice of the middle of the frame and the copy
+          occupies its bottom half; a phone keeps almost the whole 9:16 frame and
+          the same copy runs from a quarter of the way down to the foot of the
+          screen, so there is far less film to leave alone and the ramp has to
+          start where the eyebrow does. */}
+      <span className="absolute inset-0 bg-[linear-gradient(to_bottom,color-mix(in_srgb,var(--aura-espresso)_62%,transparent)_0%,color-mix(in_srgb,var(--aura-espresso)_34%,transparent)_14%,color-mix(in_srgb,var(--aura-espresso)_40%,transparent)_28%,color-mix(in_srgb,var(--aura-espresso)_66%,transparent)_62%,color-mix(in_srgb,var(--aura-espresso)_86%,transparent)_100%)] md:bg-[linear-gradient(to_bottom,color-mix(in_srgb,var(--aura-espresso)_62%,transparent)_0%,color-mix(in_srgb,var(--aura-espresso)_24%,transparent)_18%,color-mix(in_srgb,var(--aura-espresso)_22%,transparent)_38%,color-mix(in_srgb,var(--aura-espresso)_64%,transparent)_72%,color-mix(in_srgb,var(--aura-espresso)_84%,transparent)_100%)]" />
 
       {/* The inline start, where every line of type in the composition hangs.
           It carries the statement specifically: the clip is a lit room and the
