@@ -245,7 +245,7 @@ export default async function CoursesPage({
           a second blurb. The second is `catalog.blurbs.powder-brows` verbatim,
           so it introduces no claim that was not already approved and shipping.
           The third is level, language and group size, which the academy states
-          about every course it runs. */}
+          about every course it runs.
 
           The photograph carries alt="" on purpose. The site's standing rule is
           that it does not name the discipline that produced a client's brow,
