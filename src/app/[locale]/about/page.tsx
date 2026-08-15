@@ -172,7 +172,11 @@ export default async function AboutPage({
                   media={{
                     posterSrc: "/brand/amira-founder-portrait.jpg",
                     alt: t("story.imageAlt"),
-                    position: "50% 42%",
+                    // The photograph is a hair wider than the 4:5 box, so cover
+                    // takes its third of a percent off the sides and nothing
+                    // off the height. Centred: the pull upward the old crop
+                    // carried would now do nothing at all.
+                    position: "50% 50%",
                   }}
                   sizes="(max-width: 1024px) 100vw, 38vw"
                 />
