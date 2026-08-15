@@ -237,6 +237,20 @@
       "eyeliner-pmu": "A line set at the base of the lashes, from a discreet enhancement to a defined eye.",
       "lash-lamination": "A lifting treatment that opens the eye by reshaping the natural lash.",
       "brow-lamination": "The brow hair restructured and set in the direction that suits the face."
+    },
+    "families": {
+      "brows": {
+        "title": "Brows",
+        "sub": "Three ways to build a brow: two are permanent makeup, one restructures the hair you already have."
+      },
+      "lipsEyes": {
+        "title": "Lips and eyes",
+        "sub": "Permanent makeup for the lip and for the lash line."
+      },
+      "lashes": {
+        "title": "Lashes",
+        "sub": "A lifting treatment that reshapes the natural lash."
+      }
     }
   },
   "journey": {
@@ -418,5 +432,16 @@
   "notFound": {
     "title": "That page isn't here.",
     "body": "The link may be out of date, or the page may have been renamed. Start again from the beginning, or go straight to the courses."
+  },
+  "powder": {
+    "eyebrow": "Powder Brows",
+    "title": "A brow built in shade, not in strokes.",
+    "intro": "Powder brows is a machine technique. Pigment is worked into the skin as very fine dots that build up into a soft, even shade across the brow, so the finish reads as powder rather than as hairs drawn one by one. The density is built gradually, from a light veil to a more defined shape.",
+    "points": {
+      "technique": "Worked with the machine, in fine dots rather than with a blade.",
+      "finish": "A soft, shaded finish, from a light veil to a defined brow.",
+      "levels": "Taught at base and advanced level, in Italian, in groups of 3-4 students."
+    },
+    "cta": "Ask about Powder Brows"
   }
 }

@@ -237,6 +237,20 @@
       "eyeliner-pmu": "Una linea alla base delle ciglia, dall'infoltimento discreto allo sguardo definito.",
       "lash-lamination": "Un trattamento di lifting che apre lo sguardo ridisegnando la ciglia naturale.",
       "brow-lamination": "Il pelo del sopracciglio ristrutturato e fissato nella direzione che valorizza il viso."
+    },
+    "families": {
+      "brows": {
+        "title": "Sopracciglia",
+        "sub": "Tre modi di costruire un sopracciglio: due sono trucco permanente, uno ristruttura il pelo che già c'è."
+      },
+      "lipsEyes": {
+        "title": "Labbra e occhi",
+        "sub": "Trucco permanente per il labbro e per la rima ciliare."
+      },
+      "lashes": {
+        "title": "Ciglia",
+        "sub": "Un trattamento lifting che ridisegna il ciglio naturale."
+      }
     }
   },
   "journey": {
@@ -418,5 +432,16 @@
   "notFound": {
     "title": "Questa pagina non esiste.",
     "body": "Il link potrebbe non essere più valido, oppure la pagina ha cambiato indirizzo. Riparti dall'inizio, o vai direttamente ai corsi."
+  },
+  "powder": {
+    "eyebrow": "Powder Brows",
+    "title": "Un sopracciglio costruito in sfumatura, non a pelo.",
+    "intro": "Il powder brows è una tecnica a macchinetta. Il pigmento viene lavorato nella pelle a punti finissimi che costruiscono una sfumatura morbida e uniforme, così la finitura si legge come una polvere e non come peli disegnati uno a uno. La densità si costruisce per gradi, da un velo leggero a una forma più definita.",
+    "points": {
+      "technique": "Si lavora a macchinetta, a punti finissimi e non con la lama.",
+      "finish": "Finitura morbida e sfumata, dal velo leggero al sopracciglio definito.",
+      "levels": "Si insegna a livello base e avanzato, in italiano, in classi da 3-4 allieve."
+    },
+    "cta": "Chiedi informazioni sui Powder Brows"
   }
 }

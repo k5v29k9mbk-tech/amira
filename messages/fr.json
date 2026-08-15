@@ -237,6 +237,20 @@
       "eyeliner-pmu": "Une ligne posée à la base des cils, du renforcement discret au regard défini.",
       "lash-lamination": "Un soin liftant qui ouvre le regard en redessinant le cil naturel.",
       "brow-lamination": "Le poil du sourcil restructuré et fixé dans la direction qui met le visage en valeur."
+    },
+    "families": {
+      "brows": {
+        "title": "Sourcils",
+        "sub": "Trois façons de construire un sourcil : deux relèvent du maquillage permanent, une restructure le poil déjà présent."
+      },
+      "lipsEyes": {
+        "title": "Lèvres et yeux",
+        "sub": "Maquillage permanent pour la lèvre et pour la ligne des cils."
+      },
+      "lashes": {
+        "title": "Cils",
+        "sub": "Un soin lifting qui redessine le cil naturel."
+      }
     }
   },
   "journey": {
@@ -418,5 +432,16 @@
   "notFound": {
     "title": "Cette page n'existe pas.",
     "body": "Le lien n'est peut-être plus valide, ou la page a changé d'adresse. Reprenez depuis le début, ou allez directement aux formations."
+  },
+  "powder": {
+    "eyebrow": "Powder Brows",
+    "title": "Un sourcil construit en ombré, non en poils.",
+    "intro": "Le powder brows est une technique à la machine. Le pigment est travaillé dans la peau en points très fins qui construisent un ombré doux et régulier : la finition se lit comme une poudre et non comme des poils dessinés un à un. La densité se construit progressivement, d'un voile léger à une forme plus définie.",
+    "points": {
+      "technique": "Travaille a la machine, en points très fins et non a la lame.",
+      "finish": "Une finition douce et ombrée, du voile léger au sourcil défini.",
+      "levels": "Enseigné en niveau base et avancé, en italien, en groupes de 3-4 élèves."
+    },
+    "cta": "Demander des informations sur le powder brows"
   }
 }
