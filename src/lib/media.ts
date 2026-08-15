@@ -255,9 +255,16 @@ export const methodMedia: Record<string, Media> = {
    * 1536 wide is also what the sticky column actually wants. It renders at up
    * to 704 CSS px, which is 1408 device pixels on a 2x screen, so this is the
    * first version of this frame that is not being upscaled on a retina laptop.
+   *
+   * The filename is its own, rather than the one the enhanced cut had, and that
+   * is deliberate. Next keys the optimiser's cache on the source URL: swapping
+   * the bytes underneath a path that has already been requested serves the old
+   * derivative until something evicts it, which is exactly what happened here
+   * and cost half an hour of looking at a stale frame. A new photograph gets a
+   * new name.
    */
   support: {
-    posterSrc: "/brand/support-mentoring.jpg",
+    posterSrc: "/brand/support-mapping.jpg",
     alt: "",
     position: "50% 25%",
     width: 1536,
