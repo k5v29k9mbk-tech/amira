@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
-import { courses, included } from "@/lib/courses";
+import { courses, families, included } from "@/lib/courses";
 import { beforeAfterPairs, whatsappLinkWith } from "@/lib/studio";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { MediaFrame } from "@/components/MediaFrame";
