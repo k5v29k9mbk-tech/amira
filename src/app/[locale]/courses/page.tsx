@@ -212,6 +212,87 @@ export default async function CoursesPage({
         </div>
       </section>
 
+      {/* Powder Brows, standing on its own.
+
+          It is one of the six and it keeps its row in the brows family above;
+          this is the second thing the page says about it, not a duplicate
+          catalogue entry. The reason it gets one and the other five do not is
+          that it is the technique most often mistaken for the one directly
+          above it in the list, and a one line blurb in a row cannot carry the
+          difference between a blade drawing hairs and a machine building shade.
+
+          The ground is espresso, and that is the whole of its distinct visual
+          identity: no new colour, no card, no border, no shape the site does not
+          already own. The page runs ivory, ivory, paper, so one dark block in
+          the middle of it reads as a held breath. It is the same device the hero
+          and the closing frame already use.
+
+          Every sentence in it describes the technique and nothing else. There is
+          no healing time, no longevity, no suitability claim, no before and
+          after, and no price, because the academy has supplied none of those and
+          a section like this is exactly where invented ones would look most at
+          home. The three lines under the standfirst are the two facts the
+          academy does state about every course, level and language and group
+          size, plus the one thing the technique itself is.
+
+          The photograph carries alt="" on purpose. The site's standing rule is
+          that it does not name the discipline that produced a client's brow,
+          because it cannot know that from the file, and a frame in a section
+          headed Powder Brows would be doing precisely that if it were
+          described. It is here as atmosphere; the copy carries the meaning. */}
+      <section id="powder-brows-detail" className={`${sectionPad} scroll-mt-28 bg-espresso`}>
+        <div className={`${shell} grid items-center gap-10 lg:grid-cols-12 lg:gap-16`}>
+          <Parallax distance={10} className="lg:col-span-5">
+            {/* Native ratio: the file is 1320x1323, so a square frame crops it
+                by three pixels and nothing in the photograph is at risk. */}
+            <div className="relative aspect-square w-full">
+              <MediaFrame
+                media={{
+                  posterSrc: "/brand/brows-defined-portrait.jpg",
+                  alt: "",
+                  position: "50% 50%",
+                  width: 1320,
+                  height: 1323,
+                }}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            </div>
+          </Parallax>
+
+          <div className="lg:col-span-6 lg:col-start-7">
+            <Reveal>
+              <p className={eyebrowLight}>{t("powder.eyebrow")}</p>
+              <h2 className={`${displaySection} mt-8 max-w-[14ch] text-ivory`}>
+                {t("powder.title")}
+              </h2>
+              <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-mute-dark">
+                {t("powder.intro")}
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <ul className="mt-10 border-t border-hair-dark">
+                {(["technique", "finish", "levels"] as const).map((k) => (
+                  <li
+                    key={k}
+                    className="border-b border-hair-dark py-5 text-[16px] leading-relaxed text-mute-dark"
+                  >
+                    {t(`powder.points.${k}`)}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal delay={0.14}>
+              <Link href="/contact" className={`${btnSolidLight} mt-10`}>
+                {t("powder.cta")}
+                <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* The shared conditions. Every value is a direct quotation of the
           academy's own course information. */}
       <section className={`${sectionPad} bg-paper`}>
