@@ -58,24 +58,33 @@ export const introMedia = {
  * showed a lit tablet and nobody, and it is the first screen's own answer to the
  * statement set over it.
  *
- * WHAT WAS DONE TO THE FILE, AND WHAT WAS NOT. The academy's master is 1080x1920
- * H.264, shot vertically on a phone at 30fps. Not one video frame is re-encoded
- * here: the pixels are the camera's, passed through untouched. Two things were
- * cut, both losslessly, by a stream copy.
+ * WHAT WAS DONE TO THE FILE. The academy's master is 1080x1920 H.264, shot
+ * vertically on a phone at 30fps, 19.1s, 10.8MB.
  *
- * The tail: the master runs 19.1s and the picture ends at about 14.8s, so the
- * last four and a half seconds are black. A background that loops has no use for
- * a fade to nothing — it reads as the site breaking rather than as an edit — so
- * the clip is cut at 14.7s, the last frame with light in it.
+ * The tail is cut at 14.7s. The picture ends at about 14.8 and the master runs
+ * four and a half seconds of black after it; a background that loops has no use
+ * for a fade to nothing, which reads as the site breaking rather than as an edit.
  *
- * The audio: the video track is copied into the new container alone. `MediaFrame`
- * plays every clip muted, so an AAC track is bytes the first screen waits on and
- * never sounds.
+ * The audio track is dropped. `MediaFrame` plays every clip muted, so AAC is
+ * bytes the first screen waits on and never sounds.
  *
- * MP4 rather than the camera's .MOV, and that part is not cosmetic. The bytes are
- * the same H.264, but Firefox and Chrome do not reliably play a QuickTime
- * container; Safari does. Shipping the .MOV would have given two of the three
- * engines a still poster and no film.
+ * MP4 rather than the camera's .MOV, and that part is not cosmetic. Firefox and
+ * Chrome do not reliably play a QuickTime container; Safari does. Shipping the
+ * .MOV would have given two of the three engines a still poster and no film.
+ *
+ * THE COMPRESSION, AND THE BAR IT WAS HELD TO. The full frame is re-encoded at
+ * 2.6 Mbit/s, H.264 High with B-frames and a keyframe every three seconds:
+ * 4.6MB, against 10.3MB for the camera's own bitrate. That is not a quality
+ * decision taken by eye. Frames pulled from the encode and from the master at
+ * the same timestamps measure 41.8 and 43.7 dB PSNR, which is past the point
+ * where the difference is visible on a still, let alone on 30fps of handheld
+ * footage under a 42% grade. Encoding higher was tried and does not survive
+ * measurement: 3.5 Mbit/s costs 1.6MB more and scores no better.
+ *
+ * `scripts/encode-hero.swift` is the recipe, and it exists because macOS ships
+ * no ffmpeg: it drives AVFoundation's encoder directly, which is also why the
+ * fixed export presets are not used here — asked for this clip, both of Apple's
+ * downscaling presets produced files *larger* than the source.
  *
  * THE PROPORTION. The source is 9:16 and the screen it fills is not. `cover` on
  * a full-bleed 100svh section is what turns the phone footage into the 16:9
