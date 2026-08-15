@@ -7,7 +7,7 @@
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
 import { test } from "node:test";
-import { courses, included, chapters } from "./courses.ts";
+import { courses, families, included, chapters } from "./courses.ts";
 import type { Media } from "./media.ts";
 import {
   closingMedia,
@@ -430,6 +430,24 @@ test("every page string is translated in all four languages", () => {
       `catalog.courses.${c.slug}`,
       `catalog.blurbs.${c.slug}`,
     ]),
+    // The three family headings on the courses page, read off the data for the
+    // same reason the frames are: add a fourth family and its title and
+    // standfirst are required in all four languages by this test rather than by
+    // someone remembering to add them.
+    ...families.flatMap((f) => [
+      `catalog.families.${f}.title`,
+      `catalog.families.${f}.sub`,
+    ]),
+    // The Powder Brows section. It is the one discipline with copy of its own
+    // rather than a single blurb, so it is the one most likely to ship in
+    // Italian and English and nothing else.
+    "powder.eyebrow",
+    "powder.title",
+    "powder.intro",
+    "powder.points.technique",
+    "powder.points.finish",
+    "powder.points.levels",
+    "powder.cta",
   ];
 
   for (const [locale, messages] of Object.entries(LOCALES)) {
