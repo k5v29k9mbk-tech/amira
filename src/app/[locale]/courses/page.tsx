@@ -243,7 +243,17 @@ export default async function CoursesPage({
           headed Powder Brows would be doing precisely that if it were
           described. It is here as atmosphere; the copy carries the meaning. */}
       <section id="powder-brows-detail" className={`${sectionPad} scroll-mt-28 bg-espresso`}>
-        <div className={`${shell} grid items-center gap-10 lg:grid-cols-12 lg:gap-16`}>
+        {/* `grid-cols-1` is load bearing on the phone and is not decoration.
+            A bare `grid` gives the implicit column `auto`, which sizes to the
+            widest min-content in it, and the button below is `whitespace-nowrap`
+            with 40px of padding a side. In Italian its label ran the track to
+            416px inside a 342px shell, so the whole document measured 441px
+            against a 390px viewport and every section on the page inherited a
+            sideways scroll. Tailwind's `grid-cols-1` is `minmax(0, 1fr)`, and
+            the zero floor is what stops one long word deciding the page width.
+            The label is short enough to fit on its own now; this is the guard
+            that means the next translation cannot undo that. */}
+        <div className={`${shell} grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16`}>
           <Parallax distance={10} className="lg:col-span-5">
             {/* Native ratio: the file is 1320x1323, so a square frame crops it
                 by three pixels and nothing in the photograph is at risk. */}
