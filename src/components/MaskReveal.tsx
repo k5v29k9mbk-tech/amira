@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
-import type { ReactNode } from "react";
+import { motion, useInView } from "motion/react";
+import { useRef, type ReactNode } from "react";
 import { dist, dur, ease } from "@/lib/motion";
 import { useHeroReady } from "./HeroChoreography";
 
@@ -38,6 +38,24 @@ import { useHeroReady } from "./HeroChoreography";
  * from `clip-path`: clip-path is not in Motion's positional set, so it would keep
  * animating for that reader and would need its own CSS override. The full
  * reasoning is in lib/motion.ts.
+ *
+ * WHAT THE SLOT HAS TO OBSERVE, and why this is not `whileInView`. The scroll
+ * trigger watches the *slot*, through `useInView` on `wrap`, and drives the
+ * inner span from the boolean. `whileInView` on the inner span is the obvious
+ * spelling and it is a silent no-op, which is worth stating plainly because the
+ * markup gives no hint: `whileInView` observes the element it is written on,
+ * IntersectionObserver clips a target by its ancestors' overflow before it
+ * reports, and the inner span begins life translated 130% down, entirely
+ * outside the very slot that clips it. So it measures a 0x0 intersection at
+ * every scroll position on the page, the observer never fires, and the line
+ * stays parked below its clip box for good. Measured: slot ratio 1, inner span
+ * ratio 0, at the same instant, dead centre of the viewport.
+ *
+ * It cost the homepage fifteen headings. Sections 02 through 08 rendered their
+ * eyebrow and their h2 into layout at full height and painted neither, which is
+ * what the page's "too much empty space" actually was. The slot is never
+ * translated and never clipped by anything, so observing it is both correct and
+ * the thing that cannot regress this way.
  */
 export function MaskReveal({
   children,
@@ -68,12 +86,16 @@ export function MaskReveal({
   const go = play ?? cue;
   const hidden = "130%";
 
+  const wrap = useRef<HTMLSpanElement>(null);
+  const seen = useInView(wrap, { once: true, amount });
+
   const state = onMount
     ? { animate: go ? { y: "0%" } : { y: hidden } }
-    : { whileInView: { y: "0%" }, viewport: { once: true, amount } };
+    : { animate: seen ? { y: "0%" } : { y: hidden } };
 
   return (
     <span
+      ref={wrap}
       className={`block overflow-hidden ${className}`}
       style={pad === "0px" ? undefined : { paddingBlock: pad, marginBlock: `-${pad}` }}
     >
