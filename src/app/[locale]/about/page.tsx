@@ -124,16 +124,28 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* The two figures the academy states about itself, and where it is. */}
+      {/* The two figures the academy states about itself, and where it is.
+
+          Two columns on a phone rather than three stacked rows. The three facts
+          are the academy's whole claim to authority and they were reading as a
+          list: three full width rows, one figure each, about a screen and a half
+          of scrolling to get past 8+ and 150+. Set side by side the two numbers
+          are read together, which is the only way a pair of figures argues
+          anything, and the reach line takes the full width beneath them because
+          it is a place rather than a quantity and does not belong in the
+          comparison. Nothing is added and no figure changes: this is the same
+          three facts in the shape they should have been in. */}
       <section className="bg-ivory pb-16 md:pb-24">
         <div className={shell}>
-          <dl className="grid border-t border-hair sm:grid-cols-3">
+          <dl className="grid grid-cols-2 border-t border-hair sm:grid-cols-3">
             {(["years", "students", "reach"] as const).map((k, i) => (
               <Reveal
                 key={k}
                 delay={i * 0.08}
                 className={`border-b border-hair py-8 sm:border-b-0 ${
-                  i > 0 ? "sm:border-s sm:ps-8" : ""
+                  i === 1 ? "border-s border-hair ps-6 sm:ps-8" : ""
+                } ${i === 2 ? "col-span-2 sm:col-span-1 sm:border-s sm:ps-8" : ""} ${
+                  i === 0 ? "pe-6 sm:pe-0" : ""
                 }`}
               >
                 <dt className={displayStat}>{t(`facts.${k}.value`)}</dt>
