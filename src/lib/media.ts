@@ -235,25 +235,33 @@ export const methodMedia: Record<string, Media> = {
    * crop of the hero portrait, a frame that showed her alone and said nothing
    * about being stood next to.
    *
-   * Supplied as the academy sent it, byte for byte, saved under the extension
-   * its bytes actually are: the file arrived named `.png` and is JPEG data, and
-   * a wrong extension is a re-encode waiting to happen the next time someone
-   * opens and saves it.
+   * The camera original, byte for byte, and that is the point rather than a
+   * detail. An upscaled, "enhanced" cut of this same frame was here first and
+   * is not what shipped: that pass smoothed both faces, rewrote the print on
+   * the compass box, swapped the tissue carton for a different one and painted
+   * the light stand out of the room. None of it is the academy's studio any
+   * more. This file is straight off the camera roll: no grade, no retouch, no
+   * upscale, no re-encode. If it is ever replaced, it is replaced with another
+   * original, not with a model's idea of one.
    *
-   * The photograph is 848x1264 and the frame is 4:5, so this is the one method
-   * frame with a real crop: `cover` matches the width and spends 16% of the
-   * height. All of it comes off the bottom, which is the empty foreground of
-   * the couch and the tissue box. `position` holds at 20% so the loss stays
-   * there: both faces and the sheet being drawn on sit in the top two thirds,
-   * and centring the crop would start eating the ceiling above Amira's head
-   * while keeping foreground nobody needs to see.
+   * The photograph is 1536x2048 and the frame is 4:5, so `cover` matches the
+   * width exactly and spends 6% of the height, nothing at all on the sides.
+   * There is no horizontal crop at any breakpoint, which is why one `position`
+   * serves phone and desktop alike. `position` sits at 25%, so a quarter of
+   * that loss comes off the ceiling and the rest off the bare floor at her
+   * feet: both faces, both pairs of hands and the sheet being drawn on are
+   * nowhere near an edge.
+   *
+   * 1536 wide is also what the sticky column actually wants. It renders at up
+   * to 704 CSS px, which is 1408 device pixels on a 2x screen, so this is the
+   * first version of this frame that is not being upscaled on a retina laptop.
    */
   support: {
     posterSrc: "/brand/support-mentoring.jpg",
     alt: "",
-    position: "50% 20%",
-    width: 848,
-    height: 1264,
+    position: "50% 25%",
+    width: 1536,
+    height: 2048,
   },
 };
 
