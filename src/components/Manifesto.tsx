@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { motion, useScroll, useTransform } from "motion/react";
 import type { MotionValue } from "motion/react";
@@ -46,7 +46,7 @@ function Word({
 }) {
   const color = useTransform(progress, range, ["#b6a79c", "#211916"]);
   return (
-    <motion.span style={{ color }} className="word-resolve me-[0.22em] inline-block">
+    <motion.span style={{ color }} className="word-resolve inline-block">
       {children}
     </motion.span>
   );
@@ -70,16 +70,30 @@ export function Manifesto() {
         <div ref={ref} className="max-w-[24ch]">
           {lines.map((words, li) => (
             <p key={li} className={`${displayManifesto} ${li > 0 ? "mt-[0.35em]" : ""}`}>
-              {words.map((word) => {
+              {/* The space between two words is a real space in the document,
+                  not a margin on the box.
+
+                  It used to be `me-[0.22em]` on every word span and no
+                  whitespace at all between them, which looks identical and is
+                  not the same thing. A margin is invisible to everything that
+                  reads the document rather than paints it: copy the manifesto
+                  and you get "l'occhio,la mano"; a screen reader announces the
+                  two words run together; the crawler indexes them as one token.
+                  The words are inline-blocks, so an ordinary space between them
+                  collapses to exactly one space and sets the same gap the margin
+                  was faking. */}
+              {words.map((word, wi) => {
                 const i = cursor++;
                 return (
-                  <Word
-                    key={`${li}-${i}`}
-                    progress={scrollYProgress}
-                    range={[i / total, (i + 1.6) / total]}
-                  >
-                    {word}
-                  </Word>
+                  <Fragment key={`${li}-${i}`}>
+                    {wi > 0 ? " " : null}
+                    <Word
+                      progress={scrollYProgress}
+                      range={[i / total, (i + 1.6) / total]}
+                    >
+                      {word}
+                    </Word>
+                  </Fragment>
                 );
               })}
             </p>

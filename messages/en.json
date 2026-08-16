@@ -16,7 +16,7 @@
     "close": "Close",
     "skip": "Skip to content",
     "loading": "Loading",
-    "work": "The work"
+    "work": "Results"
   },
   "hero": {
     "eyebrow": "Aura Academy · Professional beauty education · Italy",
@@ -413,7 +413,7 @@
   "sections": {
     "courses": "Courses",
     "method": "The method",
-    "work": "The work",
+    "work": "Results",
     "amira": "Amira",
     "inside": "Inside Aura"
   },
@@ -443,5 +443,10 @@
       "levels": "Taught at base and advanced level, in Italian, in groups of 3-4 students."
     },
     "cta": "Ask about Powder Brows"
+  },
+  "cta": {
+    "courses": "Discover the courses",
+    "talk": "Talk to Amira",
+    "availability": "Request availability"
   }
 }

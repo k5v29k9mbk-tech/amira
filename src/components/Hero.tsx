@@ -10,6 +10,7 @@ import {
   shell,
 } from "@/lib/ui";
 import { dur, heroBeat, stagger } from "@/lib/motion";
+import { whatsappLinkWith } from "@/lib/studio";
 import { HeroFilm } from "./HeroFilm";
 import { HeroBeat, HeroCopy } from "./HeroChoreography";
 import { MaskReveal } from "./MaskReveal";
@@ -71,7 +72,10 @@ const facts = ["years", "students", "classes"] as const;
  */
 export async function Hero() {
   const t = await getTranslations("hero");
+  const c = await getTranslations("cta");
   const inst = await getTranslations("instructor");
+  const contact = await getTranslations("contact");
+  const talk = whatsappLinkWith(contact("whatsappMessage"));
 
   /* Centred on both axes, and the two paddings are neither equal nor fixed.
      The section is the full small viewport but it does not own all of it: the
@@ -137,6 +141,14 @@ export async function Hero() {
           <MaskReveal onMount delay={heroBeat.headline} duration={dur.slow}>
             <span className="block">{t("titleA")}</span>
           </MaskReveal>
+          {/* A real space between the two lines, and it is not decorative.
+              The statement is two sibling blocks with no whitespace between
+              them, so everything that reads the document rather than paints it
+              — copy and paste, a screen reader, a crawler, a share preview —
+              received "Padroneggia l'arte.Crea la tua carriera." as one token.
+              A whitespace-only text node between two block boxes paints
+              nothing, so the composition is unchanged and the sentence is a
+              sentence again. */}{" "}
           <MaskReveal
             onMount
             delay={heroBeat.headline + stagger.line}
@@ -196,16 +208,40 @@ export async function Hero() {
             hole cut in the footage and an espresso rule under a link is
             invisible; the ivory pair is the same two shapes on the other
             ground, and ui.ts has carried it for the dark sections since before
-            this screen needed it. */}
+            this screen needed it.
+
+            WHAT THE SECOND ACTION ASKS FOR, AND WHY IT CHANGED. It used to be
+            "Prenota il tuo posto", pointing at the contact page, with the header
+            carrying the same words in a filled button eight inches above it. So
+            the first screen asked a visitor who had been given no reason yet to
+            trust the academy to commit twice, and offered the two hardest asks
+            on the site before the softest one.
+
+            It is now a conversation. "Parla con Amira" opens WhatsApp with the
+            academy's own opening line, which is the smallest thing a reader can
+            be asked for, and it is the one action on this screen that is
+            answered by a person rather than a page. Booking has not been
+            removed from the site; it has been moved to where a reader arrives
+            already convinced, which is after the work, the method and the
+            questions. Renders only while a number is on file: `whatsappLinkWith`
+            returns null otherwise and the second action falls back to the
+            contact page rather than to a dead link. */}
         <HeroBeat delay={heroBeat.actions} className="w-full">
           <div className="mt-[clamp(1.75rem,3.6vh,3rem)] flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10">
             <Link href="/courses" className={`${btnSolidLight} w-full sm:w-auto`}>
-              {t("primary")}
+              {c("courses")}
             </Link>
-            <Link href="/contact" className={linkRuleLight}>
-              {t("secondary")}
-              <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
-            </Link>
+            {talk ? (
+              <a href={talk} target="_blank" rel="noreferrer" className={linkRuleLight}>
+                {c("talk")}
+                <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
+              </a>
+            ) : (
+              <Link href="/contact" className={linkRuleLight}>
+                {c("availability")}
+                <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
+              </Link>
+            )}
           </div>
         </HeroBeat>
 

@@ -96,7 +96,11 @@ export default async function AboutPage({
             </StaggerItem>
             <StaggerItem>
               <h1 className={`${displaySection} mt-8 max-w-[14ch] text-balance`}>
-                <span className="block">{t("titleA")}</span>
+                {/* The space is a real one. See the note in Hero.tsx: two
+                    sibling blocks with no whitespace between them read as one
+                    run-together token to anything that parses the document
+                    instead of painting it. */}
+                <span className="block">{t("titleA")}</span>{" "}
                 <span className="block text-mute">{t("titleB")}</span>
               </h1>
             </StaggerItem>

@@ -69,6 +69,13 @@ const PAGE_KEYS = [
   "hero.primary",
   "hero.secondary",
   "hero.meetAmira",
+  // The three actions the whole site is allowed to ask for, in the order a
+  // visitor meets them: browse, ask a person, ask for a date. They live in one
+  // namespace precisely so a fourth cannot appear quietly in one language, or
+  // one of the three drift into a different verb on one page.
+  "cta.courses",
+  "cta.talk",
+  "cta.availability",
   "sections.courses",
   "sections.method",
   "sections.work",

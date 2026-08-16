@@ -16,7 +16,7 @@
     "close": "Fermer",
     "skip": "Aller au contenu",
     "loading": "Chargement",
-    "work": "Le travail"
+    "work": "Résultats"
   },
   "hero": {
     "eyebrow": "Aura Academy · Formation beauté professionnelle · Italie",
@@ -413,7 +413,7 @@
   "sections": {
     "courses": "Formations",
     "method": "La méthode",
-    "work": "Le travail",
+    "work": "Résultats",
     "amira": "Amira",
     "inside": "Au cœur d'Aura"
   },
@@ -443,5 +443,10 @@
       "levels": "Enseigné en niveau base et avancé, en italien, en groupes de 3-4 élèves."
     },
     "cta": "Demander des informations"
+  },
+  "cta": {
+    "courses": "Découvrir les cours",
+    "talk": "Parler avec Amira",
+    "availability": "Demander une date"
   }
 }

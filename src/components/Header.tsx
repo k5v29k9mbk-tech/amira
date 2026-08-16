@@ -46,7 +46,7 @@ import { dur, ease, stagger } from "@/lib/motion";
  */
 export function Header() {
   const t = useTranslations("nav");
-  const cta = useTranslations("hero");
+  const cta = useTranslations("cta");
   const contact = useTranslations("contact");
   const whatsappHref = whatsappLinkWith(contact("whatsappMessage"));
   const pathname = usePathname();
@@ -85,22 +85,26 @@ export function Header() {
   const onFilm = !solid;
 
   /**
-   * The bar carries four. It is not an arbitrary four: at 1024px the shell
-   * leaves 896px, and in French the four labels, the logo, the WhatsApp mark,
-   * the language control and "Réservez votre place" already come to within a
-   * few pixels of it. A fifth would push the bar into a wrap on the one
-   * breakpoint where the desktop navigation first appears.
+   * Five labels, and the fifth is conditional on there being room for it.
    *
-   * The work is the fifth, and it goes where there is room for it: the phone
-   * menu, which is a full screen, and the footer, which is a column. So the
-   * page that proves the training is reachable from the navigation on a phone
-   * and from the foot of every page, and the bar stays a bar.
+   * The results were missing from the bar entirely, which is the wrong thing to
+   * omit: they are the section that proves the training, and a visitor could
+   * only reach them from the phone menu or the footer. They are in the bar now.
+   *
+   * But the arithmetic that kept them out is real. At 1024px the shell leaves
+   * 896px, and the logo, the WhatsApp mark, the language control and the
+   * availability button take about 470 of it before a single label is set;
+   * five labels in French do not fit what is left. So the results link is held
+   * back to xl, where there are 256px more. Between lg and xl the bar carries
+   * the same four it always did, and the section stays reachable from the phone
+   * menu and the footer, which is where it was reachable from before.
    */
   const links = [
-    { href: "/courses", label: t("courses") },
-    { href: "/#method", label: t("method") },
-    { href: "/about", label: t("about") },
-    { href: "/faq", label: t("faq") },
+    { href: "/courses", label: t("courses"), wide: false },
+    { href: "/#method", label: t("method"), wide: false },
+    { href: "/about", label: t("about"), wide: false },
+    { href: "/#work", label: t("work"), wide: true },
+    { href: "/faq", label: t("faq"), wide: false },
   ] as const;
 
   const menuLinks = [
@@ -148,6 +152,8 @@ export function Header() {
               href={l.href}
               aria-current={isCurrent(l.href) ? "page" : undefined}
               className={`label relative py-1 transition-opacity duration-300 hover:opacity-100 after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-[left] after:bg-current after:transition-transform after:duration-500 after:ease-[var(--ease-aura)] hover:after:scale-x-100 rtl:after:origin-[right] ${
+                l.wide ? "hidden xl:block" : ""
+              } ${
                 isCurrent(l.href) ? "opacity-100 after:scale-x-100" : "opacity-70 after:scale-x-0"
               }`}
             >
@@ -194,7 +200,7 @@ export function Header() {
                 : "border-espresso bg-espresso text-ivory hover:border-bronze-ink hover:bg-bronze-ink"
             }`}
           >
-            {cta("secondary")}
+            {cta("availability")}
           </Link>
 
           <button
@@ -286,7 +292,7 @@ export function Header() {
                     onClick={() => setOpen(false)}
                     className={`${btnSolid} w-full`}
                   >
-                    {cta("secondary")}
+                    {cta("availability")}
                   </Link>
                   <div className="mt-8">
                     <LocaleSwitcher tone="dark" />

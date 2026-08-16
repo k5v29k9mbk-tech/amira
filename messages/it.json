@@ -16,7 +16,7 @@
     "close": "Chiudi",
     "skip": "Vai al contenuto",
     "loading": "Caricamento",
-    "work": "Il lavoro"
+    "work": "Risultati"
   },
   "hero": {
     "eyebrow": "Aura Academy · Formazione beauty professionale · Italia",
@@ -413,7 +413,7 @@
   "sections": {
     "courses": "Corsi",
     "method": "Il metodo",
-    "work": "Il lavoro",
+    "work": "Risultati",
     "amira": "Amira",
     "inside": "Dentro Aura"
   },
@@ -443,5 +443,10 @@
       "levels": "Si insegna a livello base e avanzato, in italiano, in classi da 3-4 allieve."
     },
     "cta": "Chiedi informazioni"
+  },
+  "cta": {
+    "courses": "Scopri i corsi",
+    "talk": "Parla con Amira",
+    "availability": "Richiedi disponibilità"
   }
 }
