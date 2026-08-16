@@ -50,67 +50,60 @@ export const introMedia = {
 } as const;
 
 /**
- * The hero film: the academy's own footage, behind the first screen.
+ * The hero film: the pigment macro, behind the first screen.
  *
- * The clip is the classroom the site is selling: Amira at the flipchart drawing
- * the stroke patterns, the mapping worked out by hand, the class following from
- * the bench. It replaces the treatment-room clip that stood here before, which
- * showed a lit tablet and nobody, and it is the first screen's own answer to the
- * statement set over it.
+ * It is the same clip the closing frame carries at the foot of the page
+ * (`closingMedia` below, `/brand/pigment.mp4`) and it is deliberately the same
+ * file rather than a copy of it: one asset, requested once, warm in the cache by
+ * the time a reader reaches the bottom of the page. Point both at the same path
+ * and the browser does the rest.
  *
- * WHAT WAS DONE TO THE FILE. The academy's master is 1080x1920 H.264, shot
- * vertically on a phone at 30fps, 19.1s, 10.8MB.
+ * WHAT IT REPLACED. The classroom clip, `hero-class.mp4`: Amira at the flipchart
+ * with the class behind her. It is still in `public/brand`, still trimmed,
+ * stripped and encoded, and `scripts/encode-hero.swift` still regenerates it
+ * from the camera master — so putting it back is one string, and the phone cut
+ * beside it is one more. Nothing about that work was thrown away.
  *
- * The tail is cut at 14.7s. The picture ends at about 14.8 and the master runs
- * four and a half seconds of black after it; a background that loops has no use
- * for a fade to nothing, which reads as the site breaking rather than as an edit.
+ * THE PROPORTION, AND WHY THE CROP IS LEFT WHERE IT WAS. 464x656 is a 5:7
+ * portrait, so a desktop still spends the crop on the height exactly as it did
+ * with the 9:16 clip, and `position` is unchanged from the framing this screen
+ * was tuned at. That aim used to mean something specific — it was where Amira
+ * survived every cut of the montage. Here there is no subject to hold: the
+ * footage is pigment moving under a macro lens, which reads the same at any
+ * aim, so the number stays put rather than being re-tuned for the sake of it.
  *
- * The audio track is dropped. `MediaFrame` plays every clip muted, so AAC is
- * bytes the first screen waits on and never sounds.
+ * SIZE, AND THE ONE THING TO KNOW ABOUT IT. The file is 464px wide against a
+ * desktop viewport three or four times that, so `cover` is enlarging it. That is
+ * the trade this clip comes with and it is a different trade from the classroom
+ * footage, which was 1080 wide and sharp at full screen. What survives the scale
+ * is the colour and the movement, which is all a ground is being asked for; what
+ * does not survive is detail, and there is no detail here that carries meaning —
+ * no face, no hands, no board. Drop a larger master at this path and the frame
+ * sharpens with no change to any component.
  *
- * MP4 rather than the camera's .MOV, and that part is not cosmetic. Firefox and
- * Chrome do not reliably play a QuickTime container; Safari does. Shipping the
- * .MOV would have given two of the three engines a still poster and no film.
+ * There is no separate phone cut and none is wanted. A 2MB file that is already
+ * narrower than the phone it plays on has nothing left to take out; the mobile
+ * cut that used to sit here existed because the classroom clip was 1080 wide.
  *
- * THE COMPRESSION, AND THE BAR IT WAS HELD TO. The full frame is re-encoded at
- * 2.6 Mbit/s, H.264 High with B-frames and a keyframe every three seconds:
- * 4.6MB, against 10.3MB for the camera's own bitrate. That is not a quality
- * decision taken by eye. Frames pulled from the encode and from the master at
- * the same timestamps measure 41.8 and 43.7 dB PSNR, which is past the point
- * where the difference is visible on a still, let alone on 30fps of handheld
- * footage under a 42% grade. Encoding higher was tried and does not survive
- * measurement: 3.5 Mbit/s costs 1.6MB more and scores no better.
+ * The poster is the clip's own frame, so the first paint is the image the video
+ * resolves into rather than a cut to somewhere else, and a visitor who has asked
+ * for reduced motion is left holding that frame with no video loaded at all.
  *
- * `scripts/encode-hero.swift` is the recipe, and it exists because macOS ships
- * no ffmpeg: it drives AVFoundation's encoder directly, which is also why the
- * fixed export presets are not used here — asked for this clip, both of Apple's
- * downscaling presets produced files *larger* than the source.
- *
- * THE PROPORTION. The source is 9:16 and the screen it fills is not. `cover` on
- * a full-bleed 100svh section is what turns the phone footage into the 16:9
- * frame a desktop reads: the clip scales to the viewport's width and the crop is
- * spent on its height, which is why `position` below is aimed rather than
- * centred. A phone gets the opposite trade and keeps almost the whole frame.
- *
- * The poster is the film's own first frame, so the first paint is exactly the
- * image the video resolves into rather than a cut to somewhere else, and a
- * visitor who has asked for reduced motion is left holding that frame with no
- * video loaded at all.
+ * Everything else about this screen is untouched: the scrim in `HeroFilm` is the
+ * same four layers at the same strengths, and the composition over it has not
+ * moved. The clip is darker than the classroom was, so the type sits on more
+ * contrast than the grade was built for rather than less.
  */
 export const heroFilmMedia: Media = {
-  videoSrc: "/brand/hero-class.mp4",
+  videoSrc: "/brand/pigment.mp4",
   /**
-   * The phone cut: the same 14.7s at 720x1280 and 1.4 Mbit/s, 2.5MB.
-   *
-   * `MediaFrame` picks this below 768px and it is the one place on the site
-   * where a second encode pays for itself twice over. A phone shows the film at
-   * about 390 CSS px wide, which is 780 device pixels on a 2x screen, so 720 is
-   * the honest resolution for it and the 1080 file would be downloading detail
-   * the panel cannot draw. It is also the connection most likely to be metered
-   * and slow, and this halves what the first screen costs on it.
+   * No phone cut, and `null` rather than absent so the intent is on the record:
+   * the source is 464px wide, which is narrower than the phone it plays on, so
+   * a smaller encode of it would be a smaller picture rather than a cheaper one.
+   * `MediaFrame` falls back to `videoSrc` on every width when this is empty.
    */
-  mobileVideoSrc: "/brand/hero-class-mobile.mp4",
-  posterSrc: "/brand/hero-class-poster.jpg",
+  mobileVideoSrc: null,
+  posterSrc: "/brand/pigment-poster.jpg",
   alt: "",
   /**
    * Where the crop sits, and it is a different problem at each end.
