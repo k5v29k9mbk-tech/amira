@@ -373,15 +373,27 @@ export default async function Home({
               six columns of twelve — the strongest thing in the section,
               printed at the size of a supporting one.
 
-              It leads the act now, on the axis, held to 900px because that is
-              the width of the aligned source frames: bigger would be an upscale
-              of the one image on the page that has to survive close reading.
-              The gallery of finished work follows it, which is the right order —
-              the transformation, then the range.
+              It leads the act now, on the axis. The gallery of finished work
+              follows it, which is the right order — the transformation, then
+              the range.
 
-              Renders only while a pair exists. A second pair, aligned the same
-              way, would make this a set rather than a single frame; the section
-              reads either way. */}
+              ONE PAIR OR SEVERAL, AND THE LAYOUT FOLLOWS. A single pair is held
+              to 900px on the axis, which is the width of the aligned frames:
+              wider would be an upscale of the one image on the page that has to
+              survive close reading. From two, they take the full field in a
+              two-column set from lg, because two sliders of half the width are
+              more evidence than one of full width, and the comparison a visitor
+              makes between two clients is the argument this act exists to make.
+              Below lg they stack full width, where a phone gives each of them
+              more pixels than the desktop set does anyway.
+
+              Every pair is mapped onto the same canvas by
+              `scripts/align-pair.swift`, so the eyes sit on the same pixels in
+              both of its frames and at the same place in every pair on the
+              page: the wipe reads as one face, and the set reads as one crop
+              repeated rather than as photographs of different sizes.
+
+              Renders only while a pair exists. */}
           {beforeAfterPairs.length > 0 ? (
             <ul
               className={`mx-auto grid gap-y-12 pb-16 md:pb-24 ${
