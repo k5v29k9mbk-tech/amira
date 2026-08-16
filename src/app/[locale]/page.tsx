@@ -203,7 +203,7 @@ export default async function Home({
           in her rooms, then the founder against nothing at all. */}
       <section id="amira" className={`${sectionPadBottom} scroll-mt-20 bg-ivory`}>
         <div className={`${shell} grid items-center gap-10 lg:grid-cols-12 lg:gap-0`}>
-          <Parallax distance={12} className="lg:col-span-7">
+          <Parallax distance={12} className="lg:col-span-8">
             <div className="relative aspect-[4/5] w-full">
               <MediaFrame
                 media={{ ...founderMedia, alt: t("about.portrait") }}
@@ -227,7 +227,12 @@ export default async function Home({
               back in the same step as the portrait, where tree order decides
               again and the later element is on top. Any element that has to cover
               a Parallax needs this. */}
-          <Reveal className="lg:relative lg:z-10 lg:col-span-5 lg:-ms-20 lg:bg-ivory lg:py-16 lg:ps-16">
+          {/* 8 columns of portrait and 4 of plate, crossing by 112px.
+              The row is twelve, so the two spans have to sum to twelve or the
+              plate wraps onto a line of its own: the portrait taking a column
+              from the copy is exactly the point of the change, and the crossing
+              is what keeps the plate from reading as a caption beside it. */}
+          <Reveal className="lg:relative lg:z-10 lg:col-span-4 lg:-ms-28 lg:bg-ivory lg:py-16 lg:ps-16">
             <MaskReveal>
               <SectionLabel n={1}>{t("sections.amira")}</SectionLabel>
             </MaskReveal>
@@ -236,31 +241,42 @@ export default async function Home({
                 {t("instructor.headline")}
               </h2>
             </MaskReveal>
-            <p className="mt-10 text-[17px] text-espresso">{t("instructor.title")}</p>
-            <p className="mt-2 text-[15px] text-mute">{t("instructor.role")}</p>
+            {/* THE ORDER, AND WHY IT IS THIS ONE. The act used to run name,
+                role, a four-line paragraph in her own voice, then the mission
+                line. So the emotional argument — the reason to want to learn
+                from this person — arrived fifth, under a block of prose, in the
+                position a reader's eye reaches last.
 
-            {/* One paragraph of substance, in her own voice, and it is the third
-                of the four on /about rather than the lede.
+                It is now a quotation first. One sentence at pull-quote size,
+                hers, in quotation marks because it is speech and not a heading:
+                a visitor who reads four words of this section reads the four
+                that matter. Her name and her titles follow it as the
+                attribution, which is what they are, and the paragraph that used
+                to open the act now sits under them as the evidence for the
+                claim rather than in front of it.
 
-                The lede was the obvious choice and it is the wrong one here:
-                "Founded by Amira Bechini: CEO of Amira Beauty Suite, permanent
-                makeup artist..." repeats the two lines directly above it, which
-                already print her name and then that exact title. Two blocks of
-                type saying the same thing, touching, is worse than no paragraph.
+                Nothing here is new copy. The quotation is `about.mission.quote`,
+                already on /about in all four languages and already hers; the
+                paragraph is `about.story.p3`, exactly where it was. */}
+            <blockquote className={`${displayLarge} mt-10 max-w-[24ch] text-balance`}>
+              &ldquo;{t("about.mission.quote")}&rdquo;
+            </blockquote>
 
-                This one adds instead of echoing, and it adds precisely the two
-                credentials the act was missing: the training she has gone on
-                taking (international masterclasses) and the thing no course can
-                teach, which is what running a working institute taught her about
-                clients and the market. First person, because the pull-quote under
-                it is hers too. */}
+            {/* The attribution. A hairline, then the name at reading size and
+                the titles under it in the muted grade: the same construction the
+                hero signs itself with, so the two moments on the page that name
+                her are recognisably the same mark. */}
+            <div className="mt-10 border-t border-hair pt-6">
+              <p className="text-[17px] text-espresso">{t("instructor.title")}</p>
+              <p className="mt-2 max-w-[34ch] text-[15px] leading-relaxed text-mute">
+                {t("instructor.role")}
+              </p>
+            </div>
+
             <p className="mt-8 max-w-[44ch] text-[16px] leading-relaxed text-mute">
               {t("about.story.p3")}
             </p>
 
-            <p className={`${displayLarge} mt-10 max-w-[26ch] text-balance`}>
-              {t("instructor.mission")}
-            </p>
             <Link href="/about" className={`${linkRule} mt-12`}>
               {t("about.readStory")}
               <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />

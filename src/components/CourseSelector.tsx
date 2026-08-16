@@ -160,16 +160,26 @@ export function CourseSelector() {
                   />
                 ) : (
                   /* The one discipline whose homepage photograph the academy
-                     has not supplied. It keeps its place in the catalogue and
-                     its own card, set as type on paper with a hairline rule,
-                     which reads as a panel deliberately composed rather than as
-                     an image that failed to load. Deleting `posterOffHome` in
-                     lib/courses.ts when the photograph arrives is the whole of
-                     the change. */
+                     has not supplied.
+
+                     An empty frame with a rule across it is not a design
+                     decision, it is a missing image, and it reads as one: the
+                     sixth card looked broken next to five photographs. So the
+                     card prints its own number instead, in the display serif at
+                     the size the section headings use, on paper inside a bronze
+                     hairline. A numeral plate among photographic ones is a
+                     convention a reader has seen in a printed catalogue, which
+                     is the one thing that makes an absent picture read as a
+                     choice. Deleting `posterOffHome` in lib/courses.ts when the
+                     photograph arrives is the whole of the change. */
                   <span
                     aria-hidden
-                    className="absolute inset-x-8 top-1/2 h-px -translate-y-1/2 bg-hair"
-                  />
+                    className="absolute inset-0 flex items-center justify-center border border-hair"
+                  >
+                    <span className="display text-[clamp(3rem,6vw,5rem)] leading-none text-taupe">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </span>
                 )}
               </div>
 

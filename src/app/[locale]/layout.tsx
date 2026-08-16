@@ -6,6 +6,7 @@ import { Cormorant_Garamond, Jost, Noto_Naskh_Arabic } from "next/font/google";
 import { routing, isRtl, siteUrl, altLanguages } from "@/i18n/routing";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { StickyCta } from "@/components/StickyCta";
 import { IntroVideo } from "@/components/IntroVideo";
 import { MotionProvider } from "@/components/MotionProvider";
 import { INTRO_BOOTSTRAP } from "@/lib/intro";
@@ -42,10 +43,9 @@ const arabic = Noto_Naskh_Arabic({
 /** Namespaces read by `"use client"` components. Keep in sync with them. */
 const CLIENT_NAMESPACES = [
   "nav", // Header, LocaleSwitcher
-  "hero", // Header booking action
+  "cta", // Header availability action, StickyCta
   "intro", // IntroVideo skip control
   "manifesto", // Manifesto
-  "catalog", // CourseSelector
   "method", // MethodStory
   "voices", // Testimonial
   "mentor", // WelcomeVideo
@@ -190,6 +190,7 @@ export default async function LocaleLayout({
           <Header />
           <main id="main">{children}</main>
           <Footer />
+          <StickyCta />
           <JsonLd data={organizationSchema(locale, org("title"), org("description"))} />
           </MotionProvider>
         </NextIntlClientProvider>
