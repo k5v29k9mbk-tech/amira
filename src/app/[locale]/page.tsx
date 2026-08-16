@@ -383,9 +383,30 @@ export default async function Home({
               way, would make this a set rather than a single frame; the section
               reads either way. */}
           {beforeAfterPairs.length > 0 ? (
-            <Reveal className="mx-auto w-full max-w-[900px] pb-16 md:pb-24">
-              <BeforeAfter pair={beforeAfterPairs[0]} sizes="(max-width: 900px) 100vw, 900px" />
-            </Reveal>
+            <ul
+              className={`mx-auto grid gap-y-12 pb-16 md:pb-24 ${
+                beforeAfterPairs.length > 1
+                  ? "w-full gap-x-8 lg:grid-cols-2 lg:gap-x-10"
+                  : "w-full max-w-[900px]"
+              }`}
+            >
+              {beforeAfterPairs.map((pair, i) => (
+                /* The pairs arrive one after the other rather than together.
+                   `stagger.line` between them is the interval the headlines on
+                   this site are set to, so a second frame reads as the next
+                   line of the same sentence and not as a grid loading. */
+                <Reveal as="li" key={pair.after} delay={i * stagger.line}>
+                  <BeforeAfter
+                    pair={pair}
+                    sizes={
+                      beforeAfterPairs.length > 1
+                        ? "(max-width: 1024px) 100vw, 46vw"
+                        : "(max-width: 900px) 100vw, 900px"
+                    }
+                  />
+                </Reveal>
+              ))}
+            </ul>
           ) : null}
 
           <WorkGallery />
