@@ -106,45 +106,26 @@ export const heroFilmMedia: Media = {
   posterSrc: "/brand/pigment-poster.jpg",
   alt: "",
   /**
-   * Where the crop sits, and it is a different problem at each end.
+   * Both numbers are inherited from the classroom clip this screen used to
+   * carry, and they are left exactly where they were.
    *
-   * DESKTOP. A 16:9 window keeps 1080x608 of a 1080x1920 frame: less than a
-   * third of the film is on screen, so the crop is the composition. 40% is where
-   * Amira survives the whole clip. The montage cuts between a close shot of her
-   * at the board, where her face sits just below the middle of the frame, and a
-   * wide of the room, where she is high in it and the students fill the bottom;
-   * 45% takes the top of her head off in the wide, 35% loses her face in the
-   * close shot. 40% holds both.
+   * They were aimed then: a 16:9 window keeps less than a third of a portrait
+   * frame, so 40% was the one height at which Amira survived every cut of the
+   * montage, and the phone kept the centre because almost the whole frame
+   * survives there. Neither argument transfers to pigment moving under a macro
+   * lens. There is no subject to hold in frame and no part of the picture that
+   * has to clear the type, so any aim reads the same, and the honest thing is to
+   * leave the framing this composition was tuned and measured at rather than
+   * change a number for the sake of touching it.
    *
-   * It also keeps her clear of the type. The composition is centred, so the
-   * middle of the screen is spoken for; at 40% she stands in the lower right of
-   * the frame through the opening shot and the class fills the lower left in the
-   * wide, which puts the people on the two sides of the axis rather than under
-   * it. What sits directly behind the statement is the flipchart, which is the
-   * flattest and quietest thing in the footage and the one part of it that can
-   * carry type.
-   *
-   * PHONE. The viewport is taller than it is wide and so is the clip, so `cover`
-   * scales to the height and spends about a fifth of the width, a tenth off each
-   * edge — the whole of the film's height survives, which is why the phone is
-   * the one place the crop can be centred and still show everything. Amira sits
-   * a little right of centre in the source and stays comfortably inside that
-   * crop at every cut. Pulling the aim toward her would throw away footage the
-   * screen had room for and push her to the edge in the wider shots, where she
-   * is already high and right.
+   * What still holds from that tuning: a desktop spends the crop on the height
+   * (464x656 is portrait, as 1080x1920 was), and a phone keeps nearly all of it.
    */
   position: "50% 40%",
   mobilePosition: "50% 50%",
-  /**
-   * No flat scrim. The film is the composition now rather than a ground behind
-   * one, and a wash across the whole frame is what makes footage look like a
-   * background image: it takes the black out of the shadows and the life out of
-   * the highlights in one move. Legibility is bought instead by two gradients in
-   * `HeroFilm`, each shaped to the type it is under, which leaves the middle of
-   * the frame at full strength where nothing is set over it.
-   */
-  width: 1080,
-  height: 1920,
+  /** The clip's own size, so the poster reserves its space and never shifts. */
+  width: 464,
+  height: 656,
 };
 
 /**
