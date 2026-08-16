@@ -21,33 +21,38 @@
 export const shell = "mx-auto w-full max-w-[1600px] px-6 md:px-10 lg:px-16";
 
 /**
- * Section rhythm: 96px on phones, 144 on tablet, 208 on desktop.
+ * Section rhythm: 64px on phones, 80 on tablet, 112 on desktop.
  *
  * Air is the cheapest luxury signal a page has and the first one a cramped
- * layout loses. These are deliberately larger than a content site would set:
- * at desktop the gap between two acts is more than a fifth of the viewport, so
- * each section arrives alone rather than as the next item in a list.
+ * layout loses, so these stay well above what a content site would set. They
+ * used to be 96 / 144 / 208, and 208 was too much by a wide margin: with the
+ * same measure under the section above it, a break between two acts was 416px
+ * of empty ground on a 900px screen — nearly half a viewport of nothing, which
+ * a reader does not read as air but as the page having ended.
+ *
+ * 112 puts a full break at 224 and a join inside a pair at 112, which is the
+ * range this kind of editorial page is set in. The rhythm below is unchanged:
+ * what makes the ground changes legible as chapter marks is still the
+ * difference between a padded join and an unpadded one, not the size of either.
  */
-export const sectionPad = "py-24 md:py-36 lg:py-52";
+export const sectionPad = "py-16 md:py-20 lg:py-28";
 
 /**
  * The half of that rhythm, for a section that continues the one above it.
  *
  * The page is paced in pairs: two sections share a ground, then the ground
- * changes and a new part of the argument starts. Every section carried the full
- * measure top and bottom, so a join *inside* a pair was 208px of padding plus
- * another 208, the same 416px as the break *between* two pairs. Nothing about
- * the spacing said which of the two a reader had just crossed, and half a
- * viewport of empty ivory in the middle of one chapter reads as the page having
- * ended rather than as air.
+ * changes and a new part of the argument starts. Every section used to carry the
+ * full measure top and bottom, so a join *inside* a pair was the same as a break
+ * *between* two pairs, and nothing about the spacing said which of the two a
+ * reader had just crossed.
  *
- * A continuing section now opens with no padding of its own and lives on the
- * closing measure of the section above, so a join inside a pair is 208px and a
- * break between them is still 416. Same tokens, half the value, and the
- * difference is what makes the ground changes legible as chapter marks.
+ * A continuing section opens with no padding of its own and lives on the closing
+ * measure of the section above, so at desktop a join inside a pair is 112px and
+ * a break between them is 224. Same tokens, half the value, and the difference
+ * is what makes the ground changes legible as chapter marks.
  */
-export const sectionPadBottom = "pb-24 md:pb-36 lg:pb-52";
-export const sectionPadTop = "pt-24 md:pt-36 lg:pt-52";
+export const sectionPadBottom = "pb-16 md:pb-20 lg:pb-28";
+export const sectionPadTop = "pt-16 md:pt-20 lg:pt-28";
 
 /*
  * The display scale, largest to smallest. Five steps and no sixth: every
@@ -85,14 +90,14 @@ export const sectionPadTop = "pt-24 md:pt-36 lg:pt-52";
  * and the floor decides, so nothing about the mobile screen changes.
  */
 export const displayHero = "display text-[clamp(2.5rem,min(7.2vw,10.5vh),8rem)]";
-export const displaySection = "display text-[clamp(2.25rem,6vw,7rem)]";
-export const displayManifesto = "display text-[clamp(2.25rem,7vw,8rem)]";
-export const displayLarge = "display text-[clamp(1.75rem,3.4vw,3.25rem)]";
+export const displaySection = "display text-[clamp(2rem,4.6vw,4.5rem)]";
+export const displayManifesto = "display text-[clamp(1.875rem,4.2vw,4rem)]";
+export const displayLarge = "display text-[clamp(1.625rem,2.8vw,2.75rem)]";
 
 /** Size only, for the one heading that animates between two sizes. */
-export const chapterSize = "text-[clamp(1.75rem,3vw,3rem)]";
+export const chapterSize = "text-[clamp(1.5rem,2.4vw,2.25rem)]";
 export const displayChapter = `display ${chapterSize}`;
-export const displayRow = "display text-[clamp(1.25rem,2.2vw,1.875rem)]";
+export const displayRow = "display text-[clamp(1.125rem,1.7vw,1.5rem)]";
 
 /*
  * Three more steps, added because the inner pages had already invented them.
@@ -105,16 +110,16 @@ export const displayRow = "display text-[clamp(1.25rem,2.2vw,1.875rem)]";
  *   item   a named entry in a list: a curriculum line, a published value
  *   quote  the page speaking in its own voice, not a heading
  */
-export const displayStat = "display text-[clamp(2rem,3.4vw,3rem)]";
+export const displayStat = "display text-[clamp(1.75rem,2.6vw,2.5rem)]";
 export const displayItem = "display text-[1.25rem] md:text-[1.5rem]";
-export const displayQuote = "display text-[clamp(1.75rem,4vw,3.5rem)]";
+export const displayQuote = "display text-[clamp(1.5rem,3.2vw,2.75rem)]";
 
 /**
  * The rhythm above a page that opens with a heading rather than the hero.
  * 7.5rem clears the fixed bar; the tail is shorter than a section's because
  * what follows is the same page's own first block, not a new act.
  */
-export const pageHeader = "pt-[7.5rem] pb-16 md:pt-40 md:pb-24";
+export const pageHeader = "pt-[7.5rem] pb-12 md:pt-36 md:pb-16";
 
 /**
  * The small-caps line above a heading. `SectionLabel` is the homepage's

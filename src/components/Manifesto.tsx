@@ -67,9 +67,28 @@ export function Manifesto() {
   return (
     <section className={`${sectionPad} bg-ivory`}>
       <div className={shell}>
-        <div ref={ref} className="max-w-[24ch]">
+        {/* THE MEASURE BELONGS ON THE LINE, NOT ON THE BLOCK AROUND IT, and
+            getting that wrong here cost the homepage a screen and a half.
+
+            `ch` is the width of the font's own "0", resolved against the element
+            that carries it. On this wrapper, which inherits the 16px body face,
+            `max-w-[24ch]` is about 230px — so the statement was set at 100px in
+            a 230px column, one word per line, and the section stood 2130px tall
+            with a 230px ribbon of type down the inline edge of it. That is the
+            large empty area a reader met immediately after the hero: not a
+            spacing bug and not an animation, a measure resolved against the
+            wrong font.
+
+            On the `p`, the same 24ch is 24 characters of Cormorant at display
+            size, which is what was meant. It is the identical mistake the method
+            section documents fixing, in the identical form; if a third one turns
+            up, look for a `ch` on anything that is not the type it is measuring. */}
+        <div ref={ref}>
           {lines.map((words, li) => (
-            <p key={li} className={`${displayManifesto} ${li > 0 ? "mt-[0.35em]" : ""}`}>
+            <p
+              key={li}
+              className={`${displayManifesto} max-w-[24ch] ${li > 0 ? "mt-[0.35em]" : ""}`}
+            >
               {/* The space between two words is a real space in the document,
                   not a margin on the box.
 
