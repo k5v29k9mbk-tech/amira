@@ -69,7 +69,7 @@ export default async function FaqPage({
               {t("faq.more")}
             </p>
             <Link href="/contact" className={`${linkRule} mt-8`}>
-              {t("hero.secondary")}
+              {t("cta.availability")}
               <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
             </Link>
           </div>
@@ -82,7 +82,7 @@ export default async function FaqPage({
                 and a half above by the eleventh question and has scrolled out
                 of the page long before anyone gets there. */}
             <Link href="/contact" className={`${linkRule} mt-12`}>
-              {t("hero.secondary")}
+              {t("cta.availability")}
               <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
             </Link>
           </div>

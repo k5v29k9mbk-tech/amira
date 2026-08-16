@@ -40,7 +40,7 @@ export default async function NotFound() {
             {t("nav.home")}
           </Link>
           <Link href="/courses" className={linkRule}>
-            {t("hero.primary")}
+            {t("cta.courses")}
             <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
           </Link>
         </div>

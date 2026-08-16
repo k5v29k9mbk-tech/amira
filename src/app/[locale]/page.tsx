@@ -3,7 +3,7 @@ import { ArrowRight, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { altLanguages } from "@/i18n/routing";
 import { closingMedia, founderMedia } from "@/lib/media";
-import { whatsappLinkWith } from "@/lib/studio";
+import { beforeAfterPairs, whatsappLinkWith } from "@/lib/studio";
 import {
   arrow,
   btnLineLight,
@@ -23,6 +23,7 @@ import { Manifesto } from "@/components/Manifesto";
 import { CourseSelector } from "@/components/CourseSelector";
 import { MethodStory } from "@/components/MethodStory";
 import { WorkGallery } from "@/components/WorkGallery";
+import { BeforeAfter } from "@/components/BeforeAfter";
 import { FrameGallery } from "@/components/FrameGallery";
 import { Testimonial } from "@/components/Testimonial";
 import { Faq } from "@/components/Faq";
@@ -362,6 +363,31 @@ export default async function Home({
               </p>
             </Reveal>
           </div>
+
+          {/* THE PROOF, AT THE SIZE OF THE CLAIM.
+              The academy has supplied exactly one aligned before/after pair,
+              and it is the only outcome on the site a visitor can operate
+              rather than look at: she drags the handle and does the comparison
+              herself, which is a different kind of evidence from a photograph
+              she is asked to believe. It was set third among seven frames at
+              six columns of twelve — the strongest thing in the section,
+              printed at the size of a supporting one.
+
+              It leads the act now, on the axis, held to 900px because that is
+              the width of the aligned source frames: bigger would be an upscale
+              of the one image on the page that has to survive close reading.
+              The gallery of finished work follows it, which is the right order —
+              the transformation, then the range.
+
+              Renders only while a pair exists. A second pair, aligned the same
+              way, would make this a set rather than a single frame; the section
+              reads either way. */}
+          {beforeAfterPairs.length > 0 ? (
+            <Reveal className="mx-auto w-full max-w-[900px] pb-16 md:pb-24">
+              <BeforeAfter pair={beforeAfterPairs[0]} sizes="(max-width: 900px) 100vw, 900px" />
+            </Reveal>
+          ) : null}
+
           <WorkGallery />
         </div>
       </section>
@@ -615,7 +641,7 @@ export default async function Home({
                 href="/contact"
                 className={whatsappHref ? btnLineLight : btnSolidLight}
               >
-                {t("hero.secondary")}
+                {t("cta.availability")}
               </Link>
             </div>
           </Reveal>

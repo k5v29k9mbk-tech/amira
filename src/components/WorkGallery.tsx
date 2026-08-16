@@ -5,10 +5,8 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { ArrowsOut, X } from "@phosphor-icons/react";
-import { pairFrame, resultFrames } from "@/lib/media";
+import { resultFrames } from "@/lib/media";
 import { dur, ease } from "@/lib/motion";
-import { beforeAfterPairs } from "@/lib/studio";
-import { BeforeAfter } from "./BeforeAfter";
 import { FrameReveal } from "./FrameReveal";
 import { MediaFrame } from "./MediaFrame";
 import { Parallax } from "./Parallax";
@@ -93,11 +91,16 @@ export function WorkGallery() {
 
   return (
     <>
-      {/* Fragments, so the frames and the slider are all direct children of the
-          grid. Order is what auto-placement reads, which is why the slider is
-          emitted inside the loop at its own index rather than appended after
-          it: at the end of the list it would take the last row on its own and
-          leave a 2-column frame stranded beside a void in the second. */}
+      {/* Fragments, so every frame is a direct child of the grid: each one
+          carries its own `col-start`, and auto-placement reads that order.
+
+          The before/after slider used to be emitted inside this loop at its own
+          index. It has moved up into the section itself, above this
+          composition, where it leads the act at full width instead of sitting
+          third among seven photographs at six columns of twelve. It was the one
+          piece of proof on the page a visitor can operate, and it was the size
+          of a thumbnail. The frames close up behind it with no other change,
+          which is what the per-frame `col-start` was always for. */}
       <div className="grid grid-cols-12 gap-5 md:gap-8">
         {resultFrames.map((frame, i) => (
           <Fragment key={frame.posterSrc}>
@@ -140,16 +143,6 @@ export function WorkGallery() {
               </FrameReveal>
             </Parallax>
 
-            {/* The one pair the academy has supplied. It renders only while a
-                pair exists: every frame around it carries its own column, so
-                its absence costs a row and nothing else. */}
-            {i === pairFrame.after && beforeAfterPairs.length > 0 ? (
-              <Parallax distance={-10} className={pairFrame.span}>
-                <FrameReveal delay={0.06}>
-                  <BeforeAfter pair={beforeAfterPairs[0]} sizes={pairFrame.sizes} />
-                </FrameReveal>
-              </Parallax>
-            ) : null}
           </Fragment>
         ))}
       </div>
