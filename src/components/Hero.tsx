@@ -35,8 +35,7 @@ const facts = ["years", "students", "classes"] as const;
  * further down the page still carries her portrait.
  *
  * What replaces the plate is her name. A campaign is signed rather than
- * illustrated, and this one now signs itself at the inline end of the last line
- * of the composition.
+ * illustrated, and this one signs itself at the foot of the composition.
  *
  * THE AXIS. One centred column, optically centred in the screen: the bar, the
  * statement, the promise, the evidence, the two actions, then her name. Same
@@ -74,13 +73,21 @@ export async function Hero() {
   const t = await getTranslations("hero");
   const inst = await getTranslations("instructor");
 
+  /* Centred on both axes, and the two paddings are neither equal nor fixed.
+     The section is the full small viewport but it does not own all of it: the
+     fixed header sits on the top 68px and the scroll cue on the bottom 56, and
+     centring inside the padding box rather than the border box is what puts
+     the composition on the middle of what a reader can actually see.
+
+     Both are clamped against vh rather than set, and every gap inside the
+     composition is clamped the same way. A centred hero is the one layout that
+     cannot spend whatever vertical space it likes: bottom-aligned, a tall
+     composition simply started higher, but centred it grows past the fold in
+     both directions at once, and what falls off the bottom of a 720px laptop is
+     the signature. The floors are what the composition needs at 720 and the
+     ceilings are what it should have at 1080. */
   return (
-    {/* Centred on both axes, and the two paddings are not equal on purpose.
-        The section is the full small viewport, but it does not own all of it:
-        the fixed header sits on the top 68px and the scroll cue on the bottom
-        56. Centring inside the padding box rather than the border box is what
-        puts the composition on the middle of what a reader can actually see. */}
-    <section className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-espresso text-ivory pt-[92px] pb-20 md:pt-[100px] md:pb-24">
+    <section className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-espresso text-ivory pt-[clamp(88px,11vh,104px)] pb-[clamp(64px,9vh,96px)]">
       <HeroFilm />
 
       {/* The opening score.
@@ -126,7 +133,7 @@ export async function Hero() {
             Italian, French or Arabic. The second line's aperture is a
             `stagger.line` behind the first, which is what makes the headline
             read as typesetting rather than as a block arriving. */}
-        <h1 className={`${displayHero} mt-6 max-w-[19ch] text-balance sm:max-w-[15ch] md:mt-8`}>
+        <h1 className={`${displayHero} mt-[clamp(1.25rem,2.6vh,2rem)] max-w-[19ch] text-balance sm:max-w-[15ch]`}>
           <MaskReveal onMount delay={heroBeat.headline} duration={dur.slow}>
             <span className="block">{t("titleA")}</span>
           </MaskReveal>
@@ -140,7 +147,7 @@ export async function Hero() {
         </h1>
 
         <HeroBeat delay={heroBeat.sub}>
-          <p className="mt-6 max-w-[46ch] text-[16px] leading-relaxed text-ivory/85 sm:text-[17px] md:mt-8 md:text-[19px]">
+          <p className="mt-[clamp(1rem,2.4vh,2rem)] max-w-[46ch] text-[16px] leading-relaxed text-ivory/85 sm:text-[17px] md:text-[19px]">
             {t("sub")}
           </p>
         </HeroBeat>
@@ -161,7 +168,7 @@ export async function Hero() {
             became a list. Stacked in three columns, each figure over its own
             label, they hold one baseline from 320px up. */}
         <HeroBeat delay={heroBeat.facts} className="w-full">
-          <dl className="mx-auto mt-8 grid w-full max-w-[34rem] grid-cols-3 gap-x-4 gap-y-3 border-t border-hair-dark pt-6 md:mt-10 md:gap-x-8">
+          <dl className="mx-auto mt-[clamp(1.5rem,3.2vh,2.5rem)] grid w-full max-w-[34rem] grid-cols-3 gap-x-4 gap-y-3 border-t border-hair-dark pt-[clamp(1rem,2.4vh,1.5rem)] md:gap-x-8">
             {facts.map((k) => (
               <div key={k} className="flex flex-col items-center gap-1.5 md:gap-2">
                 <dt className="display text-[1.375rem] leading-none text-ivory md:text-[1.5rem]">
@@ -191,7 +198,7 @@ export async function Hero() {
             ground, and ui.ts has carried it for the dark sections since before
             this screen needed it. */}
         <HeroBeat delay={heroBeat.actions} className="w-full">
-          <div className="mt-10 flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10 md:mt-12">
+          <div className="mt-[clamp(1.75rem,3.6vh,3rem)] flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10">
             <Link href="/courses" className={`${btnSolidLight} w-full sm:w-auto`}>
               {t("primary")}
             </Link>
@@ -221,7 +228,7 @@ export async function Hero() {
             to 3.5rem and centred. It arrives a beat ahead of the name and inside
             the same aperture, so the pair wipes in as one gesture: the line
             draws, the name lands on it. */}
-        <div className="mt-12 md:mt-14">
+        <div className="mt-[clamp(2rem,4.2vh,3.5rem)]">
           <MaskReveal onMount delay={heroBeat.name} duration={dur.slow}>
             <span className="mx-auto mb-5 block h-px w-14 bg-bronze-hi/50" />
             <p className={`${displayLarge} leading-[1.1] text-ivory`}>{inst("title")}</p>

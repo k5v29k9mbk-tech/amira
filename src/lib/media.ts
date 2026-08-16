@@ -121,16 +121,24 @@ export const heroFilmMedia: Media = {
    * at the board, where her face sits just below the middle of the frame, and a
    * wide of the room, where she is high in it and the students fill the bottom;
    * 45% takes the top of her head off in the wide, 35% loses her face in the
-   * close shot. 40% holds both, and it puts her in the upper half of the screen,
-   * which is the band the composition leaves to the film — the statement, the
-   * figures and the buttons all sit below it.
+   * close shot. 40% holds both.
+   *
+   * It also keeps her clear of the type. The composition is centred, so the
+   * middle of the screen is spoken for; at 40% she stands in the lower right of
+   * the frame through the opening shot and the class fills the lower left in the
+   * wide, which puts the people on the two sides of the axis rather than under
+   * it. What sits directly behind the statement is the flipchart, which is the
+   * flattest and quietest thing in the footage and the one part of it that can
+   * carry type.
    *
    * PHONE. The viewport is taller than it is wide and so is the clip, so `cover`
    * scales to the height and spends about a fifth of the width, a tenth off each
-   * edge. Amira is a little right of centre in the source and stays comfortably
-   * inside that crop, so the centre is the honest aim: pulling it toward her
-   * would only throw away footage the screen had room for and push her to the
-   * edge in the wider shots.
+   * edge — the whole of the film's height survives, which is why the phone is
+   * the one place the crop can be centred and still show everything. Amira sits
+   * a little right of centre in the source and stays comfortably inside that
+   * crop at every cut. Pulling the aim toward her would throw away footage the
+   * screen had room for and push her to the edge in the wider shots, where she
+   * is already high and right.
    */
   position: "50% 40%",
   mobilePosition: "50% 50%",

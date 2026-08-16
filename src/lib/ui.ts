@@ -75,8 +75,16 @@ export const sectionPadTop = "pt-24 md:pt-36 lg:pt-52";
  * statements, "Créez votre carrière.", is wider than the gutter of a 375px
  * phone and broke to a one-word third line; at 40px it holds. Nothing above
  * 640px changes, because 7.2vw passes 40px at 556.
+ *
+ * And it is the one size on the site capped by the viewport's height as well as
+ * its width, because it is the one size set in a screen that is exactly 100svh
+ * with its composition centred in it. Sized off the width alone it takes 200px
+ * of a 720px laptop and pushes the signature under the fold; 10.5vh is the
+ * height at which two lines of it and everything under them still fit the
+ * shortest laptop worth designing for. On a phone the width term is far smaller
+ * and the floor decides, so nothing about the mobile screen changes.
  */
-export const displayHero = "display text-[clamp(2.5rem,7.2vw,8rem)]";
+export const displayHero = "display text-[clamp(2.5rem,min(7.2vw,10.5vh),8rem)]";
 export const displaySection = "display text-[clamp(2.25rem,6vw,7rem)]";
 export const displayManifesto = "display text-[clamp(2.25rem,7vw,8rem)]";
 export const displayLarge = "display text-[clamp(1.75rem,3.4vw,3.25rem)]";
