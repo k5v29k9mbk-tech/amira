@@ -1,7 +1,7 @@
 "use client";
 
-import { createContext, useContext } from "react";
-import { motion } from "motion/react";
+import { createContext, useContext, useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import type { ReactNode } from "react";
 import { dist, dur, ease } from "@/lib/motion";
 import { useIntroReady } from "@/lib/use-intro-ready";
@@ -54,9 +54,39 @@ export function HeroCopy({
   className?: string;
 }) {
   const ready = useIntroReady();
+  const ref = useRef<HTMLDivElement>(null);
+
+  /**
+   * THE COMPOSITION LEAVES BEFORE THE FILM DOES.
+   *
+   * `HeroFilm` already drifts five percent as the first screen scrolls away.
+   * The type sat perfectly still against it, which is the one thing that gives
+   * a full-bleed hero away as a photograph with text on top: in a real frame
+   * the near plane travels further than the far one, and here the near plane
+   * was nailed down.
+   *
+   * So the copy rises 8% of the section as it exits, against the film's 5%
+   * downward drift. The two move in opposite directions at similar rates,
+   * which is what reads as depth rather than as either element moving; and
+   * because the range is keyed to the hero *leaving*, nothing happens at all
+   * until a visitor scrolls.
+   *
+   * `.drift` is the contract with globals.css. A motion value written to
+   * `style` is not an animation as far as Motion's reduced-motion policy is
+   * concerned, so the class is what lets the media query zero this out with an
+   * author `!important`. Move the transform and the class moves with it.
+   */
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "-8%"]);
+
   return (
     <HeroReady.Provider value={ready}>
-      <div className={className}>{children}</div>
+      <motion.div ref={ref} style={{ y }} className={`drift ${className ?? ""}`}>
+        {children}
+      </motion.div>
     </HeroReady.Provider>
   );
 }

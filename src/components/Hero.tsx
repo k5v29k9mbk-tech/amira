@@ -14,6 +14,7 @@ import { whatsappLinkWith } from "@/lib/studio";
 import { HeroFilm } from "./HeroFilm";
 import { HeroBeat, HeroCopy } from "./HeroChoreography";
 import { MaskReveal } from "./MaskReveal";
+import { Magnetic } from "./Magnetic";
 
 /**
  * The three marks the academy can prove, in the order a visitor weighs them:
@@ -228,9 +229,15 @@ export async function Hero() {
             contact page rather than to a dead link. */}
         <HeroBeat delay={heroBeat.actions} className="w-full">
           <div className="mt-[clamp(1.75rem,3.6vh,3rem)] flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10">
-            <Link href="/courses" className={`${btnSolidLight} w-full sm:w-auto`}>
-              {c("courses")}
-            </Link>
+            {/* The one control on the first screen a visitor is meant to
+                press, and the only one that leans. Spending the gesture once,
+                on the primary, is what keeps it a detail rather than a
+                behaviour every button on the site performs. */}
+            <Magnetic className="w-full sm:w-auto">
+              <Link href="/courses" className={`${btnSolidLight} w-full sm:w-auto`}>
+                {c("courses")}
+              </Link>
+            </Magnetic>
             {talk ? (
               <a href={talk} target="_blank" rel="noreferrer" className={linkRuleLight}>
                 {c("talk")}

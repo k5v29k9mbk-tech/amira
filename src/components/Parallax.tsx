@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import type { ReactNode } from "react";
 
@@ -30,6 +30,19 @@ import type { ReactNode } from "react";
  *
  * The class has to stay on the element that carries the transform. If this ever
  * wraps another element or moves the `style` down a level, `drift` moves with it.
+ *
+ * A PHONE GETS LESS OF IT, and that is a motion decision rather than a
+ * performance one. Parallax is a depth cue and depth is read against the size
+ * of the frame: 16px of travel on a 700px-wide desktop frame is a suggestion,
+ * and the same 16px on a 342px phone frame is twice the proportion — the same
+ * number that reads as weight on a laptop reads as the picture sliding in its
+ * box on a phone. Below 768px the travel is halved.
+ *
+ * The scale is applied after mount rather than during render, for the reason
+ * the whole comment above exists: the server has no viewport, so choosing the
+ * distance while rendering is the hydration mismatch this file was written to
+ * avoid. At scroll position zero the transform is at its start value on both
+ * sides of the swap, so the correction is invisible — there is no jump to see.
  */
 export function Parallax({
   children,
@@ -42,11 +55,21 @@ export function Parallax({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [travel, setTravel] = useState(distance);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const sync = () => setTravel(mq.matches ? distance / 2 : distance);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [distance]);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [distance, -distance]);
+  const y = useTransform(scrollYProgress, [0, 1], [travel, -travel]);
 
   return (
     <motion.div ref={ref} style={{ y }} className={`drift ${className}`}>
