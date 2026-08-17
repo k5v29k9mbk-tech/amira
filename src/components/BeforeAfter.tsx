@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { animate, useInView, useReducedMotion } from "motion/react";
+import { dur, ease } from "@/lib/motion";
 import { ArrowsHorizontal } from "@phosphor-icons/react";
 
 export type Pair = { before: string; after: string; label: string };
@@ -41,10 +43,53 @@ export function BeforeAfter({
   sizes?: string;
 }) {
   const t = useTranslations("success");
-  const [pos, setPos] = useState(50);
+  const [pos, setPos] = useState(100);
+
+  /**
+   * THE OPENING SWEEP, and it is the one piece of motion on this page that is
+   * also an instruction.
+   *
+   * The frame used to arrive parked at 50%: half a face treated, half not, and
+   * a handle in the middle that a visitor had to guess was draggable. Most
+   * never did. The single strongest piece of evidence the academy owns was
+   * sitting behind an affordance nobody could see.
+   *
+   * So it arrives closed — the whole frame is the "before" — and when it
+   * settles into view the wipe travels once to the middle, slowly, on the
+   * house curve. Three things happen in that second and a half: the result is
+   * revealed rather than presented, the control demonstrates itself, and the
+   * handle ends up exactly where a reader would want to take hold of it.
+   *
+   * It runs once, and it yields immediately. `touched` is set by the input's
+   * own change handler, so a visitor who grabs the slider mid-sweep takes it
+   * over on that frame rather than fighting an animation for its remaining
+   * second. Under `prefers-reduced-motion` the sweep does not run at all and
+   * the frame opens at the midpoint, which is where it used to start.
+   */
+  const ref = useRef<HTMLElement>(null);
+  const seen = useInView(ref, { once: true, amount: 0.55 });
+  const reduce = useReducedMotion();
+  const touched = useRef(false);
+
+  useEffect(() => {
+    if (!seen) return;
+    if (reduce) {
+      setPos(50);
+      return;
+    }
+    const run = animate(100, 50, {
+      duration: dur.plate,
+      delay: dur.quick,
+      ease: ease.aura,
+      onUpdate: (v) => {
+        if (!touched.current) setPos(v);
+      },
+    });
+    return () => run.stop();
+  }, [seen, reduce]);
 
   return (
-    <figure dir="ltr" className="group">
+    <figure ref={ref} dir="ltr" className="group">
       {/* Matches the aligned source frames, 900x620. */}
       <div className="relative aspect-[900/620] w-full overflow-hidden select-none">
         <Image
@@ -80,7 +125,10 @@ export function BeforeAfter({
             step={1}
             value={pos}
             aria-valuetext={`${pos}% ${t("before")}`}
-            onChange={(e) => setPos(Number(e.target.value))}
+            onChange={(e) => {
+              touched.current = true;
+              setPos(Number(e.target.value));
+            }}
             className="h-full w-full cursor-ew-resize opacity-0"
           />
         </label>
