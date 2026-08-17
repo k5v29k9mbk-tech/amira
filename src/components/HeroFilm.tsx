@@ -3,7 +3,8 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { heroFilmMedia } from "@/lib/media";
-import { imageScale } from "@/lib/motion";
+import { dur, ease, imageScale } from "@/lib/motion";
+import { useIntroReady } from "@/lib/use-intro-ready";
 import { MediaFrame } from "./MediaFrame";
 
 /**
@@ -59,6 +60,7 @@ import { MediaFrame } from "./MediaFrame";
  */
 export function HeroFilm() {
   const ref = useRef<HTMLDivElement>(null);
+  const ready = useIntroReady();
 
   /**
    * Keyed to the hero leaving, not to the hero being on screen. The section
@@ -76,13 +78,46 @@ export function HeroFilm() {
   return (
     <div ref={ref} aria-hidden className="pointer-events-none absolute inset-0 -z-10">
       <motion.div style={{ y, scale }} className="drift absolute inset-[-6%]">
-        <MediaFrame
-          media={heroFilmMedia}
-          priority
-          eager
-          sizes="100vw"
-          imageClassName="settle"
-        />
+        {/* THE OPENING FRAME.
+
+            The scroll transform lives on the element above; this one carries
+            the entrance, and they are deliberately two elements. A single node
+            cannot hold both a motion value written to `style` and a keyframed
+            transform — the last writer wins and the drift would fight the
+            open — so the outer box travels with the scroll and the inner box
+            performs, and the browser composes the two transforms for free.
+
+            What it performs is one move: 1.06 to 1 over two and a half
+            seconds, easing almost to a stop. A film that fades up says the
+            page is loading. A film that settles says the camera has found its
+            frame, which is how a campaign opens, and at six percent over that
+            long it is felt rather than seen.
+
+            It waits for the intro overlay. On a first visit the opening film
+            covers the page, and an entrance played underneath it is an
+            entrance nobody watches; `useIntroReady` is the same cue the
+            statement and the signature hold for, so the film, the type and the
+            name are one sequence rather than three that happen to overlap.
+
+            Transform and opacity only, both compositor properties: this costs
+            no layout and no paint on any frame of it. */}
+        <motion.div
+          className="h-full w-full"
+          initial={{ scale: imageScale.depth * 0.98, opacity: 0 }}
+          animate={ready ? { scale: 1, opacity: 1 } : undefined}
+          transition={{
+            scale: { duration: 2.5, ease: ease.aura },
+            opacity: { duration: dur.frame, ease: ease.soft },
+          }}
+        >
+          <MediaFrame
+            media={heroFilmMedia}
+            priority
+            eager
+            sizes="100vw"
+            imageClassName="settle"
+          />
+        </motion.div>
       </motion.div>
 
       {/* 1. THE GRADE. An even wash at 42%, and it is the one layer here that
