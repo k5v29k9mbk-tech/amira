@@ -255,9 +255,10 @@ export default async function AboutPage({
           the point at which a change of ground stops reading as a change. */}
       <section className={`${sectionPad} bg-ivory`}>
         <div className={shell}>
-          <Reveal className="max-w-[22ch]">
+          {/* Measure on the heading. See the note in Manifesto.tsx. */}
+          <Reveal>
             <p className={eyebrow}>{t("different.eyebrow")}</p>
-            <h2 className={`${displaySection} mt-8`}>{t("different.title")}</h2>
+            <h2 className={`${displaySection} mt-6 max-w-[22ch]`}>{t("different.title")}</h2>
           </Reveal>
 
           <ol className="mt-14 border-t border-hair md:mt-20">
@@ -376,8 +377,9 @@ export default async function AboutPage({
 
       <section className={`${sectionPad} bg-ivory`}>
         <div className={shell}>
-          <Reveal className="max-w-[20ch]">
-            <h2 className={displaySection}>{t("cta.title")}</h2>
+          {/* Measure on the heading. See the note in Manifesto.tsx. */}
+          <Reveal>
+            <h2 className={`${displaySection} max-w-[20ch]`}>{t("cta.title")}</h2>
           </Reveal>
           <Reveal delay={0.08}>
             <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-mute">

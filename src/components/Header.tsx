@@ -8,7 +8,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { Logo } from "./Logo";
 import { brand, whatsappLinkWith } from "@/lib/studio";
-import { btnSolid, shell } from "@/lib/ui";
+import { btnCompact, btnSolid, shell } from "@/lib/ui";
 import { dur, ease, stagger } from "@/lib/motion";
 
 /**
@@ -194,7 +194,7 @@ export function Header() {
               on it, which is the one place a phone does have room. */}
           <Link
             href="/contact"
-            className={`label hidden border px-5 py-3 transition-colors duration-500 ease-[var(--ease-aura)] md:inline-flex xl:px-6 ${
+            className={`${btnCompact} hidden border md:inline-flex ${
               onFilm
                 ? "border-ivory bg-ivory text-espresso hover:border-bronze-hi hover:bg-bronze-hi"
                 : "border-espresso bg-espresso text-ivory hover:border-bronze-ink hover:bg-bronze-ink"

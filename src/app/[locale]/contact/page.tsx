@@ -152,9 +152,12 @@ export default async function ContactPage({
       {/* What happens after you write, in the order it happens. */}
       <section className={`${sectionPad} bg-paper`}>
         <div className={shell}>
-          <Reveal className="max-w-[20ch]">
+          {/* Measure on the heading. See the note in Manifesto.tsx: on this
+              wrapper `20ch` is 20 characters of the 16px body face, about
+              190px, and the heading inside was being folded into it. */}
+          <Reveal>
             <p className={eyebrow}>{t("journey.eyebrow")}</p>
-            <h2 className={`${displaySection} mt-8`}>{t("journey.title")}</h2>
+            <h2 className={`${displaySection} mt-6 max-w-[20ch]`}>{t("journey.title")}</h2>
             <p className="mt-8 max-w-[44ch] text-[16px] leading-relaxed text-mute">
               {t("journey.sub")}
             </p>

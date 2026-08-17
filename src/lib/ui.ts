@@ -145,6 +145,20 @@ export const eyebrowLight = "label text-bronze-hi";
 const btnBase =
   "label group/btn inline-flex items-center justify-center gap-3 whitespace-nowrap px-10 py-4 transition-colors duration-500 ease-[var(--ease-aura)] active:translate-y-px disabled:opacity-50";
 
+/**
+ * The bar-sized variant of the same shape.
+ *
+ * The header's action and the phone's standing action are the two places a
+ * button has to fit a bar rather than a composition, and both had written their
+ * own padding inline — `px-5 py-3` in one, `px-5 py-4` in the other, against
+ * `px-10 py-4` here. Three paddings for one shape is how a system stops being
+ * one. This is the shape at bar scale: same face, same tracking, same gap, same
+ * transition, less horizontal padding. Ground colours stay with the caller,
+ * because both of those two swap theirs against what is behind them.
+ */
+export const btnCompact =
+  "label group/btn inline-flex items-center justify-center gap-3 whitespace-nowrap px-6 py-3.5 transition-colors duration-500 ease-[var(--ease-aura)] active:translate-y-px";
+
 /** Primary action on a light ground. */
 export const btnSolid = `${btnBase} bg-espresso text-ivory hover:bg-bronze-ink`;
 

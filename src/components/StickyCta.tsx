@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { WhatsappLogo } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 import { whatsappLink } from "@/lib/studio";
+import { btnCompact } from "@/lib/ui";
 
 /**
  * The phone's standing action, and the reason it exists.
@@ -94,7 +95,7 @@ export function StickyCta() {
         <Link
           href="/contact"
           tabIndex={shown ? 0 : -1}
-          className="label flex flex-1 items-center justify-center bg-espresso px-5 py-4 text-center text-ivory transition-colors duration-300 hover:bg-bronze-ink"
+          className={`${btnCompact} flex-1 bg-espresso text-ivory hover:bg-bronze-ink`}
         >
           {t("availability")}
         </Link>

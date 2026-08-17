@@ -102,12 +102,13 @@ export default async function CoursesPage({
 
       <section className={`${pageHeader} bg-ivory`}>
         <div className={shell}>
-          <Stagger className="max-w-[24ch]">
+          {/* Measure on the heading. See the note in Manifesto.tsx. */}
+          <Stagger>
             <StaggerItem>
               <p className={eyebrow}>{t("catalog.eyebrow")}</p>
             </StaggerItem>
             <StaggerItem>
-              <h1 className={`${displaySection} mt-8`}>{t("catalog.title")}</h1>
+              <h1 className={`${displaySection} mt-6 max-w-[24ch]`}>{t("catalog.title")}</h1>
             </StaggerItem>
           </Stagger>
           <p className="mt-10 max-w-[56ch] text-[17px] leading-relaxed text-mute">
@@ -405,8 +406,11 @@ export default async function CoursesPage({
           in common. */}
       <section className={`${sectionPad} bg-ivory`}>
         <div className={shell}>
-          <Reveal className="max-w-[20ch]">
-            <h2 className={`${displaySection} text-balance`}>{t("contact.title")}</h2>
+          {/* Measure on the heading. See the note in Manifesto.tsx. */}
+          <Reveal>
+            <h2 className={`${displaySection} max-w-[20ch] text-balance`}>
+              {t("contact.title")}
+            </h2>
           </Reveal>
           <Reveal delay={0.08}>
             <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-mute">
