@@ -243,14 +243,23 @@
         "title": "Brows",
         "sub": "Three ways to build a brow: two are permanent makeup, one restructures the hair you already have."
       },
-      "lipsEyes": {
-        "title": "Lips and eyes",
-        "sub": "Permanent makeup for the lip and for the lash line."
+      "lips": {
+        "title": "Lips",
+        "sub": "Permanent makeup for the lip."
+      },
+      "eyes": {
+        "title": "Eyes",
+        "sub": "Permanent makeup for the lash line."
       },
       "lashes": {
         "title": "Lashes",
         "sub": "A lifting treatment that reshapes the natural lash."
       }
+    },
+    "gallery": {
+      "before": "Before",
+      "after": "After",
+      "pending": "Photograph to come"
     }
   },
   "journey": {
@@ -447,6 +456,7 @@
   "cta": {
     "courses": "Discover the courses",
     "talk": "Talk to Amira",
-    "availability": "Request availability"
+    "availability": "Request availability",
+    "consultation": "Book your consultation"
   }
 }

@@ -243,14 +243,23 @@
         "title": "Sourcils",
         "sub": "Trois façons de construire un sourcil : deux relèvent du maquillage permanent, une restructure le poil déjà présent."
       },
-      "lipsEyes": {
-        "title": "Lèvres et yeux",
-        "sub": "Maquillage permanent pour la lèvre et pour la ligne des cils."
+      "lips": {
+        "title": "Lèvres",
+        "sub": "Maquillage permanent pour la lèvre."
+      },
+      "eyes": {
+        "title": "Yeux",
+        "sub": "Maquillage permanent pour la ligne des cils."
       },
       "lashes": {
         "title": "Cils",
         "sub": "Un soin lifting qui redessine le cil naturel."
       }
+    },
+    "gallery": {
+      "before": "Avant",
+      "after": "Après",
+      "pending": "Photographie à venir"
     }
   },
   "journey": {
@@ -447,6 +456,7 @@
   "cta": {
     "courses": "Découvrir les cours",
     "talk": "Parler avec Amira",
-    "availability": "Demander une date"
+    "availability": "Demander une date",
+    "consultation": "Réserver votre consultation"
   }
 }

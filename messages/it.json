@@ -243,14 +243,23 @@
         "title": "Sopracciglia",
         "sub": "Tre modi di costruire un sopracciglio: due sono trucco permanente, uno ristruttura il pelo che già c'è."
       },
-      "lipsEyes": {
-        "title": "Labbra e occhi",
-        "sub": "Trucco permanente per il labbro e per la rima ciliare."
+      "lips": {
+        "title": "Labbra",
+        "sub": "Trucco permanente per il labbro."
+      },
+      "eyes": {
+        "title": "Occhi",
+        "sub": "Trucco permanente per la rima ciliare."
       },
       "lashes": {
         "title": "Ciglia",
         "sub": "Un trattamento lifting che ridisegna il ciglio naturale."
       }
+    },
+    "gallery": {
+      "before": "Prima",
+      "after": "Dopo",
+      "pending": "Fotografia in arrivo"
     }
   },
   "journey": {
@@ -447,6 +456,7 @@
   "cta": {
     "courses": "Scopri i corsi",
     "talk": "Parla con Amira",
-    "availability": "Richiedi disponibilità"
+    "availability": "Richiedi disponibilità",
+    "consultation": "Prenota la tua consulenza"
   }
 }

@@ -36,13 +36,13 @@ import type { Media } from "./media";
  * all. The family's standfirst says exactly that, and Powder Brows keeps its
  * own section below the catalogue on top of its row here.
  */
-export const families = ["brows", "lipsEyes", "lashes"] as const;
+export const families = ["brows", "lips", "eyes", "lashes"] as const;
 
 export type Family = (typeof families)[number];
 
 export type Course = {
   slug: string;
-  /** Which of the three groups the courses page lists this course under. */
+  /** Which of the four groups the courses page lists this course under. */
   family: Family;
   media: Media;
   /**
@@ -87,7 +87,7 @@ export const courses: Course[] = [
   },
   {
     slug: "lip-blush",
-    family: "lipsEyes",
+    family: "lips",
     media: {
       posterSrc: "/brand/lips-upright.jpg",
       position: "50% 50%",
@@ -97,7 +97,7 @@ export const courses: Course[] = [
   },
   {
     slug: "eyeliner-pmu",
-    family: "lipsEyes",
+    family: "eyes",
     media: {
       posterSrc: "/brand/brows-eyes.jpg",
       position: "50% 42%",
