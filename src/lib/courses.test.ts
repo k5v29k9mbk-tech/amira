@@ -76,6 +76,13 @@ const PAGE_KEYS = [
   "cta.courses",
   "cta.talk",
   "cta.availability",
+  // The consultation the courses page offers under every discipline.
+  "cta.consultation",
+  // The before/after gallery's two words and the caption a slot carries while
+  // it is still waiting for its photograph.
+  "catalog.gallery.before",
+  "catalog.gallery.after",
+  "catalog.gallery.pending",
   "sections.courses",
   "sections.method",
   "sections.work",

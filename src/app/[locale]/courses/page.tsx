@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { courses, families, included } from "@/lib/courses";
+import { ServiceGallery } from "@/components/ServiceGallery";
 import { beforeAfterPairs, whatsappLinkWith } from "@/lib/studio";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { MediaFrame } from "@/components/MediaFrame";
@@ -199,10 +200,47 @@ export default async function CoursesPage({
                               {t("catalog.details.level.value")} ·{" "}
                               {t("catalog.details.language.value")}
                             </p>
-                            <Link href="/contact" className={`${linkRule} mt-6`}>
-                              {t("catalog.cta")}
+
+                            {/* What the discipline includes, and it is the
+                                academy's own four-part answer rather than a
+                                benefits list written for this block: theory,
+                                guided practice, the live model where one is
+                                scheduled, and the support that continues after
+                                the course. The same four are the method's four
+                                chapters on the homepage, which is the point —
+                                every course is taught the same way, so every
+                                course states the same four here. */}
+                            <p className="label mt-8 text-bronze-ink">
+                              {t("catalog.includes")}
+                            </p>
+                            <ul className="mt-4 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+                              {included.map((k) => (
+                                <li
+                                  key={k}
+                                  className="flex gap-3 text-[15px] leading-relaxed text-mute"
+                                >
+                                  <span aria-hidden className="mt-2.5 h-px w-4 shrink-0 bg-bronze/60" />
+                                  {t(`method.steps.${k}.title`)}
+                                </li>
+                              ))}
+                            </ul>
+
+                            <Link href="/contact" className={`${linkRule} mt-8`}>
+                              {t("cta.consultation")}
                               <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
                             </Link>
+                          </div>
+
+                          {/* The discipline's own before/after, under its own
+                              name and inside its own block, so no gallery on
+                              the page can mix two techniques. Full width of the
+                              row rather than the copy column: a pair set in six
+                              columns of twelve is two thumbnails. */}
+                          <div className="md:col-span-12">
+                            <ServiceGallery
+                              slug={course.slug}
+                              name={t(`catalog.courses.${course.slug}`)}
+                            />
                           </div>
                         </Reveal>
                       );
