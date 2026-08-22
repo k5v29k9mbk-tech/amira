@@ -112,6 +112,84 @@ body {
 }
 
 /*
+  THE FIRST SCREEN'S VERTICAL RHYTHM.
+
+  Five steps, declared once on the hero section and read by every gap inside it.
+  Before this the composition carried seven bespoke clamps written at the point
+  of use — 1.25/2.6/2, 1/2.4/2, 1.5/3.2/2.5, 1.75/3.6/3, 2/4.2/3.5 — which is
+  five different opinions about what "a bit of air" means and no way to tell,
+  from any one of them, whether the interval above the figures was meant to be
+  larger than the interval above the supporting line or had simply been typed on
+  a different afternoon.
+
+  A hero is the one composition on a site where spacing cannot be a fixed scale
+  and cannot be a free one. Fixed, it overflows a 568px handset and looks starved
+  on a 932px one; free, the proportions between the intervals drift the moment
+  anyone adjusts a single gap. So each step is a clamp against viewport height —
+  the axis the composition is actually competing for — and the ratios between the
+  five hold at every height because they are all struck from the same vh figure.
+
+  What the steps are for, and the hierarchy they encode:
+
+    xs  inside a pair that reads as one object (a figure and its label)
+    sm  between a block and the line that qualifies it
+    md  between two blocks of the same argument
+    lg  between two movements: the evidence and the action
+    xl  the editorial break before the signature closes the frame
+
+  Read them in order and the composition's grouping is legible from the CSS
+  alone, which is the whole point of naming them.
+*/
+.hero {
+  --hero-air-xs: clamp(0.625rem, 1.4vh, 0.875rem);
+  --hero-air-sm: clamp(1rem, 2.2vh, 1.5rem);
+  --hero-air-md: clamp(1.5rem, 3.2vh, 2.25rem);
+  --hero-air-lg: clamp(2.25rem, 4.6vh, 3.25rem);
+  --hero-air-xl: clamp(3rem, 6.4vh, 4.75rem);
+}
+
+/*
+  The opening statement, and the only two typographic properties it takes beyond
+  the display class it already carries.
+
+  TRACKING. Cormorant is a Didone and is drawn to be set large; at the 40px floor
+  this statement holds on a phone it is only just into the size its counters were
+  designed for, and the display class's -0.015em is the value that suits it at
+  5rem across a laptop. -0.022em is the same intent measured at the size the
+  statement is actually set at on the screen this composition is being judged on:
+  the words close up into two campaign lines rather than four evenly spaced ones,
+  which is the difference between a title card and a heading.
+
+  LEADING. 1.04 rather than the class's 1.06, and the reason it is worth four
+  hundredths is that this is the one place on the site where two full display
+  lines stack on a phone. At 40px that is a 1.6px tightening no reader will name
+  and every reader will feel as the pair reading as one statement.
+
+  Both are re-stated for md and for Arabic rather than left to inherit, and that
+  is not belt and braces. `.display` sets its desktop leading inside a media
+  query and `[lang="ar"] .display` resets tracking for the Naskh face; both are
+  single-class selectors declared above this one, so this rule would otherwise
+  win at every width and in every language purely on source order and quietly
+  undo both. The Arabic reset carries an attribute selector, so it outranks this
+  block wherever it lands in the file.
+*/
+.hero-statement {
+  letter-spacing: -0.022em;
+  line-height: 1.04;
+}
+
+@media (min-width: 768px) {
+  .hero-statement {
+    line-height: 0.98;
+  }
+}
+
+[lang="ar"] .hero-statement {
+  letter-spacing: 0;
+  line-height: 1.18;
+}
+
+/*
   Crop control. Every image and video on the site carries its focal point as a
   custom property rather than a class, because the value comes from data
   (lib/media.ts) and Tailwind cannot compile a class it never sees in source.
