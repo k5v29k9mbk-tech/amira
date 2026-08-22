@@ -92,7 +92,7 @@ export async function Hero() {
      the signature. The floors are what the composition needs at 720 and the
      ceilings are what it should have at 1080. */
   return (
-    <section className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-espresso text-ivory pt-[clamp(88px,11vh,104px)] pb-[clamp(64px,9vh,96px)]">
+    <section className="hero relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-espresso text-ivory pt-[clamp(96px,12vh,112px)] pb-[clamp(56px,7vh,88px)]">
       <HeroFilm />
 
       {/* The opening score.
@@ -118,8 +118,16 @@ export async function Hero() {
       <HeroCopy className={`${shell} flex w-full flex-col items-center text-center`}>
         {/* Three facts, one line: the academy, what it does, where. Wraps
             to two lines on a phone, so it carries its own leading. */}
+        {/* `text-balance` is the whole of the change here and it is worth a
+            line. The eyebrow is three facts joined by middots and it is longer
+            than a phone line at every width below about 640, so it always wrapped
+            — the question was only where. Left to the browser it broke wherever
+            the last word stopped fitting, which at 430 put "· ITALY" alone on a
+            second line under a full first one. A label set as one long line and
+            one orphan reads as type that overflowed; the same words balanced
+            across two even lines read as a bar that was set. */}
         <MaskReveal onMount delay={heroBeat.bar} duration={dur.base}>
-          <p className="label leading-[1.8] text-bronze-hi">{t("eyebrow")}</p>
+          <p className="label text-balance leading-[1.7] text-bronze-hi">{t("eyebrow")}</p>
         </MaskReveal>
 
         {/* The measure is lifted below sm. 15ch of Cormorant at the floor
@@ -138,7 +146,9 @@ export async function Hero() {
             Italian, French or Arabic. The second line's aperture is a
             `stagger.line` behind the first, which is what makes the headline
             read as typesetting rather than as a block arriving. */}
-        <h1 className={`${displayHero} mt-[clamp(1.25rem,2.6vh,2rem)] max-w-[19ch] text-balance sm:max-w-[15ch]`}>
+        <h1
+          className={`${displayHero} hero-statement mt-[var(--hero-air-sm)] max-w-[19ch] text-balance sm:max-w-[15ch]`}
+        >
           <MaskReveal onMount delay={heroBeat.headline} duration={dur.slow}>
             <span className="block">{t("titleA")}</span>
           </MaskReveal>
@@ -159,8 +169,29 @@ export async function Hero() {
           </MaskReveal>
         </h1>
 
+        {/* The supporting line, and everything about it is a step down from the
+            statement above it rather than a smaller version of it.
+
+            THE MEASURE. 34ch on a phone, not 46. At 46 this ran the full gutter
+            width on every handset, so it set three long lines directly under a
+            two-line headline that is held to 19 characters — two blocks the same
+            width, one large and one small, which reads as a headline with a
+            paragraph stuck to it. At 34 it is about 280px against the headline's
+            342, so it sits visibly inside the statement's measure: narrower,
+            indented by its own centring, and unmistakably subordinate. It costs a
+            fourth line and buys the hierarchy the whole screen is built on.
+
+            THE GRADE. 75% ivory rather than 85, and 15px rather than 16. Both are
+            small and both are the same decision: this line explains the statement
+            and must not compete with it. 75% of ivory over the scrim still clears
+            AA comfortably — the pool underneath is built for exactly this — and
+            it is the difference between two things shouting and one speaking.
+
+            THE AIR. A full step of the rhythm above it (`md`, against the
+            statement's `sm` from its eyebrow), because the eyebrow belongs to the
+            headline and this does not. */}
         <HeroBeat delay={heroBeat.sub}>
-          <p className="mt-[clamp(1rem,2.4vh,2rem)] max-w-[46ch] text-[16px] leading-relaxed text-ivory/85 sm:text-[17px] md:text-[19px]">
+          <p className="mx-auto mt-[var(--hero-air-md)] max-w-[34ch] text-[15px] leading-[1.75] text-ivory/75 sm:max-w-[42ch] sm:text-[16px] md:text-[18px]">
             {t("sub")}
           </p>
         </HeroBeat>
@@ -180,14 +211,52 @@ export async function Hero() {
             against 342 of gutter, so they broke one to a line and the masthead
             became a list. Stacked in three columns, each figure over its own
             label, they hold one baseline from 320px up. */}
+        {/* TWO RULES, NOT ONE. The figures used to hang under a single hairline,
+            which made them the top of everything below rather than a thing of
+            their own: the eye ran from the rule straight down through the labels
+            into the button with nothing to say where the evidence stopped and the
+            action started. Closed top and bottom they are a band — the masthead
+            device, a rule above and a rule below and no sides, which is a
+            magazine's own way of setting a row of figures and is the opposite of
+            a card. It is also what gives the primary action a clean edge to sit
+            under.
+
+            WHAT MAKES THE THREE COLUMNS EQUAL, and it is not the grid. `grid-cols-3`
+            gave three equal *boxes* from the start; what was ragged was the type
+            inside them. Two things fixed it.
+
+            `text-balance` on the labels: "Students per class" is 150px of tracked
+            small caps against a 106px column at 390, so it always wrapped, and the
+            browser's greedy break put "STUDENTS PER" on line one and "CLASS" alone
+            on line two while its neighbours broke evenly. Balanced, all three
+            labels set as two even lines at every width from 320 up, which is what
+            makes the row read as three of the same thing.
+
+            And the labels are set smaller and tighter than the house label below
+            md (`fact-label` in globals.css, 10px at 0.14em against 11 at 0.2).
+            That is not only wrapping arithmetic — at 320 a column is 82px wide and
+            "EXPERIENCE" alone is 86 at house tracking, so the longest word in the
+            row physically could not fit its own column and spilled into the gutter
+            beside it. It is also the hierarchy the brief asks for: the figure is
+            the thing being claimed and the label only says what it counts, so the
+            figure grew a step and the label gave one back.
+
+            The figures at 1.5rem rather than 1.375. Large enough to carry the row
+            on their own, and still 16px clear of the 40px statement above, so
+            nothing here can be mistaken for a second headline. */}
         <HeroBeat delay={heroBeat.facts} className="w-full">
-          <dl className="mx-auto mt-[clamp(1.5rem,3.2vh,2.5rem)] grid w-full max-w-[34rem] grid-cols-3 gap-x-4 gap-y-3 border-t border-hair-dark pt-[clamp(1rem,2.4vh,1.5rem)] md:gap-x-8">
+          <dl className="mx-auto mt-[var(--hero-air-lg)] grid w-full max-w-[34rem] grid-cols-3 items-start gap-x-3 border-y border-hair-dark py-[var(--hero-air-sm)] sm:gap-x-6 md:gap-x-8">
             {facts.map((k) => (
-              <div key={k} className="flex flex-col items-center gap-1.5 md:gap-2">
-                <dt className="display text-[1.375rem] leading-none text-ivory md:text-[1.5rem]">
+              <div
+                key={k}
+                className="flex flex-col items-center gap-[var(--hero-air-xs)]"
+              >
+                <dt className="display text-[1.5rem] leading-none text-ivory md:text-[1.75rem]">
                   {t(`facts.${k}.value`)}
                 </dt>
-                <dd className="label leading-[1.5] text-mute-dark">{t(`facts.${k}.label`)}</dd>
+                <dd className="label fact-label text-balance leading-[1.45] text-mute-dark">
+                  {t(`facts.${k}.label`)}
+                </dd>
               </div>
             ))}
           </dl>

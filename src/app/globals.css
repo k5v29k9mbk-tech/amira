@@ -190,6 +190,43 @@ body {
 }
 
 /*
+  The hero's figure labels, and the reason they are a rule here rather than three
+  Tailwind utilities on the element.
+
+  `.label` is declared in this file, outside any cascade layer, and every Tailwind
+  utility lives inside `@layer utilities`. Unlayered rules beat layered ones
+  regardless of specificity or order, so a `tracking-[0.14em]` written on a `.label`
+  element is silently discarded — it is not a matter of which class is typed last in
+  the attribute. Anything that has to override `.label`'s own four properties has to
+  be a rule in this file with a heavier selector, which is what this is.
+
+  What it overrides and why is argued at the element in Hero.tsx. In short: at 320px
+  a column of the figure row is 82 pixels and "EXPERIENCE" is 86 at the house
+  tracking, so the label could not fit the box it was given; and under a figure that
+  has just been enlarged, the label should in any case be the quieter of the pair.
+
+  From md the row has room and the house label is restored, give or take the two
+  hundredths of tracking that keep three balanced two-line labels from looking wider
+  than the figures they sit under. Arabic keeps its own, as it does for `.label`
+  itself: tracked Naskh is not a small-caps effect, it is broken joining.
+*/
+.hero .fact-label {
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+}
+
+@media (min-width: 768px) {
+  .hero .fact-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+  }
+}
+
+[lang="ar"] .hero .fact-label {
+  letter-spacing: 0.05em;
+}
+
+/*
   Crop control. Every image and video on the site carries its focal point as a
   custom property rather than a class, because the value comes from data
   (lib/media.ts) and Tailwind cannot compile a class it never sees in source.
