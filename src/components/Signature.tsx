@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { displayLarge, sectionPad, shell } from "@/lib/ui";
+import { displayLarge, shell } from "@/lib/ui";
 import { dur, stagger } from "@/lib/motion";
 import { MaskReveal } from "./MaskReveal";
 import { Reveal } from "./Reveal";
@@ -41,8 +41,29 @@ export async function Signature() {
   const t = await getTranslations("hero");
   const inst = await getTranslations("instructor");
 
+  /*
+   * THE RHYTHM IS DELIBERATELY NOT `sectionPad`, AND THIS IS THE ONE
+   * MEASUREMENT ON THE PAGE WORTH WRITING DOWN.
+   *
+   * The house rhythm is 112px top and bottom at desktop, which is right for
+   * an act with an argument in it. Two of them meeting is 224px, and 224px
+   * of nothing between her name and the statement it introduces is not air,
+   * it is a reader wondering whether the page ended. The signature and the
+   * manifesto are not two acts: they are a name and the sentence that name
+   * is saying, and the whole point of the pair is that the second reads as
+   * coming out of the first.
+   *
+   * So the tail here is 48px and the manifesto's head is 64px, which is 112
+   * between the two — the house rhythm's *join*, spent once across the
+   * ground change rather than twice. The head above the name keeps the full
+   * 64 so it clears the hero's scroll cue, which sits in the last 80px of
+   * the section above.
+   *
+   * Change one of these and change the other: they are a pair, and the
+   * matching note is at the top of `Manifesto`.
+   */
   return (
-    <section className={`${sectionPad} bg-espresso text-ivory`}>
+    <section className="pt-10 pb-8 md:pt-12 md:pb-10 lg:pt-16 lg:pb-12 bg-espresso text-ivory">
       <div className={`${shell} text-center`}>
         {/* The rule and the name are inside one aperture rather than two, so
             they wipe in as a single gesture: the line draws and the name lands

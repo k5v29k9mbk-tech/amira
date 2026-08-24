@@ -4,7 +4,7 @@ import { Fragment, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { motion, useScroll, useTransform } from "motion/react";
 import type { MotionValue } from "motion/react";
-import { displayManifesto, sectionPad, shell } from "@/lib/ui";
+import { displayManifesto, shell } from "@/lib/ui";
 
 /**
  * The statement, revealed by reading position.
@@ -64,8 +64,15 @@ export function Manifesto() {
   const total = lines.flat().length;
   let cursor = 0;
 
+  /*
+   * The head is 64px rather than the house 112, and it is half of a pair:
+   * the signature above closes on 48, so the gap between her name and the
+   * sentence she is saying is 112 across the ground change instead of 224.
+   * The full reasoning is on the section in `Signature`. The tail is the
+   * house rhythm untouched, because what follows *is* a new act.
+   */
   return (
-    <section className={`${sectionPad} bg-ivory`}>
+    <section className="pt-10 pb-16 md:pt-12 md:pb-20 lg:pt-16 lg:pb-28 bg-ivory">
       <div className={shell}>
         {/* THE MEASURE BELONGS ON THE LINE, NOT ON THE BLOCK AROUND IT, and
             getting that wrong here cost the homepage a screen and a half.
