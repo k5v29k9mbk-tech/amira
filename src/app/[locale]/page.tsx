@@ -19,6 +19,7 @@ import {
 import { stagger } from "@/lib/motion";
 import { JsonLd, faqSchema } from "@/lib/seo";
 import { Hero } from "@/components/Hero";
+import { Signature } from "@/components/Signature";
 import { Manifesto } from "@/components/Manifesto";
 import { CourseSelector } from "@/components/CourseSelector";
 import { MethodStory } from "@/components/MethodStory";
@@ -79,7 +80,8 @@ export async function generateMetadata({
  * that changes that often stops reading as a change at all. Paired, each switch
  * marks a turn in the argument:
  *
- *   ivory   hero, statement, Amira         what this is, and who teaches it
+ *   night   hero, the signature             what this is, and whose it is
+ *   ivory   statement, Amira                what it claims, and who teaches it
  *   paper   the method, the work           how it is taught, what it produces
  *   ivory   the studio, the catalogue      where it happens, and what to book
  *   night   the three claims               the one thing said about ourselves
@@ -188,6 +190,16 @@ export default async function Home({
       />
 
       <Hero />
+
+      {/* The signature. Her name on the hero's own ground, with the film
+          stopped: the second half of the title card rather than the first
+          section of the page. It used to be the last beat inside the hero, where
+          a centred `100svh` composition made it the piece that got pushed
+          against the fold; standing alone it is the one thing on the screen. It
+          carries no act number for the same reason the hero does not — the acts
+          start at the manifesto's ground change, and this is still the opening.
+          The full reasoning is in the component. */}
+      <Signature />
 
       <Manifesto />
 
