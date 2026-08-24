@@ -111,19 +111,21 @@ export const imageScale = {
  *
  * The first screen is now the academy's film with type set over it, and the
  * score is the order a reader meets that type: the bar, the statement line by
- * line, the supporting line, the figures, the two actions, and last of all the
- * signature. Written as delays in one place because the only thing that makes a
+ * line, the supporting line, the figures, and last of all the two actions.
+ * Written as delays in one place because the only thing that makes a
  * sequence read as choreography rather than as things appearing is the interval
  * between beats, and that is impossible to tune when the numbers live in six
  * components.
  *
- * THE SIGNATURE LANDS LAST, and that is the whole shape of it. The film is
- * already playing when the page arrives, so the reveal has nothing to wait for
- * and nothing to cover; what it can do instead is sign the composition once
- * everything it is signing has been read. Her name closes at 1.56 and her role
- * at 1.66, which is inside the 1.8s budget the screen has always had, and the
- * 0.10 between them is the smallest interval on the site that still reads as two
- * beats rather than one block arriving.
+ * THE SIGNATURE USED TO LAND LAST, and `name` and `role` are the two beats it
+ * landed on. The homepage no longer plays them: her name is a section of its own
+ * below the hero (`Signature`), so it arrives on scroll rather than on a delay
+ * measured from the opening, and the score now ends on the actions at 0.72.
+ *
+ * They stay here, and not only out of tidiness. `HeroPortrait` still plays both,
+ * and the interval between them is the part worth keeping: 0.10 is the smallest
+ * gap on the site that still reads as two beats rather than as one block
+ * arriving, and it is the number to reuse anywhere a name is set over a role.
  *
  * `portrait` and `frame` are the arch's two beats. Nothing on the homepage plays
  * them any more: the portrait came off the first screen when the film went
