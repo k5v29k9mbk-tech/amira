@@ -5,7 +5,6 @@ import {
   arrow,
   btnSolidLight,
   displayHero,
-  displayLarge,
   linkRuleLight,
   shell,
 } from "@/lib/ui";
@@ -74,7 +73,6 @@ const facts = ["years", "students", "classes"] as const;
 export async function Hero() {
   const t = await getTranslations("hero");
   const c = await getTranslations("cta");
-  const inst = await getTranslations("instructor");
   const contact = await getTranslations("contact");
   const talk = whatsappLinkWith(contact("whatsappMessage"));
 
@@ -321,35 +319,25 @@ export async function Hero() {
           </div>
         </HeroBeat>
 
-        {/* The signature.
+        {/* THE SIGNATURE IS NO LONGER ON THIS SCREEN. Her name used to close
+            this column, under the actions, as the last beat of the score. It is
+            now a section of its own directly below the hero (`Signature`), on
+            the same espresso ground: a title card is signed at its foot, and
+            the foot of this one is the section after it rather than the last
+            inch of a viewport it has to share with six other pieces of type.
 
-            Her name is the last thing to arrive and the only display type on
-            the screen besides the statement itself, which is what makes it read
-            as a signature on the frame rather than as a second heading. It is
-            the display serif at the pull-quote size: comfortably below the
-            statement, comfortably above everything else, so it is the second
-            thing the eye finds and never competes for first.
+            What that buys the screen is the reason to do it. This composition
+            is centred inside `100svh`, so everything in it competes for the
+            same fixed height, and the signature was the piece that lost — on a
+            720px laptop it sat against the fold, one line above the scroll cue,
+            reading as the end of a block of copy rather than as a name on a
+            frame. Removing it gives the statement, the figures and the actions
+            the height back, and gives the name a field with nothing else in it.
 
-            It used to sign the far corner of an asymmetric grid. On a centred
-            composition there is no far corner to sign, and a name pushed to one
-            side of a symmetrical block is the one thing that would break the
-            axis; so it closes the column instead, on the same centre line as
-            everything above it, the way a title card is signed at its foot.
-
-            The rule above it is the same hairline that carries the figures, cut
-            to 3.5rem and centred. It arrives a beat ahead of the name and inside
-            the same aperture, so the pair wipes in as one gesture: the line
-            draws, the name lands on it. */}
-        <div className="mt-[clamp(2rem,4.2vh,3.5rem)]">
-          <MaskReveal onMount delay={heroBeat.name} duration={dur.slow}>
-            <span className="mx-auto mb-5 block h-px w-14 bg-bronze-hi/50" />
-            <p className={`${displayLarge} leading-[1.1] text-ivory`}>{inst("title")}</p>
-          </MaskReveal>
-
-          <HeroBeat delay={heroBeat.role} className="mt-3.5">
-            <p className="label leading-[1.7] text-bronze-hi">{t("founderRole")}</p>
-          </HeroBeat>
-        </div>
+            `heroBeat.name` and `heroBeat.role` are consequently unplayed here.
+            They stay in the score, documented, because the beats after the
+            actions are the shape of the entrance and not only two numbers this
+            file happened to use. */}
       </HeroCopy>
 
       {/* Scroll cue: a hairline that fills and empties. No word, no icon.
