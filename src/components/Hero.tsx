@@ -35,13 +35,18 @@ const facts = ["years", "students", "classes"] as const;
  * nothing else on the site loses a photograph, and the founder's own section
  * further down the page still carries her portrait.
  *
- * What replaces the plate is her name. A campaign is signed rather than
- * illustrated, and this one signs itself at the foot of the composition.
+ * What replaces the plate is her name — not on this screen, but immediately
+ * under it. A campaign is signed rather than illustrated, and the signature is
+ * now the section directly below the hero (`Signature`), on the same espresso
+ * ground: the film stops, the ground stays, and her name stands on a plain
+ * field with nothing else in it. Everything about how it is set is unchanged,
+ * only where. The reasoning is at the foot of this composition, where it used
+ * to be.
  *
  * THE AXIS. One centred column, optically centred in the screen: the bar, the
- * statement, the promise, the evidence, the two actions, then her name. Same
- * seven pieces in the same reading order at every width, hung on the middle of
- * the frame instead of on the inline margin.
+ * statement, the promise, the evidence, then the two actions. Same six pieces in
+ * the same reading order at every width, hung on the middle of the frame instead
+ * of on the inline margin.
  *
  * This screen was built asymmetric — statement on columns 1 to 7, signature
  * alone on 9 to 12, everything bottom aligned — and the reasoning for that was
@@ -86,8 +91,9 @@ export async function Hero() {
      composition is clamped the same way. A centred hero is the one layout that
      cannot spend whatever vertical space it likes: bottom-aligned, a tall
      composition simply started higher, but centred it grows past the fold in
-     both directions at once, and what falls off the bottom of a 720px laptop is
-     the signature. The floors are what the composition needs at 720 and the
+     both directions at once, and what fell off the bottom of a 720px laptop was
+     the signature — which is what eventually took the signature off this screen
+     altogether. The floors are what the composition needs at 720 and the
      ceilings are what it should have at 1080. */
   return (
     <section className="hero relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-espresso text-ivory pt-[clamp(96px,12vh,112px)] pb-[clamp(56px,7vh,88px)]">
@@ -100,19 +106,21 @@ export async function Hero() {
           as choreography rather than as things appearing is the interval
           between beats, and that cannot be tuned when it is spread across two
           components. The order is the bar, the statement line by line, the
-          supporting line, the figures, the actions, then her name and her role.
+          supporting line, the figures, then the two actions. The last two beats
+          in the score, `name` and `role`, belong to the signature and are no
+          longer played here: it is a section of its own below the fold, so it
+          arrives on scroll rather than on a delay measured from the opening.
 
           `HeroCopy` wraps the whole composition rather than one part of it, so
           the cue that holds the screen until any opening film has finished is
           read once and handed to every beat. Two blocks polling the same event
           is how a sequence acquires a stutter nobody can find later.
 
-          The bar, the statement and the signature open through apertures; the
+          The bar and the two lines of the statement open through apertures; the
           supporting line, the figures and the actions fade up. That split is the
           point. An aperture is the expensive-looking reveal, and used six times
-          on one screen it stops being an event, so it is spent on the three
-          pieces of type that carry the argument and withheld from the three that
-          support them. */}
+          on one screen it stops being an event, so it is spent on the type that
+          carries the argument and withheld from the type that supports it. */}
       <HeroCopy className={`${shell} flex w-full flex-col items-center text-center`}>
         {/* Three facts, one line: the academy, what it does, where. Wraps
             to two lines on a phone, so it carries its own leading. */}
@@ -341,9 +349,10 @@ export async function Hero() {
       </HeroCopy>
 
       {/* Scroll cue: a hairline that fills and empties. No word, no icon.
-          It sits in the band between the actions and the signature, which is the
-          one part of the last line of the composition that carries no type at
-          any width above lg. */}
+          It sits in the band under the actions, which is the one part of the
+          foot of the composition that carries no type at any width above lg —
+          and it now points at something, which it did not while her name was
+          the next thing down. */}
       <span
         aria-hidden
         className="pointer-events-none absolute bottom-8 left-1/2 hidden h-12 w-px -translate-x-1/2 overflow-hidden bg-ivory/20 lg:block"
