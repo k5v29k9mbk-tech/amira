@@ -347,6 +347,25 @@ No countdown, no seat counter, no "two places left": the site has no way to know
 that, and inventing it is the fastest way to make a premium brand read as a
 funnel.
 
+### Aligning a before/after pair
+
+Both frames go through `scripts/align-pair.swift`, which finds the eyes and
+applies one similarity transform so the pupils land on the same pixels in both.
+The face is rotated, scaled and moved, never warped, retouched or regraded.
+
+```
+swift scripts/align-pair.swift <in.jpg> <out.jpg> [--check]
+```
+
+`--check` writes nothing and prints the scale factor. **If it says ENLARGING,
+stop and lower the target.** A pair shot a step back from the lens has its
+pupils only ~330px apart, and the default canvas would upscale it 1.8x, which
+turns the hair strokes into mush; the strokes are the entire evidence for
+microblading. Use `--ipd` to lower the pupil span and `--midy` to keep the brows
+on the upper third, and give **both frames identical values** or the alignment
+is thrown away. The Microblading pair is `--ipd 430 --midy 0.60`, recorded next
+to it in `src/lib/service-gallery.ts`.
+
 ## The educational path
 
 `src/lib/pathway.ts` draws the ladder of levels on the homepage. Two are live
@@ -382,15 +401,20 @@ These are the only things blocking a launch-ready site:
   for exactly what to send and where it goes.
 - Confirmation of whether a masterclass and private one-to-one training are
   offered. Both are built and switched off in `src/lib/pathway.ts`.
-- **More before/after pairs (there is one).** The per-discipline galleries on
-  the catalogue are waiting on these. Every slot has a name already: see
-  `src/lib/service-gallery.ts`, drop both files of a pair into
-  `public/brand/services/` under the filenames it prints, and set
-  `ready: true` on that pair. Until a pair is ready it renders nothing at
-  all, so the catalogue never shows an empty frame.
-- Confirmation of **which brow technique produced the existing pair**. It is
-  on the homepage under no discipline, because filing a client's result under
-  the wrong technique is worse than not filing it.
+- **More before/after pairs (there are two).** One unattributed brow pair on the
+  homepage, and one confirmed Microblading pair on that discipline's page and
+  catalogue row. The other five disciplines have none. Every slot has a name
+  already: see `src/lib/service-gallery.ts`, run both camera originals through
+  `scripts/align-pair.swift`, drop them into `public/brand/services/` under the
+  filenames the slot prints, and set `ready: true` on that pair. Until a pair is
+  ready it renders nothing at all, so no page ever shows an empty frame, and
+  `npm test` fails if a ready pair is missing a file or a file is present on an
+  unready one.
+- Confirmation of **which brow technique produced the homepage pair**. It sits
+  there under no discipline, because filing a client's result under the wrong
+  technique is worse than not filing it. The Microblading pair does not have
+  this problem: Amira confirmed the treatment, which is what allows it to be
+  filed under that discipline at all.
 - The opening film, or a decision not to have one (`public/videos/`; nothing
   about the sequence ships until the files do)
 - An abstract clip for the hero arch, if they want the frame to move (optional:

@@ -5,10 +5,11 @@
 // not. These tests guard exactly that, plus the media the redesign made
 // data-driven: every poster and clip the pages point at has to exist on disk.
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 import { courses, families, included, chapters } from "./courses.ts";
 import { tiers, publishedTiers } from "./pathway.ts";
+import { serviceGallery, beforeSrc, afterSrc } from "./service-gallery.ts";
 import { programs, programBySlug } from "./programs.ts";
 import type { Media } from "./media.ts";
 import {
@@ -28,6 +29,31 @@ import fr from "../../messages/fr.json" with { type: "json" };
 import ar from "../../messages/ar.json" with { type: "json" };
 
 const LOCALES = { en, it, fr, ar } as unknown as Record<string, Record<string, never>>;
+
+/**
+ * Width and height of a JPEG, read from the first SOF marker.
+ *
+ * Small enough to write out rather than take a dependency for, and the only
+ * thing the pair test needs: the alignment script always writes JPEG, so there
+ * is no other format to handle.
+ */
+function sizeOfJpeg(file: string): { width: number; height: number } {
+  const buf = readFileSync(file);
+  let i = 2; // skip SOI
+  while (i < buf.length) {
+    if (buf[i] !== 0xff) {
+      i++;
+      continue;
+    }
+    const marker = buf[i + 1];
+    // SOF0..SOF15, excluding the four that are not frame headers.
+    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+      return { height: buf.readUInt16BE(i + 5), width: buf.readUInt16BE(i + 7) };
+    }
+    i += 2 + buf.readUInt16BE(i + 2);
+  }
+  throw new Error(`no JPEG frame header in ${file}`);
+}
 
 const at = (obj: unknown, path: string) =>
   path.split(".").reduce<unknown>((o, k) => (o as Record<string, unknown>)?.[k], obj);
@@ -157,11 +183,6 @@ const PAGE_KEYS = [
   "programs.meta.description",
   // The path's label in the phone menu.
   "nav.pathway",
-  // The before/after gallery's two words. The third string that used to sit
-  // here, the caption an empty slot carried, is gone: see the placeholder test
-  // below.
-  "catalog.gallery.before",
-  "catalog.gallery.after",
   "sections.courses",
   "sections.method",
   "sections.work",
@@ -373,6 +394,51 @@ test("every poster and clip the pages point at exists on disk", () => {
   for (const m of media) {
     for (const src of [m.posterSrc, m.videoSrc, m.mobileVideoSrc]) {
       if (src) assert.ok(existsSync(`public${src}`), `missing asset: ${src}`);
+    }
+  }
+});
+
+test("a ready before/after pair has both of its files, at the shared canvas", () => {
+  // `ready` is what puts a pair on the page. If it is set and a file is
+  // missing, the catalogue ships a broken image inside the slider that is
+  // meant to be the discipline's proof, which is the worst place on the site
+  // for one.
+  //
+  // The size check is the other half of the promise. Both frames of a pair are
+  // mapped onto the same 900x620 canvas by `scripts/align-pair.swift` so the
+  // eyes sit on the same pixels; a frame that is not that size was not run
+  // through the script, and under a wipe two unaligned frames read as two
+  // photographs of two different people rather than as one face.
+  for (const [slug, pairs] of Object.entries(serviceGallery)) {
+    for (const pair of pairs) {
+      if (!pair.ready) continue;
+      for (const src of [beforeSrc(pair.id), afterSrc(pair.id)]) {
+        const file = `public${src}`;
+        assert.ok(existsSync(file), `${slug}: ${pair.id} is ready but ${src} is missing`);
+        const { width, height } = sizeOfJpeg(file);
+        assert.equal(width, 900, `${src} is ${width}px wide, not the shared canvas`);
+        assert.equal(height, 620, `${src} is ${height}px tall, not the shared canvas`);
+      }
+    }
+  }
+});
+
+test("an unready pair points at nothing, so it cannot half ship", () => {
+  // The inverse, and it catches the likelier mistake: files dropped into
+  // public/brand/services and nobody remembering to set `ready`. That reads as
+  // "the academy has no results for this discipline" on a page that is sitting
+  // on two photographs.
+  for (const [slug, pairs] of Object.entries(serviceGallery)) {
+    for (const pair of pairs) {
+      if (pair.ready) continue;
+      const present = [beforeSrc(pair.id), afterSrc(pair.id)].filter((src) =>
+        existsSync(`public${src}`),
+      );
+      assert.equal(
+        present.length,
+        0,
+        `${slug}: ${pair.id} has files on disk but is not marked ready: ${present.join(", ")}`,
+      );
     }
   }
 });
@@ -615,18 +681,25 @@ test("no placeholder copy stands in for media the academy has not supplied", () 
       undefined,
       `${locale} brought back the "coming soon" placeholder`,
     );
-    // "Photograph to come", the caption on an empty before/after slot. The
-    // catalogue printed twenty four of those plates, each showing the internal
-    // file path it was waiting for, on the public page a visitor reaches
-    // straight after being told this is premium professional education.
+    // The whole `catalog.gallery` namespace, which held three strings for
+    // `ServiceGallery` alone: an empty slot's caption, and a second copy of
+    // "before" and "after".
+    //
+    // The caption backed twenty four placeholder plates on the public
+    // catalogue, each printing the internal file path it was waiting for.
     // `ServiceGallery` now renders a pair only when both its files exist, which
-    // is the same rule every other conditional surface on the site follows. The
-    // slot names are still in `lib/service-gallery.ts`, where whoever is
-    // renaming shoot files is already working.
+    // is the rule every other conditional surface on this site follows, and the
+    // slot names live in `lib/service-gallery.ts` where whoever is renaming
+    // shoot files is already working.
+    //
+    // The other two went when that component started using the site's own
+    // `BeforeAfter` slider, which reads `success.before` and `success.after`.
+    // Two namespaces holding the same two words in four languages is how they
+    // end up saying different things in one of them.
     assert.equal(
-      at(messages, "catalog.gallery.pending"),
+      at(messages, "catalog.gallery"),
       undefined,
-      `${locale} brought back the empty-slot caption`,
+      `${locale} brought back the ServiceGallery-only copy of before/after`,
     );
   }
 });

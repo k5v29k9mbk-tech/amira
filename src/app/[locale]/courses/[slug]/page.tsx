@@ -35,6 +35,7 @@ import { Mastery } from "@/components/Mastery";
 import { MediaFrame } from "@/components/MediaFrame";
 import { Parallax } from "@/components/Parallax";
 import { Reveal } from "@/components/Reveal";
+import { ServiceGallery } from "@/components/ServiceGallery";
 import { MaskReveal } from "@/components/MaskReveal";
 import { WorkGallery } from "@/components/WorkGallery";
 
@@ -485,12 +486,23 @@ export default async function ProgramPage({
       </section>
 
       {/* 08 THE WORK
-          The academy's own client photographs, under a heading that claims only
-          what is true of all of them: this is the standard being trained
-          towards. It is deliberately NOT "results from this course". The site
-          cannot know which treatment produced any given photograph, and
-          `lib/programs.ts` records at length why a per-discipline set was built
-          and then removed rather than shipped. */}
+          Two kinds of evidence, in the order of their strength.
+
+          First, this discipline's own before/after, where the academy has
+          supplied one and told us which treatment produced it. That is the only
+          thing on the page a visitor operates rather than looks at: she drags
+          the handle and does the comparison herself. `ServiceGallery` renders
+          nothing for a discipline with no attributed pair, which is five of the
+          six today, so most of these pages open this act on the gallery below.
+
+          Then the academy's own client photographs, under a heading that claims
+          only what is true of all of them: this is the standard being trained
+          towards. That heading is deliberately NOT "results from this course".
+          The site cannot tell from a photograph which treatment produced it, and
+          `lib/programs.ts` records at length why a per-discipline set derived
+          from these was built and then removed. The slider above is the
+          exception precisely because it is not derived: Amira said what it is,
+          and `lib/service-gallery.ts` carries that provenance. */}
       <section className={`${sectionPad} bg-paper`}>
         <div className={shell}>
           <div className="grid gap-8 pb-12 md:pb-16 lg:grid-cols-12 lg:items-end lg:gap-10">
@@ -508,6 +520,14 @@ export default async function ProgramPage({
               </p>
             </Reveal>
           </div>
+
+          {/* On the axis and held to the width of its own source frames: they
+              are 900px wide, and anything wider is an upscale of the one image
+              on the page that has to survive close reading. */}
+          <div className="mx-auto flex justify-center pb-16 md:pb-24">
+            <ServiceGallery slug={slug} name={name} />
+          </div>
+
           <WorkGallery />
         </div>
       </section>

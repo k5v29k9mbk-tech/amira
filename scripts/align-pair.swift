@@ -4,7 +4,7 @@
 // uses, so the two frames of a pair sit on the same pixels and the wipe reads
 // as one face rather than as two photographs.
 //
-//   swift scripts/align-pair.swift <in.jpg> <out.jpg> [--check]
+//   swift scripts/align-pair.swift <in.jpg> <out.jpg> [--check] [--ipd N] [--midy F]
 //
 // WHY THIS EXISTS. lib/studio.ts states the rule for a pair — "the eyes sit on
 // the same pixels in both" — and until now that alignment was done by hand,
@@ -29,6 +29,30 @@
 // --check prints what it would do and writes nothing, including the scale
 // factor. A factor above 1 means the source is being enlarged into the canvas
 // and the frame will be soft; a phone original is normally 0.4 to 0.6 here.
+//
+// --ipd AND --midy, AND WHEN A PAIR IS ALLOWED TO USE THEM.
+//
+// The default canvas assumes the photographs were taken close, the way the
+// approved pair was: pupils 607px apart in a 900px frame. Not every client
+// photograph is shot that tight. A pair taken a step further back arrives with
+// an interpupillary distance of 330 or so, and mapping that onto the default
+// asks for a 1.8x enlargement, which is the one thing the results section
+// cannot afford: it is the evidence, and evidence that has been upscaled until
+// the hair strokes turn to mush is not evidence.
+//
+// So the target distance can be lowered for a pair the default would enlarge.
+// --ipd sets the pupil span in pixels and --midy sets where the eye line sits
+// as a fraction of the canvas height, which is what keeps the brows centred
+// once the band is no longer tight.
+//
+// THE RULE FOR CHOOSING ONE. Pick the largest --ipd that keeps the printed
+// scale at or near 1, then raise --midy until the brows sit on the upper third.
+// Both frames of a pair must be given identical values or the alignment the
+// rest of this script exists to produce is thrown away. Record the numbers next
+// to the pair in lib/service-gallery.ts so the frames can be regenerated.
+//
+// Leave both alone for a pair that fills the default canvas. A site-wide
+// reframing is a change to the constants below, not to a flag.
 
 import Foundation
 import Vision
@@ -36,8 +60,8 @@ import AppKit
 
 // The shipped frame, measured. Changing these re-frames every pair on the site.
 let CANVAS = (w: 900.0, h: 620.0)
-let TARGET_IPD = 607.0
-let TARGET_MID = (x: 451.0, y: 420.0)
+var TARGET_IPD = 607.0
+var TARGET_MID = (x: 451.0, y: 420.0)
 
 let args = CommandLine.arguments
 guard args.count > 2 else {
@@ -47,6 +71,16 @@ guard args.count > 2 else {
 let src = URL(fileURLWithPath: args[1])
 let dst = URL(fileURLWithPath: args[2])
 let checkOnly = args.contains("--check")
+
+// Per-pair overrides. See the note at the top of this file: these exist for a
+// source the default canvas would enlarge, and both frames of a pair must be
+// given the same values.
+if let i = args.firstIndex(of: "--ipd"), i + 1 < args.count, let v = Double(args[i + 1]) {
+    TARGET_IPD = v
+}
+if let i = args.firstIndex(of: "--midy"), i + 1 < args.count, let v = Double(args[i + 1]) {
+    TARGET_MID.y = CANVAS.h * v
+}
 
 guard let img = NSImage(contentsOf: src),
       let cg = img.cgImage(forProposedRect: nil, context: nil, hints: nil) else {

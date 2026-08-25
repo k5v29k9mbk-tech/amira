@@ -2,22 +2,31 @@
  * The before/after slots for each discipline, and the file each one is waiting
  * for.
  *
- * WHAT THIS IS. The academy has supplied exactly one aligned before/after pair
- * so far — the brow pair the homepage results section carries — and it is not
- * recorded here, because nobody has told us which of the three brow techniques
- * produced it and a gallery that files a client's result under the wrong
- * discipline is worse than one that shows nothing.
+ * WHAT THIS IS. Each entry is a slot: a named place for a pair of photographs,
+ * under the exact filenames it expects. Drop both files into
+ * `public/brand/services/`, set `ready: true`, and the pair appears as a slider
+ * with no other change anywhere. A slot that is not ready renders nothing at
+ * all: `ServiceGallery` filters on the flag, so a discipline with no results
+ * shows no results rather than an empty frame.
  *
- * Everything below is therefore a slot: a named, sized, laid-out place for a
- * photograph, printing the exact filename it expects. Drop a file at that path
- * in `public/brand/services/`, set `ready: true` on the pair, and the plate
- * becomes the photograph with no other change anywhere.
+ * ATTRIBUTION IS THE WHOLE POINT OF THIS FILE, AND IT IS NOT AUTOMATIC. A
+ * gallery that files a client's result under the wrong discipline is worse than
+ * one that shows nothing, and the site cannot tell from a photograph which
+ * technique produced it: microblading and powder brows both produce a brow, and
+ * brow lamination is not permanent makeup at all. `lib/programs.ts` records at
+ * length why a per-discipline set derived from the general results was built
+ * and then removed. So a pair may only be filed here when the academy has said
+ * which treatment it is. The one ready pair below carries that provenance in
+ * its own comment; anything added later must carry the same.
  *
- * WHY THE PATH IS THE LABEL. A placeholder that says "image here" tells the
- * person filling it nothing. This one says `microblading-before-01.jpg`, which
- * is simultaneously the instruction, the filename and the sort order, so a
- * folder of forty photographs from a shoot can be renamed against the page
- * itself rather than against a list in someone's notes.
+ * The brow pair in the homepage results section is still unattributed and still
+ * lives in `lib/studio.ts`, because nobody has said which of the three brow
+ * techniques produced it.
+ *
+ * WHY THE PATH IS THE LABEL. The slot name is simultaneously the instruction,
+ * the filename and the sort order, so a folder of forty photographs from a
+ * shoot can be renamed against this file rather than against a list in
+ * someone's notes.
  *
  * THE RULES THIS FILE ENFORCES.
  *
@@ -31,11 +40,17 @@
  *     photographs per service, which is the ceiling worth showing: a visitor
  *     comparing techniques reads two comparisons and skims a third.
  *
- * ALIGNMENT. When the real files arrive they want the same treatment as the
- * existing pair: `scripts/align-pair.swift` maps each frame onto the shared
- * 900x620 canvas so the eyes sit on the same pixels. Side by side that matters
- * as much as it does under a wipe — two frames at different scales read as two
- * photographs of two people.
+ * ALIGNMENT. Every pair gets the same treatment: `scripts/align-pair.swift`
+ * maps both frames onto the shared 900x620 canvas so the eyes sit on the same
+ * pixels in both. Under a wipe that is not a nicety, it is the whole effect:
+ * two frames at different scales or angles read as two photographs of two
+ * people, and the slider stops being a comparison.
+ *
+ * The script takes the framing from the faces themselves and applies one
+ * similarity transform, so a pair is rotated, scaled and moved but never
+ * warped, retouched or regraded. Both frames of a pair must be generated with
+ * identical flags, and the flags used are recorded beside the pair below so the
+ * frames can be regenerated from the originals at any time.
  */
 export type GalleryPair = {
   /** Slot id, and the filename stem both files are expected under. */
@@ -60,7 +75,33 @@ export const afterSrc = (id: string) => `${galleryDir}/${id}-after-01.jpg`;
  * this file and sitting in a folder with thirty others.
  */
 export const serviceGallery: Record<string, GalleryPair[]> = {
-  microblading: [{ id: "microblading-01" }, { id: "microblading-02" }],
+  microblading: [
+    /**
+     * READY. The academy's own client, photographed before the treatment and
+     * after it, and confirmed by Amira as microblading, which is what allows it
+     * to be filed under this discipline at all.
+     *
+     * Both frames are `scripts/align-pair.swift` run over the untouched camera
+     * originals with the same overrides, and nothing else was done to them: no
+     * grade, no retouch, no smoothing, no change to the brows, the skin or the
+     * colour. The transform rotates each frame upright, scales it and places
+     * the eyes on the canvas point. That is all.
+     *
+     *   swift scripts/align-pair.swift <before> microblading-01-before-01.jpg --ipd 430 --midy 0.60
+     *   swift scripts/align-pair.swift <after>  microblading-01-after-01.jpg  --ipd 430 --midy 0.60
+     *
+     * WHY --ipd 430 RATHER THAN THE DEFAULT 607. The originals are 1200x1600
+     * and were shot a step further back than the pair the default canvas was
+     * measured from, so the pupils are 333 and 339 pixels apart in the source.
+     * Mapping that onto the default asks for a 1.8x enlargement and the hair
+     * strokes, which are the entire evidence for microblading, turn to mush.
+     * 430 holds the enlargement to 1.29, which the strokes survive, and --midy
+     * 0.60 drops the eye line so the brows sit on the upper third rather than
+     * drifting to the middle of a wider band.
+     */
+    { id: "microblading-01", ready: true },
+    { id: "microblading-02" },
+  ],
   "powder-brows": [{ id: "powder-brows-01" }, { id: "powder-brows-02" }],
   "brow-lamination": [{ id: "brow-lamination-01" }, { id: "brow-lamination-02" }],
   "lip-blush": [{ id: "lip-blush-01" }, { id: "lip-blush-02" }],
