@@ -16,13 +16,6 @@ import { MaskReveal } from "./MaskReveal";
 import { Magnetic } from "./Magnetic";
 
 /**
- * The three marks the academy can prove, in the order a visitor weighs them:
- * how long she has done this, how many she has taught, how many are in the
- * room. Values are quoted from the client's document, never rounded up here.
- */
-const facts = ["years", "students", "classes"] as const;
-
-/**
  * Opening composition: the academy's film, and the campaign set on it.
  *
  * THE CHANGE OF FORM. This screen used to be two columns on ivory, a statement
@@ -202,71 +195,26 @@ export async function Hero() {
           </p>
         </HeroBeat>
 
-        {/* Proof. A hairline above it and nothing around it: the figures are
-            the evidence for the sentence above and the reason to press the
-            button below, so they sit between the two.
+        {/* THE FIGURES ARE NO LONGER ON THIS SCREEN.
 
-            Three columns at every width, on one baseline, and held to 34rem so
-            the row stays a masthead rather than three figures spread across a
-            laptop. That cap is also what the rule above it is for: a hairline
-            drawn to the width of the figures reads as a rule under the
-            statement, where the same hairline drawn to the full width of the
-            section would cut the screen in half.
+            The three marks the academy can prove used to sit here, between the
+            supporting line and the actions, under a masthead rule. They are now
+            `AuthorityStrip`, the section directly below the signature, where
+            there are four of them and a sentence qualifying them.
 
-            Set inline on a phone the three pairs are about 520px of type
-            against 342 of gutter, so they broke one to a line and the masthead
-            became a list. Stacked in three columns, each figure over its own
-            label, they hold one baseline from 320px up. */}
-        {/* TWO RULES, NOT ONE. The figures used to hang under a single hairline,
-            which made them the top of everything below rather than a thing of
-            their own: the eye ran from the rule straight down through the labels
-            into the button with nothing to say where the evidence stopped and the
-            action started. Closed top and bottom they are a band — the masthead
-            device, a rule above and a rule below and no sides, which is a
-            magazine's own way of setting a row of figures and is the opposite of
-            a card. It is also what gives the primary action a clean edge to sit
-            under.
+            The reason is what the hero is for. This screen is a title card: a
+            statement, the line that explains it, and one thing to press. A
+            statistics table inside a title card is the single most brochure-like
+            object a premium site can put on its first screen, and it was also
+            the piece paying for it in height, since the composition is centred
+            inside `100svh` and everything in it competes for the same fixed
+            space. Taking the band out gives the statement, the line and the
+            actions room to breathe on a 720px laptop and gives the evidence a
+            field of its own two hundred pixels further down, which is where a
+            reader looks for evidence anyway: after the claim, not inside it.
 
-            WHAT MAKES THE THREE COLUMNS EQUAL, and it is not the grid. `grid-cols-3`
-            gave three equal *boxes* from the start; what was ragged was the type
-            inside them. Two things fixed it.
-
-            `text-balance` on the labels: "Students per class" is 150px of tracked
-            small caps against a 106px column at 390, so it always wrapped, and the
-            browser's greedy break put "STUDENTS PER" on line one and "CLASS" alone
-            on line two while its neighbours broke evenly. Balanced, all three
-            labels set as two even lines at every width from 320 up, which is what
-            makes the row read as three of the same thing.
-
-            And the labels are set smaller and tighter than the house label below
-            md (`fact-label` in globals.css, 10px at 0.14em against 11 at 0.2).
-            That is not only wrapping arithmetic — at 320 a column is 82px wide and
-            "EXPERIENCE" alone is 86 at house tracking, so the longest word in the
-            row physically could not fit its own column and spilled into the gutter
-            beside it. It is also the hierarchy the brief asks for: the figure is
-            the thing being claimed and the label only says what it counts, so the
-            figure grew a step and the label gave one back.
-
-            The figures at 1.5rem rather than 1.375. Large enough to carry the row
-            on their own, and still 16px clear of the 40px statement above, so
-            nothing here can be mistaken for a second headline. */}
-        <HeroBeat delay={heroBeat.facts} className="w-full">
-          <dl className="mx-auto mt-[var(--hero-air-lg)] grid w-full max-w-[34rem] grid-cols-3 items-start gap-x-3 border-y border-hair-dark py-[var(--hero-air-sm)] sm:gap-x-6 md:gap-x-8">
-            {facts.map((k) => (
-              <div
-                key={k}
-                className="flex flex-col items-center gap-[var(--hero-air-xs)]"
-              >
-                <dt className="display text-[1.5rem] leading-none text-ivory md:text-[1.75rem]">
-                  {t(`facts.${k}.value`)}
-                </dt>
-                <dd className="label fact-label text-balance leading-[1.45] text-mute-dark">
-                  {t(`facts.${k}.label`)}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </HeroBeat>
+            `hero.facts.*` stays in all four catalogues and stays listed in
+            `courses.test.ts`. Nothing was deleted, only moved. */}
 
         {/* The primary action takes the width on a phone. A 230px button
             floated against the edge of a 390px screen is the one element in
@@ -303,7 +251,7 @@ export async function Hero() {
             returns null otherwise and the second action falls back to the
             contact page rather than to a dead link. */}
         <HeroBeat delay={heroBeat.actions} className="w-full">
-          <div className="mt-[clamp(1.75rem,3.6vh,3rem)] flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10">
+          <div className="mt-[var(--hero-air-lg)] flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10">
             {/* The one control on the first screen a visitor is meant to
                 press, and the only one that leans. Spending the gesture once,
                 on the primary, is what keeps it a detail rather than a
@@ -320,7 +268,7 @@ export async function Hero() {
               </a>
             ) : (
               <Link href="/contact" className={linkRuleLight}>
-                {c("availability")}
+                {c("requestSeat")}
                 <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
               </Link>
             )}

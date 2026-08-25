@@ -98,6 +98,7 @@ export default async function CoursesPage({
           locale,
           courses.map((c) => t(`catalog.courses.${c.slug}`)),
           t("catalog.sub"),
+          courses.map((c) => c.slug),
         )}
       />
 
@@ -190,8 +191,21 @@ export default async function CoursesPage({
                                 course sits under it: the outline was six h2s in
                                 a row with nothing saying which of them were
                                 answers to the same question. */}
+                            {/* The name is the link. A row whose heading is
+                                inert and whose only way through is a text link
+                                eight lines below it is a row a reader has to
+                                finish before she can act on it; the discipline's
+                                own name is the thing she is pointing at. The
+                                rule under it draws on the row's hover, so
+                                pointing anywhere in the row shows where it
+                                goes. */}
                             <h3 className={`${displayLarge} mt-4`}>
-                              {t(`catalog.courses.${course.slug}`)}
+                              <Link
+                                href={`/courses/${course.slug}`}
+                                className="border-b border-transparent transition-colors duration-500 ease-[var(--ease-aura)] group-hover/row:border-espresso"
+                              >
+                                {t(`catalog.courses.${course.slug}`)}
+                              </Link>
                             </h3>
                             <p className="mt-5 max-w-[48ch] text-[16px] leading-relaxed text-mute">
                               {t(`catalog.blurbs.${course.slug}`)}
@@ -225,10 +239,25 @@ export default async function CoursesPage({
                               ))}
                             </ul>
 
-                            <Link href="/contact" className={`${linkRule} mt-8`}>
-                              {t("cta.consultation")}
-                              <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
-                            </Link>
+                            {/* Two ways through, in the order a reader wants
+                                them: the whole programme, then the conversation.
+                                The programme page is the primary because it is
+                                the thing that answers the question the row has
+                                just raised; the consultation was the only action
+                                here while there was nowhere else to send her. */}
+                            <div className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-4">
+                              <Link href={`/courses/${course.slug}`} className={linkRule}>
+                                {t("programs.viewProgram")}
+                                <ArrowRight
+                                  size={14}
+                                  weight="light"
+                                  className={`flip-x ${arrow}`}
+                                />
+                              </Link>
+                              <Link href="/contact" className="label py-1 text-mute transition-colors duration-300 hover:text-espresso">
+                                {t("cta.consultation")}
+                              </Link>
+                            </div>
                           </div>
 
                           {/* The discipline's own before/after, under its own

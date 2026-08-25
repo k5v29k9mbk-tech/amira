@@ -8,6 +8,8 @@ import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
 import { test } from "node:test";
 import { courses, families, included, chapters } from "./courses.ts";
+import { tiers, publishedTiers } from "./pathway.ts";
+import { programs, programBySlug } from "./programs.ts";
 import type { Media } from "./media.ts";
 import {
   closingMedia,
@@ -78,11 +80,88 @@ const PAGE_KEYS = [
   "cta.availability",
   // The consultation the courses page offers under every discipline.
   "cta.consultation",
-  // The before/after gallery's two words and the caption a slot carries while
-  // it is still waiting for its photograph.
+  // The selective ask. It replaced "request availability" in the header, the
+  // phone's standing bar, the hero's fallback action and the closing frame, and
+  // it is the verb every premium surface on the site now uses: a place is
+  // requested, never bought. `cta.availability` above it is still read by /faq
+  // and stays listed.
+  "cta.requestSeat",
+  "cta.requestDetails",
+  // The two halves of the brand lockup under the signature: the person, then
+  // the platform she built.
+  "positioning.artist",
+  "positioning.academy",
+  // The credentials band (act 01) and the three acts the repositioning added.
+  "sections.authority",
+  "sections.pathway",
+  "sections.experience",
+  "sections.receive",
+  "authority.eyebrow",
+  "authority.title",
+  "authority.sub",
+  "authority.note",
+  // The method has a name now. The four stages are unchanged; what was missing
+  // was a mark for them, and `method.lede` is the sentence that says why the
+  // order is the method rather than a list of four things.
+  "method.eyebrow",
+  "method.name",
+  "method.lede",
+  "pathway.eyebrow",
+  "pathway.title",
+  "pathway.sub",
+  "pathway.levelLabel",
+  "experience.eyebrow",
+  "experience.title",
+  "experience.sub",
+  "receive.eyebrow",
+  "receive.title",
+  "receive.sub",
+  // The programme pages. Every one of these is read on all six routes in all
+  // four languages, so one missing translation is six broken pages.
+  "programs.eyebrow",
+  "programs.title",
+  "programs.sub",
+  "programs.viewProgram",
+  "programs.backToAll",
+  "programs.keyInfoTitle",
+  "programs.promise.eyebrow",
+  "programs.promise.title",
+  "programs.promise.body",
+  "programs.forWho.eyebrow",
+  "programs.forWho.title",
+  "programs.forWho.baseLabel",
+  "programs.forWho.base",
+  "programs.forWho.advancedLabel",
+  "programs.forWho.advanced",
+  "programs.notFor.title",
+  "programs.mastery.eyebrow",
+  "programs.mastery.title",
+  "programs.curriculum.eyebrow",
+  "programs.curriculum.title",
+  "programs.curriculum.day",
+  "programs.included.eyebrow",
+  "programs.included.title",
+  "programs.scarcity.eyebrow",
+  "programs.scarcity.title",
+  "programs.scarcity.body",
+  "programs.instructor.eyebrow",
+  "programs.instructor.title",
+  "programs.work.eyebrow",
+  "programs.work.title",
+  "programs.work.sub",
+  "programs.faq.eyebrow",
+  "programs.faq.title",
+  "programs.apply.eyebrow",
+  "programs.apply.title",
+  "programs.apply.body",
+  "programs.meta.description",
+  // The path's label in the phone menu.
+  "nav.pathway",
+  // The before/after gallery's two words. The third string that used to sit
+  // here, the caption an empty slot carried, is gone: see the placeholder test
+  // below.
   "catalog.gallery.before",
   "catalog.gallery.after",
-  "catalog.gallery.pending",
   "sections.courses",
   "sections.method",
   "sections.work",
@@ -199,6 +278,35 @@ const PAGE_KEYS = [
 ] as const;
 
 const VALUES = ["professionalism", "quality", "innovation", "ethics", "growth"] as const;
+/** The four figures in the credentials band (act 01). */
+const AUTHORITY = ["years", "students", "classes", "reach"] as const;
+/** The four claims under the photographs of the room (act 07). */
+const EXPERIENCE = ["groups", "demo", "practice", "correction"] as const;
+/** The eight things every course carries (act 08). */
+const RECEIVE = [
+  "small",
+  "model",
+  "feedback",
+  "certificate",
+  "support",
+  "guidance",
+  "kit",
+  "business",
+] as const;
+/** The three the programme pages say a course is not for. */
+const NOT_FOR = ["quick", "broad", "passive"] as const;
+/** The seven rows the key-information module can print. */
+const PROGRAM_LABELS = [
+  "level",
+  "duration",
+  "seats",
+  "location",
+  "certificate",
+  "model",
+  "language",
+] as const;
+/** The three of those whose value is a programme-namespace string. */
+const PROGRAM_VALUES = ["seats", "certificate", "model"] as const;
 const HERO_FACTS = ["years", "students", "classes"] as const;
 const ABOUT_FACTS = ["years", "students", "reach"] as const;
 const ABOUT_DIFFERENT = ["experience", "small", "support"] as const;
@@ -416,6 +524,29 @@ test("every page string is translated in all four languages", () => {
   const keys = [
     ...PAGE_KEYS,
     ...VALUES.map((k) => `instructor.values.${k}`),
+    ...AUTHORITY.flatMap((k) => [
+      `authority.items.${k}.value`,
+      `authority.items.${k}.label`,
+    ]),
+    ...EXPERIENCE.flatMap((k) => [
+      `experience.items.${k}.title`,
+      `experience.items.${k}.body`,
+    ]),
+    ...RECEIVE.map((k) => `receive.items.${k}`),
+    ...NOT_FOR.map((k) => `programs.notFor.items.${k}`),
+    ...PROGRAM_LABELS.map((k) => `programs.labels.${k}`),
+    ...PROGRAM_VALUES.map((k) => `programs.values.${k}`),
+    // Read off `lib/pathway.ts` rather than listed, and off `tiers` rather than
+    // `publishedTiers`: a tier that is built and switched off must still be
+    // translated in all four languages, because the whole point of the flag is
+    // that publishing it is one boolean rather than a translation job. Hiding a
+    // tier is not a licence to let its copy rot.
+    ...tiers.flatMap((tier) => [
+      `pathway.tiers.${tier.key}.name`,
+      `pathway.tiers.${tier.key}.level`,
+      `pathway.tiers.${tier.key}.for`,
+      `pathway.tiers.${tier.key}.body`,
+    ]),
     ...HERO_FACTS.flatMap((k) => [`hero.facts.${k}.value`, `hero.facts.${k}.label`]),
     ...ABOUT_FACTS.flatMap((k) => [`about.facts.${k}.value`, `about.facts.${k}.label`]),
     ...ABOUT_DIFFERENT.flatMap((k) => [
@@ -483,6 +614,19 @@ test("no placeholder copy stands in for media the academy has not supplied", () 
       at(messages, "mentor.videoSoon"),
       undefined,
       `${locale} brought back the "coming soon" placeholder`,
+    );
+    // "Photograph to come", the caption on an empty before/after slot. The
+    // catalogue printed twenty four of those plates, each showing the internal
+    // file path it was waiting for, on the public page a visitor reaches
+    // straight after being told this is premium professional education.
+    // `ServiceGallery` now renders a pair only when both its files exist, which
+    // is the same rule every other conditional surface on the site follows. The
+    // slot names are still in `lib/service-gallery.ts`, where whoever is
+    // renaming shoot files is already working.
+    assert.equal(
+      at(messages, "catalog.gallery.pending"),
+      undefined,
+      `${locale} brought back the empty-slot caption`,
     );
   }
 });
@@ -576,6 +720,79 @@ const FABRICATED = [
   "Yasmine Trabelsi",
   "Fixture",
 ];
+
+test("the programmes are the catalogue, and carry no fee field", () => {
+  // One programme per course, in the catalogue's own order. A page that exists
+  // for a discipline the catalogue does not list, or a discipline with no page,
+  // is a broken link in the sitemap either way.
+  assert.deepEqual(
+    programs.map((p) => p.slug),
+    courses.map((c) => c.slug),
+  );
+  for (const course of courses) {
+    assert.ok(programBySlug(course.slug), `no programme for ${course.slug}`);
+  }
+
+  // Standing instruction from the academy: fees are quoted privately by Amira
+  // and never displayed. The message catalogues are already guarded; this
+  // guards the data layer, which is the other way a figure could reach a page.
+  for (const program of programs) {
+    for (const banned of ["price", "fee", "cost", "amount"]) {
+      assert.equal(
+        banned in (program as Record<string, unknown>),
+        false,
+        `${program.slug} carries a "${banned}" field`,
+      );
+      assert.equal(
+        banned in (program.facts as Record<string, unknown>),
+        false,
+        `${program.slug}.facts carries a "${banned}" field`,
+      );
+    }
+  }
+});
+
+test("nothing the academy has not supplied is filled in with a guess", () => {
+  // The gates. Duration, outcomes, curriculum and student voices are all
+  // absent from the official document, and every module that needs one renders
+  // nothing while it is undefined. This test is what stops the gap being
+  // closed with plausible copy: if a future edit sets one of these, it has to
+  // come with the strings in all four languages, and deleting this assertion
+  // has to be a deliberate act rather than a side effect.
+  //
+  // WHEN THE ACADEMY SUPPLIES REAL DATA: move that slug out of this loop
+  // rather than deleting the test, and add its keys to the translation list
+  // above so the four catalogues stay in step.
+  for (const program of programs) {
+    assert.equal(program.facts.durationKey, undefined, `${program.slug} invented a duration`);
+    assert.equal(program.masters, undefined, `${program.slug} invented its outcomes`);
+    assert.equal(program.curriculum, undefined, `${program.slug} invented a curriculum`);
+    assert.equal(program.voices, undefined, `${program.slug} invented a testimonial`);
+  }
+});
+
+test("an unconfirmed tier cannot reach a page", () => {
+  // `publishedTiers` is the only export a component may render from, and it is
+  // a filter rather than a styling flag: a tier the academy has not confirmed
+  // is absent from the DOM, the navigation, the sitemap and the schema payload,
+  // not merely hidden by CSS.
+  for (const tier of publishedTiers) {
+    assert.equal(tier.published, true, `${tier.key} is published but not confirmed`);
+  }
+  assert.ok(publishedTiers.length > 0, "the path has no levels on it");
+  assert.ok(
+    publishedTiers.length <= tiers.length,
+    "publishedTiers is not a subset of tiers",
+  );
+
+  // The two the academy has stated it teaches, which are the two levels every
+  // discipline is offered at. If either of these ever goes false, the ladder on
+  // the homepage stops matching the FAQ, which says every technique is taught
+  // at base and advanced level.
+  const live = publishedTiers.map((t) => t.key);
+  assert.ok(live.includes("foundations"), "the base level is not on the path");
+  assert.ok(live.includes("advanced"), "the advanced level is not on the path");
+});
 
 test("no fabricated testimonial can come back from git history", () => {
   for (const [locale, messages] of Object.entries(LOCALES)) {

@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { displayLarge, shell } from "@/lib/ui";
+import { brand } from "@/lib/studio";
 import { dur, stagger } from "@/lib/motion";
 import { MaskReveal } from "./MaskReveal";
 import { Reveal } from "./Reveal";
@@ -40,6 +41,7 @@ import { Reveal } from "./Reveal";
 export async function Signature() {
   const t = await getTranslations("hero");
   const inst = await getTranslations("instructor");
+  const pos = await getTranslations("positioning");
 
   /*
    * THE RHYTHM IS DELIBERATELY NOT `sectionPad`, AND THIS IS THE ONE
@@ -74,8 +76,42 @@ export async function Signature() {
           <p className={`${displayLarge} leading-[1.1] text-ivory`}>{inst("title")}</p>
         </MaskReveal>
 
+        {/* THE LOCKUP, IN TWO PARTS, AND THE ORDER IS THE POSITIONING.
+
+            This used to be one line: her name, and under it the role she was
+            given by the old brand, "Founder and PMU Master". That reads as a
+            job title inside a business, and it left the site making the claim a
+            visitor was not supposed to draw, which is that Amira is a beauty
+            artist who also runs some courses.
+
+            It is now the two marks the brand actually has, stacked and
+            separated by a rule:
+
+              AMIRA BECHINI            the person, and the authority
+              PMU Artist · Educator · Founder
+
+              AURA ACADEMY             the platform, and the system
+              Professional PMU education
+
+            Her name is set at pull-quote size and the academy's at label size
+            under a hairline, which is the whole hierarchy in one gesture: the
+            educator is the larger mark and the school is what she built. Read
+            the other way round, with the academy first and the founder as a
+            credit under it, this is an institution with a member of staff. It is
+            not, and the type says so.
+
+            `hero.founderRole` now carries the three-part role rather than the
+            old title, in all four languages; `positioning.academy` is the new
+            line and `brand.short` is the wordmark the whole site already uses,
+            so the name of the school is never retyped here. */}
         <Reveal delay={stagger.line} className="mt-3.5">
           <p className="label leading-[1.7] text-bronze-hi">{t("founderRole")}</p>
+        </Reveal>
+
+        <Reveal delay={stagger.line * 2} className="mt-8">
+          <span aria-hidden className="mx-auto mb-6 block h-px w-8 bg-hair-dark" />
+          <p className="label leading-[1.7] text-ivory/70">{brand.short}</p>
+          <p className="label mt-2 leading-[1.7] text-mute-dark">{pos("academy")}</p>
         </Reveal>
       </div>
     </section>

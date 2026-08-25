@@ -6,7 +6,7 @@
   },
   "nav": {
     "home": "Home",
-    "courses": "Corsi",
+    "courses": "Programmi",
     "about": "Amira",
     "method": "Il metodo",
     "faq": "Domande",
@@ -16,15 +16,16 @@
     "close": "Chiudi",
     "skip": "Vai al contenuto",
     "loading": "Caricamento",
-    "work": "Risultati"
+    "work": "Risultati",
+    "pathway": "Il percorso"
   },
   "hero": {
-    "eyebrow": "Aura Academy · Formazione beauty professionale · Italia",
-    "titleA": "Padroneggia l'arte.",
-    "titleB": "Crea la tua carriera.",
-    "sub": "Formazione professionale in PMU e beauty con Amira Bechini: tecnica, esperienza sul campo e visione imprenditoriale, le tre basi di una carriera vera nel beauty.",
+    "eyebrow": "Aura Academy · Formazione professionale PMU · Italia",
+    "titleA": "Padroneggia la tecnica.",
+    "titleB": "Costruisci lo standard.",
+    "sub": "Formazione professionale avanzata in trucco permanente, costruita su precisione, pratica guidata e risultati di cui puoi rispondere.",
     "founder": "Amira Bechini · Fondatrice e Master PMU",
-    "founderRole": "Fondatrice e Master PMU",
+    "founderRole": "PMU Artist · Formatrice · Fondatrice",
     "facts": {
       "years": {
         "value": "8+",
@@ -172,7 +173,10 @@
         "title": "Assistenza post-corso",
         "body": "Restiamo a disposizione anche dopo la fine del corso."
       }
-    }
+    },
+    "eyebrow": "Il metodo",
+    "name": "Il Metodo Aura Precision",
+    "lede": "Quattro fasi, nello stesso ordine, per ogni tecnica e per entrambi i livelli. L'ordine è il metodo: niente si pratica prima di averlo capito, e niente arriva sulla modella prima di essere stato praticato."
   },
   "catalog": {
     "eyebrow": "I corsi",
@@ -258,8 +262,7 @@
     },
     "gallery": {
       "before": "Prima",
-      "after": "Dopo",
-      "pending": "Fotografia in arrivo"
+      "after": "Dopo"
     }
   },
   "journey": {
@@ -387,7 +390,7 @@
   },
   "footer": {
     "tagline": "Formiamo professioniste nel PMU e nella laminazione con un metodo pratico e completo.",
-    "explore": "Corsi",
+    "explore": "Programmi",
     "studio": "Contatti",
     "legal": "Dati legali",
     "activity": "Corsi di formazione nel settore del trucco permanente e laminazione.",
@@ -420,11 +423,15 @@
     }
   },
   "sections": {
-    "courses": "Corsi",
+    "courses": "Programmi",
     "method": "Il metodo",
     "work": "Risultati",
     "amira": "Amira",
-    "inside": "Dentro Aura"
+    "inside": "Dentro Aura",
+    "authority": "Lo standard",
+    "pathway": "Il percorso",
+    "experience": "L'aula",
+    "receive": "Cosa porti con te"
   },
   "manifesto": {
     "one": "Non insegniamo una tecnica.",
@@ -432,8 +439,8 @@
     "note": "Classi piccole. Pratica guidata. Standard professionali che restano anche dopo il corso."
   },
   "closing": {
-    "title": "La tua prossima tecnica inizia da una conversazione.",
-    "sub": "Raccontaci a che punto sei del tuo percorso e quale disciplina vuoi padroneggiare."
+    "title": "Il tuo prossimo livello nasce da una tecnica migliore.",
+    "sub": "Formati con intenzione, affina il tuo lavoro e costruisci risultati di cui puoi rispondere con sicurezza."
   },
   "intro": {
     "skip": "Salta l'intro"
@@ -454,9 +461,191 @@
     "cta": "Chiedi informazioni"
   },
   "cta": {
-    "courses": "Scopri i corsi",
+    "courses": "Scopri la formazione",
     "talk": "Parla con Amira",
     "availability": "Richiedi disponibilità",
-    "consultation": "Prenota la tua consulenza"
+    "consultation": "Prenota la tua consulenza",
+    "requestSeat": "Richiedi un posto",
+    "requestDetails": "Richiedi i dettagli del corso"
+  },
+  "positioning": {
+    "artist": "PMU Artist · Formatrice · Fondatrice",
+    "academy": "Formazione professionale PMU"
+  },
+  "authority": {
+    "eyebrow": "Lo standard",
+    "title": "Si insegna dall'interno della professione.",
+    "sub": "Aura Academy nasce dentro un istituto che lavora ogni giorno. Ogni tecnica del programma è una tecnica che Amira esegue sulle proprie clienti.",
+    "items": {
+      "years": {
+        "value": "8+",
+        "label": "Anni nel settore"
+      },
+      "students": {
+        "value": "150+",
+        "label": "Allieve formate"
+      },
+      "classes": {
+        "value": "3-4",
+        "label": "Allieve per corso"
+      },
+      "reach": {
+        "value": "Italia",
+        "label": "Dove insegniamo"
+      }
+    },
+    "note": "Amira si aggiorna continuamente con masterclass internazionali, e i protocolli che insegna sono quelli con cui lavora oggi."
+  },
+  "pathway": {
+    "eyebrow": "Il percorso formativo",
+    "title": "Da dove inizi dipende da dove sei.",
+    "sub": "Ogni disciplina si insegna su più di un livello. Entri da quello che corrisponde alla tua pratica, e lo standard è lo stesso in entrambi.",
+    "levelLabel": "Livello",
+    "tiers": {
+      "foundations": {
+        "name": "Aura Foundations",
+        "level": "Base",
+        "for": "Per chi costruisce basi solide.",
+        "body": "La disciplina insegnata dall'inizio: la teoria che la sostiene, la pratica guidata e il lavoro sulla modella dove il corso lo prevede. Non si dà per scontata alcuna esperienza precedente nella tecnica."
+      },
+      "advanced": {
+        "name": "Aura Advanced",
+        "level": "Avanzato",
+        "for": "Per chi affina tecnica e costanza.",
+        "body": "Per chi lavora già. La stessa disciplina portata alla precisione: le abitudini con cui arrivi vengono corrette e il risultato tenuto a una finitura professionale."
+      },
+      "masterclass": {
+        "name": "Amira Masterclass",
+        "level": "Intensivo",
+        "for": "Per chi cerca tecniche specialistiche.",
+        "body": "Formazione intensiva avanzata con Amira, su tecniche specialistiche e sui dettagli che separano un risultato corretto da un risultato professionale."
+      },
+      "private": {
+        "name": "Formazione privata 1:1",
+        "level": "Privato",
+        "for": "Per chi vuole l'aula tutta per sé.",
+        "body": "Un'allieva, una formatrice, costruito intorno alla tecnica che ti serve e al ritmo che la tua pratica richiede."
+      }
+    }
+  },
+  "programs": {
+    "eyebrow": "I programmi",
+    "title": "Sei discipline, un solo standard.",
+    "sub": "Trucco permanente e laminazione, ciascuno insegnato a livello base e avanzato, in classi da tre a quattro allieve.",
+    "viewProgram": "Scopri il programma",
+    "backToAll": "Tutti i programmi",
+    "keyInfoTitle": "Informazioni essenziali",
+    "labels": {
+      "level": "Livello",
+      "duration": "Durata",
+      "seats": "Posti",
+      "location": "Sede",
+      "certificate": "Attestato",
+      "model": "Modella dal vivo",
+      "language": "Lingua"
+    },
+    "values": {
+      "seats": "Massimo 3-4 allieve",
+      "certificate": "Incluso al termine",
+      "model": "Incluso dove il corso lo prevede"
+    },
+    "promise": {
+      "eyebrow": "La promessa",
+      "title": "Esci sapendo eseguire il trattamento.",
+      "body": "Non una dimostrazione a cui hai assistito. La teoria che sostiene la tecnica, la pratica guidata sotto correzione, il lavoro sulla modella dove il corso lo prevede e il supporto che continua quando l'aula si svuota."
+    },
+    "forWho": {
+      "eyebrow": "A chi si rivolge",
+      "title": "Due modi di entrare.",
+      "baseLabel": "Livello base",
+      "base": "Chi inizia questa disciplina dall'inizio. Non si dà per scontata alcuna esperienza nella tecnica, e il corso è costruito per portarti dalla teoria a un risultato finito.",
+      "advancedLabel": "Livello avanzato",
+      "advanced": "Chi lavora già e vuole la tecnica corretta e lo standard alzato. Porti la tua pratica; il corso la affina."
+    },
+    "notFor": {
+      "title": "A chi non si rivolge",
+      "items": {
+        "quick": "A chi cerca un attestato senza la pratica che lo sostiene.",
+        "broad": "A chi cerca un'introduzione generale all'estetica. Qui c'è una disciplina sola, insegnata a fondo.",
+        "passive": "A chi preferisce guardare piuttosto che essere corretta. La pratica è il corso."
+      }
+    },
+    "mastery": {
+      "eyebrow": "Cosa imparerai a padroneggiare",
+      "title": "La tecnica, nell'ordine in cui si costruisce."
+    },
+    "curriculum": {
+      "eyebrow": "Programma",
+      "title": "Cosa contengono le giornate.",
+      "day": "Giornata"
+    },
+    "included": {
+      "eyebrow": "Cosa è incluso",
+      "title": "Tutto quello che il corso porta con sé."
+    },
+    "scarcity": {
+      "eyebrow": "Disponibilità",
+      "title": "I posti sono limitati per scelta.",
+      "body": "Da tre a quattro allieve per corso. È la dimensione della classe a rendere possibile la correzione individuale, ed è anche il motivo per cui i posti si esauriscono in fretta."
+    },
+    "instructor": {
+      "eyebrow": "Chi ti forma",
+      "title": "Ti forma Amira, non un'assistente."
+    },
+    "work": {
+      "eyebrow": "Il lavoro",
+      "title": "Lo standard verso cui ti stai formando.",
+      "sub": "Trattamenti fotografati nello studio dell'academy. Ogni scatto è lavoro dell'academy sulle proprie clienti."
+    },
+    "faq": {
+      "eyebrow": "Domande",
+      "title": "Prima di candidarti."
+    },
+    "apply": {
+      "eyebrow": "Richiedi un posto",
+      "title": "Richiedi i dettagli di questo programma.",
+      "body": "Dicci quale livello ti interessa e a che punto sei con la tua pratica. Amira risponde con le date, la durata e tutto quello che il corso comprende."
+    },
+    "meta": {
+      "description": "Formazione professionale in {course} presso Aura Academy di Amira Bechini. Livello base e avanzato, classi da tre a quattro allieve, modella dal vivo dove prevista, attestato e supporto post corso."
+    }
+  },
+  "experience": {
+    "eyebrow": "L'aula",
+    "title": "Si impara facendo. Si migliora con la correzione.",
+    "sub": "Una classe piccola, una dimostrazione dal vivo e la tua mano corretta mentre lavori. È quest'ultima parte il motivo per cui i posti sono limitati.",
+    "items": {
+      "groups": {
+        "title": "Da tre a quattro allieve",
+        "body": "La classe è limitata perché ogni allieva sia seguita, non semplicemente istruita."
+      },
+      "demo": {
+        "title": "Prima la dimostrazione",
+        "body": "Amira esegue la tecnica davanti a te prima che venga chiesto a te di eseguirla."
+      },
+      "practice": {
+        "title": "Pratica guidata",
+        "body": "Lavori sotto supervisione, passo dopo passo, al ritmo che la tecnica richiede davvero."
+      },
+      "correction": {
+        "title": "Correzione, non commento",
+        "body": "La tua mano viene corretta mentre lavori, ed è la parte di questo mestiere che non si impara da uno schermo."
+      }
+    }
+  },
+  "receive": {
+    "eyebrow": "Cosa porti con te",
+    "title": "Il corso finisce. Il supporto no.",
+    "sub": "Tutto quello che segue fa parte di ogni corso, a entrambi i livelli, senza eccezioni.",
+    "items": {
+      "small": "Formazione in piccolo gruppo, da tre a quattro allieve",
+      "model": "Pratica su modella dal vivo, dove il corso la prevede",
+      "feedback": "Correzione e riscontro diretto da Amira",
+      "certificate": "Attestato al termine del corso",
+      "support": "Supporto post corso",
+      "guidance": "Accompagnamento professionale una volta finito il corso",
+      "kit": "Kit professionale, disponibile su richiesta",
+      "business": "La parte imprenditoriale della professione, insegnata accanto alla tecnica"
+    }
   }
 }

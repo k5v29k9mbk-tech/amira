@@ -15,13 +15,16 @@ npm test                     # content + translation-completeness checks, no fra
 
 | Path | Purpose |
 | --- | --- |
-| `src/app/[locale]/page.tsx` | Homepage: hero, manifesto, course selector, method, before/after, founder, gallery, the three claims, voices, six questions, closing frame |
-| `src/app/[locale]/courses/page.tsx` | The six courses, the shared conditions, before/after |
+| `src/app/[locale]/page.tsx` | Homepage: eleven acts. Hero, signature, the credentials, the statement, Amira, the method, the path, the programmes, the work, the room, what you leave with, the three claims, voices, how to book, questions, closing frame |
+| `src/app/[locale]/courses/page.tsx` | The catalogue: six programmes grouped by family, the shared conditions, before/after |
+| `src/app/[locale]/courses/[slug]/page.tsx` | One page per programme, six per language. The full premium structure, with four modules gated on data the academy has not yet supplied |
 | `src/app/[locale]/about/page.tsx` | Amira, the values, the business curriculum, the welcome message |
 | `src/app/[locale]/faq/page.tsx` | All eleven questions, and the FAQ structured data |
 | `src/app/[locale]/contact/page.tsx` | Enquiry form, channels, venue, the booking sequence |
 | `src/lib/studio.ts` | Every official fact: brand names, address, legal data, social handles |
 | `src/lib/courses.ts` | The six course slugs and their media |
+| `src/lib/programs.ts` | Per-programme detail, and the gates: what a course page may say, and what it must stay silent about until the academy supplies it |
+| `src/lib/pathway.ts` | The ladder of levels. Two published, two built and switched off |
 | `src/lib/media.ts` | All art direction: posters, clips, crops, overlays, gallery composition |
 | `src/lib/ui.ts` | The shared class strings (buttons, links, display sizes, page shell) |
 | `src/lib/seo.tsx` | schema.org payloads: organisation, course list, person, FAQ |
@@ -146,6 +149,24 @@ guards are against failure, not against length.
 
 `Stagger` and `HeroPortrait` call `useIntroReady()`, so the hero's entrance
 waits for the fade rather than playing out behind a black overlay.
+
+### The hero film
+
+The first screen carries `public/brand/hero-class.mp4`: Amira at the flipchart
+with the class behind her, with `hero-class-mobile.mp4` as the vertical cut and
+`hero-class-poster.jpg` as the first paint. `scripts/encode-hero.swift`
+regenerates both from the camera master.
+
+It replaced `pigment.mp4`, a macro of pigment moving, which carried this screen
+for a period and is still in `public/brand` where it carries the closing frame at
+the foot of the homepage. The swap is one string in `src/lib/media.ts`
+(`heroFilmMedia.videoSrc`) and the reasoning is recorded at that field: a macro
+of a treatment is a treatment, and a room with a teacher in it is a school. It
+is also the sharper file by a wide margin, 1080px against 464.
+
+The four-layer scrim in `HeroFilm` was built for this clip and its white
+flipchart. If the hero footage is ever changed again, check the middle of the
+frame first: that is where the darkness is pooled and where the type sits.
 
 ### The hero master
 
@@ -278,6 +299,74 @@ every quote must have a name and a role in every language, and the four
 fabricated quotes in git history can never come back. One quote is enough for
 the section to render, and it drops the counter and arrows automatically.
 
+## Filling in a programme
+
+Every discipline has a page of its own at `/<locale>/courses/<slug>`, built to
+the full premium structure: hero, key information, the promise, who it is and is
+not for, what you will master, the curriculum, what is included, the instructor,
+the work, limited places, questions, and the request.
+
+Four of those modules are **gated**. The academy has not supplied the material
+for them, so rather than filling the space with plausible copy, each one renders
+nothing until the data exists. The page is currently nine real sections; it grows
+to thirteen the day the material arrives, and no component needs editing.
+
+| Module | Unlocked by | Strings needed, in all four locales |
+| --- | --- | --- |
+| Duration row | `facts.durationKey` in `src/lib/programs.ts` | the key it names, under `programs.durations.*` |
+| A specific city | `facts.locationKey` | the key it names, under `programs.locations.*` |
+| What you will master | `masters: <count>` | `programs.masters.<slug>.0` upward |
+| Curriculum and day by day | `curriculum: [{ modules: n }, ...]` | `programs.curriculum.<slug>.d<i>.title` and `.m<n>` |
+| Student voices | `voices: <count>` | `programs.voices.<slug>.*`, **consent required** |
+
+So a two day Lip Blush course with a syllabus becomes:
+
+```ts
+{
+  slug: "lip-blush",
+  family: "lips",
+  media: { ... },
+  facts: { durationKey: "programs.durations.twoDays" },
+  masters: 5,
+  curriculum: [{ modules: 4 }, { modules: 5 }],
+}
+```
+
+plus the matching strings in `messages/en.json`, `it.json`, `fr.json` and
+`ar.json`. `npm test` reads the counts off this same data, so a curriculum that
+ships in Italian and nowhere else fails the suite rather than the page.
+
+**There is no price field and there must never be one.** Fees are quoted
+privately by Amira; the test suite blocks any figure in the copy, and
+`courses.test.ts` blocks a `price`, `fee`, `cost` or `amount` field on a
+programme. The action on every programme page asks for the details.
+
+**Scarcity is the real class cap and nothing else.** The one availability claim
+on the site is three to four artists per course, which the academy publishes.
+No countdown, no seat counter, no "two places left": the site has no way to know
+that, and inventing it is the fastest way to make a premium brand read as a
+funnel.
+
+## The educational path
+
+`src/lib/pathway.ts` draws the ladder of levels on the homepage. Two are live
+because the academy states it teaches every discipline at base and advanced
+level:
+
+- **Aura Foundations** (base)
+- **Aura Advanced** (advanced)
+
+Two more are **built, translated in all four languages, and switched off**,
+because the academy has not confirmed either offering exists:
+
+- **Amira Masterclass**
+- **Private 1:1 Training**
+
+To publish one, set `published: true` on it. That is the whole change: it then
+appears in the pathway section with its copy already written. Do not delete a
+tier to hide it, and do not add one without copy in all four locales, which the
+test suite requires whether it is published or not.
+
 ## Still missing from the academy
 
 These are the only things blocking a launch-ready site:
@@ -287,7 +376,21 @@ These are the only things blocking a launch-ready site:
 - A phone number, if they want one shown
 - The Facebook page URL
 - Student testimonials, with consent
-- More before/after pairs (there is one)
+- **A duration and a syllabus per course.** These are what the six programme
+  pages are waiting on: with them, each page gains a duration row, a list of
+  outcomes and a day-by-day curriculum. See "Filling in a programme" above
+  for exactly what to send and where it goes.
+- Confirmation of whether a masterclass and private one-to-one training are
+  offered. Both are built and switched off in `src/lib/pathway.ts`.
+- **More before/after pairs (there is one).** The per-discipline galleries on
+  the catalogue are waiting on these. Every slot has a name already: see
+  `src/lib/service-gallery.ts`, drop both files of a pair into
+  `public/brand/services/` under the filenames it prints, and set
+  `ready: true` on that pair. Until a pair is ready it renders nothing at
+  all, so the catalogue never shows an empty frame.
+- Confirmation of **which brow technique produced the existing pair**. It is
+  on the homepage under no discipline, because filing a client's result under
+  the wrong technique is worse than not filing it.
 - The opening film, or a decision not to have one (`public/videos/`; nothing
   about the sequence ships until the files do)
 - An abstract clip for the hero arch, if they want the frame to move (optional:
@@ -311,6 +414,12 @@ published courses, that every official fact still matches the client document
 verbatim, that every string the pages read exists in all four languages, that no
 copy from the removed online-course build survived, that no price or refund claim
 has crept back in, and that every referenced image exists on disk.
+
+It also holds the honesty rules the repositioning introduced: that a programme
+carries no fee field, that nothing the academy has not supplied has been filled
+in with a guess, and that an unconfirmed tier of the educational path cannot
+reach a page. Those three tests are meant to fail loudly the day someone fills a
+gap with plausible copy instead of real information.
 
 ## Design system
 

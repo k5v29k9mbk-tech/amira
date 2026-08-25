@@ -58,8 +58,19 @@ export function organizationSchema(locale: string, name: string, description: st
  * of conditions rather than per-course syllabuses or prices, so each entry
  * carries what is actually known: name, provider, language and an on-site
  * instance at the academy's address.
+ *
+ * `slugs` is passed alongside `names` and is positional, which is a contract
+ * rather than a convenience: each entry now points at that course's own page
+ * instead of at the index, and the two arrays are both derived from `courses`
+ * in the same map on the calling page, so they cannot fall out of step without
+ * that page being edited wrongly on purpose.
  */
-export function courseListSchema(locale: string, names: string[], description: string) {
+export function courseListSchema(
+  locale: string,
+  names: string[],
+  description: string,
+  slugs: string[],
+) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -70,7 +81,7 @@ export function courseListSchema(locale: string, names: string[], description: s
         "@type": "Course",
         name,
         description,
-        url: `${siteUrl}/${locale}/courses`,
+        url: `${siteUrl}/${locale}/courses/${slugs[i]}`,
         provider: { "@id": `${siteUrl}/#organization` },
         // The courses are taught in Italian, whatever language the page is in.
         inLanguage: "it",
@@ -85,6 +96,49 @@ export function courseListSchema(locale: string, names: string[], description: s
         },
       },
     })),
+  };
+}
+
+/**
+ * One course, emitted on its own page.
+ *
+ * The same fields the list carries, at the one URL that is actually about this
+ * course, plus the instructor. What is deliberately still absent is an `offers`
+ * block, a `duration` and a `syllabus`: the academy quotes privately and has
+ * published neither a length nor a module list, and a schema payload is exactly
+ * the wrong place to be the first surface on the site that guesses at one. If
+ * `programs.ts` is ever given a duration, add `courseWorkload` here from that
+ * same field rather than from a literal.
+ *
+ * `aggregateRating` and `review` are absent here for the reason given at the
+ * top of this file, and must stay absent until real consented reviews exist.
+ */
+export function courseSchema(
+  locale: string,
+  slug: string,
+  name: string,
+  description: string,
+  instructorName: string,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name,
+    description,
+    url: `${siteUrl}/${locale}/courses/${slug}`,
+    provider: { "@id": `${siteUrl}/#organization` },
+    // The courses are taught in Italian, whatever language the page is in.
+    inLanguage: "it",
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: "onsite",
+      instructor: { "@type": "Person", name: instructorName },
+      location: {
+        "@type": "Place",
+        name: brand.full,
+        address: postalAddress,
+      },
+    },
   };
 }
 

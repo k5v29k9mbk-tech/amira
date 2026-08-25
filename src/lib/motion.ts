@@ -140,8 +140,21 @@ export const heroBeat = {
   bar: 0.0,
   headline: 0.14,
   sub: 0.5,
+  /**
+   * Unplayed. The hero's figure band moved out to `AuthorityStrip`, so nothing
+   * on the first screen sits between the supporting line and the actions any
+   * more. The beat stays in the score because the interval it defines is what
+   * `actions` is measured against, and deleting it would leave the next number
+   * looking arbitrary.
+   */
   facts: 0.62,
-  actions: 0.72,
+  /**
+   * 0.64 rather than 0.72. The actions used to enter a beat after the figures;
+   * with the figures gone that delay was 220ms of an empty screen after the
+   * supporting line had finished, which reads as the sequence having stalled
+   * rather than as a pause before the last beat.
+   */
+  actions: 0.64,
   name: 0.86,
   role: 0.96,
   portrait: 0.12,

@@ -44,7 +44,13 @@ export async function Footer() {
           <ul className="mt-6 grid gap-3">
             {courses.map((c) => (
               <li key={c.slug}>
-                <Link href={`/courses#${c.slug}`} className={link}>
+                {/* Each discipline's own page, not an anchor on the index.
+                    The footer carries all six on every route, so these are the
+                    site's most repeated internal links and the ones a crawler
+                    follows most often: pointing them at six real pages rather
+                    than six fragments of one is most of what makes the new
+                    routes findable. */}
+                <Link href={`/courses/${c.slug}`} className={link}>
                   {t(`catalog.courses.${c.slug}`)}
                 </Link>
               </li>

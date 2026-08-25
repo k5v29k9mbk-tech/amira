@@ -50,82 +50,85 @@ export const introMedia = {
 } as const;
 
 /**
- * The hero film: the pigment macro, behind the first screen.
+ * The hero film: the academy's own classroom, behind the first screen.
  *
- * It is the same clip the closing frame carries at the foot of the page
- * (`closingMedia` below, `/brand/pigment.mp4`) and it is deliberately the same
- * file rather than a copy of it: one asset, requested once, warm in the cache by
- * the time a reader reaches the bottom of the page. Point both at the same path
- * and the browser does the rest.
+ * Amira at the flipchart with the class behind her, trimmed, stripped of audio
+ * and encoded by `scripts/encode-hero.swift` from the camera master. It is the
+ * one piece of footage on the site that shows the thing the site is selling
+ * happening, which is why it opens the page.
  *
- * WHAT IT REPLACED. The classroom clip, `hero-class.mp4`: Amira at the flipchart
- * with the class behind her. It is still in `public/brand`, still trimmed,
- * stripped and encoded, and `scripts/encode-hero.swift` still regenerates it
- * from the camera master — so putting it back is one string, and the phone cut
- * beside it is one more. Nothing about that work was thrown away.
+ * WHAT IT REPLACED, AND WHY IT CAME BACK. This screen carried `pigment.mp4` for
+ * a period: a macro of pigment moving, used as a ground rather than as a
+ * subject. That was a defensible choice while the brand's first screen was
+ * about the beauty of the work. It stopped being defensible when the brand's
+ * first screen became about education, because a macro of a treatment is a
+ * treatment and a room with a teacher in it is a school. The reasoning, and the
+ * two measurable things the swap also fixes, are at the fields below.
  *
- * THE PROPORTION, AND WHY THE CROP IS LEFT WHERE IT WAS. 464x656 is a 5:7
- * portrait, so a desktop still spends the crop on the height exactly as it did
- * with the 9:16 clip, and `position` is unchanged from the framing this screen
- * was tuned at. That aim used to mean something specific — it was where Amira
- * survived every cut of the montage. Here there is no subject to hold: the
- * footage is pigment moving under a macro lens, which reads the same at any
- * aim, so the number stays put rather than being re-tuned for the sake of it.
- *
- * SIZE, AND THE ONE THING TO KNOW ABOUT IT. The file is 464px wide against a
- * desktop viewport three or four times that, so `cover` is enlarging it. That is
- * the trade this clip comes with and it is a different trade from the classroom
- * footage, which was 1080 wide and sharp at full screen. What survives the scale
- * is the colour and the movement, which is all a ground is being asked for; what
- * does not survive is detail, and there is no detail here that carries meaning —
- * no face, no hands, no board. Drop a larger master at this path and the frame
- * sharpens with no change to any component.
- *
- * There is no separate phone cut and none is wanted. A 2MB file that is already
- * narrower than the phone it plays on has nothing left to take out; the mobile
- * cut that used to sit here existed because the classroom clip was 1080 wide.
+ * `pigment.mp4` is untouched in `public/brand` and still carries the closing
+ * frame at the foot of the page. Nothing was thrown away in either direction,
+ * which is the point of keeping both encoded: this screen is one string.
  *
  * The poster is the clip's own frame, so the first paint is the image the video
- * resolves into rather than a cut to somewhere else, and a visitor who has asked
- * for reduced motion is left holding that frame with no video loaded at all.
+ * resolves into rather than a cut to somewhere else, and a visitor who has
+ * asked for reduced motion is left holding that frame with no video loaded at
+ * all.
  *
- * Everything else about this screen is untouched: the scrim in `HeroFilm` is the
- * same four layers at the same strengths, and the composition over it has not
- * moved. The clip is darker than the classroom was, so the type sits on more
- * contrast than the grade was built for rather than less.
+ * The scrim in `HeroFilm` is four layers pooled in the middle of the frame,
+ * where the type is, and released at the corners. It was built for this clip
+ * and is unchanged: the classroom is lit and half white flipchart, which is
+ * exactly the case the pool was weighted for.
  */
 export const heroFilmMedia: Media = {
-  videoSrc: "/brand/pigment.mp4",
   /**
-   * No phone cut, and `null` rather than absent so the intent is on the record:
-   * the source is 464px wide, which is narrower than the phone it plays on, so
-   * a smaller encode of it would be a smaller picture rather than a cheaper one.
-   * `MediaFrame` falls back to `videoSrc` on every width when this is empty.
+   * THE CLASSROOM, BACK ON THE FIRST SCREEN.
+   *
+   * This carried `pigment.mp4` for a while: pigment moving under a macro lens,
+   * as a ground. It was the right choice for a brand whose first screen was
+   * arguing that the work is beautiful, and it is the wrong one for a brand
+   * whose first screen is arguing that an education happens here. A macro of a
+   * treatment in progress is a treatment; a room with a teacher in it, a board
+   * behind her and students in front of her is a school, and the difference is
+   * the whole repositioning in one frame.
+   *
+   * It is also the better file by every measure that matters here. The pigment
+   * clip is 464px wide against a desktop viewport three or four times that, so
+   * `cover` was enlarging it and the first screen of the site was soft. This is
+   * 1080 wide and sharp at full screen, and it has a phone cut of its own.
+   *
+   * Both were always on disk and `scripts/encode-hero.swift` regenerates this
+   * one from the camera master. `pigment.mp4` is untouched and still carries the
+   * closing frame at the foot of the page, which is the right place for a
+   * texture: the page opens on the room and closes on the craft.
    */
-  mobileVideoSrc: null,
-  posterSrc: "/brand/pigment-poster.jpg",
+  videoSrc: "/brand/hero-class.mp4",
+  /**
+   * The vertical cut. It exists for this clip and is worth its bytes, unlike
+   * the pigment macro's, because the source is 1080 wide: a phone that plays
+   * the desktop file downloads roughly twice what it can show.
+   */
+  mobileVideoSrc: "/brand/hero-class-mobile.mp4",
+  posterSrc: "/brand/hero-class-poster.jpg",
   alt: "",
   /**
-   * Both numbers are inherited from the classroom clip this screen used to
-   * carry, and they are left exactly where they were.
+   * THE AIM, AND WHY IT IS A REAL NUMBER AGAIN.
    *
-   * They were aimed then: a 16:9 window keeps less than a third of a portrait
-   * frame, so 40% was the one height at which Amira survived every cut of the
-   * montage, and the phone kept the centre because almost the whole frame
-   * survives there. Neither argument transfers to pigment moving under a macro
-   * lens. There is no subject to hold in frame and no part of the picture that
-   * has to clear the type, so any aim reads the same, and the honest thing is to
-   * leave the framing this composition was tuned and measured at rather than
-   * change a number for the sake of touching it.
+   * Under the macro there was no subject to hold, so the framing was inherited
+   * and left alone on the grounds that any aim read the same. There is a subject
+   * again: Amira at the flipchart, the class in front of her. A 16:9 desktop
+   * window keeps less than a third of a 9:16 portrait frame, and 40% is the
+   * height at which she survives every cut of the montage rather than being
+   * cropped at the collar. The phone keeps the centre, because at 9:16 almost
+   * the whole frame survives.
    *
-   * What still holds from that tuning: a desktop spends the crop on the height
-   * (464x656 is portrait, as 1080x1920 was), and a phone keeps nearly all of it.
+   * Both numbers are the ones this composition was originally tuned and
+   * measured at, for this clip. They are not being restored from taste.
    */
   position: "50% 40%",
   mobilePosition: "50% 50%",
   /** The clip's own size, so the poster reserves its space and never shifts. */
-  width: 464,
-  height: 656,
+  width: 1080,
+  height: 1920,
 };
 
 /**

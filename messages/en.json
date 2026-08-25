@@ -6,7 +6,7 @@
   },
   "nav": {
     "home": "Home",
-    "courses": "Courses",
+    "courses": "Programmes",
     "about": "Amira",
     "method": "The method",
     "faq": "Questions",
@@ -16,15 +16,16 @@
     "close": "Close",
     "skip": "Skip to content",
     "loading": "Loading",
-    "work": "Results"
+    "work": "Results",
+    "pathway": "The path"
   },
   "hero": {
-    "eyebrow": "Aura Academy · Professional beauty education · Italy",
-    "titleA": "Master the art.",
-    "titleB": "Build your career.",
-    "sub": "Professional PMU training. Technique, real experience and the business knowledge a career is built on.",
+    "eyebrow": "Aura Academy · Professional PMU education · Italy",
+    "titleA": "Master the technique.",
+    "titleB": "Build the standard.",
+    "sub": "Advanced professional education in permanent makeup, built on precision, guided practice and results you can stand behind.",
     "founder": "Amira Bechini · Founder and PMU Master",
-    "founderRole": "Founder and PMU Master",
+    "founderRole": "PMU Artist · Educator · Founder",
     "facts": {
       "years": {
         "value": "8+",
@@ -172,7 +173,10 @@
         "title": "Post-course support",
         "body": "We stay available after the course has finished."
       }
-    }
+    },
+    "eyebrow": "The signature method",
+    "name": "The Aura Precision Method",
+    "lede": "Four stages, in the same order, for every technique and both levels. The order is the method: nothing is practised before it is understood, and nothing is taken to a model before it is practised."
   },
   "catalog": {
     "eyebrow": "The courses",
@@ -258,8 +262,7 @@
     },
     "gallery": {
       "before": "Before",
-      "after": "After",
-      "pending": "Photograph to come"
+      "after": "After"
     }
   },
   "journey": {
@@ -387,7 +390,7 @@
   },
   "footer": {
     "tagline": "We train professionals in PMU and lamination with a practical, complete method.",
-    "explore": "Courses",
+    "explore": "Programmes",
     "studio": "Contact",
     "legal": "Legal information",
     "activity": "Training courses in permanent makeup and lamination.",
@@ -420,11 +423,15 @@
     }
   },
   "sections": {
-    "courses": "Courses",
+    "courses": "Programmes",
     "method": "The method",
     "work": "Results",
     "amira": "Amira",
-    "inside": "Inside Aura"
+    "inside": "Inside Aura",
+    "authority": "The standard",
+    "pathway": "The path",
+    "experience": "The room",
+    "receive": "What you leave with"
   },
   "manifesto": {
     "one": "We do not teach a technique.",
@@ -432,8 +439,8 @@
     "note": "Small classes. Guided practice. Professional standards that continue after the course."
   },
   "closing": {
-    "title": "Your next technique starts with a conversation.",
-    "sub": "Tell us where you are in your career and which discipline you want to master."
+    "title": "Your next level starts with better technique.",
+    "sub": "Train with intention, refine your work, and build results you can confidently stand behind."
   },
   "intro": {
     "skip": "Skip intro"
@@ -454,9 +461,191 @@
     "cta": "Ask about Powder Brows"
   },
   "cta": {
-    "courses": "Discover the courses",
+    "courses": "Explore the training",
     "talk": "Talk to Amira",
     "availability": "Request availability",
-    "consultation": "Book your consultation"
+    "consultation": "Book your consultation",
+    "requestSeat": "Request a seat",
+    "requestDetails": "Request course details"
+  },
+  "positioning": {
+    "artist": "PMU Artist · Educator · Founder",
+    "academy": "Professional PMU education"
+  },
+  "authority": {
+    "eyebrow": "The standard",
+    "title": "Taught from inside the profession.",
+    "sub": "Aura Academy is the teaching arm of a working permanent makeup practice. Every technique on the programme is one Amira performs on her own clients.",
+    "items": {
+      "years": {
+        "value": "8+",
+        "label": "Years in the industry"
+      },
+      "students": {
+        "value": "150+",
+        "label": "Artists trained"
+      },
+      "classes": {
+        "value": "3-4",
+        "label": "Artists per class"
+      },
+      "reach": {
+        "value": "Italy",
+        "label": "Where we teach"
+      }
+    },
+    "note": "Amira studies continuously in international masterclasses, and the protocols she teaches are the ones she is working to now."
+  },
+  "pathway": {
+    "eyebrow": "The educational path",
+    "title": "Where you start depends on where you are.",
+    "sub": "Every discipline is taught at more than one height. You enter at the level that matches your practice, and the standard is the same at each.",
+    "levelLabel": "Level",
+    "tiers": {
+      "foundations": {
+        "name": "Aura Foundations",
+        "level": "Base",
+        "for": "For artists building strong fundamentals.",
+        "body": "The discipline taught from the beginning: the theory behind it, guided practice, and work on a live model where the course schedules one. No prior experience in the technique is assumed."
+      },
+      "advanced": {
+        "name": "Aura Advanced",
+        "level": "Advanced",
+        "for": "For artists refining technique and consistency.",
+        "body": "For those already working. The same discipline taken to precision: the habits you arrived with corrected, and the result held to a professional finish."
+      },
+      "masterclass": {
+        "name": "Amira Masterclass",
+        "level": "Intensive",
+        "for": "For artists pursuing specialised technique.",
+        "body": "Advanced intensive education with Amira, on specialised technique and the details that separate a competent result from a professional one."
+      },
+      "private": {
+        "name": "Private 1:1 Training",
+        "level": "Private",
+        "for": "For artists who want the room to themselves.",
+        "body": "One artist, one instructor, built around the technique you need, at the pace your practice requires."
+      }
+    }
+  },
+  "programs": {
+    "eyebrow": "The programmes",
+    "title": "Six disciplines, one standard.",
+    "sub": "Permanent makeup and lamination, each taught at base and advanced level, in classes of three to four.",
+    "viewProgram": "View the programme",
+    "backToAll": "All programmes",
+    "keyInfoTitle": "Key information",
+    "labels": {
+      "level": "Level",
+      "duration": "Duration",
+      "seats": "Places",
+      "location": "Location",
+      "certificate": "Certificate",
+      "model": "Live model",
+      "language": "Language"
+    },
+    "values": {
+      "seats": "Maximum 3-4 artists",
+      "certificate": "Included on completion",
+      "model": "Included where the course schedules one"
+    },
+    "promise": {
+      "eyebrow": "The promise",
+      "title": "You leave able to perform the treatment.",
+      "body": "Not a demonstration you watched. The theory behind the technique, guided practice under correction, work on a live model where the course schedules one, and support that continues after the room empties."
+    },
+    "forWho": {
+      "eyebrow": "Who it is for",
+      "title": "Two ways in.",
+      "baseLabel": "Base level",
+      "base": "Artists starting this discipline from the beginning. No prior experience in the technique is assumed, and the course is built to take you from the theory to a finished result.",
+      "advancedLabel": "Advanced level",
+      "advanced": "Artists already working who want the technique corrected and the standard raised. You bring your practice; the course refines it."
+    },
+    "notFor": {
+      "title": "Who it is not for",
+      "items": {
+        "quick": "Anyone looking for a certificate without the practice behind it.",
+        "broad": "Anyone wanting a general introduction to beauty. This is one discipline, taught in depth.",
+        "passive": "Anyone who would rather watch than be corrected. The practice is the course."
+      }
+    },
+    "mastery": {
+      "eyebrow": "What you will master",
+      "title": "The technique, in the order it is built."
+    },
+    "curriculum": {
+      "eyebrow": "Curriculum",
+      "title": "What the days hold.",
+      "day": "Day"
+    },
+    "included": {
+      "eyebrow": "What is included",
+      "title": "Everything the course carries."
+    },
+    "scarcity": {
+      "eyebrow": "Availability",
+      "title": "Places are limited by design.",
+      "body": "Three to four artists per course. The class size is what makes individual correction possible, which is also why places go quickly."
+    },
+    "instructor": {
+      "eyebrow": "Your instructor",
+      "title": "You are taught by Amira, not by an assistant."
+    },
+    "work": {
+      "eyebrow": "The work",
+      "title": "The standard you are training towards.",
+      "sub": "Treatments photographed in the academy's own studio. Every frame is the academy's own client work."
+    },
+    "faq": {
+      "eyebrow": "Questions",
+      "title": "Before you apply."
+    },
+    "apply": {
+      "eyebrow": "Request a place",
+      "title": "Request the details for this programme.",
+      "body": "Tell us which level you want and where you are in your practice. Amira replies with the dates, the duration and everything the course includes."
+    },
+    "meta": {
+      "description": "Professional training in {course} at Aura Academy by Amira Bechini. Base and advanced level, classes of three to four, live model where scheduled, certificate and post-course support."
+    }
+  },
+  "experience": {
+    "eyebrow": "The room",
+    "title": "Learn by doing. Improve through correction.",
+    "sub": "A small room, a live demonstration, and your own hand corrected while you work. That last part is the reason the class is capped.",
+    "items": {
+      "groups": {
+        "title": "Three to four artists",
+        "body": "The class is capped so that every artist is watched rather than simply taught."
+      },
+      "demo": {
+        "title": "Demonstration first",
+        "body": "Amira performs the technique in front of you before you are asked to perform it."
+      },
+      "practice": {
+        "title": "Guided practice",
+        "body": "You work under supervision, step by step, at the pace the technique actually needs."
+      },
+      "correction": {
+        "title": "Correction, not commentary",
+        "body": "Your hand is corrected while you work, which is the part of this craft that cannot be learned from a screen."
+      }
+    }
+  },
+  "receive": {
+    "eyebrow": "What you leave with",
+    "title": "The course ends. The support does not.",
+    "sub": "Everything below is part of every course, at both levels, without exception.",
+    "items": {
+      "small": "Small-group training, three to four artists",
+      "model": "Live model practice, where the course schedules one",
+      "feedback": "Direct correction and feedback from Amira",
+      "certificate": "Certificate on completion",
+      "support": "Post-course support",
+      "guidance": "Professional guidance once the course has ended",
+      "kit": "Professional kit, available on request",
+      "business": "The business side of the profession, taught alongside the technique"
+    }
   }
 }

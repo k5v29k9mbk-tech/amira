@@ -118,9 +118,23 @@ export function Header() {
     { href: "/faq", label: t("faq"), wide: false },
   ] as const;
 
+  /**
+   * The phone menu, and it carries one more than the bar does.
+   *
+   * `/#path` is the ladder of levels, which is the section that answers "where
+   * do I come in" and the one a returning visitor is most likely to want to
+   * reach directly. It is in the menu and not in the bar for the same
+   * arithmetic reason the results link is held back to xl: at 1024px there is
+   * no room for a sixth label in French, and a menu is a screen rather than a
+   * strip.
+   *
+   * It sits directly after the programmes, because the two are one question:
+   * what is taught, and at what level.
+   */
   const menuLinks = [
     { href: "/", label: t("home") },
     { href: "/courses", label: t("courses") },
+    { href: "/#path", label: t("pathway") },
     { href: "/#method", label: t("method") },
     { href: "/#work", label: t("work") },
     { href: "/about", label: t("about") },
@@ -271,7 +285,7 @@ export function Header() {
                 : "text-bronze-ink md:border-espresso md:bg-espresso md:text-ivory md:hover:border-bronze-ink md:hover:bg-bronze-ink"
             }`}
           >
-            {cta("availability")}
+            {cta("requestSeat")}
           </Link>
 
           {/* 45px of hit area rather than 33, and the horizontal padding is
@@ -314,10 +328,11 @@ export function Header() {
             </div>
 
             {/* Centred when it fits, scrollable when it does not, and the two
-                are not the same rule. Seven display-size lines and the action
-                beneath them come to about 660px, and a 667px handset has 599
-                once the bar is off it, so on the smallest phones this list is
-                taller than the screen it is on. `justify-center` in a
+                are not the same rule. Eight display-size lines and the action
+                beneath them come to about 730px, and a 667px handset has 599
+                once the bar is off it, so on most phones this list is now
+                taller than the screen it is on rather than only on the
+                smallest. `justify-center` in a
                 scrolling flex column is the trap here: the overflow goes off
                 the *top*, where a scrollbar cannot reach it, and the first two
                 items become unreachable. An `m-auto` child centres while there
@@ -367,7 +382,7 @@ export function Header() {
                     onClick={() => setOpen(false)}
                     className={`${btnSolid} w-full`}
                   >
-                    {cta("availability")}
+                    {cta("requestSeat")}
                   </Link>
                   <div className="mt-8">
                     <LocaleSwitcher tone="dark" />

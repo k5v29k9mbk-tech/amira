@@ -33,11 +33,20 @@ import { Reveal } from "./Reveal";
  * card: the photograph scales 4% over 1.2s. Slow enough to read as the image
  * breathing rather than as a hover state firing.
  *
+ * WHERE A ROW GOES. Each row is now a link to that discipline's own page
+ * (`/courses/<slug>`) rather than an anchor into the catalogue index. The
+ * anchors were the best the site could offer while there was one page for six
+ * courses; a reader who had decided on lip blush was sent to a list of six with
+ * lip blush scrolled into view. The programme pages are the destination the
+ * catalogue always wanted, and the index still carries all six for anyone
+ * comparing them.
+ *
  * This is a server component: it holds no state, so the catalogue ships as HTML
  * and costs the homepage no client JavaScript at all.
  */
 export function CourseSelector() {
   const t = useTranslations("catalog");
+  const p = useTranslations("programs");
 
   return (
     <ul
@@ -68,7 +77,7 @@ export function CourseSelector() {
             className="border-b border-hair last:border-b-0 lg:border-b-0"
           >
             <Link
-              href={`/courses#${course.slug}`}
+              href={`/courses/${course.slug}`}
               className="group grid gap-5 py-8 sm:grid-cols-12 sm:items-center sm:gap-8 lg:block lg:py-0"
             >
               {/* Landscape on a phone, portrait once the row splits in two and
@@ -126,11 +135,41 @@ export function CourseSelector() {
                   {t(`blurbs.${course.slug}`)}
                 </p>
 
+                {/* THE TWO CONDITIONS, UNDER THE BLURB.
+
+                    A name and a sentence is a catalogue entry. What makes it
+                    read as a programme is the practical frame around it, and the
+                    two facts that matter most to someone choosing are the ones a
+                    row has room for: how many are in the class, and whether she
+                    leaves with a certificate. Both are the academy's shared
+                    conditions, quoted from `catalog.details.*`, so the six rows
+                    cannot disagree with each other or with the programme pages.
+
+                    The value for one and the label for the other, which is not
+                    an inconsistency: "Maximum 3-4 artists" already says what it
+                    is, and "Certificate" already says everything a row needs to
+                    say about a certificate. Setting both as label plus value
+                    produced "Places Maximum 3-4 artists", which is a label
+                    colliding with a sentence. The full pair is printed properly
+                    in the key-information module on the programme page, where
+                    there is a column for each.
+
+                    A middot between them rather than two lines or two columns:
+                    at 15px in the muted grade this is one line of small print
+                    qualifying the blurb above it, and anything more structured
+                    would make six rows of specifications out of a catalogue. The
+                    duration is deliberately not here, for the reason `KeyInfo`
+                    gives: the academy has published none, and "varies" is not a
+                    fact worth a row. */}
+                <p className="mt-3 text-[14px] leading-relaxed text-mute">
+                  {p("values.seats")} · {p("labels.certificate")}
+                </p>
+
                 {/* The rule draws under the action on hover, the same gesture
                     `linkRule` makes everywhere else; it is written out here
                     because it keys off the card's hover rather than its own. */}
                 <span className="label mt-5 inline-flex items-center gap-3 border-b border-transparent pb-1 text-espresso transition-colors duration-500 ease-[var(--ease-aura)] group-hover:border-espresso">
-                  {t("viewCourse")}
+                  {p("viewProgram")}
                   <ArrowRight size={13} weight="light" className={`flip-x ${arrow}`} />
                 </span>
               </div>

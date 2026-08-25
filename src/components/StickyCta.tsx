@@ -19,12 +19,16 @@ import { btnCompact } from "@/lib/ui";
  * page is written for, the one who reads all of it, is the one it strands.
  *
  * TWO ACTIONS, NOT ONE, AND IN THIS ORDER. WhatsApp is the mark alone, on the
- * inline start; the availability request takes the rest of the bar. That is the
+ * inline start; the request for a place takes the rest of the bar. That is the
  * site's CTA hierarchy in miniature and in the right order: the conversation is
- * the smaller commitment and is offered as an icon, the date is the larger one
- * and is offered as the button. Neither is "Prenota il tuo posto", which is
- * what this bar would say if it were written by the funnel rather than for the
- * reader.
+ * the smaller commitment and is offered as an icon, the request is the larger
+ * one and is offered as the button.
+ *
+ * THE VERB. "Request a seat", not "Book now" and not "Buy". There is no price
+ * anywhere on this site, the class is capped at three or four, and Amira quotes
+ * and confirms in a conversation. Asking for a place is what actually happens,
+ * and it is also the more selective ask: a request can be declined, which is
+ * what makes it read as an application to a school rather than a checkout.
  *
  * WHY IT IS NOT THERE FROM THE FIRST PIXEL. The hero already carries both
  * actions at full size. A bar that duplicates them over the top of the opening
@@ -97,7 +101,7 @@ export function StickyCta() {
           tabIndex={shown ? 0 : -1}
           className={`${btnCompact} flex-1 bg-espresso text-ivory hover:bg-bronze-ink`}
         >
-          {t("availability")}
+          {t("requestSeat")}
         </Link>
       </div>
     </div>

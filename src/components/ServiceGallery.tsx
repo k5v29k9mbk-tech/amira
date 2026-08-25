@@ -20,20 +20,50 @@ import { stagger } from "@/lib/motion";
  * cannot show two 900px-wide faces beside each other and pretending otherwise
  * is how a before/after becomes two thumbnails nobody can read.
  *
- * WHAT IT RENDERS TODAY. The academy has supplied one aligned pair, which the
- * homepage carries; nobody has yet said which brow technique produced it, so no
- * discipline claims it here. Every slot below is therefore a plate printing the
- * filename it expects. That is deliberate and it is the honest state of the
- * page: an empty gallery says the academy has no results, and a fabricated one
- * would say something worse. A plate says a photograph is coming and names it.
+ * WHAT IT RENDERS TODAY: NOTHING, AND THAT IS A CHANGE WORTH EXPLAINING.
  *
- * The moment `ready` is set on a pair in lib/service-gallery.ts, the plates
- * become photographs and nothing else on the page moves: the frames already
- * hold their ratio, so there is no layout shift when the images land.
+ * The academy has supplied one aligned pair, which the homepage carries; nobody
+ * has yet said which brow technique produced it, so no discipline claims it
+ * here. No pair in `lib/service-gallery.ts` is `ready`, so this component
+ * returns null and the catalogue closes up around it.
+ *
+ * It used to render a plate per empty slot, printing the exact filename that
+ * slot was waiting for. The reasoning was good and is preserved where it
+ * belongs: a placeholder reading "image here" tells the person filling it
+ * nothing, and one reading `microblading-02-before-01.jpg` is simultaneously
+ * the instruction, the filename and the sort order, so a folder of shoot
+ * photographs can be renamed against the page itself.
+ *
+ * What that argument does not survive is the page being public. Six
+ * disciplines, two pairs each, two frames a pair is twenty four empty boxes on
+ * the catalogue, each printing an internal file path, on the page a visitor
+ * reaches immediately after being told this is a premium professional
+ * education. It does not read as a site awaiting photography. It reads as an
+ * unfinished site, and it is the single loudest thing on the route.
+ *
+ * The authoring aid was also solving the wrong half of the problem. The slot
+ * names are useful to whoever is renaming files; they are not useful to a
+ * prospective student, and she is who the page is for. They now live in
+ * `lib/service-gallery.ts`, which is where someone renaming files is already
+ * working, and the README's "Still missing from the academy" section points at
+ * them.
+ *
+ * This also puts the component back in line with every other conditional
+ * surface on the site: `Testimonial` renders nothing without consented quotes,
+ * the before/after list renders nothing without a pair, every WhatsApp
+ * affordance renders nothing without a number, and `posterOffHome` stands a
+ * frame down rather than printing an empty one. Absent until real is the
+ * house rule; this was the one place that broke it.
+ *
+ * Set `ready: true` on a pair once both files are in `public/brand/services/`
+ * and that pair appears here. Nothing else changes: the frames hold their own
+ * ratio, so the images land with no layout shift.
  */
 export function ServiceGallery({ slug, name }: { slug: string; name: string }) {
   const t = useTranslations("catalog.gallery");
-  const pairs = serviceGallery[slug];
+  // Only pairs whose two files actually exist. An unready pair is not rendered
+  // in any form, and a discipline with no ready pairs contributes nothing.
+  const pairs = serviceGallery[slug]?.filter((pair) => pair.ready);
   if (!pairs?.length) return null;
 
   return (
@@ -55,28 +85,13 @@ export function ServiceGallery({ slug, name }: { slug: string; name: string }) {
                   className="relative w-full overflow-hidden bg-paper"
                   style={{ aspectRatio: galleryRatio }}
                 >
-                  {pair.ready ? (
-                    <Image
-                      src={src}
-                      alt={`${name}, ${label}`}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 45vw"
-                      className="object-cover"
-                    />
-                  ) : (
-                    /* The plate. A hairline, the slot's own filename in the
-                       mono face the page already uses for figures, and the
-                       word the frame will carry when it is filled. It is
-                       deliberately quiet: a placeholder that shouts is one
-                       that ships to production by accident. */
-                    <span className="absolute inset-0 flex flex-col items-center justify-center gap-3 border border-hair px-4 text-center">
-                      <span className="label text-mute">{label}</span>
-                      <span className="font-mono text-[11px] leading-relaxed tracking-[0.08em] text-taupe">
-                        {src.replace(/^\//, "")}
-                      </span>
-                      <span className="label text-[10px] text-taupe">{t("pending")}</span>
-                    </span>
-                  )}
+                  <Image
+                    src={src}
+                    alt={`${name}, ${label}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 45vw"
+                    className="object-cover"
+                  />
                 </div>
                 <figcaption className="label mt-3 text-mute">{label}</figcaption>
               </figure>

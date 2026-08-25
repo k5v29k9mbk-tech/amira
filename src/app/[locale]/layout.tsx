@@ -52,6 +52,35 @@ const CLIENT_NAMESPACES = [
   "success", // BeforeAfter
   "work", // WorkGallery
   "contact", // ContactForm
+  /**
+   * ContactForm, for the subject line only.
+   *
+   * A visitor who presses "request a seat" on a programme page arrives at
+   * /contact with `?course=<slug>`, and the form fills its subject with that
+   * discipline's name in the language she is reading. The name is a
+   * translation, so the namespace has to reach the client for the form to know
+   * it.
+   *
+   * THE COST, STATED HONESTLY, because this list is the one place on the site
+   * where adding a line has a weight. `catalog` is the largest namespace here:
+   * six course names, six blurbs, the family headings and the shared
+   * conditions, on the order of two kilobytes of JSON per language before
+   * compression, and it now ships on every route rather than none. That is
+   * paid for one input on one page.
+   *
+   * It is still the right trade, and the alternatives are worse. Passing the
+   * localised name through the query string means reflecting arbitrary text
+   * from a URL into a field that is posted to a real inbox, which is exactly
+   * the thing the slug is validated to prevent. Reading the parameter on the
+   * server makes /contact dynamic at request time, so a static page becomes a
+   * render on every visit to save a kilobyte. And splitting the namespace to
+   * ship only `catalog.courses` would be a fork of the catalogue maintained by
+   * hand.
+   *
+   * If this list ever needs trimming, this is the first line to look at: the
+   * feature it pays for is a convenience, not a function.
+   */
+  "catalog", // ContactForm subject prefill
 ] as const;
 
 export function generateStaticParams() {

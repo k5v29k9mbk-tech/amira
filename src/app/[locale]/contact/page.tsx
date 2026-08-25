@@ -143,6 +143,14 @@ export default async function ContactPage({
             </div>
           </div>
 
+          {/* No Suspense boundary, deliberately. `ContactForm` prefills its
+              subject line from `?course=` when a visitor arrives from a
+              programme page, and the hook that would normally read that
+              (`useSearchParams`) forces the component out of the static shell
+              and into a boundary, which would leave this page prerendering a
+              placeholder where its form should be. It reads the query in an
+              effect instead. The form is server rendered, whole, exactly as it
+              was. The reasoning is at the top of that file. */}
           <div className="lg:col-span-6 lg:col-start-7">
             <ContactForm />
           </div>

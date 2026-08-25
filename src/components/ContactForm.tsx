@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { courses } from "@/lib/courses";
 import { btnSolid, field, fieldLabel } from "@/lib/ui";
 
 type State = "idle" | "sending" | "sent" | "error";
@@ -26,10 +27,56 @@ type State = "idle" | "sending" | "sent" | "error";
  *
  * The state lives in a polite live region. Sending, failing and succeeding were
  * all visual only, so a screen reader pressed send and heard nothing at all.
+ *
+ * THE COURSE ARRIVES WITH THE VISITOR. Every "request a seat" on a programme
+ * page carries `?course=<slug>`, and the subject field opens with that
+ * discipline's name already in it, in the language the visitor is reading. It
+ * is the difference between a form that asks a decided reader to type out what
+ * she has just spent four minutes reading about, and one that has been
+ * listening.
+ *
+ * WHY IT IS AN EFFECT AND NOT `useSearchParams`, WHICH IS THE INTERESTING PART.
+ * The obvious implementation reads the hook and passes `defaultValue`. It costs
+ * the page its form. `useSearchParams` opts its component out of static
+ * rendering, so it has to sit inside a Suspense boundary, and what gets
+ * prerendered into the static shell of /contact is then the boundary's
+ * fallback: the enquiry form, on the page whose entire job is the enquiry form,
+ * is absent from the HTML until JavaScript has run. That is worse for a crawler
+ * and worse for anyone whose script fails, and it buys nothing the effect
+ * cannot do.
+ *
+ * Reading `window.location.search` after mount keeps the whole form server
+ * rendered and makes the prefill exactly what it should be: an enhancement.
+ * With no JavaScript the form is a working form with an empty subject line,
+ * which is where it started.
+ *
+ * The field is written through the ref rather than held in state for the same
+ * reason `defaultValue` would have been right: it is prefilled and then hers. A
+ * reader who followed the lip blush page and has decided on powder brows types
+ * over it, and nothing fights her for the value.
+ *
+ * The slug is validated against the catalogue before it is used, so the field
+ * cannot be filled from the query string with arbitrary text. That matters more
+ * than it looks: the value is posted to a real inbox, and an unchecked
+ * parameter reflected into a form is how a link becomes a way to put words in
+ * someone else's message.
  */
 export function ContactForm() {
   const t = useTranslations("contact");
+  const catalog = useTranslations("catalog");
   const [state, setState] = useState<State>("idle");
+  const subject = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get("course");
+    // Only a slug the catalogue actually publishes. Anything else is ignored
+    // and the field stays as the server rendered it, which is empty.
+    if (!slug || !courses.some((c) => c.slug === slug)) return;
+    const el = subject.current;
+    // Never overwrite something the visitor has already typed: the effect runs
+    // after paint, and a fast typist can be ahead of it.
+    if (el && !el.value) el.value = catalog(`courses.${slug}`);
+  }, [catalog]);
   const form = useRef<HTMLFormElement>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -105,7 +152,13 @@ export function ContactForm() {
         <label className={fieldLabel} htmlFor="subject">
           {t("subject")}
         </label>
-        <input id="subject" name="subject" maxLength={160} className={field} />
+        <input
+          ref={subject}
+          id="subject"
+          name="subject"
+          maxLength={160}
+          className={field}
+        />
       </div>
 
       <div className="grid gap-2">
