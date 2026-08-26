@@ -1,307 +1,199 @@
 import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
-import { arrow, btnSolid, displayHero, linkRule } from "@/lib/ui";
+import {
+  arrow,
+  btnSolidLight,
+  displayHero,
+  linkRuleLight,
+  shell,
+} from "@/lib/ui";
 import { dur, heroBeat, stagger } from "@/lib/motion";
-import { heroMedia } from "@/lib/media";
-import { MediaFrame } from "./MediaFrame";
+import { HeroFilm } from "./HeroFilm";
 import { HeroBeat, HeroCopy } from "./HeroChoreography";
 import { MaskReveal } from "./MaskReveal";
 import { Magnetic } from "./Magnetic";
 
 /**
- * The opening composition: Amira, and the case for learning from her.
+ * THE FIRST SCREEN: the academy's film, full bleed, with the title card set
+ * over it.
  *
- * WHAT CHANGED, AND WHY IT IS A CHANGE OF SUBJECT RATHER THAN OF STYLE.
+ * RESTORED, NOT REDESIGNED. This is the composition the site carried until
+ * `929d7d0`, "Step 1: rebuild the hero around Amira", which replaced the footage
+ * with a studio portrait and turned the screen into an ivory split, copy on the
+ * left and photograph on the right. Everything below is that earlier screen put
+ * back: the same centred column, the same order of beats, the same figure band
+ * under the supporting line, the same pair of light-ground actions, and
+ * `HeroFilm` behind all of it. What is not restored is the copy, which is
+ * today's; see the note at the eyebrow.
  *
- * This screen was the academy's classroom footage full bleed, with a centred
- * title card set on it: a statement, a line, two actions, symmetrical about the
- * middle of the frame. As a title card it worked. As the first screen of a
- * personal brand it answered the wrong question. A visitor arriving cold has
- * five in this order, and she has them in about three seconds:
+ * WHICH FILM, AND HOW IT WAS IDENTIFIED, because two different video heroes
+ * existed and only one of them is this one. `heroFilmMedia` pointed at the
+ * pigment macro until the repositioning (`c502264`) swapped it for the classroom
+ * footage. The two eras are told apart by the screen itself rather than by the
+ * clip: the figure band sat *inside* the hero only while the pigment cut played,
+ * and it had already moved out to `AuthorityStrip` by the time the classroom
+ * footage arrived. A reference showing three figures over the video is therefore
+ * necessarily the pigment era, and so is a bar reading "beauty education", which
+ * is the wording that same commit replaced. Both details agree, so this screen
+ * is the pigment one and `lib/media` points back at it.
  *
- *   who is this -> why should I believe her -> what does she teach ->
- *   how good is her work -> how do I learn from her
+ * THE GROUND IS ESPRESSO AND THE TYPE IS IVORY, which is the whole reason the
+ * scrim in `HeroFilm` exists: four layers of the brand's own near-black, pooled
+ * in the middle of the frame where the words are and released at the corners, so
+ * the darkness is concentrated where the reading happens and the picture stays a
+ * picture everywhere else. It is unchanged from the version that shipped with
+ * this screen, byte for byte, and it is what keeps white type legible over a
+ * moving image without flattening the image into a grey rectangle.
  *
- * A wide shot of a room answers the third and leaves the first unanswered,
- * because the person teaching is thirty pixels tall and facing a flipchart. The
- * screen now opens on her: a studio portrait at half the width of the display,
- * running the full height, with her name and her three titles set at its foot
- * the way a magazine credits the subject of a photograph. The first question is
- * answered before a word is read.
+ * THE COMPOSITION IS CENTRED AND IT CANNOT SPEND WHATEVER HEIGHT IT LIKES. The
+ * section is the full small viewport, but the fixed bar owns the top of it and
+ * the scroll cue the bottom, so the padding clears both and the centring happens
+ * inside the padding box rather than the border box. Every gap in the column is
+ * one of the five `--hero-air-*` steps declared on `.hero` in globals.css: a
+ * centred hero grows past the fold in both directions at once, so the intervals
+ * are clamped against viewport height rather than set, and the ratios between
+ * them hold at every screen because they are struck from the same figure.
  *
- * THE COMPOSITION IS ASYMMETRIC, AND THAT IS THE POINT. The previous screen was
- * centred, and the reasoning for it was sound while the ground was footage with
- * no quiet side to hang type on. A portrait on a seamless sweep is the opposite
- * case: it has one subject, one direction of gaze, and a natural axis down the
- * middle of the frame. Type on one side and the person on the other is how a
- * fashion house opens, and it is the arrangement that lets both be large.
- *
- * The ground is ivory rather than near black. The portrait's own sweep is a
- * warm cream, so the page and the photograph share a ground and the frame reads
- * as a plate on the page rather than as a window cut into it. It also means the
- * type is espresso on ivory, which is the site's reading pair, at display size,
- * with no scrim between it and the eye.
- *
- * WHAT THE THREE FIGURES ARE DOING BACK ON THIS SCREEN. They were moved out to
- * a credentials band of their own, on the argument that a statistics table
- * inside a title card is a brochure. That argument holds for a table. It does
- * not hold for a masthead, which is what this is: a hairline, three figures on
- * one baseline, and one sentence under the third. The brief for this brand is
- * that a visitor should understand why to believe her within seconds, and the
- * evidence cannot be two screens further down for that to be true.
- *
- * The third figure carries the weight, deliberately. Eight years and a hundred
- * and fifty students are credentials any established academy could print; three
- * to four students to a class is the one that is a promise about what happens
- * in the room, and it is the reason the training costs what it costs. So it is
- * the only one set in bronze and the only one with a line under it, and the
- * line says the thing the number implies rather than the number again.
- *
- * MOTION. Unchanged in kind, and it is the site's own score: the bar, then the
- * headline line by line through apertures, then the supporting line, the
- * figures and the actions fading up, at the intervals in `heroBeat`. The
- * portrait settles from 1.03 over 1.4s, which is the same `settle` every
- * intentional crop on the site uses. Nothing here bounces, slides or parallaxes.
- *
- * THE ORDER IN THE DOCUMENT IS THE ORDER ON A PHONE, and the grid rearranges it
- * for the desktop rather than the other way round. Copy, portrait, figures: a
- * phone reads the statement, meets the action, then meets her, then the
- * evidence. From lg the portrait takes the whole inline end of the screen
- * across both rows and the figures sit under the copy, which is why the grid
- * declares two rows and the portrait spans them. There is one portrait element,
- * not a desktop copy and a mobile copy: a hidden `next/image` still resolves
- * its srcset and still downloads.
+ * THE REVEAL IS SPLIT, ON PURPOSE. The bar and the two lines of the statement
+ * open through apertures; the supporting line, the figures and the actions fade
+ * up. An aperture is the expensive-looking reveal, and used six times on one
+ * screen it stops being an event, so it is spent on the type that carries the
+ * argument and withheld from the type that supports it. The intervals are
+ * `heroBeat` in lib/motion.ts rather than numbers typed here, because the only
+ * thing that makes a sequence read as choreography is the spacing between its
+ * beats, and that cannot be tuned when it is scattered across two components.
  */
+
+/**
+ * The three marks the academy can prove. The order is deliberate: what has been
+ * done, to how many, under what constraint. Values are quoted from the client's
+ * document and are never rounded up here.
+ */
+const facts = ["years", "students", "classes"] as const;
+
 export async function Hero() {
   const t = await getTranslations("hero");
-  const inst = await getTranslations("instructor");
-
-  /* The three marks the academy can prove, in the order a visitor weighs them.
-     Values are quoted from the client's document and never rounded up here. */
-  const facts = ["years", "students", "classes"] as const;
 
   return (
-    <section className="hero relative isolate overflow-hidden bg-ivory">
-      <div className="mx-auto grid w-full max-w-[1920px] lg:min-h-[100svh] lg:grid-cols-[1.1fr_0.9fr] lg:grid-rows-[1fr_auto]">
-        {/* THE COPY.
-            Bottom aligned on a phone so the block sits against the portrait
-            beneath it rather than floating in the middle of a tall screen, and
-            optically centred from lg where it shares the height with the
-            photograph. The top padding clears the fixed bar at every width. */}
-        <HeroCopy className="flex flex-col justify-end px-6 pt-[clamp(7rem,17vh,9rem)] pb-[var(--hero-air-md)] md:px-10 lg:col-start-1 lg:row-start-1 lg:justify-center lg:pb-0 lg:pe-12 lg:ps-16 xl:pe-16 xl:ps-24">
-          {/* The academy, what it does, where. Three facts on one line, balanced
-              so a phone breaks it into two even lines rather than one full line
-              and an orphan. */}
-          <MaskReveal onMount delay={heroBeat.bar} duration={dur.base}>
-            <p className="label text-balance leading-[1.7] text-bronze-ink">
-              {t("eyebrow")}
-            </p>
-          </MaskReveal>
+    <section className="hero relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-espresso pt-[clamp(96px,12vh,112px)] pb-[clamp(56px,7vh,88px)] text-ivory">
+      <HeroFilm />
 
-          {/* Two blocks, two apertures, one beat apart. The statement is set as
-              the two lines the academy wrote separately, so nothing is split by
-              code and nothing can split differently in Italian, French or
-              Arabic. The measure is the guard against a display line running
-              the width of a laptop. */}
-          <h1
-            /* 19ch clears "Build your career." and its three translations on
-               one line; the size cap in `displayHero` is what actually holds
-               them there, and this only stops the statement running the full
-               width of a very wide column. */
-            className={`${displayHero} hero-statement mt-[var(--hero-air-sm)] max-w-[19ch] text-balance`}
-          >
-            <MaskReveal onMount delay={heroBeat.headline} duration={dur.slow}>
-              <span className="block">{t("titleA")}</span>
-            </MaskReveal>
-            {/* A real space between the two blocks. They are siblings with no
-                whitespace between them, so anything that reads the document
-                rather than paints it, a screen reader, a crawler, a share
-                preview, would otherwise receive the two sentences as one token. */}{" "}
-            <MaskReveal
-              onMount
-              delay={heroBeat.headline + stagger.line}
-              duration={dur.slow}
-            >
-              <span className="block">{t("titleB")}</span>
-            </MaskReveal>
-          </h1>
+      <HeroCopy className={`${shell} flex w-full flex-col items-center text-center`}>
+        {/* THE BAR. Three facts joined by middots: the academy, what it does,
+            where.
 
-          {/* The supporting line, and it is the one piece of copy on this screen
-              that has a job beyond tone: it names her, and it says what the
-              student actually gets. A visitor who reads the headline and this
-              line knows she would be taught permanent makeup by Amira Bechini
-              herself. Held to a measure visibly inside the headline's, so it
-              reads as subordinate rather than as a paragraph stuck to it. */}
-          <HeroBeat delay={heroBeat.sub}>
-            <p className="mt-[var(--hero-air-md)] max-w-[46ch] text-[16px] leading-[1.75] text-mute md:text-[17px]">
-              {t("sub")}
-            </p>
-          </HeroBeat>
+            THE COPY HERE IS TODAY'S, NOT THE ONE THIS SCREEN SHIPPED WITH, and
+            that is a decision rather than an oversight. This line read
+            "Professional beauty education" when the composition below was last
+            on the site; `c502264`, "Reposition as a professional PMU education
+            brand", changed it to "PMU education" across all four catalogues and
+            changed `positioning.academy` to match. Restoring the layout is a
+            layout change; reverting that string would quietly undo a brand
+            decision the rest of the site still speaks in. The key is
+            `hero.eyebrow` and it is one line in four files if the academy wants
+            the older wording back.
 
-          {/* Two actions, one decision. The catalogue is the filled button
-              because it is what a visitor who is already interested wants; her
-              story is the text link beside it, for the visitor who is not
-              convinced yet and should be given the person before the price
-              list. Neither is a WhatsApp thread: the bar carries that at every
-              width above md and the standing bar carries it on a phone.
+            `text-balance` is load bearing. The line is longer than a phone line
+            at every width below about 640, so it always wraps and the only
+            question is where: left to the browser it broke wherever the last
+            word stopped fitting, which put "· ITALY" alone under a full line. A
+            label set as one long line and one orphan reads as type that
+            overflowed; the same words balanced over two even lines read as a bar
+            that was set. */}
+        <MaskReveal onMount delay={heroBeat.bar} duration={dur.base}>
+          <p className="label text-balance leading-[1.7] text-bronze-hi">
+            {t("eyebrow")}
+          </p>
+        </MaskReveal>
 
-              The primary takes the full width on a phone, where a 230px button
-              floated against the edge of a 390px screen reads as an
-              afterthought, and the pair sit inline from sm. */}
-          <HeroBeat delay={heroBeat.actions}>
-            <div className="mt-[var(--hero-air-lg)] flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-9">
-              {/* The one control on the first screen that leans. Spending the
-                  gesture once, on the primary, is what keeps it a detail rather
-                  than a behaviour every button on the site performs. */}
-              <Magnetic className="w-full sm:w-auto">
-                <Link href="/courses" className={`${btnSolid} w-full sm:w-auto`}>
-                  {t("primary")}
-                </Link>
-              </Magnetic>
-              <Link href="/about" className={linkRule}>
-                {t("meetAmira")}
-                <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
-              </Link>
-            </div>
-          </HeroBeat>
-        </HeroCopy>
+        {/* THE STATEMENT. Two blocks, two apertures, one beat apart.
 
-        {/* THE PORTRAIT.
-            Full bleed to the inline end of the screen and the full height of
-            the composition from lg; a plate under the copy below it.
-
-            EVERY FRAME BELOW lg IS PORTRAIT OR SQUARE, AND THAT IS A HARD RULE
-            RATHER THAN A PREFERENCE. The photograph is square, so a frame that
-            is taller than it is wide crops the width and loses beige, while a
-            frame that is wider than it is tall crops the height and takes the
-            top of her head with it. This carried `sm:aspect-[3/2]` for a moment
-            and the arithmetic is worth recording: at 768px that frame is 768 by
-            512, `cover` scales the square to 768, and 128px comes off the top,
-            which is source pixel 171 downward. Her head starts at pixel 55. The
-            entire head was cut on every tablet.
-
-            So: 4:5 on a phone, square from sm, where the whole photograph
-            clears the frame with nothing cropped at all, and free from lg where
-            the frame is a tall column and the crop is horizontal again.
-
-            THE 76px INSET AT lg IS THE HEIGHT OF THE FIXED BAR, AND IT BUYS TWO
-            THINGS. Her head starts about five percent down the source, so in a
-            frame that runs to the top of the screen her hair sits under the
-            navigation and the booking button: type over the subject, which is
-            the one thing this composition was asked not to do. Starting the
-            frame at the foot of the bar clears her by a comfortable margin and
-            leaves a clean band of the page's own ivory for the bar to sit on.
-
-            It also loosens the crop, which is the part worth knowing. A shorter
-            frame at the same width is closer to square, so `cover` scales the
-            photograph down less and takes less off the sides: at 1440 by 900 the
-            inset drops the horizontal crop from about 250 pixels to about 175,
-            and what comes back is the beige around her shoulders.
-
-            The aspect is dropped entirely at lg (`lg:aspect-auto lg:h-full`) so
-            the frame takes whatever height the copy column settles at, which is
-            what makes the photograph run edge to edge top and bottom.
-
-            NOTHING IS PAINTED OVER THIS PHOTOGRAPH. It carried a scrim and her
-            name at its foot, which is the conventional way to credit a hero
-            image and was the wrong thing here twice over: the gradient put a
-            dark band across the warm beige the picture is built on, and the
-            credit printed her name and titles a second time within a screen of
-            the section that exists to carry them. The name is now the
-            `Signature` band directly below, where it is the first and only
-            place her name is set. The photograph is clean. */}
-        {/* Two elements, and the outer one is not decorative. `MediaFrame`
-            renders a `fill` image, which is absolutely positioned against the
-            padding box of its nearest positioned ancestor: padding on that
-            ancestor is inside the box the image fills, so it does nothing at
-            all. The inset has to be on a wrapper that is NOT the positioned
-            element, which is what this is. */}
-        <div className="w-full lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:h-full lg:pt-[76px]">
-          <div className="relative aspect-[4/5] w-full sm:aspect-square lg:aspect-auto lg:h-full">
-            <MediaFrame
-              media={{ ...heroMedia, alt: inst("portrait") }}
-              priority
-              eager
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              imageClassName="settle"
-            />
-          </div>
-        </div>
-
-        {/* THE PROOF.
-            A masthead band rather than a table: one hairline over three
-            figures, no rules between them and no box around any of them. The
-            three hang from the top of the band rather than sitting on a common
-            baseline, because the third is set a size larger than its neighbours
-            and aligning the baselines instead would push its label out of the
-            row. Three columns from 320px up, because set inline the three
-            pairs are about 520px of type against 342 of gutter and they break
-            one to a line, which turns a masthead into a list.
-
-            The labels are set smaller and tighter than the house label below md
-            (`.hero .fact-label` in globals.css) for a reason that is arithmetic
-            rather than taste: at 320px a column is 82px and "EXPERIENCE" alone
-            is 86 at house tracking, so the longest word in the row could not fit
-            the column it was given. */}
-        <HeroBeat
-          delay={heroBeat.facts}
-          className="px-6 pt-[var(--hero-air-lg)] pb-[var(--hero-air-xl)] md:px-10 lg:col-start-1 lg:row-start-2 lg:pt-0 lg:pb-[clamp(2.5rem,6vh,4.5rem)] lg:pe-12 lg:ps-16 xl:pe-16 xl:ps-24"
+            It is set as the two lines the academy wrote separately, so nothing
+            is split by code and nothing can split differently in Italian, French
+            or Arabic. The measure is lifted below sm because 15ch of Cormorant
+            at the floor size is about 330px against a 390px phone's 342 of
+            gutter to gutter, and the cap was throwing the last word of the
+            Italian and the French onto a third line to save nothing. */}
+        <h1
+          className={`${displayHero} hero-statement mt-[var(--hero-air-sm)] max-w-[19ch] text-balance sm:max-w-[15ch]`}
         >
-          <dl className="grid grid-cols-3 items-start gap-x-4 border-t border-hair pt-[var(--hero-air-md)] sm:gap-x-8">
+          <MaskReveal onMount delay={heroBeat.headline} duration={dur.slow}>
+            <span className="block">{t("titleA")}</span>
+          </MaskReveal>
+          {/* A real space between the two blocks, and it is not decorative. They
+              are siblings with no whitespace between them, so everything that
+              reads the document rather than paints it, copy and paste, a screen
+              reader, a crawler, a share preview, received the two sentences as
+              one token. A whitespace-only text node between two block boxes
+              paints nothing, so the composition is unchanged and the sentence is
+              a sentence again. */}{" "}
+          <MaskReveal
+            onMount
+            delay={heroBeat.headline + stagger.line}
+            duration={dur.slow}
+          >
+            <span className="block">{t("titleB")}</span>
+          </MaskReveal>
+        </h1>
+
+        {/* THE SUPPORTING LINE, and every choice in it is a step down from the
+            statement rather than a smaller version of it. The measure is 34ch on
+            a phone against the statement's 19, so it sits visibly inside it and
+            reads as subordinate; the grade is 75% ivory, which still clears AA
+            over the pool the scrim puts exactly here, and is the difference
+            between two things shouting and one speaking. */}
+        <HeroBeat delay={heroBeat.sub}>
+          <p className="mx-auto mt-[var(--hero-air-md)] max-w-[34ch] text-[15px] leading-[1.75] text-ivory/75 sm:max-w-[42ch] sm:text-[16px] md:text-[18px]">
+            {t("sub")}
+          </p>
+        </HeroBeat>
+
+        {/* THE FIGURE BAND, back on the first screen and back inside the title
+            card, between the supporting line and the actions.
+
+            THE THIRD FIGURE IS NOT THE SAME KIND OF THING AS THE OTHER TWO, and
+            the typography says so. Eight years and a hundred and fifty students
+            are records: they say what has already happened, and any established
+            academy could print a version of them. Three to four to a class is a
+            constraint accepted on every course the academy runs, and it is the
+            only one of the three that tells a visitor what will happen to her,
+            in the room, on the day. It gets bronze instead of ivory and a step
+            up in size, and nothing else. Two quiet differences read as emphasis;
+            a rule around it or a fill behind it would read as a card, which is
+            the thing this band exists not to be.
+
+            Rules top and bottom in `hair-dark` rather than a box: on a moving
+            picture a bordered panel is a hole cut in the footage, and two
+            hairlines are a masthead. */}
+        <HeroBeat delay={heroBeat.facts} className="w-full">
+          <dl className="mx-auto mt-[var(--hero-air-lg)] grid w-full max-w-[34rem] grid-cols-3 items-start gap-x-3 border-y border-hair-dark py-[var(--hero-air-sm)] sm:gap-x-6 md:gap-x-8">
             {facts.map((k) => {
-              /* THE THIRD FIGURE IS NOT THE SAME KIND OF THING AS THE OTHER
-                 TWO, and the typography says so.
-
-                 Eight years and a hundred and fifty students are records: they
-                 say what has already happened, and any established academy
-                 could print a version of them. Three to four to a class is a
-                 constraint the academy accepts on every course it runs, which
-                 is the only one of the three that tells a visitor what will
-                 happen to her, in the room, on the day.
-
-                 It gets three marks and no box: bronze rather than espresso, a
-                 step up in size, and a hairline of its own above the figure
-                 that the other two do not have. Three quiet differences read as
-                 emphasis; one loud one, a rule around it or a fill behind it,
-                 would read as a card, which is the thing this band exists to
-                 not be. */
               const lead = k === "classes";
               return (
                 <div
                   key={k}
-                  className="relative flex flex-col gap-[var(--hero-air-xs)]"
+                  className="flex flex-col items-center gap-[var(--hero-air-xs)]"
                 >
-                  {/* The band's hairline, turned bronze for the width of this
-                      column and nothing else.
-
-                      Absolutely positioned onto the rule rather than added as a
-                      border on the cell, and that is the whole of the fix: a
-                      `border-t` with padding under it made the third column a
-                      taller box than its neighbours, so its figure sat lower
-                      than the other two and the shared baseline the row is
-                      built on was gone. The offset is the band's own top
-                      padding plus the rule, so the mark lands exactly on the
-                      hairline at every breakpoint the clamp moves it to. */}
-                  {lead ? (
-                    <span
-                      aria-hidden
-                      style={{ top: "calc((var(--hero-air-md) + 1px) * -1)" }}
-                      className="absolute inset-x-0 h-px bg-bronze"
-                    />
-                  ) : null}
                   <dt
                     className={`display leading-none ${
                       lead
-                        ? "text-[2rem] text-bronze-ink md:text-[2.75rem]"
-                        : "text-[1.75rem] text-espresso md:text-[2.25rem]"
+                        ? "text-[1.75rem] text-bronze-hi md:text-[2rem]"
+                        : "text-[1.5rem] text-ivory md:text-[1.75rem]"
                     }`}
                   >
                     {t(`facts.${k}.value`)}
                   </dt>
+                  {/* `fact-label` is a rule in globals.css, not three utilities
+                      here, and it has to be: `.label` is declared unlayered and
+                      every Tailwind utility lives inside `@layer utilities`, so a
+                      tracking or size class written on a `.label` element is
+                      discarded before source order is even considered. At 320px
+                      a column of this row is 82px and "EXPERIENCE" is 86 at the
+                      house tracking, which is the whole reason the rule exists. */}
                   <dd
                     className={`label fact-label text-balance leading-[1.45] ${
-                      lead ? "text-espresso" : "text-mute"
+                      lead ? "text-ivory" : "text-mute-dark"
                     }`}
                   >
                     {t(`facts.${k}.label`)}
@@ -311,17 +203,53 @@ export async function Hero() {
             })}
           </dl>
 
-          {/* The sentence the third figure implies, said once, and tied to it
-              rather than to the band: a short bronze rule on the inline start,
-              the same colour as the figure it belongs to, so the eye connects
-              the two without the note having to sit inside a narrow column and
-              break the shared baseline the row is built on. */}
-          <p className="mt-[var(--hero-air-md)] flex max-w-[46ch] items-baseline gap-3 text-[14px] leading-relaxed text-mute md:text-[15px]">
-            <span aria-hidden className="mt-2 h-px w-6 shrink-0 bg-bronze" />
+          {/* The sentence the third figure implies, said once and tied to it by a
+              bronze rule of the same colour, so the eye connects the two without
+              the note having to sit inside a narrow column and break the shared
+              baseline the row is built on. Centred, because this composition is. */}
+          <p className="mx-auto mt-[var(--hero-air-sm)] flex max-w-[40ch] items-baseline justify-center gap-3 text-[14px] leading-relaxed text-mute-dark md:text-[15px]">
+            <span aria-hidden className="mt-2 h-px w-6 shrink-0 bg-bronze-hi" />
             {t("classesNote")}
           </p>
         </HeroBeat>
-      </div>
+
+        {/* THE ACTIONS. The catalogue is the filled button because it is what a
+            visitor who is already interested wants; her story is the text link
+            beside it, for the visitor who is not convinced yet and should be
+            given the person before the price list. Neither is a WhatsApp thread:
+            the bar carries that above md and the standing bar carries it on a
+            phone.
+
+            Both are the light-ground pair. On the film an espresso button is a
+            hole cut in the footage and an espresso rule under a link is
+            invisible; `ui.ts` has carried the ivory pair for the dark sections
+            since before this screen needed it.
+
+            The primary takes the full width on a phone, where a 230px button
+            floated against the edge of a 390px screen is the one element in the
+            composition that reads as an afterthought, and it is the only thing on
+            this screen a visitor is meant to press. From sm they sit inline,
+            button then link, which is the one place this composition is not
+            symmetrical about its centre: two actions of equal weight either side
+            of the middle would be a choice between them, and there is a primary
+            here. */}
+        <HeroBeat delay={heroBeat.actions} className="w-full">
+          <div className="mt-[var(--hero-air-lg)] flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10">
+            {/* The one control on the first screen that leans. Spending the
+                gesture once, on the primary, is what keeps it a detail rather
+                than a behaviour every button on the site performs. */}
+            <Magnetic className="w-full sm:w-auto">
+              <Link href="/courses" className={`${btnSolidLight} w-full sm:w-auto`}>
+                {t("primary")}
+              </Link>
+            </Magnetic>
+            <Link href="/about" className={linkRuleLight}>
+              {t("meetAmira")}
+              <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
+            </Link>
+          </div>
+        </HeroBeat>
+      </HeroCopy>
     </section>
   );
 }

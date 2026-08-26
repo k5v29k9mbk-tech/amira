@@ -2,7 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { altLanguages } from "@/i18n/routing";
-import { closingMedia, founderMedia } from "@/lib/media";
+import { closingMedia } from "@/lib/media";
 import { beforeAfterPairs, whatsappLinkWith } from "@/lib/studio";
 import {
   arrow,
@@ -20,6 +20,7 @@ import { stagger } from "@/lib/motion";
 import { JsonLd, faqSchema } from "@/lib/seo";
 import { Hero } from "@/components/Hero";
 import { Signature } from "@/components/Signature";
+import { Artist } from "@/components/Artist";
 import { AuthorityStrip } from "@/components/AuthorityStrip";
 import { Manifesto } from "@/components/Manifesto";
 import { CourseSelector } from "@/components/CourseSelector";
@@ -33,7 +34,6 @@ import { StudentReceives } from "@/components/StudentReceives";
 import { Testimonial } from "@/components/Testimonial";
 import { Faq } from "@/components/Faq";
 import { MediaFrame } from "@/components/MediaFrame";
-import { Parallax } from "@/components/Parallax";
 import { MaskReveal } from "@/components/MaskReveal";
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
@@ -215,82 +215,42 @@ export default async function Home({
 
       <Manifesto />
 
-      {/* 02 AMIRA
+      {/* 02 THE ARTIST
           The act the rest of the page is evidence for. It continues the ivory
           block the statement opens, so it carries no rhythm of its own and lives
           on the statement's tail: the founder is the second half of the opening
           argument, not a new chapter.
 
-          Her portrait here is deliberately not the hero's. The hero has the
-          academy's own classroom footage; this is the studio frame against a
-          seamless sweep, black blazer, the brow calipers held at the collar. */}
-      <section id="amira" className={`${sectionPadBottom} scroll-mt-20 bg-ivory`}>
-        <div className={`${shell} grid items-center gap-10 lg:grid-cols-12 lg:gap-0`}>
-          <Parallax distance={12} className="lg:col-span-8">
-            <div className="relative aspect-[4/5] w-full">
-              <MediaFrame
-                media={{ ...founderMedia, alt: t("about.portrait") }}
-                sizes="(max-width: 1024px) 100vw, 58vw"
-              />
-            </div>
-          </Parallax>
+          It is a component rather than markup here, and the whole of it changed.
+          The old shape was a portrait under `Parallax` with a copy plate
+          crossing its edge, which could not carry a scroll sequence: `Parallax`
+          measures the element it is on, and the moment that element is pinned
+          its own rect stops moving and the drift dies exactly where the
+          composition should be at its most alive. `Artist` takes one scroll
+          reading on the section and strikes every layer from it, which is a
+          client concern and cannot live in this file at all.
 
-          {/* The copy plate crosses the edge of the portrait rather than
-              sitting beside it. Same ground as the page, no border, no card.
-
-              `lg:relative lg:z-10` is what makes the crossing work, and without
-              it the section is broken rather than merely flat: the portrait was
-              painting over the plate, so at lg the first 80px of every line in
-              this column, including the heading, was hidden behind the
-              photograph. Parallax puts a transform on the portrait, a transform
-              makes a stacking context, and a stacking context is painted in a
-              later step than a plain in-flow sibling's background and text: DOM
-              order stops deciding, so the earlier element wins. Positioning the
-              plate puts it back in the same step, where tree order decides
-              again. Any element that has to cover a Parallax needs this. */}
-          <Reveal className="lg:relative lg:z-10 lg:col-span-4 lg:-ms-28 lg:bg-ivory lg:py-16 lg:ps-16">
-            <MaskReveal>
-              <SectionLabel n={2}>{t("sections.amira")}</SectionLabel>
-            </MaskReveal>
-            <MaskReveal delay={stagger.base} className="mt-8">
-              <h2 className={`${displaySection} max-w-[12ch]`}>
-                {t("instructor.headline")}
-              </h2>
-            </MaskReveal>
-
-            {/* THE ORDER, AND WHY IT IS THIS ONE. A quotation first: one
-                sentence at pull-quote size, hers, in quotation marks because it
-                is speech and not a heading. A visitor who reads four words of
-                this section reads the four that matter. Her name and her titles
-                follow it as the attribution, which is what they are, and the
-                paragraph sits under them as the evidence for the claim rather
-                than in front of it. Nothing here is new copy. */}
-            <blockquote className={`${displayLarge} mt-10 max-w-[24ch] text-balance`}>
-              &ldquo;{t("about.mission.quote")}&rdquo;
-            </blockquote>
-
-            {/* The attribution. A hairline, then the name at reading size and
-                the titles under it in the muted grade: the same construction the
-                signature uses, so the two moments on the page that name her are
-                recognisably the same mark. */}
-            <div className="mt-10 border-t border-hair pt-6">
-              <p className="text-[17px] text-espresso">{t("instructor.title")}</p>
-              <p className="mt-2 max-w-[34ch] text-[15px] leading-relaxed text-mute">
-                {t("instructor.role")}
-              </p>
-            </div>
-
-            <p className="mt-8 max-w-[44ch] text-[16px] leading-relaxed text-mute">
-              {t("about.story.p3")}
-            </p>
-
-            <Link href="/about" className={`${linkRule} mt-12`}>
-              {t("about.readStory")}
-              <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
+          Her photograph there is the academy's current official portrait and is
+          deliberately still not the hero's, which is the classroom footage. It
+          is also deliberately not `founderMedia`: that frame is unchanged and is
+          what the six programme pages carry, so a homepage edit does not print
+          itself across the catalogue. The reasoning for both is in `lib/media`. */}
+      {/* The seven strings the act needs, read here rather than in the
+          component: `Artist` is a client component and the namespaces it draws
+          on, `about` above all, are far too large to add to CLIENT_NAMESPACES
+          for one section. The reasoning is at the component. */}
+      <Artist
+        copy={{
+          label: t("sections.amira"),
+          statementA: t("instructor.statementA"),
+          statementB: t("instructor.statementB"),
+          bio: t("instructor.bio"),
+          name: t("instructor.title"),
+          credit: t("instructor.credit"),
+          readStory: t("about.readStory"),
+          portrait: t("instructor.portrait"),
+        }}
+      />
 
       {/* 03 THE METHOD
           The one act on the page that names something. The academy already

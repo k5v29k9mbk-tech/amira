@@ -81,54 +81,41 @@ export const introMedia = {
  */
 export const heroFilmMedia: Media = {
   /**
-   * THE CLASSROOM, BACK ON THE FIRST SCREEN.
+   * THE PIGMENT MACRO, BACK ON THE FIRST SCREEN.
    *
-   * This carried `pigment.mp4` for a while: pigment moving under a macro lens,
-   * as a ground. It was the right choice for a brand whose first screen was
-   * arguing that the work is beautiful, and it is the wrong one for a brand
-   * whose first screen is arguing that an education happens here. A macro of a
-   * treatment in progress is a treatment; a room with a teacher in it, a board
-   * behind her and students in front of her is a school, and the difference is
-   * the whole repositioning in one frame.
+   * Pigment moving under a macro lens: the one abstract clip the academy owns,
+   * 20.5 seconds, and the film this screen carried until `c502264`, the
+   * repositioning, swapped it for the classroom footage. It is restored here
+   * because the hero composition it belonged to is restored: the figure band
+   * sits inside the title card again, and that band was only ever inside the
+   * hero while this clip played. By the time `hero-class.mp4` arrived the
+   * figures had already moved out to `AuthorityStrip`, so the two eras cannot
+   * be mixed without the screen contradicting one or the other.
    *
-   * It is also the better file by every measure that matters here. The pigment
-   * clip is 464px wide against a desktop viewport three or four times that, so
-   * `cover` was enlarging it and the first screen of the site was soft. This is
-   * 1080 wide and sharp at full screen, and it has a phone cut of its own.
+   * IT IS ALSO `closingMedia`, and that is the original arrangement rather than
+   * an accident: this same file opened and closed the page for the whole of the
+   * era this screen belongs to. The two treatments are not the same, which is
+   * what keeps it from reading as a repeat. Here it runs full bleed under
+   * `HeroFilm`'s four-layer scrim, pooled where the type sits; there it runs
+   * inside a 464x656 frame under a flat 52% wash. Same twenty seconds, opened
+   * and closed on.
    *
-   * Both were always on disk and `scripts/encode-hero.swift` regenerates this
-   * one from the camera master. `pigment.mp4` is untouched and still carries the
-   * closing frame at the foot of the page, which is the right place for a
-   * texture: the page opens on the room and closes on the craft.
+   * NO MOBILE CUT, and none is needed. The clip is a macro with no subject to
+   * lose at the edges, so the desktop file crops to a phone without throwing
+   * anything away; `MediaFrame` falls back to `videoSrc` when
+   * `mobileVideoSrc` is null. `hero-class.mp4` and its 720x1280 phone cut stay
+   * on disk, untouched, exactly as this file did while it was unused.
+   *
+   * `position` pulls to 40% of the height, which is where the pigment actually
+   * moves; centred, a tall crop spends most of the frame on the still edges.
    */
-  videoSrc: "/brand/hero-class.mp4",
-  /**
-   * The vertical cut. It exists for this clip and is worth its bytes, unlike
-   * the pigment macro's, because the source is 1080 wide: a phone that plays
-   * the desktop file downloads roughly twice what it can show.
-   */
-  mobileVideoSrc: "/brand/hero-class-mobile.mp4",
-  posterSrc: "/brand/hero-class-poster.jpg",
+  videoSrc: "/brand/pigment.mp4",
+  mobileVideoSrc: null,
+  posterSrc: "/brand/pigment-poster.jpg",
   alt: "",
-  /**
-   * THE AIM, AND WHY IT IS A REAL NUMBER AGAIN.
-   *
-   * Under the macro there was no subject to hold, so the framing was inherited
-   * and left alone on the grounds that any aim read the same. There is a subject
-   * again: Amira at the flipchart, the class in front of her. A 16:9 desktop
-   * window keeps less than a third of a 9:16 portrait frame, and 40% is the
-   * height at which she survives every cut of the montage rather than being
-   * cropped at the collar. The phone keeps the centre, because at 9:16 almost
-   * the whole frame survives.
-   *
-   * Both numbers are the ones this composition was originally tuned and
-   * measured at, for this clip. They are not being restored from taste.
-   */
   position: "50% 40%",
-  mobilePosition: "50% 50%",
-  /** The clip's own size, so the poster reserves its space and never shifts. */
-  width: 1080,
-  height: 1920,
+  width: 464,
+  height: 656,
 };
 
 /**
@@ -221,6 +208,46 @@ export const founderMedia: Media = {
   position: "50% 50%",
   width: 1179,
   height: 1469,
+};
+
+/**
+ * The artist portrait: the academy's current official photograph of Amira, and
+ * the one frame the homepage's own act about her is built on.
+ *
+ * DELIBERATELY NOT `founderMedia`, which is still directly above and still the
+ * frame the six programme pages carry. Two reasons, and neither is taste. The
+ * programme pages quote her beside a course she teaches, where the older
+ * masked cut sits correctly on the ivory those panels paint; the homepage act
+ * is a full editorial plate on its own ground, where a masked figure with no
+ * frame of its own has nothing to be revealed *through*. And a media object
+ * read by seven routes is not the place to make a change meant for one: swapped
+ * in place, this photograph would have appeared on every course page as a side
+ * effect of a homepage edit.
+ *
+ * SHIPPED AS SUPPLIED, byte for byte: no grade, no retouch, no upscale and no
+ * re-encode. The source arrived named `.png` and is in fact a baseline JPEG
+ * (JFIF, three components, no alpha), so it is stored here under the extension
+ * it actually is. Nothing about the file changed; only its name is now true,
+ * which matters because Next's optimiser and every cache in front of it decide
+ * how to treat a file from its type.
+ *
+ * THE CROP. The photograph is square and the frame that holds it is 4:5, the
+ * house ratio every other portrait on the site is set in. `cover` therefore
+ * spends the whole difference on the left and right edges and none on the
+ * height: the full figure survives at every breakpoint, from the crown of her
+ * hair to the foot of the blazer, and nothing is taken off the top or the
+ * bottom. The subject occupies roughly the middle seventy percent of the square,
+ * so a centred crop clears her folded arms on one side and her hair on the
+ * other with room to spare, which is why `position` is dead centre and can stay
+ * there. The studio sweep it stands on is a warm beige within a few degrees of
+ * the ivory the section paints, so the plate reads as a photograph on the page
+ * rather than as a rectangle cut into it.
+ */
+export const artistMedia: Media = {
+  posterSrc: "/brand/amira-artist-portrait.jpg",
+  position: "50% 50%",
+  width: 1024,
+  height: 1024,
 };
 
 /**

@@ -395,6 +395,85 @@ body {
 }
 
 /*
+  The artist act's label, and the one animated tracking on the site.
+
+  It is a rule here rather than three utilities on the element for the reason
+  the hero's figure labels are, one block above: `.label` is declared in this
+  file outside any cascade layer and every Tailwind utility lives inside
+  `@layer utilities`, so an unlayered single class beats a layered one whatever
+  its specificity and a `tracking-[0.44em]` on a `.label` element is discarded
+  before source order is even consulted. Overriding `.label` means a rule in
+  this file, which is what this is. It is declared after `.label` and after the
+  Arabic reset below it, so both the base and the language variant win on order
+  as well as on the attribute selector.
+
+  The state is an attribute on the wrapper rather than a second class on the
+  label, because the element is rendered by `SectionLabel` and the component
+  that owns the scroll trigger only reaches its parent.
+
+  0.44em is a little over twice the house tracking and is the widest the word
+  can be set before it stops reading as one word. It closes to 0.2em over 1.4s
+  on the house curve, which is the slowest transition on the site: the label is
+  the first thing in the act and nothing follows it for a beat, so it is the one
+  place a reader has time to watch something settle.
+
+  A CSS transition rather than a Motion animation, deliberately. Letter spacing
+  is not in Motion's positional set, so `reducedMotion="user"` would not shorten
+  it and a reader who asked for no movement would still watch the word close up.
+  As a transition it is caught by the blanket `transition-duration` override in
+  the reduced-motion block below, and simply arrives set.
+
+  Arabic tracks from 0.18em to its own 0.08em rather than from 0.44: tracked
+  Naskh is not a small-caps effect, it is broken joining, and the same journey
+  in that face would open the word into loose letters rather than close it.
+*/
+.artist-label {
+  letter-spacing: 0.44em;
+  opacity: 0;
+  transition:
+    letter-spacing 1400ms var(--ease-aura),
+    opacity 1200ms var(--ease-aura);
+}
+
+[data-shown="true"] .artist-label {
+  letter-spacing: 0.2em;
+  opacity: 1;
+}
+
+[lang="ar"] .artist-label {
+  letter-spacing: 0.18em;
+}
+
+[lang="ar"] [data-shown="true"] .artist-label {
+  letter-spacing: 0.08em;
+}
+
+/*
+  The mat around the artist act's plate, and the reason it has a state at all.
+
+  It is a hairline offset *outside* the photograph, so it cannot be a child of
+  the aperture that reveals it: the clip that opens over the picture would cut
+  the frame away. Left with no state of its own it is therefore painted the
+  moment the plate enters the screen, several hundred pixels before the aperture
+  starts to open, and an empty rectangle on the ivory reads as an image that
+  failed to load rather than as a frame waiting to be filled.
+
+  A class and a transition rather than a motion value, for the same reason the
+  byline's resolve goes through Motion's animation path instead: opacity bound to
+  a scroll value is the one property this version of Motion drops on the floor.
+  This way the reduced-motion block below flattens the duration for free, and the
+  mat is simply present for a reader who has asked for no movement.
+*/
+.artist-mat {
+  opacity: 0;
+  transition: opacity 900ms var(--ease-aura);
+}
+
+[data-shown="true"] .artist-mat {
+  opacity: 1;
+}
+
+/*
   Reduced motion.
 
   Three layers hold this, and they are not interchangeable.
@@ -419,9 +498,11 @@ body {
   query, applied before the first paint, so there is no frame of movement to see.
 
   Both selectors are contracts with a component. `.drift` is on whichever element
-  Parallax and HeroPortrait put the transform on; `.word-resolve` is on the
-  manifesto's word spans. Moving the transform without moving the class silently
-  turns the preference off.
+  Parallax, HeroPortrait and Artist put the transform on, and in Artist that is
+  three elements rather than one: the mat, the frame and the photograph inside it
+  each carry their own scroll-bound transform and each carries the class.
+  `.word-resolve` is on the manifesto's word spans. Moving a transform without
+  moving the class silently turns the preference off.
 */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -435,8 +516,25 @@ body {
     transition-duration: 0.01ms !important;
   }
 
-  /* Scroll-linked drift: the frames sit where the layout put them. */
+  /* Scroll-linked drift: the frames sit where the layout put them. This is also
+     what holds the artist act still, and there it is load bearing rather than
+     tidy. That act's plate is scaled and travelled from its resting box, and its
+     aperture starts fully displaced, so all five of its layers are transforms
+     bound to scroll position. The layout underneath them is deliberately the
+     finished composition with the aperture open, which means switching every one
+     of them off lands on the settled spread rather than on a photograph parked
+     outside its own frame. */
   .drift {
+    transform: none !important;
+  }
+
+  /* The byline that resolves in as the plate folds. Its opacity is a scroll
+     -bound motion value, so it is invisible at rest and no animation is ever
+     started for it: the same category as the drift above, and the same fix. A
+     reader who has asked for no movement should find her name and the link to
+     her story already there, not fade them in by scrolling. */
+  .artist-byline {
+    opacity: 1 !important;
     transform: none !important;
   }
 

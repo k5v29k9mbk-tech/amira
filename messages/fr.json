@@ -151,7 +151,11 @@
       "growth": "Progression"
     },
     "portrait": "Portrait d'Amira Bechini",
-    "headline": "La Master derrière la méthode"
+    "headline": "La Master derrière la méthode",
+    "statementA": "Une obsession discrète du détail :",
+    "statementB": "des sourcils et des lèvres dessinés pour sembler avoir toujours été les vôtres.",
+    "bio": "Amira Bechini est International PMU Master, formatrice et fondatrice, reconnue pour une approche fondée sur la précision, l'équilibre et un œil artistique. Avec plus de 8 ans d'expérience et plus de 150 élèves formées, sa méthode va au-delà de la technique : elle apprend aux professionnelles à comprendre le détail qui fait un travail d'exception.",
+    "credit": "Fondatrice · International PMU Master"
   },
   "method": {
     "title": "La technique se construit par étapes.",
@@ -423,7 +427,7 @@
     "courses": "Programmes",
     "method": "La méthode",
     "work": "Résultats",
-    "amira": "Amira",
+    "amira": "L'artiste",
     "inside": "Au cœur d'Aura",
     "authority": "Le standard",
     "pathway": "Le parcours",

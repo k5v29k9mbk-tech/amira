@@ -110,30 +110,24 @@ export function Header() {
   const solid = past || !overHero;
 
   /**
-   * THERE IS NO LIGHT STATE ANY MORE, AND THE CONSTANT STAYS TO SAY SO.
+   * THE LIGHT STATE IS BACK ON, BECAUSE THE HERO IS FOOTAGE AGAIN.
    *
-   * This used to be `!solid`: the bar was set in ivory while it stood over the
-   * homepage hero, because the hero was the academy's classroom footage under a
-   * scrim and espresso type on it was not dim, it was gone.
+   * This was `!solid` for as long as the first screen was the academy's film,
+   * then a hard `false` for as long as it was a studio portrait on ivory: ivory
+   * type on an ivory hero is invisible, so the light state had to be switched
+   * off when the ground changed, and the constant was deliberately kept rather
+   * than inlined so that a future dark hero could turn it back on in one line.
+   * That is what this is. The hero is the pigment film under a scrim again, and
+   * espresso navigation over it was unreadable: measured on the restored screen,
+   * every label in the bar disappeared into the footage and only the filled
+   * button survived.
    *
-   * The hero is now a studio portrait of Amira on the site's own ivory ground.
-   * Ivory type on ivory is invisible, so the old rule would have deleted the
-   * navigation from the first screen of the homepage in every language. The bar
-   * is espresso at every scroll position on every route, which is what it
-   * always was everywhere except this one screen.
-   *
-   * What has NOT changed is `solid`. The bar still carries no ground and no
-   * hairline while it is over the hero, and takes both once the hero is behind
-   * the reader: over a portrait a rule across the top of the screen is a
-   * horizon line through the photograph, and after it the bar needs an edge.
-   * That is a separate decision from the ink, which is why the two are separate
-   * constants rather than one.
-   *
-   * Kept as a named constant rather than deleted and inlined: every tone pair in
-   * this file reads it, and a future hero on a dark ground turns the light state
-   * back on by changing this one line.
+   * So the bar is ivory while it is transparent over the hero, and espresso the
+   * moment it takes its own ivory ground, which is 16px of scroll. If the first
+   * screen is ever put back on a light ground, this goes back to `false` and
+   * nothing else in the file has to change: every tone pair here reads it.
    */
-  const onFilm = false;
+  const onFilm = !solid;
 
   /**
    * Five labels, and the fifth is conditional on there being room for it.

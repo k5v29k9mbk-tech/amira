@@ -141,6 +141,7 @@ export function FrameMask({
   delay = 0,
   duration = dur.frame,
   className = "",
+  amount = 0.2,
   onMount = false,
   play,
 }: {
@@ -148,6 +149,7 @@ export function FrameMask({
   delay?: number;
   duration?: number;
   className?: string;
+  amount?: number;
   /** Play on mount instead of on scroll, for the hero's own plate. */
   onMount?: boolean;
   play?: boolean;
@@ -155,17 +157,41 @@ export function FrameMask({
   const cue = useHeroReady();
   const go = play ?? cue;
   const transition = { duration, delay, ease: ease.aura };
-  const viewport = { once: true, amount: 0.2 } as const;
 
-  const aperture = onMount
-    ? { animate: go ? { y: "0%" } : { y: "100%" } }
-    : { whileInView: { y: "0%" }, viewport };
-  const content = onMount
-    ? { animate: go ? { y: "0%", scale: 1 } : { y: "-100%", scale: 1.06 } }
-    : { whileInView: { y: "0%", scale: 1 }, viewport };
+  /**
+   * The scroll trigger watches the static wrapper, for the same reason the type
+   * reveal above does, and this branch carried the same silent no-op until the
+   * artist act became the first thing on the site to actually use it.
+   *
+   * `whileInView` on the aperture is the obvious spelling and cannot work here.
+   * IntersectionObserver clips a target by its ancestors' overflow before it
+   * reports, and the aperture begins life translated 100% down, entirely outside
+   * the wrapper whose `overflow: hidden` clips it. So it measures a zero
+   * intersection at every scroll position on the page, the observer never fires,
+   * and the photograph stays parked below its own frame for good. What a reader
+   * sees is an empty box exactly where the picture should be, with no error
+   * anywhere: the element is in the DOM, the image has loaded, and the frame has
+   * reserved its space.
+   *
+   * It was invisible until now only because nothing rendered this path. The one
+   * other caller is `HeroPortrait`, which is currently unmounted and in any case
+   * passes `onMount`, and the mount branch drives both spans from a boolean
+   * rather than from an observer.
+   *
+   * The wrapper is never translated and is clipped by nothing, so observing it
+   * is both correct and the thing that cannot regress this way.
+   */
+  const wrap = useRef<HTMLSpanElement>(null);
+  const seen = useInView(wrap, { once: true, amount });
+
+  const open = onMount ? go : seen;
+  const aperture = { animate: open ? { y: "0%" } : { y: "100%" } };
+  const content = {
+    animate: open ? { y: "0%", scale: 1 } : { y: "-100%", scale: 1.06 },
+  };
 
   return (
-    <span className={`block h-full w-full overflow-hidden ${className}`}>
+    <span ref={wrap} className={`block h-full w-full overflow-hidden ${className}`}>
       <motion.span
         className="block h-full w-full overflow-hidden"
         initial={{ y: "100%" }}

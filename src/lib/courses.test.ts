@@ -13,8 +13,10 @@ import { serviceGallery, beforeSrc, afterSrc } from "./service-gallery.ts";
 import { programs, programBySlug } from "./programs.ts";
 import type { Media } from "./media.ts";
 import {
+  artistMedia,
   closingMedia,
   founderMedia,
+  heroFilmMedia,
   galleryFrames,
   heroMedia,
   introMedia,
@@ -231,6 +233,24 @@ const PAGE_KEYS = [
   "about.cta.title",
   "about.cta.body",
   "instructor.title",
+  // The artist act (02), rebuilt around the academy's current official
+  // portrait. The statement is split across two keys rather than wrapped from
+  // one, which is the same pattern `hero.titleA`/`titleB` uses and the only way
+  // a line-by-line reveal can break in the same place in four languages: a
+  // single string masked per rendered line would break wherever the browser
+  // wrapped it, which is a different word in each of them.
+  "instructor.statementA",
+  "instructor.statementB",
+  "instructor.bio",
+  // Her two titles under her name in that act. Shorter than `instructor.role`,
+  // which names the institute as well and is still read on the six programme
+  // pages: beside a photograph the size of this one, the frame is doing the
+  // work the third clause used to.
+  "instructor.credit",
+  // Held, not read. `instructor.headline` was the act's heading before the
+  // statement replaced it. Listed on purpose, like the four hero keys above:
+  // restoring it is one line, and a translation that rots while its key sits
+  // unused is exactly the regression this list exists to catch.
   "instructor.headline",
   "instructor.role",
   "instructor.mission",
@@ -390,8 +410,13 @@ test("the catalogue is the six courses the academy published", () => {
 test("every poster and clip the pages point at exists on disk", () => {
   const media: Media[] = [
     heroMedia,
+    // The classroom film. It was unlisted for as long as it was unmounted, and
+    // an asset nothing renders is an asset nothing notices going missing. It is
+    // the overture ahead of act 02 now, so both cuts and the poster are checked.
+    heroFilmMedia,
     closingMedia,
     founderMedia,
+    artistMedia,
     ...Object.values(methodMedia),
     ...galleryFrames,
     ...resultFrames,
