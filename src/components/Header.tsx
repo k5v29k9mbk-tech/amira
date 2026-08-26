@@ -67,8 +67,29 @@ export function Header() {
   const [past, setPast] = useState(false);
   const { scrollY } = useScroll();
 
+  /**
+   * THE BAR TAKES ITS GROUND ON THE FIRST SCROLL, ON EVERY ROUTE.
+   *
+   * The homepage used to hold the transparent state for almost a whole
+   * viewport (`innerHeight - 90`), because the hero was a full-screen film and
+   * a bar with a ground on it would have been a strip across the footage.
+   *
+   * That threshold is unsafe against the hero this site has now. The opening is
+   * a studio portrait, and on a phone the composition is taller than the screen:
+   * the copy, then the photograph, then the figures. Scroll a few hundred pixels
+   * and what passes under a transparent bar is the dark half of the portrait,
+   * her hair and a black blazer, with espresso type sitting on it. The
+   * navigation and the booking action were unreadable for most of a screen, and
+   * that is exactly the region a phone visitor scrolls through first.
+   *
+   * 16px everywhere. At rest the bar is still type on the hero's own ivory with
+   * no rule under it, which is the state that matters; the moment the page
+   * moves it takes its ground, so nothing dark ever passes beneath it. The
+   * special case is gone rather than retuned, because any number here is a
+   * guess about a composition's height and this one had already been wrong once.
+   */
   useMotionValueEvent(scrollY, "change", (y) => {
-    setPast(y > (overHero ? window.innerHeight - 90 : 16));
+    setPast(y > 16);
   });
 
   // Close on route change, so the overlay never survives a navigation.
@@ -89,11 +110,30 @@ export function Header() {
   const solid = past || !overHero;
 
   /**
-   * Light type, and only in one place: over the hero film, before it has
-   * scrolled away. Derived from `solid` rather than tracked separately, so the
-   * bar cannot end up with a ground and light type on it for a frame.
+   * THERE IS NO LIGHT STATE ANY MORE, AND THE CONSTANT STAYS TO SAY SO.
+   *
+   * This used to be `!solid`: the bar was set in ivory while it stood over the
+   * homepage hero, because the hero was the academy's classroom footage under a
+   * scrim and espresso type on it was not dim, it was gone.
+   *
+   * The hero is now a studio portrait of Amira on the site's own ivory ground.
+   * Ivory type on ivory is invisible, so the old rule would have deleted the
+   * navigation from the first screen of the homepage in every language. The bar
+   * is espresso at every scroll position on every route, which is what it
+   * always was everywhere except this one screen.
+   *
+   * What has NOT changed is `solid`. The bar still carries no ground and no
+   * hairline while it is over the hero, and takes both once the hero is behind
+   * the reader: over a portrait a rule across the top of the screen is a
+   * horizon line through the photograph, and after it the bar needs an edge.
+   * That is a separate decision from the ink, which is why the two are separate
+   * constants rather than one.
+   *
+   * Kept as a named constant rather than deleted and inlined: every tone pair in
+   * this file reads it, and a future hero on a dark ground turns the light state
+   * back on by changing this one line.
    */
-  const onFilm = !solid;
+  const onFilm = false;
 
   /**
    * Five labels, and the fifth is conditional on there being room for it.

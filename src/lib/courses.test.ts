@@ -85,18 +85,25 @@ const PAGE_KEYS = [
   "hero.titleA",
   "hero.titleB",
   "hero.sub",
-  // Held, not read. `hero.founder` was the portrait's one-line credit and
-  // `hero.meetAmira` its secondary action; the credit is now `instructor.title`
-  // over `hero.founderRole`, and the action is the booking. `manifesto.note` and
-  // `students.sub` are the same case: both were removed from the page as
-  // repetition, not as content. All four stay listed here on purpose. They are
-  // one line from being rendered again, and a translation that rots while the
-  // key sits unused is exactly the regression this list exists to catch.
-  "hero.founder",
+  // The portrait credit under the hero photograph: her name from
+  // `instructor.title`, her three titles from `hero.founderRole`.
   "hero.founderRole",
+  // The hero's two actions, both read again. `hero.primary` is the catalogue
+  // button and `hero.meetAmira` the link to her story beside it; both sat
+  // unrendered for a while and are back on the first screen, which is what this
+  // list is for: a translation that rots while a key sits unused is exactly the
+  // regression it exists to catch.
   "hero.primary",
-  "hero.secondary",
   "hero.meetAmira",
+  // The line under the class-size figure, which is the one piece of the proof
+  // band that says what the number means rather than repeating it.
+  "hero.classesNote",
+  // Held, not read. `hero.founder` was the portrait's one-line credit before it
+  // became the name over the role, `hero.secondary` a second booking action,
+  // and `manifesto.note` and `students.sub` were removed from their pages as
+  // repetition rather than as content. All four stay listed on purpose.
+  "hero.founder",
+  "hero.secondary",
   // The three actions the whole site is allowed to ask for, in the order a
   // visitor meets them: browse, ask a person, ask for a date. They live in one
   // namespace precisely so a fourth cannot appear quietly in one language, or

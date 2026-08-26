@@ -21,9 +21,9 @@
   },
   "hero": {
     "eyebrow": "Aura Academy · Formazione professionale PMU · Italia",
-    "titleA": "Padroneggia la tecnica.",
-    "titleB": "Costruisci lo standard.",
-    "sub": "Formazione professionale avanzata in trucco permanente, costruita su precisione, pratica guidata e risultati di cui puoi rispondere.",
+    "titleA": "Padroneggia l’arte.",
+    "titleB": "Crea la tua carriera.",
+    "sub": "Impara il trucco permanente direttamente da Amira Bechini. La tecnica, la pratica guidata e gli standard professionali su cui si costruisce una carriera.",
     "founder": "Amira Bechini · Fondatrice e Master PMU",
     "founderRole": "PMU Artist · Formatrice · Fondatrice",
     "facts": {
@@ -42,7 +42,8 @@
     },
     "primary": "Scopri i corsi",
     "secondary": "Prenota il tuo posto",
-    "meetAmira": "Conosci Amira"
+    "meetAmira": "Conosci Amira",
+    "classesNote": "Abbastanza piccola perché Amira corregga ogni mano."
   },
   "about": {
     "meta": {

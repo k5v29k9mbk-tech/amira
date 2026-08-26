@@ -6,28 +6,29 @@ import { Reveal } from "./Reveal";
 import { SectionLabel } from "./SectionLabel";
 
 /**
- * The credentials band, and the first thing on the page that is checkable.
+ * The credibility act: why this teaching is worth trusting, in words.
  *
- * WHY IT IS HERE AND NOT IN THE HERO. These four figures used to sit inside the
- * opening composition, between the supporting line and the two actions. That
- * put the whole argument for the academy on the first screen, which sounds like
- * a strength and reads as a brochure: a title card with a statistics table in
- * it is not a title card. The hero now carries a statement, a line and one
- * decision, and the evidence stands directly under it as a section of its own.
+ * THE FIGURES HAVE GONE BACK TO THE HERO, AND THIS SECTION IS WHAT IS LEFT.
+ * Four figures used to stand here under a hairline. The opening screen is now
+ * an editorial split with a masthead band in it, carrying the three the academy
+ * leads with, so printing them again one screen later added nothing and read as
+ * a page repeating itself.
  *
- * Nothing about the figures changed in the move except the namespace they are
- * read from. `hero.facts.*` is still in the catalogues, still translated, and is
- * listed in `courses.test.ts` for exactly the reason that file gives: a key that
- * rots while unused is the regression the list exists to catch.
+ * What is left is the half the hero cannot carry: the claim that this is taught
+ * from inside a working practice, and the sentence about where the protocols
+ * come from. Both are qualitative, both are checkable, and neither is a number.
  *
- * WHAT MAY BE PRINTED HERE, WHICH IS THE ONLY RULE THIS FILE HAS. Every value
- * is quoted from the academy's own document and none is rounded up: eight years
- * and more in the industry, more than a hundred and fifty students trained,
- * three to four to a class, training held across Italy. The line under them
- * says Amira studies in international masterclasses, which is what her own
- * story says (`about.story.p3`) and is a claim about what she attends, never
- * about what she runs. If a future edit cannot point at the source document for
- * a figure, the figure does not belong in this section.
+ * THIS IS AN INTERIM SHAPE. The credibility section is its own step in the
+ * redesign and has not been rebuilt yet; what happened here was the removal of
+ * a duplication the new hero created, not a redesign of the act. When it is
+ * rebuilt, the thing to add is evidence the hero has no room for: her training,
+ * the institute behind the academy, and the standards the teaching is held to.
+ *
+ * WHAT MAY BE PRINTED HERE, WHICH IS THE ONLY RULE THIS FILE HAS. Every claim
+ * is quoted from the academy's own document. The line about international
+ * masterclasses is what her own story says (`about.story.p3`) and is a claim
+ * about what she attends, never about what she runs. If a future edit cannot
+ * point at the source document, it does not belong in this section.
  *
  * THE GROUND, AND THE RHYTHM EITHER SIDE OF IT. Near-black, continuing the hero
  * and the signature above it, so the opening of the page is one dark movement in
@@ -41,8 +42,6 @@ import { SectionLabel } from "./SectionLabel";
  * inside a pair, less than the 224 of a break between two acts, which is exactly
  * what this edge is. The dark opening ends here.
  */
-const facts = ["years", "students", "classes", "reach"] as const;
-
 export async function AuthorityStrip() {
   const t = await getTranslations("authority");
   const s = await getTranslations("sections");
@@ -68,35 +67,11 @@ export async function AuthorityStrip() {
           </Reveal>
         </div>
 
-        {/* Four figures on one baseline, closed top and bottom by a hairline.
-            The masthead device: a rule above and a rule below and no sides,
-            which is how a magazine sets a row of figures and is the opposite of
-            four cards.
-
-            Two columns on a phone rather than four. At 390px a quarter of the
-            field is 78px, and "Years in the industry" set in tracked small caps
-            does not fit it in any of the four languages; halved, each figure has
-            168px and the row holds from 320 up. `text-balance` on the labels is
-            what keeps the four breaking evenly rather than one of them dropping
-            a single word onto a second line. */}
-        <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 border-y border-hair-dark py-10 md:mt-16 md:grid-cols-4 md:gap-x-10 md:py-12">
-          {facts.map((k, i) => (
-            <Reveal key={k} delay={i * 0.06} className="flex flex-col gap-2.5">
-              <dt className="display text-[clamp(1.75rem,3.4vw,2.75rem)] leading-none text-ivory">
-                {t(`items.${k}.value`)}
-              </dt>
-              <dd className="label text-balance leading-[1.5] text-mute-dark">
-                {t(`items.${k}.label`)}
-              </dd>
-            </Reveal>
-          ))}
-        </dl>
-
-        {/* The one sentence under the band, held to a reading measure and set
-            in the muted grade: it qualifies the figures rather than adding a
-            fifth. */}
-        <Reveal delay={0.2}>
-          <p className="mt-8 max-w-[58ch] text-[15px] leading-relaxed text-mute-dark md:mt-10">
+        {/* The sentence that used to qualify the figures now carries the
+            section, so it is set at reading size against a hairline rather than
+            as small print under a band. */}
+        <Reveal delay={0.12}>
+          <p className="mt-12 max-w-[64ch] border-t border-hair-dark pt-8 text-[16px] leading-relaxed text-mute-dark md:mt-16 md:pt-10 md:text-[17px]">
             {t("note")}
           </p>
         </Reveal>

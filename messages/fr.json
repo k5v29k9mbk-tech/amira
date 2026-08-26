@@ -21,9 +21,9 @@
   },
   "hero": {
     "eyebrow": "Aura Academy · Formation professionnelle PMU · Italie",
-    "titleA": "Maîtrisez la technique.",
-    "titleB": "Construisez le standard.",
-    "sub": "Formation professionnelle avancée en maquillage permanent, fondée sur la précision, la pratique guidée et des résultats que vous pouvez assumer.",
+    "titleA": "Maîtrisez l’art.",
+    "titleB": "Créez votre carrière.",
+    "sub": "Apprenez le maquillage permanent directement avec Amira Bechini. La technique, la pratique guidée et les standards professionnels sur lesquels se construit une carrière.",
     "founder": "Amira Bechini · Fondatrice et Master PMU",
     "founderRole": "PMU Artist · Formatrice · Fondatrice",
     "facts": {
@@ -42,7 +42,8 @@
     },
     "primary": "Découvrir les formations",
     "secondary": "Réservez votre place",
-    "meetAmira": "Rencontrer Amira"
+    "meetAmira": "Rencontrer Amira",
+    "classesNote": "Assez petite pour qu’Amira corrige chaque main."
   },
   "about": {
     "meta": {

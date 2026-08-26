@@ -19,7 +19,6 @@ import {
 import { stagger } from "@/lib/motion";
 import { JsonLd, faqSchema } from "@/lib/seo";
 import { Hero } from "@/components/Hero";
-import { Signature } from "@/components/Signature";
 import { AuthorityStrip } from "@/components/AuthorityStrip";
 import { Manifesto } from "@/components/Manifesto";
 import { CourseSelector } from "@/components/CourseSelector";
@@ -200,12 +199,22 @@ export default async function Home({
 
       <Hero />
 
-      {/* The signature. Her name and the academy's, on the hero's own ground
-          with the film stopped: the second half of the title card rather than
-          the first section of the page. It carries no act number because the
-          acts start at the credentials below it, and this is still the opening.
-          The full reasoning is in the component. */}
-      <Signature />
+      {/* THE SIGNATURE IS UNMOUNTED, AND THE HERO IS WHY.
+
+          `Signature` existed for one reason: the hero was the academy's
+          classroom footage, nobody was named on it, and her name had to arrive
+          immediately after. It set her name and her titles alone on the hero's
+          own ground, as the second half of a title card.
+
+          The hero is now her portrait, with her name and the same three titles
+          set at its foot as the photograph's credit. Keeping this section would
+          print "Amira Bechini / PMU Artist, Educator, Founder" twice inside two
+          screens, the second time with nothing added, which reads as a mistake
+          rather than as emphasis.
+
+          The component is kept rather than deleted, exactly as `HeroPortrait`
+          and `HeroFilm` are: it is one line from being mounted again, and the
+          day the opening goes back to footage it is what names her. */}
 
       {/* 01 THE STANDARD
           The four marks the academy can prove, on the ground the opening is set

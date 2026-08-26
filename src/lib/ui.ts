@@ -82,14 +82,26 @@ export const sectionPadTop = "pt-16 md:pt-20 lg:pt-28";
  * 640px changes, because 7.2vw passes 40px at 556.
  *
  * And it is the one size on the site capped by the viewport's height as well as
- * its width, because it is the one size set in a screen that is exactly 100svh
- * with its composition centred in it. Sized off the width alone it takes 200px
- * of a 720px laptop and pushes the signature under the fold; 10.5vh is the
- * height at which two lines of it and everything under them still fit the
- * shortest laptop worth designing for. On a phone the width term is far smaller
- * and the floor decides, so nothing about the mobile screen changes.
+ * its width, because it is the one size set in a screen that is 100svh with a
+ * full composition inside it. Sized off the width alone it takes 200px of a
+ * 720px laptop and pushes everything under it past the fold.
+ *
+ * THE HEIGHT CAP IS 8.8vh, DOWN FROM 10.5, AND THE REASON IS THE LINE BREAK.
+ * The hero is now an editorial split: the statement shares the screen with a
+ * portrait, so it is set in a column of a little over half the width rather
+ * than across the whole of it. At 10.5vh the second of its two sentences no
+ * longer fit that column on a laptop, and "Build your career." broke after
+ * "your", leaving one word alone on a third line. A display statement is set,
+ * not wrapped, and an orphan is the one thing that says nobody looked.
+ *
+ * 8.8vh is the largest size at which both sentences hold one line each in all
+ * four languages, French included, which is the longest of them. The ceiling
+ * drops with it, from 8rem to 6.5rem, for the same reason: on a very tall
+ * display the vh term stops binding and the ceiling has to hold the same line.
+ * On a phone the width term is far smaller and the floor decides, so nothing
+ * about the mobile screen changes.
  */
-export const displayHero = "display text-[clamp(2.5rem,min(7.2vw,10.5vh),8rem)]";
+export const displayHero = "display text-[clamp(2.5rem,min(7.2vw,8.8vh),6.5rem)]";
 export const displaySection = "display text-[clamp(2rem,4.6vw,4.5rem)]";
 export const displayManifesto = "display text-[clamp(1.875rem,4.2vw,4rem)]";
 export const displayLarge = "display text-[clamp(1.625rem,2.8vw,2.75rem)]";

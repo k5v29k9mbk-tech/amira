@@ -21,9 +21,9 @@
   },
   "hero": {
     "eyebrow": "Aura Academy · Professional PMU education · Italy",
-    "titleA": "Master the technique.",
-    "titleB": "Build the standard.",
-    "sub": "Advanced professional education in permanent makeup, built on precision, guided practice and results you can stand behind.",
+    "titleA": "Master the art.",
+    "titleB": "Build your career.",
+    "sub": "Learn permanent makeup directly from Amira Bechini. The technique, the guided practice, and the professional standards a career is built on.",
     "founder": "Amira Bechini · Founder and PMU Master",
     "founderRole": "PMU Artist · Educator · Founder",
     "facts": {
@@ -42,7 +42,8 @@
     },
     "primary": "Explore the courses",
     "secondary": "Book your place",
-    "meetAmira": "Meet Amira"
+    "meetAmira": "Meet Amira",
+    "classesNote": "Small enough for Amira to correct every hand."
   },
   "about": {
     "meta": {
