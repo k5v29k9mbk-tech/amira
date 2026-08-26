@@ -19,6 +19,7 @@ import {
 import { stagger } from "@/lib/motion";
 import { JsonLd, faqSchema } from "@/lib/seo";
 import { Hero } from "@/components/Hero";
+import { Signature } from "@/components/Signature";
 import { AuthorityStrip } from "@/components/AuthorityStrip";
 import { Manifesto } from "@/components/Manifesto";
 import { CourseSelector } from "@/components/CourseSelector";
@@ -199,28 +200,17 @@ export default async function Home({
 
       <Hero />
 
-      {/* THE SIGNATURE IS UNMOUNTED, AND THE HERO IS WHY.
+      {/* The signature: her name, her role, and what she is for, on the hero's
+          own ground directly under it.
 
-          `Signature` existed for one reason: the hero was the academy's
-          classroom footage, nobody was named on it, and her name had to arrive
-          immediately after. It set her name and her titles alone on the hero's
-          own ground, as the second half of a title card.
+          It is mounted again and it is not the section it was. The old one set
+          her name on the near-black ground as the second half of a title card,
+          because the hero was footage and named nobody. This one is the caption
+          to the photograph above, moved off the photograph so that nothing is
+          painted over the warm beige it is built on, and it carries a line the
+          hero has no room for. The reasoning is in the component. */}
+      <Signature />
 
-          The hero is now her portrait, with her name and the same three titles
-          set at its foot as the photograph's credit. Keeping this section would
-          print "Amira Bechini / PMU Artist, Educator, Founder" twice inside two
-          screens, the second time with nothing added, which reads as a mistake
-          rather than as emphasis.
-
-          The component is kept rather than deleted, exactly as `HeroPortrait`
-          and `HeroFilm` are: it is one line from being mounted again, and the
-          day the opening goes back to footage it is what names her. */}
-
-      {/* 01 THE STANDARD
-          The four marks the academy can prove, on the ground the opening is set
-          on. They were inside the hero; a statistics table in a title card is a
-          brochure, and the same four figures in a band under her name are a
-          credential. The reasoning for the move is in both components. */}
       <AuthorityStrip />
 
       <Manifesto />

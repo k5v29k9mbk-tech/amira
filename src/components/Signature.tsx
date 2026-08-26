@@ -1,118 +1,70 @@
 import { getTranslations } from "next-intl/server";
-import { displayLarge, shell } from "@/lib/ui";
-import { brand } from "@/lib/studio";
-import { dur, stagger } from "@/lib/motion";
+import { displayChapter, shell } from "@/lib/ui";
+import { stagger } from "@/lib/motion";
 import { MaskReveal } from "./MaskReveal";
 import { Reveal } from "./Reveal";
 
 /**
- * The signature: her name and her titles, alone on the espresso ground.
+ * The signature: the hand-off from the opening screen to her story.
  *
- * WHY IT IS NOT IN THE HERO ANY MORE. It used to close the hero's centred
- * column, under the two actions, as the last beat of the opening score. That is
- * the correct place for a name on a title card and the wrong place for it on
- * this page, for one reason that only shows up on a real screen: the hero is
- * `100svh` with its composition centred in it, so on a 720px laptop the name was
- * the piece that got pushed against the fold, and it read as the tail of a block
- * of marketing copy rather than as the thing being signed.
+ * WHAT IT IS FOR, AND WHY IT IS NOT A SECOND HERO. The photograph above carries
+ * no type at all: no scrim, no caption, no credit. That was deliberate, because
+ * a dark band across a warm beige portrait to make room for two lines of text
+ * costs the picture more than the lines are worth. So her name is set here
+ * instead, on the ivory the hero already stands on, immediately under it.
  *
- * Standing on its own it is a title card of its own. The film stops at the foot
- * of the hero, the ground stays espresso, and what a reader meets after the
- * first screen is her name on a plain field with nothing else in it. The two
- * sections read as two because the ground has stopped moving, not because a
- * colour changed: the hero is a lit classroom behind glass, this is the flat
- * near-black underneath it. That is also what gives the manifesto's ivory its
- * job back — it is the first change of ground on the page, and it now falls on a
- * change of subject rather than in the middle of one.
+ * That makes this the first and only place on the homepage where her name is
+ * typeset, which is what stops it reading as a repeat. It is the caption to the
+ * photograph, moved off the photograph.
  *
- * The construction is exactly the hero's, moved: the hairline cut to 3.5rem and
- * centred, the name at the pull-quote size, the titles under it in the bronze
- * that is legible on black. What changes is only the cue. In the hero this
- * played on mount, on a delay, as the last beat of a score; below the fold there
- * is no score to be last in, so the rule and the name wipe in together when the
- * section is reached, and the titles fade a line behind them.
+ * AND IT IS A TRANSITION RATHER THAN A PLAQUE, which is a different thing and
+ * turns on one line of copy. A name and a role under a portrait is a museum
+ * label: correct, closed, and it tells a reader she has finished. The line
+ * beside it is `instructor.mission`, the academy's own statement of what Amira
+ * is for, and it was in all four catalogues without being rendered anywhere.
+ * It moves the reader from who she is to what she does, which is the question
+ * the rest of the page answers.
  *
- * The name is `instructor.title` and the titles are `hero.founderRole`, both
- * unchanged and both already in all four catalogues. Her section further down
- * the page (act 01) signs her a second time with the same construction at
- * reading size; these are the two moments on the homepage that name her, and
- * they are meant to be recognisably the same mark.
+ * THE SHAPE. One hairline across the field, her name at chapter size on the
+ * inline start, the mission set small in the muted grade across the field from
+ * it. Nothing is centred and nothing is boxed: an asymmetric pair under a rule
+ * is how an editorial page signs a plate, and it is the quietest possible way
+ * to change subject.
+ *
+ * THE RHYTHM. A short head and a long tail, and the head is not optional. With
+ * no top padding this section's hairline lands within a pixel or two of the
+ * hero's bottom edge, where the photograph ends: two horizontal lines at the
+ * same height read as one thick seam rather than as the end of one thing and
+ * the start of another. 64px at desktop is enough for the rule to be its own
+ * object. The tail is the full section measure, because what follows is the
+ * credentials act on the near-black ground and that change of ground has to
+ * read as a chapter mark rather than as a collision.
  */
 export async function Signature() {
-  const t = await getTranslations("hero");
   const inst = await getTranslations("instructor");
-  const pos = await getTranslations("positioning");
+  const t = await getTranslations("hero");
 
-  /*
-   * THE RHYTHM IS DELIBERATELY NOT `sectionPad`, AND THIS IS THE ONE
-   * MEASUREMENT ON THE PAGE WORTH WRITING DOWN.
-   *
-   * The house rhythm is 112px top and bottom at desktop, which is right for
-   * an act with an argument in it. Two of them meeting is 224px, and 224px
-   * of nothing between her name and the statement it introduces is not air,
-   * it is a reader wondering whether the page ended. The signature and the
-   * manifesto are not two acts: they are a name and the sentence that name
-   * is saying, and the whole point of the pair is that the second reads as
-   * coming out of the first.
-   *
-   * So the tail here is 48px and the manifesto's head is 64px, which is 112
-   * between the two — the house rhythm's *join*, spent once across the
-   * ground change rather than twice. The head above the name keeps the full
-   * 64 so it clears the hero's scroll cue, which sits in the last 80px of
-   * the section above.
-   *
-   * Change one of these and change the other: they are a pair, and the
-   * matching note is at the top of `Manifesto`.
-   */
   return (
-    <section className="pt-10 pb-8 md:pt-12 md:pb-10 lg:pt-16 lg:pb-12 bg-espresso text-ivory">
-      <div className={`${shell} text-center`}>
-        {/* The rule and the name are inside one aperture rather than two, so
-            they wipe in as a single gesture: the line draws and the name lands
-            on it. Two apertures a beat apart would make the hairline an event
-            of its own, which is more than a 56px rule can carry. */}
-        <MaskReveal duration={dur.slow}>
-          <span className="mx-auto mb-5 block h-px w-14 bg-bronze-hi/50" />
-          <p className={`${displayLarge} leading-[1.1] text-ivory`}>{inst("title")}</p>
-        </MaskReveal>
+    <section className="bg-ivory pt-10 pb-16 md:pt-12 md:pb-20 lg:pt-16 lg:pb-28">
+      <div className={shell}>
+        <div className="grid gap-x-10 gap-y-6 border-t border-hair pt-8 md:pt-10 lg:grid-cols-12 lg:items-baseline">
+          <div className="lg:col-span-5">
+            <MaskReveal>
+              <p className={`${displayChapter} leading-none`}>{inst("title")}</p>
+            </MaskReveal>
+            <Reveal delay={stagger.line}>
+              <p className="label mt-4 leading-[1.6] text-bronze-ink">
+                {t("founderRole")}
+              </p>
+            </Reveal>
+          </div>
 
-        {/* THE LOCKUP, IN TWO PARTS, AND THE ORDER IS THE POSITIONING.
-
-            This used to be one line: her name, and under it the role she was
-            given by the old brand, "Founder and PMU Master". That reads as a
-            job title inside a business, and it left the site making the claim a
-            visitor was not supposed to draw, which is that Amira is a beauty
-            artist who also runs some courses.
-
-            It is now the two marks the brand actually has, stacked and
-            separated by a rule:
-
-              AMIRA BECHINI            the person, and the authority
-              PMU Artist · Educator · Founder
-
-              AURA ACADEMY             the platform, and the system
-              Professional PMU education
-
-            Her name is set at pull-quote size and the academy's at label size
-            under a hairline, which is the whole hierarchy in one gesture: the
-            educator is the larger mark and the school is what she built. Read
-            the other way round, with the academy first and the founder as a
-            credit under it, this is an institution with a member of staff. It is
-            not, and the type says so.
-
-            `hero.founderRole` now carries the three-part role rather than the
-            old title, in all four languages; `positioning.academy` is the new
-            line and `brand.short` is the wordmark the whole site already uses,
-            so the name of the school is never retyped here. */}
-        <Reveal delay={stagger.line} className="mt-3.5">
-          <p className="label leading-[1.7] text-bronze-hi">{t("founderRole")}</p>
-        </Reveal>
-
-        <Reveal delay={stagger.line * 2} className="mt-8">
-          <span aria-hidden className="mx-auto mb-6 block h-px w-8 bg-hair-dark" />
-          <p className="label leading-[1.7] text-ivory/70">{brand.short}</p>
-          <p className="label mt-2 leading-[1.7] text-mute-dark">{pos("academy")}</p>
-        </Reveal>
+          <Reveal delay={stagger.base} className="lg:col-span-6 lg:col-start-7">
+            <p className="max-w-[54ch] text-[16px] leading-relaxed text-mute md:text-[17px]">
+              {inst("mission")}
+            </p>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

@@ -132,30 +132,53 @@ export const heroFilmMedia: Media = {
 };
 
 /**
- * Homepage hero portrait.
+ * The hero portrait: the brand photograph, and the subject of the first screen.
  *
- * The studio frame rather than the salon one: Amira against a seamless beige
- * sweep, so the arch holds a person and not a room. `amira-portrait-hero.jpg`
- * is the graded master, derived from `amira-studio.jpg` at 1440x1920 with a
- * light unsharp pass for clarity and a 4% lift in colour. The original is kept
- * beside it; regenerate with the recipe in the README if the grade needs
- * changing.
+ * `amira-brand-portrait.jpg` is the studio frame the academy supplied as final:
+ * black blazer, arms crossed, the house pin on the lapel, on a warm beige sweep
+ * that darkens toward the corners. It is used exactly as delivered. Nothing was
+ * graded, retouched, recompressed or regenerated, and the file in this
+ * repository is byte for byte the one that arrived; it was renamed from .png to
+ * .jpg and nothing else, because the download carried a .png extension over
+ * JPEG data and a lying extension is the kind of thing that breaks a build
+ * tool six months later.
  *
- * The clip fields stay: dropping a `videoSrc` here plays it inside the arch,
- * with this frame as the poster and the reduced-motion fallback.
+ * IT IS SQUARE, AND THAT IS THE ONE THING TO KNOW BEFORE MOVING A CROP. 1024 on
+ * both sides, with her head starting about five percent from the top and her
+ * body running off the bottom edge. Every frame this photograph is placed in on
+ * the site is taller than it is wide, so `cover` scales it to the frame's height
+ * and the crop falls entirely on the width: the head is never cut, the hands are
+ * never cut, and what is lost is beige. That is why both positions below only
+ * really move the horizontal axis, and why the vertical value can stay at the
+ * middle without risking the top of her head.
+ *
+ * The corollary is the resolution ceiling. 1024 is comfortable for a half-width
+ * column on a laptop, about right at 1080p, and an upscale on anything larger.
+ * If the academy can export the same frame at 2000px or more, drop it at this
+ * path and nothing else changes.
+ *
+ * WHY 45% ON THE DESKTOP AXIS AND NOT 50. She sits a little left of centre in
+ * the source, and the desktop frame is the inline end of a split composition
+ * with the type beside it. Holding the crop slightly toward her left keeps a
+ * band of the beige sweep on the inner edge of the photograph, so the type
+ * column and the subject are separated by background rather than meeting at the
+ * frame edge. It is the difference between a portrait placed on a page and a
+ * portrait pushed against the copy.
+ *
+ * The phone keeps the middle, where the frame is wider in proportion and the
+ * whole subject clears it with room on both sides.
  */
 export const heroMedia: Media = {
   videoSrc: null,
   mobileVideoSrc: null,
-  posterSrc: "/brand/amira-portrait-hero.jpg",
+  posterSrc: "/brand/amira-brand-portrait.jpg",
   alt: "",
-  position: "50% 22%",
-  mobilePosition: "50% 18%",
-  width: 1440,
-  height: 1920,
+  position: "45% 50%",
+  mobilePosition: "50% 50%",
+  width: 1024,
+  height: 1024,
 };
 
-/** Closing frame. The pigment macro is the one abstract clip the academy owns. */
 export const closingMedia: Media = {
   videoSrc: "/brand/pigment.mp4",
   posterSrc: "/brand/pigment-poster.jpg",
