@@ -662,14 +662,14 @@ export const pairFrame = {
  */
 export const galleryFrames: Frame[] = [
   {
-    posterSrc: "/brand/theory-classroom.jpg",
+    posterSrc: "/brand/classroom-practice.jpg",
     captionKey: "lesson",
     span: "col-span-12 md:col-span-7 lg:col-span-7 lg:col-start-1",
     sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 56vw, 54vw",
     ratio: "4 / 3",
-    position: "50% 58%",
-    width: 1200,
-    height: 1600,
+    position: "50% 50%",
+    width: 1800,
+    height: 1350,
   },
   {
     posterSrc: "/brand/brow-mapping.jpg",
