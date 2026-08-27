@@ -1,0 +1,21 @@
+# What Vercel does NOT need to upload.
+#
+# Nothing here is deleted from the repository; this file only keeps dead weight
+# out of the deployment. Every entry was checked against the source first: none
+# of these is imported by a component or referenced by `lib/media.ts`, and the
+# four clips the site actually plays (hero-class, hero-class-mobile, mapping,
+# pigment, all under public/brand) are deliberately NOT listed.
+#
+# Together these are about 23MB of the repository's 46.
+
+# A stray camera original that was copied into the source tree. Nothing imports
+# it, and a 10MB binary inside `src/` is traced by the bundler for no reason.
+src/lib/*.MOV
+
+# Two clips dropped in the project root during an early hand-off. Unused.
+WhatsApp Video *.mp4
+
+# A camera original in `public/` that no media object points at. Anything under
+# `public/` is served verbatim, so an unreferenced 4.4MB file here is 4.4MB of
+# upload and cache for a URL nobody requests.
+public/06aa8692-35d7-4b5a-8475-4d9504116b39.MP4
