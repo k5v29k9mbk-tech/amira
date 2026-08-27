@@ -583,6 +583,17 @@ export const resultFrames: (Frame & {
     width: 1323,
     height: 1320,
   },
+  {
+    posterSrc: "/brand/microblading-portrait-02.jpg",
+    altKey: "microbladingPortrait",
+    zoom: true,
+    span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-8 lg:mt-28",
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 30vw",
+    ratio: "1200 / 1600",
+    position: "50% 42%",
+    width: 1200,
+    height: 1600,
+  },
 ];
 
 /**

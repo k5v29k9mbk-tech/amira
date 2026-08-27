@@ -36,9 +36,8 @@
  *   - No discipline borrows another's photographs. The slots are keyed by
  *     course slug and the page reads them by slug, so a lip result cannot
  *     appear in a brow gallery by editing a layout file.
- *   - Two pairs per discipline. With the hero frame above them that is five
- *     photographs per service, which is the ceiling worth showing: a visitor
- *     comparing techniques reads two comparisons and skims a third.
+ *   - Up to three pairs per discipline. With the hero frame above them that is
+ *     enough proof to compare the work without turning the page into an archive.
  *
  * ALIGNMENT. Every pair gets the same treatment: `scripts/align-pair.swift`
  * maps both frames onto the shared 900x620 canvas so the eyes sit on the same
@@ -107,6 +106,15 @@ export const serviceGallery: Record<string, GalleryPair[]> = {
      * retouching, colour work or changes to the brows.
      */
     { id: "microblading-02", ready: true },
+    /**
+     * READY. Supplied by the academy as one three-stage Microblading plate.
+     * The opening and final panels are used here as the comparison; the mapping
+     * panel in the middle remains in the untouched source but is not part of the
+     * wipe. Both panels keep their original colour and brow detail, scaled onto
+     * the shared 900x620 canvas with an ivory margin rather than cropped through
+     * the eyes.
+     */
+    { id: "microblading-03", ready: true },
   ],
   "powder-brows": [{ id: "powder-brows-01" }, { id: "powder-brows-02" }],
   "brow-lamination": [{ id: "brow-lamination-01" }, { id: "brow-lamination-02" }],
