@@ -89,10 +89,10 @@ export const courses: Course[] = [
     slug: "lip-blush",
     family: "lips",
     media: {
-      posterSrc: "/brand/lips-upright.jpg",
+      posterSrc: "/brand/lip-blush-result.jpg",
       position: "50% 50%",
-      width: 230,
-      height: 206,
+      width: 1350,
+      height: 1800,
     },
   },
   {
