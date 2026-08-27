@@ -79,10 +79,10 @@ export const courses: Course[] = [
     slug: "powder-brows",
     family: "brows",
     media: {
-      posterSrc: "/brand/brows-healed-hero.jpg",
-      position: "50% 36%",
-      width: 1179,
-      height: 884,
+      posterSrc: "/brand/powder-brows-result.jpg",
+      position: "50% 35%",
+      width: 1350,
+      height: 1800,
     },
   },
   {
