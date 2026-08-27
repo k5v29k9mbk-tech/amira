@@ -295,11 +295,9 @@
   },
   "students": {
     "title": "En atelier",
-    "sub": "Moments de formation : le cours, le tracé du mapping, la démonstration sur le modèle.",
+    "sub": "Un moment du cours : la pratique guidée au sein de l'académie.",
     "captions": {
-      "lesson": "Le cours",
-      "mapping": "Le tracé du mapping",
-      "demo": "La démonstration sur le modèle"
+      "lesson": "Pratique guidée"
     }
   },
   "voices": {
@@ -416,7 +414,9 @@
     "alt": {
       "healedBrows": "Sourcils en maquillage permanent cicatrisé, photographiés de près après le traitement.",
       "strokes": "Gros plan sur les poils dessinés un à un.",
+      "brows": "Sourcils après un traitement de maquillage permanent.",
       "browsPair": "Les deux sourcils dans un même cadre après un traitement de maquillage permanent, photographiés de près.",
+      "microbladingPortrait": "Portrait d'une cliente présentant un résultat Microblading terminé.",
       "browsPortrait": "Sourcils après un traitement de maquillage permanent, photographiés de près, le visage tourné vers la lumière."
     }
   },

@@ -295,11 +295,9 @@
   },
   "students": {
     "title": "In the studio",
-    "sub": "Moments from the courses: the lesson, the mapping drawn by hand, the demonstration on the model.",
+    "sub": "A moment from the course: guided practice inside the academy.",
     "captions": {
-      "lesson": "The lesson",
-      "mapping": "The mapping, drawn by hand",
-      "demo": "The demonstration on the model"
+      "lesson": "Guided practice"
     }
   },
   "voices": {
@@ -416,7 +414,9 @@
     "alt": {
       "healedBrows": "Healed permanent makeup brows, photographed close up after the treatment.",
       "strokes": "Close-up of individual brow strokes.",
+      "brows": "Brows after a permanent makeup treatment.",
       "browsPair": "Both brows in one frame after a permanent makeup treatment, photographed close up.",
+      "microbladingPortrait": "Client portrait showing a finished Microblading result.",
       "browsPortrait": "Brows after a permanent makeup treatment, photographed close up with the face turned to the light."
     }
   },

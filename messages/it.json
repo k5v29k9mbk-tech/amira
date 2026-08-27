@@ -295,11 +295,9 @@
   },
   "students": {
     "title": "In aula",
-    "sub": "Momenti dai corsi: la lezione, il disegno della mappatura, la dimostrazione sulla modella.",
+    "sub": "Un momento del corso: la pratica guidata in accademia.",
     "captions": {
-      "lesson": "La lezione",
-      "mapping": "Il disegno della mappatura",
-      "demo": "La dimostrazione sulla modella"
+      "lesson": "Pratica guidata"
     }
   },
   "voices": {
@@ -416,7 +414,9 @@
     "alt": {
       "healedBrows": "Sopracciglia con trucco permanente guarito, fotografate da vicino dopo il trattamento.",
       "strokes": "Primo piano dei singoli peli disegnati sul sopracciglio.",
+      "brows": "Sopracciglia dopo un trattamento di trucco permanente.",
       "browsPair": "Entrambe le sopracciglia in un’unica inquadratura dopo un trattamento di trucco permanente, fotografate da vicino.",
+      "microbladingPortrait": "Ritratto di una cliente con il risultato finale del Microblading.",
       "browsPortrait": "Sopracciglia dopo un trattamento di trucco permanente, fotografate da vicino con il viso girato verso la luce."
     }
   },
