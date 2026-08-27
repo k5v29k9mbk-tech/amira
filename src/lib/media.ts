@@ -331,18 +331,20 @@ export const demonstrationMedia: Media = {
  * page reads founder portrait, then this. Nothing else on the site shows what a
  * course actually ends in.
  *
- * IT IS CONTAINED IN THE BOX, NOT COVERED BY IT, AND THAT IS THE WHOLE REASON
- * THIS ENTRY EXISTS. The file is 1536x2048 and the frame beside the mission is
- * 16:9, so `cover` would keep 864px of the 2048 and spend 1184. The two faces
- * run 296 to 694 and the certificate runs 882 to 1479: 1183px of content into
- * an 864px band, which is not a crop that can be tuned, it is a choice between
- * the faces and the document. `contain` refuses the choice. The photograph sits
- * whole and centred on the section's paper ground, at about 42% of the box
- * width, with paper either side of it: no crop, no letterbox bars, no stretch.
+ * THE BOX IS CUT TO THE PHOTOGRAPH, NOT THE PHOTOGRAPH TO THE BOX. The file is
+ * 1536x2048, which is 3:4 exactly, and the frame beside the mission is 3:4 for
+ * that reason alone. In the 16:9 the section started with, `cover` would keep
+ * 864px of the 2048 and spend 1184: the two faces run 296 to 694 and the
+ * certificate runs 882 to 1479, so 1183px of content into an 864px band is not
+ * a crop that can be tuned, it is a choice between the faces and the document.
+ * Containing it instead refused the choice but drew it at 42% of the column,
+ * which is a photograph nobody can read. Matching the box is the only shape
+ * where all three are true at once: whole, uncropped, and full width.
  *
- * The consequence is that `WelcomeVideo` takes a `fit` and a `sizes`, and the
- * caller that contains an image owes the smaller `sizes` that goes with it. See
- * the note there.
+ * `position` is therefore doing nothing today, and is centred so that it does
+ * nothing quietly. A replacement photograph that is not 3:4 will be cropped by
+ * `cover` around this number, and the number to check it against is 1479: below
+ * it the certificate stops being a document and becomes a white shape.
  */
 export const certificateMedia: Media = {
   posterSrc: "/brand/amira-student-certificate.jpg",

@@ -32,29 +32,28 @@ const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), { ssr: false })
  * is written; a crop hardcoded in this file would be a crop computed for a
  * photograph the next caller may not be showing.
  *
- * `fit` is there for the same reason. A portrait photograph in this landscape
- * box loses more than half its height to `cover`, and when what it loses is the
- * subject there is no crop worth tuning: `contain` sets it whole on whatever
- * ground the section is on. `sizes` travels with `fit`, because a contained
- * portrait is drawn at a fraction of the box width and a `sizes` written for
- * the covered case would ship the browser several times the pixels it needs.
+ * `aspect` is there for the same reason, and it earns its keep the moment the
+ * still is a portrait. This box is 16:9 by default because the video it will
+ * one day hold is; a portrait photograph in it loses more than half its height
+ * to `cover`, and containing it instead leaves the subject drawn at 42% of the
+ * column with paper either side. Handing the caller the box lets a portrait be
+ * shown at the column's full width, whole and uncropped, which is the only way
+ * it is ever actually large. The player stays 16:9 whatever the still does: a
+ * 16:9 film letterboxed into a 3:4 box would be smaller, not bigger.
  */
 export function WelcomeVideo({
   playbackId,
   poster,
   position = "50% 50%",
-  fit = "cover",
-  sizes = "(max-width: 1024px) 100vw, 52vw",
+  aspect = "aspect-video",
   alt,
 }: {
   playbackId: string;
   poster: string;
   /** CSS object-position for the still. Pass the `Media` it came with. */
   position?: string;
-  /** `contain` sets a portrait whole on the section's ground instead of cropping it. */
-  fit?: "cover" | "contain";
-  /** Widths the still is actually drawn at. Narrow it when `fit` is `contain`. */
-  sizes?: string;
+  /** The still's box, as a Tailwind aspect class. Match the photograph to fill it. */
+  aspect?: string;
   alt: string;
 }) {
   const t = useTranslations("mentor");
@@ -78,17 +77,15 @@ export function WelcomeVideo({
       src={poster}
       alt={playbackId ? "" : alt}
       fill
-      sizes={sizes}
+      sizes="(max-width: 1024px) 100vw, 52vw"
       style={{ objectPosition: position }}
-      className={`${
-        fit === "contain" ? "object-contain" : "object-cover"
-      } transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover:scale-[1.03]`}
+      className="object-cover transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover:scale-[1.03]"
     />
   );
 
   if (!playbackId) {
     return (
-      <div className="relative aspect-video w-full overflow-hidden">{still}</div>
+      <div className={`relative ${aspect} w-full overflow-hidden`}>{still}</div>
     );
   }
 
@@ -96,7 +93,7 @@ export function WelcomeVideo({
     <button
       type="button"
       onClick={() => setPlaying(true)}
-      className="group relative block aspect-video w-full overflow-hidden"
+      className={`group relative block ${aspect} w-full overflow-hidden`}
     >
       {still}
       <span

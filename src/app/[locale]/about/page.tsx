@@ -235,9 +235,9 @@ export default async function AboutPage({
           student with her certificate and nothing else, so describing it as a
           welcome message would be describing something that is not there.
 
-          The still is contained rather than covered, and the `sizes` is the
-          narrow one that goes with it. Both numbers are argued in the note on
-          `certificateMedia`. */}
+          The box is the photograph's own 3:4 rather than the 16:9 the player
+          wants, so the frame is filled at the column's full width with nothing
+          cropped off it. Argued in the note on `certificateMedia`. */}
       <section className={`${sectionPadBottom} bg-paper`}>
         <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-16`}>
           <Reveal className="lg:col-span-7">
@@ -245,8 +245,7 @@ export default async function AboutPage({
               playbackId={welcomeVideoId}
               poster={certificateMedia.posterSrc}
               position={certificateMedia.position}
-              fit="contain"
-              sizes="(max-width: 1024px) 45vw, 23vw"
+              aspect="aspect-[3/4]"
               alt={welcomeVideoId ? mentor("videoAlt") : t("certificateAlt")}
             />
           </Reveal>
