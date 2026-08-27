@@ -390,12 +390,14 @@
   "footer": {
     "tagline": "Nous formons des professionnelles au PMU et à la lamination avec une méthode pratique et complète.",
     "explore": "Programmes",
+    "nav": "Navigation",
     "studio": "Contact",
     "legal": "Informations légales",
     "activity": "Formations dans le secteur du maquillage permanent et de la lamination.",
     "vat": "Numéro de TVA",
     "rea": "REA",
-    "rights": "Tous droits réservés."
+    "rights": "Tous droits réservés.",
+    "faq": "Questions fréquentes"
   },
   "mentor": {
     "play": "Voir le message de bienvenue",

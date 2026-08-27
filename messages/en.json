@@ -390,12 +390,14 @@
   "footer": {
     "tagline": "We train professionals in PMU and lamination with a practical, complete method.",
     "explore": "Programmes",
+    "nav": "Navigation",
     "studio": "Contact",
     "legal": "Legal information",
     "activity": "Training courses in permanent makeup and lamination.",
     "vat": "VAT number",
     "rea": "REA",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "faq": "Frequently asked questions"
   },
   "mentor": {
     "play": "Watch the welcome message",

@@ -193,8 +193,8 @@
       "powder-brows": "Powder Brows",
       "lip-blush": "Lip Blush",
       "eyeliner-pmu": "Eyeliner PMU",
-      "lash-lamination": "Laminazione Ciglia",
-      "brow-lamination": "Laminazione Sopracciglia"
+      "lash-lamination": "Laminazione ciglia",
+      "brow-lamination": "Laminazione sopracciglia"
     },
     "detailsTitle": "Valido per tutti i corsi",
     "details": {
@@ -388,14 +388,16 @@
     }
   },
   "footer": {
-    "tagline": "Formiamo professioniste nel trucco permanente e nella laminazione, con un metodo pratico e diretto.",
+    "tagline": "Formazione professionale in trucco permanente e laminazione, con un metodo pratico e preciso.",
     "explore": "Corsi",
+    "nav": "Navigazione",
     "studio": "Contatti",
     "legal": "Dati legali",
     "activity": "Corsi di formazione in trucco permanente e laminazione.",
-    "vat": "Partita IVA",
+    "vat": "P. IVA",
     "rea": "REA",
-    "rights": "Tutti i diritti riservati."
+    "rights": "Tutti i diritti riservati.",
+    "faq": "Domande frequenti"
   },
   "mentor": {
     "play": "Guarda il messaggio di benvenuto",
