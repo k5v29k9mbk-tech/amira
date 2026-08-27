@@ -118,12 +118,11 @@ export const courses: Course[] = [
   {
     slug: "brow-lamination",
     family: "brows",
-    posterOffHome: true,
     media: {
-      posterSrc: "/brand/brow-lamination-result.jpg",
+      posterSrc: "/brand/brow-lamination-closeup.jpg",
       position: "50% 50%",
-      width: 1800,
-      height: 1350,
+      width: 1350,
+      height: 1800,
     },
   },
 ];
