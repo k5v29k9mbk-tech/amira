@@ -51,7 +51,7 @@
     "eyebrow": "Chi siamo",
     "titleA": "Insegniamo dalla professione,",
     "titleB": "non da un manuale.",
-    "lede": "Aura Academy nasce da Amira Bechini, CEO di Amira Beauty Suite e artista di trucco permanente con oltre otto anni di esperienza. Ogni tecnica che insegniamo è una tecnica che lei esegue ogni giorno, su clienti reali.",
+    "lede": "Amira Bechini insegna soltanto ciò che pratica: ogni tecnica di questi corsi è una tecnica che esegue ogni giorno, su clienti reali. In aula si impara facendo, con la mano corretta mentre lavori.",
     "portrait": "Amira Bechini in blazer nero, con il compasso per sopracciglia in mano",
     "demoAlt": "Amira Bechini misura con il compasso le sopracciglia di una modella durante una dimostrazione pratica.",
     "certificateAlt": "Amira Bechini seduta accanto a un'allieva che mostra il suo certificato PhiBrows.",
@@ -75,10 +75,10 @@
       "title": "Dalla cabina all’aula",
       "role": "Fondatrice di Aura Academy · CEO di Amira Beauty Suite",
       "imageAlt": "Amira Bechini in studio, in blazer nero, le braccia incrociate, su fondo chiaro.",
-      "p1": "Mi chiamo Amira Bechini. Guido Amira Beauty Suite, istituto di bellezza specializzato in trattamenti estetici avanzati, e ho fondato Aura Academy per insegnare ciò che pratico ogni giorno: trucco permanente e laminazione di ciglia e sopracciglia.",
-      "p2": "In oltre otto anni ho formato più di 150 allieve e costruito un metodo mio, che unisce eccellenza tecnica, pratica sul campo e visione imprenditoriale. Tutto nasce da un desiderio semplice: aiutare le donne a sentirsi sicure e dare loro un mestiere vero.",
-      "p3": "Non ho mai smesso di studiare: masterclass internazionali, tecniche sempre aggiornate, un investimento costante sulla mia formazione. Il resto me l’ha insegnato il lavoro quotidiano in istituto: non solo la tecnica, ma i bisogni reali delle clienti e del mercato.",
-      "p4": "Aura Academy è la formazione che avrei voluto trovare quando ho iniziato: guida personalizzata, pratica reale, supporto continuo e la sicurezza per costruire una carriera che dura. Oggi formiamo in tutta Italia.",
+      "p1": "Mi chiamo Amira Bechini. Guido Amira Beauty Suite, istituto specializzato in trattamenti estetici avanzati, e ho fondato Aura Academy.",
+      "p2": "In oltre otto anni ho formato più di 150 allieve e ho costruito un metodo mio, fatto di tecnica, pratica sul campo e visione imprenditoriale.",
+      "p3": "Non ho mai smesso di studiare: masterclass internazionali, tecniche sempre aggiornate, un investimento costante sulla mia formazione.",
+      "p4": "Aura Academy è la formazione che avrei voluto trovare quando ho iniziato.",
       "signature": "Amira Bechini"
     },
     "different": {
@@ -102,7 +102,7 @@
     },
     "beyond": {
       "eyebrow": "Oltre la tecnica",
-      "title": "La tecnica da sola non è una carriera.",
+      "title": "La tecnica, da sola, non basta.",
       "sub": "Accanto alla tecnica insegniamo gli otto elementi che trasformano una competenza in un’attività.",
       "items": {
         "mindset": "Mentalità imprenditoriale",
@@ -140,8 +140,8 @@
   "instructor": {
     "title": "Amira Bechini",
     "role": "Master Internazionale PMU · Fondatrice di Aura Academy · CEO di Amira Beauty Suite",
-    "mission": "Formare professioniste competenti, con percorsi pratici, supporto continuo e standard elevati.",
-    "body": "Aura Academy forma professioniste nel trucco permanente e nella laminazione, in tutta Italia. Corsi in italiano, a livello base e avanzato, in classi da tre a quattro allieve.",
+    "mission": "Da allieva a professionista.",
+    "body": "Il corso si chiude con l’attestato e con una tecnica che sai eseguire da sola. È da lì che comincia il lavoro vero: le tue prime clienti.",
     "valuesLabel": "I nostri valori",
     "values": {
       "professionalism": "Professionalità",

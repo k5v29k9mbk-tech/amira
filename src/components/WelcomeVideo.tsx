@@ -77,7 +77,7 @@ export function WelcomeVideo({
       src={poster}
       alt={playbackId ? "" : alt}
       fill
-      sizes="(max-width: 1024px) 100vw, 52vw"
+      sizes="(max-width: 1024px) 100vw, 44vw"
       style={{ objectPosition: position }}
       className="object-cover transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover:scale-[1.03]"
     />

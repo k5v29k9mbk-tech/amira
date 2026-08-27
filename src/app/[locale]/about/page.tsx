@@ -89,9 +89,27 @@ export default async function AboutPage({
     <>
       <JsonLd data={personSchema(locale, t("story.role"), t("lede"))} />
 
+      {/* THE SPLIT, AND WHY THE PHOTOGRAPH IS THE LARGER HALF.
+
+          Five columns of type against six of picture, with the twelfth between
+          them as the gutter. It used to be the other way round, and the section
+          read as a paragraph with a photograph beside it rather than as a
+          photograph with a caption: at 1440 the type took 632px and the frame
+          519, so the first thing on the page about a person was the smaller
+          half of its own composition.
+
+          The frame is the demonstration, which is the one image on this page
+          that shows the work being taught rather than the person teaching it,
+          and the copy beside it is the method for exactly that reason. See the
+          note on `about.lede`.
+
+          The measure does not move with the column. `max-w-[50ch]` was already
+          binding at 510px inside a 632px column, so the lede sets to the same
+          line it always did; the column simply stops being wider than the text
+          it holds. */}
       <section className={`${pageHeader} bg-ivory`}>
         <div className={`${shell} grid items-end gap-10 lg:grid-cols-12 lg:gap-12`}>
-          <Stagger className="lg:col-span-6">
+          <Stagger className="lg:col-span-5">
             <StaggerItem>
               <p className={eyebrow}>{t("eyebrow")}</p>
             </StaggerItem>
@@ -112,12 +130,33 @@ export default async function AboutPage({
             </StaggerItem>
           </Stagger>
 
-          <Parallax distance={10} className="lg:col-span-5 lg:col-start-8">
-            <div className="relative aspect-[3/4] w-full">
+          {/* THE TABLET CAP, AND WHY IT IS ONE STACKED MEDIA QUERY.
+
+              The split engages at lg, so from 768 to 1023 the frame is stacked
+              under the type at the full width of the gutter: 754px on an 834px
+              tablet, which at 3:4 is 1005px tall. That is ninety percent of the
+              screen given to one photograph, and the reader meets it as a
+              banner rather than as a plate. Capped and centred it is 416 wide
+              and the section comes down by roughly four hundred and fifty
+              pixels. The crop does not change: the box is the same ratio, so
+              the frame simply prints smaller.
+
+              `md:max-[1023px]:` rather than `md:` undone by `lg:`, and that is
+              the trap `AuthorityStrip` documents at length: two min-width
+              queries of equal specificity are resolved by the order Tailwind
+              emits them in, not by the order they are typed, and an arbitrary
+              variant is not guaranteed to sort after a named breakpoint. One
+              query with both bounds applies only in the band it is meant for
+              and there is nothing left to override.
+
+              Below md the phone keeps the full width, where a 342px frame is
+              the right size and there is nothing to cap. */}
+          <Parallax distance={10} className="lg:col-span-6 lg:col-start-7">
+            <div className="relative mx-auto aspect-[3/4] w-full md:max-[1023px]:max-w-[26rem]">
               <MediaFrame
                 media={{ ...demonstrationMedia, alt: t("demoAlt") }}
                 priority
-                sizes="(max-width: 1024px) 100vw, 40vw"
+                sizes="(max-width: 1024px) 100vw, 48vw"
                 imageClassName="settle"
               />
             </div>
@@ -180,9 +219,33 @@ export default async function AboutPage({
             <p className="label mt-8 max-w-[34ch] text-mute">{t("story.role")}</p>
           </Reveal>
 
+          {/* SIX COLUMNS OF PORTRAIT AGAINST FIVE OF PROSE, AND THE MEASURE ON
+              THE PROSE RATHER THAN ON THE COLUMN.
+
+              The split was five against six the other way, which put the one
+              formal portrait of the founder at 509px beside a 624px column of
+              her own account of herself. A page whose whole argument is a person
+              should not set the person smaller than the paragraph about her.
+
+              THE MEASURE IS THE PART THAT WAS ACTUALLY BROKEN. `max-w-[62ch]`
+              resolved to 595px here, and 595px of this face is 85 to 88
+              characters a line: twenty past the top of the range prose is read
+              comfortably at, and the reason this section read as an article
+              rather than as a story. `ch` is the width of the font's own zero,
+              which in a humanist sans is a good deal wider than its average
+              letter, so a cap written in `ch` always buys more line than it
+              looks like it does. 46ch lands at about 63 characters and is the
+              measure the rest of the site already sets body copy at.
+
+              The copy came down with it: four paragraphs of forty words each
+              were the method, the offer and the support stated a second time,
+              and all three have sections of their own below. What is left is who
+              she is and what she has done, which is what the portrait is of. */}
           <div className="mt-14 grid gap-10 md:mt-20 lg:grid-cols-12 lg:gap-16">
-            <Parallax distance={12} className="lg:col-span-5">
-              <div className="relative aspect-[4/5] w-full">
+            <Parallax distance={12} className="lg:col-span-6">
+              {/* Capped and centred in the stacked band. See the note on the
+                  page header's frame. */}
+              <div className="relative mx-auto aspect-[4/5] w-full md:max-[1023px]:max-w-[24rem]">
                 <MediaFrame
                   media={{
                     posterSrc: "/brand/amira-founder-studio-portrait.jpg",
@@ -197,17 +260,17 @@ export default async function AboutPage({
                     // it down cuts the crown; there is no third option in 425px.
                     position: "50% 50%",
                   }}
-                  sizes="(max-width: 1024px) 100vw, 38vw"
+                  sizes="(max-width: 1024px) 100vw, 48vw"
                 />
               </div>
             </Parallax>
 
-            <div className="lg:col-span-6 lg:col-start-7 lg:self-center">
+            <div className="lg:col-span-5 lg:col-start-8 lg:self-center">
               {(["p1", "p2", "p3", "p4"] as const).map((k, i) => (
                 <Reveal key={k} delay={0.06 + i * 0.04}>
                   <p
-                    className={`max-w-[62ch] leading-relaxed text-mute ${
-                      i === 0 ? "text-[18px] text-espresso" : "mt-6 text-[16px]"
+                    className={`max-w-[46ch] leading-relaxed text-mute ${
+                      i === 0 ? "text-[18px] text-espresso" : "mt-7 text-[16px]"
                     }`}
                   >
                     {t(`story.${k}`)}
@@ -240,19 +303,57 @@ export default async function AboutPage({
           cropped off it. Argued in the note on `certificateMedia`. */}
       <section className={`${sectionPadBottom} bg-paper`}>
         <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-16`}>
-          <Reveal className="lg:col-span-7">
-            <WelcomeVideo
-              playbackId={welcomeVideoId}
-              poster={certificateMedia.posterSrc}
-              position={certificateMedia.position}
-              aspect="aspect-[3/4]"
-              alt={welcomeVideoId ? mentor("videoAlt") : t("certificateAlt")}
-            />
+          {/* SIX AND FIVE, DOWN FROM SEVEN AND FOUR, and the reason is the
+              column rather than the frame.
+
+              Four columns is 395px, and `displayLarge` is 40px at this width, so
+              the line above the paragraph was setting at about nine characters
+              to the line: five stacked fragments down a narrow strip, which is
+              what a pull quote looks like when it has been given a caption's
+              width. Five columns is 519px and the same line sets in two. The
+              frame gives up 107px to pay for it and is still the larger half of
+              the composition, which is what this pair is for. */}
+          <Reveal className="lg:col-span-6">
+            {/* Capped and centred in the stacked band, on the wrapper rather
+                than on the frame: `WelcomeVideo` sizes its own aspect box to the
+                full width of whatever holds it. See the note on the page
+                header's frame. */}
+            <div className="mx-auto md:max-[1023px]:max-w-[26rem]">
+              <WelcomeVideo
+                playbackId={welcomeVideoId}
+                poster={certificateMedia.posterSrc}
+                position={certificateMedia.position}
+                aspect="aspect-[3/4]"
+                alt={welcomeVideoId ? mentor("videoAlt") : t("certificateAlt")}
+              />
+            </div>
           </Reveal>
-          <Reveal delay={0.08} className="lg:col-span-4 lg:col-start-9 lg:self-center">
-            <p className={displayLarge}>{inst("mission")}</p>
-            <p className="mt-8 text-[16px] leading-relaxed text-mute">{inst("body")}</p>
-            <p className="label mt-8 text-mute">{inst("role")}</p>
+          <Reveal delay={0.08} className="lg:col-span-5 lg:col-start-8 lg:self-center">
+            {/* NO MEASURE ON THIS LINE, AND THAT IS DELIBERATE.
+
+                The Italian is four words and would sit inside almost any cap;
+                the other three catalogues are not, and a `ch` cap struck for the
+                short line put the English at five stacked fragments and the
+                French at seven. The column is 519px, which is the measure, and
+                `text-balance` is what evens the rag in whichever language is
+                being set. A display line this short does not need a second
+                constraint on top of the column holding it. */}
+            <p className={`${displayLarge} text-balance`}>{inst("mission")}</p>
+            <p className="mt-8 max-w-[46ch] text-[16px] leading-relaxed text-mute">
+              {inst("body")}
+            </p>
+            {/* HER TITLES ARE NOT THE CAPTION TO THIS PHOTOGRAPH.
+
+                `instructor.role` used to close this block, and once the copy
+                beside the frame became the student's outcome rather than the
+                academy's mission it was three of Amira's credentials sitting
+                under a paragraph about somebody else's first clients. They are
+                also the third statement of them on this page: `story.role`
+                carries the same two titles one section above, and the course
+                pages carry the full line under her name.
+
+                The key stays in all four catalogues and is still read by
+                `courses/[slug]`. It is only this printing of it that goes. */}
           </Reveal>
         </div>
       </section>
