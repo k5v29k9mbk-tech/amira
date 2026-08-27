@@ -69,10 +69,10 @@ export const courses: Course[] = [
     slug: "microblading",
     family: "brows",
     media: {
-      posterSrc: "/brand/brow-macro.jpg",
-      position: "50% 45%",
-      width: 371,
-      height: 295,
+      posterSrc: "/brand/microblading-result.jpg",
+      position: "50% 38%",
+      width: 1350,
+      height: 1800,
     },
   },
   {

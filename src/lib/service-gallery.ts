@@ -100,7 +100,13 @@ export const serviceGallery: Record<string, GalleryPair[]> = {
      * drifting to the middle of a wider band.
      */
     { id: "microblading-01", ready: true },
-    { id: "microblading-02" },
+    /**
+     * READY. Supplied by the academy as a single matched before/after plate and
+     * identified as microblading. The two halves already share the same camera
+     * angle and scale, so they are cut to the common 900x620 canvas without
+     * retouching, colour work or changes to the brows.
+     */
+    { id: "microblading-02", ready: true },
   ],
   "powder-brows": [{ id: "powder-brows-01" }, { id: "powder-brows-02" }],
   "brow-lamination": [{ id: "brow-lamination-01" }, { id: "brow-lamination-02" }],
