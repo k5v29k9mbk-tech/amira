@@ -99,10 +99,10 @@ export const courses: Course[] = [
     slug: "eyeliner-pmu",
     family: "eyes",
     media: {
-      posterSrc: "/brand/brows-eyes.jpg",
-      position: "50% 42%",
-      width: 235,
-      height: 300,
+      posterSrc: "/brand/eyeliner-pmu-result.jpg",
+      position: "50% 50%",
+      width: 1800,
+      height: 1350,
     },
   },
   {
