@@ -96,10 +96,4 @@ export const welcomeVideoId = process.env.NEXT_PUBLIC_WELCOME_VIDEO_ID ?? "";
  * `label` is the accessible name for the slider and the alt text; it is not
  * printed on the page.
  */
-export const beforeAfterPairs: { before: string; after: string; label: string }[] = [
-  {
-    before: "/brand/brows-before.jpg",
-    after: "/brand/brows-after.jpg",
-    label: "Brow artistry",
-  },
-];
+export const beforeAfterPairs: { before: string; after: string; label: string }[] = [];

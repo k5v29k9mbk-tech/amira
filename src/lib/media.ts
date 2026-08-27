@@ -508,37 +508,6 @@ export const resultFrames: (Frame & {
   width: number;
   height: number;
 })[] = [
-  {
-    posterSrc: "/brand/brows-healed-hero.jpg",
-    altKey: "healedBrows",
-    zoom: true,
-    span: "col-span-12 lg:col-span-7 lg:col-start-1",
-    sizes: "(max-width: 1024px) 100vw, 54vw",
-    ratio: "1179 / 884",
-    position: "50% 36%",
-    width: 1179,
-    height: 884,
-  },
-  {
-    posterSrc: "/brand/brow-macro.jpg",
-    altKey: "strokes",
-    span: "col-span-12 md:col-span-6 lg:col-span-3 lg:col-start-9 lg:mt-32",
-    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 22vw",
-    ratio: "371 / 295",
-    position: "50% 45%",
-    width: 371,
-    height: 295,
-  },
-  {
-    posterSrc: "/brand/brows-eyes.jpg",
-    altKey: "brows",
-    span: "col-span-6 md:col-span-4 lg:col-span-2 lg:col-start-9 lg:mt-44",
-    sizes: "(max-width: 768px) 47vw, (max-width: 1024px) 31vw, 14vw",
-    ratio: "235 / 300",
-    position: "50% 42%",
-    width: 235,
-    height: 300,
-  },
   /**
    * The band. Both brows in one frame, close enough to read the individual
    * strokes, and the only landscape photograph the academy has supplied at a
