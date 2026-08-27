@@ -12,12 +12,12 @@ import { MediaFrame } from "./MediaFrame";
 import { Parallax } from "./Parallax";
 
 /**
- * The work: seven treatment photographs and the before/after slider, set as one
- * composition rather than a grid of equal tiles.
+ * The work: four treatment photographs, set as one composition rather than a
+ * grid of equal tiles.
  *
  * Every decision about where a frame sits, how wide it is and what proportion
  * it holds is data (`resultFrames` and `pairFrame` in lib/media.ts). This file
- * only lays them out and opens the two that are worth opening. That split is
+ * only lays them out and opens the three that are worth opening. That split is
  * deliberate: the academy will send more photographs, and adding one should be
  * an entry in a list, not a change to this component.
  *
@@ -153,7 +153,7 @@ export function WorkGallery() {
         It never enlarges past the file: `maxWidth` is the smaller of 92vw and
         the photograph's own pixel width, so a 1179px frame fills a laptop and
         stops there rather than being stretched to a 4K panel. That is the whole
-        point of opening it, and it is also why only two frames offer it.
+        point of opening it, and it is also why only three frames offer it.
       */}
       <AnimatePresence>
         {active ? (

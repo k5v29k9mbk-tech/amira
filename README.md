@@ -253,12 +253,11 @@ There are no invented statistics, credentials, prices or reviews.
   not the academy's room or its students, the second carries a different brand's
   watermark. Neither belongs in a section whose claim is that the work on it is
   the academy's own.
-- **Orientation.** Four of the result photographs were shot with the client
+- **Orientation.** Three of the result photographs were shot with the client
   reclined and the camera above her, so they come off the phone on their side or
-  upside down. Three of them were printing that way. `*-upright.jpg` is each of
+  upside down. Two of them were printing that way. `*-upright.jpg` is each of
   those turned the right way up: a 90 or 180 degree rotation, which resamples
-  nothing, plus one border trim on the lip macro where the source carried the
-  grey edge of a screenshot. The originals are kept beside them and are what
+  nothing. The originals are kept beside them and are what
   `lib/media.ts` no longer points at. A rotation is not a retouch, so
   `work.sub` still says what it always said.
 - **Facebook is text, not a link.** The academy gave a page name, not a URL.

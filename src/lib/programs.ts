@@ -137,8 +137,8 @@ export const programBySlug = (slug: string): Program | undefined =>
  * THERE IS NO PER-DISCIPLINE RESULTS SET, AND THAT IS A DELIBERATE REFUSAL.
  *
  * The obvious thing for a programme page to do is show the academy's results
- * for that discipline: brow photographs on the brow pages, the lip macro on the
- * lip page. An earlier draft of this file did exactly that, keyed by family.
+ * for that discipline: brow photographs on the brow pages, a lip photograph on
+ * the lip page. An earlier draft of this file did exactly that, keyed by family.
  *
  * It cannot be done honestly, and `media.ts` already says why, at the `caption`
  * field on the Frame type: the site does not know which treatment produced any

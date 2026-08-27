@@ -417,11 +417,8 @@
     "alt": {
       "healedBrows": "Sourcils en maquillage permanent cicatrisé, photographiés de près après le traitement.",
       "strokes": "Gros plan sur les poils dessinés un à un.",
-      "brows": "Sourcils après un traitement de maquillage permanent.",
       "browsPair": "Les deux sourcils dans un même cadre après un traitement de maquillage permanent, photographiés de près.",
-      "lipDetail": "Gros plan des lèvres après un traitement de pigmentation.",
-      "browsPortrait": "Sourcils après un traitement de maquillage permanent, photographiés de près, le visage tourné vers la lumière.",
-      "browsLips": "Sourcils et lèvres après un traitement de maquillage permanent, photographiés d'en haut."
+      "browsPortrait": "Sourcils après un traitement de maquillage permanent, photographiés de près, le visage tourné vers la lumière."
     }
   },
   "sections": {

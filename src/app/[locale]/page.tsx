@@ -379,7 +379,7 @@ export default async function Home({
 
           The composition, the crops and which frames open larger are all data in
           lib/media.ts; WorkGallery only arranges them. No result is graded,
-          filtered, retouched or generated, three of the files are rotated
+          filtered, retouched or generated, one of the files is rotated
           upright and nothing else, and no frame is ever set wider than the file
           behind it, which is what keeps the small close-ups sharp.
 

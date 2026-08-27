@@ -463,16 +463,15 @@ export type Frame = Media & {
 
 /**
  * The work, homepage section 03. What the method produces, in the academy's
- * own photographs: healed permanent makeup, the hair strokes close up, and the
- * lip work. The before/after slider sits inside this composition too, at
+ * own photographs: healed permanent makeup and the hair strokes close up.
+ * The before/after slider sits inside this composition too, at
  * `pairFrame` below.
  *
  * The order is the reading order on a phone, where the composition collapses to
- * a single column: the healed brow, the strokes that built it, the pair that
- * proves it, a second brow, both brows across the full width, the lip detail,
- * closing on two finished faces. On desktop the same seven land in four
- * staggered rows, two frames to a row, alternating which side carries the
- * weight.
+ * a single column: the healed brow, the strokes that built it, both brows
+ * across the full width, closing on one finished face. On desktop the same
+ * four land in three staggered rows: two frames, the band alone, then the
+ * closing face, alternating which side carries the weight.
  *
  * `altKey` names the frame's alt text under `work.alt.*`. These are the only
  * photographs on the site that are the argument rather than the atmosphere, so
@@ -481,29 +480,26 @@ export type Frame = Media & {
  *
  * `zoom` opens the frame full screen. It is set only where the file has pixels
  * the layout is not already spending: the 1179 wide file against a frame of
- * 864, and the three 1320 wide ones the academy supplied last, against frames
- * of 992, 736 and 480. The three small close-ups are shown at their own size
- * already, so opening them larger would enlarge nothing and soften what is
+ * 864, and the two 1320 wide ones the academy supplied last, against frames
+ * of 992 and 736. The one small close-up left is shown at its own size
+ * already, so opening it larger would enlarge nothing and soften what is
  * there.
  *
  * students-certificates.jpg is deliberately absent, here and everywhere. It
  * shows identifiable students and their certificate numbers and stays off the
  * site until the academy holds written consent.
  *
- * ORIENTATION. Four of these were shot with the client reclined and the camera
+ * ORIENTATION. Two of these were shot with the client reclined and the camera
  * over her, which is how every PMU artist photographs a finished brow and why
- * the files come off the phone lying on their side or upside down. Three of
- * them printed that way: a face inverted, a face on its side, a mouth standing
- * vertically. On a portfolio grid that reads as a mistake in the website rather
- * than as a convention of the trade, and the one thing this section cannot
- * afford is to look careless about the work it is proving.
+ * the files come off the phone lying on their side or upside down. One of them
+ * printed that way. On a portfolio grid that reads as a mistake in the website
+ * rather than as a convention of the trade, and the one thing this section
+ * cannot afford is to look careless about the work it is proving.
  *
- * `*-upright.jpg` is each of those files turned the right way up and nothing
- * else: a 90 or 180 degree rotation, which resamples no pixel and moves no
- * detail, plus one border trim on the lip macro where the source carried the
- * grey edge of a screenshot. No grade, no retouch, no upscale, and the
- * originals are kept beside them untouched. The claim in `work.sub` is
- * unaffected and stays true.
+ * `*-upright.jpg` is that file turned the right way up and nothing else: a 90
+ * or 180 degree rotation, which resamples no pixel and moves no detail. No
+ * grade, no retouch, no upscale, and the original is kept beside it untouched.
+ * The claim in `work.sub` is unaffected and stays true.
  */
 export const resultFrames: (Frame & {
   altKey: string;
@@ -533,22 +529,13 @@ export const resultFrames: (Frame & {
     width: 371,
     height: 295,
   },
-  {
-    posterSrc: "/brand/brows-eyes.jpg",
-    altKey: "brows",
-    span: "col-span-6 md:col-span-4 lg:col-span-2 lg:col-start-9 lg:mt-44",
-    sizes: "(max-width: 768px) 47vw, (max-width: 1024px) 31vw, 14vw",
-    ratio: "235 / 300",
-    position: "50% 42%",
-    width: 235,
-    height: 300,
-  },
   /**
    * The band. Both brows in one frame, close enough to read the individual
    * strokes, and the only landscape photograph the academy has supplied at a
-   * width worth spending. It carries its row almost alone: the brow half of the
-   * section is above it, the two finished faces are below, and the lip detail
-   * tucks into the two columns left at its right edge.
+   * width worth spending. It carries its row alone: the brow half of the
+   * section is above it and the two finished faces are below, with the two
+   * columns left free at either edge so it reads as a band rather than a
+   * full-bleed strip.
    *
    * Eight columns is 992px against a 1320px file, so it is the widest frame in
    * the section and still not upscaled.
@@ -564,26 +551,16 @@ export const resultFrames: (Frame & {
     width: 1320,
     height: 689,
   },
-  {
-    posterSrc: "/brand/lips-upright.jpg",
-    altKey: "lipDetail",
-    span: "col-span-6 md:col-span-4 lg:col-span-2 lg:col-start-11 lg:mt-40",
-    sizes: "(max-width: 768px) 47vw, (max-width: 1024px) 31vw, 14vw",
-    ratio: "230 / 206",
-    position: "50% 50%",
-    width: 230,
-    height: 206,
-  },
   /**
-   * The closing pair: two faces rather than two details, which is what the
-   * section has been building towards. Both are 1320px files, the largest the
-   * academy has supplied, and both are held well under that width.
+   * The close: a face rather than a detail, which is what the section has been
+   * building towards. It is a 1323px file, the largest the academy has
+   * supplied, and it is held well under that width.
    *
-   * They are deliberately not the same size. Six columns beside four, with the
-   * smaller one dropped 112px, keeps the row a composition rather than two
-   * equal tiles, and the near-square proportions of both files are close enough
-   * that any other arrangement would read as a pair of thumbnails. On tablet
-   * they halve into a diptych, on a phone they stack full width.
+   * It was half of a pair until the second face was withdrawn. What is left
+   * keeps its six columns at col-start-1 rather than growing to fill the row:
+   * stretching a near-square file across the grid is the one thing this section
+   * does not do, and a left-weighted close answers the seven-column frame the
+   * section opens on. On tablet and phone it is full width, as it always was.
    */
   {
     posterSrc: "/brand/brows-defined-upright.jpg",
@@ -596,17 +573,6 @@ export const resultFrames: (Frame & {
     width: 1323,
     height: 1320,
   },
-  {
-    posterSrc: "/brand/brows-lips-upright.jpg",
-    altKey: "browsLips",
-    zoom: true,
-    span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-8 lg:mt-28",
-    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 30vw",
-    ratio: "1320 / 1235",
-    position: "50% 48%",
-    width: 1320,
-    height: 1235,
-  },
 ];
 
 /**
@@ -618,7 +584,7 @@ export const resultFrames: (Frame & {
  * The slider is the one piece of proof the academy has supplied that a visitor
  * can operate rather than look at, which is why it is set among the results
  * rather than off in a section of its own. If the pair is ever withdrawn the
- * component drops it and the five frames around it close up: each one carries
+ * component drops it and the four frames around it close up: each one carries
  * its own `col-start`, so they keep their columns and lose only a row.
  */
 export const pairFrame = {
@@ -626,7 +592,7 @@ export const pairFrame = {
    * Rendered directly after this index in `resultFrames`, which puts it third
    * in the reading order and opens the second row on desktop. Order is what the
    * grid places by, so this is not cosmetic: move the slider to the end of the
-   * list and the second row is a single 2-column frame beside a void.
+   * list and the section closes on a control rather than on the work.
    */
   after: 1,
   span: "col-span-12 lg:col-span-6 lg:col-start-2 lg:mt-28",
