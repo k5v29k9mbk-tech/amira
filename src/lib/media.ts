@@ -334,10 +334,11 @@ export const methodMedia: Record<string, Media> = {
    * is a photograph of something happening rather than a texture.
    */
   theory: {
-    posterSrc: "/brand/theory-classroom.jpg",
-    position: "50% 40%",
-    width: 1200,
-    height: 1600,
+    videoSrc: "/brand/theory-teaching.mp4",
+    posterSrc: "/brand/theory-teaching-poster.jpg",
+    position: "50% 50%",
+    width: 480,
+    height: 848,
   },
 
   /**
@@ -365,10 +366,11 @@ export const methodMedia: Record<string, Media> = {
    * homepage is the thing the room's own frame was chosen to avoid.
    */
   practice: {
-    posterSrc: "/brand/amira-live-demo.jpg",
+    videoSrc: "/brand/guided-practice.mp4",
+    posterSrc: "/brand/guided-practice-poster.jpg",
     position: "50% 50%",
-    width: 1024,
-    height: 1024,
+    width: 480,
+    height: 848,
   },
 
   /**
