@@ -529,6 +529,16 @@ export const resultFrames: (Frame & {
     width: 371,
     height: 295,
   },
+  {
+    posterSrc: "/brand/brows-eyes.jpg",
+    altKey: "brows",
+    span: "col-span-6 md:col-span-4 lg:col-span-2 lg:col-start-9 lg:mt-44",
+    sizes: "(max-width: 768px) 47vw, (max-width: 1024px) 31vw, 14vw",
+    ratio: "235 / 300",
+    position: "50% 42%",
+    width: 235,
+    height: 300,
+  },
   /**
    * The band. Both brows in one frame, close enough to read the individual
    * strokes, and the only landscape photograph the academy has supplied at a
