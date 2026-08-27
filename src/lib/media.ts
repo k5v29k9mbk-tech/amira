@@ -599,10 +599,9 @@ export const pairFrame = {
  * and where they are not competing with a photograph of a classroom for the
  * same glance. Nothing is shown twice on the page.
  *
- * Three frames now, and they are the three things the copy names, in that
- * order: the room during a lesson, the mapping drawn out by hand, the
- * demonstration on skin. It was two, and neither of them said "guided
- * practice".
+ * One frame remains: the academy's own classroom during guided practice. The
+ * mapping and demonstration stills were withdrawn from the page at the
+ * client's request and remain in the media archive only.
  *
  * The classroom is deliberately cropped differently from the way the method
  * section above sets the same photograph. There it is a 3:4 portrait of Amira
@@ -613,8 +612,7 @@ export const pairFrame = {
  * photograph of its classroom; until it sends more, a second crop of it is the
  * honest way to show the room twice.
  *
- * No frame is ever wider than the file behind it: 845px of a 1200px classroom,
- * 344px of a 332px mapping still, 469px of a 557px close-up.
+ * The frame is never wider than the file behind it.
  */
 export const galleryFrames: Frame[] = [
   {
@@ -626,25 +624,5 @@ export const galleryFrames: Frame[] = [
     position: "50% 50%",
     width: 1800,
     height: 1350,
-  },
-  {
-    posterSrc: "/brand/brow-mapping.jpg",
-    captionKey: "mapping",
-    span: "col-span-5 md:col-span-4 md:col-start-9 md:mt-16 lg:col-span-3 lg:col-start-9 lg:mt-40",
-    sizes: "(max-width: 768px) 40vw, (max-width: 1024px) 31vw, 22vw",
-    ratio: "332 / 295",
-    position: "50% 50%",
-    width: 332,
-    height: 295,
-  },
-  {
-    posterSrc: "/brand/live-demo.jpg",
-    captionKey: "demo",
-    span: "col-span-7 md:col-span-6 md:col-start-4 md:mt-6 lg:col-span-4 lg:col-start-4 lg:mt-10",
-    sizes: "(max-width: 768px) 56vw, (max-width: 1024px) 47vw, 31vw",
-    ratio: "557 / 335",
-    position: "50% 40%",
-    width: 557,
-    height: 335,
   },
 ];

@@ -296,11 +296,9 @@
   },
   "students": {
     "title": "In aula",
-    "sub": "Momenti dai corsi: la lezione, il disegno della mappatura, la dimostrazione sulla modella.",
+    "sub": "Un momento del corso: la pratica guidata in accademia.",
     "captions": {
-      "lesson": "La lezione",
-      "mapping": "Il disegno della mappatura",
-      "demo": "La dimostrazione sulla modella"
+      "lesson": "Pratica guidata"
     }
   },
   "voices": {

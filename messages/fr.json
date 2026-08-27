@@ -296,11 +296,9 @@
   },
   "students": {
     "title": "En atelier",
-    "sub": "Moments de formation : le cours, le tracé du mapping, la démonstration sur le modèle.",
+    "sub": "Un moment du cours : la pratique guidée au sein de l'académie.",
     "captions": {
-      "lesson": "Le cours",
-      "mapping": "Le tracé du mapping",
-      "demo": "La démonstration sur le modèle"
+      "lesson": "Pratique guidée"
     }
   },
   "voices": {
