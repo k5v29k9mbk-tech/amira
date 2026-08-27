@@ -20,19 +20,41 @@ const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), { ssr: false })
  * has no date, are both worse than the photograph on its own.
  *
  * The still is a `next/image`, not a CSS background. It used to be one, which
- * meant this frame shipped the full 2560px original to every phone: no
- * srcset, no WebP, no lazy loading and no reserved box. It is the largest
- * photograph on /about, so that was the single most expensive thing on the
- * page, and it was invisible to every image budget because the browser found
- * it in a style attribute rather than in the markup.
+ * meant this frame shipped the full-size original to every phone (a 2560px
+ * still, at the time): no srcset, no WebP, no lazy loading and no reserved box.
+ * It is the widest frame on /about, so that was the single most expensive thing
+ * on the page, and it was invisible to every image budget because the browser
+ * found it in a style attribute rather than in the markup.
+ *
+ * `position` is the crop, and it arrives from the caller rather than living
+ * here, because the poster arrives from the caller too. Both come off one
+ * `Media` object in lib/media.ts, which is where the reasoning for the number
+ * is written; a crop hardcoded in this file would be a crop computed for a
+ * photograph the next caller may not be showing.
+ *
+ * `fit` is there for the same reason. A portrait photograph in this landscape
+ * box loses more than half its height to `cover`, and when what it loses is the
+ * subject there is no crop worth tuning: `contain` sets it whole on whatever
+ * ground the section is on. `sizes` travels with `fit`, because a contained
+ * portrait is drawn at a fraction of the box width and a `sizes` written for
+ * the covered case would ship the browser several times the pixels it needs.
  */
 export function WelcomeVideo({
   playbackId,
   poster,
+  position = "50% 50%",
+  fit = "cover",
+  sizes = "(max-width: 1024px) 100vw, 52vw",
   alt,
 }: {
   playbackId: string;
   poster: string;
+  /** CSS object-position for the still. Pass the `Media` it came with. */
+  position?: string;
+  /** `contain` sets a portrait whole on the section's ground instead of cropping it. */
+  fit?: "cover" | "contain";
+  /** Widths the still is actually drawn at. Narrow it when `fit` is `contain`. */
+  sizes?: string;
   alt: string;
 }) {
   const t = useTranslations("mentor");
@@ -56,8 +78,11 @@ export function WelcomeVideo({
       src={poster}
       alt={playbackId ? "" : alt}
       fill
-      sizes="(max-width: 1024px) 100vw, 52vw"
-      className="object-cover object-[50%_26%] transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover:scale-[1.03]"
+      sizes={sizes}
+      style={{ objectPosition: position }}
+      className={`${
+        fit === "contain" ? "object-contain" : "object-cover"
+      } transition-transform duration-[1400ms] ease-[var(--ease-aura)] group-hover:scale-[1.03]`}
     />
   );
 

@@ -17,6 +17,7 @@ import {
   displayLarge,
   displayRow,
   displaySection,
+  displayStat,
   eyebrow,
   eyebrowLight,
   linkRule,
@@ -29,6 +30,7 @@ import {
 import { stagger } from "@/lib/motion";
 import { JsonLd, courseSchema, faqSchema } from "@/lib/seo";
 import { Curriculum } from "@/components/Curriculum";
+import { LevelCards } from "@/components/LevelCards";
 import { Faq } from "@/components/Faq";
 import { KeyInfo } from "@/components/KeyInfo";
 import { Mastery } from "@/components/Mastery";
@@ -244,7 +246,7 @@ export default async function ProgramPage({
               transaction. */}
           <Reveal delay={0.12} className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:gap-6 md:mt-16">
             <Link href={`/contact?course=${slug}`} className={btnSolid}>
-              {t("cta.requestSeat")}
+              {t("cta.consultation")}
             </Link>
             {whatsappHref ? (
               <a href={whatsappHref} target="_blank" rel="noreferrer" className={btnLine}>
@@ -318,41 +320,39 @@ export default async function ProgramPage({
             <h2 className={`${displaySection} max-w-[16ch]`}>{t("programs.forWho.title")}</h2>
           </MaskReveal>
 
-          <div className="mt-12 grid gap-x-16 gap-y-12 border-t border-hair pt-10 md:mt-16 lg:grid-cols-12">
-            {/* The two ways in. */}
-            <div className="lg:col-span-7">
-              <ol className="grid gap-10 sm:grid-cols-2 lg:gap-x-10">
-                {(["base", "advanced"] as const).map((k, i) => (
-                  <Reveal as="li" key={k} delay={i * 0.06}>
-                    <span className="label font-mono text-bronze-ink">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className={`${displayRow} mt-4`}>{t(`programs.forWho.${k}Label`)}</h3>
-                    <p className="mt-3 max-w-[42ch] text-[16px] leading-relaxed text-mute">
-                      {t(`programs.forWho.${k}`)}
-                    </p>
-                  </Reveal>
-                ))}
-              </ol>
-            </div>
-
-            {/* And who it is not for. Set in the muted grade under a hairline of
-                its own, so it reads as a caveat the page volunteers rather than
-                as a second heading competing with the first. */}
-            <Reveal delay={0.12} className="lg:col-span-4 lg:col-start-9">
-              <p className="label text-mute">{t("programs.notFor.title")}</p>
-              <ul className="mt-6 border-t border-hair">
-                {notForItems.map((k) => (
-                  <li
-                    key={k}
-                    className="border-b border-hair py-4 text-[15px] leading-relaxed text-mute"
-                  >
-                    {t(`programs.notFor.items.${k}`)}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+          {/* THE TWO LEVELS, AS A COMPARISON RATHER THAN TWO PARAGRAPHS. Both
+              columns answer the same five questions in the same order, so the
+              choice is made by reading across a row rather than by reading two
+              texts in full and holding them in mind. See `LevelCards`. */}
+          <div className="mt-12 border-t border-hair pt-10 md:mt-16">
+            <LevelCards />
           </div>
+
+          {/* And who it is not for. Set in the muted grade under a hairline of
+              its own, so it reads as a caveat the page volunteers rather than
+              as a second heading competing with the first.
+
+              IT IS A FULL-WIDTH FOOTNOTE NOW, NOT A THIRD COLUMN. It used to
+              sit in the last four columns beside the two levels, which put
+              three columns of equal visual weight in a row and made the caveat
+              compete with the choice it qualifies: a reader scanning the band
+              met "base", "advanced" and "not for you" as three options. Below
+              the pair and set on one line from sm, it reads as the sentence the
+              page adds after the choice, which is what it is. */}
+          <Reveal delay={0.12} className="mt-14 border-t border-hair pt-8 md:mt-20">
+            <p className="label text-mute">{t("programs.notFor.title")}</p>
+            <ul className="mt-6 grid gap-x-10 gap-y-3 sm:grid-cols-3">
+              {notForItems.map((k) => (
+                <li
+                  key={k}
+                  className="flex gap-3 text-[15px] leading-relaxed text-mute"
+                >
+                  <span aria-hidden className="mt-2.5 h-px w-4 shrink-0 bg-bronze/60" />
+                  {t(`programs.notFor.items.${k}`)}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 
@@ -472,6 +472,43 @@ export default async function ProgramPage({
                 {t("instructor.role")}
               </p>
             </div>
+
+            {/* THE TWO FIGURES, AND WHY THEY ARE ON THIS PAGE AT ALL.
+                A course page carried no number about the academy anywhere in
+                it. The six facts at the top are the conditions of the course,
+                which is a different claim: they say what a student gets, not
+                why the person giving it is worth the trip. The homepage answers
+                that in its first screen and these pages, which are where most
+                search traffic actually lands, never did.
+
+                Two of the four figures, not four. `authority.items` holds years,
+                students, class size and reach; class size is already the
+                `seats` row in the key-information strip at the top of this page,
+                and reach is already the `location` row beside it. Printing
+                either again is the page repeating itself, which is the specific
+                thing the homepage's own credibility act was cut back for. What
+                is left is the pair neither strip carries: how long she has been
+                doing this, and how many people she has taught.
+
+                Under her titles rather than in a band of their own, because
+                they are a fact about her and this is the section that is about
+                her. A separate strip would be a third act competing with the
+                two the page already has here. */}
+            <dl className="mt-8 flex flex-wrap gap-x-12 gap-y-6">
+              {(["years", "students"] as const).map((k) => (
+                <div key={k}>
+                  <dt className="sr-only">{t(`authority.items.${k}.label`)}</dt>
+                  <dd>
+                    <span className={`${displayStat} block text-espresso`}>
+                      {t(`authority.items.${k}.value`)}
+                    </span>
+                    <span className="label mt-2 block text-mute" aria-hidden>
+                      {t(`authority.items.${k}.label`)}
+                    </span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
 
             <p className="mt-8 max-w-[48ch] text-[16px] leading-relaxed text-mute">
               {t("about.story.p3")}
@@ -619,7 +656,7 @@ export default async function ProgramPage({
 
             <Reveal delay={0.12} className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
               <Link href={`/contact?course=${slug}`} className={btnSolidLight}>
-                {t("cta.requestSeat")}
+                {t("cta.consultation")}
               </Link>
               {whatsappHref ? (
                 <a

@@ -24,32 +24,48 @@ const LOGO = `data:image/png;base64,${readFileSync(
   join(process.cwd(), "public/brand/aura-logo-dark.png"),
 ).toString("base64")}`;
 
+/**
+ * The card's two faces, read once per server process like the logo above.
+ *
+ * satori rasterises with the fonts it is handed and nothing else: without
+ * these files the tagline printed in a bundled grotesque, and the Arabic card
+ * could carry no sentence at all (the fallback face failed in the font parser
+ * before it ever failed to shape). Static instances committed under
+ * assets/fonts — variable fonts are the one thing satori's parser still
+ * refuses. Both are listed under `fonts` below; satori picks per glyph, so a
+ * Latin brand name inside an Arabic sentence takes the Cormorant cut.
+ *
+ * The Arabic face is Markazi Text, not the site's Noto Naskh, and that is
+ * satori again: Noto Naskh Arabic — and Amiri, Lateef and Scheherazade with
+ * it — hits the same `lookupType: 5 - substFormat: 3` parser wall the old
+ * comment recorded, at every weight. Markazi is the most naskh-flavoured face
+ * whose tables satori actually parses (tested against El Messiri, IBM Plex
+ * Sans Arabic and Tajawal, which also pass but read geometric). Card only;
+ * the site keeps Noto Naskh.
+ */
+const CORMORANT = readFileSync(
+  join(process.cwd(), "assets/fonts/CormorantGaramond-Medium.ttf"),
+);
+const NASKH = readFileSync(join(process.cwd(), "assets/fonts/MarkaziText-Medium.ttf"));
+
 // ponytail: generated at build time from the same assets as the site, so the
 // share card never drifts from the brand. No design file to keep in sync.
 export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
+  const rtl = isRtl(locale);
 
   /**
-   * The Arabic card carries no sentence, and this is a limitation rather than
-   * a decision.
-   *
-   * `next/og` rasterises with satori, which shapes text with the fonts it is
-   * handed and falls back to a bundled Latin face otherwise. Handed the Arabic
-   * tagline it fails outright, in the font parser, on a substitution table it
-   * does not implement: `lookupType: 5 - substFormat: 3 is not yet supported`.
-   * That was already true before this route was prerendered; it simply failed
-   * once per crawler instead of once at build, so nobody saw it. Now the build
-   * would stop, which is the correct place for it to be visible.
-   *
-   * What survives is the brand plate and the town, both of which render
-   * identically in every language, so an Arabic share is a card rather than an
-   * error. To give it the sentence back, add a Naskh font file to the
-   * repository and pass it to `ImageResponse` under `fonts`. That is a real
-   * asset the academy does not currently ship, and downloading one at build
-   * time would make every build depend on a network call.
+   * Arabic takes no-break spaces, and it is a satori workaround rather than
+   * typography: satori lays RTL words out with grossly stretched gaps (a
+   * known quirk of its word segmentation), and joining the words with U+00A0
+   * is the one input that makes it set the line at natural spacing. The cost
+   * is that an NBSP line cannot wrap, so the Arabic tagline must stay short
+   * enough for one line at this size — at 54px the current sentence uses
+   * about 780 of the 1048px the padding leaves. If a longer tagline ever
+   * lands, drop the size rather than restoring the spaces.
    */
-  const canSetTagline = !isRtl(locale);
+  const tagline = rtl ? t("tagline").replaceAll(" ", " ") : t("tagline");
 
   return new ImageResponse(
     (
@@ -63,46 +79,46 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
           background: "#f2eee7",
           color: "#211916",
           padding: 76,
-          fontFamily: "serif",
+          fontFamily: "'Cormorant Garamond', 'Markazi Text'",
         }}
       >
-        {/* The lockup already sets the name twice. Printing it again beside it
-            would be the same words three times on one card. It takes the space
-            the sentence would have had when there is no sentence. */}
         <div style={{ display: "flex" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={LOGO}
-            width={canSetTagline ? 152 : 236}
-            height={canSetTagline ? 180 : 280}
-            alt=""
-          />
+          <img src={LOGO} width={152} height={180} alt="" />
         </div>
 
-        {/* Wide-tracked capitals rather than the 58px setting this used to
-            carry. satori rasterises with the faces it is handed and this route
-            hands it none, so `font-family: serif` resolves to its bundled
-            sans: the card was printing the brand's one editorial line in a
-            neutral grotesque at headline size, which is the single most
-            off-brand surface the site had. At label size, spaced, the same
-            fallback face reads as the small caps the rest of the site sets its
-            labels in, and the card stops pretending to a serif it has not got.
-            Give this route a Cormorant file and the display setting is worth
-            restoring. */}
-        {canSetTagline ? (
+        {/* The display setting, restored now the route has real faces: the
+            brand's one editorial line at headline size in the site's own
+            serif, or in Naskh on the ar card, where the tighter leading the
+            Latin line takes would clip the ascenders — the same split the
+            stylesheet makes for `[lang="ar"] .display`. The sentence keeps
+            the text direction of its language, and on the ar card it starts
+            from the right edge, where an Arabic reader starts. */}
+        {/* The Arabic line is right-anchored the hard way, and every part of
+            this is a satori finding rather than a preference. A text box in
+            the column above stretches to the card's width and satori draws a
+            shaped RTL run from the box's LEFT edge regardless of direction,
+            textAlign, justifyContent, alignSelf or a flex-grow sibling — all
+            five were tried against the rendered PNG. The one thing that moves
+            it is the box itself: an explicit width small enough to shrink it,
+            pushed right by an auto margin. The 790 must stay at or above the
+            line's rendered width (~760px at 54px for the current tagline, and
+            an NBSP line cannot wrap) — if the Arabic tagline is ever edited,
+            re-render /ar/opengraph-image and re-measure before shipping. */}
+        <div style={{ display: "flex" }}>
           <div
             style={{
               display: "flex",
-              fontSize: 26,
-              letterSpacing: 3.5,
-              lineHeight: 1.6,
-              textTransform: "uppercase",
-              maxWidth: 900,
+              fontSize: rtl ? 54 : 58,
+              lineHeight: rtl ? 1.45 : 1.15,
+              ...(rtl ? { marginLeft: "auto", width: 790 } : { maxWidth: 980 }),
+              direction: rtl ? "rtl" : "ltr",
+              textAlign: rtl ? "right" : "left",
             }}
           >
-            {t("tagline")}
+            {tagline}
           </div>
-        ) : null}
+        </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
           <div style={{ display: "flex", height: 3, width: 140, background: "#98715a" }} />
@@ -112,6 +128,12 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
         </div>
       </div>
     ),
-    size,
+    {
+      ...size,
+      fonts: [
+        { name: "Cormorant Garamond", data: CORMORANT, weight: 500, style: "normal" },
+        { name: "Markazi Text", data: NASKH, weight: 500, style: "normal" },
+      ],
+    },
   );
 }

@@ -47,6 +47,7 @@ import { Reveal } from "./Reveal";
 export function CourseSelector() {
   const t = useTranslations("catalog");
   const p = useTranslations("programs");
+  const c = useTranslations("cta");
 
   return (
     <ul
@@ -169,7 +170,7 @@ export function CourseSelector() {
                     `linkRule` makes everywhere else; it is written out here
                     because it keys off the card's hover rather than its own. */}
                 <span className="label mt-5 inline-flex items-center gap-3 border-b border-transparent pb-1 text-espresso transition-colors duration-500 ease-[var(--ease-aura)] group-hover:border-espresso">
-                  {p("viewProgram")}
+                  {c("course")}
                   <ArrowRight size={13} weight="light" className={`flip-x ${arrow}`} />
                 </span>
               </div>

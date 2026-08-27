@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { displaySection, shell } from "@/lib/ui";
+import { displayChapter, displaySection, sectionPadJoin, shell } from "@/lib/ui";
 import { precisionMedia } from "@/lib/media";
 import { MediaFrame } from "./MediaFrame";
 import { Parallax } from "./Parallax";
@@ -48,9 +48,14 @@ import { SectionLabel } from "./SectionLabel";
 export async function AuthorityStrip() {
   const t = await getTranslations("authority");
   const sections = await getTranslations("sections");
+  const inst = await getTranslations("instructor");
+  const hero = await getTranslations("hero");
 
   return (
-    <section id="standard" className="scroll-mt-20 bg-espresso pt-10 pb-16 text-ivory md:pt-12 md:pb-20 lg:pt-16 lg:pb-28">
+    <section
+      id="standard"
+      className={`${sectionPadJoin} scroll-mt-20 bg-espresso text-ivory`}
+    >
       <div className={shell}>
         {/* THE SPLIT. Half the field is text, five twelfths is the photograph,
             and the twelfth between them is the whole composition.
@@ -147,14 +152,46 @@ export async function AuthorityStrip() {
               `md:max-[879px]:` it is one media query with both bounds, it
               applies only in the band it is meant for, and there is nothing left
               to override. */}
-          <Parallax distance={12} className="min-[880px]:col-span-5 min-[880px]:col-start-8">
-            <div className="relative mx-auto aspect-[4/5] w-full overflow-hidden md:max-[879px]:max-h-[30rem] md:max-[879px]:w-auto">
-              <MediaFrame
-                media={precisionMedia}
-                alt={t("portraitAlt")}
-                sizes="(min-width: 1024px) 28vw, 100vw"
-              />
-            </div>
+          <Parallax
+            distance={12}
+            className="min-[880px]:col-span-5 min-[880px]:col-start-8"
+          >
+            <figure className="mx-auto">
+              <div className="relative aspect-[4/5] w-full overflow-hidden md:max-[879px]:max-h-[30rem] md:max-[879px]:w-auto">
+                <MediaFrame
+                  media={precisionMedia}
+                  alt={t("portraitAlt")}
+                  sizes="(min-width: 1024px) 28vw, 100vw"
+                />
+              </div>
+              {/* HER NAME, AS THE CAPTION TO HER HANDS.
+                This is what is left of `Signature`, the band that used to sit
+                between the hero and this section: her name at chapter size, her
+                role under it, and a line about what she is for. Two of those
+                three were worth keeping and the third was not - "formare
+                professioniste competenti, con percorsi pratici, supporto
+                continuo e standard elevati" is four benefits the page then
+                makes four more times - so the band went and the name came here.
+
+                It reads better here than it did there. There it captioned a
+                photograph one section above it, with a ground change in
+                between; here it captions the photograph it is standing next to,
+                which is the academy's own frame of her measuring a brow. The
+                claim in this act is that the teaching comes out of the work.
+                Her name under the hands doing the work is that claim, made
+                twice in one composition.
+
+                `instructor.mission` stays in all four catalogues for /about and
+                the course pages. */}
+              <figcaption className="mt-6 border-t border-hair-dark pt-5">
+                <p className={`${displayChapter} leading-none`}>
+                  {inst("title")}
+                </p>
+                <p className="label mt-3 leading-[1.6] text-bronze-hi">
+                  {hero("founderRole")}
+                </p>
+              </figcaption>
+            </figure>
           </Parallax>
         </div>
       </div>

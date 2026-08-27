@@ -30,13 +30,28 @@ import { Reveal } from "./Reveal";
  * line: a checklist without checkmarks. Ticks and icons are what a features
  * table looks like, and this is a list of what is true.
  */
+/**
+ * Six rows, not the eight the strings hold, and the two that went were both
+ * saying something the reader had already been told.
+ *
+ * `small` repeated the class size for the fourth time on the page: the hero
+ * states it as a figure, the hero note explains why, and act 04 is built on it.
+ * `guidance` and `support` were a near pair - professional guidance after the
+ * course, and support after the course - and a list whose whole promise is that
+ * nothing here is padding cannot afford two rows that answer the same question.
+ * `support` carries it alone.
+ *
+ * Six also sets the list straight: the grid is two columns from md, so an even
+ * count fills both and the last row does not leave a hole.
+ *
+ * Both strings stay in all four catalogues. This array is the only thing that
+ * decides what renders.
+ */
 const items = [
-  "small",
   "model",
   "feedback",
   "certificate",
   "support",
-  "guidance",
   "kit",
   "business",
 ] as const;
@@ -62,7 +77,9 @@ export async function StudentReceives() {
           <span className="label shrink-0 font-mono text-bronze-ink">
             {String(i + 1).padStart(2, "0")}
           </span>
-          <span className="text-[16px] leading-relaxed text-espresso">{t(`items.${k}`)}</span>
+          <span className="text-[16px] leading-relaxed text-espresso">
+            {t(`items.${k}`)}
+          </span>
         </Reveal>
       ))}
     </ul>

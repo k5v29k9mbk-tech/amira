@@ -40,8 +40,6 @@
         "label": "Students per class"
       }
     },
-    "primary": "Explore the courses",
-    "secondary": "Book your place",
     "meetAmira": "Meet Amira",
     "classesNote": "Intentionally small classes, so Amira can personally guide every student."
   },
@@ -55,6 +53,8 @@
     "titleB": "not from a textbook.",
     "lede": "Founded by Amira Bechini: CEO of Amira Beauty Suite, permanent makeup artist, more than eight years in the industry. Every technique taught here is one she performs on real clients.",
     "portrait": "Amira Bechini in a black blazer, the brow calipers in her hand",
+    "demoAlt": "Amira Bechini measuring a model's brows with the calipers during a live demonstration.",
+    "certificateAlt": "Amira Bechini seated beside a student holding up her PhiBrows certificate.",
     "readStory": "Discover Amira's story",
     "facts": {
       "years": {
@@ -74,7 +74,7 @@
       "eyebrow": "The founder",
       "title": "From the treatment room to the classroom",
       "role": "Founder of Aura Academy · CEO of Amira Beauty Suite",
-      "imageAlt": "Amira Bechini in the studio, in a black blazer, the brow calipers held at her collar.",
+      "imageAlt": "Amira Bechini in the studio, in a black blazer, arms folded, against a pale ground.",
       "p1": "I run Amira Beauty Suite, an institute specialised in advanced aesthetic treatments, and founded Aura Academy to teach what I practise: permanent makeup and lash and brow lamination.",
       "p2": "In more than eight years I have trained over 150 students and built a method of my own: technical excellence, hands-on practice, entrepreneurial vision. It began simply, to help people feel confident, and to give women a real profession.",
       "p3": "I have never stopped studying: international masterclasses, the latest PMU techniques. My own institute taught me the rest, not just the technique, but what clients and the market need.",
@@ -234,7 +234,6 @@
       "model": "Live model, where scheduled",
       "support": "Post-course support"
     },
-    "cta": "Request course details",
     "privateNote": "Fees are not published. Write to us and Amira will send the full details for your course, including the kit option.",
     "paymentsLabel": "Payment",
     "payments": "Bank transfer · Card · PagoDIL",
@@ -456,16 +455,13 @@
       "technique": "Where microblading draws individual hairs with a blade, powder brows is shaded with the machine.",
       "finish": "A soft shaded brow built with the machine, from a light veil to a defined finish.",
       "levels": "Taught at base and advanced level, in Italian, in groups of 3-4 students."
-    },
-    "cta": "Ask about Powder Brows"
+    }
   },
   "cta": {
-    "courses": "Explore the training",
-    "talk": "Talk to Amira",
-    "availability": "Request availability",
-    "consultation": "Book your consultation",
-    "requestSeat": "Request a seat",
-    "requestDetails": "Request course details"
+    "courses": "Explore the courses",
+    "course": "Explore the course",
+    "info": "Request information",
+    "consultation": "Book a consultation"
   },
   "positioning": {
     "artist": "PMU Artist · Educator · Founder",
@@ -532,7 +528,6 @@
     "eyebrow": "The programmes",
     "title": "Six disciplines, one standard.",
     "sub": "Permanent makeup and lamination, each taught at base and advanced level, in classes of three to four.",
-    "viewProgram": "View the programme",
     "backToAll": "All programmes",
     "keyInfoTitle": "Key information",
     "labels": {
@@ -558,9 +553,30 @@
       "eyebrow": "Who it is for",
       "title": "Two ways in.",
       "baseLabel": "Base level",
-      "base": "Artists starting this discipline from the beginning. No prior experience in the technique is assumed, and the course is built to take you from the theory to a finished result.",
-      "advancedLabel": "Advanced level",
-      "advanced": "Artists already working who want the technique corrected and the standard raised. You bring your practice; the course refines it."
+      "advancedLabel": "Advanced level"
+    },
+    "levels": {
+      "labels": {
+        "for": "For",
+        "experience": "Experience required",
+        "goal": "Objective",
+        "practice": "In practice",
+        "outcome": "You leave with"
+      },
+      "base": {
+        "for": "Artists starting this discipline from the beginning.",
+        "experience": "None.",
+        "goal": "Building strong fundamentals.",
+        "practice": "Theory, guided practice, and a live model where the course schedules one.",
+        "outcome": "From the theory to a finished result."
+      },
+      "advanced": {
+        "for": "Artists already working who want the standard raised.",
+        "experience": "An established practice in the discipline.",
+        "goal": "Refining technique and consistency.",
+        "practice": "The work is on your practice: the habits you arrived with, corrected.",
+        "outcome": "The result held to a professional finish."
+      }
     },
     "notFor": {
       "title": "Who it is not for",
@@ -602,8 +618,8 @@
       "title": "Before you apply."
     },
     "apply": {
-      "eyebrow": "Request a place",
-      "title": "Request the details for this programme.",
+      "eyebrow": "The first step",
+      "title": "Talk to Amira about this course.",
       "body": "Tell us which level you want and where you are in your practice. Amira replies with the dates, the duration and everything the course includes."
     },
     "meta": {

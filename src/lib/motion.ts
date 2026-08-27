@@ -118,9 +118,10 @@ export const imageScale = {
  * components.
  *
  * THE SIGNATURE USED TO LAND LAST, and `name` and `role` are the two beats it
- * landed on. The homepage no longer plays them: her name is a section of its own
- * below the hero (`Signature`), so it arrives on scroll rather than on a delay
- * measured from the opening, and the score now ends on the actions at 0.72.
+ * landed on. The homepage no longer plays them: her name is set further down the
+ * page, as the caption to the portrait in `AuthorityStrip`, so it arrives on
+ * scroll rather than on a delay measured from the opening, and the score now
+ * ends on the actions at 0.72.
  *
  * They stay here, and not only out of tidiness. `HeroPortrait` still plays both,
  * and the interval between them is the part worth keeping: 0.10 is the smallest

@@ -40,8 +40,6 @@
         "label": "Élèves par formation"
       }
     },
-    "primary": "Découvrir les formations",
-    "secondary": "Réservez votre place",
     "meetAmira": "Rencontrer Amira",
     "classesNote": "Des groupes volontairement réduits, pour qu'Amira accompagne personnellement chaque élève."
   },
@@ -55,6 +53,8 @@
     "titleB": "pas depuis un manuel.",
     "lede": "Aura Academy a été fondée par Amira Bechini, CEO d'Amira Beauty Suite et artiste en maquillage permanent forte de plus de huit ans d'expérience. Chaque technique enseignée ici, elle la pratique chaque jour, sur de vraies clientes, dans son propre institut.",
     "portrait": "Amira Bechini en blazer noir, le compas à sourcils à la main",
+    "demoAlt": "Amira Bechini mesure les sourcils d'un modèle au compas pendant une démonstration en direct.",
+    "certificateAlt": "Amira Bechini assise à côté d'une élève qui montre son certificat PhiBrows.",
     "readStory": "Découvrir le parcours d'Amira",
     "facts": {
       "years": {
@@ -74,7 +74,7 @@
       "eyebrow": "La fondatrice",
       "title": "De la cabine à la salle de formation",
       "role": "Fondatrice d'Aura Academy · CEO d'Amira Beauty Suite",
-      "imageAlt": "Amira Bechini en studio, en blazer noir, le compas à sourcils tenu contre son col.",
+      "imageAlt": "Amira Bechini en studio, en blazer noir, les bras croisés, sur un fond clair.",
       "p1": "Je m'appelle Amira Bechini. Je dirige Amira Beauty Suite, un institut de beauté spécialisé en soins esthétiques avancés, et j'ai fondé Aura Academy pour enseigner ce que je pratique : le maquillage permanent et la lamination des cils et des sourcils.",
       "p2": "En plus de huit ans dans le secteur, j'ai formé plus de 150 élèves et construit ma propre méthode, qui réunit excellence technique, pratique sur le terrain et vision entrepreneuriale. Ma passion est née d'un désir simple : aider les gens à se sentir sûrs d'eux et créer de véritables opportunités de carrière pour les femmes qui veulent faire de cette passion un métier.",
       "p3": "Je n'ai jamais cessé d'apprendre : masterclasses internationales, dernières techniques PMU, investissement continu dans ma propre formation. Le travail quotidien dans mon institut m'a appris le reste, non seulement l'aspect technique du métier, mais les besoins réels des clientes et du marché.",
@@ -234,7 +234,6 @@
       "model": "Modèle en direct, lorsqu'il est prévu",
       "support": "Suivi après la formation"
     },
-    "cta": "Demander les détails",
     "privateNote": "Les tarifs des formations ne sont pas publiés. Écrivez-nous et Amira vous enverra tous les détails de la formation qui vous intéresse, y compris l'option du kit professionnel.",
     "paymentsLabel": "Paiement",
     "payments": "Virement · Carte · PagoDIL",
@@ -456,16 +455,13 @@
       "technique": "Là où le microblading dessine des poils un à un à la lame, le powder brows s'ombre à la machine.",
       "finish": "Un sourcil ombré travaillé à la machine, du voile léger au fini défini.",
       "levels": "Enseigné en niveau base et avancé, en italien, en groupes de 3-4 élèves."
-    },
-    "cta": "Demander des informations"
+    }
   },
   "cta": {
-    "courses": "Découvrir la formation",
-    "talk": "Parler avec Amira",
-    "availability": "Demander une date",
-    "consultation": "Réserver votre consultation",
-    "requestSeat": "Demander une place",
-    "requestDetails": "Demander les détails du cours"
+    "courses": "Découvrir les formations",
+    "course": "Découvrir la formation",
+    "info": "Demander des informations",
+    "consultation": "Réserver une consultation"
   },
   "positioning": {
     "artist": "PMU Artist · Formatrice · Fondatrice",
@@ -532,7 +528,6 @@
     "eyebrow": "Les programmes",
     "title": "Six disciplines, un seul standard.",
     "sub": "Maquillage permanent et laminage, chacun enseigné au niveau base et avancé, en classes de trois à quatre élèves.",
-    "viewProgram": "Découvrir le programme",
     "backToAll": "Tous les programmes",
     "keyInfoTitle": "Informations essentielles",
     "labels": {
@@ -558,9 +553,30 @@
       "eyebrow": "À qui s'adresse ce cours",
       "title": "Deux façons d'entrer.",
       "baseLabel": "Niveau base",
-      "base": "Celles qui commencent cette discipline depuis le début. Aucune expérience de la technique n'est supposée, et le cours est construit pour vous mener de la théorie à un résultat fini.",
-      "advancedLabel": "Niveau avancé",
-      "advanced": "Celles qui exercent déjà et veulent la technique corrigée et le standard relevé. Vous apportez votre pratique ; le cours l'affine."
+      "advancedLabel": "Niveau avancé"
+    },
+    "levels": {
+      "labels": {
+        "for": "Pour qui",
+        "experience": "Expérience requise",
+        "goal": "Objectif",
+        "practice": "En pratique",
+        "outcome": "À la sortie"
+      },
+      "base": {
+        "for": "Celles qui commencent cette discipline depuis le début.",
+        "experience": "Aucune.",
+        "goal": "Construire des bases solides.",
+        "practice": "Théorie, pratique guidée et modèle vivant lorsque le cours en prévoit un.",
+        "outcome": "De la théorie à un résultat fini."
+      },
+      "advanced": {
+        "for": "Celles qui exercent déjà et veulent le standard relevé.",
+        "experience": "Une pratique déjà établie dans la discipline.",
+        "goal": "Affiner technique et régularité.",
+        "practice": "On travaille sur votre pratique : les habitudes avec lesquelles vous arrivez sont corrigées.",
+        "outcome": "Le résultat tenu à une finition professionnelle."
+      }
     },
     "notFor": {
       "title": "À qui il ne s'adresse pas",
@@ -602,8 +618,8 @@
       "title": "Avant de candidater."
     },
     "apply": {
-      "eyebrow": "Demander une place",
-      "title": "Demandez les détails de ce programme.",
+      "eyebrow": "La première étape",
+      "title": "Parlez de ce programme avec Amira.",
       "body": "Dites-nous quel niveau vous intéresse et où vous en êtes dans votre pratique. Amira répond avec les dates, la durée et tout ce que le cours comprend."
     },
     "meta": {

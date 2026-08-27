@@ -6,6 +6,7 @@ import { Stagger, StaggerItem } from "@/components/Stagger";
 import { MediaFrame } from "@/components/MediaFrame";
 import { Parallax } from "@/components/Parallax";
 import { WelcomeVideo } from "@/components/WelcomeVideo";
+import { certificateMedia, demonstrationMedia } from "@/lib/media";
 import { welcomeVideoId } from "@/lib/studio";
 import {
   btnLine,
@@ -81,7 +82,7 @@ export default async function AboutPage({
   setRequestLocale(locale);
   const t = await getTranslations("about");
   const inst = await getTranslations("instructor");
-  const cta = await getTranslations("hero");
+  const cta = await getTranslations("cta");
   const mentor = await getTranslations("mentor");
 
   return (
@@ -114,11 +115,7 @@ export default async function AboutPage({
           <Parallax distance={10} className="lg:col-span-5 lg:col-start-8">
             <div className="relative aspect-[3/4] w-full">
               <MediaFrame
-                media={{
-                  posterSrc: "/brand/amira-hero-portrait.jpg",
-                  alt: t("portrait"),
-                  position: "52% 22%",
-                }}
+                media={{ ...demonstrationMedia, alt: t("demoAlt") }}
                 priority
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 imageClassName="settle"
@@ -170,9 +167,11 @@ export default async function AboutPage({
 
           The heading now sits over both columns and the column beside the text
           carries the founder portrait, so the story is read against the person
-          telling it. The frame is the studio portrait, the same one the
-          homepage opens its first act on, and `story.imageAlt` describes
-          exactly what it shows. */}
+          telling it. The frame is her studio portrait and `story.imageAlt`
+          describes exactly what it shows. It is deliberately not the cut-out
+          the homepage opens its first act on: this page is the long account of
+          who she is, and it is read better against a photograph the homepage
+          does not already spend. */}
       <section className={`${sectionPad} bg-paper`}>
         <div className={shell}>
           <Reveal className="max-w-[36rem]">
@@ -186,12 +185,16 @@ export default async function AboutPage({
               <div className="relative aspect-[4/5] w-full">
                 <MediaFrame
                   media={{
-                    posterSrc: "/brand/amira-founder-portrait.png",
+                    posterSrc: "/brand/amira-founder-studio-portrait.jpg",
                     alt: t("story.imageAlt"),
-                    // The photograph is a hair wider than the 4:5 box, so cover
-                    // takes its third of a percent off the sides and nothing
-                    // off the height. Centred: the pull upward the old crop
-                    // carried would now do nothing at all.
+                    // Centred, and the numbers say it should be. The file is
+                    // 1708x2560 and the box is 4:5, so cover keeps 2135px of
+                    // height and spends 425. Half of that off each end opens
+                    // the frame about 100px above her hair and closes it just
+                    // under her folded hands: her head whole, the length of the
+                    // hair, the shoulders and the arms, which is the whole
+                    // portrait. Pulling the crop up loses the hands and pulling
+                    // it down cuts the crown; there is no third option in 425px.
                     position: "50% 50%",
                   }}
                   sizes="(max-width: 1024px) 100vw, 38vw"
@@ -228,16 +231,23 @@ export default async function AboutPage({
           On paper, with the story above it: the two sections are one chapter,
           her account of the work and then her own voice over it, and the page
           had them on two different grounds. The alt follows what is actually
-          on screen. Until the clip is uploaded this frame is a photograph of
-          her institute and nothing else, so describing it as a welcome message
-          would be describing something that is not there. */}
+          on screen. Until the clip is uploaded this frame is a photograph of a
+          student with her certificate and nothing else, so describing it as a
+          welcome message would be describing something that is not there.
+
+          The still is contained rather than covered, and the `sizes` is the
+          narrow one that goes with it. Both numbers are argued in the note on
+          `certificateMedia`. */}
       <section className={`${sectionPadBottom} bg-paper`}>
         <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-16`}>
           <Reveal className="lg:col-span-7">
             <WelcomeVideo
               playbackId={welcomeVideoId}
-              poster="/brand/amira-hero.jpg"
-              alt={welcomeVideoId ? mentor("videoAlt") : t("portrait")}
+              poster={certificateMedia.posterSrc}
+              position={certificateMedia.position}
+              fit="contain"
+              sizes="(max-width: 1024px) 45vw, 23vw"
+              alt={welcomeVideoId ? mentor("videoAlt") : t("certificateAlt")}
             />
           </Reveal>
           <Reveal delay={0.08} className="lg:col-span-4 lg:col-start-9 lg:self-center">
@@ -387,10 +397,10 @@ export default async function AboutPage({
             </p>
             <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
               <Link href="/contact" className={btnSolid}>
-                {cta("secondary")}
+                {cta("consultation")}
               </Link>
               <Link href="/courses" className={btnLine}>
-                {cta("primary")}
+                {cta("courses")}
               </Link>
             </div>
           </Reveal>

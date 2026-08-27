@@ -319,7 +319,7 @@ export function Header() {
                 : "text-bronze-ink md:border-espresso md:bg-espresso md:text-ivory md:hover:border-bronze-ink md:hover:bg-bronze-ink"
             }`}
           >
-            {cta("requestSeat")}
+            {cta("consultation")}
           </Link>
 
           {/* 45px of hit area rather than 33, and the horizontal padding is
@@ -416,7 +416,7 @@ export function Header() {
                     onClick={() => setOpen(false)}
                     className={`${btnSolid} w-full`}
                   >
-                    {cta("requestSeat")}
+                    {cta("consultation")}
                   </Link>
                   <div className="mt-8">
                     <LocaleSwitcher tone="dark" />

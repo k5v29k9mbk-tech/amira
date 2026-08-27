@@ -43,7 +43,7 @@ const arabic = Noto_Naskh_Arabic({
 /** Namespaces read by `"use client"` components. Keep in sync with them. */
 const CLIENT_NAMESPACES = [
   "nav", // Header, LocaleSwitcher
-  "cta", // Header availability action, StickyCta
+  "cta", // Header + StickyCta booking action, CourseSelector course link
   "intro", // IntroVideo skip control
   "manifesto", // Manifesto
   "method", // MethodStory

@@ -54,6 +54,36 @@ export const sectionPad = "py-16 md:py-20 lg:py-28";
 export const sectionPadBottom = "pb-16 md:pb-20 lg:pb-28";
 export const sectionPadTop = "pt-16 md:pt-20 lg:pt-28";
 
+/**
+ * The half-measure head with the full tail, for a section that continues the
+ * one above it but still opens with type of its own.
+ *
+ * It is the third rhythm on the site and it was already being used three times
+ * before it had a name: `Signature`, `AuthorityStrip` and `Manifesto` had each
+ * written out `pt-10 pb-16 md:pt-12 md:pb-20 lg:pt-16 lg:pb-28` by hand, which
+ * is the exact drift the note on the display scale above warns about. Three
+ * copies of one rhythm is not a locked system, it is three files that happen to
+ * agree, and the day one of them is nudged the other two do not move with it.
+ *
+ * Two of those three are live today. `Signature` was folded into
+ * `AuthorityStrip` as the portrait's caption after this token was written, and
+ * the file has since been deleted; it is named here for the history, not as a
+ * caller. The two live callers are the homepage's opening movement, which is
+ * what the measure below is set for.
+ *
+ * What it is for: the opening movement of the homepage is the film, the
+ * signature and the proof, and those three read as one object. A full
+ * `sectionPad` head between them would break them into three acts; no head at
+ * all would run them together. 40px at mobile and 64 at desktop is the join
+ * inside a movement, against the 112 of a join inside a pair and the 224 of a
+ * break between two acts.
+ *
+ * The tail stays the full measure on purpose, so the movement's last section
+ * still lands on the same edge every other section does and the ground change
+ * under it reads at the usual weight.
+ */
+export const sectionPadJoin = "pt-10 pb-16 md:pt-12 md:pb-20 lg:pt-16 lg:pb-28";
+
 /*
  * The display scale, largest to smallest. Five steps and no sixth: every
  * oversized line on the site is one of these, so a heading's size states its

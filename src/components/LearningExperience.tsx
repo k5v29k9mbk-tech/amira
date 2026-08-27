@@ -32,7 +32,21 @@ import { Reveal } from "./Reveal";
  * always gave them anyway, where four would leave each about eighty pixels of
  * measure.
  */
-const items = ["groups", "demo", "practice", "correction"] as const;
+/**
+ * Three claims, not the four the strings hold.
+ *
+ * `groups` - "da tre a quattro allieve" - was the fourth, and by the time a
+ * reader reaches it the page has said the same thing twice already: the hero
+ * carries it as a figure with a note under it, and this section's own
+ * standfirst opens on "classe ristretta". A third statement of it, set as a
+ * numbered claim beside three claims about what happens to your hands, read as
+ * padding and pushed the one that matters - your work being corrected while you
+ * do it - off the first row.
+ *
+ * `experience.items.groups.*` stays in all four catalogues. Nothing renders it
+ * today; put it back in this array and it returns.
+ */
+const items = ["demo", "practice", "correction"] as const;
 
 export async function LearningExperience() {
   const t = await getTranslations("experience");
@@ -74,14 +88,14 @@ export async function LearningExperience() {
         <ul className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:col-span-6 lg:col-start-7 lg:gap-x-10">
           {items.map((k, i) => (
             <Reveal as="li" key={k} delay={i * 0.06}>
-            <span className="label font-mono text-bronze-ink">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <h3 className={`${displayRow} mt-4`}>{t(`items.${k}.title`)}</h3>
-            <p className="mt-3 max-w-[38ch] text-[15px] leading-relaxed text-mute">
-              {t(`items.${k}.body`)}
-            </p>
-          </Reveal>
+              <span className="label font-mono text-bronze-ink">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className={`${displayRow} mt-4`}>{t(`items.${k}.title`)}</h3>
+              <p className="mt-3 max-w-[38ch] text-[15px] leading-relaxed text-mute">
+                {t(`items.${k}.body`)}
+              </p>
+            </Reveal>
           ))}
         </ul>
       </div>

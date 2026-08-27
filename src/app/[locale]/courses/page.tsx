@@ -247,7 +247,7 @@ export default async function CoursesPage({
                                 here while there was nowhere else to send her. */}
                             <div className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-4">
                               <Link href={`/courses/${course.slug}`} className={linkRule}>
-                                {t("programs.viewProgram")}
+                                {t("cta.course")}
                                 <ArrowRight
                                   size={14}
                                   weight="light"
@@ -375,7 +375,7 @@ export default async function CoursesPage({
 
             <Reveal delay={0.14}>
               <Link href="/contact" className={`${btnSolidLight} mt-10`}>
-                {t("powder.cta")}
+                {t("cta.info")}
                 <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
               </Link>
             </Reveal>
@@ -398,7 +398,7 @@ export default async function CoursesPage({
               {t("catalog.privateNote")}
             </p>
             <Link href="/contact" className={`${btnSolid} mt-8`}>
-              {t("catalog.cta")}
+              {t("cta.info")}
             </Link>
             <p className="label mt-8 text-mute">{t("catalog.payments")}</p>
           </Reveal>
@@ -483,27 +483,26 @@ export default async function CoursesPage({
             <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-mute">
               {t("contact.sub")}
             </p>
+            {/* The booking is the solid one and the channel is the outline,
+                which is the order every other closing frame on the site sets
+                them in. It was the other way round here, so the catalogue —
+                the page a reader reaches having compared all six disciplines —
+                was the one place the strongest ask was the quieter shape. */}
             <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
+              <Link href="/contact" className={btnSolid}>
+                {t("cta.consultation")}
+              </Link>
               {whatsappHref ? (
                 <a
                   href={whatsappHref}
                   target="_blank"
                   rel="noreferrer"
-                  className={btnSolid}
+                  className={btnLine}
                 >
                   <WhatsappLogo size={17} weight="light" />
                   {t("contact.whatsapp")}
                 </a>
               ) : null}
-              {/* Not `hero.secondary`. In English that string and the heading
-                  above it are the same three words, so the band was printing
-                  "Book your place" twice, once at 7rem and once inside the
-                  button underneath it. The label the six rows already use is
-                  the honest one anyway: the fee is quoted in the conversation
-                  this starts, so the first step is asking, not booking. */}
-              <Link href="/contact" className={whatsappHref ? btnLine : btnSolid}>
-                {t("catalog.cta")}
-              </Link>
             </div>
           </Reveal>
         </div>

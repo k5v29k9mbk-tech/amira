@@ -74,6 +74,7 @@ const facts = ["years", "students", "classes"] as const;
 
 export async function Hero() {
   const t = await getTranslations("hero");
+  const c = await getTranslations("cta");
 
   return (
     <section className="hero relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-espresso pt-[clamp(96px,12vh,112px)] pb-[clamp(56px,7vh,88px)] text-ivory">
@@ -257,7 +258,7 @@ export async function Hero() {
                 href="/courses"
                 className={`${btnSolidLight} hero-cta w-full sm:w-auto sm:px-9 sm:py-[0.9375rem]`}
               >
-                {t("primary")}
+                {c("courses")}
               </Link>
             </Magnetic>
             <Link href="/about" className={`${linkRuleLight} hero-cta`}>

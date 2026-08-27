@@ -14,7 +14,9 @@ import { programs, programBySlug } from "./programs.ts";
 import type { Media } from "./media.ts";
 import {
   artistMedia,
+  certificateMedia,
   closingMedia,
+  demonstrationMedia,
   founderMedia,
   heroFilmMedia,
   mentorshipMedia,
@@ -92,38 +94,41 @@ const PAGE_KEYS = [
   // The portrait credit under the hero photograph: her name from
   // `instructor.title`, her three titles from `hero.founderRole`.
   "hero.founderRole",
-  // The hero's two actions, both read again. `hero.primary` is the catalogue
-  // button and `hero.meetAmira` the link to her story beside it; both sat
-  // unrendered for a while and are back on the first screen, which is what this
-  // list is for: a translation that rots while a key sits unused is exactly the
-  // regression it exists to catch.
-  "hero.primary",
+  // The link to her story beside the hero's action. The action itself is no
+  // longer a key of this namespace: it is `cta.courses`, like every other
+  // catalogue action on the site.
   "hero.meetAmira",
   // The line under the class-size figure, which is the one piece of the proof
   // band that says what the number means rather than repeating it.
   "hero.classesNote",
   // Held, not read. `hero.founder` was the portrait's one-line credit before it
-  // became the name over the role, `hero.secondary` a second booking action,
-  // and `manifesto.note` and `students.sub` were removed from their pages as
-  // repetition rather than as content. All four stay listed on purpose.
+  // became the name over the role, and `manifesto.note` and `students.sub` were
+  // removed from their pages as repetition rather than as content. All three
+  // stay listed on purpose.
   "hero.founder",
-  "hero.secondary",
-  // The three actions the whole site is allowed to ask for, in the order a
-  // visitor meets them: browse, ask a person, ask for a date. They live in one
-  // namespace precisely so a fourth cannot appear quietly in one language, or
-  // one of the three drift into a different verb on one page.
+  // THE FOUR ACTIONS THE WHOLE SITE IS ALLOWED TO ASK FOR, and the reason they
+  // are four rather than eleven.
+  //
+  // Eleven labels were shipping for these four intentions: "explore the
+  // training" and "explore the courses" for the same catalogue, "request
+  // details", "request course details" and "ask about Powder Brows" for the
+  // same enquiry, "request a seat", "book your place" and "book your
+  // consultation" for the same conversation. Every one of them was written for
+  // the block it sat in, which is how a button stops being a system: a reader
+  // crossing four pages met four verbs for one thing and had to work out each
+  // time whether she was being offered something new.
+  //
+  // They live in one namespace precisely so a twelfth cannot appear quietly in
+  // one language, or one of the four drift into a different verb on one page:
+  //
+  //   courses       to the catalogue, from anywhere
+  //   course        to one discipline's page, from a row or a panel
+  //   info          the enquiry, where a reader still has a question
+  //   consultation  the booking, and the primary action of every closing frame
   "cta.courses",
-  "cta.talk",
-  "cta.availability",
-  // The consultation the courses page offers under every discipline.
+  "cta.course",
+  "cta.info",
   "cta.consultation",
-  // The selective ask. It replaced "request availability" in the header, the
-  // phone's standing bar, the hero's fallback action and the closing frame, and
-  // it is the verb every premium surface on the site now uses: a place is
-  // requested, never bought. `cta.availability` above it is still read by /faq
-  // and stays listed.
-  "cta.requestSeat",
-  "cta.requestDetails",
   // The two halves of the brand lockup under the signature: the person, then
   // the platform she built.
   "positioning.artist",
@@ -158,7 +163,6 @@ const PAGE_KEYS = [
   "programs.eyebrow",
   "programs.title",
   "programs.sub",
-  "programs.viewProgram",
   "programs.backToAll",
   "programs.keyInfoTitle",
   "programs.promise.eyebrow",
@@ -167,9 +171,38 @@ const PAGE_KEYS = [
   "programs.forWho.eyebrow",
   "programs.forWho.title",
   "programs.forWho.baseLabel",
-  "programs.forWho.base",
   "programs.forWho.advancedLabel",
-  "programs.forWho.advanced",
+  // THE TWO LEVELS, AS FIVE ANSWERS EACH RATHER THAN A PARAGRAPH EACH.
+  //
+  // `programs.forWho.base` and `.advanced` were two forty-word paragraphs sat
+  // side by side, and a reader deciding which of the two levels was hers had to
+  // read both of them in full and hold them in her head to compare. The five
+  // rows below are the five questions she is actually asking, asked in the same
+  // order of both levels, so the comparison is done by the layout instead: who
+  // it is for, what she needs to arrive with, what it is aiming at, what the
+  // practice is, and what she leaves with.
+  //
+  // Nothing in them is a new claim. Every line is a restatement of the two
+  // paragraphs they replaced and of the two published tiers in `pathway.tiers`,
+  // which is the rule the whole catalogue is held to.
+  //
+  // All five rows of both levels are listed because the card renders them
+  // unconditionally: one missing translation is a blank row on six routes.
+  "programs.levels.labels.for",
+  "programs.levels.labels.experience",
+  "programs.levels.labels.goal",
+  "programs.levels.labels.practice",
+  "programs.levels.labels.outcome",
+  "programs.levels.base.for",
+  "programs.levels.base.experience",
+  "programs.levels.base.goal",
+  "programs.levels.base.practice",
+  "programs.levels.base.outcome",
+  "programs.levels.advanced.for",
+  "programs.levels.advanced.experience",
+  "programs.levels.advanced.goal",
+  "programs.levels.advanced.practice",
+  "programs.levels.advanced.outcome",
   "programs.notFor.title",
   "programs.mastery.eyebrow",
   "programs.mastery.title",
@@ -209,6 +242,12 @@ const PAGE_KEYS = [
   "about.titleB",
   "about.lede",
   "about.portrait",
+  // The two frames on /about that are photographs of something happening
+  // rather than of somebody standing: her hands on a model's brows, and the
+  // flip chart mid-lesson. Described from the catalogue for the same reason as
+  // the three below.
+  "about.demoAlt",
+  "about.certificateAlt",
   "about.readStory",
   "about.story.eyebrow",
   "about.story.title",
@@ -275,7 +314,6 @@ const PAGE_KEYS = [
   "catalog.viewCourse",
   "catalog.detailsTitle",
   "catalog.includes",
-  "catalog.cta",
   "catalog.privateNote",
   "catalog.paymentsLabel",
   "catalog.payments",
@@ -429,6 +467,12 @@ test("every poster and clip the pages point at exists on disk", () => {
     // The three photographs the academy supplied for acts 01, 03 and the room.
     precisionMedia,
     mentorshipMedia,
+    // The two /about carries: the demonstration at the top of the page and the
+    // certificate beside the mission. Listed for the reason the classroom film
+    // is listed above it, and because between them they are the whole argument
+    // that page makes about who teaches there.
+    demonstrationMedia,
+    certificateMedia,
     ...Object.values(methodMedia),
     ...galleryFrames,
     ...resultFrames,
@@ -707,7 +751,6 @@ test("every page string is translated in all four languages", () => {
     "powder.points.technique",
     "powder.points.finish",
     "powder.points.levels",
-    "powder.cta",
   ];
 
   for (const [locale, messages] of Object.entries(LOCALES)) {
@@ -986,4 +1029,28 @@ test("no em dash survived into the copy", () => {
   for (const [locale, messages] of Object.entries(LOCALES)) {
     assert.equal(/[—–]/.test(JSON.stringify(messages)), false, `${locale} carries an em dash`);
   }
+});
+
+test("the founder's name is never misspelled in Arabic", () => {
+  // "بكيني" is the Arabic spelling of "bikini". It shipped once, in the meta
+  // description of all six Arabic course pages, crediting the academy to
+  // "Amira Bikini". The name is "بشيني" everywhere, forever.
+  for (const [locale, messages] of Object.entries(LOCALES)) {
+    assert.equal(
+      JSON.stringify(messages).includes("بكيني"),
+      false,
+      `${locale} misspells Bechini as Bikini`,
+    );
+  }
+});
+
+test("Arabic prose carries no Latin commas", () => {
+  // A "," directly after an Arabic letter is a typesetting slip; Arabic
+  // clauses separate with "،". Latin spans inside ar.json (brand names,
+  // PagoDIL, addresses) keep their own punctuation and are not matched here.
+  assert.equal(
+    /[؀-ۿ],/.test(JSON.stringify(ar)),
+    false,
+    "ar carries a Latin comma after an Arabic letter",
+  );
 });

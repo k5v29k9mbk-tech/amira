@@ -17,7 +17,7 @@ import {
   displayChapter,
   displaySection,
   linkRule,
-  sectionPadBottom,
+  sectionPad,
   shell,
 } from "@/lib/ui";
 import { MediaFrame } from "./MediaFrame";
@@ -327,7 +327,7 @@ export function Artist({ copy }: { copy: ArtistCopy }) {
   const bylineShown = desktop ? folded : bylineSeen;
 
   return (
-    <section id="amira" className={`${sectionPadBottom} scroll-mt-20 bg-ivory`}>
+    <section id="amira" className={`${sectionPad} scroll-mt-20 bg-ivory`}>
       {/* PART ONE, THE SPREAD. The claim and the evidence for it, across the
           full measure and with nothing beside them. The statement takes seven
           columns and the paragraph four, dropped a heading's worth so the two

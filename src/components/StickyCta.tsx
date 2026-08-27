@@ -158,7 +158,7 @@ export function StickyCta() {
           tabIndex={shown ? 0 : -1}
           className={`${btnCompact} flex-1 bg-espresso text-ivory hover:bg-bronze-ink`}
         >
-          {t("requestSeat")}
+          {t("consultation")}
         </Link>
       </div>
     </div>

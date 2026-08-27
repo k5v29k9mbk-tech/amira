@@ -293,6 +293,64 @@ export const mentorshipMedia: Media = {
   height: 1024,
 };
 
+/**
+ * The demonstration frame: Amira measuring a model's brows with the calipers,
+ * a marking pencil in her other hand.
+ *
+ * It opens /about, under the line that says the academy teaches from inside the
+ * profession rather than from a manual. A studio portrait of the person who
+ * owns the calipers cannot make that argument. A photograph of her using them
+ * on somebody's face is the argument, and the model's shirt credits the master
+ * whose name is on it, which is the same claim from the other side.
+ *
+ * THE CROP IS PULLED RIGHT, NOT CENTRED. The original is square and the box is
+ * 3:4, so 256px of width is what there is to spend. At 85% the band opens at
+ * 218 and holds both faces, the calipers and the pencil; centred, a quarter of
+ * the frame goes to the empty chair and the folding screen behind them.
+ *
+ * 1024 across is 768 after the crop, which is short of what a 40vw box asks for
+ * on a retina desktop. It is the widest of the three frames the academy has of
+ * this session, and a picture of the work being done beats a sharper picture of
+ * somebody standing next to it.
+ */
+export const demonstrationMedia: Media = {
+  posterSrc: "/brand/amira-live-demo.jpg",
+  position: "85% 50%",
+  width: 1024,
+  height: 1024,
+};
+
+/**
+ * The certificate frame: Amira beside a student holding the PhiBrows
+ * attendance certificate she has just been awarded.
+ *
+ * It stands beside the mission on /about, which is the academy's statement that
+ * it trains professionals rather than sells treatments. The certificate is that
+ * statement's only piece of evidence: a document with an awarding body on it,
+ * held by the person it was awarded to, next to the master who signed it. The
+ * page reads founder portrait, then this. Nothing else on the site shows what a
+ * course actually ends in.
+ *
+ * IT IS CONTAINED IN THE BOX, NOT COVERED BY IT, AND THAT IS THE WHOLE REASON
+ * THIS ENTRY EXISTS. The file is 1536x2048 and the frame beside the mission is
+ * 16:9, so `cover` would keep 864px of the 2048 and spend 1184. The two faces
+ * run 296 to 694 and the certificate runs 882 to 1479: 1183px of content into
+ * an 864px band, which is not a crop that can be tuned, it is a choice between
+ * the faces and the document. `contain` refuses the choice. The photograph sits
+ * whole and centred on the section's paper ground, at about 42% of the box
+ * width, with paper either side of it: no crop, no letterbox bars, no stretch.
+ *
+ * The consequence is that `WelcomeVideo` takes a `fit` and a `sizes`, and the
+ * caller that contains an image owes the smaller `sizes` that goes with it. See
+ * the note there.
+ */
+export const certificateMedia: Media = {
+  posterSrc: "/brand/amira-student-certificate.jpg",
+  position: "50% 50%",
+  width: 1536,
+  height: 2048,
+};
+
 export const artistMedia: Media = {
   posterSrc: "/brand/amira-artist-portrait.jpg",
   position: "50% 50%",
