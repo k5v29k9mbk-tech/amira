@@ -109,10 +109,10 @@ export const courses: Course[] = [
     slug: "lash-lamination",
     family: "lashes",
     media: {
-      posterSrc: "/brand/live-demo.jpg",
-      position: "50% 40%",
-      width: 557,
-      height: 335,
+      posterSrc: "/brand/lash-lamination-result.jpg",
+      position: "50% 50%",
+      width: 1063,
+      height: 1400,
     },
   },
   {
@@ -120,10 +120,10 @@ export const courses: Course[] = [
     family: "brows",
     posterOffHome: true,
     media: {
-      posterSrc: "/brand/brow-mapping.jpg",
+      posterSrc: "/brand/brow-lamination-result.jpg",
       position: "50% 50%",
-      width: 332,
-      height: 295,
+      width: 1800,
+      height: 1350,
     },
   },
 ];
