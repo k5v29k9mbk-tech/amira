@@ -243,6 +243,56 @@ export const founderMedia: Media = {
  * the ivory the section paints, so the plate reads as a photograph on the page
  * rather than as a rectangle cut into it.
  */
+/**
+ * The precision portrait: Amira holding the brow calipers to her own eye.
+ *
+ * The measuring tool is the subject, not the prop, which is what makes this the
+ * frame for act 01 rather than another portrait. Precision is the section's
+ * whole claim and this is a photograph of somebody measuring.
+ *
+ * IT IS SET SQUARE, AND THAT IS A CONSTRAINT RATHER THAN A DEFAULT. The calipers
+ * open across the middle of the frame and the hand holding them runs out to
+ * about an eighth of the width from the left edge; a 3:4 crop of a 1024 square
+ * keeps 768 of the width and puts its edge within two pixels of her knuckles.
+ * At 4:5 there is room, at 1:1 there is no crop at all, and since the brief for
+ * this frame is that the tool is never cut, native is the honest ratio. It also
+ * separates this plate from the two below it: square here, 4:5 in the method,
+ * landscape beside the room.
+ *
+ * Shipped as supplied, byte for byte, under the extension it actually is: the
+ * file arrived named `.png` and is a baseline JPEG, as all of this set did.
+ */
+export const precisionMedia: Media = {
+  posterSrc: "/brand/amira-precision-calipers.jpg",
+  position: "50% 50%",
+  width: 1024,
+  height: 1024,
+};
+
+/**
+ * The student-guidance frame: a student drawing her mapping while Amira stands
+ * over the work.
+ *
+ * It belongs beside the room rather than beside the method, and the difference
+ * is who the photograph is about. The method's frames are about the technique;
+ * this one is about supervision, and it is the only picture on the site in which
+ * the student is the subject and Amira is the person watching. That is the claim
+ * the room makes in words, and this is it happening.
+ *
+ * THE CROP IS PULLED UP, NOT CENTRED. It is landscape here, so height is what
+ * gets spent, and the two faces sit in the top half of a square original: the
+ * student's at about 45% of the height, Amira's at about 20%. Centred, a 3:2
+ * crop takes 170px off the top and cuts her forehead. At 30% the band opens at
+ * 102 and holds both heads, the drawing hand and the paper. Any change to the
+ * ratio here has to be checked against that number.
+ */
+export const mentorshipMedia: Media = {
+  posterSrc: "/brand/amira-student-guidance-01.jpg",
+  position: "50% 30%",
+  width: 1024,
+  height: 1024,
+};
+
 export const artistMedia: Media = {
   posterSrc: "/brand/amira-artist-portrait.jpg",
   position: "50% 50%",
@@ -260,19 +310,28 @@ export const artistMedia: Media = {
  */
 export const methodMedia: Record<string, Media> = {
   /**
-   * The academy's own classroom, supplied by the client: Amira at the flipchart
-   * drawing the stroke patterns, the class following from the bench. It stands
-   * where a cropped mapping still used to, because the theory chapter is the one
-   * place on the page that has to show teaching rather than a technique.
+   * 01 THEORY. The academy's own classroom: Amira at the flipchart drawing the
+   * stroke patterns, the class following from the bench.
+   *
+   * IT CAME BACK, and the round trip is worth recording so it is not undone
+   * again by accident. The demonstration photograph was moved here for a while
+   * because the flipchart read as too theoretical to open the act with. It is
+   * theoretical, and that is the point: this chapter's copy is "the theory
+   * behind the technique, before any hands-on work", and a photograph of
+   * hands-on work set beside those words contradicted them on the one screen a
+   * reader meets first. Leading with the strongest picture is worth nothing if
+   * it argues with the sentence next to it. The demonstration now sits on
+   * chapter 02, where the copy is about practice, and each frame says what its
+   * chapter says.
    *
    * The frame is 4:5 and the photograph is 3:4, so `cover` scales it to the full
    * width and loses 6% of its height, nothing else. There is no horizontal crop
    * at any breakpoint, which is why one `position` serves phone and desktop
    * alike: the pull upward keeps the raised hand and the whiteboard whole and
-   * spends the loss on the foreground table instead.
+   * spends the loss on the foreground table.
    *
    * `alt` is set by MethodStory from the message catalogue, not here, because it
-   * is the one frame on the site that carries meaning in four languages.
+   * is a photograph of something happening rather than a texture.
    */
   theory: {
     posterSrc: "/brand/theory-classroom.jpg",
@@ -280,72 +339,78 @@ export const methodMedia: Record<string, Media> = {
     width: 1200,
     height: 1600,
   },
+
   /**
-   * The one moving frame on the homepage that is a technique rather than a
-   * texture: the academy's own macro of the machine working a brow, poster and
-   * clip from the same take. It sits on the practice chapter, which had no
-   * photograph at all, and it holds through the live-model chapter below it,
-   * which is what MethodStory does with a chapter that carries no frame.
+   * 02 PRACTICE. The demonstration: Amira measuring a model's brow with the
+   * calipers, the marker still in her other hand, the model in the academy's own
+   * shirt.
    *
-   * It used to hang off the microblading panel in the catalogue above, with an
-   * unrelated still as its poster: the panel opened on a healed brow and then
-   * cross-faded to a needle. Poster and clip are the same footage here, so the
-   * frame resolves into motion instead of cutting to a different photograph.
+   * This is the frame the whole act is really about, and this is the chapter it
+   * belongs to. The copy beside it is the guided practice, and this is the
+   * academy's only photograph of the technique actually being performed on a
+   * person by the person who teaches it: her face, both hands, the tool against
+   * the brow, and enough of the room to read it as a class rather than a
+   * treatment.
    *
-   * 480x768 is the whole of the source. The sticky column is about 620px at
-   * desktop, which is the reason its `sizes` is set to the column and not to
-   * the old 55vw: a macro at 1.3x is grain, the same macro at 1.7x is mush.
+   * `position` is dead centre, checked rather than assumed. The file is square
+   * and the frame is 4:5, so `cover` spends the difference on the left and right
+   * edges and nothing on the height. The centred crop was cut and looked at:
+   * everything above sits inside the middle eighty percent of the width, and
+   * what it trims is the far edge of the screen behind her and the outside of
+   * her arm.
+   *
+   * IT APPEARS ONCE ON THE PAGE. It was keyed to the live-model chapter first
+   * and briefly to theory; both are gone. The same photograph mounted twice in
+   * one sticky column cross-fades into itself, and the same scene twice on one
+   * homepage is the thing the room's own frame was chosen to avoid.
    */
   practice: {
+    posterSrc: "/brand/amira-live-demo.jpg",
+    position: "50% 50%",
+    width: 1024,
+    height: 1024,
+  },
+
+  /**
+   * 03 LIVE MODEL. The mapping macro, moved down from the practice chapter it
+   * used to sit on.
+   *
+   * It is the one moving frame in the act: the academy's own macro of the
+   * machine working a brow, poster and clip from the same take. Under this
+   * chapter it is doing the job it was always best at, which is showing the
+   * technique at the distance the work is actually judged from, and it carries
+   * the correction chapter below it as well.
+   *
+   * No `alt`. It is a macro of a needle against skin with no subject to name,
+   * which is the case `MediaFrame` treats as decorative.
+   */
+  model: {
     videoSrc: "/brand/mapping.mp4",
     posterSrc: "/brand/mapping-poster.jpg",
     alt: "",
-    position: "50% 45%",
+    position: "50% 50%",
     width: 480,
     height: 768,
   },
+
   /**
-   * The support chapter, 04. Amira over a student's shoulder while the mapping
-   * is drawn: the one frame in the method that shows her correcting rather than
-   * demonstrating, which is what the chapter beside it is about. It replaces a
-   * crop of the hero portrait, a frame that showed her alone and said nothing
-   * about being stood next to.
+   * 04 POST-COURSE SUPPORT has no frame, and that is a decision rather than an
+   * omission.
    *
-   * The camera original, byte for byte, and that is the point rather than a
-   * detail. An upscaled, "enhanced" cut of this same frame was here first and
-   * is not what shipped: that pass smoothed both faces, rewrote the print on
-   * the compass box, swapped the tissue carton for a different one and painted
-   * the light stand out of the room. None of it is the academy's studio any
-   * more. This file is straight off the camera roll: no grade, no retouch, no
-   * upscale, no re-encode. If it is ever replaced, it is replaced with another
-   * original, not with a model's idea of one.
+   * It carried a photograph of a student drawing her mapping under Amira's eye,
+   * and that turned out to be the same moment, from the same shoot, as the frame
+   * beside the room: one scene printed twice on a single page. Every still in
+   * `public/brand` was reviewed for a replacement that reads as support rather
+   * than as teaching and none does; the reasoning is at `support-mapping.jpg`
+   * below. So the chapter is text led, which below lg means no picture and at lg
+   * means the column holds the mapping macro above it rather than fading to an
+   * empty panel.
    *
-   * The photograph is 1536x2048 and the frame is 4:5, so `cover` matches the
-   * width exactly and spends 6% of the height, nothing at all on the sides.
-   * There is no horizontal crop at any breakpoint, which is why one `position`
-   * serves phone and desktop alike. `position` sits at 25%, so a quarter of
-   * that loss comes off the ceiling and the rest off the bare floor at her
-   * feet: both faces, both pairs of hands and the sheet being drawn on are
-   * nowhere near an edge.
-   *
-   * 1536 wide is also what the sticky column actually wants. It renders at up
-   * to 704 CSS px, which is 1408 device pixels on a 2x screen, so this is the
-   * first version of this frame that is not being upscaled on a retina laptop.
-   *
-   * The filename is its own, rather than the one the enhanced cut had, and that
-   * is deliberate. Next keys the optimiser's cache on the source URL: swapping
-   * the bytes underneath a path that has already been requested serves the old
-   * derivative until something evicts it, which is exactly what happened here
-   * and cost half an hour of looking at a stale frame. A new photograph gets a
-   * new name.
+   * `support-mapping.jpg` stays in `public/brand`, unreferenced. Restoring it is
+   * one object, if the academy ever supplies a second guidance photograph and
+   * this one stops being a duplicate of it.
    */
-  support: {
-    posterSrc: "/brand/support-mapping.jpg",
-    alt: "",
-    position: "50% 25%",
-    width: 1536,
-    height: 2048,
-  },
+
 };
 
 /**

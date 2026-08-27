@@ -23,7 +23,7 @@
     "eyebrow": "Aura Academy · Formazione professionale PMU · Italia",
     "titleA": "Padroneggia l’arte.",
     "titleB": "Crea la tua carriera.",
-    "sub": "Impara il trucco permanente direttamente da Amira Bechini. La tecnica, la pratica guidata e gli standard professionali su cui si costruisce una carriera.",
+    "sub": "Impara il trucco permanente direttamente da Amira Bechini: tecnica esperta, pratica guidata e gli standard professionali che stanno dietro a una carriera duratura.",
     "founder": "Amira Bechini · Fondatrice e Master PMU",
     "founderRole": "PMU Artist · Formatrice · Fondatrice",
     "facts": {
@@ -43,7 +43,7 @@
     "primary": "Scopri i corsi",
     "secondary": "Prenota il tuo posto",
     "meetAmira": "Conosci Amira",
-    "classesNote": "Abbastanza piccola perché Amira corregga ogni mano."
+    "classesNote": "Classi volutamente piccole, così Amira può seguire personalmente ogni studente."
   },
   "about": {
     "meta": {
@@ -168,7 +168,8 @@
       },
       "practice": {
         "title": "Pratica",
-        "body": "Esercitazione guidata, seguita passo dopo passo."
+        "body": "Esercitazione guidata, seguita passo dopo passo.",
+        "alt": "Amira Bechini misura il sopracciglio di una modella con il compasso durante una dimostrazione dal vivo, con il pennarello ancora nell'altra mano."
       },
       "model": {
         "title": "Modella dal vivo",
@@ -475,8 +476,8 @@
   },
   "authority": {
     "eyebrow": "Lo standard",
-    "title": "Si insegna dall'interno della professione.",
-    "sub": "Aura Academy nasce dentro un istituto che lavora ogni giorno. Ogni tecnica del programma è una tecnica che Amira esegue sulle proprie clienti.",
+    "title": "Dove la pratica diventa maestria.",
+    "sub": "Aura Academy nasce dalla pratica reale del trucco permanente. Ogni tecnica che Amira insegna poggia sugli stessi standard, sulla stessa precisione e sugli stessi metodi che applica con le sue clienti.",
     "items": {
       "years": {
         "value": "8+",
@@ -495,7 +496,8 @@
         "label": "Dove insegniamo"
       }
     },
-    "note": "Amira si aggiorna continuamente con masterclass internazionali, e i protocolli che insegna sono quelli con cui lavora oggi."
+    "note": "Amira continua ad affinare il proprio lavoro attraverso masterclass internazionali, portando in aula tecniche attuali e standard professionali.",
+    "portraitAlt": "Amira Bechini con il compasso per sopracciglia all'altezza dell'occhio, mentre misura."
   },
   "pathway": {
     "eyebrow": "Il percorso formativo",
@@ -632,7 +634,8 @@
         "title": "Correzione, non commento",
         "body": "La tua mano viene corretta mentre lavori, ed è la parte di questo mestiere che non si impara da uno schermo."
       }
-    }
+    },
+    "guidanceAlt": "Amira Bechini segue una studentessa mentre disegna la sua mappatura."
   },
   "receive": {
     "eyebrow": "Cosa porti con te",

@@ -474,6 +474,55 @@ body {
 }
 
 /*
+  THE HERO'S TWO ACTIONS, AND WHY THEIR TIMING IS A RULE RATHER THAN A CLASS.
+
+  The house transition on a button is 500ms, which is right for a control that
+  sits in a page and wrong for the one control on a title card: on the first
+  screen the pointer is exploring, and half a second of colour crawling behind
+  the cursor reads as lag rather than as luxury. 280ms is inside the range a
+  hover should resolve in and still far too slow to read as a snap.
+
+  It cannot be a utility. `duration-500` comes from `btnSolidLight` and any
+  `duration-[280ms]` written beside it is the same layer and the same
+  specificity, so which one applies is decided by the order Tailwind happens to
+  emit them in, not by the order they are typed in the class attribute. That is
+  the same trap `.label` sets for tracking, one block up. An unlayered rule in
+  this file outranks both and is decided once.
+
+  Scoped to `.hero-cta` so it reaches only the two controls on the first screen.
+  Every other button on the site keeps the house 500.
+*/
+.hero-cta {
+  transition-duration: 280ms;
+}
+
+.hero-cta::after {
+  transition-duration: 320ms;
+}
+
+/*
+  The language control, set as "EN · English" rather than "EN ENGLISH".
+
+  `.label` uppercases and tracks at 0.2em, which is correct for a small-caps
+  label and wrong for a language name: a word in full caps at 0.2em beside a
+  two-letter code reads as two codes rather than as a code and its language, and
+  0.2em on mixed-case text pulls the letters apart into individual glyphs.
+
+  It has to be a rule here for the reason above: `.label` is unlayered, so a
+  `normal-case` utility on the same element is discarded before source order is
+  consulted. Tracking comes down to 0.06em, which is enough to keep it in the
+  same family as the navigation beside it without spacing out a real word.
+*/
+.locale-select {
+  text-transform: none;
+  letter-spacing: 0.06em;
+}
+
+[lang="ar"] .locale-select {
+  letter-spacing: 0;
+}
+
+/*
   Reduced motion.
 
   Three layers hold this, and they are not interchangeable.

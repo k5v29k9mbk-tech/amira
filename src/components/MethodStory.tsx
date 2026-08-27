@@ -53,9 +53,27 @@ export function MethodStory() {
    * what a screen reader wants from an image the sentence beside it already
    * covers.
    */
-  const altFor = (key: string) => (key === "theory" ? t("steps.theory.alt") : undefined);
+  const ALT_KEYS = ["theory", "practice"] as const;
+  const altFor = (key: string) =>
+    (ALT_KEYS as readonly string[]).includes(key) ? t(`steps.${key}.alt`) : undefined;
 
   /**
+   * TWO CHAPTERS CARRY A DESCRIBED PHOTOGRAPH, theory and practice: the
+   * classroom at the flipchart and the demonstration on a model. Both are
+   * pictures of something happening rather than textures, so both are described,
+   * and described in four languages from the catalogue rather than in English
+   * from the media file. The mapping macro under the live-model chapter is a
+   * needle against skin with no subject to name, which is the decorative case.
+   *
+   * THE SUPPORT CHAPTER GOES WITHOUT ONE, deliberately. It carried a photograph
+   * of a student drawing her mapping under Amira's eye, and that turned out to
+   * be the same moment, from the same shoot, as the frame beside the room: one
+   * scene printed twice on a single page. Every still in `public/brand` was
+   * reviewed for a replacement that reads as support rather than as teaching and
+   * none does; the reasoning is at `methodMedia` in lib/media. So chapter 04 is
+   * text led, which below lg means no picture at all and at lg means the column
+   * holds the live-model frame rather than fading to an empty panel.
+   *
    * Not every chapter has a frame. Practice no longer carries a photograph, so
    * the sticky column mounts only the frames that exist and holds the one from
    * the chapter above while that chapter is read, rather than cross-fading to

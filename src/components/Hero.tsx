@@ -144,7 +144,7 @@ export async function Hero() {
             over the pool the scrim puts exactly here, and is the difference
             between two things shouting and one speaking. */}
         <HeroBeat delay={heroBeat.sub}>
-          <p className="mx-auto mt-[var(--hero-air-md)] max-w-[34ch] text-[15px] leading-[1.75] text-ivory/75 sm:max-w-[42ch] sm:text-[16px] md:text-[18px]">
+          <p className="mx-auto mt-[var(--hero-air-md)] max-w-[34ch] text-balance text-[15px] leading-[1.75] text-ivory/80 sm:max-w-[46ch] sm:text-[16px] md:text-[17px] lg:max-w-[50ch]">
             {t("sub")}
           </p>
         </HeroBeat>
@@ -167,7 +167,7 @@ export async function Hero() {
             picture a bordered panel is a hole cut in the footage, and two
             hairlines are a masthead. */}
         <HeroBeat delay={heroBeat.facts} className="w-full">
-          <dl className="mx-auto mt-[var(--hero-air-lg)] grid w-full max-w-[34rem] grid-cols-3 items-start gap-x-3 border-y border-hair-dark py-[var(--hero-air-sm)] sm:gap-x-6 md:gap-x-8">
+          <dl className="mx-auto mt-[var(--hero-air-lg)] grid w-full max-w-[34rem] grid-cols-3 items-start gap-x-3 border-y border-hair-dark py-[var(--hero-air-sm)] sm:gap-x-6 md:max-w-[40rem] md:gap-x-8 lg:max-w-[42rem]">
             {facts.map((k) => {
               const lead = k === "classes";
               return (
@@ -176,10 +176,8 @@ export async function Hero() {
                   className="flex flex-col items-center gap-[var(--hero-air-xs)]"
                 >
                   <dt
-                    className={`display leading-none ${
-                      lead
-                        ? "text-[1.75rem] text-bronze-hi md:text-[2rem]"
-                        : "text-[1.5rem] text-ivory md:text-[1.75rem]"
+                    className={`display text-[1.75rem] leading-none md:text-[2.125rem] ${
+                      lead ? "text-bronze-hi" : "text-ivory"
                     }`}
                   >
                     {t(`facts.${k}.value`)}
@@ -192,7 +190,7 @@ export async function Hero() {
                       a column of this row is 82px and "EXPERIENCE" is 86 at the
                       house tracking, which is the whole reason the rule exists. */}
                   <dd
-                    className={`label fact-label text-balance leading-[1.45] ${
+                    className={`label fact-label min-h-[2.9em] text-balance leading-[1.45] md:min-h-0 ${
                       lead ? "text-ivory" : "text-mute-dark"
                     }`}
                   >
@@ -206,10 +204,26 @@ export async function Hero() {
           {/* The sentence the third figure implies, said once and tied to it by a
               bronze rule of the same colour, so the eye connects the two without
               the note having to sit inside a narrow column and break the shared
-              baseline the row is built on. Centred, because this composition is. */}
-          <p className="mx-auto mt-[var(--hero-air-sm)] flex max-w-[40ch] items-baseline justify-center gap-3 text-[14px] leading-relaxed text-mute-dark md:text-[15px]">
-            <span aria-hidden className="mt-2 h-px w-6 shrink-0 bg-bronze-hi" />
-            {t("classesNote")}
+              baseline the row is built on. Centred, because this composition is.
+
+              THE MEASURE IS WIDE ENOUGH TO HOLD ONE LINE AT LG, and that is the
+              whole reason for the second cap. The rule is an inline item at the
+              head of the first line, so a sentence that wraps leaves the mark
+              against line one and the remainder centred under it: the block then
+              reads as a rule with a fragment beside it rather than as an accented
+              line. At 72ch the sentence sets once and the rule sits where it
+              belongs.
+
+              BELOW LG IT STACKS, and the sentence is wrapped in its own span to
+              make that possible. Left as a bare text node it was an anonymous
+              flex item filling the row, so the rule sat hard against the start
+              of the measure while the wrapped lines centred themselves in the
+              middle of it, leaving most of a phone's width between a mark and
+              the thing it marks. As a real item the two can be a column: the
+              accent centred above, the sentence under it. */}
+          <p className="mx-auto mt-[var(--hero-air-sm)] flex max-w-[46ch] flex-col items-center gap-2.5 text-balance text-center text-[14px] leading-relaxed text-mute-dark md:text-[15px] lg:max-w-[72ch] lg:flex-row lg:items-baseline lg:gap-3">
+            <span aria-hidden className="h-px w-6 shrink-0 bg-bronze-hi lg:mt-2" />
+            <span>{t("classesNote")}</span>
           </p>
         </HeroBeat>
 
@@ -239,11 +253,14 @@ export async function Hero() {
                 gesture once, on the primary, is what keeps it a detail rather
                 than a behaviour every button on the site performs. */}
             <Magnetic className="w-full sm:w-auto">
-              <Link href="/courses" className={`${btnSolidLight} w-full sm:w-auto`}>
+              <Link
+                href="/courses"
+                className={`${btnSolidLight} hero-cta w-full sm:w-auto sm:px-9 sm:py-[0.9375rem]`}
+              >
                 {t("primary")}
               </Link>
             </Magnetic>
-            <Link href="/about" className={linkRuleLight}>
+            <Link href="/about" className={`${linkRuleLight} hero-cta`}>
               {t("meetAmira")}
               <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
             </Link>

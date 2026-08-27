@@ -28,7 +28,9 @@ export async function Footer() {
 
   return (
     <footer className="no-print bg-night text-ivory">
-      <div className={`${shell} grid gap-14 py-20 md:grid-cols-12 md:gap-10 md:py-24`}>
+      <div
+        className={`${shell} grid gap-14 pt-20 pb-[calc(5rem+env(safe-area-inset-bottom))] md:grid-cols-12 md:gap-10 md:pt-24 md:pb-24`}
+      >
         <div className="md:col-span-4">
           {/* The monogram here too. The full plate is reserved for the two
               moments that are only the brand: the opening film and the wait

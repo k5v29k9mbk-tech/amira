@@ -17,6 +17,8 @@ import {
   closingMedia,
   founderMedia,
   heroFilmMedia,
+  mentorshipMedia,
+  precisionMedia,
   galleryFrames,
   heroMedia,
   introMedia,
@@ -232,6 +234,13 @@ const PAGE_KEYS = [
   "about.vision.closing",
   "about.cta.title",
   "about.cta.body",
+  // Alt text for the three supplied photographs. Each is a picture of something
+  // happening rather than a texture, so each is described, and described from
+  // the catalogue in four languages rather than in English from `lib/media`.
+  // The method's live-model frame is `method.steps.model.alt`, listed with the
+  // other chapter strings.
+  "authority.portraitAlt",
+  "experience.guidanceAlt",
   "instructor.title",
   // The artist act (02), rebuilt around the academy's current official
   // portrait. The statement is split across two keys rather than wrapped from
@@ -417,6 +426,9 @@ test("every poster and clip the pages point at exists on disk", () => {
     closingMedia,
     founderMedia,
     artistMedia,
+    // The three photographs the academy supplied for acts 01, 03 and the room.
+    precisionMedia,
+    mentorshipMedia,
     ...Object.values(methodMedia),
     ...galleryFrames,
     ...resultFrames,
@@ -656,7 +668,12 @@ test("every page string is translated in all four languages", () => {
     ...chapters.flatMap((k) => [`method.steps.${k}.title`, `method.steps.${k}.body`]),
     // The frames with a described photograph rather than a decorative one.
     // An alt that exists in Italian and not in Arabic is a silent regression.
+    // Theory is the classroom at the flipchart, practice is the demonstration on
+    // a model. Each frame says what its chapter says, which is why the
+    // demonstration is not on theory: a photograph of hands-on work beside the
+    // words "before any hands-on work" argued with them.
     "method.steps.theory.alt",
+    "method.steps.practice.alt",
     // Read off the composition rather than listed, so a frame added to the
     // work section cannot ship without its description in all four languages.
     ...resultFrames.map((f) => `work.alt.${f.altKey}`),

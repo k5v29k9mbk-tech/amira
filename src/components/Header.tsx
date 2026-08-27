@@ -313,7 +313,7 @@ export function Header() {
               rather than imported for exactly that reason. */}
           <Link
             href="/contact"
-            className={`label group/btn relative hidden items-center justify-center gap-3 whitespace-nowrap py-4 transition-colors duration-500 ease-[var(--ease-aura)] after:absolute after:inset-x-0 after:bottom-3 after:h-px after:bg-current after:opacity-40 active:translate-y-px min-[360px]:inline-flex md:border md:px-6 md:py-3.5 md:after:hidden ${
+            className={`label group/btn relative hidden items-center justify-center gap-3 whitespace-nowrap py-4 transition-colors duration-500 ease-[var(--ease-aura)] after:absolute after:inset-x-0 after:bottom-3 after:h-px after:bg-current after:opacity-40 active:translate-y-px min-[360px]:inline-flex md:border md:px-5 md:py-3 md:after:hidden ${
               onFilm
                 ? "text-bronze-hi md:border-ivory md:bg-ivory md:text-espresso md:hover:border-bronze-hi md:hover:bg-bronze-hi"
                 : "text-bronze-ink md:border-espresso md:bg-espresso md:text-ivory md:hover:border-bronze-ink md:hover:bg-bronze-ink"

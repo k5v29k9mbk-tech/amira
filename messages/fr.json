@@ -23,7 +23,7 @@
     "eyebrow": "Aura Academy · Formation professionnelle PMU · Italie",
     "titleA": "Maîtrisez l’art.",
     "titleB": "Créez votre carrière.",
-    "sub": "Apprenez le maquillage permanent directement avec Amira Bechini. La technique, la pratique guidée et les standards professionnels sur lesquels se construit une carrière.",
+    "sub": "Apprenez le maquillage permanent directement avec Amira Bechini : technique experte, pratique guidée et les standards professionnels sur lesquels repose une carrière durable.",
     "founder": "Amira Bechini · Fondatrice et Master PMU",
     "founderRole": "PMU Artist · Formatrice · Fondatrice",
     "facts": {
@@ -43,7 +43,7 @@
     "primary": "Découvrir les formations",
     "secondary": "Réservez votre place",
     "meetAmira": "Rencontrer Amira",
-    "classesNote": "Assez petite pour qu’Amira corrige chaque main."
+    "classesNote": "Des groupes volontairement réduits, pour qu'Amira accompagne personnellement chaque élève."
   },
   "about": {
     "meta": {
@@ -168,7 +168,8 @@
       },
       "practice": {
         "title": "Pratique",
-        "body": "Exercices guidés, suivis pas à pas."
+        "body": "Exercices guidés, suivis pas à pas.",
+        "alt": "Amira Bechini mesure le sourcil d'un modèle au compas pendant une démonstration en direct, le marqueur encore dans l'autre main."
       },
       "model": {
         "title": "Modèle en direct",
@@ -475,8 +476,8 @@
   },
   "authority": {
     "eyebrow": "Le standard",
-    "title": "Enseigné depuis l'intérieur du métier.",
-    "sub": "Aura Academy est née dans un institut qui travaille tous les jours. Chaque technique du programme est une technique qu'Amira pratique sur ses propres clientes.",
+    "title": "Là où la pratique devient maîtrise.",
+    "sub": "Aura Academy est née de la pratique réelle du maquillage permanent. Chaque technique qu'Amira enseigne repose sur les mêmes standards, la même précision et les mêmes méthodes qu'elle applique avec ses propres clientes.",
     "items": {
       "years": {
         "value": "8+",
@@ -495,7 +496,8 @@
         "label": "Où nous enseignons"
       }
     },
-    "note": "Amira se forme en continu lors de masterclasses internationales, et les protocoles qu'elle enseigne sont ceux avec lesquels elle travaille aujourd'hui."
+    "note": "Amira continue d'affiner son travail lors de masterclasses internationales, et apporte en cours des techniques actuelles et des standards professionnels.",
+    "portraitAlt": "Amira Bechini tenant le compas à sourcils au niveau de l'œil, en train de mesurer."
   },
   "pathway": {
     "eyebrow": "Le parcours de formation",
@@ -632,7 +634,8 @@
         "title": "Correction, pas commentaire",
         "body": "Votre main est corrigée pendant que vous travaillez, et c'est la part de ce métier qui ne s'apprend pas devant un écran."
       }
-    }
+    },
+    "guidanceAlt": "Amira Bechini observe une élève pendant qu'elle dessine son mapping."
   },
   "receive": {
     "eyebrow": "Ce que vous emportez",

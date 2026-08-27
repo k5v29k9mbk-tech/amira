@@ -23,7 +23,7 @@
     "eyebrow": "Aura Academy · Professional PMU education · Italy",
     "titleA": "Master the art.",
     "titleB": "Build your career.",
-    "sub": "Learn permanent makeup directly from Amira Bechini. The technique, the guided practice, and the professional standards a career is built on.",
+    "sub": "Learn permanent makeup directly from Amira Bechini through expert technique, guided practice, and the professional standards behind a lasting career.",
     "founder": "Amira Bechini · Founder and PMU Master",
     "founderRole": "PMU Artist · Educator · Founder",
     "facts": {
@@ -43,7 +43,7 @@
     "primary": "Explore the courses",
     "secondary": "Book your place",
     "meetAmira": "Meet Amira",
-    "classesNote": "Small enough for Amira to correct every hand."
+    "classesNote": "Intentionally small classes, so Amira can personally guide every student."
   },
   "about": {
     "meta": {
@@ -168,7 +168,8 @@
       },
       "practice": {
         "title": "Practice",
-        "body": "Guided hands-on work, followed step by step."
+        "body": "Guided hands-on work, followed step by step.",
+        "alt": "Amira Bechini measuring a model's brow with calipers during a live demonstration, the marker still in her other hand."
       },
       "model": {
         "title": "Live model",
@@ -475,8 +476,8 @@
   },
   "authority": {
     "eyebrow": "The standard",
-    "title": "Taught from inside the profession.",
-    "sub": "Aura Academy is the teaching arm of a working permanent makeup practice. Every technique on the programme is one Amira performs on her own clients.",
+    "title": "Where practice becomes mastery.",
+    "sub": "Aura Academy is built on real-world permanent makeup practice. Every technique Amira teaches is grounded in the same standards, precision and methods she applies with her own clients.",
     "items": {
       "years": {
         "value": "8+",
@@ -495,7 +496,8 @@
         "label": "Where we teach"
       }
     },
-    "note": "Amira studies continuously in international masterclasses, and the protocols she teaches are the ones she is working to now."
+    "note": "Amira continues to refine her work through international masterclasses, bringing current techniques and professional standards directly into the classroom.",
+    "portraitAlt": "Amira Bechini holding the brow calipers to her eye, measuring."
   },
   "pathway": {
     "eyebrow": "The educational path",
@@ -632,7 +634,8 @@
         "title": "Correction, not commentary",
         "body": "Your hand is corrected while you work, which is the part of this craft that cannot be learned from a screen."
       }
-    }
+    },
+    "guidanceAlt": "Amira Bechini watching over a student as she draws her brow mapping."
   },
   "receive": {
     "eyebrow": "What you leave with",

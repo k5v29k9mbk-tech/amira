@@ -50,13 +50,13 @@ export function LocaleSwitcher({
             );
           })
         }
-        className={`label min-h-11 cursor-pointer appearance-none border-0 bg-transparent ps-0 pe-4 transition-opacity duration-300 hover:opacity-100 focus:outline-none ${
+        className={`label locale-select min-h-11 cursor-pointer appearance-none border-0 bg-transparent ps-0 pe-4 transition-opacity duration-300 hover:opacity-100 focus:outline-none ${
           tone === "light" ? "text-ivory opacity-80" : "text-espresso opacity-70"
         }`}
       >
         {locales.map((l) => (
           <option key={l} value={l} className="bg-ivory text-espresso">
-            {short[l]} {full[l]}
+            {short[l]} · {full[l]}
           </option>
         ))}
       </select>
