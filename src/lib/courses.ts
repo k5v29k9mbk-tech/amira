@@ -68,11 +68,44 @@ export const courses: Course[] = [
      */
     slug: "microblading",
     family: "brows",
+    /**
+     * The academy's own healed brow, and the only card whose photograph is a
+     * derived crop rather than a camera original.
+     *
+     * WHAT WAS DONE TO IT, AND WHY IT HAD TO BE. The supplied file is a two-up
+     * collage: the same client twice, and the two copies are rotated about 90
+     * degrees in OPPOSITE directions, so there is no rotation of the whole
+     * frame that stands both of them upright. Dropped in as it arrived, the
+     * card printed a face lying on its side, and `object-position` cannot fix
+     * that — it pans, it does not rotate.
+     *
+     * So the upper photograph is taken alone: cropped out of the collage and
+     * turned a quarter turn clockwise, which is the same treatment lib/media
+     * records for the one gallery frame that arrived on its side. Nothing else
+     * — no grade, no retouch, no change to the brows, the skin or the colour,
+     * and no resampling beyond the single rotation:
+     *
+     *   swift scripts/rotate-crop.swift <collage> microblading-brows-result.jpg \
+     *     --rect 250,0,830,620 --rotate 90
+     *
+     * THE SIZE IS THE SOURCE'S CEILING, not a choice. The second photograph
+     * begins around row 660 of the collage, and that seam is what caps the
+     * crop: 620x830 is the largest upright frame the file contains. The card
+     * asks for about 430 CSS px, so this is short of a 2x screen's 860 and is
+     * the one poster on the page narrower than its frame. It is the best the
+     * supplied file holds; a single full-resolution frame of this shot, rather
+     * than the collage, is all that is needed to put it right.
+     */
     media: {
-      posterSrc: "/brand/microblading-result.jpg",
-      position: "50% 38%",
-      width: 1350,
-      height: 1800,
+      posterSrc: "/brand/microblading-brows-result.jpg",
+      /* 4:5 from sm, so barely 7% of the height is cut and the whole face
+         survives. Below 768px the frame is 3:2 and only half the height shows,
+         so the phone gets its own focal point on the brow line rather than the
+         desktop value, which would have cut the crop through the eyes. */
+      position: "50% 45%",
+      mobilePosition: "50% 16%",
+      width: 620,
+      height: 830,
     },
   },
   {
