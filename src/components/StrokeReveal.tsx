@@ -84,11 +84,22 @@ export function StrokeReveal({
   return (
     <div ref={ref} className="relative">
       {/*
-        The frame carries the photograph's own 1320x689, so the drawing and the
-        picture occupy exactly the same box and nothing reflows when the second
-        mask starts. `overflow-hidden` because both masks travel past the edges.
+        3:2 RATHER THAN THE FILE'S OWN 1320x689, AND THE DIFFERENCE IS A CROP.
+
+        Matched to the photograph's exact ratio, `object-cover` has nothing to
+        cover: the whole frame is shown, including the treatment bed at the
+        right edge, which is lilac and is the only thing on the page that is not
+        the academy's palette. A slightly squarer box gives the crop about a
+        fifth of the width to spend, and `object-position` spends it on the far
+        right, so what is left is the pair of brows and the skin around them.
+
+        The drawing is unaffected: it is a viewBox with `meet`, so it fits
+        whatever box it is given and simply centres in this one. Both layers
+        still share a single box, which is what keeps the second mask travelling
+        over the first with nothing reflowing between them. `overflow-hidden`
+        because both masks run past the edges by design.
       */}
-      <figure className="relative aspect-[1320/689] w-full overflow-hidden bg-paper">
+      <figure className="relative aspect-[3/2] w-full overflow-hidden bg-paper">
         {/*
           THE DRAWING. A viewBox of 520x190 against a 1320x689 frame, centred
           with `xMidYMid meet`, so the brow keeps its proportion at every width
@@ -140,7 +151,7 @@ export function StrokeReveal({
             fill
             sizes="(min-width: 1024px) 58vw, 100vw"
             className="object-cover"
-            style={{ objectPosition: "38% 62%" }}
+            style={{ objectPosition: "30% 58%" }}
           />
         </motion.div>
       </figure>

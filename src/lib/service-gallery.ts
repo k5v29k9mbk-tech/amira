@@ -59,6 +59,26 @@ export type GalleryPair = {
    * the pair renders as two labelled plates and claims nothing.
    */
   ready?: true;
+  /**
+   * The top row of the brow band in each frame, measured off the file.
+   *
+   * THIS IS WHAT MAKES THE WIPE A COMPARISON. The two numbers are almost never
+   * the same, and that is the point: `align-pair.swift` puts the eyes on the
+   * same pixels when it can work from a full face, but three of these frames
+   * are crops it cannot run on, and the pairs arrived with the face sitting at
+   * different heights in the two files. A single band applied to both then
+   * makes the face jump under the handle, and a face that jumps reads as two
+   * photographs of two people rather than as one result.
+   *
+   * HOW TO MEASURE A NEW PAIR. The anchor is the eye line, never the brow: the
+   * brow is the thing being changed, so aligning on it would flatten the exact
+   * difference the pair exists to show, while the eye is fixed anatomy and is
+   * in both frames. Find the pupil row in each file, subtract the same offset
+   * from both, and record the results here. The offset is the pair's own: it
+   * has to clear the top of the brow in whichever frame carries it highest,
+   * which is a property of how tightly that pair was shot.
+   */
+  band?: { before: number; after: number };
 };
 
 /** Where the files live, and the shape both frames of a pair are cut to. */
@@ -140,15 +160,33 @@ export const serviceGallery: Record<string, GalleryPair[]> = {
      * 430 holds the enlargement to 1.29, which the strokes survive, and --midy
      * 0.60 drops the eye line so the brows sit on the upper third rather than
      * drifting to the middle of a wider band.
+     *
+     * Pupils on row 353 (before) and 360 (after) — the pair `align-pair.swift`
+     * already placed, so the band is the same 172px above the eye line in both
+     * and the two numbers differ only by the 7px the alignment left. The brows
+     * clear the top of the band by about 35px in both frames.
      */
-    { id: "microblading-01", ready: true },
+    { id: "microblading-01", ready: true, band: { before: 181, after: 188 } },
     /**
      * READY. Supplied by the academy as a single matched before/after plate and
      * identified as microblading. The two halves already share the same camera
      * angle and scale, so they are cut to the common 900x620 canvas without
      * retouching, colour work or changes to the brows.
+     *
+     * Pupils on row 348 (before) and 310 (after): the supplied plate has the
+     * face 38px higher in the after, so the band is moved by the same 38px and
+     * the eyes hold still under the handle. This is the tightest-shot pair on
+     * file — the brows start only ~175px above the pupils — so the band is hung
+     * 207px above the eye line to clear them, which is why it cuts closer under
+     * the eye here than in the other two.
+     *
+     * WHAT THIS CROP CANNOT FIX, and it should not be papered over: both frames
+     * are cut through the outer brow tails at the left and right edges in the
+     * source itself. That is horizontal and the band is vertical, so no framing
+     * choice here recovers it; it needs a wider crop from the camera original,
+     * which is not in the repository.
      */
-    { id: "microblading-02", ready: true },
+    { id: "microblading-02", ready: true, band: { before: 141, after: 103 } },
     /**
      * READY. Supplied by the academy as one three-stage Microblading plate.
      * The opening and final panels are used here as the comparison; the mapping
@@ -156,8 +194,15 @@ export const serviceGallery: Record<string, GalleryPair[]> = {
      * wipe. Both panels keep their original colour and brow detail, scaled onto
      * the shared 900x620 canvas with an ivory margin rather than cropped through
      * the eyes.
+     *
+     * Pupils on row 400 (before) and 300 (after). The three-stage plate put the
+     * two panels 100px apart vertically, which was the worst misalignment on the
+     * site: the whole face stepped down a tenth of the frame as the handle
+     * crossed it. The band is moved by exactly that 100px, and it is kept inside
+     * the photograph's own rows (122..496) at both ends, so the ivory margin the
+     * plate was scaled onto never enters the figure.
      */
-    { id: "microblading-03", ready: true },
+    { id: "microblading-03", ready: true, band: { before: 228, after: 128 } },
   ],
   "powder-brows": [{ id: "powder-brows-01" }, { id: "powder-brows-02" }],
   "brow-lamination": [{ id: "brow-lamination-01" }, { id: "brow-lamination-02" }],

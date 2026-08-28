@@ -38,9 +38,32 @@ export type Pair = { before: string; after: string; label: string };
 export function BeforeAfter({
   pair,
   sizes = "(max-width: 768px) 100vw, 33vw",
+  ratio = "900 / 620",
+  focus,
 }: {
   pair: Pair;
   sizes?: string;
+  /**
+   * The shape of the figure, as a CSS aspect ratio. It defaults to the whole
+   * aligned frame; a caller that wants a tighter reading of the same file — the
+   * results gallery cuts a brow band out of it — passes its own and supplies
+   * `focus` to say which part of the frame that band lands on.
+   */
+  ratio?: string;
+  /**
+   * `object-position` for each frame, and the two values are expected to
+   * differ.
+   *
+   * A pair is two photographs of one face taken weeks apart, and even after
+   * alignment the face does not always sit at the same height in both files. As
+   * long as the figure is the same shape as the frame there is nothing to be
+   * done about that — `cover` has no overflow to distribute, so an
+   * `object-position` is inert and both frames show all 620 rows or none. Once
+   * the figure is cut narrower than the frame, the two positions are what
+   * decides which rows each side shows, and giving them the same value is what
+   * makes a face jump under the handle.
+   */
+  focus?: { before: string; after: string };
 }) {
   const t = useTranslations("success");
   const [pos, setPos] = useState(100);
@@ -90,14 +113,19 @@ export function BeforeAfter({
 
   return (
     <figure ref={ref} dir="ltr" className="group">
-      {/* Matches the aligned source frames, 900x620. */}
-      <div className="relative aspect-[900/620] w-full overflow-hidden select-none">
+      {/* The whole aligned frame by default; the caller can cut a narrower
+          reading of the same file by passing `ratio` and `focus` together. */}
+      <div
+        className="relative w-full overflow-hidden select-none"
+        style={{ aspectRatio: ratio }}
+      >
         <Image
           src={pair.after}
           alt={`${pair.label}, ${t("after")}`}
           fill
           sizes={sizes}
           className="object-cover"
+          style={{ objectPosition: focus?.after }}
         />
         {/* Clipped overlay holds the "before" state. */}
         <div
@@ -110,6 +138,7 @@ export function BeforeAfter({
             fill
             sizes={sizes}
             className="object-cover"
+            style={{ objectPosition: focus?.before }}
           />
         </div>
 

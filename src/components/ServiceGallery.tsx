@@ -1,4 +1,11 @@
-import { serviceGallery, beforeSrc, afterSrc } from "@/lib/service-gallery";
+import {
+  serviceGallery,
+  beforeSrc,
+  afterSrc,
+  galleryRatio,
+  bandPosition,
+  bandDefault,
+} from "@/lib/service-gallery";
 import { BeforeAfter } from "./BeforeAfter";
 import { Reveal } from "./Reveal";
 import { stagger } from "@/lib/motion";
@@ -71,6 +78,18 @@ export function ServiceGallery({ slug, name }: { slug: string; name: string }) {
                  is what a screen reader should announce, and `name` is already
                  the localised course name the calling page printed above it. */
               label: name,
+            }}
+            /* THE BROW BAND. The figure is cut to the strip the result is
+               actually in, and each frame is given its own measured position
+               inside it, so the eyes hold still under the handle and what moves
+               is the brow. Both values come from lib/service-gallery.ts, where
+               they are recorded against the photograph they were measured off;
+               a pair that has not been measured yet falls back to the centre of
+               the frame rather than to another pair's numbers. */
+            ratio={galleryRatio}
+            focus={{
+              before: bandPosition(pair.band?.before ?? bandDefault),
+              after: bandPosition(pair.band?.after ?? bandDefault),
             }}
             sizes={
               many
