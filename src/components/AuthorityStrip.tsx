@@ -108,7 +108,7 @@ export async function AuthorityStrip() {
             </Reveal>
 
             <Reveal delay={stagger.line + 0.06}>
-              <p className="mt-10 max-w-[46ch] border-t border-hair-dark pt-8 text-[15px] leading-relaxed text-mute-dark md:mt-12 md:pt-10 md:text-[16px]">
+              <p className="mt-10 max-w-[46ch] border-t border-hair-dark pt-8 text-[16px] leading-relaxed text-mute-dark md:mt-12 md:pt-10 md:text-[15px]">
                 {t("note")}
               </p>
             </Reveal>

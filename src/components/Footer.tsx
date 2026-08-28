@@ -9,7 +9,7 @@ import {
   tiktokLink,
   whatsappLinkWith,
 } from "@/lib/studio";
-import { shell } from "@/lib/ui";
+import { bodySmall, shell } from "@/lib/ui";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { Logo } from "./Logo";
 
@@ -78,7 +78,7 @@ export async function Footer() {
               moments that are only the brand: the opening film and the wait
               between routes. */}
           <Logo variant="mark" tone="gold" className="h-14 w-auto" sizes="120px" />
-          <p className="mt-8 max-w-[32ch] text-[15px] leading-relaxed text-mute-dark">
+          <p className={`mt-8 max-w-[32ch] ${bodySmall} text-mute-dark`}>
             {t("footer.tagline")}
           </p>
 
@@ -184,7 +184,7 @@ export async function Footer() {
             intervals instead of six and still prints the six lines. */}
         <div>
           <h2 className={heading}>{t("footer.legal")}</h2>
-          <ul className="mt-6 grid gap-3 text-[15px] leading-relaxed text-mute-dark">
+          <ul className={`mt-6 grid gap-3 ${bodySmall} text-mute-dark`}>
             <li className="text-ivory">{legal.company}</li>
             {/* `bdi` rather than a bare span, and it is for the Arabic route.
                 A postal address is left-to-right content, so on an RTL page the

@@ -7,6 +7,7 @@ import { beforeAfterPairs, whatsappLinkWith } from "@/lib/studio";
 import { serviceGallery, beforeSrc, afterSrc } from "@/lib/service-gallery";
 import {
   arrow,
+  bodySmall,
   btnLineLight,
   btnSolidLight,
   displayLarge,
@@ -656,7 +657,7 @@ export default async function Home({
                 <h3 className={`${displayRow} mt-4`}>
                   {t(`journey.steps.${k}.title`)}
                 </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-mute">
+                <p className={`mt-3 ${bodySmall} text-mute`}>
                   {t(`journey.steps.${k}.body`)}
                 </p>
 

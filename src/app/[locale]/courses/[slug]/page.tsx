@@ -10,11 +10,13 @@ import { founderMedia } from "@/lib/media";
 import { brand, whatsappLinkWith } from "@/lib/studio";
 import {
   arrow,
+  bodySmall,
   btnLine,
   btnSolid,
   btnSolidLight,
   displayChapter,
   displayLarge,
+  displayPage,
   displayRow,
   displaySection,
   displayStat,
@@ -26,6 +28,7 @@ import {
   sectionPad,
   sectionPadBottom,
   shell,
+  titleFromLabel,
 } from "@/lib/ui";
 import { stagger } from "@/lib/motion";
 import { JsonLd, courseSchema, faqSchema } from "@/lib/seo";
@@ -219,8 +222,8 @@ export default async function ProgramPage({
               <MaskReveal>
                 <p className={eyebrow}>{t("programs.eyebrow")}</p>
               </MaskReveal>
-              <MaskReveal delay={stagger.base} className="mt-6">
-                <h1 className={`${displaySection} max-w-[16ch]`}>{name}</h1>
+              <MaskReveal delay={stagger.base} className={titleFromLabel}>
+                <h1 className={`${displayPage} max-w-[16ch]`}>{name}</h1>
               </MaskReveal>
             </div>
             <Reveal delay={stagger.line} className="lg:col-span-4 lg:col-start-9 lg:pb-3">
@@ -345,7 +348,7 @@ export default async function ProgramPage({
               {notForItems.map((k) => (
                 <li
                   key={k}
-                  className="flex gap-3 text-[15px] leading-relaxed text-mute"
+                  className={`flex gap-3 ${bodySmall} text-mute`}
                 >
                   <span aria-hidden className="mt-2.5 h-px w-4 shrink-0 bg-bronze/60" />
                   {t(`programs.notFor.items.${k}`)}
@@ -423,7 +426,7 @@ export default async function ProgramPage({
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className={`${displayRow} mt-4`}>{t(`method.steps.${k}.title`)}</h3>
-                <p className="mt-3 max-w-[38ch] text-[15px] leading-relaxed text-mute">
+                <p className={`mt-3 max-w-[38ch] ${bodySmall} text-mute`}>
                   {t(`method.steps.${k}.body`)}
                 </p>
               </Reveal>
@@ -468,7 +471,7 @@ export default async function ProgramPage({
 
             <div className="mt-10 border-t border-hair pt-6">
               <p className="text-[17px] text-espresso">{t("instructor.title")}</p>
-              <p className="mt-2 max-w-[34ch] text-[15px] leading-relaxed text-mute">
+              <p className={`mt-2 max-w-[34ch] ${bodySmall} text-mute`}>
                 {t("instructor.role")}
               </p>
             </div>

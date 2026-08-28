@@ -145,7 +145,7 @@ export async function Hero() {
             over the pool the scrim puts exactly here, and is the difference
             between two things shouting and one speaking. */}
         <HeroBeat delay={heroBeat.sub}>
-          <p className="mx-auto mt-[var(--hero-air-md)] max-w-[34ch] text-balance text-[15px] leading-[1.75] text-ivory/80 sm:max-w-[46ch] sm:text-[16px] md:text-[17px] lg:max-w-[50ch]">
+          <p className="mx-auto mt-[var(--hero-air-md)] max-w-[34ch] text-balance text-[16px] leading-[1.75] text-ivory/80 sm:max-w-[46ch] md:text-[17px] lg:max-w-[50ch]">
             {t("sub")}
           </p>
         </HeroBeat>
@@ -222,7 +222,7 @@ export async function Hero() {
               middle of it, leaving most of a phone's width between a mark and
               the thing it marks. As a real item the two can be a column: the
               accent centred above, the sentence under it. */}
-          <p className="mx-auto mt-[var(--hero-air-sm)] flex max-w-[46ch] flex-col items-center gap-2.5 text-balance text-center text-[14px] leading-relaxed text-mute-dark md:text-[15px] lg:max-w-[72ch] lg:flex-row lg:items-baseline lg:gap-3">
+          <p className="mx-auto mt-[var(--hero-air-sm)] flex max-w-[46ch] flex-col items-center gap-2.5 text-balance text-center text-[15px] leading-relaxed text-mute-dark md:text-[16px] lg:max-w-[72ch] lg:flex-row lg:items-baseline lg:gap-3">
             <span aria-hidden className="h-px w-6 shrink-0 bg-bronze-hi lg:mt-2" />
             <span>{t("classesNote")}</span>
           </p>
@@ -256,7 +256,7 @@ export async function Hero() {
             <Magnetic className="w-full sm:w-auto">
               <Link
                 href="/courses"
-                className={`${btnSolidLight} hero-cta w-full sm:w-auto sm:px-9 sm:py-[0.9375rem]`}
+                className={`${btnSolidLight} hero-cta w-full sm:w-auto`}
               >
                 {c("courses")}
               </Link>

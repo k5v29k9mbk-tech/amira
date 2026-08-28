@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { publishedTiers } from "@/lib/pathway";
-import { arrow, displayChapter, linkRule } from "@/lib/ui";
+import { arrow, bodySmall, displayChapter, linkRule } from "@/lib/ui";
 import { stagger } from "@/lib/motion";
 import { Reveal } from "./Reveal";
 
@@ -71,7 +71,7 @@ export async function Pathway() {
                 which is a description rather than a name. */}
             <h3 className={`${displayChapter} mt-4`}>{t(`tiers.${tier.key}.name`)}</h3>
 
-            <p className="mt-3 max-w-[34ch] text-[15px] leading-relaxed text-espresso">
+            <p className={`mt-3 max-w-[34ch] ${bodySmall} text-espresso`}>
               {t(`tiers.${tier.key}.for`)}
             </p>
           </div>

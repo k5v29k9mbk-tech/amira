@@ -9,20 +9,25 @@ import { WelcomeVideo } from "@/components/WelcomeVideo";
 import { certificateMedia, demonstrationMedia } from "@/lib/media";
 import { welcomeVideoId } from "@/lib/studio";
 import {
+  bodyBase,
+  bodyLede,
   btnLine,
   btnSolid,
   displayItem,
   displayLarge,
+  displayPage,
   displayQuote,
   displayRow,
   displaySection,
   displayStat,
   eyebrow,
   eyebrowLight,
+  ledeFromTitle,
   pageHeader,
   sectionPad,
   sectionPadBottom,
   shell,
+  titleFromLabel,
 } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
 import { JsonLd, personSchema } from "@/lib/seo";
@@ -114,7 +119,7 @@ export default async function AboutPage({
               <p className={eyebrow}>{t("eyebrow")}</p>
             </StaggerItem>
             <StaggerItem>
-              <h1 className={`${displaySection} mt-8 max-w-[14ch] text-balance`}>
+              <h1 className={`${displayPage} ${titleFromLabel} max-w-[14ch] text-balance`}>
                 {/* The space is a real one. See the note in Hero.tsx: two
                     sibling blocks with no whitespace between them read as one
                     run-together token to anything that parses the document
@@ -124,7 +129,7 @@ export default async function AboutPage({
               </h1>
             </StaggerItem>
             <StaggerItem>
-              <p className="mt-10 max-w-[50ch] text-[17px] leading-relaxed text-mute">
+              <p className={`${ledeFromTitle} max-w-[50ch] ${bodyLede} text-mute`}>
                 {t("lede")}
               </p>
             </StaggerItem>
@@ -371,21 +376,33 @@ export default async function AboutPage({
             <h2 className={`${displaySection} mt-6 max-w-[22ch]`}>{t("different.title")}</h2>
           </Reveal>
 
+          {/* THE ROW SPLITS AT lg, NOT AT md.
+
+              Twelve columns inside the page gutter is 26px a column at 834, so
+              four of them plus a gutter is 225px, and a title set in the display
+              face at that width broke over four lines of about seven characters
+              each. The whole 768 to 1023 band read as a column of fragments
+              beside a comfortable paragraph.
+
+              Below lg the three parts stack, which is what a row of a number, a
+              title and a paragraph wants at that width, and the twelve-column
+              split starts where a column is wide enough to hold a title on one
+              line. */}
           <ol className="mt-14 border-t border-hair md:mt-20">
             {differences.map((k, i) => (
               <Reveal
                 as="li"
                 key={k}
                 delay={i * 0.06}
-                className="grid gap-3 border-b border-hair py-8 md:grid-cols-12 md:gap-10"
+                className="grid gap-3 border-b border-hair py-8 lg:grid-cols-12 lg:gap-10"
               >
-                <span className="label font-mono text-bronze-ink md:col-span-1">
+                <span className="label font-mono text-bronze-ink lg:col-span-1">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className={`${displayRow} md:col-span-4`}>
+                <h3 className={`${displayRow} lg:col-span-4`}>
                   {t(`different.items.${k}.title`)}
                 </h3>
-                <p className="max-w-[52ch] text-[16px] leading-relaxed text-mute md:col-span-6 md:col-start-7">
+                <p className={`max-w-[52ch] ${bodyBase} text-mute lg:col-span-6 lg:col-start-7`}>
                   {t(`different.items.${k}.body`)}
                 </p>
               </Reveal>

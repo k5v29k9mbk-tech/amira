@@ -351,7 +351,7 @@ export function Artist({ copy }: { copy: ArtistCopy }) {
                 dash and the copy tests reject one anywhere in the message files,
                 because an em dash in a headline is the one mark that reads as
                 machine-written. */}
-            <h2 className={`${displaySection} mt-10 max-w-[20ch]`}>
+            <h2 className={`${displaySection} mt-10 max-w-[24ch]`}>
               <MaskReveal pad="0.18em">
                 <span className="block">{copy.statementA}</span>
               </MaskReveal>

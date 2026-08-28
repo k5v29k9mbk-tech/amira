@@ -12,17 +12,23 @@ import { Reveal } from "@/components/Reveal";
 import { Stagger, StaggerItem } from "@/components/Stagger";
 import {
   arrow,
+  bodyBase,
+  bodyLede,
+  bodySmall,
   btnLine,
   btnSolid,
   btnSolidLight,
   displayLarge,
+  displayPage,
   displaySection,
   eyebrow,
   eyebrowLight,
+  ledeFromTitle,
   linkRule,
   pageHeader,
   sectionPad,
   shell,
+  titleFromLabel,
 } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
 import { JsonLd, courseListSchema } from "@/lib/seo";
@@ -110,10 +116,10 @@ export default async function CoursesPage({
               <p className={eyebrow}>{t("catalog.eyebrow")}</p>
             </StaggerItem>
             <StaggerItem>
-              <h1 className={`${displaySection} mt-6 max-w-[24ch]`}>{t("catalog.title")}</h1>
+              <h1 className={`${displayPage} ${titleFromLabel} max-w-[24ch]`}>{t("catalog.title")}</h1>
             </StaggerItem>
           </Stagger>
-          <p className="mt-10 max-w-[56ch] text-[17px] leading-relaxed text-mute">
+          <p className={`${ledeFromTitle} max-w-[56ch] ${bodyLede} text-mute`}>
             {t("catalog.sub")}
           </p>
         </div>
@@ -231,7 +237,7 @@ export default async function CoursesPage({
                               {included.map((k) => (
                                 <li
                                   key={k}
-                                  className="flex gap-3 text-[15px] leading-relaxed text-mute"
+                                  className={`flex gap-3 ${bodySmall} text-mute`}
                                 >
                                   <span aria-hidden className="mt-2.5 h-px w-4 shrink-0 bg-bronze/60" />
                                   {t(`method.steps.${k}.title`)}
@@ -352,7 +358,7 @@ export default async function CoursesPage({
           <div className="lg:col-span-6 lg:col-start-7">
             <Reveal>
               <p className={eyebrowLight}>{t("powder.eyebrow")}</p>
-              <h2 className={`${displaySection} mt-8 max-w-[14ch] text-ivory`}>
+              <h2 className={`${displaySection} mt-8 max-w-[20ch] text-ivory`}>
                 {t("powder.title")}
               </h2>
               <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-mute-dark">
@@ -423,7 +429,7 @@ export default async function CoursesPage({
             <p className="label mt-10 text-mute">{t("catalog.includes")}</p>
             <ul className="mt-5 grid gap-3 sm:grid-cols-2">
               {included.map((k) => (
-                <li key={k} className="flex items-baseline gap-4 text-[16px]">
+                <li key={k} className={`flex items-baseline gap-4 ${bodyBase}`}>
                   <span aria-hidden className="h-px w-5 shrink-0 bg-bronze" />
                   {t(`catalog.included.${k}`)}
                 </li>

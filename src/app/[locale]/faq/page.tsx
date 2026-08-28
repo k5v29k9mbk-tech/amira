@@ -5,8 +5,10 @@ import { Link } from "@/i18n/navigation";
 import { Faq } from "@/components/Faq";
 import {
   arrow,
+  bodyBase,
   btnSolid,
-  displaySection,
+  displayPage,
+  ledeFromTitle,
   linkRule,
   sectionPadBottom,
   shell,
@@ -79,8 +81,8 @@ export default async function FaqPage({
       <section className={`${sectionPadBottom} bg-ivory pt-[7.5rem] md:pt-36`}>
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-4">
-            <h1 className={`${displaySection} max-w-[10ch]`}>{t("faq.title")}</h1>
-            <p className="mt-8 max-w-[36ch] text-[16px] leading-relaxed text-mute">
+            <h1 className={`${displayPage} max-w-[10ch]`}>{t("faq.title")}</h1>
+            <p className={`${ledeFromTitle} max-w-[36ch] ${bodyBase} text-mute`}>
               {t("faq.more")}
             </p>
             <Link href="/contact" className={`${linkRule} mt-8`}>

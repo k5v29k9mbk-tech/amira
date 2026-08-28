@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/Logo";
-import { arrow, btnSolid, displaySection, eyebrow, linkRule, shell } from "@/lib/ui";
+import { arrow, bodyLede, btnSolid, displayPage, eyebrow, ledeFromTitle, linkRule, shell, titleFromLabel } from "@/lib/ui";
 
 /**
  * The page a broken link lands on.
@@ -28,10 +28,10 @@ export default async function NotFound() {
         <Logo variant="mark" tone="dark" className="h-12 w-auto md:h-14" sizes="120px" />
 
         <p className={`${eyebrow} mt-12 font-mono`}>404</p>
-        <h1 className={`${displaySection} mt-6 max-w-[14ch] text-balance`}>
+        <h1 className={`${displayPage} ${titleFromLabel} max-w-[14ch] text-balance`}>
           {t("notFound.title")}
         </h1>
-        <p className="mt-8 max-w-[48ch] text-[17px] leading-relaxed text-mute">
+        <p className={`${ledeFromTitle} max-w-[48ch] ${bodyLede} text-mute`}>
           {t("notFound.body")}
         </p>
 

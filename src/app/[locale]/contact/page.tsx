@@ -20,12 +20,18 @@ import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/Reveal";
 import { Stagger, StaggerItem } from "@/components/Stagger";
 import {
+  bodyBase,
+  bodyLede,
+  bodySmall,
+  displayPage,
   displayRow,
   displaySection,
   eyebrow,
+  ledeFromTitle,
   pageHeader,
   sectionPad,
   shell,
+  titleFromLabel,
 } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
 
@@ -64,7 +70,7 @@ export default async function ContactPage({
   setRequestLocale(locale);
   const t = await getTranslations();
   const whatsappHref = whatsappLinkWith(t("contact.whatsappMessage"));
-  const row = "flex items-center gap-4 text-[16px] transition-colors hover:text-bronze-ink";
+  const row = `flex items-center gap-4 ${bodyBase} transition-colors hover:text-bronze-ink`;
 
   return (
     <>
@@ -80,10 +86,10 @@ export default async function ContactPage({
                 <p className={eyebrow}>{t("nav.contact")}</p>
               </StaggerItem>
               <StaggerItem>
-                <h1 className={`${displaySection} mt-8 max-w-[12ch]`}>{t("contact.title")}</h1>
+                <h1 className={`${displayPage} ${titleFromLabel} max-w-[12ch]`}>{t("contact.title")}</h1>
               </StaggerItem>
               <StaggerItem>
-                <p className="mt-8 max-w-[40ch] text-[17px] leading-relaxed text-mute">
+                <p className={`${ledeFromTitle} max-w-[40ch] ${bodyLede} text-mute`}>
                   {t("contact.sub")}
                 </p>
               </StaggerItem>
@@ -95,7 +101,7 @@ export default async function ContactPage({
                 <span className="display block text-[clamp(1.25rem,2vw,1.75rem)]">
                   {academy.street}
                 </span>
-                <span className="mt-2 block text-[16px] text-mute">
+                <span className={`mt-2 block ${bodyBase} text-mute`}>
                   {academy.postcode} {academy.city} ({academy.province})
                 </span>
                 <span className="label mt-4 block text-bronze-ink">{t("contact.map")}</span>
@@ -171,28 +177,40 @@ export default async function ContactPage({
             </p>
           </Reveal>
 
+          {/* THE ROW SPLITS AT lg, NOT AT md.
+
+              Twelve columns inside the page gutter is 26px a column at 834, so
+              four of them plus a gutter is 225px, and a title set in the display
+              face at that width broke over four lines of about seven characters
+              each. The whole 768 to 1023 band read as a column of fragments
+              beside a comfortable paragraph.
+
+              Below lg the three parts stack, which is what a row of a number, a
+              title and a paragraph wants at that width, and the twelve-column
+              split starts where a column is wide enough to hold a title on one
+              line. */}
           <ol className="mt-14 grid gap-px border-t border-hair md:mt-20">
             {journey.map((k, i) => (
               <Reveal
                 as="li"
                 key={k}
                 delay={(i % 3) * 0.06}
-                className="grid gap-3 border-b border-hair py-8 md:grid-cols-12 md:gap-10"
+                className="grid gap-3 border-b border-hair py-8 lg:grid-cols-12 lg:gap-10"
               >
-                <span className="label font-mono text-bronze-ink md:col-span-1">
+                <span className="label font-mono text-bronze-ink lg:col-span-1">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className={`${displayRow} md:col-span-4`}>
+                <h3 className={`${displayRow} lg:col-span-4`}>
                   {t(`journey.steps.${k}.title`)}
                 </h3>
-                <p className="max-w-[52ch] text-[16px] leading-relaxed text-mute md:col-span-6 md:col-start-7">
+                <p className={`max-w-[52ch] ${bodyBase} text-mute lg:col-span-6 lg:col-start-7`}>
                   {t(`journey.steps.${k}.body`)}
                 </p>
               </Reveal>
             ))}
           </ol>
 
-          <p className="mt-10 text-[15px] text-mute">{t("catalog.payments")}</p>
+          <p className={`mt-10 ${bodySmall} text-mute`}>{t("catalog.payments")}</p>
         </div>
       </section>
     </>

@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { displayRow } from "@/lib/ui";
+import { bodySmall, displayRow } from "@/lib/ui";
 import { mentorshipMedia } from "@/lib/media";
 import { MediaFrame } from "./MediaFrame";
 import { Reveal } from "./Reveal";
@@ -92,7 +92,7 @@ export async function LearningExperience() {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className={`${displayRow} mt-4`}>{t(`items.${k}.title`)}</h3>
-              <p className="mt-3 max-w-[38ch] text-[15px] leading-relaxed text-mute">
+              <p className={`mt-3 max-w-[38ch] ${bodySmall} text-mute`}>
                 {t(`items.${k}.body`)}
               </p>
             </Reveal>

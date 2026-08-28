@@ -132,6 +132,36 @@ export const sectionPadJoin = "pt-10 pb-16 md:pt-12 md:pb-20 lg:pt-16 lg:pb-28";
  * about the mobile screen changes.
  */
 export const displayHero = "display text-[clamp(2.5rem,min(7.2vw,8.8vh),6.5rem)]";
+
+/*
+ * THE TITLE OF A PAGE THAT IS NOT THE HOMEPAGE, AND THE STEP THE SCALE WAS
+ * MISSING.
+ *
+ * Every inner page set its `h1` in `displaySection`, which is the same class
+ * every `h2` on the same page uses. Measured, that is 66.2px for the page title
+ * and 66.2px for each of the section headings under it: /about opened with
+ * "Insegniamo dalla professione, non da un manuale." at exactly the size of
+ * "Dalla cabina all'aula" two screens below it, and a reader had nothing but
+ * position to tell a page title from a chapter mark. Five routes shipped that
+ * way, plus the not-found page.
+ *
+ * The step is struck at the hero's own desktop size rather than between the two,
+ * and that is the point rather than a coincidence: an h1 is an h1, so the
+ * opening statement of the homepage and the title of /about are one rank and
+ * one size, and `displaySection` is the rank below wherever it appears. 79px
+ * against 66 is a fifth larger, which is the smallest difference that reads as
+ * hierarchy rather than as drift.
+ *
+ * What it does NOT carry is the hero's viewport-height term. `min(7.2vw,8.8vh)`
+ * exists because the hero is set inside a 100svh composition with a portrait, a
+ * proof band and two actions under it, and on a 720px laptop the width term
+ * alone would push all of that past the fold. An inner page opens with a
+ * heading and scrolls; there is nothing beneath it competing for the first
+ * screen, so binding its size to the height of the window would shrink it for
+ * no reason a reader could see.
+ */
+export const displayPage = "display text-[clamp(2.5rem,5.5vw,5rem)]";
+
 export const displaySection = "display text-[clamp(2rem,4.6vw,4.5rem)]";
 export const displayManifesto = "display text-[clamp(1.875rem,4.2vw,4rem)]";
 export const displayLarge = "display text-[clamp(1.625rem,2.8vw,2.75rem)]";
@@ -156,12 +186,74 @@ export const displayStat = "display text-[clamp(1.75rem,2.6vw,2.5rem)]";
 export const displayItem = "display text-[1.25rem] md:text-[1.5rem]";
 export const displayQuote = "display text-[clamp(1.5rem,3.2vw,2.75rem)]";
 
+/*
+ * THE BODY SCALE, WHICH HAD NEVER BEEN WRITTEN DOWN.
+ *
+ * The display scale above has been a locked set of named steps for a while. The
+ * prose underneath it never was: `text-[17px] leading-relaxed`, `text-[16px]
+ * leading-relaxed` and `text-[15px] leading-relaxed` were typed out by hand
+ * across some forty call sites, which is the exact drift the note on the three
+ * display steps above warns about. Measured across the six Italian routes it
+ * had produced twelve distinct size-and-leading pairs, and three of them were
+ * the same size as a step beside them at a different leading.
+ *
+ * Four steps, each carrying its own leading so the two cannot be separated:
+ *
+ *   lede   the standfirst that qualifies a heading
+ *   base   ordinary prose
+ *   small  supporting prose: a list entry's body, a note under a rule
+ *   meta   a caption or a credit, never a paragraph
+ *
+ * LEADING IS 1.625 THROUGHOUT AND IS PART OF THE TOKEN. Three of the twelve
+ * pairs were sitting at 1.5, not by decision but because `leading-relaxed` had
+ * been left off; at 16px that is four pixels a line, which is invisible in one
+ * paragraph and legible as unevenness when two of them sit in the same column.
+ *
+ * WHY `small` IS 16px ON A PHONE AND 15 ON A DESKTOP. The 15px step exists to
+ * mark supporting prose as subordinate to the 16 and 17 beside it, and that
+ * distinction is carried by the column it sits in as much as by its size. On a
+ * phone there are no columns: every one of these is the full width of the
+ * gutter, so the step marks nothing and all it does is set forty-eight of the
+ * site's paragraphs a pixel under the size a phone should be asked to read.
+ * From md the columns come back and so does the step.
+ */
+export const bodyLede = "text-[17px] leading-relaxed";
+export const bodyBase = "text-[16px] leading-relaxed";
+export const bodySmall = "text-[16px] leading-relaxed md:text-[15px]";
+export const bodyMeta = "text-[14px] leading-relaxed";
+
 /**
  * The rhythm above a page that opens with a heading rather than the hero.
  * 7.5rem clears the fixed bar; the tail is shorter than a section's because
  * what follows is the same page's own first block, not a new act.
  */
 export const pageHeader = "pt-[7.5rem] pb-12 md:pt-36 md:pb-16";
+
+/*
+ * THE INNER RHYTHM OF THAT HEADER, AND WHY IT IS TWO TOKENS RATHER THAN A
+ * HABIT.
+ *
+ * Every page opens on the same three-part figure: a small-caps label, the
+ * title, then the standfirst that qualifies it. Six routes wrote that figure
+ * five different ways. Measured at 1440 the label sat 24px under the title on
+ * /courses, the course pages and the 404, and 32px under it on /about and
+ * /contact; the standfirst sat 40px below the title on /about and /courses and
+ * 32px below it on /contact, /faq and the 404. Nobody chose any of that: it is
+ * `mt-6` and `mt-8` typed from memory in six files over time.
+ *
+ * The two values are 32 and 40 rather than one value twice, and the order
+ * matters. A label is a mark ON the title, so it belongs to it and sits closer;
+ * the standfirst is a second thought about the same subject, so it reads as the
+ * next block and takes more air. Same figure, two intervals, and the smaller
+ * one is the one inside the pair. That is the whole of the spacing hierarchy
+ * this header needs.
+ *
+ * 24px was in any case too tight now that an inner page's title sets at 79px
+ * rather than 66: the gap under a heading has to grow with the heading, and at
+ * `mt-6` the label had begun to look attached to the cap heights above it.
+ */
+export const titleFromLabel = "mt-8";
+export const ledeFromTitle = "mt-10";
 
 /**
  * The small-caps line above a heading. `SectionLabel` is the homepage's

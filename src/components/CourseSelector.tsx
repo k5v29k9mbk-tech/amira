@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { courses } from "@/lib/courses";
-import { arrow, displayChapter, shell } from "@/lib/ui";
+import { arrow, bodySmall, displayChapter, shell } from "@/lib/ui";
 import { stagger } from "@/lib/motion";
 import { MediaFrame } from "./MediaFrame";
 import { Reveal } from "./Reveal";
@@ -132,7 +132,7 @@ export function CourseSelector() {
 
                 <h3 className={`${displayChapter} mt-3`}>{t(`courses.${course.slug}`)}</h3>
 
-                <p className="mt-3 max-w-[42ch] text-[15px] leading-relaxed text-mute">
+                <p className={`mt-3 max-w-[42ch] ${bodySmall} text-mute`}>
                   {t(`blurbs.${course.slug}`)}
                 </p>
 
