@@ -33,6 +33,19 @@ export const legal = {
 
 export const studio = {
   /**
+   * The academy's ordinary mailbox, and the one a visitor is meant to write to.
+   *
+   * It arrived after `pec` and it is a different kind of address, which is why
+   * it is a separate field rather than a correction of that one. A PEC is a
+   * legal channel that rejects ordinary mail; this is a normal inbox that
+   * accepts it. The footer prints this one, unlabelled, because there is
+   * nothing to warn a reader about.
+   *
+   * `pec` is unchanged and still published on /contact and in the privacy
+   * notice, where a rights request under the Regulation genuinely goes.
+   */
+  email: "Auraacdemyab@gmail.com",
+  /**
    * Certified legal mailbox. This is the only email address the academy
    * supplied; it is shown as a PEC and is deliberately NOT used as the
    * contact-form destination, since PEC boxes reject ordinary mail.

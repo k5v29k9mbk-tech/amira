@@ -1,14 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { courses } from "@/lib/courses";
-import {
-  academy,
-  instagramLink,
-  legal,
-  studio,
-  tiktokLink,
-  whatsappLinkWith,
-} from "@/lib/studio";
+import { instagramLink, legal, studio, tiktokLink, whatsappLinkWith } from "@/lib/studio";
 import { bodySmall, shell } from "@/lib/ui";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { Logo } from "./Logo";
@@ -21,8 +14,10 @@ import { Logo } from "./Logo";
  * put the legal block, the one column whose content cannot be reflowed or
  * shortened, in the second narrowest of them. At 834px that column was 159px
  * wide and "REA TE-221017" broke across two lines mid-number. Equal quarters
- * are 298px each at 1440 and the address, the company name and both registry
- * numbers each hold one line.
+ * are 298px each at 1440, which is what let that column hold its longest line
+ * unbroken. The grid is unchanged now that the column is shorter: the quarters
+ * are what make the other three columns line up, and they do not depend on
+ * what the fourth one carries.
  *
  * WHY THE SPLIT ENGAGES AT lg AND NOT AT md. Four columns at 768 is 159px a
  * column, which is not a footer, it is four lists of wrapped fragments. Between
@@ -35,10 +30,18 @@ import { Logo } from "./Logo";
  * describes the three channels beneath them. It is two groups, so it is two
  * headings and two nav landmarks.
  *
- * The VAT and REA numbers are not decoration: an Italian registered business
- * has to publish them, which is why they are here rather than on a page nobody
- * opens. Every value in that column comes from `lib/studio`, so nothing in it
- * is typed twice or guessed.
+ * THE FOURTH COLUMN IS THE COMPANY AND HOW TO WRITE TO IT, AND NOTHING ELSE.
+ * It carried the registered address, the VAT and REA numbers and the certified
+ * mailbox; the academy has asked for all four off the footer. They are not
+ * deleted from the site, and that distinction is the whole of this change: the
+ * address is still on /contact and in the `PostalAddress` a search engine
+ * reads, the VAT is still `vatID` in the same structured data, and the PEC is
+ * still published on /contact and in the privacy notice, which is where a
+ * rights request under the Regulation actually goes. What the footer prints is
+ * now the registered name and an ordinary inbox.
+ *
+ * Every value in that column still comes from `lib/studio`, so nothing in it is
+ * typed twice or guessed.
  */
 export async function Footer() {
   const t = await getTranslations();
@@ -170,11 +173,10 @@ export async function Footer() {
             </li>
             {/* The privacy notice belongs in the site column rather than the
                 legal one, and the distinction is not pedantry. The legal column
-                is a published identity: company, address, VAT, REA, the
-                certified mailbox. Those are values, not destinations, and the
-                one link in that block goes to a mailbox. This is a page of the
-                site like the other five, and a reader looking for it looks in
-                the list of pages. */}
+                is a published identity rather than a set of destinations, and
+                the one link in it goes to a mailbox. This is a page of the site
+                like the other five, and a reader looking for it looks in the
+                list of pages. */}
             <li>
               <Link href="/privacy" className={link}>
                 {t("footer.privacy")}
@@ -183,72 +185,36 @@ export async function Footer() {
           </ul>
         </nav>
 
-        {/* THE COMPANY, SET AS AN ADDRESS RATHER THAN AS A SENTENCE.
+        {/* THE COMPANY, AND ONE WAY TO WRITE TO IT.
 
-            The street and the town are two lines because that is how an address
-            is written, and the two registry numbers are two lines because a
-            single "P. IVA nnn · REA nnn" run is a 39-character string in a
-            298px column: it fitted at 1440 and broke mid-number at 834, which
-            is the one thing a published registry number may never do.
+            The heading, the registered name and an ordinary mailbox. The
+            address lines, the VAT and REA rows and the certified mailbox have
+            come off at the academy's request; where each of them still lives is
+            recorded at the top of this file.
 
-            Grouped rather than six flat rows: the pair of address lines and the
-            pair of numbers each read as one item, so the block has four
-            intervals instead of six and still prints the six lines. */}
+            NO LABEL UNDER THIS ONE, AND THAT IS THE POINT OF IT. The line that
+            used to sit here read "PEC" and existed because an Italian certified
+            mailbox rejects ordinary mail: without the warning a visitor writes
+            to it, her message bounces, and the site was the thing that told her
+            to try. This address is a normal inbox that accepts ordinary mail,
+            so there is nothing to warn her about and a label would only invite
+            her to wonder what kind of channel it is.
+
+            `dir="ltr"` on the address, kept from the row it replaces. An email
+            address is left-to-right content, and on the Arabic route the bidi
+            algorithm would otherwise reorder the run around the "@".
+
+            `break-all` likewise: the column is 298px at 1440 and narrower on a
+            phone, and an address that cannot break is an address that widens
+            its own column. */}
         <div>
           <h2 className={heading}>{t("footer.legal")}</h2>
           <ul className={`mt-6 grid gap-3 ${bodySmall} text-mute-dark`}>
             <li className="text-ivory">{legal.company}</li>
-            {/* `bdi` rather than a bare span, and it is for the Arabic route.
-                A postal address is left-to-right content, so on an RTL page the
-                bidi algorithm reorders a line that opens with a postcode and
-                sets "64021 Giulianova (TE)" as "Giulianova (TE) 64021", which
-                is not the address. `bdi` isolates the run and resolves its
-                direction from its own first strong character, so the line reads
-                correctly; unlike `dir="ltr"` it does not also drag the block to
-                the left edge of a right-aligned column. On the Italian route it
-                renders identically to the span it replaced. */}
             <li>
-              <span className="block">
-                <bdi>{academy.street}</bdi>
-              </span>
-              <span className="block">
-                <bdi>
-                  {academy.postcode} {academy.city} ({academy.province})
-                </bdi>
-              </span>
-            </li>
-            <li>
-              <span className="block">
-                {t("footer.vat")} <span dir="ltr">{legal.vat}</span>
-              </span>
-              <span className="block">
-                {t("footer.rea")} <span dir="ltr">{legal.rea}</span>
-              </span>
-            </li>
-            {/* THE CERTIFIED MAILBOX, NAMED AS ONE.
-
-                This was a bare mailto carrying the address and nothing else,
-                which is the site presenting a PEC as though it were the
-                academy's email. It is not one. An Italian certified mailbox
-                rejects ordinary mail, so a visitor who used it as a contact
-                address would have her enquiry bounce and would never learn
-                why, and the site would have been the thing that told her to
-                try. It is the reason `CONTACT_TO` exists as a separate setting
-                and the reason the API route refuses to fall back to this
-                address.
-
-                So it is labelled. The address stays reachable, because a
-                registered business publishes it and a rights request under the
-                Regulation genuinely goes here, and the line under it says what
-                kind of channel it is. The three channels a visitor should
-                actually use are in the brand column at the top of the footer. */}
-            <li>
-              <a href={`mailto:${studio.pec}`} className={`${link} break-all`}>
-                <span dir="ltr">{studio.pec}</span>
+              <a href={`mailto:${studio.email}`} className={`${link} break-all`}>
+                <span dir="ltr">{studio.email}</span>
               </a>
-              <span className="mt-1 block text-[13px] text-mute-dark">
-                {t("contact.pecLabel")}
-              </span>
             </li>
           </ul>
         </div>

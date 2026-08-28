@@ -379,6 +379,17 @@ const PAGE_KEYS = [
   "footer.explore",
   "footer.studio",
   "footer.legal",
+  // Held, not read. The footer's fourth column carried the registered address,
+  // the VAT number and the REA number, and the academy has asked for all three
+  // off it; the column now prints the registered name and an ordinary mailbox.
+  //
+  // The strings stay in all four catalogues, and so do the values behind them.
+  // An Italian registered business publishes these, and the site still does:
+  // `legal.vat` is `vatID` in the organisation's structured data and the
+  // address is a `PostalAddress` there and a block on /contact. What changed is
+  // which surface prints them, which is a layout decision and reversible in one
+  // JSX block. Re-translating three labels into four languages to undo it is
+  // not, so they are kept.
   "footer.activity",
   "footer.vat",
   "footer.rea",
