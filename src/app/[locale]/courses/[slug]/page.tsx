@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, WhatsappLogo } from "@phosphor-icons/react/dist/
 import { Link } from "@/i18n/navigation";
 import { altLanguages, routing } from "@/i18n/routing";
 import { programBySlug, programs } from "@/lib/programs";
+import { readyPairs } from "@/lib/service-gallery";
 import { included } from "@/lib/courses";
 import { founderMedia } from "@/lib/media";
 import { brand, whatsappLinkWith } from "@/lib/studio";
@@ -180,6 +181,20 @@ export default async function ProgramPage({
   const t = await getTranslations();
   const name = t(`catalog.courses.${slug}`);
   const whatsappHref = whatsappLinkWith(t("contact.whatsappMessage"));
+
+  /**
+   * The two kinds of evidence section 08 is built from, asked for here rather
+   * than inside the components that print them.
+   *
+   * Both can be empty, and on three of the six both are. The section is a
+   * heading, a standfirst and the proof under them, so with no proof there is
+   * nothing for the heading to head: it has to be the section that stands down,
+   * not just its contents. Asking here is what lets that decision be made
+   * before the `<section>` is opened rather than leaving an empty band with a
+   * claim printed at the top of it.
+   */
+  const pairs = readyPairs(slug);
+  const hasProof = pairs.length > 0 || program.gallery.length > 0;
 
   return (
     <>
@@ -543,51 +558,71 @@ export default async function ProgramPage({
       </section>
 
       {/* 08 THE WORK
-          Two kinds of evidence, in the order of their strength.
+          Two kinds of evidence, in the order of their strength, and the whole
+          act stands down when the discipline has neither.
 
           First, this discipline's own before/after, where the academy has
           supplied one and told us which treatment produced it. That is the only
           thing on the page a visitor operates rather than looks at: she drags
           the handle and does the comparison herself. `ServiceGallery` renders
           nothing for a discipline with no attributed pair, which is five of the
-          six today, so most of these pages open this act on the gallery below.
+          six today.
 
-          Then the academy's own client photographs, under a heading that claims
-          only what is true of all of them: this is the standard being trained
-          towards. That heading is deliberately NOT "results from this course".
-          The site cannot tell from a photograph which treatment produced it, and
-          `lib/programs.ts` records at length why a per-discipline set derived
-          from these was built and then removed. The slider above is the
-          exception precisely because it is not derived: Amira said what it is,
-          and `lib/service-gallery.ts` carries that provenance. */}
-      <section className={`${sectionPad} bg-paper`}>
-        <div className={shell}>
-          <div className="grid gap-8 pb-12 md:pb-16 lg:grid-cols-12 lg:items-end lg:gap-10">
-            <div className="lg:col-span-6">
-              <MaskReveal>
-                <p className={eyebrow}>{t("programs.work.eyebrow")}</p>
-              </MaskReveal>
-              <MaskReveal delay={stagger.base} className="mt-6">
-                <h2 className={`${displaySection} max-w-[16ch]`}>{t("programs.work.title")}</h2>
-              </MaskReveal>
+          Then that discipline's own client photographs — `program.gallery`,
+          per slug, from lib/programs.ts. Every page used to print the same
+          three, which are three photographs of eyebrows, so Lip Blush argued
+          for itself with brows, Eyeliner PMU showed no eyeliner and Lash
+          Lamination showed no lashes, under a heading saying this is the result
+          you are training towards. The heading is still deliberately NOT
+          "results from this course" — the site cannot tell from a photograph
+          which treatment produced it — but a page may now only print work that
+          is at least of its own discipline. lib/programs.ts carries the rule.
+
+          WHY THE WHOLE SECTION IS GATED AND NOT JUST THE GALLERY. Three
+          disciplines have no pair and no frames, and a heading, a standfirst
+          and `sectionPad`'s 112px above and below them is a claim with nothing
+          under it — worse than silence, because the reader goes looking for the
+          proof it promised. `hasProof` is checked before the `<section>` opens,
+          so the founder act above it meets the near-black scarcity act below it
+          on their own padding, with no band between them.
+
+          The inner `pb-16 md:pb-24` moved onto the slider's own wrapper for the
+          same reason one level down: it used to sit on a div that rendered
+          whether or not there was a slider inside it, so the two brow pages
+          would have carried 96px of nothing between the standfirst and their
+          first photograph. */}
+      {hasProof ? (
+        <section className={`${sectionPad} bg-paper`}>
+          <div className={shell}>
+            <div className="grid gap-8 pb-12 md:pb-16 lg:grid-cols-12 lg:items-end lg:gap-10">
+              <div className="lg:col-span-6">
+                <MaskReveal>
+                  <p className={eyebrow}>{t("programs.work.eyebrow")}</p>
+                </MaskReveal>
+                <MaskReveal delay={stagger.base} className="mt-6">
+                  <h2 className={`${displaySection} max-w-[16ch]`}>{t("programs.work.title")}</h2>
+                </MaskReveal>
+              </div>
+              <Reveal delay={stagger.line} className="lg:col-span-5 lg:col-start-8 lg:pb-3">
+                <p className="max-w-[48ch] text-[17px] leading-relaxed text-mute">
+                  {t("programs.work.sub")}
+                </p>
+              </Reveal>
             </div>
-            <Reveal delay={stagger.line} className="lg:col-span-5 lg:col-start-8 lg:pb-3">
-              <p className="max-w-[48ch] text-[17px] leading-relaxed text-mute">
-                {t("programs.work.sub")}
-              </p>
-            </Reveal>
-          </div>
 
-          {/* On the axis and held to the width of its own source frames: they
-              are 900px wide, and anything wider is an upscale of the one image
-              on the page that has to survive close reading. */}
-          <div className="mx-auto flex justify-center pb-16 md:pb-24">
-            <ServiceGallery slug={slug} name={name} />
-          </div>
+            {/* On the axis and held to the width of its own source frames: they
+                are 900px wide, and anything wider is an upscale of the one image
+                on the page that has to survive close reading. */}
+            {pairs.length > 0 ? (
+              <div className="mx-auto flex justify-center pb-16 md:pb-24">
+                <ServiceGallery slug={slug} name={name} />
+              </div>
+            ) : null}
 
-          <WorkGallery />
-        </div>
-      </section>
+            <WorkGallery frames={program.gallery} />
+          </div>
+        </section>
+      ) : null}
 
       {/* 12 LIMITED PLACES
           The one scarcity claim on the site, and it is the academy's own class

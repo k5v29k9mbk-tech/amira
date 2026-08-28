@@ -54,7 +54,18 @@
 // and cannot find an extensionless one. The gating contract in this file is
 // the thing most worth having under test, so it has to be importable there.
 import { courses, type Course } from "./courses.ts";
-import type { Media } from "./media";
+import {
+  browsDefinedFrame,
+  browsDefinedPortraitFrame,
+  browsPairFrame,
+  resultFrames,
+  type Media,
+  type ResultFrame,
+  // `.ts` on the specifier for the same reason `./courses.ts` above carries
+  // one: this import used to be `import type`, erased before it ever ran, and
+  // it now pulls real values. `courses.test.ts` imports this module under the
+  // node test runner, which resolves specifiers literally.
+} from "./media.ts";
 
 /**
  * Facts that vary per programme.
@@ -130,6 +141,30 @@ export type Program = Course & {
    * in `Testimonial.tsx` and is enforced by name in `courses.test.ts`.
    */
   voices?: number;
+  /**
+   * The photographs this programme's own results section prints, in order.
+   *
+   * EMPTY IS THE DEFAULT AND IT IS A STATEMENT. Three of the six have no
+   * result photograph the academy has attributed to them, and until one exists
+   * the honest set is none: `WorkGallery` renders nothing for an empty array
+   * and the page drops the whole act rather than heading a band of brow
+   * photographs on the Lip Blush page.
+   *
+   * WHAT THIS REPLACED. Every one of the six printed `resultFrames`, the
+   * homepage set, which is three brow photographs. So Lip Blush proved itself
+   * with eyebrows, Eyeliner PMU showed no eyeliner and Lash Lamination showed
+   * no lashes — under a heading saying this is the result you are training
+   * towards. The set was shared because the academy has never said which
+   * technique produced which photograph, and the answer to that is to show
+   * fewer photographs, not to show the wrong ones.
+   *
+   * DROPPING REAL PHOTOGRAPHS IN LATER TOUCHES NOTHING BUT THIS FILE. A frame
+   * is a `ResultFrame` from lib/media.ts: a file, an alt key, the columns it
+   * occupies and its own aspect ratio. Add the entry to the array for its slug,
+   * add `work.alt.<altKey>` to the four catalogues, and the page prints it.
+   * No component knows which course it is rendering.
+   */
+  gallery: ResultFrame[];
 };
 
 /**
@@ -168,9 +203,45 @@ const heroMedia: Record<string, Media> = {
  * the page is already built for both modules and shows them the moment the
  * data is there.
  */
+/**
+ * The results each programme is allowed to print, keyed by slug.
+ *
+ * MICROBLADING keeps the homepage set. It is the one discipline with pairs the
+ * academy has attributed by name (lib/service-gallery.ts), so the brow
+ * photographs beside them are on topic and the portrait among them may say so.
+ *
+ * POWDER BROWS and BROW LAMINATION keep the two brow results and swap the
+ * third. `browsPairFrame` and `browsDefinedFrame` are brow outcomes whose alt
+ * text names no technique, so they carry across; `microbladingPortraitFrame`
+ * says "Microblading" in four languages and cannot. `browsDefinedPortraitFrame`
+ * takes its slot with an alt that claims only what the photograph shows.
+ *
+ * LIP BLUSH, EYELINER PMU and LASH LAMINATION get nothing, because nothing on
+ * file is a lip, an eyeliner or a lash result the academy has attributed. Three
+ * eyebrow photographs on the Lip Blush page were not weak evidence, they were
+ * evidence for a different course, and the page is better without the section
+ * than with someone else's work in it. This is the same refusal the note at the
+ * foot of this file has always described, applied one level finer: it used to
+ * mean every page shows the same set, and it now means a page shows its own set
+ * or none.
+ */
+const gallery: Record<string, ResultFrame[]> = {
+  microblading: resultFrames,
+  "powder-brows": [browsPairFrame, browsDefinedFrame, browsDefinedPortraitFrame],
+  "brow-lamination": [browsPairFrame, browsDefinedFrame, browsDefinedPortraitFrame],
+  "lip-blush": [],
+  "eyeliner-pmu": [],
+  "lash-lamination": [],
+};
+
 export const programs: Program[] = courses.map((course) => ({
   ...course,
   facts: {},
+  // `?? []` rather than a lookup that may be undefined: a course added to the
+  // catalogue without an entry above shows no results, which is the safe
+  // direction. The unsafe direction is the one this replaced, where a new
+  // course silently inherited three brow photographs.
+  gallery: gallery[course.slug] ?? [],
   ...(heroMedia[course.slug] ? { heroMedia: heroMedia[course.slug] } : {}),
 }));
 
@@ -178,28 +249,35 @@ export const programBySlug = (slug: string): Program | undefined =>
   programs.find((p) => p.slug === slug);
 
 /**
- * THERE IS NO PER-DISCIPLINE RESULTS SET, AND THAT IS A DELIBERATE REFUSAL.
+ * WHAT `gallery` ABOVE MAY AND MAY NOT CLAIM, WHICH IS THE WHOLE OF THE RULE.
  *
  * The obvious thing for a programme page to do is show the academy's results
  * for that discipline: brow photographs on the brow pages, a lip photograph on
- * the lip page. An earlier draft of this file did exactly that, keyed by family.
+ * the lip page. For a long time this file refused to do it at all and every
+ * page printed one shared set, because `media.ts` says at the `caption` field
+ * on the Frame type that the site does not know which treatment produced any
+ * given result photograph, and a caption naming one "would be a guess printed
+ * under someone's face".
  *
- * It cannot be done honestly, and `media.ts` already says why, at the `caption`
- * field on the Frame type: the site does not know which treatment produced any
- * given result photograph, so a caption naming one "would be a guess printed
- * under someone's face". The same is true of a section heading. The published
- * alt text establishes the area treated, brows or lips, and no more than that.
- * Microblading and powder brows are two different techniques that produce a
- * brow, so a brow photograph under either page's name asserts something nobody
- * has confirmed, and a permanent makeup brow shown on the brow lamination page,
- * which is not permanent makeup at all, would be plainly wrong.
+ * That refusal was right about the guess and wrong about the remedy. Showing
+ * three brow photographs on the Lip Blush page does not avoid the guess, it
+ * makes a worse one: it tells a reader who came for lips that this is the
+ * result she is training towards. `gallery` is now per slug, and the rule the
+ * refusal was protecting is enforced by what may go in it rather than by
+ * giving every page the same contents.
  *
- * So every programme page shows the same set, under a heading that claims what
- * is true of all of it: this is the standard you are training towards. It is
- * the academy's own client work, photographed in its own studio, and it is
- * evidence of what the teaching produces without pretending to be a portfolio
- * of one course.
+ * THE RULE. A frame may sit under a discipline only if what it asserts is true
+ * on that page. The published alt text establishes the area treated, brows or
+ * lips, and no more than that, so a brow photograph whose alt names no
+ * technique is admissible on any brow page. A frame whose alt names a
+ * technique may appear only on that technique's page: `microbladingPortrait`
+ * says Microblading in four languages and is therefore on one page and not
+ * three. And an empty array is always available and always honest, which is
+ * what the three disciplines with no attributed result of their own get.
  *
- * If the academy ever supplies results tagged by the treatment that produced
- * them, this is where that mapping goes, and the heading can then say so.
+ * The heading above the set still claims only what is true of all of it: this
+ * is the standard you are training towards. It is the academy's own client
+ * work, photographed in its own studio. If the academy supplies results tagged
+ * by the treatment that produced them, they go in `gallery` under that slug
+ * and the heading can then say so.
  */

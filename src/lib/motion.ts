@@ -110,18 +110,18 @@ export const imageScale = {
  * The hero's opening sequence, as an ordered score.
  *
  * The first screen is now the academy's film with type set over it, and the
- * score is the order a reader meets that type: the bar, the statement line by
- * line, the supporting line, the figures, and last of all the two actions.
- * Written as delays in one place because the only thing that makes a
- * sequence read as choreography rather than as things appearing is the interval
- * between beats, and that is impossible to tune when the numbers live in six
- * components.
+ * score is the order a reader meets that type: the wordmark, the byline under
+ * it, the statement line by line, the supporting line, the two actions, and
+ * last of all the proof. Written as delays in one place because the only thing
+ * that makes a sequence read as choreography rather than as things appearing is
+ * the interval between beats, and that is impossible to tune when the numbers
+ * live in six components.
  *
  * THE SIGNATURE USED TO LAND LAST, and `name` and `role` are the two beats it
  * landed on. The homepage no longer plays them: her name is set further down the
  * page, as the caption to the portrait in `AuthorityStrip`, so it arrives on
  * scroll rather than on a delay measured from the opening, and the score now
- * ends on the actions at 0.72.
+ * ends on the proof band at 0.82.
  *
  * They stay here, and not only out of tidiness. `HeroPortrait` still plays both,
  * and the interval between them is the part worth keeping: 0.10 is the smallest
@@ -138,24 +138,38 @@ export const imageScale = {
  * played, so the sequence starts after the overlay rather than behind it.
  */
 export const heroBeat = {
-  bar: 0.0,
-  headline: 0.14,
-  sub: 0.5,
   /**
-   * Unplayed. The hero's figure band moved out to `AuthorityStrip`, so nothing
-   * on the first screen sits between the supporting line and the actions any
-   * more. The beat stays in the score because the interval it defines is what
-   * `actions` is measured against, and deleting it would leave the next number
-   * looking arbitrary.
+   * THE WORDMARK OPENS THE SCORE, and it is the beat that used to be the bar.
+   * The first screen no longer carries a line of middot-joined facts above the
+   * statement; it carries the academy's name, and the name is the first thing
+   * the sequence plays for the same reason it is the first thing the screen
+   * says. The key keeps a neutral name because what the beat defines is a
+   * position in the score, not a component.
    */
-  facts: 0.62,
+  brand: 0.0,
   /**
-   * 0.64 rather than 0.72. The actions used to enter a beat after the figures;
-   * with the figures gone that delay was 220ms of an empty screen after the
-   * supporting line had finished, which reads as the sequence having stalled
-   * rather than as a pause before the last beat.
+   * The byline under it, 120ms later. It is the same interval `name` and `role`
+   * hold apart further down this file, and for the same reason: it is the
+   * smallest gap on the site that still reads as two beats rather than as one
+   * block arriving. A lockup that opened as a single reveal would print the
+   * founder's name at the same instant as the academy's, which is the one
+   * hierarchy this screen exists to state.
    */
-  actions: 0.64,
+  byline: 0.12,
+  headline: 0.26,
+  sub: 0.6,
+  /**
+   * 0.72, and it is now the fifth beat rather than the last. The composition
+   * puts the two actions above the proof band, so the score follows: brand,
+   * statement, supporting line, action, evidence.
+   */
+  actions: 0.72,
+  /**
+   * The proof closes the sequence. 100ms after the actions rather than a full
+   * beat: the band is a rule with three figures in it, not a movement of its
+   * own, and a longer wait after the last control reads as a stall.
+   */
+  facts: 0.82,
   name: 0.86,
   role: 0.96,
   portrait: 0.12,

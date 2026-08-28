@@ -3,11 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
-import { WhatsappLogo } from "@phosphor-icons/react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { Logo } from "./Logo";
-import { brand, whatsappLinkWith } from "@/lib/studio";
+import { brand } from "@/lib/studio";
 import { btnSolid, shell } from "@/lib/ui";
 import { dur, ease, stagger } from "@/lib/motion";
 
@@ -24,8 +23,8 @@ import { dur, ease, stagger } from "@/lib/motion";
  * espresso once it has a ground, and the two states cross-fade on the same
  * 500ms house curve as the ground itself, which is what keeps it one movement
  * rather than a bar that repaints. Everything in it turns together: the
- * monogram, the navigation, the WhatsApp mark, the language control and the
- * booking action, each through the tone its own component already had.
+ * monogram, the navigation, the language control and the booking action, each
+ * through the tone its own component already had.
  *
  * The scrim is weighted at the top of the hero for exactly this, so the light
  * state is legible over the brightest frame of the film rather than only over
@@ -36,30 +35,39 @@ import { dur, ease, stagger } from "@/lib/motion";
  *
  * WHAT THE BAR CARRIES, PER WIDTH, and the rule behind it: a phone bar holds a
  * brand and one decision, and everything else belongs somewhere a reader has
- * asked to be. So below md it is the monogram, the availability action set as a
- * champagne rule rather than a filled block, and Menu. From md the WhatsApp mark
- * returns and the action takes its box back; from lg the navigation and the
- * language control arrive and Menu goes.
+ * asked to be. So below md it is the monogram, the booking action set as a
+ * champagne rule rather than a filled block, and Menu. From md the action takes
+ * a box; from lg the navigation and the language control arrive and Menu goes.
  *
- * That is a reduction from what the phone used to carry, and the two things it
- * lost are both still on the phone. The WhatsApp mark is in `StickyCta`, which
+ * THE WHATSAPP MARK IS NOT IN THE BAR ANY MORE, AT ANY WIDTH. It was the third
+ * mark in the right-hand cluster from md up, a filled green-brand glyph sitting
+ * between the language control and the booking action, and it was the one item
+ * in a luxury bar that belonged to somebody else's design system. Nothing in the
+ * bar should compete with the brand mark on the other side of it and with the
+ * one action the bar exists to offer, and an icon does exactly that: it is the
+ * only shape in the row, so it is read first.
+ *
+ * The channel is untouched everywhere it converts, which is the whole point of
+ * removing it from here rather than from the site. It is in `StickyCta`, which
  * stands at the foot of the page from the moment the hero is behind the reader,
- * with the same line and the same prefilled message; the hero's own second
- * action opens the same conversation at full size. The availability request is
- * in the bar at every width above 359px, in the menu overlay, and in the
- * standing bar beside WhatsApp.
+ * with the same prefilled message; it is a full-size action in the closing frame
+ * of the homepage, the catalogue and every course page; and it is a row on
+ * /contact and a line in the footer. What it no longer does is stand in the
+ * masthead.
  *
- * The reason for the reduction is in the arithmetic. Three marks and a monogram
- * inside 342 gutter-to-gutter pixels is not a bar with a lot in it, it is a bar
- * with more in it than fits, and what it did was crush the logo to five pixels.
- * A luxury house's phone header is the one surface where restraint is not a
- * style: it is the only way the brand mark gets to be the largest thing in it.
+ * THE NAVIGATION IS FOUR LABELS, and the fifth is gone rather than held back to
+ * a width. It used to be five with the results link appearing only at xl, which
+ * meant a bar that carried a different set of destinations depending on how wide
+ * the laptop was, and the arithmetic that forced that is what says the bar had
+ * one label too many. Programmes, the method, Amira, FAQ: what is taught, how it
+ * is taught, who teaches it, and the answers. The results and the ladder of
+ * levels are acts of the homepage with anchors of their own, and both are still
+ * in the phone menu and in the footer, which is where they were reachable from
+ * at every width below xl anyway.
  */
 export function Header() {
   const t = useTranslations("nav");
   const cta = useTranslations("cta");
-  const contact = useTranslations("contact");
-  const whatsappHref = whatsappLinkWith(contact("whatsappMessage"));
   const pathname = usePathname();
   const overHero = pathname === "/";
 
@@ -202,26 +210,22 @@ export function Header() {
   const onFilm = !solid;
 
   /**
-   * Five labels, and the fifth is conditional on there being room for it.
+   * Four labels, at every width the bar is shown at.
    *
-   * The results were missing from the bar entirely, which is the wrong thing to
-   * omit: they are the section that proves the training, and a visitor could
-   * only reach them from the phone menu or the footer. They are in the bar now.
-   *
-   * But the arithmetic that kept them out is real. At 1024px the shell leaves
-   * 896px, and the logo, the WhatsApp mark, the language control and the
-   * availability button take about 470 of it before a single label is set;
-   * five labels in French do not fit what is left. So the results link is held
-   * back to xl, where there are 256px more. Between lg and xl the bar carries
-   * the same four it always did, and the section stays reachable from the phone
-   * menu and the footer, which is where it was reachable from before.
+   * The set used to be five with `/#work` appearing only from xl, because at
+   * 1024px the shell leaves 896 and the logo, the WhatsApp mark, the language
+   * control and a "Prenota una consulenza" button took about 470 of it before a
+   * single label was set. Two of those three costs are gone: the mark is off the
+   * bar and the action is one word. What is left is a set that fits the same at
+   * 1024 as it does at 1600, so the bar carries the same four destinations on a
+   * laptop as on a large desktop, which is the part that was actually wrong with
+   * the old arrangement.
    */
   const links = [
-    { href: "/courses", label: t("courses"), wide: false },
-    { href: "/#method", label: t("method"), wide: false },
-    { href: "/about", label: t("about"), wide: false },
-    { href: "/#work", label: t("work"), wide: true },
-    { href: "/faq", label: t("faq"), wide: false },
+    { href: "/courses", label: t("courses") },
+    { href: "/#method", label: t("method") },
+    { href: "/about", label: t("about") },
+    { href: "/faq", label: t("faq") },
   ] as const;
 
   /**
@@ -258,7 +262,7 @@ export function Header() {
       }`}
     >
       <div
-        className={`${shell} flex h-[72px] items-center justify-between gap-5 transition-colors duration-500 ease-[var(--ease-aura)] md:h-[76px] md:gap-8 ${
+        className={`${shell} flex h-[72px] items-center justify-between gap-5 transition-colors duration-500 ease-[var(--ease-aura)] md:h-[76px] md:gap-10 ${
           onFilm ? "text-ivory" : "text-espresso"
         }`}
       >
@@ -290,17 +294,19 @@ export function Header() {
           />
         </Link>
 
-        {/* gap-6 at lg, gap-9 from xl. The wider gutter is right on a 1440px
-            screen and is 108px the French labels do not have at 1024. */}
-        <nav aria-label={brand.short} className="hidden items-center gap-6 lg:flex xl:gap-9">
+        {/* gap-8 at lg, gap-11 from xl. Both are a step wider than the bar
+            carried while it held five labels and a glyph, and the air is the
+            point rather than a side effect of the room: four labels set close
+            together read as a strip of options, and the same four with a real
+            gutter between them read as a masthead. The arithmetic still clears
+            at 1024 in French, which is the widest of the four locales. */}
+        <nav aria-label={brand.short} className="hidden items-center gap-8 lg:flex xl:gap-11">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               aria-current={isCurrent(l.href) ? "page" : undefined}
               className={`label relative py-1 transition-opacity duration-300 hover:opacity-100 after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-[left] after:bg-current after:transition-transform after:duration-500 after:ease-[var(--ease-aura)] hover:after:scale-x-100 rtl:after:origin-[right] ${
-                l.wide ? "hidden xl:block" : ""
-              } ${
                 isCurrent(l.href) ? "opacity-100 after:scale-x-100" : "opacity-70 after:scale-x-0"
               }`}
             >
@@ -309,89 +315,63 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-6 md:gap-5 lg:gap-6">
-          {/* Icon alone, at the same hairline weight as the arrows: a labelled
-              button here would be a second call to action competing with the
-              one beside it, and on a phone there is no room for two. The name
-              is carried for assistive tech rather than printed.
-
-              FROM md, AND NOT BEFORE. The reasoning that put this in the bar is
-              recorded at the top of this file and was right about the problem:
-              on a phone the header offered no action at all, and the first one a
-              reader could reach was twenty screens down. It is the wrong fix. A
-              phone bar has room for a brand and one decision, and this made
-              three marks compete inside 342 pixels — a monogram, a glyph and a
-              button — which is exactly the congestion a luxury bar is defined by
-              not having. The gap it was filling is now filled properly, by
-              `StickyCta`, which carries the same mark and the same prefilled
-              message and appears once the hero is behind the reader; and the
-              hero's own second action is a WhatsApp link at full size. Nothing
-              was lost from the phone but the clutter. */}
-          {whatsappHref ? (
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noreferrer"
-              className={`-m-2.5 hidden p-2.5 transition-colors duration-300 md:block ${
-                onFilm ? "hover:text-bronze-hi" : "text-espresso hover:text-bronze-ink"
-              }`}
-            >
-              <WhatsappLogo size={21} weight="light" aria-hidden />
-              <span className="sr-only">{contact("whatsapp")}</span>
-            </a>
-          ) : null}
-
-          <div className="hidden items-center gap-6 lg:flex">
+        {/* Two items where there were three, and the gutter grew rather than
+            the row closing up. Removing the glyph left about 45px of slack;
+            spending it on the space between the language control and the action
+            is what stops the two reading as one cluster of controls, and is why
+            the bar does not look like something was taken out of it. */}
+        <div className="flex shrink-0 items-center gap-6 md:gap-7 lg:gap-8">
+          <div className="hidden lg:block">
             <LocaleSwitcher tone={onFilm ? "light" : "dark"} />
           </div>
 
           {/* The booking action, in two registers on one element.
-              From md it is the filled bar-scale button it has always been, in
-              the ground pair that matches whatever is behind the bar. Below md
-              it is the same words with the box taken off: label type in
-              champagne with a hairline under it, carrying nothing but its own
-              tracking.
 
-              WHY THE BOX COMES OFF, AND WHY THE WORDS DO NOT. On a phone this
-              rendered as a 212px slab of solid ivory sitting eight pixels from
-              the top of the film — the brightest, heaviest, most saturated shape
-              on the opening screen, above a headline set in 40px of Cormorant
-              that it comfortably out-shouted. A luxury bar does not put its
-              loudest object next to its brand mark. As a rule in champagne it
-              still reads as the one thing in the bar that is an action rather
-              than a destination, which is all it has to do here: the hero
-              carries the same ask forty pixels below at full size, and the
-              standing bar carries it for the rest of the page.
+              ONE WORD, NOT FOUR. It reads `nav.book` here and `cta.consultation`
+              everywhere else, and that is a label for a bar rather than a fifth
+              verb: "Prenota", "Book", "Réserver". The four asks the site is
+              allowed to make are unchanged and this is still one of them, going
+              to the same /contact the hero's neighbours, the phone menu, the
+              standing bar and every closing frame go to. What has changed is
+              that the bar no longer sets a four-word sentence in small caps
+              beside the brand mark. At the house tracking "Prenota una
+              consulenza" is 178px; "Prenota" is 62, and the 116px difference is
+              most of the reason the navigation now fits at 1024 and the phone
+              bar has room to breathe.
 
-              WHY IT IS GATED AT 360 AND NOT AT ZERO. Measured, not guessed. The
-              label is 162px in English and 178 in Italian at the house tracking,
-              and a 320px screen has 272 between its gutters; with a 40px mark and
-              a 40px Menu that leaves eleven pixels of gap in Italian. The action
-              is not dropped there, it moves — the menu overlay closes on it and
-              the standing bar carries it — which is the same arrangement the
-              phone had before, one width narrower.
+              FROM A SLAB TO A HAIRLINE. From md this was a filled block, in
+              solid ivory over the film: the brightest, heaviest, most saturated
+              shape on the opening screen, sitting above a headline it
+              comfortably out-shouted. It is now the outline of the same shape,
+              in the site's own secondary register (`btnLine` and `btnLineLight`
+              are the borders it borrows), and it fills on hover. An outlined
+              control beside a wordmark is still unmistakably the one thing in
+              the bar that is an action rather than a destination; it simply is
+              not the loudest object on the academy's first screen any more.
+
+              Below md the box comes off entirely and it is label type in
+              champagne with a hairline under it. The 360px gate that used to sit
+              on this is gone with the long label that needed it: at 320px the
+              gutters leave 272, and a 40px mark, 62px of action and a 40px Menu
+              fit inside it with 90 to spare, so the smallest phone the site
+              supports now carries the action in the bar like every other width.
 
               The tone classes below md are the mobile register and every md:
               class is the button; a media variant sorts after its base in the
               generated sheet, so the desktop pair wins at md without either
               needing !important. What is deliberately absent is a second
-              unprefixed display utility. `btnCompact` opens with `inline-flex`,
-              and pairing it with a bare `hidden` is not the documented
-              `hidden md:flex` idiom, it is two same-specificity display rules
-              whose winner is decided by Tailwind's own emit order rather than by
-              anything in this file: `inline-flex` came last, so `hidden` lost and
-              this button rendered on every phone the site has ever been opened
-              on. That is what crushed the logo. The shape is spelled out here
-              rather than imported for exactly that reason. */}
+              unprefixed display utility: `inline-flex` here and a bare `hidden`
+              would be two same-specificity display rules whose winner Tailwind's
+              emit order decides rather than this file. */}
           <Link
             href="/contact"
-            className={`label group/btn relative hidden items-center justify-center gap-3 whitespace-nowrap py-4 transition-colors duration-500 ease-[var(--ease-aura)] after:absolute after:inset-x-0 after:bottom-3 after:h-px after:bg-current after:opacity-40 active:translate-y-px min-[360px]:inline-flex md:border md:px-5 md:py-3 md:after:hidden ${
+            className={`label group/btn relative inline-flex items-center justify-center gap-3 whitespace-nowrap py-4 transition-colors duration-500 ease-[var(--ease-aura)] after:absolute after:inset-x-0 after:bottom-3 after:h-px after:bg-current after:opacity-40 active:translate-y-px md:border md:px-6 md:py-3 md:after:hidden ${
               onFilm
-                ? "text-bronze-hi md:border-ivory md:bg-ivory md:text-espresso md:hover:border-bronze-hi md:hover:bg-bronze-hi"
-                : "text-bronze-ink md:border-espresso md:bg-espresso md:text-ivory md:hover:border-bronze-ink md:hover:bg-bronze-ink"
+                ? "text-bronze-hi md:border-ivory/45 md:text-ivory md:hover:border-ivory md:hover:bg-ivory md:hover:text-espresso"
+                : "text-bronze-ink md:border-espresso/35 md:text-espresso md:hover:border-espresso md:hover:bg-espresso md:hover:text-ivory"
             }`}
           >
-            {cta("consultation")}
+            {t("book")}
           </Link>
 
           {/* 45px of hit area rather than 33, and the horizontal padding is
@@ -493,8 +473,12 @@ export function Header() {
                   >
                     {cta("consultation")}
                   </Link>
+                  {/* Upward, because this is the last thing in a column that
+                      scrolls: a menu opening downward from here would be laid
+                      out past the bottom of its own scroll container on any
+                      handset where the list is already taller than the screen. */}
                   <div className="mt-8">
-                    <LocaleSwitcher tone="dark" />
+                    <LocaleSwitcher tone="dark" side="up" />
                   </div>
                 </motion.div>
               </div>

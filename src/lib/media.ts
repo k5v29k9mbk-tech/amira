@@ -561,68 +561,120 @@ export type Frame = Media & {
  * grade, no retouch, no upscale, and the original is kept beside it untouched.
  * The claim in `work.sub` is unaffected and stays true.
  */
-export const resultFrames: (Frame & {
+export type ResultFrame = Frame & {
   altKey: string;
   zoom?: boolean;
   /** Required here, not optional: the overlay sizes itself off these. */
   width: number;
   height: number;
-})[] = [
-  /**
-   * The band. Both brows in one frame, close enough to read the individual
-   * strokes, and the only landscape photograph the academy has supplied at a
-   * width worth spending. It carries its row alone: the brow half of the
-   * section is above it and the two finished faces are below, with the two
-   * columns left free at either edge so it reads as a band rather than a
-   * full-bleed strip.
-   *
-   * Eight columns is 992px against a 1320px file, so it is the widest frame in
-   * the section and still not upscaled.
-   */
-  {
-    posterSrc: "/brand/brows-pair-upright.jpg",
-    altKey: "browsPair",
-    zoom: true,
-    span: "col-span-12 lg:col-span-8 lg:col-start-3 lg:mt-16",
-    sizes: "(max-width: 1024px) 100vw, 62vw",
-    ratio: "1320 / 689",
-    position: "50% 50%",
-    width: 1320,
-    height: 689,
-  },
-  /**
-   * The close: a face rather than a detail, which is what the section has been
-   * building towards. It is a 1323px file, the largest the academy has
-   * supplied, and it is held well under that width.
-   *
-   * It was half of a pair until the second face was withdrawn. What is left
-   * keeps its six columns at col-start-1 rather than growing to fill the row:
-   * stretching a near-square file across the grid is the one thing this section
-   * does not do, and a left-weighted close answers the seven-column frame the
-   * section opens on. On tablet and phone it is full width, as it always was.
-   */
-  {
-    posterSrc: "/brand/brows-defined-upright.jpg",
-    altKey: "browsPortrait",
-    zoom: true,
-    span: "col-span-12 md:col-span-6 lg:col-start-1",
-    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 46vw",
-    ratio: "1323 / 1320",
-    position: "50% 45%",
-    width: 1323,
-    height: 1320,
-  },
-  {
-    posterSrc: "/brand/microblading-portrait-02.jpg",
-    altKey: "microbladingPortrait",
-    zoom: true,
-    span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-8 lg:mt-28",
-    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 30vw",
-    ratio: "1200 / 1600",
-    position: "50% 42%",
-    width: 1200,
-    height: 1600,
-  },
+};
+
+/*
+ * The frames are named rather than written straight into the array below,
+ * because the array is no longer the only place they are read from. A course
+ * page now prints its own set (`gallery` in lib/programs.ts) and the brow
+ * disciplines share two of these three, so a frame has to be referable by name.
+ * Nothing about any of them changed in the naming: same files, same spans, same
+ * ratios, same order in `resultFrames`.
+ */
+
+/**
+ * The band. Both brows in one frame, close enough to read the individual
+ * strokes, and the only landscape photograph the academy has supplied at a
+ * width worth spending. It carries its row alone: the brow half of the
+ * section is above it and the two finished faces are below, with the two
+ * columns left free at either edge so it reads as a band rather than a
+ * full-bleed strip.
+ *
+ * Eight columns is 992px against a 1320px file, so it is the widest frame in
+ * the section and still not upscaled.
+ */
+export const browsPairFrame: ResultFrame = {
+  posterSrc: "/brand/brows-pair-upright.jpg",
+  altKey: "browsPair",
+  zoom: true,
+  span: "col-span-12 lg:col-span-8 lg:col-start-3 lg:mt-16",
+  sizes: "(max-width: 1024px) 100vw, 62vw",
+  ratio: "1320 / 689",
+  position: "50% 50%",
+  width: 1320,
+  height: 689,
+};
+
+/**
+ * The close: a face rather than a detail, which is what the section has been
+ * building towards. It is a 1323px file, the largest the academy has
+ * supplied, and it is held well under that width.
+ *
+ * It was half of a pair until the second face was withdrawn. What is left
+ * keeps its six columns at col-start-1 rather than growing to fill the row:
+ * stretching a near-square file across the grid is the one thing this section
+ * does not do, and a left-weighted close answers the seven-column frame the
+ * section opens on. On tablet and phone it is full width, as it always was.
+ */
+export const browsDefinedFrame: ResultFrame = {
+  posterSrc: "/brand/brows-defined-upright.jpg",
+  altKey: "browsPortrait",
+  zoom: true,
+  span: "col-span-12 md:col-span-6 lg:col-start-1",
+  sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 46vw",
+  ratio: "1323 / 1320",
+  position: "50% 45%",
+  width: 1323,
+  height: 1320,
+};
+
+export const microbladingPortraitFrame: ResultFrame = {
+  posterSrc: "/brand/microblading-portrait-02.jpg",
+  altKey: "microbladingPortrait",
+  zoom: true,
+  span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-8 lg:mt-28",
+  sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 30vw",
+  ratio: "1200 / 1600",
+  position: "50% 42%",
+  width: 1200,
+  height: 1600,
+};
+
+/**
+ * The third slot on the two non-microblading brow pages.
+ *
+ * `microbladingPortraitFrame` above cannot go on Powder Brows or Brow
+ * Lamination: its alt text names the technique, and naming Microblading on
+ * another discipline's page is the exact mis-attribution `lib/programs.ts`
+ * refuses at length. This is the frame that takes that slot there — same span,
+ * same sizes, same behaviour, a different photograph and an alt that names no
+ * technique at all.
+ *
+ * `work.alt.browsDefinedPortrait` is written to be true on both pages, which is
+ * why it says only what the photograph shows: defined brows, close up, after
+ * the treatment. Brow lamination is not permanent makeup, so an alt that
+ * asserted permanent makeup would be false on one of the two pages it appears
+ * on.
+ *
+ * FLAGGED, AND SHIPPED ON THE CLIENT'S INSTRUCTION: this is the same
+ * photograph as `browsDefinedFrame` above, rotated a quarter turn (1320x1323
+ * against 1323x1320, different files, same shot). The two therefore appear
+ * together in one gallery on both pages. A distinct third brow result would
+ * replace this entry and nothing else.
+ */
+export const browsDefinedPortraitFrame: ResultFrame = {
+  posterSrc: "/brand/brows-defined-portrait.jpg",
+  altKey: "browsDefinedPortrait",
+  zoom: true,
+  span: "col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-8 lg:mt-28",
+  sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 47vw, 30vw",
+  ratio: "1320 / 1323",
+  position: "50% 50%",
+  width: 1320,
+  height: 1323,
+};
+
+/** The homepage set, unchanged: the band, the close, the portrait. */
+export const resultFrames: ResultFrame[] = [
+  browsPairFrame,
+  browsDefinedFrame,
+  microbladingPortraitFrame,
 ];
 
 /**

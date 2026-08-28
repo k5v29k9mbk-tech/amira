@@ -219,6 +219,18 @@ export const serviceGallery: Record<string, GalleryPair[]> = {
 };
 
 /**
+ * The pairs a discipline can actually show: the ones whose two files exist.
+ *
+ * `ServiceGallery` has always filtered on `ready` before rendering. It is
+ * exported now because the programme page has to know the same answer one level
+ * up: the wrapper it sets the slider inside carries the padding under it, so a
+ * component that correctly renders nothing still leaves a 96px band on five of
+ * the six pages. The filter lives here rather than being written twice.
+ */
+export const readyPairs = (slug: string): GalleryPair[] =>
+  serviceGallery[slug]?.filter((pair) => pair.ready) ?? [];
+
+/**
  * The hero frame each discipline is waiting for.
  *
  * Every one of the six already prints a real photograph from the academy's own

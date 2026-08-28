@@ -5,21 +5,29 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { ArrowsOut, X } from "@phosphor-icons/react";
-import { resultFrames } from "@/lib/media";
+import { resultFrames, type ResultFrame } from "@/lib/media";
 import { dur, ease } from "@/lib/motion";
 import { FrameReveal } from "./FrameReveal";
 import { MediaFrame } from "./MediaFrame";
 import { Parallax } from "./Parallax";
 
 /**
- * The work: four treatment photographs, set as one composition rather than a
- * grid of equal tiles.
+ * The work: a set of treatment photographs, laid out as one composition rather
+ * than a grid of equal tiles.
  *
  * Every decision about where a frame sits, how wide it is and what proportion
  * it holds is data (`resultFrames` and `pairFrame` in lib/media.ts). This file
- * only lays them out and opens the three that are worth opening. That split is
+ * only lays them out and opens the ones worth opening. That split is
  * deliberate: the academy will send more photographs, and adding one should be
  * an entry in a list, not a change to this component.
+ *
+ * WHICH SET IT PRINTS IS THE CALLER'S. The homepage passes nothing and gets
+ * `resultFrames`, which is what this component has always shown. A programme
+ * page passes its own `gallery` from lib/programs.ts, so Lip Blush no longer
+ * proves itself with three photographs of eyebrows. An empty set renders
+ * nothing at all — not an empty grid, not a gap — which is the rule every
+ * conditional surface on this site follows; the calling page drops the heading
+ * above it on the same condition.
  *
  * Two rules hold the section together and neither is negotiable:
  *
@@ -43,12 +51,12 @@ import { Parallax } from "./Parallax";
  * down, which they inherit from Parallax and Reveal, and the global stylesheet
  * cuts the hover transition to nothing.
  */
-export function WorkGallery() {
+export function WorkGallery({ frames = resultFrames }: { frames?: ResultFrame[] }) {
   const t = useTranslations("work");
 
-  /** Index into `resultFrames`, or null when the overlay is closed. */
+  /** Index into `frames`, or null when the overlay is closed. */
   const [open, setOpen] = useState<number | null>(null);
-  const active = open === null ? null : resultFrames[open];
+  const active = open === null ? null : frames[open];
 
   /** The frame that was opened, so focus goes back where it came from. */
   const opener = useRef<HTMLButtonElement | null>(null);
@@ -89,6 +97,13 @@ export function WorkGallery() {
     };
   }, [active, close]);
 
+  // After the hooks, never before them: an early return above `useEffect` is a
+  // conditional hook call and React will not have it. Three of the six
+  // programme pages pass an empty set, and they must render nothing rather than
+  // an empty grid — a `grid` with no children still occupies its gap and its
+  // parent's padding, which is the blank band this guard exists to prevent.
+  if (!frames.length) return null;
+
   return (
     <>
       {/* Fragments, so every frame is a direct child of the grid: each one
@@ -102,7 +117,7 @@ export function WorkGallery() {
           of a thumbnail. The frames close up behind it with no other change,
           which is what the per-frame `col-start` was always for. */}
       <div className="grid grid-cols-12 gap-5 md:gap-8">
-        {resultFrames.map((frame, i) => (
+        {frames.map((frame, i) => (
           <Fragment key={frame.posterSrc}>
             <Parallax distance={i % 2 === 0 ? 14 : -10} className={frame.span}>
               <FrameReveal delay={(i % 3) * 0.06}>

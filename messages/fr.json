@@ -9,11 +9,12 @@
     "courses": "Programmes",
     "about": "Amira",
     "method": "La méthode",
-    "faq": "Questions",
+    "faq": "FAQ",
     "contact": "Contact",
     "language": "Langue",
     "menu": "Menu",
     "close": "Fermer",
+    "book": "Réserver",
     "skip": "Aller au contenu",
     "loading": "Chargement",
     "work": "Résultats",
@@ -21,9 +22,10 @@
   },
   "hero": {
     "eyebrow": "Aura Academy · Formation professionnelle PMU · Italie",
-    "titleA": "Maîtrisez l’art.",
-    "titleB": "Créez votre carrière.",
-    "sub": "Apprenez le maquillage permanent avec Amira Bechini : pratique guidée et correction individuelle.",
+    "titleA": "Ne suivez pas la norme.",
+    "titleB": "Devenez la norme.",
+    "sub": "Formation professionnelle PMU où la technique, la précision et la vision deviennent une signature qui vous est propre.",
+    "discoverAura": "Découvrir Aura",
     "founder": "Amira Bechini · Fondatrice et Master PMU",
     "founderRole": "PMU Artist · Formatrice · Fondatrice",
     "facts": {
@@ -408,12 +410,12 @@
     "videoAlt": "Amira Bechini accueille les nouvelles élèves"
   },
   "success": {
-    "title": "Avant et après",
+    "title": "Microblading — avant et après",
     "before": "Avant",
     "after": "Après"
   },
   "work": {
-    "title": "Un travail réel, des clientes réelles.",
+    "title": "Microblading — avant et après",
     "sub": "Traitements réalisés à Aura Academy, photographiés en studio.",
     "open": "Agrandir",
     "close": "Fermer",
@@ -423,7 +425,8 @@
       "brows": "Sourcils après un traitement de maquillage permanent.",
       "browsPair": "Les deux sourcils dans un même cadre après un traitement de maquillage permanent, photographiés de près.",
       "microbladingPortrait": "Portrait d'une cliente présentant un résultat Microblading terminé.",
-      "browsPortrait": "Sourcils après un traitement de maquillage permanent, photographiés de près, le visage tourné vers la lumière."
+      "browsPortrait": "Sourcils après un traitement de maquillage permanent, photographiés de près, le visage tourné vers la lumière.",
+      "browsDefinedPortrait": "Sourcils définis, photographiés de près après le soin."
     }
   },
   "sections": {

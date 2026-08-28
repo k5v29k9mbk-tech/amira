@@ -9,11 +9,12 @@
     "courses": "Corsi",
     "about": "Amira",
     "method": "Il metodo",
-    "faq": "Domande",
+    "faq": "FAQ",
     "contact": "Contatti",
     "language": "Lingua",
     "menu": "Menu",
     "close": "Chiudi",
+    "book": "Prenota",
     "skip": "Vai al contenuto",
     "loading": "Caricamento",
     "work": "Risultati",
@@ -21,9 +22,10 @@
   },
   "hero": {
     "eyebrow": "Aura Academy · Formazione professionale PMU · Italia",
-    "titleA": "Padroneggia l’arte.",
-    "titleB": "Costruisci la tua carriera.",
-    "sub": "Impara il trucco permanente con Amira Bechini: pratica guidata e correzione individuale.",
+    "titleA": "Non seguire lo standard.",
+    "titleB": "Diventa lo standard.",
+    "sub": "Formazione professionale PMU dove tecnica, precisione e visione diventano una firma riconoscibile.",
+    "discoverAura": "Conosci Aura",
     "founder": "Amira Bechini · Fondatrice e Master PMU",
     "founderRole": "PMU Artist · Formatrice · Fondatrice",
     "facts": {
@@ -408,12 +410,12 @@
     "videoAlt": "Amira Bechini dà il benvenuto alle nuove allieve"
   },
   "success": {
-    "title": "Prima e dopo",
+    "title": "Microblading — prima e dopo",
     "before": "Prima",
     "after": "Dopo"
   },
   "work": {
-    "title": "Il risultato, prima e dopo.",
+    "title": "Microblading — prima e dopo",
     "sub": "Trattamenti eseguiti in Aura Academy e fotografati in studio.",
     "open": "Ingrandisci",
     "close": "Chiudi",
@@ -423,7 +425,8 @@
       "brows": "Sopracciglia dopo un trattamento di trucco permanente.",
       "browsPair": "Entrambe le sopracciglia in un’unica inquadratura dopo un trattamento di trucco permanente, fotografate da vicino.",
       "microbladingPortrait": "Ritratto di una cliente con il risultato finale del Microblading.",
-      "browsPortrait": "Sopracciglia dopo un trattamento di trucco permanente, fotografate da vicino con il viso girato verso la luce."
+      "browsPortrait": "Sopracciglia dopo un trattamento di trucco permanente, fotografate da vicino con il viso girato verso la luce.",
+      "browsDefinedPortrait": "Sopracciglia definite, fotografate da vicino dopo il trattamento."
     }
   },
   "sections": {

@@ -1,5 +1,5 @@
 import {
-  serviceGallery,
+  readyPairs,
   beforeSrc,
   afterSrc,
   galleryRatio,
@@ -52,8 +52,8 @@ import { stagger } from "@/lib/motion";
  * gives each of them more pixels than the desktop set does anyway.
  */
 export function ServiceGallery({ slug, name }: { slug: string; name: string }) {
-  const pairs = serviceGallery[slug]?.filter((pair) => pair.ready);
-  if (!pairs?.length) return null;
+  const pairs = readyPairs(slug);
+  if (!pairs.length) return null;
 
   const many = pairs.length > 1;
 

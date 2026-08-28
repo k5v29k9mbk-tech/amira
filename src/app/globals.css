@@ -173,6 +173,65 @@ body {
   undo both. The Arabic reset carries an attribute selector, so it outranks this
   block wherever it lands in the file.
 */
+/*
+  THE BRAND LOCKUP, AND WHY IT IS TWO RULES HERE RATHER THAN UTILITIES ON THE
+  ELEMENT.
+
+  The academy's name is set in the body sans rather than in Cormorant, and that
+  is the decision the whole lockup turns on. The statement under it is the
+  largest Didone on the site; a serif wordmark forty pixels above it would be
+  the same voice at a smaller size, and a reader reads two sizes of one voice as
+  one block that got smaller, not as a brand over a claim. A tracked sans
+  wordmark is a different typographic object, which is what lets it carry real
+  presence without competing: at 24px against a 95px statement it is a quarter
+  of the height and reads as the masthead it is.
+
+  It cannot be `.label`. That class is declared unlayered in this file and every
+  Tailwind utility lives in `@layer utilities`, so a `text-[1.5rem]` or a
+  `tracking-[0.4em]` written beside it is discarded before source order is even
+  consulted, which is the same trap documented at the hero's figure labels and
+  at the language control. And it should not be `.label` in any case: 11px at
+  0.2em is the site's caption, and this is the one place the academy's name is
+  the largest small-caps on the screen.
+
+  TEXT-INDENT IS NOT A NUDGE. Letter spacing is added after every glyph
+  including the last, so a centred tracked word carries half an em of empty
+  space on its trailing side and sits visibly left of the centre line it shares
+  with the statement. One tracking unit of indent puts the optical centre back
+  where the geometric one is. It is start-relative, and the lockup is marked
+  `dir="ltr"` in Hero.tsx precisely so that "start" means the same edge in
+  Arabic as it does in Italian: the two lines are Latin in every language,
+  because the brand is one brand in every language.
+
+  No Arabic variant, for that same reason. `[lang="ar"] .label` exists because
+  tracked Naskh is broken joining rather than a small-caps effect; these two
+  lines never hold Arabic glyphs, so the tracking is correct as it stands and an
+  override would only loosen a Latin wordmark on one route.
+*/
+.hero-brand {
+  font-size: clamp(1rem, 1.75vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+  text-transform: uppercase;
+}
+
+.hero-byline {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-indent: 0.28em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .hero-byline {
+    font-size: 0.6875rem;
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+  }
+}
+
 .hero-statement {
   letter-spacing: -0.022em;
   line-height: 1.04;
@@ -501,24 +560,28 @@ body {
 }
 
 /*
-  The language control, set as "EN · English" rather than "EN ENGLISH".
+  The language control's menu rows.
 
-  `.label` uppercases and tracks at 0.2em, which is correct for a small-caps
-  label and wrong for a language name: a word in full caps at 0.2em beside a
-  two-letter code reads as two codes rather than as a code and its language, and
-  0.2em on mixed-case text pulls the letters apart into individual glyphs.
+  The trigger is `.label` and correctly so: "IT" is a two-letter code and the
+  small-caps register is exactly what it wants. The row underneath is not. A
+  language name is a word, and `.label` would set it in full caps at 0.2em,
+  which reads as a second code rather than as the name of a language and pulls
+  a real word apart into individual glyphs. That is the same argument the native
+  select's "EN · English" rule made; what has changed is that the name now sits
+  in its own element, so it can simply not carry `.label` at all and take its
+  own size here.
 
-  It has to be a rule here for the reason above: `.label` is unlayered, so a
-  `normal-case` utility on the same element is discarded before source order is
-  consulted. Tracking comes down to 0.06em, which is enough to keep it in the
-  same family as the navigation beside it without spacing out a real word.
+  0.04em rather than nothing: enough to keep the row in the same family as the
+  navigation above it, far short of spacing out the word. Arabic keeps its own,
+  as it does everywhere on the site, because tracked Naskh is broken joining
+  rather than a small-caps effect.
 */
-.locale-select {
-  text-transform: none;
-  letter-spacing: 0.06em;
+.locale-name {
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
 }
 
-[lang="ar"] .locale-select {
+[lang="ar"] .locale-name {
   letter-spacing: 0;
 }
 

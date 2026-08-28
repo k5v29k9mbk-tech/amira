@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { locales, siteUrl } from "@/i18n/routing";
+import { locales, siteUrl, xDefaultLocale } from "@/i18n/routing";
 import { programs } from "@/lib/programs";
 
 /**
@@ -53,7 +53,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: {
           ...Object.fromEntries(locales.map((l) => [l, `${siteUrl}/${l}${path}`])),
-          "x-default": `${siteUrl}/en${path}`,
+          // The same fallback the pages' own hreflang block declares, read from
+          // the one place that decides it. A sitemap naming a different
+          // x-default from the `<link>` tags is two answers to one question,
+          // and the crawler is entitled to believe either.
+          "x-default": `${siteUrl}/${xDefaultLocale}${path}`,
         },
       },
     })),

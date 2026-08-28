@@ -78,6 +78,14 @@ const PAGE_KEYS = [
   "nav.language",
   "nav.menu",
   "nav.close",
+  // The bar's own label for the booking, and the reason it is not a fifth entry
+  // in `cta`. The action, the destination and the intention are all unchanged:
+  // this goes to /contact like every other booking on the site. What is
+  // different is the register. "Prenota una consulenza" is 178px of small caps
+  // in a 72px bar that also has to hold a brand mark, four labels and a language
+  // control, and a header sets a label rather than a sentence. The full ask is
+  // still what the phone menu, the standing bar and every closing frame print.
+  "nav.book",
   // The two strings a keyboard or screen-reader user meets before any content.
   // Both shipped in English on the Italian, French and Arabic routes until
   // they were listed here.
@@ -87,16 +95,30 @@ const PAGE_KEYS = [
   "notFound.title",
   "notFound.body",
   "intro.skip",
+  // Held, not read. This was the bar over the statement, "Aura Academy ·
+  // Formazione professionale PMU · Italia", and the first screen carries the
+  // academy's name as a wordmark and its category in the supporting line now.
+  // It stays in all four catalogues because putting the bar back is one line of
+  // JSX, and a string that has to be re-translated into four languages first is
+  // not a decision anyone reverses.
   "hero.eyebrow",
   "hero.titleA",
   "hero.titleB",
   "hero.sub",
+  // The hero's second action, beside `cta.courses`. It is a key of this
+  // namespace and not of `cta` for the reason argued there: the four verbs are
+  // the four intentions the site is allowed to have, and this is not a fifth
+  // intention, it is the first screen's own way of opening the page about the
+  // academy that the header opens with her name.
+  "hero.discoverAura",
   // The portrait credit under the hero photograph: her name from
   // `instructor.title`, her three titles from `hero.founderRole`.
   "hero.founderRole",
-  // The link to her story beside the hero's action. The action itself is no
-  // longer a key of this namespace: it is `cta.courses`, like every other
-  // catalogue action on the site.
+  // Held, not read, and it is not `hero.discoverAura` under another name. This
+  // said "Conosci Amira" and pointed at her; the first screen's second action
+  // now says "Conosci Aura" and points at the academy, which is the whole of the
+  // repositioning the hero was rebuilt for. Both strings stay because the two
+  // are a real choice about what the screen offers second, not a rewording.
   "hero.meetAmira",
   // The line under the class-size figure, which is the one piece of the proof
   // band that says what the number means rather than repeating it.
@@ -1023,11 +1045,93 @@ test("any testimonial that does exist is complete in all four languages", () => 
   }
 });
 
+/**
+ * The results heading, in the client's own words, and the two keys that carry it.
+ *
+ * ONE HEADING, TWO PLACES, AND THEY MAY NOT DRIFT. `work.title` is the visible
+ * one: it stands over the Microblading before/after sliders on the homepage.
+ * `success.title` is the same heading on /courses, over the pairs
+ * `lib/studio.ts` keeps on file, which is an empty array today so that section
+ * renders nothing. The two are separate keys because they are separate
+ * sections on separate pages, and they hold the same words because they name
+ * the same thing. Written out per locale rather than derived from one another,
+ * because a message catalogue has no aliases and a comment is not a check;
+ * `the results heading is one form of words` below is the check.
+ *
+ * They are also the site's only sanctioned em dashes, which is the second
+ * reason this lives here rather than inline: the exception is a fixed list of
+ * eight exact strings, so a ninth em dash anywhere in any catalogue — a third
+ * key, or either of these two reworded — still fails.
+ */
+const RESULTS_HEADING: Record<string, string> = {
+  it: "Microblading — prima e dopo",
+  en: "Microblading — before and after",
+  fr: "Microblading — avant et après",
+  ar: "المايكروبليدنغ — قبل وبعد",
+};
+
+/** Every key allowed to hold `RESULTS_HEADING`, and nothing else may. */
+const HEADING_KEYS = ["work.title", "success.title"] as const;
+
+test("the results heading is one form of words", () => {
+  // The client signed off one wording for the results act. Two keys carry it,
+  // and a page that ever showed both would print the same headline twice, so
+  // the invariant is checked from two directions: the strings agree in every
+  // language, and no page file reads more than one of the keys.
+  for (const [locale, messages] of Object.entries(LOCALES)) {
+    for (const key of HEADING_KEYS) {
+      assert.equal(
+        at(messages, key),
+        RESULTS_HEADING[locale],
+        `${locale}.${key} is not the results heading the client signed off`,
+      );
+    }
+  }
+
+  // `work.title` is read by the homepage and `success.title` by the catalogue.
+  // If a future edit points both at one page, that page renders the heading
+  // twice, which is the specific thing this pass was asked to avoid.
+  const pages = [
+    "../app/[locale]/page.tsx",
+    "../app/[locale]/courses/page.tsx",
+    "../app/[locale]/courses/[slug]/page.tsx",
+    "../app/[locale]/about/page.tsx",
+  ];
+  for (const page of pages) {
+    const url = new URL(page, import.meta.url);
+    if (!existsSync(url)) continue;
+    const src = readFileSync(url, "utf8");
+    const used = HEADING_KEYS.filter((key) => src.includes(`"${key}"`));
+    assert.ok(
+      used.length <= 1,
+      `${page} reads ${used.join(" and ")}: one page, two copies of one heading`,
+    );
+  }
+});
+
 test("no em dash survived into the copy", () => {
   // The house rule is a comma or a colon. An em dash in a headline is the one
   // punctuation mark that reads as machine-written.
+  //
+  // The results heading is the standing exception and it is the client's own:
+  // the delivery brief specified those strings verbatim, dash included, to name
+  // the technique the pairs under the heading actually show. Copy the client
+  // has written is not copy this rule is protecting them from.
+  //
+  // The exception is removed by key, not by pattern. Every other string in all
+  // four catalogues is still held to the rule, including any future rewording
+  // of these two, which `the results heading is one form of words` catches
+  // first.
   for (const [locale, messages] of Object.entries(LOCALES)) {
-    assert.equal(/[—–]/.test(JSON.stringify(messages)), false, `${locale} carries an em dash`);
+    const copy = JSON.parse(JSON.stringify(messages)) as Record<
+      string,
+      Record<string, unknown>
+    >;
+    for (const key of HEADING_KEYS) {
+      const [namespace, leaf] = key.split(".");
+      delete copy[namespace]?.[leaf];
+    }
+    assert.equal(/[—–]/.test(JSON.stringify(copy)), false, `${locale} carries an em dash`);
   }
 });
 

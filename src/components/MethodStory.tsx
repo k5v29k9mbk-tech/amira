@@ -207,7 +207,13 @@ export function MethodStory() {
                   media={methodMedia[key]}
                   alt={altFor(key)}
                   active={i === active}
-                  sizes="100vw"
+                  /* Not 100vw: this frame never spans the viewport. It sits
+                     inside the page shell (px-6, then px-10 from md) and inside
+                     this list's own ps-6 rail, so it measures 72px narrower
+                     than the viewport on a phone and 104px narrower on a
+                     tablet. `100vw` was rounding a 303px box up to the 750w
+                     file on a 375px phone at 2x, where 640w covers it. */
+                  sizes="(min-width: 768px) calc(100vw - 104px), calc(100vw - 72px)"
                 />
               </div>
             ) : null}

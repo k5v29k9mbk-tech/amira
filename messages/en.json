@@ -9,11 +9,12 @@
     "courses": "Programmes",
     "about": "Amira",
     "method": "The method",
-    "faq": "Questions",
+    "faq": "FAQ",
     "contact": "Contact",
     "language": "Language",
     "menu": "Menu",
     "close": "Close",
+    "book": "Book",
     "skip": "Skip to content",
     "loading": "Loading",
     "work": "Results",
@@ -21,9 +22,10 @@
   },
   "hero": {
     "eyebrow": "Aura Academy · Professional PMU education · Italy",
-    "titleA": "Master the art.",
-    "titleB": "Build your career.",
-    "sub": "Learn permanent makeup with Amira Bechini: guided practice and one-to-one correction.",
+    "titleA": "Don’t follow the standard.",
+    "titleB": "Become the standard.",
+    "sub": "Professional PMU education where technique, precision and vision become a signature of your own.",
+    "discoverAura": "Discover Aura",
     "founder": "Amira Bechini · Founder and PMU Master",
     "founderRole": "PMU Artist · Educator · Founder",
     "facts": {
@@ -408,12 +410,12 @@
     "videoAlt": "Amira Bechini welcomes new students"
   },
   "success": {
-    "title": "Before and after",
+    "title": "Microblading — before and after",
     "before": "Before",
     "after": "After"
   },
   "work": {
-    "title": "Real work, real clients.",
+    "title": "Microblading — before and after",
     "sub": "Treatments carried out at Aura Academy, photographed in the studio.",
     "open": "Open larger",
     "close": "Close",
@@ -423,7 +425,8 @@
       "brows": "Brows after a permanent makeup treatment.",
       "browsPair": "Both brows in one frame after a permanent makeup treatment, photographed close up.",
       "microbladingPortrait": "Client portrait showing a finished Microblading result.",
-      "browsPortrait": "Brows after a permanent makeup treatment, photographed close up with the face turned to the light."
+      "browsPortrait": "Brows after a permanent makeup treatment, photographed close up with the face turned to the light.",
+      "browsDefinedPortrait": "Defined brows, photographed close up after the treatment."
     }
   },
   "sections": {

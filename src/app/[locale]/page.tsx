@@ -4,7 +4,14 @@ import { Link } from "@/i18n/navigation";
 import { altLanguages } from "@/i18n/routing";
 import { closingMedia } from "@/lib/media";
 import { beforeAfterPairs, whatsappLinkWith } from "@/lib/studio";
-import { serviceGallery, beforeSrc, afterSrc } from "@/lib/service-gallery";
+import {
+  readyPairs,
+  beforeSrc,
+  afterSrc,
+  galleryRatio,
+  bandPosition,
+  bandDefault,
+} from "@/lib/service-gallery";
 import {
   arrow,
   bodySmall,
@@ -64,22 +71,28 @@ export async function generateMetadata({
  * ordered against the path a visitor actually walks rather than against the
  * order the material was written in:
  *
- *   understand the brand -> trust the person -> understand the method ->
- *   see what can be booked -> see what it produces -> see the room ->
+ *   understand the brand -> trust the person -> see what she produces ->
+ *   understand the method -> see what can be booked -> see the room ->
  *   see how to start and what is included -> ask what is unclear -> write
  *
  * Each act serves exactly one of those steps, and no act repeats the step
  * before it.
  *
- * THE EXPLANATION NOW COMES BEFORE THE PROOF, which reverses the ordering this
- * file used to turn on. The results and the room sat at acts 03 and 04, above
- * the method and the catalogue, on the argument that evidence should precede
- * reasoning. It cost the page its conversion path: a reader who was persuaded
- * by the before/after pairs had four screens of method between her and anything
- * she could book, and the catalogue arrived after she had already decided. The
- * method is now act 02 and the catalogue act 03, so the question the method
- * raises ("taught how?" -> "of what?") is answered on the next screen and the
- * proof underneath it is read as confirmation of a choice already forming.
+ * THE PROOF COMES EARLY, AND IT IS MEASURED RATHER THAN ARGUED. The results act
+ * sat below the method and the whole catalogue, which put the before/after
+ * pairs 11,265 pixels down a 19,057 pixel page: twelve and a half screens, on a
+ * 1440 by 900 laptop. They are the one thing here a visitor can check for
+ * herself, by dragging a handle, and she was being asked to read four thousand
+ * pixels of method and eighteen hundred of catalogue on trust before she was
+ * shown a single outcome.
+ *
+ * It is now act 02, directly under the founder, at around five screens. The
+ * order the page argues in is unchanged in kind and only tightened: the person,
+ * then what she produces, then how she teaches it, then what can be booked. The
+ * method still answers "taught how?" one screen before the catalogue answers
+ * "of what?", so the conversion path this file was reordered for in the first
+ * place survives intact; what changed is that both are now read by someone who
+ * has already seen the evidence.
  *
  * WHAT WAS FOLDED IN, AND WHY THE PAGE IS SHORTER. Two numbered acts lost their
  * furniture and kept their content, because in both cases the act was the
@@ -96,30 +109,37 @@ export async function generateMetadata({
  *
  * The same reasoning took the second action and the class-size note off the
  * hero (the first screen makes one ask, and the figure band already prints the
- * number), and the founder's name and role out of `AuthorityStrip` (the artist
- * act one screen below captions the same person). No string was deleted for any
- * of it. The keys stay in all four catalogues, held for the pages that still
- * render them, which is what `courses.test.ts` checks.
+ * number), the founder's name and role out of `AuthorityStrip` (the artist act
+ * one screen below captions the same person), and the certificate row out of
+ * the practical strip under the questions, where it was printing the same
+ * sentence `StudentReceives` prints two screens above it. No string was deleted
+ * for any of it. The keys stay in all four catalogues, held for the pages that
+ * still render them, which is what `courses.test.ts` checks.
  *
- * THE ASKS, AND THERE ARE TWO. `cta.courses` is the primary and it is spent
- * once, on the first screen, because every act between it and the catalogue is
- * the argument for pressing it. `cta.consultation` is the closing ask, and it
- * is the one the fixed bar and the standing mobile bar carry the whole way
- * down, so a reader who is ready at any point has it in reach without the page
- * having to plant a third button in every section. Nothing else on this page is
- * a button: the course rows, "leggi la sua storia", the WhatsApp line on step
- * one and "tutte le domande" are links, and each one goes where the sentence
- * next to it says it goes.
+ * THE ASK, AND THERE IS ONE. `cta.consultation`, to /contact, and it is the
+ * same words in all four places this page can be acted on: the fixed bar at the
+ * top of every screen above md, the hero's one button, the standing bar a phone
+ * carries from the second screen to the last, and the closing frame. The hero
+ * used to spend `cta.courses` here instead, which meant the two loudest
+ * controls on the first screen sent a reader to two different places under two
+ * different verbs, and the one the whole page is written to earn was the
+ * quieter of them. The catalogue is still one press away from every screen:
+ * "Corsi" is in the header, and act 04 is the six panels themselves.
+ *
+ * Nothing else on this page is a button: the course rows, "leggi la sua
+ * storia", the WhatsApp line on step one and "tutte le domande" are links, and
+ * each one goes where the sentence next to it says it goes.
  *
  * GROUNDS, PACED IN CHAPTERS. A ground that changes on every section stops
  * reading as a change, so the switches mark the turns in the argument:
  *
  *   ivory   the statement                        what it claims
  *   night   the standard                         what is proven
- *   ivory   Amira, the stroke, the method,       who teaches it, how it is
- *           the courses                          taught, what to book
- *   paper   the work, the room, the path,        what it produces, where, how
- *           the questions                        to start, what is unclear
+ *   ivory   Amira, the work, the stroke,         who teaches it, what it
+ *           the method, the courses              produces, how it is taught,
+ *                                                what to book
+ *   paper   the room, the path, the questions    where, how to start, what is
+ *                                                unclear
  *   night   the invitation
  *
  * A section that opens a ground carries the full rhythm (`sectionPad`); one
@@ -130,8 +150,8 @@ export async function generateMetadata({
  * WHAT IS DELIBERATELY NOT ON THIS PAGE. No fee, anywhere: the academy quotes
  * privately and `courses.test.ts` enforces it. No testimonial until a student
  * has consented to one in writing, which is why `Testimonial` renders nothing
- * today and sits directly under the results for the day it does: the proof a
- * reader can see, then the person who can confirm it. No masterclass and no
+ * today and sits directly under the room's four claims for the day it does: the
+ * claim a reader is asked to accept, then the person who can confirm it. No masterclass and no
  * private training in the ladder, because the academy has not confirmed either
  * exists; both are built and switched off in `lib/pathway.ts`.
  *
@@ -162,11 +182,25 @@ const homeFaq = [
  * The fee is not here and does not belong here. It is quoted privately, which
  * `catalog.privateNote` says on /courses; a row saying "on request" would only
  * take up space to say nothing.
+ *
+ * THE CERTIFICATE ROW IS NOT HERE EITHER, AND IT USED TO BE. It read "Attestato
+ * / Al termine del corso", which is `receive.items.certificate` printed again
+ * ("Attestato al termine del corso") two screens above, in the act whose whole
+ * subject is what a course leaves you with. Four facts of small print, one of
+ * which the reader has just read in a larger size, is a page repeating itself
+ * at the exact point it is asking to be trusted.
+ *
+ * The duration takes the slot, because it is the one thing in this list a
+ * visitor cannot find anywhere else on the homepage and the question she asks
+ * next: how long does it take. The answer is honest about being conditional
+ * (it varies by course), which is why it belongs in the small print rather than
+ * in the catalogue heading. `catalog.details.certificate.*` stays in all four
+ * languages for /courses, which is what `courses.test.ts` checks.
  */
 const practical = [
   ["catalog.details.location.label", "catalog.details.location.value"],
+  ["catalog.details.duration.label", "catalog.details.duration.value"],
   ["catalog.details.language.label", "catalog.details.language.value"],
-  ["catalog.details.certificate.label", "catalog.details.certificate.value"],
   ["catalog.paymentsLabel", "catalog.payments"],
 ] as const;
 
@@ -225,18 +259,27 @@ export default async function Home({
    */
   // Every aligned pair, the unattributed one first: it is the pair the academy
   // put on file and the one act 03 leads with.
+  //
+  // `band` travels with the pair. It is the row each frame's brow sits on,
+  // measured off the photograph and recorded in lib/service-gallery.ts, and
+  // without it this section was showing the raw 900x620 canvas: microblading-03
+  // is a plate scaled onto that canvas with an ivory margin, so the margin was
+  // printing as two bands across the figure, and its face stepped down a tenth
+  // of the frame as the handle crossed it. The pair `lib/studio` keeps on file
+  // has no measured band and falls back to the centre of the frame, which is
+  // the same fallback the gallery uses.
   const pairs = [
     ...beforeAfterPairs.map((pair) => ({
       ...pair,
+      band: undefined,
       label: t("catalog.families.brows.title"),
     })),
-    ...(serviceGallery.microblading ?? [])
-      .filter((pair) => pair.ready)
-      .map((pair) => ({
-        before: beforeSrc(pair.id),
-        after: afterSrc(pair.id),
-        label: t("catalog.courses.microblading"),
-      })),
+    ...readyPairs("microblading").map((pair) => ({
+      before: beforeSrc(pair.id),
+      after: afterSrc(pair.id),
+      band: pair.band,
+      label: t("catalog.courses.microblading"),
+    })),
   ];
 
   return (
@@ -294,10 +337,158 @@ export default async function Home({
         }}
       />
 
+      {/* 02 THE WORK
+          What the teaching produces, and it has moved up four acts to sit
+          directly under the founder.
+
+          IT WAS AT 11,265 PIXELS, WHICH IS TWELVE AND A HALF SCREENS DOWN. The
+          proof of the work sat below the method and the whole catalogue,
+          measured, and it is the one thing on this page a visitor can check for
+          herself rather than take on trust: she drags a handle and does the
+          comparison with her own eyes. A reader deciding whether this academy
+          is worth reading about had to get through four thousand pixels of
+          method and eighteen hundred of catalogue before she was shown a single
+          outcome, and most of them never did.
+
+          It now follows the artist act, which is the earliest place it can
+          honestly go: the person, then what she produces, then how she teaches
+          it, then what can be booked. That is the order the claim is made in.
+          The proof lands around five screens down instead of twelve and a half,
+          and everything under it is read by someone who has already seen the
+          evidence rather than by someone still waiting for it.
+
+          IT KEEPS THE IVORY IT LANDS ON RATHER THAN BRINGING ITS PAPER WITH IT.
+          A ground that changes on every section stops reading as a change, and
+          dropping a paper act between the artist and the stroke would have
+          split the ivory chapter in two for the sake of one section. So this
+          act continues the ivory (`sectionPadBottom`), and the room act below
+          takes over as the section that opens the paper chapter. The grounds
+          still fall on the turns in the argument, and there is one fewer of
+          them.
+
+          It is still the only place on the homepage that shows an outcome
+          rather than a process: the gallery further down is the room, not the
+          result.
+
+          The composition, the crops and which frames open larger are all data in
+          lib/media.ts; WorkGallery only arranges them. No result is graded,
+          filtered, retouched or generated, one of the files is rotated
+          upright and nothing else, and no frame is ever set wider than the file
+          behind it, which is what keeps the small close-ups sharp.
+
+          WHAT THE COPY MAY CLAIM. Both `work.title` and `work.sub` are scoped to
+          the results, never to the page: the hero portrait is a graded master,
+          which lib/media.ts says plainly, and an absolute authenticity claim
+          that is false about one photograph is worth less than no claim at all.
+          `courses.test.ts` enforces the scope. Word any future edit the same
+          way. */}
+      <section id="work" className={`${sectionPadBottom} scroll-mt-20 bg-ivory`}>
+        <div className={shell}>
+          <div className="grid gap-8 pb-12 md:pb-16 lg:grid-cols-12 lg:items-end lg:gap-10">
+            <div className="lg:col-span-6">
+              <MaskReveal>
+                <SectionLabel n={2}>{t("sections.work")}</SectionLabel>
+              </MaskReveal>
+              <MaskReveal delay={stagger.base} className="mt-8">
+                <h2 className={`${displaySection} max-w-[14ch]`}>
+                  {t("work.title")}
+                </h2>
+              </MaskReveal>
+            </div>
+            <Reveal
+              delay={stagger.line}
+              className="lg:col-span-5 lg:col-start-8 lg:pb-3"
+            >
+              <p className="max-w-[48ch] text-[17px] leading-relaxed text-mute">
+                {t("work.sub")}
+              </p>
+            </Reveal>
+          </div>
+
+          {/* THE PROOF, AT THE SIZE OF THE CLAIM.
+              The academy has supplied exactly one aligned before/after pair, and
+              it is the only outcome on the site a visitor can operate rather
+              than look at: she drags the handle and does the comparison herself,
+              which is a different kind of evidence from a photograph she is
+              asked to believe. It leads the act, on the axis, and the gallery of
+              finished work follows it: the transformation, then the range.
+
+              ONE PAIR OR SEVERAL, AND THE LAYOUT FOLLOWS. A single pair is held
+              to 900px on the axis, which is the width of the aligned frames:
+              wider would be an upscale of the one image on the page that has to
+              survive close reading. From two, they take the full field in a
+              two-column set from lg. Below lg they stack full width, where a
+              phone gives each of them more pixels than the desktop set does.
+
+              Every pair is mapped onto the same 900x620 canvas by
+              `scripts/align-pair.swift`. That places the eyes on the same
+              pixels in both frames of the pair it was run over; the two plates
+              the academy supplied ready-matched arrived with the face 38 and
+              100 pixels apart between their halves, and the per-frame band
+              below is what closes that. Both are needed, which is why the band
+              is passed here and not left to the default.
+
+              Renders only while a pair exists. */}
+          {pairs.length > 0 ? (
+            <ul className="grid gap-y-12 pb-16 md:pb-24 lg:grid-cols-2 lg:gap-x-10">
+              {pairs.map((pair, i) => (
+                /* The pairs arrive one after the other rather than together.
+                   `stagger.line` between them is the interval the headlines on
+                   this site are set to, so a second frame reads as the next line
+                   of the same sentence and not as a grid loading.
+
+                   THE FIRST PAIR LEADS, THE REST SUPPORT. One comparison held
+                   to 900px on the axis is the width of the aligned frames, and
+                   wider would be an upscale of the images on this page that
+                   have to survive close reading. The pairs after it take half
+                   the field each, which is still 460px of a 900px file and
+                   still sharp. With one pair on file this collapses to exactly
+                   what it was: a single frame, centred, at its own width. */
+                <Reveal
+                  as="li"
+                  key={pair.after}
+                  delay={i * stagger.line}
+                  className={
+                    i === 0
+                      ? "lg:col-span-2 lg:mx-auto lg:w-full lg:max-w-[900px]"
+                      : undefined
+                  }
+                >
+                  <BeforeAfter
+                    pair={pair}
+                    /* THE BROW BAND, which is what /courses and every course
+                       page already show these same three pairs through, and
+                       what this section was the last place on the site not to
+                       use. The figure is cut to the strip the result is in and
+                       each frame is given its own measured row inside it, so
+                       the eyes hold still under the handle and what moves is
+                       the brow. Nothing is done to the files: both frames are
+                       900px wide and so is the band, so the scale is exactly 1
+                       and the crop is purely a choice of which rows to show. */
+                    ratio={galleryRatio}
+                    focus={{
+                      before: bandPosition(pair.band?.before ?? bandDefault),
+                      after: bandPosition(pair.band?.after ?? bandDefault),
+                    }}
+                    sizes={
+                      i === 0
+                        ? "(max-width: 900px) 100vw, 900px"
+                        : "(max-width: 1024px) 100vw, 46vw"
+                    }
+                  />
+                </Reveal>
+              ))}
+            </ul>
+          ) : null}
+
+          <WorkGallery />
+        </div>
+      </section>
+
       {/* THE STROKE. The page's one signature moment, and it is the overture to
           the method rather than an act of its own.
 
-          It sits here, between the room and the method, because the method act
+          It sits here, between the results and the method, because the method act
           is the four stages in words and this is the thing those stages are for
           shown once, at size, without a claim attached. Ivory, like the method
           under it, so the two read as one movement and the page gains a moment
@@ -334,7 +525,7 @@ export default async function Home({
         </div>
       </section>
 
-      {/* 02 THE METHOD
+      {/* 03 THE METHOD
           The one act on the page that names something. The academy already
           taught in four stages and always has; what it did not have was a name
           for them, and an unnamed sequence of four steps reads as a description
@@ -359,7 +550,7 @@ export default async function Home({
           <div className="grid gap-8 pb-8 lg:grid-cols-12 lg:items-end lg:gap-10 lg:pb-4">
             <div className="lg:col-span-7">
               <MaskReveal>
-                <SectionLabel n={2}>{t("method.eyebrow")}</SectionLabel>
+                <SectionLabel n={3}>{t("method.eyebrow")}</SectionLabel>
               </MaskReveal>
               {/* The name, then the claim. Two lines of display type a beat
                   apart: the proprietary mark at section size and the academy's
@@ -441,7 +632,7 @@ export default async function Home({
         </div>
       </section>
 
-      {/* 03 THE PROGRAMMES
+      {/* 04 THE PROGRAMMES
           The catalogue, and it has moved up two acts. It used to arrive after
           the results and the room, on the reasoning that a reader should be
           convinced before she is asked to choose. That was right when the act
@@ -460,7 +651,7 @@ export default async function Home({
           <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-10">
             <div className="lg:col-span-6">
               <MaskReveal>
-                <SectionLabel n={3}>{t("sections.courses")}</SectionLabel>
+                <SectionLabel n={4}>{t("sections.courses")}</SectionLabel>
               </MaskReveal>
               <MaskReveal delay={stagger.base} className="mt-8">
                 <h2 className={`${displaySection} max-w-[16ch]`}>
@@ -481,108 +672,6 @@ export default async function Home({
         <CourseSelector />
       </section>
 
-      {/* 04 THE WORK
-          What the method produces. It is the only place on the homepage that
-          shows an outcome rather than a process: the gallery further down is
-          the room, not the result.
-
-          The composition, the crops and which frames open larger are all data in
-          lib/media.ts; WorkGallery only arranges them. No result is graded,
-          filtered, retouched or generated, one of the files is rotated
-          upright and nothing else, and no frame is ever set wider than the file
-          behind it, which is what keeps the small close-ups sharp.
-
-          WHAT THE COPY MAY CLAIM. Both `work.title` and `work.sub` are scoped to
-          the results, never to the page: the hero portrait is a graded master,
-          which lib/media.ts says plainly, and an absolute authenticity claim
-          that is false about one photograph is worth less than no claim at all.
-          `courses.test.ts` enforces the scope. Word any future edit the same
-          way. */}
-      <section id="work" className={`${sectionPad} scroll-mt-20 bg-paper`}>
-        <div className={shell}>
-          <div className="grid gap-8 pb-12 md:pb-16 lg:grid-cols-12 lg:items-end lg:gap-10">
-            <div className="lg:col-span-6">
-              <MaskReveal>
-                <SectionLabel n={4}>{t("sections.work")}</SectionLabel>
-              </MaskReveal>
-              <MaskReveal delay={stagger.base} className="mt-8">
-                <h2 className={`${displaySection} max-w-[14ch]`}>
-                  {t("work.title")}
-                </h2>
-              </MaskReveal>
-            </div>
-            <Reveal
-              delay={stagger.line}
-              className="lg:col-span-5 lg:col-start-8 lg:pb-3"
-            >
-              <p className="max-w-[48ch] text-[17px] leading-relaxed text-mute">
-                {t("work.sub")}
-              </p>
-            </Reveal>
-          </div>
-
-          {/* THE PROOF, AT THE SIZE OF THE CLAIM.
-              The academy has supplied exactly one aligned before/after pair, and
-              it is the only outcome on the site a visitor can operate rather
-              than look at: she drags the handle and does the comparison herself,
-              which is a different kind of evidence from a photograph she is
-              asked to believe. It leads the act, on the axis, and the gallery of
-              finished work follows it: the transformation, then the range.
-
-              ONE PAIR OR SEVERAL, AND THE LAYOUT FOLLOWS. A single pair is held
-              to 900px on the axis, which is the width of the aligned frames:
-              wider would be an upscale of the one image on the page that has to
-              survive close reading. From two, they take the full field in a
-              two-column set from lg. Below lg they stack full width, where a
-              phone gives each of them more pixels than the desktop set does.
-
-              Every pair is mapped onto the same canvas by
-              `scripts/align-pair.swift`, so the eyes sit on the same pixels in
-              both of its frames and at the same place in every pair on the page.
-
-              Renders only while a pair exists. */}
-          {pairs.length > 0 ? (
-            <ul className="grid gap-y-12 pb-16 md:pb-24 lg:grid-cols-2 lg:gap-x-10">
-              {pairs.map((pair, i) => (
-                /* The pairs arrive one after the other rather than together.
-                   `stagger.line` between them is the interval the headlines on
-                   this site are set to, so a second frame reads as the next line
-                   of the same sentence and not as a grid loading.
-
-                   THE FIRST PAIR LEADS, THE REST SUPPORT. One comparison held
-                   to 900px on the axis is the width of the aligned frames, and
-                   wider would be an upscale of the images on this page that
-                   have to survive close reading. The pairs after it take half
-                   the field each, which is still 460px of a 900px file and
-                   still sharp. With one pair on file this collapses to exactly
-                   what it was: a single frame, centred, at its own width. */
-                <Reveal
-                  as="li"
-                  key={pair.after}
-                  delay={i * stagger.line}
-                  className={
-                    i === 0
-                      ? "lg:col-span-2 lg:mx-auto lg:w-full lg:max-w-[900px]"
-                      : undefined
-                  }
-                >
-                  <BeforeAfter
-                    pair={pair}
-                    sizes={
-                      i === 0
-                        ? "(max-width: 900px) 100vw, 900px"
-                        : "(max-width: 1024px) 100vw, 46vw"
-                    }
-                  />
-                </Reveal>
-              ))}
-            </ul>
-          ) : null}
-
-          <WorkGallery />
-        </div>
-      </section>
-
       {/* 05 THE ROOM
           What it is like to be taught here, which the page showed and never
           said. It was "Inside Aura": three photographs of the lesson, the
@@ -596,11 +685,15 @@ export default async function Home({
           corrects you while you do it. That second half is the reason the class
           is capped at three or four, which is the academy's own oldest claim.
 
-          Opens the second ivory block, so it carries the full rhythm. */}
-      <section
-        id="gallery"
-        className={`${sectionPadBottom} scroll-mt-20 bg-paper`}
-      >
+          IT OPENS THE PAPER CHAPTER NOW, AND CARRIES THE FULL RHYTHM FOR IT.
+          The results act used to hold this slot and took its paper with it when
+          it moved up under the founder, so the ground change lands here
+          instead: ivory for the person, the proof, the stroke, the method and
+          the catalogue, then paper for the room, the path and the questions.
+          The padding moved with the ground, which is the rule this page states
+          at the top and the one thing to check if either of these two acts is
+          ever moved again. */}
+      <section id="gallery" className={`${sectionPad} scroll-mt-20 bg-paper`}>
         <div className={shell}>
           <div className="grid gap-8 pb-12 md:pb-16 lg:grid-cols-12 lg:items-end lg:gap-10">
             <div className="lg:col-span-6">

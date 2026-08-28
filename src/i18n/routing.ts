@@ -70,10 +70,25 @@ export const siteUrl =
  * dropped from search, on a page set whose whole point is that it is published
  * in four languages. Each page now points at itself.
  *
- * `x-default` is what a crawler serves to a language none of the four match.
- * English is the widest net of the four and the routing default, so it takes
- * it.
+ * `x-default` is what a crawler serves to a language none of the four match,
+ * and it is Italian rather than the routing default.
+ *
+ * The two used to be the same value, on the reasoning that English is the
+ * widest net of the four. That is true of the language and false of this
+ * business. The academy teaches in Italian, in Giulianova, to students who
+ * travel across Italy, and every enquiry it can actually serve arrives in
+ * Italian. `x-default` is not a statement about how many people read a
+ * language, it is the page a crawler should hand somebody it cannot place, and
+ * for this site that is the Italian one. The English, French and Arabic pages
+ * are still declared and still point at themselves; only the fallback moved.
+ *
+ * `routing.defaultLocale` is untouched and stays "en": that decides which
+ * locale an unprefixed URL negotiates to, which is a different question from
+ * which page is the fallback in a search index. Wiring the two together is why
+ * they were the same value in the first place.
  */
+export const xDefaultLocale = "it" satisfies Locale;
+
 export const altLanguages = (path = "", locale: string = routing.defaultLocale) => ({
   canonical: `${siteUrl}/${locale}${path}`,
   languages: {
@@ -81,6 +96,6 @@ export const altLanguages = (path = "", locale: string = routing.defaultLocale) 
       string,
       string
     >),
-    "x-default": `${siteUrl}/${routing.defaultLocale}${path}`,
+    "x-default": `${siteUrl}/${xDefaultLocale}${path}`,
   },
 });
