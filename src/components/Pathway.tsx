@@ -80,10 +80,31 @@ export async function Pathway() {
             <p className="max-w-[56ch] text-[16px] leading-relaxed text-mute">
               {t(`tiers.${tier.key}.body`)}
             </p>
-            <Link href={tier.href} className={`${linkRule} mt-6`}>
-              {c("courses")}
-              <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
-            </Link>
+            {/* THE ACTION IS GONE FROM THE TWO PUBLISHED TIERS, and it is the
+                page's order that took it rather than a change of mind about
+                the ladder.
+
+                Both of them carried "scopri i corsi" pointing at /courses. That
+                was right while this block sat four screens above the catalogue;
+                it is noise now that the catalogue is the very next act, because
+                the reader met the same words twice inside one screen, sending
+                her to a page she was about to arrive at by scrolling. Two links
+                to the place you are already going is not a choice, it is a
+                stutter.
+
+                A tier that points somewhere the next act does not go keeps its
+                action, which is why this is a condition rather than a deletion:
+                the masterclass and the private path are built and switched off
+                in `lib/pathway.ts`, they lead to /contact, and the day either is
+                published the enquiry is the only way into it. `cta.info` is the
+                house label for that intention, and it is the one this row wanted
+                all along. */}
+            {tier.href === "/courses" ? null : (
+              <Link href={tier.href} className={`${linkRule} mt-6`}>
+                {c("info")}
+                <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
+              </Link>
+            )}
           </div>
         </Reveal>
       ))}

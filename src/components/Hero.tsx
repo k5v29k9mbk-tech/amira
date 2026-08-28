@@ -1,13 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
-import {
-  arrow,
-  btnSolidLight,
-  displayHero,
-  linkRuleLight,
-  shell,
-} from "@/lib/ui";
+import { btnSolidLight, displayHero, shell } from "@/lib/ui";
 import { dur, heroBeat, stagger } from "@/lib/motion";
 import { HeroFilm } from "./HeroFilm";
 import { HeroBeat, HeroCopy } from "./HeroChoreography";
@@ -202,54 +195,51 @@ export async function Hero() {
             })}
           </dl>
 
-          {/* The sentence the third figure implies, said once and tied to it by a
-              bronze rule of the same colour, so the eye connects the two without
-              the note having to sit inside a narrow column and break the shared
-              baseline the row is built on. Centred, because this composition is.
+          {/* THE NOTE THE THIRD FIGURE USED TO CARRY IS NOT HERE ANY MORE.
+              `hero.classesNote` set a second paragraph under the band to say
+              what "3-4" means, and it was the fourth block of prose on a screen
+              that has three seconds to say four things. The label under the
+              figure already reads "allieve per corso", which is the fact; why
+              the number is small is the argument the room makes at act 05, at
+              length and beside a photograph of it happening. The string stays in
+              all four catalogues.
 
-              THE MEASURE IS WIDE ENOUGH TO HOLD ONE LINE AT LG, and that is the
-              whole reason for the second cap. The rule is an inline item at the
-              head of the first line, so a sentence that wraps leaves the mark
-              against line one and the remainder centred under it: the block then
-              reads as a rule with a fragment beside it rather than as an accented
-              line. At 72ch the sentence sets once and the rule sits where it
-              belongs.
-
-              BELOW LG IT STACKS, and the sentence is wrapped in its own span to
-              make that possible. Left as a bare text node it was an anonymous
-              flex item filling the row, so the rule sat hard against the start
-              of the measure while the wrapped lines centred themselves in the
-              middle of it, leaving most of a phone's width between a mark and
-              the thing it marks. As a real item the two can be a column: the
-              accent centred above, the sentence under it. */}
-          <p className="mx-auto mt-[var(--hero-air-sm)] flex max-w-[46ch] flex-col items-center gap-2.5 text-balance text-center text-[15px] leading-relaxed text-mute-dark md:text-[16px] lg:max-w-[72ch] lg:flex-row lg:items-baseline lg:gap-3">
-            <span aria-hidden className="h-px w-6 shrink-0 bg-bronze-hi lg:mt-2" />
-            <span>{t("classesNote")}</span>
-          </p>
+              The band is now the last thing before the action, which is the
+              order this screen wanted: the claim, the line under it, the three
+              marks behind it, then the one thing to press. */}
         </HeroBeat>
 
-        {/* THE ACTIONS. The catalogue is the filled button because it is what a
-            visitor who is already interested wants; her story is the text link
-            beside it, for the visitor who is not convinced yet and should be
-            given the person before the price list. Neither is a WhatsApp thread:
-            the bar carries that above md and the standing bar carries it on a
-            phone.
+        {/* THE ACTION, SINGULAR, AND THAT IS THE CHANGE.
 
-            Both are the light-ground pair. On the film an espresso button is a
-            hole cut in the footage and an espresso rule under a link is
-            invisible; `ui.ts` has carried the ivory pair for the dark sections
-            since before this screen needed it.
+            The screen used to carry two: the catalogue as a filled button and
+            "conosci Amira" as a text link beside it. The link went to /about,
+            and the act directly under this screen is the founder, with her
+            portrait, her statement, her bio and a "leggi la sua storia" link of
+            its own. So the second action on the first screen was an invitation
+            to skip to a page that says what the next scroll says anyway, placed
+            next to the one control this screen exists to get pressed. Two asks
+            in the same eyeline is one ask weakened, and the weakened one was the
+            catalogue.
 
-            The primary takes the full width on a phone, where a 230px button
-            floated against the edge of a 390px screen is the one element in the
-            composition that reads as an afterthought, and it is the only thing on
-            this screen a visitor is meant to press. From sm they sit inline,
-            button then link, which is the one place this composition is not
-            symmetrical about its centre: two actions of equal weight either side
-            of the middle would be a choice between them, and there is a primary
-            here. */}
+            The catalogue is what stays, because it is what a visitor who is
+            already interested wants and because it is the primary of the two
+            actions the whole site is allowed to ask for (`cta.courses` and
+            `cta.consultation`, see the note at PAGE_KEYS in courses.test.ts).
+            The consultation is the closing ask, and the fixed bar above md and
+            the standing bar on a phone carry it from here to the foot of the
+            page, so a reader who is ready before she reaches the end never has
+            to hunt for it.
+
+            It is the light-ground button: on the film an espresso button is a
+            hole cut in the footage, and `ui.ts` has carried the ivory pair for
+            the dark sections since before this screen needed it.
+
+            Full width on a phone, where a 230px button floated against the edge
+            of a 390px screen reads as an afterthought; from sm it sets to its
+            own width on the composition's centre line, which is where a single
+            action belongs and where a pair could never sit. */}
         <HeroBeat delay={heroBeat.actions} className="w-full">
-          <div className="mt-[var(--hero-air-lg)] flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10">
+          <div className="mt-[var(--hero-air-lg)] flex justify-center">
             {/* The one control on the first screen that leans. Spending the
                 gesture once, on the primary, is what keeps it a detail rather
                 than a behaviour every button on the site performs. */}
@@ -261,10 +251,6 @@ export async function Hero() {
                 {c("courses")}
               </Link>
             </Magnetic>
-            <Link href="/about" className={`${linkRuleLight} hero-cta`}>
-              {t("meetAmira")}
-              <ArrowRight size={14} weight="light" className={`flip-x ${arrow}`} />
-            </Link>
           </div>
         </HeroBeat>
       </HeroCopy>

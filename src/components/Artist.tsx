@@ -23,7 +23,6 @@ import {
 import { MediaFrame } from "./MediaFrame";
 import { MaskReveal } from "./MaskReveal";
 import { Reveal } from "./Reveal";
-import { SectionLabel } from "./SectionLabel";
 
 /**
  * 02 THE ARTIST. The act the rest of the homepage is evidence for.
@@ -493,15 +492,29 @@ export function Artist({ copy }: { copy: ArtistCopy }) {
  * `useInView` on the wrapper rather than `whileInView` on the label: the state
  * has to reach a CSS attribute, not a Motion style, and the boolean flips once.
  */
+/**
+ * THE LABEL LOST ITS NUMBER, and that is the whole of the change here.
+ *
+ * This act used to be "02 L'artista", one screen under "01 Lo standard", which
+ * made two numbered chapters out of one step of the argument: who Amira is. The
+ * two are the same claim in two halves - the standard she works to, then the
+ * person who set it - and a reader met her name, her role and her portrait
+ * twice in four screens because the page told her twice that a chapter had
+ * started.
+ *
+ * So this half keeps its content and loses its furniture, which is the same
+ * move the ladder makes under the method and the included list makes under the
+ * path: a plain eyebrow instead of a numbered rule, so the act reads as the
+ * continuation of 01 rather than as a chapter beside it. `artist-label` is the
+ * tracking animation and is unchanged; it is the number and the rule that go.
+ */
 function TrackedLabel({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const seen = useInView(ref, { once: true, amount: 0.6 });
 
   return (
     <div ref={ref} data-shown={seen ? "true" : "false"}>
-      <SectionLabel n={2} className="artist-label">
-        {children}
-      </SectionLabel>
+      <p className="label artist-label text-bronze-ink">{children}</p>
     </div>
   );
 }

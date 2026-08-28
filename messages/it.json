@@ -23,7 +23,7 @@
     "eyebrow": "Aura Academy · Formazione professionale PMU · Italia",
     "titleA": "Padroneggia l’arte.",
     "titleB": "Costruisci la tua carriera.",
-    "sub": "Impara il trucco permanente direttamente da Amira Bechini: teoria, pratica guidata e correzione individuale.",
+    "sub": "Impara il trucco permanente con Amira Bechini: pratica guidata e correzione individuale.",
     "founder": "Amira Bechini · Fondatrice e Master PMU",
     "founderRole": "PMU Artist · Formatrice · Fondatrice",
     "facts": {
@@ -154,7 +154,7 @@
     "headline": "La Master dietro il metodo",
     "statementA": "Il dettaglio, prima di tutto:",
     "statementB": "sopracciglia e labbra che sembrano tue da sempre.",
-    "bio": "International PMU Master, formatrice e fondatrice di Aura Academy. Insegna come lavora: precisione, equilibrio, misura. In aula non passa solo la tecnica, ma il criterio con cui si giudica un risultato.",
+    "bio": "International PMU Master e fondatrice di Aura Academy. Insegna come lavora: in aula passa la tecnica e il criterio per giudicare un risultato.",
     "credit": "Fondatrice · International PMU Master"
   },
   "method": {
@@ -182,7 +182,7 @@
     },
     "eyebrow": "Il metodo",
     "name": "Il metodo Aura Precision",
-    "lede": "Quattro fasi, sempre nello stesso ordine. L’ordine è il metodo: niente si pratica prima di averlo capito, niente arriva sulla modella prima di essere stato provato."
+    "lede": "Quattro fasi, sempre nello stesso ordine. Niente arriva sulla modella prima di essere stato capito e provato."
   },
   "catalog": {
     "eyebrow": "I corsi",
@@ -414,7 +414,7 @@
   },
   "work": {
     "title": "Il risultato, prima e dopo.",
-    "sub": "Trucco permanente e trattamenti sopracciglia fotografati in studio. Ogni immagine è un lavoro eseguito in Aura Academy.",
+    "sub": "Trattamenti eseguiti in Aura Academy e fotografati in studio.",
     "open": "Ingrandisci",
     "close": "Chiudi",
     "alt": {
@@ -444,7 +444,7 @@
   },
   "closing": {
     "title": "Iniziamo dal corso che hai in mente.",
-    "sub": "Scrivici: Amira ti risponde con date, durata e tutto quello che il corso comprende."
+    "sub": "Scrivici: Amira ti risponde con date, durata e programma."
   },
   "intro": {
     "skip": "Salta l’intro"
@@ -495,13 +495,13 @@
         "label": "Dove insegniamo"
       }
     },
-    "note": "Amira continua a formarsi con masterclass internazionali e porta in aula tecniche sempre aggiornate.",
+    "note": "Amira si aggiorna con masterclass internazionali e porta in aula tecniche attuali.",
     "portraitAlt": "Amira Bechini con il compasso per sopracciglia all’altezza dell’occhio, mentre misura."
   },
   "pathway": {
     "eyebrow": "Il percorso formativo",
     "title": "Scegli il livello da cui partire.",
-    "sub": "Ogni tecnica si insegna su più livelli. Scegli quello più adatto alla tua esperienza: il rigore non cambia.",
+    "sub": "Ogni tecnica su più livelli: scegli quello adatto alla tua esperienza.",
     "levelLabel": "Livello",
     "tiers": {
       "foundations": {
@@ -659,7 +659,7 @@
   "receive": {
     "eyebrow": "Cosa porti con te",
     "title": "Il corso finisce. Il supporto no.",
-    "sub": "Tutto quello che segue è incluso in ogni corso, a entrambi i livelli.",
+    "sub": "Incluso in ogni corso, a entrambi i livelli.",
     "items": {
       "small": "Classi da tre a quattro allieve",
       "model": "Pratica su modella dal vivo, dove prevista",
@@ -722,7 +722,7 @@
   "stroke": {
     "eyebrow": "Il tratto",
     "title": "Un pelo alla volta.",
-    "body": "Il microblading si esegue tratto per tratto, seguendo la direzione in cui il pelo cresce davvero. È la parte del lavoro che non si improvvisa: profondità, angolo e distanza decidono se il risultato durerà e se resterà naturale mentre sbiadisce.",
+    "body": "Il microblading si esegue tratto per tratto, nella direzione in cui il pelo cresce. Profondità, angolo e distanza decidono se il risultato resterà naturale nel tempo.",
     "alt": "Macro di un sopracciglio dopo il trattamento: i singoli tratti restano distinguibili.",
     "caption": "Sopracciglia fotografate in studio dopo il trattamento."
   }

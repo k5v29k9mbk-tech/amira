@@ -23,7 +23,7 @@
     "eyebrow": "Aura Academy · Formation professionnelle PMU · Italie",
     "titleA": "Maîtrisez l’art.",
     "titleB": "Créez votre carrière.",
-    "sub": "Apprenez le maquillage permanent directement avec Amira Bechini : théorie, pratique guidée et correction individuelle.",
+    "sub": "Apprenez le maquillage permanent avec Amira Bechini : pratique guidée et correction individuelle.",
     "founder": "Amira Bechini · Fondatrice et Master PMU",
     "founderRole": "PMU Artist · Formatrice · Fondatrice",
     "facts": {
@@ -154,7 +154,7 @@
     "headline": "La Master derrière la méthode",
     "statementA": "Une obsession discrète du détail :",
     "statementB": "des sourcils et des lèvres dessinés pour sembler avoir toujours été les vôtres.",
-    "bio": "Amira Bechini est International PMU Master, formatrice et fondatrice, reconnue pour une approche fondée sur la précision, l'équilibre et un œil artistique. Avec plus de 8 ans d'expérience et plus de 150 élèves formées, sa méthode va au-delà de la technique : elle apprend aux professionnelles à comprendre le détail qui fait un travail d'exception.",
+    "bio": "International PMU Master et fondatrice d’Aura Academy. Elle enseigne comme elle travaille : la technique, et le critère qui juge un résultat.",
     "credit": "Fondatrice · International PMU Master"
   },
   "method": {
@@ -182,7 +182,7 @@
     },
     "eyebrow": "La méthode",
     "name": "La Méthode Aura Precision",
-    "lede": "Quatre étapes, dans le même ordre, pour chaque technique et pour les deux niveaux. L'ordre est la méthode : rien ne se pratique avant d'être compris, et rien n'arrive sur un modèle avant d'avoir été pratiqué."
+    "lede": "Quatre étapes, toujours dans le même ordre. Rien n’arrive sur modèle avant d’avoir été compris et répété."
   },
   "catalog": {
     "eyebrow": "Les formations",
@@ -414,7 +414,7 @@
   },
   "work": {
     "title": "Un travail réel, des clientes réelles.",
-    "sub": "Maquillage permanent et soins des sourcils photographiés en studio. Chaque image est un travail réalisé chez Aura Academy.",
+    "sub": "Traitements réalisés à Aura Academy, photographiés en studio.",
     "open": "Agrandir",
     "close": "Fermer",
     "alt": {
@@ -444,7 +444,7 @@
   },
   "closing": {
     "title": "Votre prochain niveau commence par une meilleure technique.",
-    "sub": "Formez-vous avec intention, affinez votre travail et construisez des résultats que vous pouvez assumer sereinement."
+    "sub": "Écrivez-nous : Amira répond avec les dates, la durée et le programme."
   },
   "intro": {
     "skip": "Passer l'intro"
@@ -495,13 +495,13 @@
         "label": "Où nous enseignons"
       }
     },
-    "note": "Amira continue d'affiner son travail lors de masterclasses internationales, et apporte en cours des techniques actuelles et des standards professionnels.",
+    "note": "Amira se forme en masterclass internationales et amène en salle des techniques actuelles.",
     "portraitAlt": "Amira Bechini tenant le compas à sourcils au niveau de l'œil, en train de mesurer."
   },
   "pathway": {
     "eyebrow": "Le parcours de formation",
     "title": "Votre point de départ dépend d'où vous en êtes.",
-    "sub": "Chaque technique s’enseigne à plusieurs niveaux. Choisissez celui qui correspond à votre expérience : la rigueur ne change pas.",
+    "sub": "Chaque technique sur plusieurs niveaux : choisissez celui qui correspond à votre expérience.",
     "levelLabel": "Niveau",
     "tiers": {
       "foundations": {
@@ -659,7 +659,7 @@
   "receive": {
     "eyebrow": "Ce que vous emportez",
     "title": "Le cours se termine. Le soutien, non.",
-    "sub": "Tout ce qui suit fait partie de chaque cours, aux deux niveaux, sans exception.",
+    "sub": "Inclus dans chaque cours, aux deux niveaux.",
     "items": {
       "small": "Formation en petit groupe, de trois à quatre élèves",
       "model": "Pratique sur modèle vivant, lorsque le cours en prévoit un",
@@ -722,7 +722,7 @@
   "stroke": {
     "eyebrow": "Le trait",
     "title": "Un poil à la fois.",
-    "body": "Le microblading se réalise trait par trait, en suivant le sens réel de la pousse du poil. C’est la part du métier qui ne s’improvise pas : la profondeur, l’angle et l’espacement décident de la tenue du résultat et de son naturel au fil de l’estompage.",
+    "body": "Le microblading se trace poil par poil, dans le sens de la pousse. Profondeur, angle et écart décident si le résultat restera naturel en s’estompant.",
     "alt": "Macrophotographie d’un sourcil après le soin, où les traits restent distinguables.",
     "caption": "Sourcils photographiés en studio après le soin."
   }

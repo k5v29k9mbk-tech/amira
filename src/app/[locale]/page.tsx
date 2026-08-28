@@ -17,7 +17,6 @@ import {
   linkRule,
   sectionPad,
   sectionPadBottom,
-  sectionPadTop,
   shell,
 } from "@/lib/ui";
 import { stagger } from "@/lib/motion";

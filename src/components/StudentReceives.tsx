@@ -47,14 +47,24 @@ import { Reveal } from "./Reveal";
  * Both strings stay in all four catalogues. This array is the only thing that
  * decides what renders.
  */
-const items = [
-  "model",
-  "feedback",
-  "certificate",
-  "support",
-  "kit",
-  "business",
-] as const;
+/**
+ * WHAT EVERY COURSE CARRIES, and only what the page has not already said.
+ *
+ * The list was six rows and four of them were repeats by the time a reader
+ * reached it: "pratica su modella dal vivo" is the method's third stage two
+ * acts above, "correzione diretta di Amira" is the room's third claim one act
+ * above and the reason its class is capped, and both are printed a third time
+ * in the shared conditions under the questions. A row that restates the thing
+ * the reader has just been shown does not add weight to the offer, it spends
+ * her attention confirming she read correctly.
+ *
+ * What is left is the four this list is the only place for: the certificate,
+ * the support that outlives the course, the kit, and the business half of the
+ * trade. `small` and `guidance` were already unrendered here. Every key stays
+ * in all four catalogues for the course pages, which is what `courses.test.ts`
+ * checks.
+ */
+const items = ["certificate", "support", "kit", "business"] as const;
 
 export async function StudentReceives() {
   const t = await getTranslations("receive");

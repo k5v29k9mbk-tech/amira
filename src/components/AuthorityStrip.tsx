@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { displayChapter, displaySection, sectionPadJoin, shell } from "@/lib/ui";
+import { displaySection, sectionPadJoin, shell } from "@/lib/ui";
 import { precisionMedia } from "@/lib/media";
 import { MediaFrame } from "./MediaFrame";
 import { Parallax } from "./Parallax";
@@ -48,8 +48,6 @@ import { SectionLabel } from "./SectionLabel";
 export async function AuthorityStrip() {
   const t = await getTranslations("authority");
   const sections = await getTranslations("sections");
-  const inst = await getTranslations("instructor");
-  const hero = await getTranslations("hero");
 
   return (
     <section
@@ -164,33 +162,24 @@ export async function AuthorityStrip() {
                   sizes="(min-width: 1024px) 28vw, 100vw"
                 />
               </div>
-              {/* HER NAME, AS THE CAPTION TO HER HANDS.
-                This is what is left of `Signature`, the band that used to sit
-                between the hero and this section: her name at chapter size, her
-                role under it, and a line about what she is for. Two of those
-                three were worth keeping and the third was not - "formare
-                professioniste competenti, con percorsi pratici, supporto
-                continuo e standard elevati" is four benefits the page then
-                makes four more times - so the band went and the name came here.
+              {/* HER NAME IS NOT UNDER THIS PHOTOGRAPH ANY MORE, and that is
+                  deliberate rather than an oversight.
 
-                It reads better here than it did there. There it captioned a
-                photograph one section above it, with a ground change in
-                between; here it captions the photograph it is standing next to,
-                which is the academy's own frame of her measuring a brow. The
-                claim in this act is that the teaching comes out of the work.
-                Her name under the hands doing the work is that claim, made
-                twice in one composition.
+                  It was `instructor.title` over `hero.founderRole`, and it sat
+                  one screen above the artist act, which captions the same person
+                  with the same name and a role that says the same three things
+                  in a different order (`instructor.credit`). Two portraits of
+                  Amira, each captioned with her name and her titles, inside four
+                  screens: a reader does not read that as emphasis, she reads it
+                  as the page having lost its place.
 
-                `instructor.mission` stays in all four catalogues for /about and
-                the course pages. */}
-              <figcaption className="mt-6 border-t border-hair-dark pt-5">
-                <p className={`${displayChapter} leading-none`}>
-                  {inst("title")}
-                </p>
-                <p className="label mt-3 leading-[1.6] text-bronze-hi">
-                  {hero("founderRole")}
-                </p>
-              </figcaption>
+                  The naming happens once, at the artist's byline, where it lands
+                  on the beat the plate resolves on and where the link to her
+                  story is. Here the photograph is doing the arguing this act is
+                  about, which is the work being measured, and it does not need a
+                  label to make that point. Both strings stay in all four
+                  catalogues; `hero.founderRole` is still the credit under the
+                  founder's photograph on /about. */}
             </figure>
           </Parallax>
         </div>

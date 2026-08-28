@@ -23,7 +23,7 @@
     "eyebrow": "Aura Academy · Professional PMU education · Italy",
     "titleA": "Master the art.",
     "titleB": "Build your career.",
-    "sub": "Learn permanent makeup directly from Amira Bechini: theory, guided practice and individual correction.",
+    "sub": "Learn permanent makeup with Amira Bechini: guided practice and one-to-one correction.",
     "founder": "Amira Bechini · Founder and PMU Master",
     "founderRole": "PMU Artist · Educator · Founder",
     "facts": {
@@ -154,7 +154,7 @@
     "headline": "The master behind the method",
     "statementA": "A quiet obsession with detail:",
     "statementB": "brows and lips drawn to look like they were always yours.",
-    "bio": "Amira Bechini is an International PMU Master, educator and founder, known for an approach built on precision, balance and an artistic eye. With more than 8 years of experience and over 150 students trained, her method goes beyond technique: it teaches professionals to understand the detail behind exceptional work.",
+    "bio": "International PMU Master and founder of Aura Academy. She teaches the way she works: the technique, and the judgement to tell a good result from a passable one.",
     "credit": "Founder · International PMU Master"
   },
   "method": {
@@ -182,7 +182,7 @@
     },
     "eyebrow": "The signature method",
     "name": "The Aura Precision Method",
-    "lede": "Four stages, in the same order, for every technique and both levels. The order is the method: nothing is practised before it is understood, and nothing is taken to a model before it is practised."
+    "lede": "Four stages, always in the same order. Nothing reaches a live model before it has been understood and rehearsed."
   },
   "catalog": {
     "eyebrow": "The courses",
@@ -414,7 +414,7 @@
   },
   "work": {
     "title": "Real work, real clients.",
-    "sub": "Permanent makeup and brow treatments photographed in the studio. Every frame is work carried out at Aura Academy.",
+    "sub": "Treatments carried out at Aura Academy, photographed in the studio.",
     "open": "Open larger",
     "close": "Close",
     "alt": {
@@ -444,7 +444,7 @@
   },
   "closing": {
     "title": "Your next level starts with better technique.",
-    "sub": "Train with intention, refine your work, and build results you can confidently stand behind."
+    "sub": "Write to us: Amira replies with dates, length and the programme."
   },
   "intro": {
     "skip": "Skip intro"
@@ -495,13 +495,13 @@
         "label": "Where we teach"
       }
     },
-    "note": "Amira continues to refine her work through international masterclasses, bringing current techniques and professional standards directly into the classroom.",
+    "note": "Amira keeps training at international masterclasses and brings current technique into the room.",
     "portraitAlt": "Amira Bechini holding the brow calipers to her eye, measuring."
   },
   "pathway": {
     "eyebrow": "The educational path",
     "title": "Where you start depends on where you are.",
-    "sub": "Every technique is taught at more than one level. Enter at the one that matches your experience; the rigour does not change.",
+    "sub": "Every technique runs at more than one level. Pick the one your experience fits.",
     "levelLabel": "Level",
     "tiers": {
       "foundations": {
@@ -659,7 +659,7 @@
   "receive": {
     "eyebrow": "What you leave with",
     "title": "The course ends. The support does not.",
-    "sub": "Everything below is part of every course, at both levels, without exception.",
+    "sub": "Included in every course, at both levels.",
     "items": {
       "small": "Small-group training, three to four artists",
       "model": "Live model practice, where the course schedules one",
@@ -722,7 +722,7 @@
   "stroke": {
     "eyebrow": "The stroke",
     "title": "One hair at a time.",
-    "body": "Microblading is worked stroke by stroke, following the direction the hair actually grows. It is the part of the craft that cannot be improvised: depth, angle and spacing decide whether the result lasts, and whether it stays natural as it fades.",
+    "body": "Microblading is drawn stroke by stroke, in the direction the hair actually grows. Depth, angle and spacing decide whether the result stays natural as it fades.",
     "alt": "Macro photograph of a brow after treatment, with the individual strokes still distinguishable.",
     "caption": "Brows photographed in the studio after treatment."
   }
