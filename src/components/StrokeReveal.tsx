@@ -60,10 +60,26 @@ export function StrokeReveal({
    * the frame leaves it, so the drawing finishes while the figure is still
    * being looked at rather than as it exits. A reader who scrolls past quickly
    * sees a finished brow, not a half-drawn one.
+   *
+   * THE END MOVED FROM 0.65 TO 0.95 WHEN THE FRAME BECAME A PORTRAIT, and it
+   * had to. The tail is measured against the section's bottom edge, so what it
+   * really sets is how much of the section has to be above the fold before the
+   * sweep is allowed to finish. At 0.65 the photograph completed with the
+   * section's end two thirds up the screen, which was fine while the section
+   * was around 700px tall and fitted inside a 900px viewport with room over. A
+   * 9:10 plate makes it 859, and 859 with its end at 0.65 of 900 puts the top of
+   * the figure three hundred pixels above the fold: the reveal landed on a
+   * picture the reader could no longer see whole.
+   *
+   * At 0.95 the sequence resolves with the section's end just inside the bottom
+   * of the screen, which for a section a little shorter than the viewport is the
+   * moment the whole plate is framed. The sweep is unchanged, and so is
+   * everything it is made of; only the scroll it is spent over is, and it is now
+   * the section's own height rather than that plus a quarter of a screen.
    */
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.9", "end 0.65"],
+    offset: ["start 0.9", "end 0.95"],
   });
 
   // The drawing's edge. Runs past both ends of the box so the sweep clears the
@@ -84,22 +100,61 @@ export function StrokeReveal({
   return (
     <div ref={ref} className="relative">
       {/*
-        3:2 RATHER THAN THE FILE'S OWN 1320x689, AND THE DIFFERENCE IS A CROP.
+        9:10, WHICH IS THE PHOTOGRAPH'S OWN RATIO, AND THAT IS THE WHOLE POINT.
 
-        Matched to the photograph's exact ratio, `object-cover` has nothing to
-        cover: the whole frame is shown, including the treatment bed at the
-        right edge, which is lilac and is the only thing on the page that is not
-        the academy's palette. A slightly squarer box gives the crop about a
-        fifth of the width to spend, and `object-position` spends it on the far
-        right, so what is left is the pair of brows and the skin around them.
+        The frame was 3:2 and landscape, because the photograph under it was a
+        1320x689 macro of one brow and the box was cut a fifth narrower than the
+        file so `object-cover` could spend that fifth on the treatment bed at the
+        right edge. The photograph is now three close-ups of the same brows
+        stacked one under the other: the mapping drawn in white and the result of
+        the treatment, in a 1600x1777 file. Stacked bands cannot survive a
+        landscape crop. A 3:2 box over a 9:10 file discards about two thirds of
+        the height, which would have left exactly one of the three bands on the
+        page and thrown away the comparison that is the reason to use this
+        photograph at all.
+
+        So the box takes the file's own ratio, and `object-cover` has nothing
+        left to cut: at every width the three bands are whole, and no crop
+        decision is being made by a breakpoint. The alternative was to keep 3:2
+        and letterbox with `object-contain`, which paints `bg-paper` bars above
+        and below a picture in a section whose ground is ivory, and reads as an
+        image that failed to fill its frame.
+
+        THE CROP IS IN THE FILE, NOT IN THE CSS, which is how the rest of this
+        site handles a photograph that needs one. `scripts` has no entry for it:
+        it is a centred 2493x2770 cut of the academy's 2493x3116 original, taken
+        so the top of the first brow and the lower lashes of the third both keep
+        a margin, then resampled to 1600 wide. Nothing is graded, and the two
+        files are the same photograph the microblading page opens on.
+
+        THE HEIGHT IS CAPPED AT lg, AND THE WIDTH FOLLOWS IT. Seven columns of a
+        1600px shell is 839px, and 839 at 9:10 is a 932px plate against a
+        four-column paragraph: the figure stops being the argument and becomes
+        the section. 40rem holds it to 640px tall and 576 wide, centred in its
+        cell. It is the same move, and the same reasoning, as the cap on the
+        portrait in `AuthorityStrip`.
+
+        THE NUMBER IS SET BY THE FIXED BAR, not by taste. The sweep below
+        resolves with the section's end just inside the bottom of the screen, so
+        whatever the section stands is what has to fit above that point, and the
+        bar owns the top hundred pixels of it. At 44rem the section was 859 and
+        the top of the plate finished under the bar on a 900px laptop; at 40rem
+        it is 796, which clears on anything taller than about 960 and leaves a
+        sliver on the shortest laptops. It is 81px more than the old landscape
+        frame stood, which is the whole of what this change costs the page.
+
+        Below lg the figure takes the column it is given, where a phone spends
+        380px of height on it and a tablet 838, and neither has a fixed bar over
+        the content to clear.
 
         The drawing is unaffected: it is a viewBox with `meet`, so it fits
-        whatever box it is given and simply centres in this one. Both layers
-        still share a single box, which is what keeps the second mask travelling
-        over the first with nothing reflowing between them. `overflow-hidden`
-        because both masks run past the edges by design.
+        whatever box it is given and simply centres in this one, which puts the
+        drawn brow across the middle band. Both layers still share a single box,
+        which is what keeps the second mask travelling over the first with
+        nothing reflowing between them. `overflow-hidden` because both masks run
+        past the edges by design.
       */}
-      <figure className="relative aspect-[3/2] w-full overflow-hidden bg-paper">
+      <figure className="relative mx-auto aspect-[9/10] w-full overflow-hidden bg-paper lg:max-h-[40rem] lg:w-auto">
         {/*
           THE DRAWING. A viewBox of 520x190 against a 1320x689 frame, centred
           with `xMidYMid meet`, so the brow keeps its proportion at every width
@@ -133,10 +188,17 @@ export function StrokeReveal({
         {/*
           THE PHOTOGRAPH, travelling over the drawing on the same line.
 
-          `sizes` is the figure's real width rather than 100vw: it is seven of
-          twelve columns inside the page shell from lg and full width below it.
-          Getting this wrong is the difference between a 1320px file and a
-          3000px one on a phone.
+          `sizes` is the figure's real width rather than 100vw, and the cap
+          above is what sets it: from lg the plate is never wider than 576px,
+          because past roughly 1200 the 40rem height binds and the width stops
+          growing with the column. 620 covers the widest it ever renders with a
+          little to spare. Getting this wrong is the difference between a
+          700px file and a 2000px one on a phone.
+
+          `object-cover` and a centred origin are deliberate rather than
+          leftovers: the box and the file are the same ratio, so cover crops
+          nothing today, and if either is ever nudged the trim is taken evenly
+          off both ends instead of eating one of the three bands.
         */}
         <motion.div
           className="stroke-plate absolute inset-0"
@@ -146,12 +208,12 @@ export function StrokeReveal({
           }}
         >
           <Image
-            src="/brand/brows-pair-macro.jpg"
+            src="/brand/microblading-stages-brows.jpg"
             alt={alt}
             fill
-            sizes="(min-width: 1024px) 58vw, 100vw"
+            sizes="(min-width: 1024px) 620px, 100vw"
             className="object-cover"
-            style={{ objectPosition: "30% 58%" }}
+            style={{ objectPosition: "50% 50%" }}
           />
         </motion.div>
       </figure>
