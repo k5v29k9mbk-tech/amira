@@ -175,10 +175,17 @@ export const serviceGallery: Record<string, GalleryPair[]> = {
      *
      * Pupils on row 348 (before) and 310 (after): the supplied plate has the
      * face 38px higher in the after, so the band is moved by the same 38px and
-     * the eyes hold still under the handle. This is the tightest-shot pair on
-     * file — the brows start only ~175px above the pupils — so the band is hung
-     * 207px above the eye line to clear them, which is why it cuts closer under
-     * the eye here than in the other two.
+     * the eyes hold still under the handle.
+     *
+     * This is the tightest-shot pair on file and it is the one that decides its
+     * own numbers. The treated brow climbs to row 97 in the after — 213px above
+     * that frame's pupils, where the other two pairs sit around 150 — so the
+     * band has to hang 222px above the eye line to keep it whole, and only 38px
+     * are left underneath. That is why this pair cuts at the lower lid while
+     * the other two clear it. It is the right way round: a brow with its top
+     * sliced off cannot be read for shape or symmetry, which is what the
+     * comparison is for, and an eye cropped under the pupil still reads as an
+     * eye.
      *
      * WHAT THIS CROP CANNOT FIX, and it should not be papered over: both frames
      * are cut through the outer brow tails at the left and right edges in the
@@ -186,7 +193,7 @@ export const serviceGallery: Record<string, GalleryPair[]> = {
      * choice here recovers it; it needs a wider crop from the camera original,
      * which is not in the repository.
      */
-    { id: "microblading-02", ready: true, band: { before: 141, after: 103 } },
+    { id: "microblading-02", ready: true, band: { before: 126, after: 88 } },
     /**
      * READY. Supplied by the academy as one three-stage Microblading plate.
      * The opening and final panels are used here as the comparison; the mapping
