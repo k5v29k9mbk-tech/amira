@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { courses } from "@/lib/courses";
-import { btnSolid, field, fieldLabel } from "@/lib/ui";
+import { bodyMeta, btnSolid, field, fieldLabel } from "@/lib/ui";
 
 type State = "idle" | "sending" | "sent" | "error";
 
@@ -205,6 +206,31 @@ export function ContactForm() {
         >
           {state === "sending" ? t("sending") : t("send")}
         </button>
+
+        {/* THE NOTICE SITS UNDER THE BUTTON, AND IT IS A SENTENCE RATHER THAN A
+            CHECKBOX.
+
+            The lawful basis for this form is Article 6(1)(b): a person asking
+            for course dates is asking for steps to be taken before a contract,
+            and that basis does not run on consent. A tick box would therefore
+            be asking for permission the academy is not relying on, and an
+            unticked one would block an enquiry for no reason the Regulation
+            requires. What is owed is that the reader is told, before she
+            sends, what happens to what she is sending, with the full notice one
+            click away.
+
+            Under the button rather than above it because that is where the eye
+            already is at the moment of deciding, and because a form that opens
+            with a legal sentence reads as a contract rather than as a message. */}
+        <p className={`mt-6 max-w-[52ch] ${bodyMeta} text-mute`}>
+          {t("privacyNote")}{" "}
+          <Link
+            href="/privacy"
+            className="text-espresso underline decoration-bronze/50 underline-offset-4 transition-colors duration-300 hover:decoration-bronze"
+          >
+            {t("privacyLink")}
+          </Link>
+        </p>
       </div>
     </form>
   );

@@ -63,7 +63,50 @@ export type GalleryPair = {
 
 /** Where the files live, and the shape both frames of a pair are cut to. */
 export const galleryDir = "/brand/services";
-export const galleryRatio = "900 / 620";
+
+/**
+ * THE BROW BAND, which is what the slider actually shows of a 900x620 frame.
+ *
+ * The aligned frames are a face from the hairline to the cheekbone, and most of
+ * that is not the evidence. A visitor comparing microblading is reading four
+ * things — shape, density, symmetry and definition — and every one of them is
+ * in a strip about 260px tall. The forehead above it and the cheeks below it
+ * are the two largest objects in the frame and neither carries any part of the
+ * result, so they were pushing the brows down to a third of the height of the
+ * thing that exists to show them.
+ *
+ * So the figure is cut to 900x260 and the frames are shown through it with
+ * `object-fit: cover`. Nothing is done to the files: both frames of every pair
+ * are 900px wide and the band is 900px wide, so the scale is exactly 1 in the
+ * container and the crop is purely a choice of which rows to show. A pair
+ * cannot be made to look better than it is by this, because neither frame can
+ * be zoomed relative to the other — the scale is a property of the band, not of
+ * the image.
+ *
+ * WHY 260 AND NOT MORE. microblading-03 is the binding constraint and it is
+ * worth recording. Its two frames are a wide plate scaled onto the canvas with
+ * an ivory margin, so the photograph only occupies rows 122..496, and the face
+ * sits 100px lower in the before than in the after. Aligning the two therefore
+ * costs 100px of the 374 available, and 260 is what is left once the band is
+ * kept clear of the ivory in both. A taller band would either show the margin
+ * or give up the alignment, and the alignment is the whole point.
+ */
+export const bandHeight = 260;
+export const galleryRatio = `900 / ${bandHeight}`;
+
+/**
+ * The top row of the band, as the `object-position` that selects it.
+ *
+ * Under `cover` a percentage does not address a row directly: it distributes
+ * the overflow, so 0% is the top of the frame and 100% is the bottom of it, and
+ * the 620 - 260 rows in between are what the percentage divides. Writing the
+ * measured row here and converting once is the difference between a number that
+ * can be checked against the photograph and six magic percentages.
+ */
+export const bandPosition = (top: number) => `50% ${(top / (620 - bandHeight)) * 100}%`;
+
+/** Where the band sits when a pair has not been measured yet: centred. */
+export const bandDefault = (620 - bandHeight) / 2;
 
 export const beforeSrc = (id: string) => `${galleryDir}/${id}-before-01.jpg`;
 export const afterSrc = (id: string) => `${galleryDir}/${id}-after-01.jpg`;

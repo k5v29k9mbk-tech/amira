@@ -139,10 +139,26 @@ export default async function ContactPage({
                   <FacebookLogo size={18} weight="light" className="text-bronze" />
                   {studio.facebook}
                 </li>
+                {/* Named as a certified mailbox rather than left to look
+                    like the academy's email. A PEC rejects ordinary mail, so an
+                    unlabelled address in a list headed "where to find us" sends
+                    an enquiry somewhere it will bounce. The three channels
+                    above it are the ones that reach anybody. */}
                 <li>
-                  <a href={`mailto:${studio.pec}`} className={row}>
-                    <ShieldCheck size={18} weight="light" className="text-bronze" />
-                    <span dir="ltr">{studio.pec}</span>
+                  <a href={`mailto:${studio.pec}`} className={`${row} items-start`}>
+                    <ShieldCheck
+                      size={18}
+                      weight="light"
+                      className="mt-1 shrink-0 text-bronze"
+                    />
+                    <span>
+                      <span dir="ltr" className="block">
+                        {studio.pec}
+                      </span>
+                      <span className="mt-1 block text-[13px] text-mute">
+                        {t("contact.pecLabel")}
+                      </span>
+                    </span>
                   </a>
                 </li>
               </ul>

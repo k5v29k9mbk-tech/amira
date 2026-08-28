@@ -261,20 +261,37 @@ export default async function ProgramPage({
         </div>
       </section>
 
-      {/* The programme's own photograph, full bleed, between the facts and the
-          argument. The one on file for this discipline, at the crop `courses.ts`
-          gives it.
+      {/* The programme's own photograph, between the facts and the argument.
+          A programme carrying its own `heroMedia` prints that, at the ratio its
+          dimensions state; the rest print the catalogue poster full bleed, at
+          the crop `courses.ts` gives it.
 
           `posterOffHome` marks the one discipline whose supplied photograph the
           academy is replacing. The homepage stands its frame down and so does
           this page: an empty band is worse than no band, so the section simply
           does not render and the argument below closes up. */}
       {!program.posterOffHome ? (
-        <section className="bg-ivory">
+        <section className={program.heroMedia ? "bg-ivory md:py-20 lg:py-28" : "bg-ivory"}>
           <Parallax distance={16}>
-            <div className="relative aspect-[16/10] w-full md:aspect-[21/9]">
-              <MediaFrame media={program.media} sizes="100vw" />
-            </div>
+            {program.heroMedia ? (
+              /* A portrait photograph, printed at its own 4:5 rather than cut
+                 down to the band's 21:9. Full width on a phone, where 4:5 is
+                 already the right shape for a screen held upright, and a
+                 centred column from `md`, where a full-bleed 4:5 would be
+                 taller than the viewport and the reader would meet one third
+                 of it. `cover` is still what fits it, and at a matching ratio
+                 it has nothing to cut. */
+              <div className="relative mx-auto aspect-[4/5] w-full md:max-w-[520px] lg:max-w-[600px]">
+                <MediaFrame
+                  media={program.heroMedia}
+                  sizes="(min-width: 1024px) 600px, (min-width: 768px) 520px, 100vw"
+                />
+              </div>
+            ) : (
+              <div className="relative aspect-[16/10] w-full md:aspect-[21/9]">
+                <MediaFrame media={program.media} sizes="100vw" />
+              </div>
+            )}
           </Parallax>
         </section>
       ) : null}

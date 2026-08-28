@@ -610,6 +610,27 @@ body {
   .word-resolve {
     color: var(--aura-espresso) !important;
   }
+
+  /*
+    THE STROKE, set finished rather than drawing.
+
+    Both layers of the signature figure are CSS masks built from scroll
+    position and written straight to the inline style every frame, so there is
+    no animation for Motion's policy to shorten and no transition for the
+    blanket rule above to zero: the same category as `.drift` and `.signature`,
+    and the same mechanism is the only one that reaches them.
+
+    Dropping the masks entirely is what "finished" means here. `.stroke-plate`
+    unmasked is the photograph at full frame, which is the state the sequence
+    ends on, and the drawing sits behind it exactly as it does for everybody
+    else at the end of the scroll. A reader who has asked for no movement gets
+    the real brow, not an empty box and not a half-drawn one.
+  */
+  .stroke-ink,
+  .stroke-plate {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
 }
 
 @media print {

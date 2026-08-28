@@ -43,6 +43,17 @@ const arabic = Noto_Naskh_Arabic({
 /** Namespaces read by `"use client"` components. Keep in sync with them. */
 const CLIENT_NAMESPACES = [
   "nav", // Header, LocaleSwitcher
+  /**
+   * The 404 page, which is a client component and has to be.
+   *
+   * A not-found boundary is handed no params and nothing calls
+   * `setRequestLocale` on the way into it, so `getTranslations()` there has no
+   * locale to resolve against: the page rendered its own message keys as text.
+   * It reads the catalogue through the provider instead, like `loading` did
+   * before it, which means this namespace has to reach the client. It is two
+   * short strings.
+   */
+  "notFound",
   "cta", // Header + StickyCta booking action, CourseSelector course link
   "intro", // IntroVideo skip control
   "manifesto", // Manifesto

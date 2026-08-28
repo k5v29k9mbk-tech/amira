@@ -19,3 +19,10 @@ WhatsApp Video *.mp4
 # `public/` is served verbatim, so an unreferenced 4.4MB file here is 4.4MB of
 # upload and cache for a URL nobody requests.
 public/06aa8692-35d7-4b5a-8475-4d9504116b39.MP4
+
+# An empty file left in `public/`, and a retouching original under `public/brand`
+# that no `Media` object points at. Both were checked against `lib/media.ts` and
+# every component the same way as the entries above. Kept in the repository,
+# left out of the upload.
+public/Untitled-1
+public/brand/Retouch_this_exact_photo_profess.png

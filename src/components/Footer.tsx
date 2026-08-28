@@ -168,6 +168,18 @@ export async function Footer() {
                 {t("nav.contact")}
               </Link>
             </li>
+            {/* The privacy notice belongs in the site column rather than the
+                legal one, and the distinction is not pedantry. The legal column
+                is a published identity: company, address, VAT, REA, the
+                certified mailbox. Those are values, not destinations, and the
+                one link in that block goes to a mailbox. This is a page of the
+                site like the other five, and a reader looking for it looks in
+                the list of pages. */}
+            <li>
+              <Link href="/privacy" className={link}>
+                {t("footer.privacy")}
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -213,10 +225,30 @@ export async function Footer() {
                 {t("footer.rea")} <span dir="ltr">{legal.rea}</span>
               </span>
             </li>
+            {/* THE CERTIFIED MAILBOX, NAMED AS ONE.
+
+                This was a bare mailto carrying the address and nothing else,
+                which is the site presenting a PEC as though it were the
+                academy's email. It is not one. An Italian certified mailbox
+                rejects ordinary mail, so a visitor who used it as a contact
+                address would have her enquiry bounce and would never learn
+                why, and the site would have been the thing that told her to
+                try. It is the reason `CONTACT_TO` exists as a separate setting
+                and the reason the API route refuses to fall back to this
+                address.
+
+                So it is labelled. The address stays reachable, because a
+                registered business publishes it and a rights request under the
+                Regulation genuinely goes here, and the line under it says what
+                kind of channel it is. The three channels a visitor should
+                actually use are in the brand column at the top of the footer. */}
             <li>
               <a href={`mailto:${studio.pec}`} className={`${link} break-all`}>
                 <span dir="ltr">{studio.pec}</span>
               </a>
+              <span className="mt-1 block text-[13px] text-mute-dark">
+                {t("contact.pecLabel")}
+              </span>
             </li>
           </ul>
         </div>

@@ -34,10 +34,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...programs.map((program) => `/courses/${program.slug}`),
     "/faq",
     "/contact",
+    "/privacy",
   ];
 
   const priorityFor = (path: string) => {
     if (path === "") return 1;
+    // The notice is owed to a reader, not offered to a crawler.
+    if (path === "/privacy") return 0.3;
     if (path === "/courses") return 0.9;
     if (path.startsWith("/courses/")) return 0.8;
     return 0.7;

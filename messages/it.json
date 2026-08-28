@@ -23,7 +23,7 @@
     "eyebrow": "Aura Academy · Formazione professionale PMU · Italia",
     "titleA": "Padroneggia l’arte.",
     "titleB": "Costruisci la tua carriera.",
-    "sub": "Impara il trucco permanente direttamente da Amira Bechini: tecnica, pratica guidata e gli standard su cui si costruisce una carriera.",
+    "sub": "Impara il trucco permanente direttamente da Amira Bechini: teoria, pratica guidata e correzione individuale.",
     "founder": "Amira Bechini · Fondatrice e Master PMU",
     "founderRole": "PMU Artist · Formatrice · Fondatrice",
     "facts": {
@@ -51,7 +51,7 @@
     "eyebrow": "Chi siamo",
     "titleA": "Insegniamo dalla professione,",
     "titleB": "non da un manuale.",
-    "lede": "Amira Bechini insegna soltanto ciò che pratica: ogni tecnica di questi corsi è una tecnica che esegue ogni giorno, su clienti reali. In aula si impara facendo, con la mano corretta mentre lavori.",
+    "lede": "Amira Bechini insegna soltanto ciò che pratica: ogni tecnica di questi corsi è una tecnica che esegue ogni giorno in cabina. In aula si impara facendo, con la mano corretta mentre lavori.",
     "portrait": "Amira Bechini in blazer nero, con il compasso per sopracciglia in mano",
     "demoAlt": "Amira Bechini misura con il compasso le sopracciglia di una modella durante una dimostrazione pratica.",
     "certificateAlt": "Amira Bechini seduta accanto a un'allieva che mostra il suo certificato PhiBrows.",
@@ -76,7 +76,7 @@
       "role": "Fondatrice di Aura Academy · CEO di Amira Beauty Suite",
       "imageAlt": "Amira Bechini in studio, in blazer nero, le braccia incrociate, su fondo chiaro.",
       "p1": "Mi chiamo Amira Bechini. Guido Amira Beauty Suite, istituto specializzato in trattamenti estetici avanzati, e ho fondato Aura Academy.",
-      "p2": "In oltre otto anni ho formato più di 150 allieve e ho costruito un metodo mio, fatto di tecnica, pratica sul campo e visione imprenditoriale.",
+      "p2": "In oltre otto anni ho formato più di 150 allieve e ho costruito un mio modo di insegnare: tecnica, pratica e visione imprenditoriale.",
       "p3": "Non ho mai smesso di studiare: masterclass internazionali, tecniche sempre aggiornate, un investimento costante sulla mia formazione.",
       "p4": "Aura Academy è la formazione che avrei voluto trovare quando ho iniziato.",
       "signature": "Amira Bechini"
@@ -88,7 +88,7 @@
       "items": {
         "experience": {
           "title": "Esperienza reale sul campo",
-          "body": "Aura Academy nasce dalla pratica quotidiana di un istituto di bellezza attivo. Quello che impari qui è già stato provato su clienti reali."
+          "body": "Aura Academy nasce dalla pratica quotidiana di un istituto di bellezza attivo. Quello che impari qui è già stato provato in cabina."
         },
         "small": {
           "title": "Classi volutamente ristrette",
@@ -118,12 +118,12 @@
     "mission": {
       "eyebrow": "La nostra missione",
       "quote": "L’attestato non è il traguardo. La carriera lo è.",
-      "body": "In Aura Academy non insegniamo solo trattamenti. Formiamo professioniste, unendo tecnica, pratica, visione imprenditoriale e supporto continuo, perché ogni allieva esca davvero pronta a lavorare."
+      "body": "In Aura Academy non insegniamo solo trattamenti. Formiamo professioniste: tecnica, visione imprenditoriale e assistenza che prosegue dopo il corso."
     },
     "vision": {
       "eyebrow": "La nostra visione",
       "title": "Un riferimento internazionale nella formazione PMU",
-      "body": "Vogliamo far crescere Aura Academy in Italia e all’estero, con una rete di formatrici certificate e una comunità di professioniste che condividono gli stessi standard.",
+      "body": "Vogliamo far crescere Aura Academy in Italia e all’estero, con una rete di formatrici certificate e una comunità di professioniste che lavorano con lo stesso rigore.",
       "closing": "Una formazione moderna, pratica e orientata al mercato. E sempre più donne capaci di costruirsi un futuro indipendente.",
       "points": {
         "quality": "Qualità",
@@ -133,7 +133,7 @@
       }
     },
     "cta": {
-      "title": "La tua carriera inizia da una conversazione.",
+      "title": "Tutto inizia da una conversazione.",
       "body": "Dicci quale corso ti interessa: ti rispondiamo con date, durata e tutti i dettagli."
     }
   },
@@ -186,7 +186,7 @@
   },
   "catalog": {
     "eyebrow": "I corsi",
-    "title": "Sei corsi, un unico standard",
+    "title": "Sei corsi, una sola scuola",
     "sub": "Trucco permanente e laminazione, a livello base e avanzato. Durata e preventivo variano in base al corso e alla formula scelta.",
     "courses": {
       "microblading": "Microblading",
@@ -385,10 +385,13 @@
     "meta": {
       "title": "Prenota il tuo posto",
       "description": "Prenota un posto in un corso di trucco permanente o laminazione presso Aura Academy, Lungomare Rodi 20, Giulianova (TE). Scrivici per date, durata e preventivo."
-    }
+    },
+    "privacyNote": "Inviando il modulo accetti che i tuoi dati siano usati per rispondere alla richiesta.",
+    "privacyLink": "Leggi la privacy",
+    "pecLabel": "PEC (posta elettronica certificata)"
   },
   "footer": {
-    "tagline": "Formazione professionale in trucco permanente e laminazione, con un metodo pratico e preciso.",
+    "tagline": "Formazione professionale in trucco permanente e laminazione, in classi da tre a quattro allieve.",
     "explore": "Corsi",
     "nav": "Navigazione",
     "studio": "Contatti",
@@ -397,7 +400,8 @@
     "vat": "P. IVA",
     "rea": "REA",
     "rights": "Tutti i diritti riservati.",
-    "faq": "Domande frequenti"
+    "faq": "Domande frequenti",
+    "privacy": "Privacy"
   },
   "mentor": {
     "play": "Guarda il messaggio di benvenuto",
@@ -410,7 +414,7 @@
   },
   "work": {
     "title": "Il risultato, prima e dopo.",
-    "sub": "Trucco permanente e trattamenti sopracciglia fotografati in studio. Ogni immagine è un lavoro di Aura Academy su clienti reali.",
+    "sub": "Trucco permanente e trattamenti sopracciglia fotografati in studio. Ogni immagine è un lavoro eseguito in Aura Academy.",
     "open": "Ingrandisci",
     "close": "Chiudi",
     "alt": {
@@ -436,7 +440,7 @@
   "manifesto": {
     "one": "Non insegniamo una tecnica.",
     "two": "Insegniamo l’occhio e la mano che la rendono precisa.",
-    "note": "Classi ristrette. Pratica guidata. Standard che restano anche dopo il corso."
+    "note": "Classi ristrette. Mano guidata. Correzione individuale."
   },
   "closing": {
     "title": "Iniziamo dal corso che hai in mente.",
@@ -472,7 +476,7 @@
   "authority": {
     "eyebrow": "Lo standard",
     "title": "Prima lo pratichiamo. Poi lo insegniamo.",
-    "sub": "Ogni tecnica che Amira insegna poggia sugli standard che applica ogni giorno con le sue clienti.",
+    "sub": "Nulla entra in aula prima di essere stato verificato in cabina.",
     "items": {
       "years": {
         "value": "8+",
@@ -497,7 +501,7 @@
   "pathway": {
     "eyebrow": "Il percorso formativo",
     "title": "Scegli il livello da cui partire.",
-    "sub": "Ogni tecnica si insegna su più livelli. Scegli quello più adatto alla tua pratica: lo standard non cambia.",
+    "sub": "Ogni tecnica si insegna su più livelli. Scegli quello più adatto alla tua esperienza: il rigore non cambia.",
     "levelLabel": "Livello",
     "tiers": {
       "foundations": {
@@ -528,7 +532,7 @@
   },
   "programs": {
     "eyebrow": "Il corso",
-    "title": "Sei tecniche, un solo standard.",
+    "title": "Sei tecniche, una sola mano.",
     "sub": "Trucco permanente e laminazione, a livello base e avanzato.",
     "backToAll": "Tutti i corsi",
     "keyInfoTitle": "In sintesi",
@@ -612,8 +616,8 @@
     },
     "work": {
       "eyebrow": "I risultati",
-      "title": "Lo standard verso cui ti stai formando.",
-      "sub": "Trattamenti fotografati nello studio di Aura Academy, su clienti reali."
+      "title": "Il risultato verso cui ti stai formando.",
+      "sub": "Trattamenti fotografati nello studio di Aura Academy."
     },
     "faq": {
       "eyebrow": "Domande",
@@ -666,5 +670,60 @@
       "kit": "Kit professionale, disponibile su richiesta",
       "business": "La parte imprenditoriale del mestiere, insegnata accanto alla tecnica"
     }
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy",
+      "description": "Come Aura Academy di Amira Bechini tratta i dati inviati tramite il modulo di contatto: titolare, finalità, conservazione e diritti dell’interessato."
+    },
+    "eyebrow": "Privacy",
+    "title": "Come trattiamo i tuoi dati",
+    "updated": "Ultimo aggiornamento: 28 agosto 2026",
+    "lede": "Questo sito raccoglie dati personali soltanto quando scrivi tramite il modulo di contatto. Nessun dato viene ceduto o venduto a terzi.",
+    "sections": {
+      "controller": {
+        "title": "Titolare del trattamento",
+        "body": "Aura Academy di Amira Bechini, Lungomare Rodi 20, 64021 Giulianova (TE), Italia. P. IVA 02228390676, REA TE-221017. Per ogni richiesta relativa ai dati personali puoi scrivere alla PEC indicata in fondo a questa pagina."
+      },
+      "data": {
+        "title": "Dati raccolti",
+        "body": "Solo quelli che inserisci nel modulo: nome, indirizzo email, corso di interesse e testo del messaggio. Il sito non richiede altri dati e non ne deduce alcuno."
+      },
+      "purpose": {
+        "title": "Finalità",
+        "body": "Rispondere alla tua richiesta e inviarti date, durata e preventivo del corso che ti interessa. I dati non vengono usati per invii pubblicitari."
+      },
+      "basis": {
+        "title": "Base giuridica",
+        "body": "L’esecuzione di misure precontrattuali adottate su tua richiesta, ai sensi dell’art. 6, par. 1, lett. b) del Regolamento UE 2016/679."
+      },
+      "recipients": {
+        "title": "Destinatari",
+        "body": "I dati sono trattati dal fornitore di hosting del sito e dal servizio di posta che consegna il messaggio alla casella dell’accademia, entrambi in qualità di responsabili del trattamento. Nessun altro soggetto vi accede."
+      },
+      "retention": {
+        "title": "Conservazione",
+        "body": "I messaggi sono conservati per il tempo necessario a gestire la richiesta e gli eventuali contatti successivi, e sono poi cancellati."
+      },
+      "cookies": {
+        "title": "Cookie",
+        "body": "Il sito usa un solo cookie tecnico, che ricorda la lingua scelta. Non sono presenti cookie analitici, di profilazione o pubblicitari, e nessun servizio di tracciamento di terze parti."
+      },
+      "rights": {
+        "title": "I tuoi diritti",
+        "body": "Puoi chiedere in qualsiasi momento l’accesso ai tuoi dati, la loro rettifica o cancellazione, la limitazione del trattamento, la portabilità e l’opposizione. Hai inoltre diritto di proporre reclamo al Garante per la protezione dei dati personali."
+      },
+      "contact": {
+        "title": "Contatti",
+        "body": "Per esercitare i tuoi diritti scrivi alla PEC dell’accademia:"
+      }
+    }
+  },
+  "stroke": {
+    "eyebrow": "Il tratto",
+    "title": "Un pelo alla volta.",
+    "body": "Il microblading si esegue tratto per tratto, seguendo la direzione in cui il pelo cresce davvero. È la parte del lavoro che non si improvvisa: profondità, angolo e distanza decidono se il risultato durerà e se resterà naturale mentre sbiadisce.",
+    "alt": "Macro di un sopracciglio dopo il trattamento: i singoli tratti restano distinguibili.",
+    "caption": "Sopracciglia fotografate in studio dopo il trattamento."
   }
 }

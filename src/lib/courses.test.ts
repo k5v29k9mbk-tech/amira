@@ -1054,3 +1054,102 @@ test("Arabic prose carries no Latin commas", () => {
     "ar carries a Latin comma after an Arabic letter",
   );
 });
+
+test("the form that collects a name and an email links to a privacy notice", () => {
+  // The contact form takes a name, an address, a subject and a message and
+  // forwards them to the academy's inbox. That is personal data processed by
+  // an Italian registered business, and a visitor is owed the notice before she
+  // sends rather than after. The page, the footer link and the sentence under
+  // the submit button are the three parts of that, and all three are strings:
+  // if any of them is dropped in a future rewrite, this fails.
+  for (const [locale, messages] of Object.entries(LOCALES)) {
+    const m = messages as Record<string, Record<string, unknown>>;
+    assert.ok(m.privacy, `${locale} has no privacy notice`);
+    assert.ok(m.footer.privacy, `${locale} footer does not link the privacy notice`);
+    assert.ok(m.contact.privacyNote, `${locale} form states nothing before sending`);
+    assert.ok(m.contact.privacyLink, `${locale} form does not link the notice`);
+
+    // The notice has to answer the questions it exists to answer. A page that
+    // says less than this is decoration.
+    for (const section of [
+      "controller",
+      "data",
+      "purpose",
+      "basis",
+      "recipients",
+      "retention",
+      "cookies",
+      "rights",
+      "contact",
+    ]) {
+      const s = (m.privacy.sections as Record<string, { title: string; body: string }>)[
+        section
+      ];
+      assert.ok(s?.title && s?.body, `${locale} privacy notice is missing "${section}"`);
+    }
+  }
+});
+
+test("the certified mailbox is never presented as an ordinary inbox", () => {
+  // An Italian PEC rejects ordinary mail. It is the only address the academy
+  // supplied, so it is published (a registered business publishes it, and a
+  // rights request under the Regulation goes there), but every place it is
+  // printed says what it is. Without the label a visitor writes to it, the
+  // message bounces, and the site was the thing that told her to try.
+  for (const [locale, messages] of Object.entries(LOCALES)) {
+    const m = messages as Record<string, Record<string, unknown>>;
+    assert.ok(m.contact.pecLabel, `${locale} prints the PEC with no label`);
+    assert.match(
+      String(m.contact.pecLabel),
+      /PEC|معتمد/,
+      `${locale} PEC label does not name the channel`,
+    );
+  }
+
+  // And it is not the organisation's `email` in structured data, where a
+  // machine would read it as the way to write to the business.
+  const schema = readFileSync(new URL("./seo.tsx", import.meta.url), "utf8");
+  assert.equal(
+    /^\s*email:\s*studio\.pec/m.test(schema),
+    false,
+    "schema.org publishes the PEC as the organisation's email",
+  );
+});
+
+test("a broken link can reach the site's own 404, in every language", () => {
+  // `[locale]/not-found.tsx` is only reachable because `[locale]/[...rest]`
+  // throws into it: without that route an unmatched URL never enters the locale
+  // segment and Next serves its own black-on-white default instead. The page is
+  // also a client component reading `notFound` through the provider, because a
+  // not-found boundary is handed no params and `getTranslations()` there has
+  // nothing to resolve against. Three things, each of which silently undoes the
+  // custom 404 on its own.
+  const here = new URL("../app/[locale]/", import.meta.url);
+  assert.ok(
+    existsSync(new URL("[...rest]/page.tsx", here)),
+    "no catch-all route, so unmatched URLs get the framework default 404",
+  );
+
+  const notFound = readFileSync(new URL("not-found.tsx", here), "utf8");
+  assert.match(notFound, /^"use client";/, "the 404 page is not a client component");
+  // The import, not the word: the file's own note explains why
+  // `getTranslations` is the wrong call here, so matching the bare name would
+  // fail on the explanation.
+  assert.equal(
+    /from "next-intl\/server"/.test(notFound),
+    false,
+    "the 404 page reads translations off a request that carries no locale",
+  );
+
+  const layout = readFileSync(new URL("layout.tsx", here), "utf8");
+  assert.match(
+    layout,
+    /"notFound"/,
+    "notFound is not in CLIENT_NAMESPACES, so the 404 renders its own message keys",
+  );
+
+  for (const [locale, messages] of Object.entries(LOCALES)) {
+    const m = messages as Record<string, Record<string, unknown>>;
+    assert.ok(m.notFound.title && m.notFound.body, `${locale} has no 404 copy`);
+  }
+});

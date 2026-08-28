@@ -13,9 +13,11 @@ import {
   displayLarge,
   displayRow,
   displaySection,
+  eyebrow,
   linkRule,
   sectionPad,
   sectionPadBottom,
+  sectionPadTop,
   shell,
 } from "@/lib/ui";
 import { stagger } from "@/lib/motion";
@@ -36,6 +38,7 @@ import { Testimonial } from "@/components/Testimonial";
 import { Faq } from "@/components/Faq";
 import { MediaFrame } from "@/components/MediaFrame";
 import { MaskReveal } from "@/components/MaskReveal";
+import { StrokeReveal } from "@/components/StrokeReveal";
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
 
@@ -424,6 +427,46 @@ export default async function Home({
           </div>
           <FrameGallery />
           <LearningExperience />
+        </div>
+      </section>
+
+      {/* THE STROKE. The page's one signature moment, and it is the overture to
+          the method rather than an act of its own.
+
+          It sits here, between the room and the method, because the method act
+          is the four stages in words and this is the thing those stages are for
+          shown once, at size, without a claim attached. Ivory, like the method
+          under it, so the two read as one movement and the page gains a moment
+          rather than a section: the drawing resolves, the photograph replaces
+          it, and the next thing on the screen is the name of the method that
+          produced it.
+
+          The copy is the shorter half of the split, four columns against seven,
+          because the figure is the argument here and the paragraph is its
+          footnote. */}
+      <section className={`${sectionPadTop} bg-ivory`}>
+        <div className={shell}>
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+            <div className="lg:col-span-4">
+              <MaskReveal>
+                <p className={eyebrow}>{t("stroke.eyebrow")}</p>
+              </MaskReveal>
+              <MaskReveal delay={stagger.base} className="mt-8">
+                <h2 className={`${displayLarge} max-w-[14ch]`}>
+                  {t("stroke.title")}
+                </h2>
+              </MaskReveal>
+              <Reveal delay={stagger.line}>
+                <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-mute">
+                  {t("stroke.body")}
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="lg:col-span-7 lg:col-start-6">
+              <StrokeReveal alt={t("stroke.alt")} caption={t("stroke.caption")} />
+            </div>
+          </div>
         </div>
       </section>
 

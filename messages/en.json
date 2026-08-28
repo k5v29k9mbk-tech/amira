@@ -23,7 +23,7 @@
     "eyebrow": "Aura Academy · Professional PMU education · Italy",
     "titleA": "Master the art.",
     "titleB": "Build your career.",
-    "sub": "Learn permanent makeup directly from Amira Bechini through expert technique, guided practice, and the professional standards behind a lasting career.",
+    "sub": "Learn permanent makeup directly from Amira Bechini: theory, guided practice and individual correction.",
     "founder": "Amira Bechini · Founder and PMU Master",
     "founderRole": "PMU Artist · Educator · Founder",
     "facts": {
@@ -51,7 +51,7 @@
     "eyebrow": "About Aura Academy",
     "titleA": "We teach from inside the profession,",
     "titleB": "not from a textbook.",
-    "lede": "Founded by Amira Bechini: CEO of Amira Beauty Suite, permanent makeup artist, more than eight years in the industry. Every technique taught here is one she performs on real clients.",
+    "lede": "Amira Bechini teaches only what she practises: every technique in these courses is one she performs daily in her own treatment room. In class you learn by doing, with your hand corrected as you work.",
     "portrait": "Amira Bechini in a black blazer, the brow calipers in her hand",
     "demoAlt": "Amira Bechini measuring a model's brows with the calipers during a live demonstration.",
     "certificateAlt": "Amira Bechini seated beside a student holding up her PhiBrows certificate.",
@@ -76,7 +76,7 @@
       "role": "Founder of Aura Academy · CEO of Amira Beauty Suite",
       "imageAlt": "Amira Bechini in the studio, in a black blazer, arms folded, against a pale ground.",
       "p1": "I run Amira Beauty Suite, an institute specialised in advanced aesthetic treatments, and founded Aura Academy to teach what I practise: permanent makeup and lash and brow lamination.",
-      "p2": "In more than eight years I have trained over 150 students and built a method of my own: technical excellence, hands-on practice, entrepreneurial vision. It began simply, to help people feel confident, and to give women a real profession.",
+      "p2": "In more than eight years I have trained over 150 students and built a way of teaching that is my own: technique, practice, and business sense.",
       "p3": "I have never stopped studying: international masterclasses, the latest PMU techniques. My own institute taught me the rest, not just the technique, but what clients and the market need.",
       "p4": "Aura Academy is the school I wanted when I started: personalised guidance, practical education, continuous support, and a career that lasts. Today we train across Italy.",
       "signature": "Amira Bechini"
@@ -88,7 +88,7 @@
       "items": {
         "experience": {
           "title": "Real industry experience",
-          "body": "Aura Academy grew out of daily practice inside a working institute. What you learn here has already been tested on real clients."
+          "body": "Aura Academy grew out of the daily work of a functioning beauty institute. What you learn here has already been proven in the treatment room."
         },
         "small": {
           "title": "Small classes, by design",
@@ -118,12 +118,12 @@
     "mission": {
       "eyebrow": "Our mission",
       "quote": "The certificate is not the point. The career is.",
-      "body": "We don't simply teach treatments. We educate professionals, combining technical excellence, practical experience, entrepreneurial mindset and continuous support, so every student leaves genuinely prepared."
+      "body": "At Aura Academy we do not teach treatments alone. We train professionals: technique, business sense, and help that continues after the course."
     },
     "vision": {
       "eyebrow": "Our vision",
       "title": "An international reference for PMU education",
-      "body": "An international reference for professional education in permanent makeup and lamination, built through a network of certified trainers and a community that holds the same standards.",
+      "body": "We want Aura Academy to grow in Italy and abroad, through a network of certified trainers and a community of professionals who work to the same rigour.",
       "closing": "Modern, practical, market-oriented education, and more women able to build an independent future.",
       "points": {
         "quality": "Quality",
@@ -133,7 +133,7 @@
       }
     },
     "cta": {
-      "title": "Your career starts with one conversation.",
+      "title": "It starts with one conversation.",
       "body": "Tell us which course interests you. We'll come back with dates, duration and everything you need to know."
     }
   },
@@ -186,7 +186,7 @@
   },
   "catalog": {
     "eyebrow": "The courses",
-    "title": "Six courses, one standard",
+    "title": "Six courses, one school",
     "sub": "Permanent makeup and lamination, base and advanced. Duration varies by course; every course is quoted individually.",
     "courses": {
       "microblading": "Microblading",
@@ -372,7 +372,7 @@
     "instagram": "Instagram",
     "tiktok": "TikTok",
     "facebook": "Facebook",
-    "pec": "Certified email (PEC)",
+    "pec": "PEC",
     "name": "Your name",
     "email": "Email",
     "subject": "Course you're interested in",
@@ -385,10 +385,13 @@
     "meta": {
       "title": "Book your place",
       "description": "Book a place on a PMU or lamination course at Aura Academy, Lungomare Rodi 20, Giulianova (TE), Italy. Write to us for dates, duration and price."
-    }
+    },
+    "privacyNote": "By sending this form you agree that your details will be used to answer your enquiry.",
+    "privacyLink": "Read the privacy notice",
+    "pecLabel": "PEC (Italian certified email)"
   },
   "footer": {
-    "tagline": "We train professionals in PMU and lamination with a practical, complete method.",
+    "tagline": "Professional training in permanent makeup and lamination, in classes of three to four students.",
     "explore": "Programmes",
     "nav": "Navigation",
     "studio": "Contact",
@@ -397,7 +400,8 @@
     "vat": "VAT number",
     "rea": "REA",
     "rights": "All rights reserved.",
-    "faq": "Frequently asked questions"
+    "faq": "Frequently asked questions",
+    "privacy": "Privacy"
   },
   "mentor": {
     "play": "Watch the welcome message",
@@ -410,7 +414,7 @@
   },
   "work": {
     "title": "Real work, real clients.",
-    "sub": "Permanent makeup and brow treatments photographed in the academy's studio. Every frame is the academy's own client work.",
+    "sub": "Permanent makeup and brow treatments photographed in the studio. Every frame is work carried out at Aura Academy.",
     "open": "Open larger",
     "close": "Close",
     "alt": {
@@ -436,7 +440,7 @@
   "manifesto": {
     "one": "We do not teach a technique.",
     "two": "We teach the eye, the hand, and the standard behind it.",
-    "note": "Small classes. Guided practice. Professional standards that continue after the course."
+    "note": "Small classes. A guided hand. Individual correction."
   },
   "closing": {
     "title": "Your next level starts with better technique.",
@@ -472,7 +476,7 @@
   "authority": {
     "eyebrow": "The standard",
     "title": "Where practice becomes mastery.",
-    "sub": "Aura Academy is built on real-world permanent makeup practice. Every technique Amira teaches is grounded in the same standards, precision and methods she applies with her own clients.",
+    "sub": "Nothing reaches the classroom before it has been proven in the treatment room.",
     "items": {
       "years": {
         "value": "8+",
@@ -497,7 +501,7 @@
   "pathway": {
     "eyebrow": "The educational path",
     "title": "Where you start depends on where you are.",
-    "sub": "Every discipline is taught at more than one height. You enter at the level that matches your practice, and the standard is the same at each.",
+    "sub": "Every technique is taught at more than one level. Enter at the one that matches your experience; the rigour does not change.",
     "levelLabel": "Level",
     "tiers": {
       "foundations": {
@@ -528,7 +532,7 @@
   },
   "programs": {
     "eyebrow": "The programmes",
-    "title": "Six disciplines, one standard.",
+    "title": "Six techniques, one hand.",
     "sub": "Permanent makeup and lamination, each taught at base and advanced level, in classes of three to four.",
     "backToAll": "All programmes",
     "keyInfoTitle": "Key information",
@@ -612,8 +616,8 @@
     },
     "work": {
       "eyebrow": "The work",
-      "title": "The standard you are training towards.",
-      "sub": "Treatments photographed in the academy's own studio. Every frame is the academy's own client work."
+      "title": "The result you are training towards.",
+      "sub": "Treatments photographed in the academy's own studio."
     },
     "faq": {
       "eyebrow": "Questions",
@@ -666,5 +670,60 @@
       "kit": "Professional kit, available on request",
       "business": "The business side of the profession, taught alongside the technique"
     }
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy",
+      "description": "How Aura Academy di Amira Bechini handles the details sent through the contact form: controller, purpose, retention and your rights."
+    },
+    "eyebrow": "Privacy",
+    "title": "How we handle your details",
+    "updated": "Last updated: 28 August 2026",
+    "lede": "This site collects personal details only when you write through the contact form. Nothing is sold or passed on to third parties.",
+    "sections": {
+      "controller": {
+        "title": "Data controller",
+        "body": "Aura Academy di Amira Bechini, Lungomare Rodi 20, 64021 Giulianova (TE), Italy. VAT 02228390676, REA TE-221017. Any request about personal data can be sent to the certified address at the foot of this page."
+      },
+      "data": {
+        "title": "What is collected",
+        "body": "Only what you type into the form: your name, email address, the course you are asking about and the text of your message. The site asks for nothing else and infers nothing."
+      },
+      "purpose": {
+        "title": "Why",
+        "body": "To answer you and send dates, duration and a quote for the course you are interested in. Your details are not used for marketing."
+      },
+      "basis": {
+        "title": "Legal basis",
+        "body": "Steps taken at your request before entering into a contract, under Article 6(1)(b) of Regulation (EU) 2016/679."
+      },
+      "recipients": {
+        "title": "Who sees it",
+        "body": "The site's hosting provider and the mail service that delivers your message to the academy's inbox, both acting as processors. Nobody else has access."
+      },
+      "retention": {
+        "title": "How long",
+        "body": "Messages are kept for as long as it takes to deal with your enquiry and any follow-up, then deleted."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "body": "The site sets one technical cookie, which remembers the language you chose. There are no analytics, profiling or advertising cookies, and no third-party tracking."
+      },
+      "rights": {
+        "title": "Your rights",
+        "body": "You may ask at any time for access to your data, for it to be corrected or erased, for processing to be restricted, for portability, and to object. You also have the right to lodge a complaint with the Italian data protection authority."
+      },
+      "contact": {
+        "title": "Getting in touch",
+        "body": "To exercise your rights, write to the academy's certified address:"
+      }
+    }
+  },
+  "stroke": {
+    "eyebrow": "The stroke",
+    "title": "One hair at a time.",
+    "body": "Microblading is worked stroke by stroke, following the direction the hair actually grows. It is the part of the craft that cannot be improvised: depth, angle and spacing decide whether the result lasts, and whether it stays natural as it fades.",
+    "alt": "Macro photograph of a brow after treatment, with the individual strokes still distinguishable.",
+    "caption": "Brows photographed in the studio after treatment."
   }
 }

@@ -3,7 +3,6 @@ import {
   brand,
   instagramLink,
   legal,
-  studio,
   tiktokLink,
   whatsappLink,
 } from "@/lib/studio";
@@ -40,7 +39,12 @@ export function organizationSchema(locale: string, name: string, description: st
     // The real plate rather than the tab tile: search engines render this one.
     logo: `${siteUrl}/brand/aura-logo-dark.png`,
     image: `${siteUrl}/brand/amira-hero.jpg`,
-    email: studio.pec,
+    // NO `email`. The only address on file is a certified mailbox that
+    // rejects ordinary mail, and `email` in this schema is consumed by
+    // machines as the way to write to the business: publishing it here is how
+    // an address that bounces ends up in a knowledge panel as the contact.
+    // The channels that reach somebody are in `sameAs` and on the contact
+    // page. An organisation is allowed not to declare an email.
     vatID: legal.vat,
     address: postalAddress,
     // Only the channels the academy actually supplied a handle or number for.

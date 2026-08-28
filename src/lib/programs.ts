@@ -54,6 +54,7 @@
 // and cannot find an extensionless one. The gating contract in this file is
 // the thing most worth having under test, so it has to be importable there.
 import { courses, type Course } from "./courses.ts";
+import type { Media } from "./media";
 
 /**
  * Facts that vary per programme.
@@ -81,6 +82,26 @@ export type ProgramFacts = {
 
 export type Program = Course & {
   facts: ProgramFacts;
+  /**
+   * The photograph that opens this programme's own page, when the academy has
+   * supplied one that is about the treatment rather than about the discipline.
+   *
+   * `media` on the course stays what it is: the catalogue poster, printed on
+   * the homepage row and on the courses page, and it is not touched by this.
+   * This is the one frame below the facts on the detail page, and it exists as
+   * a separate field for the reason the whole file exists: a picture chosen to
+   * open a page a reader has already chosen is doing a different job from a
+   * picture chosen to make her choose, and the two are allowed to differ.
+   *
+   * The frame reads its own shape from `width`/`height`. A portrait photograph
+   * is not printed into the landscape band the catalogue posters use, because
+   * a 21:9 crop of a 4:5 photograph keeps a fifth of it; it is centred at its
+   * own ratio instead, full width on a phone and in a column above it.
+   *
+   * Undefined and the page prints `media` in the landscape band, which is what
+   * five of the six do.
+   */
+  heroMedia?: Media;
   /**
    * How many outcome lines the programme publishes, read as
    * `programs.masters.<slug>.<n>`. Undefined and the "what you will master"
@@ -112,6 +133,28 @@ export type Program = Course & {
 };
 
 /**
+ * Opening photographs supplied for a single programme, keyed by slug.
+ *
+ * Microblading is the only one so far: three stages of one client's brows in a
+ * single frame — grown out, mapped, and healed — which is the treatment's whole
+ * argument in one picture and is worth more at the top of its page than the
+ * catalogue's healed-brow poster, which is still what the homepage prints.
+ *
+ * The photograph is 4:5 and is shown at 4:5. Nothing is stretched and nothing
+ * is cropped away: at that ratio `object-fit: cover` has nothing to cut, so all
+ * three stages survive on a phone as well as on a desktop.
+ */
+const heroMedia: Record<string, Media> = {
+  microblading: {
+    posterSrc: "/brand/microblading-hero-stages.jpg",
+    alt: "Three stages of one client's brows in a single frame: grown out, mapped, and healed after microblading.",
+    position: "50% 50%",
+    width: 1600,
+    height: 2000,
+  },
+};
+
+/**
  * The six, in the catalogue's own order, each carrying an empty fact set.
  *
  * Every optional field above is deliberately omitted rather than set to a
@@ -128,6 +171,7 @@ export type Program = Course & {
 export const programs: Program[] = courses.map((course) => ({
   ...course,
   facts: {},
+  ...(heroMedia[course.slug] ? { heroMedia: heroMedia[course.slug] } : {}),
 }));
 
 export const programBySlug = (slug: string): Program | undefined =>

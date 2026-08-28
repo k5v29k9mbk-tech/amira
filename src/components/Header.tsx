@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { WhatsappLogo } from "@phosphor-icons/react";
@@ -95,15 +95,87 @@ export function Header() {
   // Close on route change, so the overlay never survives a navigation.
   useEffect(() => setOpen(false), [pathname]);
 
+  /**
+   * The panel this ref is on is the whole overlay, and it is what makes the
+   * menu a dialog rather than a div that says it is one.
+   */
+  const panel = useRef<HTMLDivElement>(null);
+  /**
+   * The control that opened it. A dialog that does not put focus back where it
+   * came from leaves a keyboard reader at the top of the document, and on this
+   * site that means tabbing through the whole bar again to get to where she
+   * already was.
+   */
+  const opener = useRef<HTMLButtonElement>(null);
+
+  /**
+   * WHAT THE OVERLAY OWES A KEYBOARD, BEYOND ESCAPE AND A GROUND.
+   *
+   * It already announced itself correctly (`role="dialog"`, `aria-modal`, a
+   * label), took focus on open through `autoFocus` on the close control, closed
+   * on Escape and locked the scroll. Two things were missing, and they are the
+   * two a modal is actually judged on.
+   *
+   * TAB DID NOT STAY IN IT. `aria-modal` tells a screen reader the rest of the
+   * document is inert; it does not tell the browser, and the browser is what
+   * moves focus. So the third Tab left the panel and walked the navigation,
+   * the WhatsApp link and the booking button underneath it, all of them behind
+   * a full-screen opaque layer. Focus was on controls the reader could not see,
+   * and to a sighted keyboard user the focus ring simply vanished. The wrap
+   * below reads the panel's own tabbable set each time rather than caching it,
+   * because the set is not fixed: the WhatsApp row renders only when a number
+   * is on file, and the language control renders a button per locale.
+   *
+   * FOCUS DID NOT COME BACK. Closing left the activeElement on a button that
+   * had just been unmounted, which drops focus to `body`. The restore is in
+   * the cleanup so it runs on every close path there is: Escape, the close
+   * control, a link, and the route change effect above.
+   *
+   * `preventScroll` on the restore, because the bar is fixed and focusing it
+   * would otherwise scroll the page to the top behind the closing overlay.
+   */
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+
+    const restoreTo = opener.current;
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (e.key !== "Tab" || !panel.current) return;
+
+      const focusable = panel.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), select, [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      // Shift+Tab off the first control wraps to the last, and Tab off the
+      // last wraps to the first. The `!panel.contains` arm catches the case
+      // where focus has already escaped, which is what happens on the very
+      // first Tab if the browser has put focus on the document rather than on
+      // the autofocused control.
+      if (e.shiftKey && (active === first || !panel.current.contains(active))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || !panel.current.contains(active))) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
     window.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
+      restoreTo?.focus({ preventScroll: true });
     };
   }, [open]);
 
@@ -327,8 +399,10 @@ export function Header() {
               the page gutter. `-me-2` is the logical property, so the pull is on
               the correct side in Arabic. */}
           <button
+            ref={opener}
             type="button"
             aria-expanded={open}
+            aria-haspopup="dialog"
             onClick={() => setOpen(true)}
             className="label -me-2 px-2 py-4 lg:hidden"
           >
@@ -340,6 +414,7 @@ export function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
+            ref={panel}
             role="dialog"
             aria-modal="true"
             aria-label={t("menu")}
