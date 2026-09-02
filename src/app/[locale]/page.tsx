@@ -29,6 +29,7 @@ import {
 import { stagger } from "@/lib/motion";
 import { JsonLd, faqSchema } from "@/lib/seo";
 import { Hero } from "@/components/Hero";
+import { EntryPremium } from "@/components/entry/EntryPremium";
 import { Artist } from "@/components/Artist";
 import { AuthorityStrip } from "@/components/AuthorityStrip";
 import { Manifesto } from "@/components/Manifesto";
@@ -294,6 +295,28 @@ export default async function Home({
           })),
         )}
       />
+
+      {/*
+        THE PREMIUM OPENING, AND THE ONE LINE THAT ADDS IT.
+
+        Everything below this element is the academy's landing page exactly as
+        it was: the same acts in the same order, the same components, the same
+        copy, the same animations. Nothing in it has been redesigned, reordered
+        or restyled. What changed is that the page now opens on the masterclass
+        before it opens on the film.
+
+        It is one page and not two. There is no second route holding a copy of
+        either half, so neither can drift from the other, and a visitor arriving
+        at the site scrolls from the masterclass straight into the academy's own
+        argument without a navigation in between.
+      */}
+      <EntryPremium locale={locale} />
+
+      {/* The anchor the masthead's ACADEMY label points at. An empty element
+          rather than an id on `Hero` itself, because the film section is not to
+          be touched; `scroll-mt` clears the fixed masthead so the heading does
+          not land underneath it. */}
+      <div id="academy" aria-hidden className="scroll-mt-[76px] md:scroll-mt-[88px]" />
 
       <Hero />
       <Manifesto />

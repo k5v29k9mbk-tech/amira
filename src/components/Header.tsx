@@ -9,6 +9,7 @@ import { Logo } from "./Logo";
 import { brand } from "@/lib/studio";
 import { btnSolid, shell } from "@/lib/ui";
 import { dur, ease, stagger } from "@/lib/motion";
+import { EntryHeader } from "./entry/EntryHeader";
 
 /**
  * Header.
@@ -65,10 +66,20 @@ import { dur, ease, stagger } from "@/lib/motion";
  * in the phone menu and in the footer, which is where they were reachable from
  * at every width below xl anyway.
  */
-export function Header() {
+function SiteHeader() {
   const t = useTranslations("nav");
   const cta = useTranslations("cta");
   const pathname = usePathname();
+  /**
+   * Unchanged from the original, and now unreachable rather than wrong.
+   *
+   * This bar goes light only while it floats over the homepage film. The film is
+   * still on the homepage — it is the section directly under the masterclass —
+   * but the homepage is served by `EntryHeader` now, so `SiteHeader` renders on
+   * every route EXCEPT this one and the branch never fires. It is kept in its
+   * original form rather than deleted so that removing the dispatcher at the
+   * foot of this file restores the old behaviour exactly.
+   */
   const overHero = pathname === "/";
 
   const [open, setOpen] = useState(false);
@@ -488,4 +499,27 @@ export function Header() {
       </AnimatePresence>
     </header>
   );
+}
+
+/**
+ * The masthead, chosen by route.
+ *
+ * The homepage carries five destinations and a filled bronze action; this bar
+ * carries four and a hairline one, and the note at the top of `SiteHeader`
+ * argues its set against the width French needs at 1024 to the pixel. They are
+ * different objects with different arithmetic, so they are different components
+ * and neither has to be adjusted around the other.
+ *
+ * A branch here rather than inside `SiteHeader` because the two mount different
+ * hooks: `SiteHeader` tracks scroll, `EntryHeader` reads the entry copy.
+ * Selecting between them at this level means each renders its own hooks
+ * unconditionally, which is the rule; an early return inside one component
+ * would change hook order between routes and React would throw.
+ *
+ * `usePathname` is next-intl's, so the value is the path with the locale prefix
+ * already stripped and `"/"` matches the entry page in all four languages.
+ */
+export function Header() {
+  const pathname = usePathname();
+  return pathname === "/" ? <EntryHeader /> : <SiteHeader />;
 }

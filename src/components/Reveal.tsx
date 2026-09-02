@@ -30,7 +30,7 @@ export function Reveal({
   children: ReactNode;
   delay?: number;
   className?: string;
-  as?: "div" | "li" | "section";
+  as?: "div" | "li" | "p" | "section";
   /** Anchor target, for rows the nav or an in-page link points at. */
   id?: string;
 }) {
