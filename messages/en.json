@@ -374,7 +374,6 @@
     "instagram": "Instagram",
     "tiktok": "TikTok",
     "facebook": "Facebook",
-    "pec": "PEC",
     "name": "Your name",
     "email": "Email",
     "subject": "Course you're interested in",
@@ -389,8 +388,7 @@
       "description": "Book a place on a PMU or lamination course at Aura Academy, Lungomare Rodi 20, Giulianova (TE), Italy. Write to us for dates, duration and price."
     },
     "privacyNote": "By sending this form you agree that your details will be used to answer your enquiry.",
-    "privacyLink": "Read the privacy notice",
-    "pecLabel": "PEC (Italian certified email)"
+    "privacyLink": "Read the privacy notice"
   },
   "footer": {
     "tagline": "Professional training in permanent makeup and lamination, in classes of three to four students.",
@@ -686,7 +684,7 @@
     "sections": {
       "controller": {
         "title": "Data controller",
-        "body": "Aura Academy di Amira Bechini, Lungomare Rodi 20, 64021 Giulianova (TE), Italy. VAT 02228390676, REA TE-221017. Any request about personal data can be sent to the certified address at the foot of this page."
+        "body": "Aura Academy di Amira Bechini, Lungomare Rodi 20, 64021 Giulianova (TE), Italy. VAT 02228390676, REA TE-221017. Any request about personal data can be sent to the email address at the foot of this page."
       },
       "data": {
         "title": "What is collected",
@@ -718,7 +716,7 @@
       },
       "contact": {
         "title": "Getting in touch",
-        "body": "To exercise your rights, write to the academy's certified address:"
+        "body": "To exercise your rights, write to the academy:"
       }
     }
   },

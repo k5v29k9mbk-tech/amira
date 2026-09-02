@@ -366,7 +366,6 @@ const PAGE_KEYS = [
   "contact.instagram",
   "contact.tiktok",
   "contact.facebook",
-  "contact.pec",
   "contact.name",
   "contact.email",
   "contact.subject",
@@ -1205,23 +1204,33 @@ test("the form that collects a name and an email links to a privacy notice", () 
   }
 });
 
-test("the certified mailbox is never presented as an ordinary inbox", () => {
-  // An Italian PEC rejects ordinary mail. It is the only address the academy
-  // supplied, so it is published (a registered business publishes it, and a
-  // rights request under the Regulation goes there), but every place it is
-  // printed says what it is. Without the label a visitor writes to it, the
-  // message bounces, and the site was the thing that told her to try.
-  for (const [locale, messages] of Object.entries(LOCALES)) {
-    const m = messages as Record<string, Record<string, unknown>>;
-    assert.ok(m.contact.pecLabel, `${locale} prints the PEC with no label`);
+test("the certified mailbox is not published as a way to write to the academy", () => {
+  // An Italian PEC rejects ordinary mail. It used to be printed on /contact and
+  // in the privacy notice under a label naming the channel, on the reasoning
+  // that a registered business publishes it and a rights request goes there.
+  // The label warned a visitor, but the row still offered her an address that
+  // bounces, and a data subject exercising a right under the Regulation had to
+  // already hold a PEC of her own to use it.
+  //
+  // Both places now print `studio.email`, the ordinary inbox, which is what the
+  // footer has always carried. `studio.pec` stays in lib/studio.ts as a fact
+  // about the registered business; nothing renders it.
+  const pages = new URL("../app/[locale]/", import.meta.url);
+  for (const page of ["contact/page.tsx", "privacy/page.tsx"]) {
+    const src = readFileSync(new URL(page, pages), "utf8");
+    assert.equal(
+      /studio\.pec/.test(src),
+      false,
+      `${page} publishes the PEC, which rejects the mail it invites`,
+    );
     assert.match(
-      String(m.contact.pecLabel),
-      /PEC|معتمد/,
-      `${locale} PEC label does not name the channel`,
+      src,
+      /mailto:\$\{studio\.email\}/,
+      `${page} prints no address that reaches the academy`,
     );
   }
 
-  // And it is not the organisation's `email` in structured data, where a
+  // And it is not the organisation's `email` in structured data either, where a
   // machine would read it as the way to write to the business.
   const schema = readFileSync(new URL("./seo.tsx", import.meta.url), "utf8");
   assert.equal(

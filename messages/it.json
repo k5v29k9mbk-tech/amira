@@ -374,7 +374,6 @@
     "instagram": "Instagram",
     "tiktok": "TikTok",
     "facebook": "Facebook",
-    "pec": "PEC",
     "name": "Il tuo nome",
     "email": "Email",
     "subject": "Corso di interesse",
@@ -389,8 +388,7 @@
       "description": "Prenota un posto in un corso di trucco permanente o laminazione presso Aura Academy, Lungomare Rodi 20, Giulianova (TE). Scrivici per date, durata e preventivo."
     },
     "privacyNote": "Inviando il modulo accetti che i tuoi dati siano usati per rispondere alla richiesta.",
-    "privacyLink": "Leggi la privacy",
-    "pecLabel": "PEC (posta elettronica certificata)"
+    "privacyLink": "Leggi la privacy"
   },
   "footer": {
     "tagline": "Formazione professionale in trucco permanente e laminazione, in classi da tre a quattro allieve.",
@@ -686,7 +684,7 @@
     "sections": {
       "controller": {
         "title": "Titolare del trattamento",
-        "body": "Aura Academy di Amira Bechini, Lungomare Rodi 20, 64021 Giulianova (TE), Italia. P. IVA 02228390676, REA TE-221017. Per ogni richiesta relativa ai dati personali puoi scrivere alla PEC indicata in fondo a questa pagina."
+        "body": "Aura Academy di Amira Bechini, Lungomare Rodi 20, 64021 Giulianova (TE), Italia. P. IVA 02228390676, REA TE-221017. Per ogni richiesta relativa ai dati personali puoi scrivere all’indirizzo email indicato in fondo a questa pagina."
       },
       "data": {
         "title": "Dati raccolti",
@@ -718,7 +716,7 @@
       },
       "contact": {
         "title": "Contatti",
-        "body": "Per esercitare i tuoi diritti scrivi alla PEC dell’accademia:"
+        "body": "Per esercitare i tuoi diritti scrivi all’accademia:"
       }
     }
   },

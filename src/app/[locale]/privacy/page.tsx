@@ -133,23 +133,27 @@ export default async function PrivacyPage({
                 </dt>
                 <dd className={`mt-4 max-w-[68ch] ${bodyBase} text-mute`}>
                   {t(`privacy.sections.${key}.body`)}
-                  {/* The certified mailbox is the address a rights request
-                      actually has to go to, so the closing section prints it
-                      rather than pointing at the footer. `dir="ltr"` because an
-                      email address is left-to-right content on the Arabic
-                      route, and the label says what kind of mailbox it is: a
-                      PEC is a legal channel, not a customer service inbox. */}
+                  {/* The address a rights request goes to, printed here
+                      rather than pointing at the footer.
+
+                      It is the academy's ordinary inbox and no longer the PEC.
+                      A certified mailbox rejects ordinary mail, so a data
+                      subject exercising a right under the Regulation had to
+                      already hold a PEC of her own to reach anybody -- which
+                      makes the channel a barrier to the right rather than the
+                      way to it. This address accepts mail from anyone.
+
+                      `dir="ltr"` because an email address is left-to-right
+                      content on the Arabic route. No label under it: it is an
+                      ordinary inbox and needs no warning. */}
                   {key === "contact" && (
                     <span className="mt-4 block">
                       <a
-                        href={`mailto:${studio.pec}`}
+                        href={`mailto:${studio.email}`}
                         className="text-espresso underline decoration-bronze/50 underline-offset-4 transition-colors duration-300 hover:decoration-bronze"
                       >
-                        <span dir="ltr">{studio.pec}</span>
+                        <span dir="ltr">{studio.email}</span>
                       </a>
-                      <span className={`mt-1 block ${bodyMeta} text-mute`}>
-                        {t("contact.pecLabel")}
-                      </span>
                     </span>
                   )}
                 </dd>

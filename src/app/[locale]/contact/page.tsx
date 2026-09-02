@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
+  EnvelopeSimple,
   FacebookLogo,
   InstagramLogo,
-  ShieldCheck,
   TiktokLogo,
   WhatsappLogo,
 } from "@phosphor-icons/react/dist/ssr";
@@ -139,25 +139,27 @@ export default async function ContactPage({
                   <FacebookLogo size={18} weight="light" className="text-bronze" />
                   {studio.facebook}
                 </li>
-                {/* Named as a certified mailbox rather than left to look
-                    like the academy's email. A PEC rejects ordinary mail, so an
-                    unlabelled address in a list headed "where to find us" sends
-                    an enquiry somewhere it will bounce. The three channels
-                    above it are the ones that reach anybody. */}
+                {/* THE ORDINARY INBOX, AND WHY IT IS NOT THE PEC ANY MORE.
+
+                    An Italian PEC rejects ordinary mail. Publishing it in a
+                    list headed "where to find us" invited an enquiry that
+                    bounced, and the site was the thing that told her to send
+                    it -- a label naming the channel warned her, but it still
+                    offered an address nobody could write to. This one reaches
+                    the academy, which is the whole purpose of the row.
+
+                    The PEC is a legal channel rather than a way to contact the
+                    academy, so it is not published here at all. It stays in
+                    `lib/studio.ts` as a fact about the registered business. */}
                 <li>
-                  <a href={`mailto:${studio.pec}`} className={`${row} items-start`}>
-                    <ShieldCheck
+                  <a href={`mailto:${studio.email}`} className={row}>
+                    <EnvelopeSimple
                       size={18}
                       weight="light"
-                      className="mt-1 shrink-0 text-bronze"
+                      className="shrink-0 text-bronze"
                     />
-                    <span>
-                      <span dir="ltr" className="block">
-                        {studio.pec}
-                      </span>
-                      <span className="mt-1 block text-[13px] text-mute">
-                        {t("contact.pecLabel")}
-                      </span>
+                    <span dir="ltr" className="break-all">
+                      {studio.email}
                     </span>
                   </a>
                 </li>
