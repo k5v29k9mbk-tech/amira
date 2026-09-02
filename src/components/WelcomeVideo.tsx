@@ -3,8 +3,8 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { Play } from "@phosphor-icons/react";
+import { usePageText } from "@/lib/content/client";
 
 /**
  * The player is imported dynamically, NOT statically. Deferring the render
@@ -56,7 +56,7 @@ export function WelcomeVideo({
   aspect?: string;
   alt: string;
 }) {
-  const t = useTranslations("mentor");
+  const t = usePageText("home", "mentor");
   const [playing, setPlaying] = useState(false);
 
   if (playing && playbackId) {

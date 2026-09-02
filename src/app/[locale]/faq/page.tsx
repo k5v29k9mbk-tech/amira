@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { Faq } from "@/components/Faq";
@@ -15,6 +15,7 @@ import {
 } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
 import { JsonLd, faqSchema } from "@/lib/seo";
+import { pageText } from "@/lib/content/server";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -26,7 +27,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "faq.meta" });
+  const t = await pageText("faq", "faq.meta", locale);
   return {
     title: t("title"),
     description: t("description"),
@@ -60,7 +61,7 @@ export default async function FaqPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations();
+  const t = await pageText(["common", "faq"]);
 
   return (
     <>

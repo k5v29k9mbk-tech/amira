@@ -1,10 +1,10 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { ArrowRight } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/Logo";
 import { arrow, bodyLede, btnSolid, displayPage, eyebrow, ledeFromTitle, linkRule, shell, titleFromLabel } from "@/lib/ui";
+import { usePageText } from "@/lib/content/client";
 
 /**
  * The page a broken link lands on.
@@ -41,7 +41,7 @@ import { arrow, bodyLede, btnSolid, displayPage, eyebrow, ledeFromTitle, linkRul
  * reason: that entry point is the server-only build.
  */
 export default function NotFound() {
-  const t = useTranslations();
+  const t = usePageText("common");
 
   return (
     <div className="bg-ivory">

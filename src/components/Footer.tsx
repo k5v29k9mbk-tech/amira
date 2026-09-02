@@ -1,10 +1,17 @@
-import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { courses } from "@/lib/courses";
-import { instagramLink, legal, studio, tiktokLink, whatsappLinkWith } from "@/lib/studio";
+import {
+  instagramLink,
+  legal,
+  phoneLink,
+  studio,
+  tiktokLink,
+  whatsappLinkWith,
+} from "@/lib/studio";
 import { bodySmall, shell } from "@/lib/ui";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { Logo } from "./Logo";
+import { pageText } from "@/lib/content/server";
 
 /**
  * Near black, so the page ends on the same ground the closing frame sits on.
@@ -44,7 +51,7 @@ import { Logo } from "./Logo";
  * typed twice or guessed.
  */
 export async function Footer() {
-  const t = await getTranslations();
+  const t = await pageText(["catalog", "common", "contact"]);
   const whatsappHref = whatsappLinkWith(t("contact.whatsappMessage"));
   const year = new Date().getFullYear();
   const link = "text-[15px] text-mute-dark transition-colors duration-300 hover:text-ivory";
@@ -187,10 +194,10 @@ export async function Footer() {
 
         {/* THE COMPANY, AND ONE WAY TO WRITE TO IT.
 
-            The heading, the registered name and an ordinary mailbox. The
-            address lines, the VAT and REA rows and the certified mailbox have
-            come off at the academy's request; where each of them still lives is
-            recorded at the top of this file.
+            The heading, the registered name, an ordinary mailbox and the
+            academy's line. The address lines, the VAT and REA rows and the
+            certified mailbox have come off at the academy's request; where each
+            of them still lives is recorded at the top of this file.
 
             NO LABEL UNDER THIS ONE, AND THAT IS THE POINT OF IT. The line that
             used to sit here read "PEC" and existed because an Italian certified
@@ -216,6 +223,34 @@ export async function Footer() {
                 <span dir="ltr">{studio.email}</span>
               </a>
             </li>
+            {/* THE LINE, UNDER THE INBOX AND IN THE SAME COLUMN.
+
+                It is the third row of a column that holds two, styled with the
+                same `link` and sitting on the same `gap-3` as the address above
+                it: the column grows by one line and nothing else in the footer
+                moves.
+
+                `dir="ltr"` for the same reason the address has it. The number
+                opens with a plus and is read left to right; on the Arabic route
+                the bidi algorithm would otherwise set "+39 345 323 6514" with
+                the plus trailing.
+
+                Guarded on `phoneLink` rather than printed unconditionally, so
+                emptying `studio.phone` takes the row off the footer instead of
+                leaving a dead `tel:` behind, exactly as the WhatsApp row above
+                behaves.
+
+                The layout sets `formatDetection.telephone: false`, which stops
+                iOS turning bare numbers into its own blue links. That is about
+                numbers nobody marked up; this one is an explicit anchor and
+                still dials. */}
+            {phoneLink && (
+              <li>
+                <a href={phoneLink} className={link}>
+                  <span dir="ltr">{studio.phone}</span>
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>

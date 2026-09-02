@@ -46,6 +46,21 @@ export const studio = {
    */
   email: "Auraacdemyab@gmail.com",
   /**
+   * The academy's line, written the way the academy writes it: with the
+   * country code, and spaced in the Italian grouping. It is the display form
+   * and the only place the number is typed for a human to read.
+   *
+   * It is the same line as `whatsapp` below, which is why the test asserts the
+   * two agree rather than letting the digits drift apart. They are stored
+   * separately because they are stored differently: `wa.me` wants bare digits,
+   * a printed number wants the plus and the spaces, and deriving either from
+   * the other would mean a formatter in this file for one number.
+   *
+   * Blank hides the affordance, exactly like `whatsapp`: `phoneLink` is null
+   * and the footer's row renders nothing rather than a dead `tel:`.
+   */
+  phone: "+39 345 323 6514",
+  /**
    * Certified legal mailbox. This is the only email address the academy
    * supplied; it is shown as a PEC and is deliberately NOT used as the
    * contact-form destination, since PEC boxes reject ordinary mail.
@@ -69,6 +84,19 @@ export const studio = {
    */
   whatsapp: "393453236514",
 } as const;
+
+/**
+ * The dialable form of the same line, derived from the printed one so the two
+ * cannot disagree: everything that is not a digit or the leading plus is
+ * stripped, which turns "+39 345 323 6514" into "tel:+393453236514".
+ *
+ * The plus is kept and is not decoration. A `tel:` number without a country
+ * code is dialled against the handset's own country, so an Italian number
+ * given to a phone roaming abroad rings the wrong line or nothing at all.
+ */
+export const phoneLink = studio.phone
+  ? `tel:${studio.phone.replace(/[^\d+]/g, "")}`
+  : null;
 
 export const whatsappLink = studio.whatsapp ? `https://wa.me/${studio.whatsapp}` : null;
 

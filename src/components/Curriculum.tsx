@@ -1,8 +1,8 @@
-import { getTranslations } from "next-intl/server";
 import type { Program } from "@/lib/programs";
 import { displayChapter } from "@/lib/ui";
 import { stagger } from "@/lib/motion";
 import { Reveal } from "./Reveal";
+import { pageText } from "@/lib/content/server";
 
 /**
  * The curriculum, day by day, and the reason it is one component rather than
@@ -39,7 +39,7 @@ import { Reveal } from "./Reveal";
 export async function Curriculum({ program }: { program: Program }) {
   if (!program.curriculum?.length) return null;
 
-  const t = await getTranslations("programs");
+  const t = await pageText("catalog", "programs");
 
   return (
     <ol className="mt-12 md:mt-16">

@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { courses } from "@/lib/courses";
 import { bodyMeta, btnSolid, field, fieldLabel } from "@/lib/ui";
+import { usePageText } from "@/lib/content/client";
 
 type State = "idle" | "sending" | "sent" | "error";
 
@@ -63,8 +63,8 @@ type State = "idle" | "sending" | "sent" | "error";
  * someone else's message.
  */
 export function ContactForm() {
-  const t = useTranslations("contact");
-  const catalog = useTranslations("catalog");
+  const t = usePageText("contact", "contact");
+  const catalog = usePageText("catalog", "catalog");
   const [state, setState] = useState<State>("idle");
   const subject = useRef<HTMLInputElement>(null);
 

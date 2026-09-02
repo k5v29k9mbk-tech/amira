@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/Reveal";
 import { Stagger, StaggerItem } from "@/components/Stagger";
@@ -31,6 +31,9 @@ import {
 } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
 import { JsonLd, personSchema } from "@/lib/seo";
+import { pageText } from "@/lib/content/server";
+import { getContent } from "@/lib/content/get";
+import { ContentProvider } from "@/lib/content/client";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -42,7 +45,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "about.meta" });
+  const t = await pageText("about", "about.meta", locale);
   return {
     title: t("title"),
     description: t("description"),
@@ -84,14 +87,19 @@ export default async function AboutPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  /* WelcomeVideo / BeforeAfter / WorkGallery below are client components and
+     read the `home` group; the layout provides `common` and `contact`, and
+     ContentProvider merges rather than replaces. */
+  const home = await getContent("home", locale);
+
   setRequestLocale(locale);
-  const t = await getTranslations("about");
-  const inst = await getTranslations("instructor");
-  const cta = await getTranslations("cta");
-  const mentor = await getTranslations("mentor");
+  const t = await pageText("about", "about");
+  const inst = await pageText("about", "instructor");
+  const cta = await pageText("common", "cta");
+  const mentor = await pageText("home", "mentor");
 
   return (
-    <>
+    <ContentProvider value={{ home }}>
       <JsonLd data={personSchema(locale, t("story.role"), t("lede"))} />
 
       {/* THE SPLIT, AND WHY THE PHOTOGRAPH IS THE LARGER HALF.
@@ -523,6 +531,6 @@ export default async function AboutPage({
           </Reveal>
         </div>
       </section>
-    </>
+    </ContentProvider>
   );
 }

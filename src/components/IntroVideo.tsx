@@ -1,11 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "motion/react";
 import { introMedia } from "@/lib/media";
 import { endIntro, introPending } from "@/lib/intro";
 import { Logo } from "./Logo";
+import { usePageText } from "@/lib/content/client";
 
 /**
  * Opening sequence.
@@ -56,7 +56,7 @@ export function IntroVideo({
   startWithinMs?: number;
   stallMs?: number;
 } = {}) {
-  const t = useTranslations("intro");
+  const t = usePageText("common", "intro");
   const video = useRef<HTMLVideoElement>(null);
   const exited = useRef(false);
   const staged = useRef(false);

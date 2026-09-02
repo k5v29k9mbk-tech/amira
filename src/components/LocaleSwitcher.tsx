@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState, useTransition } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { useParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { locales } from "@/i18n/routing";
+import { usePageText } from "@/lib/content/client";
 
 /** Two letters, not a flag and not a boxed control. */
 const short: Record<string, string> = { en: "EN", it: "IT", fr: "FR", ar: "AR" };
@@ -69,7 +70,7 @@ export function LocaleSwitcher({
   className?: string;
 }) {
   const locale = useLocale();
-  const t = useTranslations("nav");
+  const t = usePageText("common", "nav");
   const pathname = usePathname();
   const params = useParams();
   const router = useRouter();

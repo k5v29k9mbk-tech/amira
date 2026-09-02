@@ -1,8 +1,8 @@
-import { getTranslations } from "next-intl/server";
 import { galleryFrames } from "@/lib/media";
 import { FrameReveal } from "./FrameReveal";
 import { MediaFrame } from "./MediaFrame";
 import { Parallax } from "./Parallax";
+import { pageText } from "@/lib/content/server";
 
 /**
  * The room and the teaching, on a twelve column field: each frame carries its
@@ -27,7 +27,7 @@ import { Parallax } from "./Parallax";
  * one, so the academy can send a fourth photograph and caption it or not.
  */
 export async function FrameGallery() {
-  const t = await getTranslations("students.captions");
+  const t = await pageText("home", "students.captions");
 
   return (
     <div className="grid grid-cols-12 gap-5 md:gap-8">

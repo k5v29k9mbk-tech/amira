@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { ArrowLeft, ArrowRight, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { altLanguages, routing } from "@/i18n/routing";
@@ -44,6 +44,9 @@ import { Reveal } from "@/components/Reveal";
 import { ServiceGallery } from "@/components/ServiceGallery";
 import { MaskReveal } from "@/components/MaskReveal";
 import { WorkGallery } from "@/components/WorkGallery";
+import { pageText } from "@/lib/content/server";
+import { getContent } from "@/lib/content/get";
+import { ContentProvider } from "@/lib/content/client";
 
 /**
  * One page per programme: six routes per language, twenty four in all.
@@ -138,7 +141,7 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   if (!programBySlug(slug)) return {};
 
-  const t = await getTranslations({ locale });
+  const t = await pageText(["about", "catalog", "common", "contact", "faq", "home"], undefined, locale);
   const name = t(`catalog.courses.${slug}`);
 
   return {
@@ -178,7 +181,7 @@ export default async function ProgramPage({
   const program = programBySlug(slug);
   if (!program) notFound();
 
-  const t = await getTranslations();
+  const t = await pageText(["about", "catalog", "common", "contact", "faq", "home"]);
   const name = t(`catalog.courses.${slug}`);
   const whatsappHref = whatsappLinkWith(t("contact.whatsappMessage"));
 
@@ -193,11 +196,16 @@ export default async function ProgramPage({
    * before the `<section>` is opened rather than leaving an empty band with a
    * claim printed at the top of it.
    */
+  /* WorkGallery and BeforeAfter below are client components and read the
+     `home` group; the layout provides `common` and `contact`, and
+     ContentProvider merges rather than replaces. */
+  const home = await getContent("home", locale);
+
   const pairs = readyPairs(slug);
   const hasProof = pairs.length > 0 || program.gallery.length > 0;
 
   return (
-    <>
+    <ContentProvider value={{ home }}>
       <JsonLd
         data={courseSchema(
           locale,
@@ -750,6 +758,6 @@ export default async function ProgramPage({
           </ul>
         </div>
       </section>
-    </>
+    </ContentProvider>
   );
 }

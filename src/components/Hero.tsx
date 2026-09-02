@@ -1,4 +1,3 @@
-import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { btnLineLight, btnSolidLight, displayHero, shell } from "@/lib/ui";
 import { dur, heroBeat, stagger } from "@/lib/motion";
@@ -7,6 +6,7 @@ import { HeroFilm } from "./HeroFilm";
 import { HeroBeat, HeroCopy } from "./HeroChoreography";
 import { MaskReveal } from "./MaskReveal";
 import { Magnetic } from "./Magnetic";
+import { pageText } from "@/lib/content/server";
 
 /**
  * THE FIRST SCREEN: the academy's film, full bleed, with the title card set
@@ -99,8 +99,8 @@ import { Magnetic } from "./Magnetic";
 const facts = ["years", "students", "classes"] as const;
 
 export async function Hero() {
-  const t = await getTranslations("hero");
-  const c = await getTranslations("cta");
+  const t = await pageText("home", "hero");
+  const c = await pageText("common", "cta");
 
   return (
     <section className="hero relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-espresso pt-[clamp(96px,12vh,112px)] pb-[clamp(56px,7vh,88px)] text-ivory">

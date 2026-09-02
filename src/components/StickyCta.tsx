@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import { WhatsappLogo } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 import { whatsappLink } from "@/lib/studio";
 import { btnCompact } from "@/lib/ui";
+import { usePageText } from "@/lib/content/client";
 
 /**
  * The phone's standing action, and the reason it exists.
@@ -75,8 +75,8 @@ import { btnCompact } from "@/lib/ui";
  * that does not depend on a channel.
  */
 export function StickyCta() {
-  const t = useTranslations("cta");
-  const contact = useTranslations("contact");
+  const t = usePageText("common", "cta");
+  const contact = usePageText("contact", "contact");
   const [shown, setShown] = useState(false);
 
   /**

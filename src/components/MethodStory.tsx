@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
 import { chapters } from "@/lib/courses";
 import { methodMedia } from "@/lib/media";
 import { displayChapter } from "@/lib/ui";
 import { MediaFrame } from "./MediaFrame";
+import { usePageText } from "@/lib/content/client";
 
 /**
  * The method, told against one held image.
@@ -42,7 +42,7 @@ import { MediaFrame } from "./MediaFrame";
  * only where the two-column layout exists.
  */
 export function MethodStory() {
-  const t = useTranslations("method");
+  const t = usePageText("home", "method");
   const [active, setActive] = useState(0);
   const marks = useRef<(HTMLLIElement | null)[]>([]);
 

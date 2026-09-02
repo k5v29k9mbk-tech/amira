@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
 import { locales, siteUrl, xDefaultLocale } from "@/i18n/routing";
 import { programs } from "@/lib/programs";
+import { masterclass } from "@/lib/masterclass";
 
 /**
- * Five pages and six programmes per locale: forty four URLs in all.
+ * Five pages, six programmes and one dated masterclass per locale: forty eight
+ * URLs in all.
  *
  * The per-course routes are new. This file used to record that there were none,
  * on the reasoning that the academy quotes per course rather than publishing six
@@ -32,6 +34,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/courses",
     ...programs.map((program) => `/courses/${program.slug}`),
+    /* The dated Roma masterclass. It is not one of the six and does not live
+       under /courses, so it cannot arrive here through `programs`; it is listed
+       explicitly and comes back out of this array the day the edition is over
+       and the route is deleted. */
+    `/${masterclass.slug}`,
     "/faq",
     "/contact",
     "/privacy",
@@ -43,6 +50,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     if (path === "/privacy") return 0.3;
     if (path === "/courses") return 0.9;
     if (path.startsWith("/courses/")) return 0.8;
+    /* Level with a programme page while the dates stand: it is a campaign page
+       with a deadline, and after those two days it should be gone rather than
+       demoted. */
+    if (path === `/${masterclass.slug}`) return 0.8;
     return 0.7;
   };
 

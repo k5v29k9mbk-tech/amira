@@ -1,6 +1,6 @@
-import { getTranslations } from "next-intl/server";
 import type { Program } from "@/lib/programs";
 import { Reveal } from "./Reveal";
+import { pageText } from "@/lib/content/server";
 
 /**
  * What you will master: the outcome lines a programme publishes.
@@ -24,7 +24,7 @@ import { Reveal } from "./Reveal";
 export async function Mastery({ program }: { program: Program }) {
   if (!program.masters) return null;
 
-  const t = await getTranslations("programs");
+  const t = await pageText("catalog", "programs");
 
   return (
     <ol className="mt-12 grid border-t border-hair md:mt-16 md:grid-cols-2 md:gap-x-16 lg:gap-x-24">

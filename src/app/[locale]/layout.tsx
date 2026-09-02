@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { Cormorant_Garamond, Jost, Noto_Naskh_Arabic } from "next/font/google";
 import { routing, isRtl, siteUrl, altLanguages } from "@/i18n/routing";
 import { Header } from "@/components/Header";
@@ -14,6 +14,9 @@ import { introFilmReady } from "@/lib/intro-film";
 import { JsonLd, organizationSchema } from "@/lib/seo";
 import { brand } from "@/lib/studio";
 import "../globals.css";
+import { pageText } from "@/lib/content/server";
+import { getContent } from "@/lib/content/get";
+import { ContentProvider } from "@/lib/content/client";
 
 // Two faces and nothing else: an editorial serif for everything oversized, a
 // neutral geometric sans for interface text. Cormorant carries the light weight
@@ -40,59 +43,6 @@ const arabic = Noto_Naskh_Arabic({
   display: "swap",
 });
 
-/** Namespaces read by `"use client"` components. Keep in sync with them. */
-const CLIENT_NAMESPACES = [
-  "nav", // Header, LocaleSwitcher
-  /**
-   * The 404 page, which is a client component and has to be.
-   *
-   * A not-found boundary is handed no params and nothing calls
-   * `setRequestLocale` on the way into it, so `getTranslations()` there has no
-   * locale to resolve against: the page rendered its own message keys as text.
-   * It reads the catalogue through the provider instead, like `loading` did
-   * before it, which means this namespace has to reach the client. It is two
-   * short strings.
-   */
-  "notFound",
-  "cta", // Header + StickyCta booking action, CourseSelector course link
-  "intro", // IntroVideo skip control
-  "manifesto", // Manifesto
-  "method", // MethodStory
-  "voices", // Testimonial
-  "mentor", // WelcomeVideo
-  "success", // BeforeAfter
-  "work", // WorkGallery
-  "contact", // ContactForm
-  /**
-   * ContactForm, for the subject line only.
-   *
-   * A visitor who presses "request a seat" on a programme page arrives at
-   * /contact with `?course=<slug>`, and the form fills its subject with that
-   * discipline's name in the language she is reading. The name is a
-   * translation, so the namespace has to reach the client for the form to know
-   * it.
-   *
-   * THE COST, STATED HONESTLY, because this list is the one place on the site
-   * where adding a line has a weight. `catalog` is the largest namespace here:
-   * six course names, six blurbs, the family headings and the shared
-   * conditions, on the order of two kilobytes of JSON per language before
-   * compression, and it now ships on every route rather than none. That is
-   * paid for one input on one page.
-   *
-   * It is still the right trade, and the alternatives are worse. Passing the
-   * localised name through the query string means reflecting arbitrary text
-   * from a URL into a field that is posted to a real inbox, which is exactly
-   * the thing the slug is validated to prevent. Reading the parameter on the
-   * server makes /contact dynamic at request time, so a static page becomes a
-   * render on every visit to save a kilobyte. And splitting the namespace to
-   * ship only `catalog.courses` would be a fork of the catalogue maintained by
-   * hand.
-   *
-   * If this list ever needs trimming, this is the first line to look at: the
-   * feature it pays for is a convenience, not a function.
-   */
-  "catalog", // ContactForm subject prefill
-] as const;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -114,7 +64,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "meta" });
+  const t = await pageText("common", "meta", locale);
   const title = `${t("title")} | ${t("tagline")}`;
   return {
     metadataBase: new URL(siteUrl),
@@ -161,22 +111,27 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
-  const org = await getTranslations({ locale, namespace: "meta" });
-  const nav = await getTranslations({ locale, namespace: "nav" });
+  const org = await pageText("common", "meta", locale);
+  const nav = await pageText("common", "nav", locale);
 
   /**
-   * Only the namespaces client components actually read. Left to itself,
-   * NextIntlClientProvider serialises the whole catalogue into the HTML, so
-   * every visitor was downloading all 21 lesson titles, the full syllabus and
-   * every FAQ answer to render a page that shows none of them.
+   * Only the groups client components actually read.
    *
-   * If a client component starts using a new namespace, add it here or it will
-   * throw MISSING_MESSAGE at runtime.
+   * The chrome -- header, locale switcher, sticky call to action, intro
+   * overlay, and the 404 body -- reads `common`, and the sticky bar also reads
+   * the contact details. Those two groups are serialised into the HTML for the
+   * client; the other five never leave the server.
+   *
+   * This replaces the namespace allowlist that used to feed
+   * NextIntlClientProvider, and for the same reason it existed: left to itself
+   * that provider shipped the whole catalogue, so every visitor downloaded all
+   * 21 lesson titles, the full syllabus and every FAQ answer to render a page
+   * that shows none of them.
    */
-  const all = await getMessages();
-  const clientMessages = Object.fromEntries(
-    CLIENT_NAMESPACES.filter((ns) => ns in all).map((ns) => [ns, all[ns]]),
-  );
+  const [common, contact] = await Promise.all([
+    getContent("common", locale),
+    getContent("contact", locale),
+  ]);
 
   return (
     <html
@@ -215,7 +170,8 @@ export default async function LocaleLayout({
         {/* MotionProvider wraps everything that moves, which is the header, the
             intro overlay, every page and the footer. It carries the site's whole
             reduced-motion policy; see the note in the component. */}
-        <NextIntlClientProvider messages={clientMessages}>
+        <NextIntlClientProvider locale={locale}>
+          <ContentProvider value={{ common, contact }}>
           <MotionProvider>
           {introFilmReady ? <IntroVideo /> : null}
           {/* Four languages, four skip links. This was English for everyone
@@ -233,6 +189,7 @@ export default async function LocaleLayout({
           <StickyCta />
           <JsonLd data={organizationSchema(locale, org("title"), org("description"))} />
           </MotionProvider>
+          </ContentProvider>
         </NextIntlClientProvider>
       </body>
     </html>

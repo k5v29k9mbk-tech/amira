@@ -1,8 +1,8 @@
-import { getTranslations } from "next-intl/server";
 import { bodySmall, displayRow } from "@/lib/ui";
 import { mentorshipMedia } from "@/lib/media";
 import { MediaFrame } from "./MediaFrame";
 import { Reveal } from "./Reveal";
+import { pageText } from "@/lib/content/server";
 
 /**
  * What the room is like, in four claims, set under the photographs of it.
@@ -49,7 +49,7 @@ import { Reveal } from "./Reveal";
 const items = ["demo", "practice", "correction"] as const;
 
 export async function LearningExperience() {
-  const t = await getTranslations("experience");
+  const t = await pageText("home", "experience");
 
   return (
     <div className="mt-16 border-t border-hair pt-10 md:mt-20 md:pt-12">

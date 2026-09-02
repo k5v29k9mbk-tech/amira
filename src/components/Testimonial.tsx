@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { useMessages, useTranslations } from "next-intl";
+import { useMessages } from "next-intl";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import {
@@ -9,6 +9,7 @@ import {
   sectionPad,
   shell,
 } from "@/lib/ui";
+import { usePageText } from "@/lib/content/client";
 
 /**
  * One voice at a time, on a near-black field.
@@ -33,7 +34,7 @@ import {
 type Voice = { quote?: string; name?: string; role?: string; course?: string };
 
 export function Testimonial() {
-  const t = useTranslations("voices");
+  const t = usePageText("home", "voices");
   const messages = useMessages() as { voices?: { items?: Record<string, Voice> } };
   const items = messages.voices?.items ?? {};
   const keys = Object.keys(items);

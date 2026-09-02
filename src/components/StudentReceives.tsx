@@ -1,5 +1,5 @@
-import { getTranslations } from "next-intl/server";
 import { Reveal } from "./Reveal";
+import { pageText } from "@/lib/content/server";
 
 /**
  * What every student leaves with, as a plain list of eight.
@@ -67,7 +67,7 @@ import { Reveal } from "./Reveal";
 const items = ["certificate", "support", "kit", "business"] as const;
 
 export async function StudentReceives() {
-  const t = await getTranslations("receive");
+  const t = await pageText("home", "receive");
 
   return (
     <ul className="mt-12 grid border-t border-hair md:mt-16 md:grid-cols-2 md:gap-x-16 lg:gap-x-24">

@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { getTranslations } from "next-intl/server";
 import { academy, brand } from "@/lib/studio";
 import { isRtl, routing } from "@/i18n/routing";
+import { pageText } from "@/lib/content/server";
 
 // Without this the card is generated on demand, once per crawler that asks,
 // on a route whose entire input is the locale. Four of them, at build time.
@@ -52,7 +52,7 @@ const NASKH = readFileSync(join(process.cwd(), "assets/fonts/MarkaziText-Medium.
 // share card never drifts from the brand. No design file to keep in sync.
 export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "meta" });
+  const t = await pageText("common", "meta", locale);
   const rtl = isRtl(locale);
 
   /**

@@ -286,6 +286,61 @@ body {
 }
 
 /*
+  THE ENTRY PAGE'S TRACKED CAPITALS, AND WHY THEY ARE A CLASS RATHER THAN A
+  `tracking-` UTILITY.
+
+  Two separate reasons, and either one on its own would be enough.
+
+  ARABIC. Letter spacing applied to Naskh is not a small-caps effect, it is
+  broken joining: the script is cursive, and spacing the glyphs pulls the
+  connections apart into something that reads as damaged rather than as
+  tracked. `.label` has carried an `[lang="ar"]` reset for exactly this since it
+  was written, and so does `.hero .fact-label`. The entry page sets tracked
+  capitals in six places that are not `.label` -- the four claims on the dark
+  band, the hero's date and tagline, the information bar's headings and its
+  action's second line, and the seal -- and every one of them holds Arabic on
+  the Arabic route. Written as `tracking-[0.16em]` they had no reset and all six
+  broke.
+
+  THE CASCADE. The reset has to be an unlayered rule to beat a Tailwind utility
+  at all: utilities live in `@layer utilities` and unlayered rules outrank every
+  layer regardless of specificity or source order, which is the trap documented
+  at `.hero .fact-label` above. So a per-element `rtl:tracking-normal` would not
+  have worked either -- it is a utility, and the thing it needs to beat is one.
+
+  `--cap-track` so one class serves all six sizes: the caller sets the value it
+  needs and the Arabic reset still catches it, because the reset overrides the
+  resolved property rather than the variable.
+*/
+.entry-cap {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--cap-track, 0.16em);
+}
+
+@media (min-width: 768px) {
+  .entry-cap {
+    letter-spacing: var(--cap-track-md, var(--cap-track, 0.18em));
+  }
+}
+
+/*
+  0.08em, WHICH IS `.label`'S ARABIC VALUE AND NOT ZERO.
+  
+  The reset exists because Naskh at 0.14-0.2em is broken joining rather than
+  tracking. But the site's own answer to that has never been "no tracking at
+  all": `.label` carries 0.08em on the Arabic route and `.hero .fact-label`
+  carries 0.05em, both chosen because a little air still reads as a small-caps
+  register in Naskh while the Latin values do not. Setting this to zero made the
+  entry page the one surface where Arabic tracked capitals were set solid, which
+  is a difference nobody chose. It matches `.label` now, so the three tracked
+  faces on the Arabic site are one family.
+*/
+[lang="ar"] .entry-cap {
+  letter-spacing: 0.08em;
+}
+
+/*
   Crop control. Every image and video on the site carries its focal point as a
   custom property rather than a class, because the value comes from data
   (lib/media.ts) and Tailwind cannot compile a class it never sees in source.

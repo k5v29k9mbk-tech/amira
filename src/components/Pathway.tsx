@@ -1,10 +1,10 @@
-import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { publishedTiers } from "@/lib/pathway";
 import { arrow, bodySmall, displayChapter, linkRule } from "@/lib/ui";
 import { stagger } from "@/lib/motion";
 import { Reveal } from "./Reveal";
+import { pageText } from "@/lib/content/server";
 
 /**
  * The educational path: the levels a student moves between, drawn once.
@@ -38,8 +38,8 @@ import { Reveal } from "./Reveal";
  * width and reading as two paragraphs.
  */
 export async function Pathway() {
-  const t = await getTranslations("pathway");
-  const c = await getTranslations("cta");
+  const t = await pageText("home", "pathway");
+  const c = await pageText("common", "cta");
 
   return (
     <ol className="mt-12 border-t border-hair md:mt-16">

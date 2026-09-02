@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { studio } from "@/lib/studio";
@@ -17,6 +17,7 @@ import {
   titleFromLabel,
 } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
+import { pageText } from "@/lib/content/server";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -28,7 +29,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "privacy.meta" });
+  const t = await pageText("privacy", "privacy.meta", locale);
   return {
     title: t("title"),
     description: t("description"),
@@ -85,7 +86,7 @@ export default async function PrivacyPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations();
+  const t = await pageText(["common", "contact", "privacy"]);
 
   return (
     <section className={`${sectionPadBottom} bg-ivory pt-[7.5rem] md:pt-36`}>

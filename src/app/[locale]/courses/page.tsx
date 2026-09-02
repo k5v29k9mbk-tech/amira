@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { ArrowRight, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { courses, families, included } from "@/lib/courses";
@@ -32,6 +32,9 @@ import {
 } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
 import { JsonLd, courseListSchema } from "@/lib/seo";
+import { pageText } from "@/lib/content/server";
+import { getContent } from "@/lib/content/get";
+import { ContentProvider } from "@/lib/content/client";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -51,7 +54,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "catalog" });
+  const t = await pageText("catalog", "catalog", locale);
   return {
     title: t("title"),
     description: t("sub"),
@@ -92,13 +95,18 @@ export default async function CoursesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  /* WelcomeVideo / BeforeAfter / WorkGallery below are client components and
+     read the `home` group; the layout provides `common` and `contact`, and
+     ContentProvider merges rather than replaces. */
+  const home = await getContent("home", locale);
+
   setRequestLocale(locale);
-  const t = await getTranslations();
+  const t = await pageText(["catalog", "common", "contact", "home"]);
   // Null while no number is on file, which is what hides the action.
   const whatsappHref = whatsappLinkWith(t("contact.whatsappMessage"));
 
   return (
-    <>
+    <ContentProvider value={{ home }}>
       <JsonLd
         data={courseListSchema(
           locale,
@@ -513,6 +521,6 @@ export default async function CoursesPage({
           </Reveal>
         </div>
       </section>
-    </>
+    </ContentProvider>
   );
 }

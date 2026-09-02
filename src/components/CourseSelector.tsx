@@ -1,4 +1,3 @@
-import { useTranslations } from "next-intl";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { courses } from "@/lib/courses";
@@ -6,6 +5,7 @@ import { arrow, bodySmall, displayChapter, shell } from "@/lib/ui";
 import { stagger } from "@/lib/motion";
 import { MediaFrame } from "./MediaFrame";
 import { Reveal } from "./Reveal";
+import { pageText } from "@/lib/content/server";
 
 /**
  * The catalogue: six disciplines, one list, two shapes.
@@ -44,10 +44,10 @@ import { Reveal } from "./Reveal";
  * This is a server component: it holds no state, so the catalogue ships as HTML
  * and costs the homepage no client JavaScript at all.
  */
-export function CourseSelector() {
-  const t = useTranslations("catalog");
-  const p = useTranslations("programs");
-  const c = useTranslations("cta");
+export async function CourseSelector() {
+  const t = await pageText("catalog", "catalog");
+  const p = await pageText("catalog", "programs");
+  const c = await pageText("common", "cta");
 
   return (
     <ul

@@ -1,10 +1,10 @@
 "use client";
 
 import { Fragment, useRef } from "react";
-import { useTranslations } from "next-intl";
 import { motion, useScroll, useTransform } from "motion/react";
 import type { MotionValue } from "motion/react";
 import { displayManifesto, sectionPadJoin, shell } from "@/lib/ui";
+import { usePageText } from "@/lib/content/client";
 
 /**
  * The statement, revealed by reading position.
@@ -53,7 +53,7 @@ function Word({
 }
 
 export function Manifesto() {
-  const t = useTranslations("manifesto");
+  const t = usePageText("home", "manifesto");
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,

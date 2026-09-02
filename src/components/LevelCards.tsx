@@ -1,6 +1,6 @@
-import { getTranslations } from "next-intl/server";
 import { displayRow } from "@/lib/ui";
 import { Reveal } from "./Reveal";
+import { pageText } from "@/lib/content/server";
 
 /**
  * The two levels, side by side, answering the same five questions each.
@@ -44,7 +44,7 @@ import { Reveal } from "./Reveal";
  * nothing.
  */
 export async function LevelCards() {
-  const t = await getTranslations("programs");
+  const t = await pageText("catalog", "programs");
 
   /* The five questions, in the order a reader asks them. The array is the
      contract: both columns iterate it, so a row cannot exist on one level and

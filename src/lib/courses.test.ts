@@ -27,7 +27,8 @@ import {
   methodMedia,
   resultFrames,
 } from "./media.ts";
-import { academy, addressLine, brand, legal, studio } from "./studio.ts";
+import { academy, addressLine, brand, legal, phoneLink, studio } from "./studio.ts";
+import { PAGES } from "./content/pages.ts";
 
 import en from "../../messages/en.json" with { type: "json" };
 import it from "../../messages/it.json" with { type: "json" };
@@ -693,6 +694,7 @@ test("official facts match the client's document exactly", () => {
   assert.equal(legal.vat, "02228390676");
   assert.equal(legal.rea, "TE-221017");
   assert.equal(studio.pec, "amirabechini@pec.it");
+  assert.equal(studio.phone, "+39 345 323 6514");
   assert.equal(studio.instagram, "amirabechini_master");
   assert.equal(studio.tiktok, "amirabchini1");
 });
@@ -705,6 +707,18 @@ test("nothing links to a WhatsApp number the academy never supplied", () => {
   } else {
     assert.match(studio.whatsapp, /^\d{8,15}$/, "digits only, no + or spaces");
   }
+});
+
+test("the printed line and the dialled one are the same number", () => {
+  // The academy has one line, stored twice because `wa.me` wants bare digits
+  // and a printed number wants the plus and the spaces. Nothing derives one
+  // from the other, so this is what stops an edit to either leaving the footer
+  // printing a number that dials somewhere else.
+  assert.equal(studio.phone.replace(/[^\d]/g, ""), studio.whatsapp);
+  assert.equal(phoneLink, "tel:+393453236514");
+  // The country code survives into the href. A `tel:` without one is dialled
+  // against the handset's own country, which is the wrong line abroad.
+  assert.match(String(phoneLink), /^tel:\+\d{8,15}$/, "tel: is not E.164");
 });
 
 test("every page string is translated in all four languages", () => {
@@ -1256,11 +1270,22 @@ test("a broken link can reach the site's own 404, in every language", () => {
     "the 404 page reads translations off a request that carries no locale",
   );
 
+  // The 404 body is client-rendered, so its strings have to be handed to the
+  // browser by a provider above it. That used to be next-intl's
+  // CLIENT_NAMESPACES allowlist; it is now the ContentProvider in the layout,
+  // and `notFound` travels inside the `common` group. The guarantee is
+  // unchanged -- if `common` stops being provided, the 404 throws instead of
+  // rendering its own message keys -- so this checks the mechanism that is
+  // actually load-bearing today.
   const layout = readFileSync(new URL("layout.tsx", here), "utf8");
   assert.match(
     layout,
-    /"notFound"/,
-    "notFound is not in CLIENT_NAMESPACES, so the 404 renders its own message keys",
+    /<ContentProvider value=\{\{ common/,
+    "the layout no longer provides the `common` group, so the 404 has no copy",
+  );
+  assert.ok(
+    PAGES.find((p) => p.id === "common")?.namespaces.includes("notFound"),
+    "`notFound` left the `common` group, so it no longer reaches the client",
   );
 
   for (const [locale, messages] of Object.entries(LOCALES)) {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import {
   FacebookLogo,
   InstagramLogo,
@@ -34,6 +34,9 @@ import {
   titleFromLabel,
 } from "@/lib/ui";
 import { altLanguages, routing } from "@/i18n/routing";
+import { pageText } from "@/lib/content/server";
+import { getContent } from "@/lib/content/get";
+import { ContentProvider } from "@/lib/content/client";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -45,7 +48,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "contact.meta" });
+  const t = await pageText("contact", "contact.meta", locale);
   return {
     title: t("title"),
     description: t("description"),
@@ -68,12 +71,19 @@ export default async function ContactPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations();
+  const t = await pageText(["catalog", "common", "contact", "home"]);
+  /* The client components on this page read these groups; the layout already
+     provides `common` and `contact` for the chrome, and ContentProvider merges
+     rather than replaces, so only the additions are declared here. */
+  const [catalog] = await Promise.all([
+    getContent("catalog", locale),
+  ]);
+
   const whatsappHref = whatsappLinkWith(t("contact.whatsappMessage"));
   const row = `flex items-center gap-4 ${bodyBase} transition-colors hover:text-bronze-ink`;
 
   return (
-    <>
+    <ContentProvider value={{ catalog }}>
       <section className={`${pageHeader} bg-ivory`}>
         <div className={`${shell} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-5">
@@ -229,6 +239,6 @@ export default async function ContactPage({
           <p className={`mt-10 ${bodySmall} text-mute`}>{t("catalog.payments")}</p>
         </div>
       </section>
-    </>
+    </ContentProvider>
   );
 }

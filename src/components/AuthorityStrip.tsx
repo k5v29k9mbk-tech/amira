@@ -1,4 +1,3 @@
-import { getTranslations } from "next-intl/server";
 import { displaySection, sectionPadJoin, shell } from "@/lib/ui";
 import { precisionMedia } from "@/lib/media";
 import { MediaFrame } from "./MediaFrame";
@@ -7,6 +6,7 @@ import { stagger } from "@/lib/motion";
 import { MaskReveal } from "./MaskReveal";
 import { Reveal } from "./Reveal";
 import { SectionLabel } from "./SectionLabel";
+import { pageText } from "@/lib/content/server";
 
 /**
  * The credibility act: why this teaching is worth trusting, in words.
@@ -46,8 +46,8 @@ import { SectionLabel } from "./SectionLabel";
  * what this edge is. The dark opening ends here.
  */
 export async function AuthorityStrip() {
-  const t = await getTranslations("authority");
-  const sections = await getTranslations("sections");
+  const t = await pageText("home", "authority");
+  const sections = await pageText("common", "sections");
 
   return (
     <section

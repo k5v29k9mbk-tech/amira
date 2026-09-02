@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { animate, useInView, useReducedMotion } from "motion/react";
 import { dur, ease } from "@/lib/motion";
 import { ArrowsHorizontal } from "@phosphor-icons/react";
+import { usePageText } from "@/lib/content/client";
 
 export type Pair = { before: string; after: string; label: string };
 
@@ -65,7 +65,7 @@ export function BeforeAfter({
    */
   focus?: { before: string; after: string };
 }) {
-  const t = useTranslations("success");
+  const t = usePageText("home", "success");
   const [pos, setPos] = useState(100);
 
   /**

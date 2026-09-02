@@ -1,6 +1,6 @@
-import { getTranslations } from "next-intl/server";
 import type { Program } from "@/lib/programs";
 import { Reveal } from "./Reveal";
+import { pageText } from "@/lib/content/server";
 
 /**
  * The key-information module: the facts a visitor scans before she reads.
@@ -31,8 +31,8 @@ import { Reveal } from "./Reveal";
  * purpose, so a reader who has seen one recognises the other.
  */
 export async function KeyInfo({ program }: { program: Program }) {
-  const t = await getTranslations("programs");
-  const catalog = await getTranslations("catalog");
+  const t = await pageText("catalog", "programs");
+  const catalog = await pageText("catalog", "catalog");
 
   /* Label and value, in reading order. A row whose value resolves to null is
      filtered out rather than printed empty, which is what makes the duration

@@ -29,6 +29,43 @@ const nextConfig: NextConfig = {
      */
     formats: ["image/avif", "image/webp"],
   },
+  /**
+   * ONE HOST SERVES THE SITE, AND IT IS THE BARE DOMAIN.
+   *
+   * Every canonical tag, every hreflang alternate, every sitemap entry and the
+   * `host` line in robots.txt are built from `siteUrl` in `i18n/routing.ts`,
+   * which is `https://amira-bechini.com`. A second host answering 200 with the
+   * same HTML is one document at two addresses, and the only thing telling a
+   * crawler which of the two counts is a tag inside a page it has already
+   * downloaded twice.
+   *
+   * `has` matches the request's Host header, so this fires for the www host and
+   * for nothing else: localhost, the `*.vercel.app` preview aliases and the
+   * bare domain itself all fall straight through. `:path*` carries the whole
+   * path across, and Next appends the original query string to a destination
+   * that does not declare one, so `?utm_source=` survives the hop.
+   *
+   * `statusCode: 301` rather than `permanent: true`, which would emit 308. Both
+   * are permanent and search engines treat them alike; 301 is what the delivery
+   * brief specifies and what `curl -I` is expected to print.
+   *
+   * THIS RULE CANNOT WORK ALONE, AND ON ITS OWN IT IS DANGEROUS. Vercel
+   * resolves domain-level redirects at the edge, before a request reaches this
+   * application, and the project is currently configured the other way round:
+   * `www` is the Primary Domain and the bare host 308s to it. Shipping this
+   * while that setting stands puts the two redirects in a loop. The Primary
+   * Domain must be moved to `amira-bechini.com` first.
+   */
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.amira-bechini.com" }],
+        destination: "https://amira-bechini.com/:path*",
+        statusCode: 301,
+      },
+    ];
+  },
 };
 
 export default createNextIntlPlugin()(nextConfig);

@@ -3,13 +3,13 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
-import { useTranslations } from "next-intl";
 import { ArrowsOut, X } from "@phosphor-icons/react";
 import { resultFrames, type ResultFrame } from "@/lib/media";
 import { dur, ease } from "@/lib/motion";
 import { FrameReveal } from "./FrameReveal";
 import { MediaFrame } from "./MediaFrame";
 import { Parallax } from "./Parallax";
+import { usePageText } from "@/lib/content/client";
 
 /**
  * The work: a set of treatment photographs, laid out as one composition rather
@@ -52,7 +52,7 @@ import { Parallax } from "./Parallax";
  * cuts the hover transition to nothing.
  */
 export function WorkGallery({ frames = resultFrames }: { frames?: ResultFrame[] }) {
-  const t = useTranslations("work");
+  const t = usePageText("home", "work");
 
   /** Index into `frames`, or null when the overlay is closed. */
   const [open, setOpen] = useState<number | null>(null);

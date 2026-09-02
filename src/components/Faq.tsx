@@ -1,5 +1,5 @@
-import { getTranslations } from "next-intl/server";
 import { displayRow } from "@/lib/ui";
+import { pageText } from "@/lib/content/server";
 
 /**
  * Native disclosure rows. No JavaScript, correct keyboard and screen reader
@@ -7,7 +7,7 @@ import { displayRow } from "@/lib/ui";
  * or not the row is open.
  */
 export async function Faq({ items }: { items: readonly string[] }) {
-  const t = await getTranslations("faq");
+  const t = await pageText("faq", "faq");
 
   return (
     <div className="border-t border-hair">
